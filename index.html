@@ -1,494 +1,923 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="slides-format" content="viewport">
-    <title>Lesson 2 – Exploring Anime Genres and Themes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="slides-format" content="viewport">
+  <title>Lesson 3 – Layers in Digital Art</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Fonts from AICoding-day-13-Spring.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-    <style type="text/tailwindcss">
-        @theme {
-            --color-bg: #f4fbff;
-            --color-bg-deep: #e0f2ff;
-            --color-surface: rgba(255,255,255,0.9);
-            --color-text: #1f2a37;
-            --color-text-secondary: #4b5563;
-            --color-text-muted: #5b6b7e;
-            --color-accent-1: #0b63ce;
-            --color-accent-2: #10b981;
-            --color-accent-3: #f59e0b;
-            --color-glass-bg: rgba(255,255,255,0.85);
-            --color-glass-border: rgba(11,99,206,0.16);
-            --color-vignette: rgba(15,23,42,0.08);
-            --font-display: 'Fredoka', 'Trebuchet MS', sans-serif;
-            --font-body: 'Nunito', Arial, sans-serif;
-        }
-    </style>
+  <!-- Tailwind v4 CDN (for utility classes) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <style>
-        :root { --color-bg: #f4fbff; --color-text: #1f2a37; --glow-color-rgb: 11,99,206; }
-        *, *::before, *::after { box-sizing: border-box; }
-        html, body { background: var(--color-bg); margin: 0; }
-        body { font-family: var(--font-body, 'Nunito', system-ui, sans-serif); color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
-        .deck { width: 100vw; height: 100vh; position: relative; }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 40%), radial-gradient(circle at bottom right, rgba(16,185,129,0.12), transparent 40%), var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; overflow: hidden; }
-        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
-        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1040px; padding: clamp(1.5rem, 4vw, 3.5rem); }
-        .nav-controls { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.45); box-shadow: 0 10px 30px rgba(15,23,42,0.15); }
-        .nav-btn { width: 38px; height: 38px; border: none; background: rgba(15,23,42,0.06); color: #0b63ce; border-radius: 999px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.15s; }
-        .nav-btn:hover { background: rgba(15,23,42,0.12); transform: translateY(-1px); }
-        .slide-dots { display: flex; gap: 8px; }
-        .slide-dots .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(148,163,184,0.6); cursor: pointer; transition: background 0.25s, transform 0.25s; }
-        .slide-dots .dot.active { background: #0b63ce; transform: scale(1.3); }
-        .slide-counter { font-size: 0.8rem; color: #64748b; min-width: 50px; text-align: center; font-weight: 600; }
-        .reveal { opacity: 0; transform: translateY(18px); }
-        .mouse-spotlight { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
-        .card { background: var(--color-surface); border-radius: 20px; padding: 18px 20px; box-shadow: 0 10px 28px rgba(15,23,42,0.08); border: 1px solid rgba(255,255,255,0.65); }
-        .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.55); background: rgba(255,255,255,0.9); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #0b63ce; }
-        .media-frame { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 30px rgba(15,23,42,0.16); border: 1px solid rgba(148,163,184,0.45); background: #f1f5f9; }
-        .media-frame img { display: block; width: 100%; height: 200px; object-fit: cover; }
-        .media-embed { position: relative; padding-top: 56.25%; border-radius: 14px; overflow: hidden; background: #020617; }
-        .media-embed img { display: block; margin-left: auto; margin-right: auto; height: auto; max-width: 100%; }
-        .media-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-        .grid-cards { display: grid; gap: 18px; }
-        @media (min-width: 840px) {
-            .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-            .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
-        }
-        .genre-badge { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.05em; }
-        .vocab-tag { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 999px; background: rgba(15,23,42,0.04); font-size: 0.82rem; font-weight: 700; color: #0b63ce; }
-        .question-chip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(245,158,11,0.08); color: #92400e; font-size: 0.82rem; font-weight: 700; }
-        .question-chip span.icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 999px; background: rgba(245,158,11,0.95); color: #fff; font-size: 0.8rem; }
-        .exit-line { margin-top: 10px; padding-bottom: 10px; border-bottom: 2px dashed rgba(148,163,184,0.8); }
-        .timeline { position: relative; padding-left: 26px; }
-        .timeline::before { content: ""; position: absolute; left: 10px; top: 4px; bottom: 4px; width: 3px; border-radius: 999px; background: linear-gradient(to bottom, #0b63ce, #10b981); }
-        .timeline-step { position: relative; margin-bottom: 14px; }
-        .timeline-dot { position: absolute; left: -2px; top: 4px; width: 14px; height: 14px; border-radius: 999px; border: 2px solid #f4fbff; background: #0b63ce; box-shadow: 0 0 0 4px rgba(59,130,246,0.25); }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
-    </style>
+  <!-- Tailwind theme tokens mapped to AICoding-day-13-Spring colors [file:2] -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #f4fbff;
+      --color-bg-deep: #dbeafe;
+      --color-surface: rgba(255,255,255,.85);
+      --color-surface-2: rgba(255,255,255,.95);
+      --color-text: #1f2a37;
+      --color-text-secondary: #374151;
+      --color-text-muted: #5b6b7e;
+      --color-primary: #0b63ce;
+      --color-primary-2: #10b981;
+      --color-accent-1: #0b63ce;
+      --color-accent-2: #10b981;
+      --color-accent-3: #f59e0b;
+      --color-border: rgba(11,99,206,.16);
+      --color-glass-bg: rgba(255,255,255,.9);
+      --color-glass-border: rgba(11,99,206,.16);
+      --color-vignette: rgba(15,23,42,.08);
+      --font-display: 'Fredoka', 'Trebuchet MS', sans-serif;
+      --font-body: 'Nunito', Arial, sans-serif;
+    }
+  </style>
+
+  <!-- Core deck + custom CSS (adapted to AICoding spring style) [file:2] -->
+  <style>
+    :root {
+      --color-bg: #f4fbff;
+      --color-text: #1f2a37;
+      --glow-color-rgb: 11,99,206;
+      --font-display: 'Fredoka', 'Trebuchet MS', sans-serif;
+      --font-body: 'Nunito', Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; text-size-adjust: none; }
+    html, body { height: 100%; width: 100%; }
+    body {
+      margin: 0;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      overflow: hidden;
+      background-image:
+        radial-gradient(circle at top left, rgba(14,165,233,.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(16,185,129,.14), transparent 28%);
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: all;
+    }
+    .slide > .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 960px;
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* Navigation */
+    .nav-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 100;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,99,206,.2);
+      box-shadow: 0 6px 18px rgba(15,23,42,.12);
+      font-family: var(--font-body);
+    }
+    .nav-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(11,99,206,.06);
+      color: #0b63ce;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.15s;
+    }
+    .nav-btn:hover {
+      background: rgba(11,99,206,.16);
+      transform: translateY(-1px);
+    }
+    .slide-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .slide-dots .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(148,163,184,.6);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .slide-dots .dot.active {
+      background: #0b63ce;
+      transform: scale(1.35);
+    }
+    .slide-counter {
+      font-size: 0.75rem;
+      color: #64748b;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    /* Reveal animation starting state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    /* Gradient mesh background in spring style */
+    .gradient-mesh {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.18;
+      animation: float-slow 14s ease-in-out infinite;
+    }
+    .blob:nth-child(2) {
+      animation: float-drift 18s ease-in-out infinite;
+    }
+    .blob:nth-child(3) {
+      animation: float-slow 20s ease-in-out infinite reverse;
+    }
+    .blob:nth-child(4) {
+      animation: float-drift 22s ease-in-out infinite reverse;
+    }
+    @keyframes float-slow {
+      0% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(40px, -40px) scale(1.1); }
+      50% { transform: translate(-30px, 35px) scale(0.93); }
+      75% { transform: translate(35px, 10px) scale(1.05); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes float-drift {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      33% { transform: translate(-45px, -55px) scale(1.12) rotate(2deg); }
+      66% { transform: translate(35px, 25px) scale(0.9) rotate(-2deg); }
+      100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    }
+
+    /* Light noise + vignette adapted to light theme */
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.03;
+      mix-blend-mode: overlay;
+    }
+    .slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 55%, rgba(15,23,42,.08) 100%);
+    }
+
+    /* Mouse spotlight */
+    .mouse-spotlight {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .text-glow {
+      text-shadow:
+        0 0 18px rgba(var(--glow-color-rgb), 0.5),
+        0 0 32px rgba(var(--glow-color-rgb), 0.22);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+      }
+    }
+
+    /* Slide-type background gradients echoing original CSS [file:2] */
+    .slide-1 { background: radial-gradient(circle at top, #0b63ce 0%, #38bdf8 40%, #f4fbff 100%); color: #f9fafb; }
+    .slide-2 { background: linear-gradient(135deg,#f59e0b 0%,#fcd34d 100%); color:#4b3200; }
+    .slide-3 { background: linear-gradient(135deg,#10b981 0%,#6ee7b7 100%); color:#064e3b; }
+    .slide-4 { background: linear-gradient(135deg,#8b5cf6 0%,#c4b5fd 100%); color:#111827; }
+    .slide-5 { background: linear-gradient(135deg,#ec4899 0%,#f9a8d4 100%); color:#111827; }
+    .slide-6 { background: linear-gradient(135deg,#06b6d4 0%,#a5f3fc 100%); color:#083344; }
+    .slide-7 { background: linear-gradient(135deg,#2563eb 0%,#93c5fd 100%); color:#0f172a; }
+    .slide-8 { background: linear-gradient(135deg,#f97316 0%,#fdba74 100%); color:#4a2308; }
+    .slide-9 { background: linear-gradient(135deg,#22c55e 0%,#bbf7d0 100%); color:#14532d; }
+    .slide-10 { background: linear-gradient(135deg,#0f172a 0%,#334155 100%); color:#e5e7eb; }
+    .slide-11 { background: linear-gradient(135deg,#0b63ce 0%,#38bdf8 100%); color:#eff6ff; }
+
+    .glass-card {
+      background: rgba(255,255,255,.88);
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.6);
+      box-shadow: 0 16px 40px rgba(15,23,42,.18);
+      backdrop-filter: blur(10px);
+      padding: 20px 22px;
+    }
+
+    .section-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: .9;
+      margin-bottom: 8px;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      line-height: 1.15;
+    }
+
+    .title-main {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .title-badge, .chip, .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.5);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .soc-question {
+      border-left: 4px solid rgba(11,99,206,.85);
+      padding-left: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+
+    @media (max-width: 820px) {
+      .slide > .content { padding: 1.25rem; }
+      .grid-cols-2 { grid-template-columns: 1fr !important; }
+      .nav-controls { bottom: 10px; padding: 6px 14px; }
+      .title-main h1 { font-size: clamp(2rem, 1.6rem + 3vw, 3rem); }
+    }
+  </style>
 </head>
 <body>
+
 <div class="mouse-spotlight"></div>
+
 <div class="deck">
 
-    <!-- SLIDE 1: Title -->
-    <div class="slide slide-1 active" data-slide="1">
-        <div class="content text-center">
-            <div class="flex flex-wrap justify-center gap-3 mb-6">
-                <span class="pill">Anime Club · Grades 6–8</span>
-                <span class="pill" style="color:#047857;background:rgba(16,185,129,0.08);">~60 minute lesson</span>
-            </div>
-            <div class="mb-6 flex justify-center">
-                <div class="rounded-full bg-white/90 shadow-lg border border-slate-200 px-8 py-4 flex items-center gap-4">
-                    <span class="text-5xl">🎭</span>
-                    <div class="text-left">
-                        <p class="text-xs font-extrabold tracking-[0.15em] text-sky-600 uppercase mb-1">Lesson 2</p>
-                        <p class="text-sm font-semibold text-slate-700">Exploring Anime Genres &amp; Themes</p>
-                    </div>
-                </div>
-            </div>
-            <h1 class="font-display text-[clamp(2.2rem,4vw,3.4rem)] font-extrabold bg-linear-to-br from-accent-1 via-accent-2 to-accent-3 bg-clip-text text-transparent tracking-tight mb-4 reveal">Why do we reach for the same type of story again and again?</h1>
-            <p class="max-w-3xl mx-auto text-[clamp(0.95rem,1.4vw,1.1rem)] text-text-muted mb-6 reveal">Today we explore anime genres and themes — the invisible architecture behind every story we love.</p>
-            <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div class="card text-left reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-sky-700 uppercase mb-2">Discussion goal</p>
-                    <p class="text-sm text-slate-700">Use evidence from clips, sketches, and class discussion to explain how genre shapes what an audience expects and what a story can say.</p>
-                </div>
-                <div class="card text-left reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-emerald-700 uppercase mb-2">Creative goal</p>
-                    <p class="text-sm text-slate-700">Pick a genre for your own anime character and begin connecting your story seed to a real theme that reflects something cultural or personal.</p>
-                </div>
-            </div>
-        </div>
+  <!-- SLIDE 1: Title / Overview -->
+  <div class="slide slide-1 active" data-slide="1">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:420px;height:420px;top:-80px;right:-60px;background:rgba(56,189,248,.9);"></div>
+      <div class="blob" style="width:320px;height:320px;bottom:-60px;left:-40px;background:rgba(16,185,129,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;top:55%;left:10%;background:rgba(245,158,11,.85);"></div>
     </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+    <div class="content">
+      <div class="title-main">
+        <div class="title-badge reveal">
+          <span>🎨 Digital Art – Lesson 3</span>
+        </div>
+        <h1 class="reveal" style="font-size:clamp(2.4rem,1.6rem + 3vw,3.8rem);">
+          Understanding and Utilizing Layers in Digital Art
+        </h1>
+        <p class="reveal" style="max-width:60ch;color:#e0f2fe;">
+          Today you will think like digital illustrators: you will explore what layers are, why artists use them, and how you can control them to build a multi-layered artwork in Photopea.
+        </p>
+        <div class="title-chips reveal" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+          <span class="chip">⏱️ About 60 minutes</span>
+          <span class="chip">Grade 7–8</span>
+          <span class="chip">Tool: Photopea</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- SLIDE 2: Do Now -->
-    <div class="slide slide-2" data-slide="2">
-        <div class="content">
-            <p class="pill mb-4">Do Now · Reflect &amp; Share</p>
-            <h2 class="font-display text-[clamp(1.9rem,3.2vw,2.5rem)] font-bold mb-3 reveal">What is your favorite anime — and why?</h2>
-            <p class="text-text-muted text-sm max-w-2xl mb-5 reveal">Jot down 2–3 reasons in your notebook. Think beyond plot — consider how it made you <em>feel</em> and what kind of story it is.</p>
-            <div class="grid-cards grid-2">
-                <div class="card reveal">
-                    <p class="question-chip mb-2"><span class="icon">?</span><span>Writing prompts</span></p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>What kind of main character does it have?</li>
-                        <li>Does it make you laugh, cry, feel inspired, or think hard?</li>
-                        <li>Is there a theme or message underneath the story?</li>
-                        <li>What genre do you think it belongs to — and why?</li>
-                    </ul>
-                </div>
-                <div class="card reveal">
-                    <p class="question-chip mb-2"><span class="icon">🤝</span><span>Partner share</span></p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>Share your favorite and one reason with a partner.</li>
-                        <li>Notice if you both picked the same genre without knowing the word for it yet.</li>
-                        <li>If you have never seen anime, describe a story you love in any format — film, book, or TV show.</li>
-                    </ul>
-                    <p class="text-xs text-slate-500 mt-2">Teacher move: collect genre guesses on the board before defining anything — revisit them at the end of class.</p>
-                </div>
-            </div>
-        </div>
+  <!-- SLIDE 2: Do Now (Observation) -->
+  <div class="slide slide-2" data-slide="2">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-70px;right:-40px;background:rgba(245,158,11,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(251,191,36,.9);"></div>
     </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Do Now – 5 minutes</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.7rem)]">Spot the Invisible Layers</h2>
+        <p class="subtitle" style="margin-top:8px;">
+          Look carefully at a finished digital artwork on the board – what might be hiding on separate layers?
+        </p>
+      </div>
 
-    <!-- SLIDE 3: Learning Targets -->
-    <div class="slide slide-3" data-slide="3">
-        <div class="content">
-            <p class="pill mb-3">Learning Targets</p>
-            <h2 class="font-display text-[clamp(1.8rem,3vw,2.4rem)] font-bold mb-5 reveal">What we are building today</h2>
-            <div class="grid-cards grid-2">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-emerald-700 uppercase mb-2">By the end of this lesson</p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>Define and identify at least <span class="font-semibold">six anime genres</span> and their key characteristics.</li>
-                        <li>Analyze <span class="font-semibold">common themes</span> in anime and explain how they connect to Japanese culture.</li>
-                        <li>Critically discuss how genre guides <span class="font-semibold">audience expectations</span>.</li>
-                    </ul>
-                </div>
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-sky-700 uppercase mb-2">Connecting to the course</p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>Genre is a container for literary devices — knowing it helps you write with intention.</li>
-                        <li>Themes are the <em>why</em> behind the story; you'll need one for your own character design.</li>
-                        <li>Analyzing genre and theme builds the media-reading skills used in every future lesson.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="glass-card reveal" style="margin-bottom:18px;">
+        <p class="soc-question">
+          When you look at this artwork, which parts do you suspect were drawn on different layers, and why might the artist have separated them?
+        </p>
+      </div>
 
-    <!-- SLIDE 4: Vocabulary -->
-    <div class="slide slide-4" data-slide="4">
-        <div class="content">
-            <p class="pill mb-3">Vocabulary · Use These Words Today</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mb-4 reveal">The language of genre</h2>
-            <div class="grid-cards grid-3">
-                <div class="card reveal">
-                    <p class="vocab-tag mb-1">Genre</p>
-                    <p class="text-sm text-slate-700">A category of story defined by shared elements, tone, and audience — the map readers use before they open the book.</p>
-                </div>
-                <div class="card reveal">
-                    <p class="vocab-tag mb-1">Theme</p>
-                    <p class="text-sm text-slate-700">A central idea or message a story explores, such as identity, belonging, or perseverance.</p>
-                </div>
-                <div class="card reveal">
-                    <p class="vocab-tag mb-1">Shonen</p>
-                    <p class="text-sm text-slate-700">Action-focused stories aimed at young men — often centered on growth, friendship, and overcoming challenges. <em>(Naruto, My Hero Academia)</em></p>
-                </div>
-                <div class="card reveal">
-                    <p class="vocab-tag mb-1">Shojo</p>
-                    <p class="text-sm text-slate-700">Stories emphasizing emotion, relationships, and self-discovery — traditionally aimed at young women. <em>(Fruits Basket, Sailor Moon)</em></p>
-                </div>
-                <div class="card reveal">
-                    <p class="vocab-tag mb-1">Isekai</p>
-                    <p class="text-sm text-slate-700">A protagonist is transported to another world, often fantastical — a genre about re-invention and escape. <em>(No Game No Life, That Time I Got Reincarnated)</em></p>
-                </div>
-                <div class="card reveal">
-                    <p class="vocab-tag mb-1">Slice of Life &amp; Mecha</p>
-                    <p class="text-sm text-slate-700"><span class="font-semibold">Slice of life</span> — everyday moments, emotional realism. <em>(K-On!, Haikyuu!!)</em><br><span class="font-semibold">Mecha</span> — giant robots, technology, humanity vs. machine. <em>(Gundam, Mecha-Ude)</em></p>
-                </div>
-            </div>
-            <p class="text-xs text-slate-500 mt-3 reveal">Teacher move: after each definition, ask "Can you name a non-anime story — a book, film, or game — that fits this genre?"</p>
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Quiet Think Time – 2 min</h3>
+          <ul>
+            <li>List at least three separate elements you notice (for example: background sky, main character, text, shadows).</li>
+            <li>Next to each element, jot a reason it might be helpful to keep it on its own layer.</li>
+          </ul>
         </div>
+        <div class="glass-card reveal">
+          <h3>Turn & Talk – 3 min</h3>
+          <ul>
+            <li>Share your list with a partner and compare ideas.</li>
+            <li>Where do you agree? Where do you disagree about what should be on its own layer?</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- SLIDE 5: Shonen genre clip -->
-    <div class="slide slide-5" data-slide="5">
-        <div class="content">
-            <p class="pill mb-3">Genre Spotlight · Shonen</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mb-4 reveal">What does a shonen story promise its audience?</h2>
-            <div class="grid-cards grid-2">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-sky-700 uppercase mb-2">Preview: Naruto</p>
-                    <div class="media-embed" id="player-yeUpnIKt6k4" onclick="playVideo('yeUpnIKt6k4')" style="cursor:pointer;position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#000;"><img src="https://img.youtube.com/vi/yeUpnIKt6k4/hqdefault.jpg" alt="Naruto Set 1 Official Trailer thumbnail" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:64px;height:64px;background:rgba(255,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div></div>
-                    <p class="text-[0.7rem] text-slate-500"><a href="https://www.youtube.com/watch?v=yeUpnIKt6k4" target="_blank" class="underline text-sky-700">Source: YouTube — Naruto Set 1 Trailer (VIZ)</a></p>
-                </div>
-                <div class="card reveal">
-                    <p class="question-chip mb-2"><span class="icon">?</span><span>Guiding questions</span></p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>What challenge does the main character face at the very start?</li>
-                        <li>What does the visual style — bold lines, bright colors, big movements — tell you about the genre's energy?</li>
-                        <li>What <span class="font-semibold">theme</span> do you think drives Naruto beyond "become the best ninja"?</li>
-                        <li>How does hard work and perseverance connect to values in Japanese culture?</li>
-                    </ul>
-                    <p class="text-xs text-slate-500 mt-3">Key shonen themes: belonging, perseverance, friendship as strength, never giving up despite being an outsider.</p>
-                </div>
-            </div>
-        </div>
+  <!-- SLIDE 3: Objectives & Materials -->
+  <div class="slide slide-3" data-slide="3">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:380px;height:380px;top:-60px;right:-40px;background:rgba(16,185,129,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(45,212,191,.9);"></div>
     </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Learning Roadmap</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">What You Will Learn & Use</h2>
+        <p class="subtitle">
+          By the end of class, you will know how to build and control layers to create cleaner, more flexible digital art.
+        </p>
+      </div>
 
-    <!-- SLIDE 6: Shojo genre clip -->
-    <div class="slide slide-6" data-slide="6">
-        <div class="content">
-            <p class="pill mb-3">Genre Spotlight · Shojo</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mb-4 reveal">How does shojo make us care about characters so quickly?</h2>
-            <div class="grid-cards grid-2">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-pink-600 uppercase mb-2">Preview: Fruits Basket</p>
-                    <div class="media-embed" id="player-DPEQxuMKGfE" onclick="playVideo('DPEQxuMKGfE')" style="cursor:pointer;position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#000;"><img src="https://img.youtube.com/vi/DPEQxuMKGfE/hqdefault.jpg" alt="Fruits Basket Official Trailer thumbnail" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:64px;height:64px;background:rgba(255,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div></div>
-                    <p class="text-[0.7rem] text-slate-500"><a href="https://www.youtube.com/watch?v=DPEQxuMKGfE" target="_blank" class="underline text-sky-700">Source: YouTube — Fruits Basket Trailer (Crunchyroll)</a></p>
-                </div>
-                <div class="card reveal">
-                    <p class="question-chip mb-2"><span class="icon">?</span><span>Guiding questions</span></p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>How does the art style — softer lines, expressive eyes, pastel tones — differ from shonen?</li>
-                        <li>What emotion is the audience meant to feel in the first 30 seconds?</li>
-                        <li>What central <span class="font-semibold">theme</span> is set up for the main character?</li>
-                        <li>How might family obligation and belonging reflect Japanese social values?</li>
-                    </ul>
-                    <p class="text-xs text-slate-500 mt-3">Key shojo themes: emotional honesty, belonging, family secrets, finding identity through relationships.</p>
-                </div>
-            </div>
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Learning Objectives</h3>
+          <ul>
+            <li>Explain what a layer is in digital art software using your own words.</li>
+            <li>Use multiple layers (background, main object, details) to build an illustration in Photopea.</li>
+            <li>Control opacity, blending modes, and layer masks to add effects without destroying your work.</li>
+          </ul>
         </div>
+        <div class="glass-card reveal">
+          <h3>Materials & Tools</h3>
+          <ul>
+            <li>💻 Laptop (1 per student).</li>
+            <li>🌐 Access to <strong>Photopea</strong> (online editor).</li>
+            <li>📽️ Teacher projector or SmartBoard.</li>
+            <li>📚 Optional: Canva Design School & ArtStation Learning for extension.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- SLIDE 7: Slice of Life + Mecha clips -->
-    <div class="slide slide-7" data-slide="7">
-        <div class="content">
-            <p class="pill mb-3">Genre Comparison · Slice of Life &amp; Mecha</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mb-4 reveal">How far apart can two genres really be?</h2>
-            <div class="grid-cards grid-2">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-emerald-700 uppercase mb-1">Slice of Life · K-On!</p>
-                    <div class="media-embed" id="player-BSNhCEcmMpI" onclick="playVideo('BSNhCEcmMpI')" style="cursor:pointer;position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#000;"><img src="https://img.youtube.com/vi/BSNhCEcmMpI/hqdefault.jpg" alt="K-ON! Opening 1 - SHINE! GIRLS thumbnail" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:64px;height:64px;background:rgba(255,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div></div>
-                    <p class="text-[0.7rem] text-slate-500"><a href="https://www.youtube.com/watch?v=BSNhCEcmMpI" target="_blank" class="underline text-sky-700">Source: YouTube — K-ON! Opening 1</a></p>
-                </div>
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-sky-700 uppercase mb-1">Mecha · Mecha-Ude</p>
-                    <div class="media-embed" id="player-qlKmXTwFXbY" onclick="playVideo('qlKmXTwFXbY')" style="cursor:pointer;position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#000;"><img src="https://img.youtube.com/vi/qlKmXTwFXbY/hqdefault.jpg" alt="Mecha-Ude Official Trailer thumbnail" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:64px;height:64px;background:rgba(255,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div></div>
-                    <p class="text-[0.7rem] text-slate-500"><a href="https://www.youtube.com/watch?v=qlKmXTwFXbY" target="_blank" class="underline text-sky-700">Source: YouTube — Mecha-Ude Official Trailer</a></p>
-                </div>
-            </div>
-            <div class="card mt-4 reveal">
-                <p class="text-xs font-extrabold tracking-[0.16em] text-amber-700 uppercase mb-1">Compare while viewing</p>
-                <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                    <li>What does the <span class="font-semibold">setting</span> tell you about each genre's world and what it values?</li>
-                    <li>Which genre feels more "everyday"? Which feels more "epic"? What visual choices cause that difference?</li>
-                    <li>Can you find a <span class="font-semibold">theme</span> in both? What do they share beneath the surface?</li>
-                </ul>
-            </div>
-        </div>
+  <!-- SLIDE 4: Key Vocabulary -->
+  <div class="slide slide-4" data-slide="4">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-60px;right:-40px;background:rgba(139,92,246,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(196,181,253,.9);"></div>
     </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Language of Layers</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Vocabulary for Today</h2>
+        <p class="subtitle">
+          Understanding these words will help you make smart choices inside Photopea instead of just clicking around.
+        </p>
+      </div>
 
-    <!-- SLIDE 8: Isekai genre + themes -->
-    <div class="slide slide-8" data-slide="8">
-        <div class="content">
-            <p class="pill mb-3">Genre Spotlight · Isekai</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mb-4 reveal">Why do so many characters dream of a fresh start in another world?</h2>
-            <div class="grid-cards grid-2">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-violet-600 uppercase mb-2">Preview: A Gatherer's Adventure in Isekai</p>
-                    <div class="media-embed" id="player-Aw8-IHYEgpw" onclick="playVideo('Aw8-IHYEgpw')" style="cursor:pointer;position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;background:#000;"><img src="https://img.youtube.com/vi/Aw8-IHYEgpw/hqdefault.jpg" alt="A Gatherer's Adventure in Isekai - Official Trailer thumbnail" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:64px;height:64px;background:rgba(255,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div></div>
-                    <p class="text-[0.7rem] text-slate-500"><a href="https://www.youtube.com/watch?v=Aw8-IHYEgpw" target="_blank" class="underline text-sky-700">Source: YouTube — Isekai Trailer (Crunchyroll)</a></p>
-                </div>
-                <div class="card reveal">
-                    <p class="question-chip mb-2"><span class="icon">?</span><span>Guiding questions</span></p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>The hero leaves their old life behind — what does that say about what isekai readers might want?</li>
-                        <li>How is an isekai protagonist different from a shonen hero at the start of their story?</li>
-                        <li>What themes about <span class="font-semibold">identity and reinvention</span> could an isekai story explore?</li>
-                        <li>Do you think isekai reflects anything about modern Japanese work culture or school life? Why might someone want to escape?</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="vocab-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+        <div class="glass-card reveal">
+          <h3>Layers</h3>
+          <p>A stack of transparent sheets that can each hold different parts of your artwork.</p>
+          <p style="font-size:0.85rem;margin-top:6px;">Socratic prompt: If your drawing were a sandwich, which parts would live on separate “slices of bread” and why?</p>
         </div>
+        <div class="glass-card reveal">
+          <h3>Opacity</h3>
+          <p>How see‑through a layer is (0% = invisible, 100% = solid).</p>
+          <p style="font-size:0.85rem;margin-top:6px;">Socratic prompt: How might lowering opacity change the mood or depth of a background?</p>
+        </div>
+        <div class="glass-card reveal">
+          <h3>Blending Modes</h3>
+          <p>Math rules that tell one layer how to mix its colors with the layer underneath.</p>
+          <p style="font-size:0.85rem;margin-top:6px;">Socratic prompt: Why might an artist choose Overlay instead of just painting with a lighter color?</p>
+        </div>
+        <div class="glass-card reveal">
+          <h3>Layer Masks</h3>
+          <p>Tools that hide or reveal parts of a layer without erasing the pixels.</p>
+          <p style="font-size:0.85rem;margin-top:6px;">Socratic prompt: Why is “hiding” better than “erasing” when you are experimenting?</p>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- SLIDE 9: Themes in anime — culture connection -->
-    <div class="slide slide-9" data-slide="9">
-        <div class="content">
-            <p class="pill mb-3">Deep Dive · Themes &amp; Cultural Roots</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mb-4 reveal">Where do anime themes come from?</h2>
-            <div class="grid-cards grid-2 mt-1">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-sky-700 uppercase mb-2">Common themes &amp; their cultural roots</p>
-                    <div class="timeline">
-                        <div class="timeline-step">
-                            <div class="timeline-dot"></div>
-                            <p class="text-sm font-semibold text-slate-800">Perseverance (ganbaru)</p>
-                            <p class="text-xs text-slate-600">A deeply held Japanese value — to do your best regardless of outcome, reflected in sports and shonen anime.</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot"></div>
-                            <p class="text-sm font-semibold text-slate-800">Group over self</p>
-                            <p class="text-xs text-slate-600">Team dynamics, clubs, and squad bonds drive many stories — loyalty to a group is a central Japanese social value.</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot"></div>
-                            <p class="text-sm font-semibold text-slate-800">Respect for nature &amp; spirits</p>
-                            <p class="text-xs text-slate-600">Shinto and Buddhist traditions give rise to anime full of nature spirits, creatures, and moral balance. (Studio Ghibli)</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot"></div>
-                            <p class="text-sm font-semibold text-slate-800">Identity &amp; belonging</p>
-                            <p class="text-xs text-slate-600">From outcasts finding their place (Naruto) to transformation (Isekai) — the struggle to belong recurs across every genre.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <p class="question-chip mb-2"><span class="icon">?</span><span>Discussion prompts</span></p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-2">
-                        <li>Pick one theme from the list. Can you find it in an anime you watch or know? Where exactly does it appear?</li>
-                        <li>Could the same theme appear in a story from your own culture? How might it look different?</li>
-                        <li>Does knowing the cultural root of a theme change how you feel about a scene you have already seen?</li>
-                    </ul>
-                    <p class="text-xs text-slate-500 mt-3">Teacher move: invite students to add a theme the list missed based on their own anime knowledge.</p>
-                </div>
-            </div>
-        </div>
+  <!-- SLIDE 5: Concept – What are layers? -->
+  <div class="slide slide-5" data-slide="5">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:340px;height:340px;top:-60px;right:-50px;background:rgba(236,72,153,.9);"></div>
+      <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:rgba(249,168,212,.9);"></div>
     </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Core Idea</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Thinking in Transparent Sheets</h2>
+        <p class="subtitle">
+          Many artists imagine layers as clear plastic sheets that can move, hide, or reorder without ruining the drawing.
+        </p>
+      </div>
 
-    <!-- SLIDE 10: Sketch activity -->
-    <div class="slide slide-10" data-slide="10">
-        <div class="content">
-            <p class="pill" style="color:#1d4ed8;background:rgba(59,130,246,0.1);">Studio Time · Genre Sketch</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mt-3 mb-3 reveal">Pick a genre — then draw the scene it promises</h2>
-            <div class="grid-cards grid-2 mt-1">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-sky-700 uppercase mb-2">Drawing directions</p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>Choose one genre from today: Shonen, Shojo, Isekai, Slice of Life, or Mecha.</li>
-                        <li>Sketch a simple scene or character that embodies that genre's visual style and energy.</li>
-                        <li>Add one visible detail that hints at the <span class="font-semibold">theme</span> you want to explore.</li>
-                        <li>Label the genre and write one sentence describing the theme at the bottom.</li>
-                    </ul>
-                </div>
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-emerald-700 uppercase mb-2">Guiding questions while circulating</p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>"If someone who had never seen anime looked at your sketch, what genre would they guess?"</li>
-                        <li>"Where in the drawing is the theme showing — and how?"</li>
-                        <li>"Does your character belong to their world, or are they trying to break out of it?"</li>
-                    </ul>
-                    <p class="text-xs text-slate-500 mt-2">Goal link: this sketch becomes the genre and theme foundation for the original anime character students will develop throughout the course.</p>
-                </div>
-            </div>
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Guided Explanation</h3>
+          <ul>
+            <li>Each layer can hold one “job” (background color, character line art, shading, text).</li>
+            <li>You can turn layers on/off like light switches to test different ideas.</li>
+            <li>Reordering layers changes which parts appear in front or behind.</li>
+          </ul>
         </div>
+        <div class="glass-card reveal">
+          <h3>Socratic Discussion</h3>
+          <p class="soc-question">
+            If you had to delete one part of your artwork later, which element would you definitely want on its own layer, and what problem are you trying to avoid?
+          </p>
+          <p style="margin-top:8px;font-size:0.9rem;">
+            Invite 2–3 students to share. Ask: “What happened last time you drew everything on one layer?”
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- SLIDE 11: Written reflection -->
-    <div class="slide slide-11" data-slide="11">
-        <div class="content">
-            <p class="pill" style="color:#1d4ed8;background:rgba(59,130,246,0.1);">Writing · Short Reflection</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mt-3 mb-3 reveal">Connect your genre to Japanese culture</h2>
-            <div class="grid-cards grid-2 mt-1">
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-sky-700 uppercase mb-2">Reflection prompt (5–7 minutes)</p>
-                    <p class="text-sm text-slate-700 mb-2">Write 4–5 sentences in your notebook:</p>
-                    <ol class="list-decimal pl-5 text-sm text-slate-700 space-y-1">
-                        <li>Name the genre you chose and one of its defining characteristics.</li>
-                        <li>Identify the theme in your sketch and explain what it means.</li>
-                        <li>Describe one way this theme connects to something in Japanese culture or values.</li>
-                        <li>Explain how your character embodies — or pushes against — that theme.</li>
-                    </ol>
-                    <p class="text-xs text-slate-500 mt-2">Use at least two vocabulary words from today.</p>
-                </div>
-                <div class="card reveal">
-                    <p class="text-xs font-extrabold tracking-[0.16em] text-emerald-700 uppercase mb-2">Peer share (3 minutes)</p>
-                    <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1">
-                        <li>Read your reflection to a partner.</li>
-                        <li>Partner responds: "One thing that worked was… One question I have is…"</li>
-                        <li>Swap and repeat.</li>
-                    </ul>
-                    <p class="text-xs text-slate-500 mt-2">Closing question for the room: "Did anyone change their mind about a genre after hearing a partner's reflection?"</p>
-                </div>
-            </div>
-        </div>
+  <!-- SLIDE 6: Photopea Setup & Basic Layers -->
+  <div class="slide slide-6" data-slide="6">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-60px;right:-40px;background:rgba(6,182,212,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(165,243,252,.9);"></div>
     </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Hands-on Start – 10 minutes</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Getting Into Photopea</h2>
+        <p class="subtitle">
+          You will set up a new canvas, then decide–before you draw–which parts deserve their own layers.
+        </p>
+      </div>
 
-    <!-- SLIDE 12: Exit Ticket -->
-    <div class="slide slide-12" data-slide="12">
-        <div class="content">
-            <p class="pill mb-3">Exit Ticket · Reflection</p>
-            <h2 class="font-display text-[clamp(1.7rem,2.9vw,2.3rem)] font-bold mb-3 reveal">Genres, themes, and you</h2>
-            <div class="card reveal">
-                <p class="text-sm text-slate-700 mb-2">Before you leave, respond in complete sentences using at least two vocabulary words and one specific example from a clip we watched:</p>
-                <div class="exit-line">
-                    <p class="text-sm text-slate-800"><span class="font-semibold">1.</span> One new genre or theme I learned about today is &hellip; and it changes my view of anime because &hellip;</p>
-                </div>
-                <div class="exit-line">
-                    <p class="text-sm text-slate-800"><span class="font-semibold">2.</span> The genre I chose for my own story is &hellip; because it lets me explore the theme of &hellip;</p>
-                </div>
-                <div class="exit-line">
-                    <p class="text-sm text-slate-800"><span class="font-semibold">3.</span> One question I still have about how genre or theme connects to Japanese culture is &hellip;</p>
-                </div>
-                <p class="text-xs text-slate-500 mt-3">Out-of-class extension: explore a new genre on Crunchyroll or MyAnimeList and write a short review focusing on its themes and cultural elements. Share on the class forum.</p>
-            </div>
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Step‑by‑Step Directions</h3>
+          <ol>
+            <li>Open <strong>photopea.com</strong> in your browser.</li>
+            <li>Click <strong>New Project</strong> → choose a preset size (for example 1280×720).</li>
+            <li>Rename the default layer “Background Color”.</li>
+            <li>Create two more layers: “Main Object” and “Details”.</li>
+          </ol>
         </div>
+        <div class="glass-card reveal">
+          <h3>Socratic Checks</h3>
+          <p class="soc-question">
+            Before you start drawing, which layer do you think should be locked or protected first, and how will that help future you?
+          </p>
+          <ul style="margin-top:8px;">
+            <li>Ask: “If you forget to switch layers and draw on the wrong one, what problems might you run into?”</li>
+            <li>Invite students to predict mistakes out loud before they make them.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- SLIDE 7: Opacity & Blending Modes -->
+  <div class="slide slide-7" data-slide="7">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-60px;right:-40px;background:rgba(37,99,235,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(147,197,253,.9);"></div>
+    </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Visual Effects – 10 minutes</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Opacity & Blending Modes in Action</h2>
+        <p class="subtitle">
+          Small changes in opacity and blending can dramatically change how layers interact without redrawing anything.
+        </p>
+      </div>
+
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Teacher Demo</h3>
+          <ul>
+            <li>Select the “Background Color” layer and try lowering opacity from 100% to around 60%.</li>
+            <li>Show how text or a character pops more when the background is softer.</li>
+            <li>Switch the “Details” layer through blending modes like Multiply, Overlay, Screen.</li>
+          </ul>
+        </div>
+        <div class="glass-card reveal">
+          <h3>Socratic Prompts</h3>
+          <p class="soc-question">
+            When you change a layer’s blending mode instead of its color, what stays the same and what actually changes in the picture?
+          </p>
+          <ul style="margin-top:8px;">
+            <li>Ask: “How could opacity help you test a night‑time vs. daytime version of the same scene?”</li>
+            <li>Challenge: “Which blending mode would you try for soft shadows, and why?”</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Layer Masks (Non-destructive editing) -->
+  <div class="slide slide-8" data-slide="8">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-60px;right:-40px;background:rgba(249,115,22,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(253,186,116,.9);"></div>
+    </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Protect Your Work – 10 minutes</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Layer Masks: Hide, Don’t Destroy</h2>
+        <p class="subtitle">
+          Masks let you experiment fearlessly because you can always bring pixels back.
+        </p>
+      </div>
+
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Mini Demo</h3>
+          <ol>
+            <li>Select your “Main Object” layer.</li>
+            <li>Add a <strong>Layer Mask</strong> (white thumbnail appears).</li>
+            <li>Paint on the mask with a soft black brush to hide parts of the object.</li>
+            <li>Switch to white to reveal hidden parts again.</li>
+          </ol>
+        </div>
+        <div class="glass-card reveal">
+          <h3>Socratic Reflection</h3>
+          <p class="soc-question">
+            In what situation would you choose a layer mask instead of the eraser tool, and how does that choice change your confidence while experimenting?
+          </p>
+          <ul style="margin-top:8px;">
+            <li>Ask: “Have you ever erased something and then wished you could get it back?”</li>
+            <li>Connect: “How is a mask like using pencil instead of pen on a test?”</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Guided Practice – Build a Multi-layer Illustration -->
+  <div class="slide slide-9" data-slide="9">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-60px;right:-40px;background:rgba(34,197,94,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(187,247,208,.9);"></div>
+    </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Guided Practice – 15 minutes</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Design Your Own Layered Artwork</h2>
+        <p class="subtitle">
+          You will now combine all of today’s ideas to build a small, multi-layered illustration in Photopea.
+        </p>
+      </div>
+
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Required Layers</h3>
+          <ul>
+            <li>Layer 1 – Background (simple gradient or scene color).</li>
+            <li>Layer 2 – Main Object (character, plant, building, etc.).</li>
+            <li>Layer 3 – Details (highlights, small decorations, sparkles).</li>
+            <li>At least one layer that uses a blending mode or reduced opacity.</li>
+            <li>At least one layer with a layer mask to shape or fade an area.</li>
+          </ul>
+        </div>
+        <div class="glass-card reveal">
+          <h3>Socratic Coaching Questions</h3>
+          <p class="soc-question">
+            As you work, which layer are you choosing on purpose before you draw each stroke, and what are you trying to protect by choosing that layer?
+          </p>
+          <ul style="margin-top:8px;">
+            <li>Circulate and ask: “If you had 5 more minutes, which new layer would you add, and what job would it do?”</li>
+            <li>Ask: “Is there anything on this layer that would be safer on its own new layer?”</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: Flattening, Sharing & Exit Ticket -->
+  <div class="slide slide-10" data-slide="10">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-60px;right:-40px;background:rgba(15,23,42,.85);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(51,65,85,.9);"></div>
+    </div>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Wrap Up – 10 minutes</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Flattening & Reflecting on Layers</h2>
+        <p class="subtitle">
+          You will think about when to keep layers separate and when it is finally safe to merge them.
+        </p>
+      </div>
+
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>Flattening Talk</h3>
+          <ul>
+            <li>Explain that <strong>flattening</strong> merges layers into one image for saving or sharing.</li>
+            <li>Ask: “When would it be dangerous to flatten too early in your process?”</li>
+            <li>Show how to duplicate a file so one version stays layered.</li>
+          </ul>
+          <p class="soc-question" style="margin-top:8px;">
+            If you had to send this artwork to a client or teacher, would you send the flattened version, the layered version, or both, and why?
+          </p>
+        </div>
+        <div class="glass-card reveal">
+          <h3>Exit Ticket</h3>
+          <p>On a sticky note or in a quick Google Form, answer in 1–2 sentences:</p>
+          <p style="margin-top:8px;font-weight:700;">
+            “How did using layers change your approach to creating digital art today?”
+          </p>
+          <ul style="margin-top:8px;">
+            <li>Encourage students to reference at least one vocabulary word: layer, opacity, blending mode, layer mask, flatten.</li>
+            <li>Invite 2–3 volunteers to share their answers with the class.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: Out-of-Class Extension -->
+  <div class="slide slide-11" data-slide="11">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:360px;height:360px;top:-60px;right:-40px;background:rgba(11,99,206,.9);"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:rgba(56,189,248,.9);"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+    <div class="content">
+      <div class="slide-header text-center mb-4 reveal">
+        <div class="section-tag">Keep Creating</div>
+        <h2 class="text-[clamp(2rem,1.4rem+2vw,2.6rem)]">Beyond Class: Level Up Your Layers</h2>
+        <p class="subtitle">
+          Your next challenge is to teach yourself a new layering skill and bring the results back to the studio.
+        </p>
+      </div>
+
+      <div class="cards-grid col2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div class="glass-card reveal">
+          <h3>At‑Home Exploration</h3>
+          <ul>
+            <li>Choose a tutorial on Canva Design School or ArtStation Learning that focuses on layers, masks, or blending.</li>
+            <li>Create a new layered artwork at home using at least 5 layers.</li>
+            <li>Save both a layered file and a flattened image.</li>
+          </ul>
+        </div>
+        <div class="glass-card reveal">
+          <h3>Socratic Challenge</h3>
+          <p class="soc-question">
+            Next class, how will you explain to a peer one layering trick you learned on your own, and what problem does that trick help to solve in real artworks?
+          </p>
+          <ul style="margin-top:8px;">
+            <li>Prepare to show which layers you used and why you organized them that way.</li>
+            <li>Be ready to answer: “What would have gone wrong if you had drawn this all on one layer?”</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 
+<!-- Navigation controls -->
 <div class="nav-controls">
-    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
-    <div class="slide-dots" id="dots"></div>
-    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
-    <span class="slide-counter" id="counter">1 / 12</span>
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 11</span>
 </div>
 
 <script>
-    let current = 1;
-    const slides = document.querySelectorAll('.slide');
-    const total = slides.length;
-    const dotsContainer = document.getElementById('dots');
-    const counter = document.getElementById('counter');
+  // Deck navigation
+  let current = 1;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('counter');
 
-    for (let i = 1; i <= total; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (i === 1 ? ' active' : '');
-        dot.onclick = () => goToSlide(i);
-        dotsContainer.appendChild(dot);
-    }
+  for (let i = 1; i <= total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 1 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
 
-    function goToSlide(n) {
-        const prev = document.querySelector('.slide.active');
-        const next = document.querySelector(`.slide[data-slide="${n}"]`);
-        if (prev) prev.classList.remove('active');
-        if (next) { next.classList.add('active'); animateSlide(next); }
-        current = n; updateNav();
+  function goToSlide(n) {
+    const prev = document.querySelector('.slide.active');
+    const next = document.querySelector('.slide[data-slide="' + n + '"]');
+    if (prev) prev.classList.remove('active');
+    if (next) {
+      next.classList.add('active');
+      animateSlide(next);
     }
-    function changeSlide(dir) {
-        let next = current + dir;
-        if (next < 1) next = total; if (next > total) next = 1;
-        goToSlide(next);
-    }
-    function updateNav() {
-        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === current));
-        counter.textContent = current + ' / ' + total;
-    }
-    function animateSlide(slide) {
-        slide.querySelectorAll('.reveal').forEach((el, i) => {
-            el.style.transition = 'none'; el.style.opacity = '0'; el.style.transform = 'translateY(18px)';
-            el.offsetHeight;
-            const delay = i * 0.08;
-            el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
-            el.style.opacity = '1'; el.style.transform = 'translateY(0)';
-        });
-    }
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
-        if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+    current = n;
+    updateNav();
+  }
+
+  function changeSlide(dir) {
+    let next = current + dir;
+    if (next < 1) next = total;
+    if (next > total) next = 1;
+    goToSlide(next);
+  }
+
+  function updateNav() {
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i + 1 === current);
     });
-    let touchStartX = 0;
-    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-    document.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
-    document.addEventListener('mousemove', (e) => {
-        const spotlight = document.querySelector('.mouse-spotlight');
-        if (spotlight) spotlight.style.background = `radial-gradient(520px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.1), transparent 60%)`;
-    });
+    counter.textContent = current + ' / ' + total;
+  }
 
-    function playVideo(id) {
-        const container = document.getElementById('player-' + id);
-        container.style.cursor = 'default';
-        container.onclick = null;
-        container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" title="Video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>';
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      changeSlide(1);
     }
-    animateSlide(document.querySelector('.slide.active'));
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      changeSlide(-1);
+    }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+  });
+
+  function animateSlide(slide) {
+    slide.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transition = 'none';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      // force reflow
+      void el.offsetHeight;
+      const delay = i * 0.08;
+      el.style.transition = 'opacity 0.35s ease ' + delay + 's, transform 0.35s ease ' + delay + 's';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0px)';
+    });
+  }
+
+  // Mouse spotlight
+  document.addEventListener('mousemove', (e) => {
+    const spotlight = document.querySelector('.mouse-spotlight');
+    if (spotlight) {
+      const rgb = getComputedStyle(document.documentElement).getPropertyValue('--glow-color-rgb').trim() || '11,99,206';
+      spotlight.style.background =
+        'radial-gradient(520px circle at ' + e.clientX + 'px ' + e.clientY + 'px, rgba(' + rgb + ', 0.08), transparent 42%)';
+    }
+  });
+
+  // Simple particle system
+  function initParticles(canvas, options) {
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    function resize() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const count = options.count || 40;
+    const interactive = options.interactive || false;
+    let mx = -1000, my = -1000;
+    const rgb = getComputedStyle(document.documentElement).getPropertyValue('--glow-color-rgb').trim() || '11,99,206';
+    const [r,g,b] = rgb.split(',').map(Number);
+
+    const particles = Array.from({length: count}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      size: Math.random() * 2.2 + 0.8,
+      alpha: Math.random() * 0.4 + 0.2
+    }));
+
+    if (interactive) {
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mx = e.clientX - rect.left;
+        my = e.clientY - rect.top;
+      });
+      canvas.addEventListener('mouseleave', () => {
+        mx = -1000;
+        my = -1000;
+      });
+    }
+
+    function tick() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p => {
+        if (interactive) {
+          const dx = p.x - mx;
+          const dy = p.y - my;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            const force = (120 - dist) / 120 * 1.6;
+            p.vx += (dx/dist) * force * 0.1;
+            p.vy += (dy/dist) * force * 0.1;
+          }
+        }
+        p.vx *= 0.98;
+        p.vy *= 0.98;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + p.alpha + ')';
+        ctx.fill();
+      });
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  document.querySelectorAll('.particle-canvas').forEach(c => initParticles(c, {interactive:true,count:55}));
+  document.querySelectorAll('.particle-canvas-ambient').forEach(c => initParticles(c, {interactive:false,count:24}));
+
+  // Animate initial slide
+  animateSlide(document.querySelector('.slide.active'));
 </script>
+
 </body>
 </html>
+
+
