@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="slides-format" content="viewport">
-    <title>Lesson 3 – Storytelling Techniques in Anime</title>
+    <title>Lesson 4 – Character Development & Archetypes</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,17 +34,19 @@
         :root { --color-bg: #f4fbff; --color-text: #1f2a37; --glow-color-rgb: 11,99,206; }
         *, *::before, *::after { box-sizing: border-box; }
         html, body { background: var(--color-bg); margin: 0; }
-        body { font-family: var(--font-body, 'Nunito', system-ui, sans-serif); color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
+        body { font-family: 'Nunito', Arial, sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
         .deck { width: 100vw; height: 100vh; position: relative; }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 40%),
                         radial-gradient(circle at bottom right, rgba(16,185,129,0.12), transparent 40%),
                         var(--color-bg);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease;
-            pointer-events: none; overflow: hidden; }
+            pointer-events: none; overflow: hidden;
+        }
         .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
-        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1040px; padding: clamp(1.5rem, 4vw, 3.5rem); }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1040px; padding: clamp(1.2rem, 3.5vw, 3rem); }
         .nav-controls { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.45); box-shadow: 0 10px 30px rgba(15,23,42,0.15); }
         .nav-btn { width: 38px; height: 38px; border: none; background: rgba(15,23,42,0.06); color: #0b63ce; border-radius: 999px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.15s; }
         .nav-btn:hover { background: rgba(15,23,42,0.12); transform: translateY(-1px); }
@@ -62,10 +64,13 @@
         .play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; }
         .play-circle { width: 60px; height: 60px; background: rgba(220,38,38,0.88); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.2s; }
         .media-embed:hover .play-circle { transform: scale(1.12); }
+        .video-source { display: block; font-size: 0.7rem; color: #64748b; text-align: center; margin-top: 5px; font-weight: 700; text-decoration: none; }
+        .video-source:hover { color: #0b63ce; text-decoration: underline; }
         .grid-cards { display: grid; gap: 18px; }
         @media (min-width: 840px) {
             .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
             .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+            .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
         }
         .question-chip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(245,158,11,0.08); color: #92400e; font-size: 0.82rem; font-weight: 700; }
         .question-chip .icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 999px; background: rgba(245,158,11,0.95); color: #fff; font-size: 0.8rem; }
@@ -77,6 +82,7 @@
         .technique-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
         .emoji-float { animation: float 3.5s ease-in-out infinite; display: inline-block; }
+        .archetype-tag { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
     </style>
 </head>
@@ -89,65 +95,74 @@
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-1 active" data-slide="1">
     <div class="content text-center">
-        <div class="flex flex-wrap justify-center gap-3 mb-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-5">
             <span class="pill">🎌 Anime Club</span>
-            <span class="pill">📖 Lesson 3 of 10</span>
+            <span class="pill">📖 Lesson 4 of 10</span>
             <span class="pill">Grade 6</span>
         </div>
-        <div class="emoji-float text-[84px] mb-4 reveal">📽️</div>
-        <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.2rem)] font-bold text-accent-1 leading-tight mb-4 reveal"
+        <div class="emoji-float text-[78px] mb-3 reveal">🦸</div>
+        <h1 class="font-display text-[clamp(2.2rem,5vw,4rem)] font-bold leading-tight mb-3 reveal"
             style="background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-            Storytelling Techniques<br>in Anime
+            Character Development<br>&amp; Archetypes
         </h1>
-        <p class="text-[clamp(1rem,2vw,1.3rem)] text-text-muted font-semibold tracking-wide mb-8 reveal">
-            How anime writers hook you — and keep you coming back
+        <p class="text-[clamp(0.95rem,1.8vw,1.2rem)] text-text-muted font-semibold tracking-wide mb-7 reveal">
+            Why do certain characters feel so <em>real</em> — and what makes us root for them?
         </p>
         <div class="card inline-block reveal" style="max-width:600px;">
             <p class="text-base font-bold text-text-secondary">
                 <span style="color:#f59e0b">🔍 Big Question:</span>
-                <em>"When you watch anime, what is it that makes you <u>feel</u> something — or need to see the next episode right now?"</em>
+                <em>"Think of your all-time favorite anime character. What is it about them that made you care — was it who they <u>were</u> at the start, or who they <u>became</u>?"</em>
             </p>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 2: DO NOW — Demon Slayer clip
+     SLIDE 2: DO NOW — Discussion Hook
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-2" data-slide="2">
     <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-5">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
             <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Do Now — 4 min</span>
-            <span class="pill">👀 Watch First, Then Write</span>
+            <span class="pill">🧠 Think Before We Dive In</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div>
-                <div class="media-embed reveal" id="player-EzGT4BS8WqE" onclick="playVideo('EzGT4BS8WqE')">
-                    <img src="https://img.youtube.com/vi/EzGT4BS8WqE/hqdefault.jpg" alt="Demon Slayer – Tanjiro's Family Scene">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Who Is Your Favorite Character?</h2>
+        <div class="grid-cards grid-2 gap-5">
+            <div class="flex flex-col gap-3 reveal">
+                <div class="card" style="border-left:4px solid #0b63ce;">
+                    <p class="text-sm font-bold text-accent-1 mb-1">Step 1: Pick a character</p>
+                    <p class="text-sm font-bold text-text-secondary">In your notebook, write the name of your favorite anime character. Could be from Naruto, My Hero Academia, Demon Slayer, Haikyuu!!, Spirited Away — anything!</p>
                 </div>
-                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Demon Slayer — Tanjiro's Family Scene</p>
+                <div class="card" style="border-left:4px solid #10b981;">
+                    <p class="text-sm font-bold text-accent-2 mb-1">Step 2: Describe them</p>
+                    <p class="text-sm font-bold text-text-secondary">Write 3 words that describe their personality. Then write: did they stay the same throughout the series, or did they change?</p>
+                </div>
+                <div class="card" style="border-left:4px solid #f59e0b;">
+                    <p class="text-sm font-bold text-accent-3 mb-1">Step 3: Ask yourself</p>
+                    <p class="text-sm font-bold text-text-secondary">Would the story be the same without this character? Why or why not?</p>
+                </div>
             </div>
-            <div class="flex flex-col justify-center gap-4 reveal">
-                <h2 class="font-display text-[1.7rem] font-bold text-accent-1">Watch &amp; Notice</h2>
-                <p class="text-text-secondary text-sm font-semibold">Jot down your first impressions in your notebook:</p>
-                <div class="timeline">
-                    <div class="timeline-step reveal">
-                        <div class="timeline-dot"></div>
-                        <p class="text-sm font-bold text-text" style="padding-left:8px;">What storytelling elements do you notice? (music, camera angle, pacing…)</p>
-                    </div>
-                    <div class="timeline-step reveal">
-                        <div class="timeline-dot" style="background:#10b981;"></div>
-                        <p class="text-sm font-bold text-text" style="padding-left:8px;">How did this clip make you feel? What caused that feeling?</p>
-                    </div>
-                    <div class="timeline-step reveal">
-                        <div class="timeline-dot" style="background:#f59e0b;"></div>
-                        <p class="text-sm font-bold text-text" style="padding-left:8px;">If you had to name one <em>technique</em> the director used, what would it be?</p>
+            <div class="flex flex-col gap-3 reveal">
+                <div class="card" style="background:rgba(11,99,206,0.04);border-color:rgba(11,99,206,0.2);">
+                    <p class="text-sm font-bold text-accent-1 mb-2">💬 Share &amp; Discuss (2 min)</p>
+                    <div class="timeline">
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#0b63ce;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4">Turn to a partner. Share your character and 3 words.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#10b981;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4">Did your partner's character change? In what way?</p>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#f59e0b;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4">Be ready to share one observation with the class.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="question-chip reveal">
                     <span class="icon">?</span>
-                    <span>Share with a partner — did you notice the same thing?</span>
+                    <span>If your character never changed at all — would they still be interesting? Why or why not?</span>
                 </div>
             </div>
         </div>
@@ -155,159 +170,229 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 3: LEARNING TARGETS
+     SLIDE 3: VOCABULARY
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-3" data-slide="3">
     <div class="content">
-        <div class="flex flex-wrap gap-3 mb-5">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎯 Learning Targets</span>
-            <span class="pill">Today + Course Goals</span>
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill">📚 Vocabulary</span>
+            <span class="pill">5 Key Terms</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div>
-                <h2 class="font-display text-[1.8rem] font-bold text-accent-1 mb-4 reveal">By End of Today</h2>
-                <div class="flex flex-col gap-3">
-                    <div class="card reveal" style="border-left:4px solid #0b63ce;">
-                        <p class="text-sm font-bold">📌 Identify storytelling techniques in anime — narrative arc, flashback, foreshadowing, cliffhanger, character development</p>
-                    </div>
-                    <div class="card reveal" style="border-left:4px solid #10b981;">
-                        <p class="text-sm font-bold">🎬 Analyze how techniques create emotion and keep audiences engaged</p>
-                    </div>
-                    <div class="card reveal" style="border-left:4px solid #f59e0b;">
-                        <p class="text-sm font-bold">✏️ Create a storyboard using at least 2 techniques</p>
-                    </div>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Words That Unlock Character Analysis</h2>
+        <div class="grid-cards grid-3 gap-4 mb-4">
+            <div class="card reveal" style="border-top:4px solid #0b63ce;">
+                <p class="text-xs font-black uppercase tracking-widest" style="color:#0b63ce;">Archetype</p>
+                <p class="text-sm font-bold text-text-secondary mt-1">A universal character type that appears across many stories and cultures — like the hero, the mentor, or the villain.</p>
+                <div class="mt-2">
+                    <span class="archetype-tag" style="background:rgba(11,99,206,0.1);color:#1e40af;">Ex: The Hero</span>
                 </div>
             </div>
-            <div>
-                <h2 class="font-display text-[1.8rem] font-bold text-accent-2 mb-4 reveal">Course Arc Goals</h2>
-                <div class="flex flex-col gap-3">
-                    <div class="card reveal" style="border-left:4px solid #10b981;">
-                        <p class="text-sm font-bold">📖 Use literary devices (conflict, symbolism, theme) when analyzing AND creating stories</p>
-                    </div>
-                    <div class="card reveal" style="border-left:4px solid #8b5cf6;">
-                        <p class="text-sm font-bold">🎭 Design an original anime character with a compelling narrative arc</p>
-                    </div>
-                    <div class="card reveal" style="border-left:4px solid #f59e0b;">
-                        <p class="text-sm font-bold">🤝 Give and receive peer feedback that makes stories stronger</p>
-                    </div>
+            <div class="card reveal" style="border-top:4px solid #10b981;">
+                <p class="text-xs font-black uppercase tracking-widest" style="color:#10b981;">Protagonist</p>
+                <p class="text-sm font-bold text-text-secondary mt-1">The main character the story follows — not always a "good guy," but the one we experience the story through.</p>
+                <div class="mt-2">
+                    <span class="archetype-tag" style="background:rgba(16,185,129,0.1);color:#065f46;">Ex: Naruto, Deku</span>
+                </div>
+            </div>
+            <div class="card reveal" style="border-top:4px solid #ef4444;">
+                <p class="text-xs font-black uppercase tracking-widest" style="color:#ef4444;">Antagonist</p>
+                <p class="text-sm font-bold text-text-secondary mt-1">The force or character that opposes the protagonist — can be a villain, a rival, or even the hero's own fear.</p>
+                <div class="mt-2">
+                    <span class="archetype-tag" style="background:rgba(239,68,68,0.1);color:#991b1b;">Ex: All For One</span>
                 </div>
             </div>
         </div>
-        <div class="question-chip mt-5 reveal">
-            <span class="icon">?</span>
-            <span>Which of today's targets connects most directly to <em>your own</em> anime character idea?</span>
+        <div class="grid-cards grid-2 gap-4">
+            <div class="card reveal" style="border-top:4px solid #f59e0b;">
+                <p class="text-xs font-black uppercase tracking-widest" style="color:#f59e0b;">Character Arc</p>
+                <p class="text-sm font-bold text-text-secondary mt-1">The transformation a character goes through from the beginning to the end of a story. The "journey within the journey."</p>
+                <div class="mt-2">
+                    <span class="archetype-tag" style="background:rgba(245,158,11,0.1);color:#92400e;">Deku: Powerless → Symbol of Hope</span>
+                </div>
+            </div>
+            <div class="card reveal" style="border-top:4px solid #8b5cf6;">
+                <p class="text-xs font-black uppercase tracking-widest" style="color:#8b5cf6;">Foil</p>
+                <p class="text-sm font-bold text-text-secondary mt-1">A character whose contrasting traits highlight the qualities of another character. A "mirror" that shows us who the main character really is.</p>
+                <div class="mt-2">
+                    <span class="archetype-tag" style="background:rgba(139,92,246,0.1);color:#4c1d95;">Naruto ↔ Sasuke</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 4: VOCABULARY
+     SLIDE 4: WHAT IS AN ARCHETYPE?
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-4" data-slide="4">
     <div class="content">
         <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🗝️ Vocabulary — 5 Key Terms</span>
+            <span class="pill">🧩 Core Concept</span>
+            <span class="pill">Archetypes Across Anime</span>
         </div>
-        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">Know These Before We Watch</h2>
-        <div class="grid-cards grid-3 gap-4">
-            <div class="card reveal" style="border-top:3px solid #0b63ce;">
-                <p class="technique-badge mb-2" style="background:rgba(11,99,206,0.1);color:#0b63ce;">📈 Narrative Arc</p>
-                <p class="text-xs font-bold text-text-secondary">The overall shape of a story — beginning, rising action, climax, and resolution. In <em>Naruto</em>, each arc (Chunin Exams, Pain's Assault) has its own complete arc inside the bigger story.</p>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-2 reveal">The 6 Core Archetypes in Anime</h2>
+        <p class="text-sm font-bold text-text-muted mb-4 reveal">These patterns repeat across thousands of anime — because they mirror real human experiences.</p>
+        <div class="grid-cards grid-3 gap-3">
+            <div class="card reveal" style="border-left:4px solid #0b63ce;">
+                <div class="text-2xl mb-1">🦸</div>
+                <p class="text-sm font-black text-accent-1">The Hero</p>
+                <p class="text-xs font-bold text-text-secondary">Driven by courage and a desire to protect others. Often starts inexperienced but grows through trials.</p>
+                <p class="text-xs font-bold mt-1" style="color:#0b63ce;">Naruto, Deku, Tanjiro</p>
             </div>
-            <div class="card reveal" style="border-top:3px solid #8b5cf6;">
-                <p class="technique-badge mb-2" style="background:rgba(139,92,246,0.1);color:#7c3aed;">⏪ Flashback</p>
-                <p class="text-xs font-bold text-text-secondary">A scene that jumps backward in time to reveal past events. In <em>Demon Slayer</em>, Tanjiro's memories of his father explain his breathing technique and give the present moment emotional weight.</p>
+            <div class="card reveal" style="border-left:4px solid #8b5cf6;">
+                <div class="text-2xl mb-1">🧙</div>
+                <p class="text-sm font-black" style="color:#7c3aed;">The Mentor</p>
+                <p class="text-xs font-bold text-text-secondary">Guides the hero with wisdom and often sacrifice. They hold the key lesson the hero needs to grow.</p>
+                <p class="text-xs font-bold mt-1" style="color:#7c3aed;">Iruka, All Might, Jiraiya</p>
             </div>
-            <div class="card reveal" style="border-top:3px solid #10b981;">
-                <p class="technique-badge mb-2" style="background:rgba(16,185,129,0.1);color:#059669;">👁️ Foreshadowing</p>
-                <p class="text-xs font-bold text-text-secondary">Hints planted early that something important is coming later. In <em>Attack on Titan</em>, tiny details in Season 1 foreshadow massive plot twists seasons later — viewers only see them on rewatch.</p>
+            <div class="card reveal" style="border-left:4px solid #ef4444;">
+                <div class="text-2xl mb-1">😈</div>
+                <p class="text-sm font-black" style="color:#dc2626;">The Villain</p>
+                <p class="text-xs font-bold text-text-secondary">Opposes the hero's values. The best villains have understandable motivations — even if their methods are wrong.</p>
+                <p class="text-xs font-bold mt-1" style="color:#dc2626;">Madara, Shigaraki, Orochimaru</p>
             </div>
-            <div class="card reveal" style="border-top:3px solid #ef4444;">
-                <p class="technique-badge mb-2" style="background:rgba(239,68,68,0.1);color:#dc2626;">⚡ Cliffhanger</p>
-                <p class="text-xs font-bold text-text-secondary">Ending an episode at a peak moment of tension — forcing viewers to watch the next one. <em>Attack on Titan</em> is famous for ending episodes right when the most shocking thing happens.</p>
+            <div class="card reveal" style="border-left:4px solid #10b981;">
+                <div class="text-2xl mb-1">👥</div>
+                <p class="text-sm font-black text-accent-2">The Ally</p>
+                <p class="text-xs font-bold text-text-secondary">Supports the hero, often providing emotional grounding or a specific skill the hero lacks.</p>
+                <p class="text-xs font-bold mt-1" style="color:#10b981;">Sakura, Ochaco, Inosuke</p>
             </div>
-            <div class="card reveal" style="border-top:3px solid #f59e0b;" style="grid-column:span 2;">
-                <p class="technique-badge mb-2" style="background:rgba(245,158,11,0.1);color:#b45309;">🌱 Character Development</p>
-                <p class="text-xs font-bold text-text-secondary">How a character changes — in beliefs, skills, or personality — over time due to challenges. Deku in <em>My Hero Academia</em> transforms from a quirkless, bullied kid into a confident hero through years of failure, training, and growth.</p>
+            <div class="card reveal" style="border-left:4px solid #f59e0b;">
+                <div class="text-2xl mb-1">⚔️</div>
+                <p class="text-sm font-black text-accent-3">The Rival</p>
+                <p class="text-xs font-bold text-text-secondary">Pushes the hero to grow by competing with them. Often starts as an enemy but evolves into a complex relationship.</p>
+                <p class="text-xs font-bold mt-1" style="color:#d97706;">Sasuke, Bakugo, Iwaizumi</p>
             </div>
-        </div>
-        <div class="question-chip mt-4 reveal">
-            <span class="icon">?</span>
-            <span>Can you think of a technique from your favorite anime before we watch the clips? Turn and tell a partner.</span>
+            <div class="card reveal" style="border-left:4px solid #ec4899;">
+                <div class="text-2xl mb-1">🌀</div>
+                <p class="text-sm font-black" style="color:#db2777;">The Trickster</p>
+                <p class="text-xs font-bold text-text-secondary">Breaks rules, causes chaos, and challenges the hero in unexpected ways. Often provides comic relief but also deep insights.</p>
+                <p class="text-xs font-bold mt-1" style="color:#db2777;">Gojo, Hisoka, Zenitsu</p>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 5: TECHNIQUE SPOTLIGHT — FLASHBACK
+     SLIDE 5: ARCHETYPES VIDEO — Every Protagonist Type
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-5" data-slide="5">
     <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:rgba(139,92,246,0.1);border-color:#8b5cf6;color:#7c3aed;">⏪ Technique: Flashback</span>
-            <span class="pill">Demon Slayer · Mugen Train Arc</span>
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎬 Video Analysis</span>
+            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">⏱ Watch ~5 min</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div class="flex flex-col gap-3">
-                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#7c3aed;">Why Flashbacks Work</h2>
-                <div class="card reveal">
-                    <p class="text-xs font-bold text-text-secondary">A flashback is not just a "memory" — it's the writer telling us <strong>exactly what the audience needs to know</strong> at a precise emotional moment. In <em>Demon Slayer</em>, Tanjiro sees his father Tanjuro in a dream flashback while near death. This reveals that his father was also a demon slayer, explains why the king of demons feared the Kamado family, and transforms a fight scene into an emotionally devastating moment.</p>
+        <div class="grid-cards grid-2 gap-5">
+            <div class="reveal">
+                <div class="media-embed" id="player-Dj2KLzGVSxA" onclick="playVideo('Dj2KLzGVSxA')">
+                    <img src="https://img.youtube.com/vi/Dj2KLzGVSxA/hqdefault.jpg" alt="Every Anime Protagonist Archetype Explained">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
                 </div>
-                <div class="card reveal" style="background:rgba(139,92,246,0.07);border-color:rgba(139,92,246,0.3);">
-                    <p class="text-xs font-bold" style="color:#4c1d95;">📌 Fact: Japanese anime uses flashbacks more than almost any other visual medium — averaging <strong>3–5 per story arc</strong> in long-running shonen series.</p>
+                <a class="video-source" href="https://www.youtube.com/watch?v=Dj2KLzGVSxA" target="_blank">▶ YouTube: Every Anime Protagonist Archetype Explained in 12 Minutes</a>
+            </div>
+            <div class="flex flex-col justify-center gap-3">
+                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">Watch &amp; Classify</h2>
+                <p class="text-sm font-bold text-text-secondary reveal">As you watch, keep your notebook open and jot down:</p>
+                <div class="timeline reveal">
+                    <div class="timeline-step">
+                        <div class="timeline-dot" style="background:#0b63ce;"></div>
+                        <p class="text-xs font-bold text-text-secondary pl-4">Which archetype matches a character <em>you</em> know?</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" style="background:#10b981;"></div>
+                        <p class="text-xs font-bold text-text-secondary pl-4">What makes that archetype feel familiar or realistic?</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" style="background:#f59e0b;"></div>
+                        <p class="text-xs font-bold text-text-secondary pl-4">Can a character be MORE than one archetype?</p>
+                    </div>
                 </div>
                 <div class="question-chip reveal">
                     <span class="icon">?</span>
-                    <span>What would be lost if this scene happened at the <em>beginning</em> of the series instead?</span>
+                    <span>After watching — can a protagonist also be a villain? Name an example.</span>
                 </div>
-                <div class="question-chip reveal" style="background:rgba(16,185,129,0.08);color:#065f46;">
-                    <span class="icon" style="background:#10b981;">?</span>
-                    <span>Why do you think the director chose a <em>dream</em> for this flashback rather than a memory?</span>
-                </div>
-            </div>
-            <div>
-                <div class="media-embed reveal" id="player-DU3YfzlenOA" onclick="playVideo('DU3YfzlenOA')">
-                    <img src="https://img.youtube.com/vi/DU3YfzlenOA/hqdefault.jpg" alt="Demon Slayer – Tanjiro's Father Flashback">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
-                </div>
-                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Demon Slayer: Mugen Train Arc – Ep 3 (Crunchyroll official clip)</p>
             </div>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 6: TECHNIQUE SPOTLIGHT — FORESHADOWING
+     SLIDE 6: CHARACTER ARC — What Is Growth?
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-6" data-slide="6">
     <div class="content">
         <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:rgba(16,185,129,0.1);border-color:#10b981;color:#059669;">👁️ Technique: Foreshadowing</span>
-            <span class="pill">Attack on Titan</span>
+            <span class="pill">📈 Character Arc</span>
+            <span class="pill">The Journey Within the Journey</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div>
-                <div class="media-embed reveal" id="player-Qeni21RZgZg" onclick="playVideo('Qeni21RZgZg')">
-                    <img src="https://img.youtube.com/vi/Qeni21RZgZg/hqdefault.jpg" alt="Attack on Titan – The Art of Foreshadowing">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
-                </div>
-                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Attack on Titan – The Art of Foreshadowing (ViniiTube)</p>
-            </div>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">How Characters Change Over Time</h2>
+        <div class="grid-cards grid-2 gap-5">
             <div class="flex flex-col gap-3">
-                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#059669;">Chekhov's Gun in Anime</h2>
-                <div class="card reveal">
-                    <p class="text-xs font-bold text-text-secondary">Foreshadowing plants clues the audience won't recognize until later. Author Hajime Isayama (AoT) said he wrote Season 1 already knowing the ending — meaning Eren's true ability as the <em>Attack Titan</em> is hinted in the very first episode, 87 episodes before it's revealed. Fans who rewatched the show found over <strong>200 foreshadowing moments</strong> hidden throughout the series.</p>
+                <div class="card reveal" style="background:linear-gradient(135deg,rgba(11,99,206,0.07),rgba(16,185,129,0.05));border:1px solid rgba(11,99,206,0.18);">
+                    <p class="text-xs font-black uppercase tracking-widest text-accent-1 mb-2">Naruto Uzumaki's Arc</p>
+                    <div class="timeline">
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#ef4444;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Start:</strong> Lonely outcast — wants recognition but acts out</p>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#f59e0b;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Middle:</strong> Learns teamwork, forms bonds, faces loss</p>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#10b981;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>End:</strong> Becomes Hokage — respected leader, not because he demanded it, but because he earned it</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card reveal" style="background:rgba(16,185,129,0.07);border-color:rgba(16,185,129,0.3);">
-                    <p class="text-xs font-bold" style="color:#065f46;">📌 Writing Tip: Foreshadowing works because the brain creates satisfaction when a hint pays off — it makes the audience feel smart for noticing it.</p>
+                <div class="card reveal" style="background:linear-gradient(135deg,rgba(139,92,246,0.07),rgba(245,158,11,0.04));border:1px solid rgba(139,92,246,0.18);">
+                    <p class="text-xs font-black uppercase tracking-widest mb-2" style="color:#7c3aed;">Deku's Arc (My Hero Academia)</p>
+                    <div class="timeline">
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#ef4444;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Start:</strong> Quirkless, dismissed as powerless, dreams of heroism</p>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#f59e0b;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Middle:</strong> Receives power, but must learn to use it without destroying himself</p>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-dot" style="background:#10b981;"></div>
+                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>End:</strong> Embraces All Might's legacy — becomes a hero who saves with a smile</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-3 justify-between">
+                <div class="card reveal">
+                    <p class="text-sm font-black text-accent-1 mb-2">3 Types of Character Arcs</p>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex gap-2 items-start">
+                            <span style="font-size:1.2rem">📈</span>
+                            <div>
+                                <p class="text-xs font-black" style="color:#10b981;">Positive Arc</p>
+                                <p class="text-xs font-bold text-text-secondary">Character learns, grows, and overcomes a flaw. (Naruto, Deku)</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span style="font-size:1.2rem">📉</span>
+                            <div>
+                                <p class="text-xs font-black" style="color:#ef4444;">Negative (Tragic) Arc</p>
+                                <p class="text-xs font-bold text-text-secondary">Character fails to change or changes for the worse. (Sasuke in early arcs)</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span style="font-size:1.2rem">➡️</span>
+                            <div>
+                                <p class="text-xs font-black" style="color:#0b63ce;">Flat Arc</p>
+                                <p class="text-xs font-bold text-text-secondary">Character stays consistent but CHANGES THE WORLD. (All Might)</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="question-chip reveal">
                     <span class="icon">?</span>
-                    <span>Can foreshadowing be <em>too obvious</em>? What is the difference between a clue and a spoiler?</span>
-                </div>
-                <div class="question-chip reveal" style="background:rgba(11,99,206,0.08);color:#1e3a8a;">
-                    <span class="icon" style="background:#0b63ce;">?</span>
-                    <span>How would you plant a foreshadowing hint in your own character's story?</span>
+                    <span>Which arc type do YOU find most compelling — and why does the answer say something about what you value in stories?</span>
                 </div>
             </div>
         </div>
@@ -315,75 +400,99 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 7: TECHNIQUE SPOTLIGHT — CLIFFHANGER
+     SLIDE 7: VIDEO — Naruto Character Analysis
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-7" data-slide="7">
     <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:rgba(239,68,68,0.1);border-color:#ef4444;color:#b91c1c;">⚡ Technique: Cliffhanger</span>
-            <span class="pill">Multiple Anime · Episode Endings</span>
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎬 Video Analysis</span>
+            <span class="pill" style="background:#dcfce7;border-color:#10b981;color:#065f46;">Naruto</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div class="flex flex-col gap-3">
-                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#dc2626;">Why You Can't Stop Watching</h2>
-                <div class="card reveal">
-                    <p class="text-xs font-bold text-text-secondary">A cliffhanger deliberately ends a scene or episode at the highest possible moment of tension — before the resolution. This exploits what psychologists call the <strong>Zeigarnik Effect</strong>: our brains remember unfinished tasks more strongly than completed ones. Anime uses this at episode endings, mid-episode breaks, and even between seasons, making viewers feel physically unable to stop watching.</p>
+        <div class="grid-cards grid-2 gap-5">
+            <div class="reveal">
+                <div class="media-embed" id="player-A9THWDuHk0c" onclick="playVideo('A9THWDuHk0c')">
+                    <img src="https://img.youtube.com/vi/A9THWDuHk0c/hqdefault.jpg" alt="Why Naruto is the Greatest Anime MC Ever">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
                 </div>
-                <div class="card reveal" style="background:rgba(239,68,68,0.07);border-color:rgba(239,68,68,0.3);">
-                    <p class="text-xs font-bold" style="color:#7f1d1d;">📌 Fact: <em>The Promised Neverland</em> Episode 1 ends on one of the most shocking cliffhangers in anime history — viewers described it as "physically needing" to see what happened next.</p>
+                <a class="video-source" href="https://www.youtube.com/watch?v=A9THWDuHk0c" target="_blank">▶ YouTube: Why Naruto is the Greatest Anime MC Ever | Character Analysis</a>
+            </div>
+            <div class="flex flex-col justify-center gap-3">
+                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">Analyzing Naruto's Arc</h2>
+                <p class="text-sm font-bold text-text-secondary reveal">As you watch, look for evidence of Naruto's character arc:</p>
+                <div class="flex flex-col gap-2 reveal">
+                    <div class="card" style="padding:10px 14px;border-left:3px solid #0b63ce;">
+                        <p class="text-xs font-bold text-text-secondary">🔍 What was Naruto's <strong>core flaw</strong> at the beginning?</p>
+                    </div>
+                    <div class="card" style="padding:10px 14px;border-left:3px solid #10b981;">
+                        <p class="text-xs font-bold text-text-secondary">🔍 What <strong>event or relationship</strong> pushed him to change?</p>
+                    </div>
+                    <div class="card" style="padding:10px 14px;border-left:3px solid #f59e0b;">
+                        <p class="text-xs font-bold text-text-secondary">🔍 How does his <strong>archetype</strong> (The Hero) shape his arc?</p>
+                    </div>
                 </div>
                 <div class="question-chip reveal">
                     <span class="icon">?</span>
-                    <span>Is a cliffhanger "cheating"? Or is it a valid storytelling tool? Defend your answer.</span>
+                    <span>Is the "underdog hero" archetype more powerful because of Naruto's flaw — or in spite of it?</span>
                 </div>
-                <div class="question-chip reveal" style="background:rgba(16,185,129,0.08);color:#065f46;">
-                    <span class="icon" style="background:#10b981;">?</span>
-                    <span>Where would you place a cliffhanger in your own anime story?</span>
-                </div>
-            </div>
-            <div>
-                <div class="media-embed reveal" id="player-3cxv3XxadR0" onclick="playVideo('3cxv3XxadR0')">
-                    <img src="https://img.youtube.com/vi/3cxv3XxadR0/hqdefault.jpg" alt="Top 10 Most Insane Anime Cliffhangers">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
-                </div>
-                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Top 10 Most Insane Anime Cliffhangers (WatchMojo)</p>
             </div>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 8: TECHNIQUE SPOTLIGHT — CHARACTER DEVELOPMENT
+     SLIDE 8: THE FOIL — Contrast Makes Characters Shine
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-8" data-slide="8">
     <div class="content">
         <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:rgba(245,158,11,0.1);border-color:#f59e0b;color:#92400e;">🌱 Technique: Character Development</span>
-            <span class="pill">My Hero Academia</span>
+            <span class="pill">🪞 The Foil</span>
+            <span class="pill">Contrast as a Storytelling Tool</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div>
-                <div class="media-embed reveal" id="player-RIDqpK_pK0E" onclick="playVideo('RIDqpK_pK0E')">
-                    <img src="https://img.youtube.com/vi/RIDqpK_pK0E/hqdefault.jpg" alt="How My Hero Academia Develops Its Characters">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">Why Opposites Tell Better Stories</h2>
+        <div class="grid-cards grid-2 gap-5">
+            <div class="flex flex-col gap-3">
+                <div class="card reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.07),rgba(239,68,68,0.04));border:1px solid rgba(245,158,11,0.25);">
+                    <p class="text-xs font-black uppercase tracking-widest text-accent-3 mb-2">Naruto ↔ Sasuke (Naruto)</p>
+                    <div class="grid-cards grid-2 gap-2">
+                        <div style="background:rgba(11,99,206,0.07);border-radius:12px;padding:8px 10px;">
+                            <p class="text-xs font-black text-accent-1">Naruto</p>
+                            <p class="text-xs font-bold text-text-secondary">Loud • Emotional • Loyal • Impulsive • Driven by love</p>
+                        </div>
+                        <div style="background:rgba(239,68,68,0.07);border-radius:12px;padding:8px 10px;">
+                            <p class="text-xs font-black" style="color:#dc2626;">Sasuke</p>
+                            <p class="text-xs font-bold text-text-secondary">Quiet • Calculated • Lone wolf • Revenge-driven • Driven by pain</p>
+                        </div>
+                    </div>
+                    <p class="text-xs font-bold text-text-muted mt-2">Their contrast makes us ask: what path <em>should</em> someone take when they're in pain?</p>
                 </div>
-                <p class="text-xs text-text-muted mt-2 text-center font-semibold">How My Hero Academia Develops Its Characters (Storyteller's Notebook)</p>
+                <div class="card reveal" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(139,92,246,0.04));border:1px solid rgba(16,185,129,0.25);">
+                    <p class="text-xs font-black uppercase tracking-widest text-accent-2 mb-2">Deku ↔ Bakugo (My Hero Academia)</p>
+                    <div class="grid-cards grid-2 gap-2">
+                        <div style="background:rgba(16,185,129,0.07);border-radius:12px;padding:8px 10px;">
+                            <p class="text-xs font-black text-accent-2">Deku</p>
+                            <p class="text-xs font-bold text-text-secondary">Humble • Analytical • Quirkless → receives power • Empathy-first</p>
+                        </div>
+                        <div style="background:rgba(245,158,11,0.07);border-radius:12px;padding:8px 10px;">
+                            <p class="text-xs font-black text-accent-3">Bakugo</p>
+                            <p class="text-xs font-bold text-text-secondary">Arrogant • Instinct-driven • Born with power • Pride-first</p>
+                        </div>
+                    </div>
+                    <p class="text-xs font-bold text-text-muted mt-2">Bakugo forces us to see Deku's kindness as a <em>choice</em>, not just his nature.</p>
+                </div>
             </div>
             <div class="flex flex-col gap-3">
-                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#b45309;">The Change We Root For</h2>
                 <div class="card reveal">
-                    <p class="text-xs font-bold text-text-secondary">Character development is the engine of every great story. Izuku Midoriya starts as a boy with zero powers who cries watching heroes on TV. By Season 6, he is nearly destroying himself to protect others. What changed? Hundreds of moments of failure, pain, and choice — each one a storytelling decision. <em>MHA</em> shows development across ALL characters: Bakugo from bully to reluctant ally; Todoroki from cold loner to open teammate.</p>
-                </div>
-                <div class="card reveal" style="background:rgba(245,158,11,0.07);border-color:rgba(245,158,11,0.3);">
-                    <p class="text-xs font-bold" style="color:#78350f;">📌 Rule: Change must come from <em>inside</em> the character — forced by events, not given for free. A character who doesn't struggle doesn't develop.</p>
+                    <p class="text-sm font-black text-accent-1 mb-2">How Foils Work as a Technique</p>
+                    <ul class="flex flex-col gap-1">
+                        <li class="text-xs font-bold text-text-secondary">🪞 <strong>Highlight traits:</strong> A foil makes the hero's qualities stand out by showing what they're NOT like</li>
+                        <li class="text-xs font-bold text-text-secondary">❓ <strong>Raise moral questions:</strong> When two people have similar pasts but make different choices, we ask WHY</li>
+                        <li class="text-xs font-bold text-text-secondary">📈 <strong>Accelerate development:</strong> Foils push characters to grow faster through competition and conflict</li>
+                        <li class="text-xs font-bold text-text-secondary">💭 <strong>Show the "other path":</strong> A foil often represents what the hero COULD have become</li>
+                    </ul>
                 </div>
                 <div class="question-chip reveal">
                     <span class="icon">?</span>
-                    <span>What was the moment Deku truly changed? Could it have happened earlier in the story?</span>
-                </div>
-                <div class="question-chip reveal" style="background:rgba(11,99,206,0.08);color:#1e3a8a;">
-                    <span class="icon" style="background:#0b63ce;">?</span>
-                    <span>What internal flaw does <em>your</em> anime character need to overcome?</span>
+                    <span>If Naruto and Sasuke swapped backgrounds — would they swap personalities too? What does that tell us about these characters?</span>
                 </div>
             </div>
         </div>
@@ -391,40 +500,39 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 9: TECHNIQUE SPOTLIGHT — NARRATIVE ARC
+     SLIDE 9: VIDEO — Foil Characters
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-9" data-slide="9">
     <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:rgba(11,99,206,0.1);border-color:#0b63ce;color:#1e3a8a;">📈 Technique: Narrative Arc</span>
-            <span class="pill">Naruto · One Piece · MHA</span>
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎬 Video Analysis</span>
+            <span class="pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.4);color:#7c3aed;">Foil Characters</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div class="flex flex-col gap-4">
-                <h2 class="font-display text-[1.8rem] font-bold text-accent-1 reveal">The Shape of Every Story</h2>
-                <div class="card reveal">
-                    <p class="text-xs font-bold text-text-secondary mb-2">Every arc follows the same 5-stage structure. In <em>Naruto's</em> Chunin Exams Arc (Episodes 20–67):</p>
-                    <div class="timeline">
-                        <div class="timeline-step"><div class="timeline-dot"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Introduction:</strong> Teams enter the exams — stakes are clear</p></div>
-                        <div class="timeline-step"><div class="timeline-dot" style="background:#10b981;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Rising Action:</strong> Forest of Death, matches, Orochimaru appears</p></div>
-                        <div class="timeline-step"><div class="timeline-dot" style="background:#f59e0b;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Climax:</strong> Naruto vs. Neji — "I'll change your destiny!"</p></div>
-                        <div class="timeline-step"><div class="timeline-dot" style="background:#ef4444;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Falling Action:</strong> Village invasion begins</p></div>
-                        <div class="timeline-step"><div class="timeline-dot" style="background:#8b5cf6;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Resolution:</strong> Team bonds formed; new arcs seeded</p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="media-embed reveal" id="player-zX-YigJLZ24" onclick="playVideo('zX-YigJLZ24')">
-                    <img src="https://img.youtube.com/vi/zX-YigJLZ24/hqdefault.jpg" alt="What Is An Arc In Anime?">
+        <div class="grid-cards grid-2 gap-5">
+            <div class="reveal">
+                <div class="media-embed" id="player-pBU3C-C7rek" onclick="playVideo('pBU3C-C7rek')">
+                    <img src="https://img.youtube.com/vi/pBU3C-C7rek/hqdefault.jpg" alt="Does Your Manga NEED Foil Characters?">
                     <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
                 </div>
-                <p class="text-xs text-text-muted text-center font-semibold">What Is An Arc In Anime? (The Animation Reel)</p>
-                <div class="card reveal" style="background:rgba(11,99,206,0.07);border-color:rgba(11,99,206,0.3);">
-                    <p class="text-xs font-bold" style="color:#1e3a8a;">📌 Fact: <em>One Piece</em> has run continuously since <strong>1997</strong> and contains over 30 named arcs — yet each follows the same 5-stage structure.</p>
+                <a class="video-source" href="https://www.youtube.com/watch?v=pBU3C-C7rek" target="_blank">▶ YouTube: Does Your Manga NEED Foil Characters?</a>
+            </div>
+            <div class="flex flex-col justify-center gap-3">
+                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">The Power of Contrast</h2>
+                <p class="text-sm font-bold text-text-secondary reveal">This video breaks down WHY foil characters work — with manga/anime examples.</p>
+                <div class="flex flex-col gap-2 reveal">
+                    <div class="card" style="padding:10px 14px;border-left:3px solid #8b5cf6;">
+                        <p class="text-xs font-bold text-text-secondary">🔍 Identify one foil pair from the video. How do their differences <em>reveal</em> the main character's values?</p>
+                    </div>
+                    <div class="card" style="padding:10px 14px;border-left:3px solid #10b981;">
+                        <p class="text-xs font-bold text-text-secondary">🔍 Can a foil also be a <em>friend</em>? Or does a foil have to be an enemy?</p>
+                    </div>
+                    <div class="card" style="padding:10px 14px;border-left:3px solid #f59e0b;">
+                        <p class="text-xs font-bold text-text-secondary">🔍 Think of a foil pair from your own favorite anime. What do their differences tell us?</p>
+                    </div>
                 </div>
                 <div class="question-chip reveal">
                     <span class="icon">?</span>
-                    <span>Where is the climax of <em>your</em> character's arc? What does it cost them to get there?</span>
+                    <span>Is a story MORE interesting when the foil is someone the hero actually cares about? Why might that be?</span>
                 </div>
             </div>
         </div>
@@ -432,100 +540,93 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 10: HOW TECHNIQUES WORK TOGETHER
+     SLIDE 10: VILLAIN ARCHETYPES
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-10" data-slide="10">
     <div class="content">
         <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🧩 Techniques in Action</span>
-            <span class="pill">Demon Slayer · Season 1 Ep 19</span>
+            <span class="pill" style="background:#fee2e2;border-color:#ef4444;color:#991b1b;">😈 Antagonists</span>
+            <span class="pill">Video Analysis</span>
         </div>
-        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">All Five — In One Episode</h2>
-        <p class="text-sm font-bold text-text-secondary mb-4 reveal">Demon Slayer S1E19 — the episode that went viral — uses every technique in 24 minutes:</p>
-        <div class="grid-cards grid-3 gap-4">
-            <div class="card reveal" style="border-top:3px solid #7c3aed;">
-                <p class="technique-badge mb-1" style="background:rgba(139,92,246,0.1);color:#7c3aed;">⏪ Flashback</p>
-                <p class="text-xs font-bold text-text-secondary">Tanjiro remembers his father's breathing form — reveals hidden power at the exact moment the audience needs hope</p>
+        <div class="grid-cards grid-2 gap-5">
+            <div class="flex flex-col gap-3">
+                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">What Makes a Villain Memorable?</h2>
+                <div class="card reveal" style="border-left:4px solid #ef4444;">
+                    <p class="text-sm font-bold text-text-secondary">The best antagonists don't just fight the hero physically — they challenge the hero's values and force them to CHOOSE who they are.</p>
+                </div>
+                <div class="flex flex-col gap-2 reveal">
+                    <div class="card" style="padding:10px 14px;">
+                        <p class="text-xs font-black" style="color:#dc2626;">The Mirror Villain</p>
+                        <p class="text-xs font-bold text-text-secondary">Same background as the hero, different choices. (Obito mirrors Naruto; both were lonely kids.)</p>
+                    </div>
+                    <div class="card" style="padding:10px 14px;">
+                        <p class="text-xs font-black" style="color:#7c3aed;">The Ideological Villain</p>
+                        <p class="text-xs font-bold text-text-secondary">Wrong methods, understandable goal. (Thanos logic applied to anime — Shigaraki wants to destroy a broken system)</p>
+                    </div>
+                    <div class="card" style="padding:10px 14px;">
+                        <p class="text-xs font-black" style="color:#0b63ce;">The Embodiment of Fear</p>
+                        <p class="text-xs font-bold text-text-secondary">Represents the hero's deepest fear about themselves. (All For One represents power without responsibility)</p>
+                    </div>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>Can you feel sorry for a villain AND still think they're wrong? What does that say about moral complexity in storytelling?</span>
+                </div>
             </div>
-            <div class="card reveal" style="border-top:3px solid #10b981;">
-                <p class="technique-badge mb-1" style="background:rgba(16,185,129,0.1);color:#059669;">👁️ Foreshadowing</p>
-                <p class="text-xs font-bold text-text-secondary">The Hinokami Kagura dance was shown in Episode 1 — most viewers didn't realize it was a battle technique until now</p>
+            <div class="reveal">
+                <div class="media-embed" id="player-5EU-PXJtAts" onclick="playVideo('5EU-PXJtAts')">
+                    <img src="https://img.youtube.com/vi/5EU-PXJtAts/hqdefault.jpg" alt="Every Anime Antagonist Archetype Explained">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+                </div>
+                <a class="video-source" href="https://www.youtube.com/watch?v=5EU-PXJtAts" target="_blank">▶ YouTube: Every Anime Antagonist Archetype Explained in 5 Minutes</a>
+                <div class="card mt-3" style="padding:10px 14px;border-left:3px solid #ef4444;">
+                    <p class="text-xs font-bold text-text-secondary">📝 After watching: Pick one villain archetype from the video. Name a real anime villain that fits it and explain why they're memorable.</p>
+                </div>
             </div>
-            <div class="card reveal" style="border-top:3px solid #ef4444;">
-                <p class="technique-badge mb-1" style="background:rgba(239,68,68,0.1);color:#dc2626;">⚡ Cliffhanger</p>
-                <p class="text-xs font-bold text-text-secondary">Episode ends with Tanjiro completely out of power — audiences worldwide were in shock and immediately rewatched</p>
-            </div>
-            <div class="card reveal" style="border-top:3px solid #f59e0b;">
-                <p class="technique-badge mb-1" style="background:rgba(245,158,11,0.1);color:#b45309;">🌱 Char. Development</p>
-                <p class="text-xs font-bold text-text-secondary">Tanjiro, who started as a gentle boy unable to hurt anyone, makes the hardest decision of his life to protect his sister</p>
-            </div>
-            <div class="card reveal" style="border-top:3px solid #0b63ce; grid-column: span 2;">
-                <p class="technique-badge mb-1" style="background:rgba(11,99,206,0.1);color:#0b63ce;">📈 Narrative Arc</p>
-                <p class="text-xs font-bold text-text-secondary">This episode is the <strong>climax</strong> of the entire Season 1 arc — every earlier episode was "rising action" leading here. The animators (ufotable) spent months on this single episode, making it one of the most-watched anime episodes in history with over 100 million views on YouTube within a month of release.</p>
-            </div>
-        </div>
-        <div class="question-chip mt-3 reveal">
-            <span class="icon">?</span>
-            <span>Which technique hit you the <em>hardest</em> as a viewer? Why do you think that technique was so effective for you personally?</span>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 11: STORYBOARD ACTIVITY
+     SLIDE 11: CULTURAL SIGNIFICANCE
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-11" data-slide="11">
     <div class="content">
         <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Studio Time — 15 min</span>
-            <span class="pill">Create Your Storyboard</span>
+            <span class="pill">🇯🇵 Cultural Context</span>
+            <span class="pill">Japanese Values in Anime Characters</span>
         </div>
-        <div class="grid-cards grid-2 gap-6">
-            <div class="flex flex-col gap-3">
-                <h2 class="font-display text-[1.8rem] font-bold text-accent-3 reveal">Your Anime Scene</h2>
-                <div class="card reveal">
-                    <p class="text-sm font-bold text-text mb-2">Storyboard an original anime scene (4–6 panels) that includes:</p>
-                    <ul class="text-xs font-bold text-text-secondary flex flex-col gap-1">
-                        <li>✅ At least <strong>2 storytelling techniques</strong> from today's vocabulary</li>
-                        <li>✅ A <strong>character from your course project</strong> (or create a new one)</li>
-                        <li>✅ <strong>Labels</strong> in the margin naming the technique used in each panel</li>
-                        <li>✅ A brief <strong>caption</strong> per panel explaining what's happening</li>
-                    </ul>
-                </div>
-                <div class="card reveal" style="background:rgba(16,185,129,0.07);border-color:rgba(16,185,129,0.3);">
-                    <p class="text-xs font-bold" style="color:#065f46;">💡 Tip: Real anime storyboards (絵コンテ, <em>e-konte</em>) are rough stick-figure sketches. Quality of art does NOT matter — clarity of storytelling does.</p>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>Before you draw: what is the <em>single emotion</em> you want your viewer to feel at the end of your scene?</span>
-                </div>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">Archetypes Rooted in Japanese Culture</h2>
+        <div class="grid-cards grid-3 gap-4 mb-4">
+            <div class="card reveal" style="border-top:4px solid #0b63ce;">
+                <div class="text-2xl mb-1">🥋</div>
+                <p class="text-sm font-black text-accent-1">Ganbaru (頑張る)</p>
+                <p class="text-xs font-bold text-text-secondary mt-1">The spirit of perseverance and giving 100%. Nearly every shonen hero embodies this — Naruto, Rock Lee, Hinata.</p>
+                <p class="text-xs font-bold mt-2 text-text-muted italic">"Hard work beats talent when talent doesn't work hard."</p>
             </div>
-            <div class="flex flex-col gap-3">
-                <h2 class="font-display text-[1.5rem] font-bold text-accent-1 reveal">Socratic Prompts While You Work</h2>
-                <div class="timeline reveal">
-                    <div class="timeline-step">
-                        <div class="timeline-dot"></div>
-                        <p class="text-xs font-bold" style="padding-left:8px;">"If I removed the flashback panel, what meaning would the scene lose?"</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-dot" style="background:#10b981;"></div>
-                        <p class="text-xs font-bold" style="padding-left:8px;">"Where is the moment of highest tension? Is it in the right panel?"</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-dot" style="background:#f59e0b;"></div>
-                        <p class="text-xs font-bold" style="padding-left:8px;">"How does the camera angle change between panels? What does that say?"</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-dot" style="background:#8b5cf6;"></div>
-                        <p class="text-xs font-bold" style="padding-left:8px;">"Does your character look different at the end than at the start? Why?"</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-dot" style="background:#ef4444;"></div>
-                        <p class="text-xs font-bold" style="padding-left:8px;">"What is the ONE thing the audience must understand from this scene?"</p>
-                    </div>
-                </div>
-                <div class="card reveal" style="background:rgba(11,99,206,0.07);border-color:rgba(11,99,206,0.3);">
-                    <p class="text-xs font-bold" style="color:#1e3a8a;">🎯 Remember: A storyboard is a <em>plan</em> — it exists so you can change ideas cheaply, before animating. Be bold, then revise.</p>
+            <div class="card reveal" style="border-top:4px solid #10b981;">
+                <div class="text-2xl mb-1">🤝</div>
+                <p class="text-sm font-black text-accent-2">Nakama (仲間)</p>
+                <p class="text-xs font-bold text-text-secondary mt-1">Bonds of friendship and found-family are central to most anime. The "lone wolf" archetype is often challenged by this value.</p>
+                <p class="text-xs font-bold mt-2 text-text-muted italic">Why does Naruto always fight for his friends first?</p>
+            </div>
+            <div class="card reveal" style="border-top:4px solid #f59e0b;">
+                <div class="text-2xl mb-1">⚖️</div>
+                <p class="text-sm font-black text-accent-3">Giri (義理)</p>
+                <p class="text-xs font-bold text-text-secondary mt-1">Duty and obligation — often the source of internal conflict for mentors and rivals. Characters torn between personal desire and duty.</p>
+                <p class="text-xs font-bold mt-2 text-text-muted italic">All Might's struggle between being a hero and protecting Deku.</p>
+            </div>
+        </div>
+        <div class="grid-cards grid-2 gap-4">
+            <div class="card reveal" style="border-top:4px solid #8b5cf6;">
+                <div class="text-2xl mb-1">🌸</div>
+                <p class="text-sm font-black" style="color:#7c3aed;">Mono no Aware (物の哀れ)</p>
+                <p class="text-xs font-bold text-text-secondary mt-1">"Pathos of things" — the beauty of impermanence. Why tragic arcs hit so hard in anime. Loss makes growth meaningful.</p>
+            </div>
+            <div class="question-chip reveal" style="align-self:center;flex-direction:column;align-items:flex-start;gap:6px;padding:14px;">
+                <div class="flex gap-2 items-center">
+                    <span class="icon">?</span>
+                    <span>Are these values (ganbaru, nakama) specific to Japanese culture — or do you see them in stories from YOUR background too?</span>
                 </div>
             </div>
         </div>
@@ -533,82 +634,142 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 12: SHARE + PEER DISCUSSION
+     SLIDE 12: SKETCH ACTIVITY
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-12" data-slide="12">
     <div class="content">
         <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🤝 Share Your Storyboard</span>
-            <span class="pill">Socratic Gallery Walk</span>
+            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Creative Activity — 15 min</span>
+            <span class="pill">Art + Analysis</span>
         </div>
-        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">How to Give Great Feedback</h2>
-        <div class="grid-cards grid-3 gap-4 mb-4">
-            <div class="card reveal" style="border-top:3px solid #0b63ce;">
-                <p class="text-sm font-bold text-accent-1 mb-1">👀 Step 1: Look</p>
-                <p class="text-xs font-bold text-text-secondary">Spend 60 seconds <em>silently</em> reading your partner's storyboard. Notice the techniques, the emotion, the character choices.</p>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">Sketch Your Character Analysis</h2>
+        <div class="grid-cards grid-2 gap-5">
+            <div class="flex flex-col gap-3">
+                <div class="card reveal" style="border-left:4px solid #0b63ce;">
+                    <p class="text-sm font-bold text-accent-1 mb-2">Step 1: Choose &amp; Sketch</p>
+                    <p class="text-xs font-bold text-text-secondary">Pick any anime character. Sketch them in your sketchbook using colored markers. Focus on <em>details that show their archetype</em> — their expression, pose, clothing, weapon, or symbol.</p>
+                </div>
+                <div class="card reveal" style="border-left:4px solid #10b981;">
+                    <p class="text-sm font-bold text-accent-2 mb-2">Step 2: Label the Traits</p>
+                    <p class="text-xs font-bold text-text-secondary">Around your sketch, write labels that connect to archetypes:</p>
+                    <ul class="text-xs font-bold text-text-secondary mt-1 flex flex-col gap-1">
+                        <li>• Their archetype (hero, mentor, rival, trickster…)</li>
+                        <li>• 3 personality traits that define them</li>
+                        <li>• One way they <em>changed</em> during the series</li>
+                        <li>• Their foil character (if they have one)</li>
+                    </ul>
+                </div>
+                <div class="card reveal" style="border-left:4px solid #f59e0b;">
+                    <p class="text-sm font-bold text-accent-3 mb-2">Step 3: Write Your Arc</p>
+                    <p class="text-xs font-bold text-text-secondary">In 2–3 sentences, describe their character arc: where did they START, what CHANGED them, and where do they END UP?</p>
+                </div>
             </div>
-            <div class="card reveal" style="border-top:3px solid #10b981;">
-                <p class="text-sm font-bold text-accent-2 mb-1">💬 Step 2: Name</p>
-                <p class="text-xs font-bold text-text-secondary">Point to a specific panel and name the technique you see: <em>"In panel 3, I see a flashback because…"</em></p>
+            <div class="flex flex-col gap-3 justify-between">
+                <div class="card reveal" style="background:rgba(11,99,206,0.04);border-color:rgba(11,99,206,0.2);">
+                    <p class="text-sm font-black text-accent-1 mb-2">💡 Character Ideas (if you need one!)</p>
+                    <div class="grid-cards grid-2 gap-2">
+                        <div class="flex flex-col gap-1">
+                            <span class="technique-badge" style="background:rgba(11,99,206,0.08);color:#1e3a8a;">Tanjiro Kamado</span>
+                            <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;">Chihiro (Spirited Away)</span>
+                            <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;">Rock Lee</span>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <span class="technique-badge" style="background:rgba(139,92,246,0.08);color:#4c1d95;">Hinata Shoyo</span>
+                            <span class="technique-badge" style="background:rgba(239,68,68,0.08);color:#991b1b;">Sasuke Uchiha</span>
+                            <span class="technique-badge" style="background:rgba(236,72,153,0.08);color:#9d174d;">San (Mononoke)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card reveal" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.25);">
+                    <p class="text-sm font-black text-accent-2 mb-1">🎯 Connecting to YOUR Story</p>
+                    <p class="text-xs font-bold text-text-secondary">Remember: by the end of this course, you'll create your <em>own</em> anime character. Which archetype do you want your character to embody — and why?</p>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>What does your choice of character to sketch say about the kind of story <em>you</em> want to tell?</span>
+                </div>
             </div>
-            <div class="card reveal" style="border-top:3px solid #f59e0b;">
-                <p class="text-sm font-bold text-accent-3 mb-1">❓ Step 3: Question</p>
-                <p class="text-xs font-bold text-text-secondary">Ask one genuine question: <em>"What would happen if this panel came first instead?"</em> or <em>"Who is your audience for this scene?"</em></p>
-            </div>
-        </div>
-        <div class="card reveal mb-4">
-            <p class="text-sm font-bold text-text mb-2">Sentence Starters for Peer Discussion:</p>
-            <div class="flex flex-wrap gap-2">
-                <span class="technique-badge" style="background:rgba(11,99,206,0.08);color:#1e3a8a;font-size:0.72rem;">"The technique I saw most clearly was…"</span>
-                <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;font-size:0.72rem;">"I wonder what would happen if…"</span>
-                <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;font-size:0.72rem;">"This made me feel _____ because…"</span>
-                <span class="technique-badge" style="background:rgba(139,92,246,0.08);color:#4c1d95;font-size:0.72rem;">"I disagree with this choice because…"</span>
-            </div>
-        </div>
-        <div class="question-chip reveal">
-            <span class="icon">?</span>
-            <span>After hearing feedback: what is ONE thing you would change — and why?</span>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SLIDE 13: EXIT TICKET
+     SLIDE 13: SHARE + DISCUSSION
 ═══════════════════════════════════════════════ -->
 <div class="slide slide-13" data-slide="13">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🤝 Gallery Share</span>
+            <span class="pill">Peer Discussion</span>
+        </div>
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Share Your Sketch &amp; Analysis</h2>
+        <div class="grid-cards grid-3 gap-4 mb-4">
+            <div class="card reveal" style="border-top:3px solid #0b63ce;">
+                <p class="text-sm font-bold text-accent-1 mb-1">👁️ Step 1: Show</p>
+                <p class="text-xs font-bold text-text-secondary">Display your sketch. Give your partner 45 seconds to look — <em>in silence</em> — before you explain anything.</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #10b981;">
+                <p class="text-sm font-bold text-accent-2 mb-1">💬 Step 2: Name the Archetype</p>
+                <p class="text-xs font-bold text-text-secondary">Point to a specific feature in the sketch: <em>"This character's expression shows they are a [archetype] because…"</em></p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #f59e0b;">
+                <p class="text-sm font-bold text-accent-3 mb-1">❓ Step 3: Ask a Question</p>
+                <p class="text-xs font-bold text-text-secondary">Ask your partner one genuine question about their character's arc or foil. Make it specific — not just "Why did you pick this character?"</p>
+            </div>
+        </div>
+        <div class="card reveal mb-3">
+            <p class="text-sm font-bold text-text mb-2">Discussion Sentence Starters:</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="technique-badge" style="background:rgba(11,99,206,0.08);color:#1e3a8a;font-size:0.72rem;">"The archetype I see is ___ because…"</span>
+                <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;font-size:0.72rem;">"Their foil would be ___ because…"</span>
+                <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;font-size:0.72rem;">"This character's arc changed when…"</span>
+                <span class="technique-badge" style="background:rgba(139,92,246,0.08);color:#4c1d95;font-size:0.72rem;">"What would happen if this character had…"</span>
+            </div>
+        </div>
+        <div class="question-chip reveal">
+            <span class="icon">?</span>
+            <span>After hearing your partner's analysis — did they notice something about the character YOU missed? What does that reveal about how different readers connect with the same story?</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 14: EXIT TICKET
+═══════════════════════════════════════════════ -->
+<div class="slide slide-14" data-slide="14">
     <div class="content">
         <div class="flex flex-wrap gap-3 mb-4">
             <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">🎯 Exit Ticket — Before You Leave</span>
             <span class="pill">3 min · Write in Notebook</span>
         </div>
-        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">Show What You Know</h2>
-        <div class="grid-cards grid-2 gap-6">
-            <div class="flex flex-col gap-4">
+        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Show What You Know</h2>
+        <div class="grid-cards grid-2 gap-5">
+            <div class="flex flex-col gap-3">
                 <div class="card reveal" style="border-left:4px solid #0b63ce;">
                     <p class="text-sm font-bold text-accent-1 mb-1">✍️ Question 1</p>
-                    <p class="text-sm font-bold text-text-secondary">Name <strong>one storytelling technique</strong> you found most effective today. Use its vocabulary name.</p>
+                    <p class="text-sm font-bold text-text-secondary">Name <strong>one character archetype</strong> you learned about today. Write the vocabulary word, its definition in YOUR own words, and a character example.</p>
                     <div class="exit-line mt-3"></div>
                     <div class="exit-line"></div>
                 </div>
                 <div class="card reveal" style="border-left:4px solid #10b981;">
                     <p class="text-sm font-bold text-accent-2 mb-1">✍️ Question 2</p>
-                    <p class="text-sm font-bold text-text-secondary">Explain <em>why</em> that technique enhances an anime's narrative. Be specific — name the anime and scene.</p>
+                    <p class="text-sm font-bold text-text-secondary">Choose an anime character and describe their <em>character arc</em>. Was it a positive, negative, or flat arc? Use specific evidence from the series.</p>
                     <div class="exit-line mt-3"></div>
                     <div class="exit-line"></div>
                     <div class="exit-line"></div>
                 </div>
             </div>
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-3">
                 <div class="card reveal" style="border-left:4px solid #f59e0b;">
                     <p class="text-sm font-bold text-accent-3 mb-1">✍️ Question 3 (Course Connect)</p>
-                    <p class="text-sm font-bold text-text-secondary">Which technique will you use in your own anime character's story? How will you use it?</p>
+                    <p class="text-sm font-bold text-text-secondary">Which archetype will your <em>own</em> anime character (the one you'll create by end of term) use? What flaw will they need to overcome?</p>
                     <div class="exit-line mt-3"></div>
                     <div class="exit-line"></div>
                     <div class="exit-line"></div>
                 </div>
-                <div class="card reveal" style="background:rgba(16,185,129,0.07);border-color:rgba(16,185,129,0.3);">
+                <div class="card reveal" style="background:rgba(16,185,129,0.06);border-color:rgba(16,185,129,0.3);">
                     <p class="text-sm font-bold" style="color:#065f46;">🏠 Out-of-Class Extension</p>
-                    <p class="text-xs font-bold text-text-secondary mt-1">Watch one episode of your favorite anime and log every storytelling technique you spot. Use MyAnimeList to research the series' narrative style. Bring your log next class!</p>
+                    <p class="text-xs font-bold text-text-secondary mt-1">Watch a new anime episode you've never seen. Identify <strong>at least 2 character archetypes</strong> present in that episode. For each, write: (1) the archetype name, (2) 2 traits that prove it, and (3) how that character contributes to the story. Use MyAnimeList to research the series. Bring your notes next class!</p>
                 </div>
             </div>
         </div>
@@ -622,7 +783,7 @@
     <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
     <div class="slide-dots" id="dots"></div>
     <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
-    <span class="slide-counter" id="counter">1 / 13</span>
+    <span class="slide-counter" id="counter">1 / 14</span>
 </div>
 
 <script>
