@@ -1,898 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Activity Sheet – Create Your Anime Character</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --blue:   #0b63ce;
-      --green:  #10b981;
-      --amber:  #f59e0b;
-      --violet: #7c3aed;
-      --pink:   #db2777;
-      --bg:     #f4fbff;
-      --card:   #ffffff;
-      --text:   #1f2a37;
-      --muted:  #4b5563;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Nunito', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      padding: 28px 24px 60px;
-      max-width: 940px;
-      margin: 0 auto;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4 Activity Sheet – Character Development & Archetypes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #0b63ce;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --red: #ef4444;
+            --purple: #8b5cf6;
+            --bg: #f4fbff;
+            --surface: #ffffff;
+            --text: #1f2a37;
+            --muted: #5b6b7e;
+            --border: #c7dff7;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Nunito', Arial, sans-serif; background: #e8f4fd; color: var(--text); padding: 20px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 
-    /* ── HEADER ── */
-    .header {
-      background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 55%, #db2777 100%);
-      border-radius: 22px;
-      padding: 30px 36px;
-      color: white;
-      margin-bottom: 26px;
-      position: relative;
-      overflow: hidden;
-    }
-    .header::after {
-      content: '🎌';
-      position: absolute;
-      right: 32px; top: 20px;
-      font-size: 4rem;
-      opacity: 0.18;
-    }
-    .pill-sm {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 999px;
-      padding: 4px 14px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .header h1 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 6px;
-    }
-    .header p { font-size: 0.9rem; opacity: 0.88; max-width: 560px; line-height: 1.55; }
-    .info-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 14px;
-      margin-top: 18px;
-    }
-    .info-field label {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.75;
-      margin-bottom: 4px;
-    }
-    .info-field input {
-      width: 100%;
-      background: rgba(255,255,255,0.15);
-      border: 1.5px solid rgba(255,255,255,0.45);
-      border-radius: 8px;
-      padding: 7px 11px;
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.88rem;
-      outline: none;
-    }
-    .info-field input::placeholder { opacity: 0.45; }
+        /* input/textarea reset */
+        input[type="text"], textarea, select {
+            font-family: 'Nunito', Arial, sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text);
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--blue);
+            outline: none;
+            width: 100%;
+            padding: 3px 4px 2px 4px;
+            border-radius: 0;
+            resize: none;
+            transition: border-color 0.2s, background 0.2s;
+            line-height: 1.4;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-bottom-color: var(--purple);
+            background: rgba(139,92,246,0.04);
+            border-radius: 4px 4px 0 0;
+        }
+        textarea { overflow: hidden; min-height: 30px; }
 
-    /* ── SECTION HEADERS ── */
-    .sec-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 14px;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .sec-title {
-      font-family: 'Fredoka', sans-serif;
-      font-size: clamp(1.1rem, 2.4vw, 1.55rem);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .sec-sub {
-      font-size: 0.84rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
+        /* checkbox */
+        .cb-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 5px; }
+        .cb-item { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+        .cb-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--blue); cursor: pointer; flex-shrink: 0; }
 
-    /* ── CARD ── */
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 20px 22px;
-      box-shadow: 0 6px 22px rgba(15,23,42,0.07);
-      border: 1px solid rgba(203,213,225,0.65);
-      margin-bottom: 16px;
-    }
-    .card-head {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
+        /* arc-type radio */
+        .radio-group { display: flex; gap: 18px; margin-top: 5px; flex-wrap: wrap; }
+        .radio-item { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+        .radio-item input[type="radio"] { width: 16px; height: 16px; accent-color: var(--purple); cursor: pointer; }
 
-    /* ── GENRE REFERENCE CARDS ── */
-    .genre-strip {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .gc {
-      border-radius: 14px;
-      padding: 14px 12px;
-      border: 2px solid transparent;
-      text-align: center;
-    }
-    .gc .ico { font-size: 1.9rem; display: block; margin-bottom: 5px; }
-    .gc .gname {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 3px;
-    }
-    .gc .gdesc { font-size: 0.68rem; line-height: 1.4; opacity: 0.72; }
-    .gc .gbadge {
-      display: inline-block;
-      margin-top: 6px;
-      font-size: 0.63rem;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 999px;
-    }
-    .g-sho  { background:#eff6ff; border-color:#93c5fd; color:#1e3a8a; }
-    .g-sho  .gbadge { background:#dbeafe; color:#1d4ed8; }
-    .g-shj  { background:#fdf2f8; border-color:#f9a8d4; color:#831843; }
-    .g-shj  .gbadge { background:#fce7f3; color:#9d174d; }
-    .g-isk  { background:#f5f3ff; border-color:#c4b5fd; color:#3b0764; }
-    .g-isk  .gbadge { background:#ede9fe; color:#5b21b6; }
-    .g-sol  { background:#f0fdf4; border-color:#86efac; color:#14532d; }
-    .g-sol  .gbadge { background:#dcfce7; color:#15803d; }
-    .g-mec  { background:#fff7ed; border-color:#fdba74; color:#7c2d12; }
-    .g-mec  .gbadge { background:#ffedd5; color:#9a3412; }
+        .page { background: var(--surface); max-width: 820px; margin: 0 auto 32px auto; padding: 36px 40px; border-radius: 18px; box-shadow: 0 8px 32px rgba(15,23,42,0.10); border: 1.5px solid var(--border); page-break-after: always; }
+        .sheet-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--blue); padding-bottom: 14px; margin-bottom: 20px; }
+        .sheet-header-left h1 { font-family: 'Fredoka', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--blue); line-height: 1.1; }
+        .sheet-header-left p { font-size: 0.78rem; font-weight: 700; color: var(--muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.07em; }
+        .header-badges { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+        .badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; border: 1.5px solid; }
+        .badge-blue { background: rgba(11,99,206,0.08); color: var(--blue); border-color: rgba(11,99,206,0.3); }
+        .badge-green { background: rgba(16,185,129,0.08); color: #065f46; border-color: rgba(16,185,129,0.3); }
+        .badge-amber { background: rgba(245,158,11,0.08); color: #92400e; border-color: rgba(245,158,11,0.3); }
 
-    /* ── GENRE QUICK PROFILES TABLE ── */
-    .quick-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-      margin-bottom: 6px;
-    }
-    .quick-table th {
-      text-align: left;
-      padding: 8px 12px;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: #64748b;
-      border-bottom: 2px solid #e2e8f0;
-    }
-    .quick-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #f1f5f9;
-      vertical-align: top;
-      line-height: 1.45;
-    }
-    .quick-table tr:last-child td { border-bottom: none; }
-    .quick-table td input {
-      border: none;
-      border-bottom: 1.5px solid #cbd5e1;
-      width: 100%;
-      padding: 3px 2px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.82rem;
-      color: var(--text);
-      background: transparent;
-      outline: none;
-    }
-    .quick-table .genre-cell {
-      font-weight: 800;
-      font-size: 0.8rem;
-      white-space: nowrap;
-    }
-    .tag-sho { color:#1d4ed8; }
-    .tag-shj { color:#9d174d; }
-    .tag-isk { color:#5b21b6; }
-    .tag-sol { color:#15803d; }
-    .tag-mec { color:#9a3412; }
+        .name-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+        .name-field label { display: block; font-size: 0.72rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px; }
 
-    /* ── FORM FIELDS ── */
-    .fl {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-      margin-top: 10px;
-    }
-    .wline {
-      border: none;
-      border-bottom: 1.5px solid #cbd5e1;
-      width: 100%;
-      padding: 5px 2px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.88rem;
-      color: var(--text);
-      background: transparent;
-      outline: none;
-      margin-bottom: 6px;
-      display: block;
-    }
-    .warea {
-      border: 1.5px solid #e2e8f0;
-      border-radius: 10px;
-      width: 100%;
-      padding: 10px 12px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.87rem;
-      color: var(--text);
-      background: #f8fafc;
-      outline: none;
-      resize: vertical;
-      margin-bottom: 8px;
-      line-height: 1.55;
-    }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+        .section-title { font-family: 'Fredoka', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--surface); padding: 7px 16px; border-radius: 10px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .st-blue { background: var(--blue); }
+        .st-green { background: var(--green); }
+        .st-amber { background: var(--amber); }
+        .st-red { background: var(--red); }
+        .st-purple { background: var(--purple); }
 
-    /* ── SKETCH BOX ── */
-    .sketch {
-      border: 2px dashed #94a3b8;
-      border-radius: 14px;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #94a3b8;
-      font-size: 0.83rem;
-      font-weight: 600;
-      text-align: center;
-      padding: 20px;
-      background: #f8fafc;
-      gap: 6px;
-    }
-    .sketch .ico-big { font-size: 2.2rem; opacity: 0.45; }
-    .sketch .hint { font-size: 0.72rem; font-weight: 400; max-width: 200px; line-height: 1.4; }
+        .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .vocab-card { border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--bg); }
+        .vocab-card .term { font-family: 'Fredoka', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
+        .field-label { font-size: 0.68rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; margin-top: 8px; display: block; }
 
-    /* ── TRAIT SLOTS ── */
-    .trait-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 4px;
-    }
-    .trait-slot {
-      background: #f8fafc;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-    .trait-slot .tlabel {
-      font-size: 0.67rem;
-      font-weight: 800;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: #64748b;
-      display: block;
-      margin-bottom: 4px;
-    }
-    .trait-slot input {
-      border: none;
-      border-bottom: 1.5px solid #cbd5e1;
-      width: 100%;
-      padding: 3px 2px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.84rem;
-      background: transparent;
-      outline: none;
-      color: var(--text);
-    }
+        .archetype-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.8rem; }
+        .archetype-table thead tr { background: var(--blue); color: white; }
+        .archetype-table thead th { padding: 8px 10px; font-family: 'Fredoka', sans-serif; font-weight: 600; text-align: left; font-size: 0.82rem; }
+        .archetype-table tbody tr:nth-child(even) { background: rgba(11,99,206,0.04); }
+        .archetype-table tbody td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        .archetype-table tbody td:first-child { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; color: var(--blue); font-weight: 700; white-space: nowrap; }
+        .archetype-table input[type="text"] { font-size: 0.78rem; }
 
-    /* ── STAT BARS ── */
-    .stat-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      font-weight: 800;
-      width: 90px;
-      flex-shrink: 0;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .stat-boxes {
-      display: flex;
-      gap: 5px;
-    }
-    .stat-box {
-      width: 22px;
-      height: 22px;
-      border: 2px solid #cbd5e1;
-      border-radius: 5px;
-      background: white;
-      cursor: pointer;
-      font-size: 0;
-    }
+        .arc-diagram { display: flex; align-items: flex-start; gap: 0; margin-bottom: 14px; }
+        .arc-box { flex: 1; border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--bg); }
+        .arc-box .arc-label { font-family: 'Fredoka', sans-serif; font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; }
+        .arc-arrow { display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0; font-size: 1.2rem; color: var(--muted); margin-top: 20px; }
 
-    /* ── THEME CHIPS ── */
-    .theme-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin: 8px 0 14px;
-    }
-    .chip {
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      border: 1.5px solid #cbd5e1;
-      background: white;
-      cursor: default;
-    }
-    .chip.blue { border-color: #93c5fd; color: #1d4ed8; background: #eff6ff; }
-    .chip.pink { border-color: #f9a8d4; color: #9d174d; background: #fdf2f8; }
-    .chip.violet { border-color: #c4b5fd; color: #5b21b6; background: #f5f3ff; }
-    .chip.green { border-color: #86efac; color: #15803d; background: #f0fdf4; }
-    .chip.orange { border-color: #fdba74; color: #9a3412; background: #fff7ed; }
+        .foil-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+        .foil-table th { background: var(--purple); color: white; font-family: 'Fredoka', sans-serif; font-weight: 600; padding: 8px 12px; font-size: 0.82rem; }
+        .foil-table td { padding: 8px 10px; border: 1.5px solid var(--border); vertical-align: middle; }
+        .foil-table .vs-cell { background: rgba(139,92,246,0.07); color: var(--purple); text-align: center; font-family: 'Fredoka', sans-serif; font-size: 0.95rem; font-weight: 700; width: 42px; }
 
-    /* ── GENRE SELECTOR BUTTONS ── */
-    .genre-selector {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 10px 0 16px;
-    }
-    .gs-btn {
-      padding: 8px 20px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      border: 2px solid;
-      background: white;
-      cursor: pointer;
-    }
-    .gs-btn.blue   { border-color: #93c5fd; color: #1d4ed8; }
-    .gs-btn.pink   { border-color: #f9a8d4; color: #9d174d; }
-    .gs-btn.violet { border-color: #c4b5fd; color: #5b21b6; }
-    .gs-btn.green  { border-color: #86efac; color: #15803d; }
-    .gs-btn.orange { border-color: #fdba74; color: #9a3412; }
+        .sketch-zone { border: 2px dashed var(--blue); border-radius: 14px; min-height: 570px; display: flex; align-items: center; justify-content: center; background: rgba(11,99,206,0.02); margin-bottom: 12px; position: relative; overflow: hidden; cursor: crosshair; }
+        .sketch-zone canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .sketch-placeholder { font-size: 0.82rem; font-weight: 700; color: #b0c4de; font-family: 'Fredoka', sans-serif; pointer-events: none; user-select: none; }
+        .canvas-toolbar { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+        .canvas-toolbar button { font-family: 'Nunito', sans-serif; font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; border: 1.5px solid var(--border); background: white; cursor: pointer; color: var(--text); transition: background 0.15s; }
+        .canvas-toolbar button:hover { background: var(--bg); }
+        .canvas-toolbar button.active-tool { background: var(--blue); color: white; border-color: var(--blue); }
+        .color-picker-wrap { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 800; color: var(--muted); }
+        .color-picker-wrap input[type="color"] { width: 26px; height: 26px; border: none; border-radius: 50%; cursor: pointer; padding: 0; background: none; }
+        .size-wrap { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 800; color: var(--muted); }
+        .size-wrap input[type="range"] { width: 70px; accent-color: var(--blue); }
 
-    /* ── DIVIDER ── */
-    hr.div { border: none; border-top: 2px dashed #e2e8f0; margin: 26px 0; }
+        .video-box { border: 1.5px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; background: var(--bg); }
+        .video-box .video-title { font-family: 'Fredoka', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
+        .video-box .video-url { font-size: 0.68rem; font-weight: 700; color: var(--muted); margin-bottom: 10px; text-decoration: none; }
 
-    /* ── VOCAB STRIP ── */
-    .vocab-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
-    }
-    .vitem {
-      background: #f0f9ff;
-      border-left: 3px solid var(--blue);
-      border-radius: 0 8px 8px 0;
-      padding: 8px 10px;
-    }
-    .vitem .vw { font-weight: 800; font-size: 0.8rem; color: var(--blue); display: block; }
-    .vitem .vd { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+        .qa-block { margin-bottom: 14px; }
+        .qa-block .q { font-size: 0.82rem; font-weight: 800; color: var(--text); margin-bottom: 6px; display: flex; gap: 6px; align-items: flex-start; }
+        .q-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--blue); color: white; font-size: 0.7rem; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+        .q-num-green { background: var(--green); }
+        .q-num-amber { background: var(--amber); }
+        .q-num-red { background: var(--red); }
+        .q-num-purple { background: var(--purple); }
 
-    /* ── REFLECTION LINES ── */
-    .rline {
-      border-bottom: 1.5px dashed #cbd5e1;
-      padding: 5px 4px;
-      margin-bottom: 12px;
-      min-height: 34px;
-    }
-    .rnum { font-weight: 800; color: var(--blue); }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+        .divider { border: none; border-top: 1.5px dashed var(--border); margin: 18px 0; }
+        .tip-box { background: rgba(245,158,11,0.07); border-left: 4px solid var(--amber); border-radius: 0 10px 10px 0; padding: 8px 14px; margin-bottom: 14px; font-size: 0.78rem; font-weight: 700; color: #78350f; }
+        .exit-box { background: linear-gradient(135deg, rgba(11,99,206,0.05), rgba(16,185,129,0.04)); border: 2px solid var(--blue); border-radius: 14px; padding: 16px 18px; margin-top: 14px; }
+        .exit-box h3 { font-family: 'Fredoka', sans-serif; font-size: 1rem; color: var(--blue); margin-bottom: 12px; }
+        .sheet-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 12px; border-top: 1.5px dashed var(--border); }
+        .sheet-footer p { font-size: 0.68rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
-    /* ── STAR RATING ── */
-    .stars { display: flex; gap: 6px; margin-top: 6px; }
-    .stars span { font-size: 1.25rem; cursor: pointer; }
+        .print-btn { position: fixed; bottom: 24px; right: 24px; background: var(--blue); color: white; font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 700; padding: 12px 26px; border-radius: 999px; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(11,99,206,0.35); z-index: 1000; transition: transform 0.15s, box-shadow 0.15s; }
+        .print-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(11,99,206,0.45); }
 
-    /* ── PRINT ── */
-    @media print {
-      body { background: white; padding: 10px; }
-      .header { background: #1d4ed8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
-  </style>
+        @media print {
+            body { background: white; padding: 0; }
+            .page { box-shadow: none; border-radius: 0; margin: 0; padding: 28px 32px; border: none; }
+            .print-btn { display: none; }
+            input[type="text"], textarea { border-bottom-color: #aaa; }
+            canvas { border: 1px solid #ddd; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
-<div class="header">
-  <div class="pill-sm">📚 Anime Club · Grades 6–8 · Lesson 2</div>
-  <h1>Create Your Anime Character</h1>
-  <p>Use what you learned about anime genres, themes, and Japanese culture to design an original character that fits — or breaks the mold of — a real anime genre.</p>
-  <div class="info-row">
-    <div class="info-field">
-      <label>Name</label>
-      <input placeholder="Your name" />
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+<!-- PAGE 1 -->
+<div class="page">
+    <div class="sheet-header">
+        <div class="sheet-header-left">
+            <h1>🦸 Character Development &amp; Archetypes</h1>
+            <p>🎌 Anime Club · Lesson 4 · Activity Sheet</p>
+        </div>
+        <div class="header-badges">
+            <span class="badge badge-blue">Grade 6</span>
+            <span class="badge badge-green">Lesson 4 of 10</span>
+            <span class="badge badge-amber">~60 min</span>
+        </div>
     </div>
-    <div class="info-field">
-      <label>Date</label>
-      <input placeholder="Date" />
+
+    <div class="name-row">
+        <div class="name-field">
+            <label>Name</label>
+            <input type="text" placeholder="Your name…" autocomplete="name">
+        </div>
+        <div class="name-field">
+            <label>Date</label>
+            <input type="text" placeholder="MM / DD / YYYY" id="date-field">
+        </div>
+        <div class="name-field">
+            <label>Class Period</label>
+            <input type="text" placeholder="e.g. Period 3">
+        </div>
     </div>
-    <div class="info-field">
-      <label>Period</label>
-      <input placeholder="Period / Class" />
+
+    <!-- Part 1: Vocabulary -->
+    <div class="section-title st-blue">📚 Part 1: Vocabulary — Define It in Your Own Words</div>
+    <div class="tip-box">💡 Don't copy the definition word-for-word. Write it as if you're explaining it to a younger student who has never heard the word before.</div>
+
+    <div class="vocab-grid">
+        <div class="vocab-card">
+            <div class="term">Archetype</div>
+            <span class="field-label">My definition:</span>
+            <textarea rows="2" placeholder="An archetype is…"></textarea>
+            <span class="field-label">Anime example:</span>
+            <input type="text" placeholder="Character name &amp; series…">
+        </div>
+        <div class="vocab-card">
+            <div class="term">Protagonist</div>
+            <span class="field-label">My definition:</span>
+            <textarea rows="2" placeholder="A protagonist is…"></textarea>
+            <span class="field-label">Anime example:</span>
+            <input type="text" placeholder="Character name &amp; series…">
+        </div>
+        <div class="vocab-card">
+            <div class="term">Antagonist</div>
+            <span class="field-label">My definition:</span>
+            <textarea rows="2" placeholder="An antagonist is…"></textarea>
+            <span class="field-label">Anime example:</span>
+            <input type="text" placeholder="Character name &amp; series…">
+        </div>
+        <div class="vocab-card">
+            <div class="term">Character Arc</div>
+            <span class="field-label">My definition:</span>
+            <textarea rows="2" placeholder="A character arc is…"></textarea>
+            <span class="field-label">Anime example:</span>
+            <input type="text" placeholder="Character name &amp; series…">
+        </div>
+        <div class="vocab-card" style="grid-column:1 / -1;">
+            <div class="term">Foil</div>
+            <span class="field-label">My definition:</span>
+            <textarea rows="2" placeholder="A foil is…"></textarea>
+            <span class="field-label">Name a foil pair from any anime:</span>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-top:4px;">
+                <input type="text" placeholder="Character 1…">
+                <span style="font-family:Fredoka,sans-serif;font-weight:700;color:var(--purple);font-size:1rem;">↔</span>
+                <input type="text" placeholder="Character 2…">
+            </div>
+        </div>
     </div>
-  </div>
+
+    <!-- Part 2: Archetype Chart -->
+    <div class="section-title st-green">🧩 Part 2: Archetype Chart — Fill In the Missing Columns</div>
+    <table class="archetype-table">
+        <thead>
+            <tr>
+                <th>Archetype</th>
+                <th>Key Traits (2–3 words)</th>
+                <th>Anime Character Example</th>
+                <th>Why They Fit This Archetype</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>🦸 The Hero</td><td><input type="text" placeholder="e.g. brave, determined…"></td><td><input type="text" placeholder="Name &amp; series…"></td><td><input type="text" placeholder="Because…"></td></tr>
+            <tr><td>🧙 The Mentor</td><td><input type="text" placeholder="e.g. wise, guiding…"></td><td><input type="text" placeholder="Name &amp; series…"></td><td><input type="text" placeholder="Because…"></td></tr>
+            <tr><td>😈 The Villain</td><td><input type="text" placeholder="e.g. ruthless, cunning…"></td><td><input type="text" placeholder="Name &amp; series…"></td><td><input type="text" placeholder="Because…"></td></tr>
+            <tr><td>👥 The Ally</td><td><input type="text" placeholder="e.g. loyal, supportive…"></td><td><input type="text" placeholder="Name &amp; series…"></td><td><input type="text" placeholder="Because…"></td></tr>
+            <tr><td>⚔️ The Rival</td><td><input type="text" placeholder="e.g. competitive, driven…"></td><td><input type="text" placeholder="Name &amp; series…"></td><td><input type="text" placeholder="Because…"></td></tr>
+            <tr><td>🌀 The Trickster</td><td><input type="text" placeholder="e.g. unpredictable, clever…"></td><td><input type="text" placeholder="Name &amp; series…"></td><td><input type="text" placeholder="Because…"></td></tr>
+        </tbody>
+    </table>
+
+    <div class="sheet-footer">
+        <p>🎌 Anime Club — Concorde Education · Lesson 4</p>
+        <p>Page 1 of 3</p>
+    </div>
 </div>
 
 
-<!-- ══ GENRE REFERENCE ══ -->
-<div class="sec-badge" style="background:#eff6ff;color:#1d4ed8;">📖 Genre Reference</div>
-<div class="sec-title">The 5 Genres from Today's Lesson</div>
-<div class="sec-sub">Every character belongs somewhere. Use this reference as you design yours.</div>
+<!-- PAGE 2 -->
+<div class="page">
+    <div class="sheet-header">
+        <div class="sheet-header-left">
+            <h1>🦸 Character Development &amp; Archetypes</h1>
+            <p>🎌 Anime Club · Lesson 4 · Activity Sheet</p>
+        </div>
+        <div class="header-badges">
+            <span class="badge badge-blue">Name: <input type="text" style="width:130px;font-size:0.72rem;border-bottom:1px solid #aaa;" placeholder="_______________"></span>
+        </div>
+    </div>
 
-<div class="genre-strip">
-  <div class="gc g-sho">
-    <span class="ico">⚡</span>
-    <span class="gname">Shōnen</span>
-    <span class="gdesc">Action &amp; growth — heroes who never give up, push their limits, and fight for their friends</span>
-    <span class="gbadge">Perseverance · Friendship</span>
-  </div>
-  <div class="gc g-shj">
-    <span class="ico">🌸</span>
-    <span class="gname">Shōjo</span>
-    <span class="gdesc">Emotion &amp; relationships — self-discovery through bonds, feelings, and personal growth</span>
-    <span class="gbadge">Identity · Belonging</span>
-  </div>
-  <div class="gc g-isk">
-    <span class="ico">🌀</span>
-    <span class="gname">Isekai</span>
-    <span class="gdesc">Transported to another world — a chance to start over and become something new</span>
-    <span class="gbadge">Reinvention · Purpose</span>
-  </div>
-  <div class="gc g-sol">
-    <span class="ico">☀️</span>
-    <span class="gname">Slice of Life</span>
-    <span class="gdesc">Everyday moments — clubs, friendships, routines, and the small things that matter most</span>
-    <span class="gbadge">Connection · Growth</span>
-  </div>
-  <div class="gc g-mec">
-    <span class="ico">🤖</span>
-    <span class="gname">Mecha</span>
-    <span class="gdesc">Giant robots &amp; tech — humanity's power, sacrifice, and the cost of fighting a bigger war</span>
-    <span class="gbadge">Humanity · Sacrifice</span>
-  </div>
-</div>
+    <!-- Part 3: Character Arc Map -->
+    <div class="section-title st-amber">📈 Part 3: Character Arc Map</div>
+    <p style="font-size:0.8rem;font-weight:700;color:var(--muted);margin-bottom:12px;">Choose any anime character. Map their arc from beginning → middle → end. Then select the arc type.</p>
 
-<hr class="div" />
-
-
-<!-- ══ PART 1 — QUICK GENRE IMAGINING ══ -->
-<div class="sec-badge" style="background:#fdf2f8;color:#9d174d;">✏️ Part 1 — Warm-Up</div>
-<div class="sec-title">A Character for Every Genre</div>
-<div class="sec-sub">Before designing your main character, let your imagination visit <em>each</em> genre. Fill in the quick ideas below — just a few words is fine!</div>
-
-<div class="card">
-  <div class="card-head" style="color:#9d174d;">For each genre, jot down a quick character idea. What kind of person belongs in that story?</div>
-  <table class="quick-table">
-    <thead>
-      <tr>
-        <th style="width:13%;">Genre</th>
-        <th style="width:22%;">Character Name</th>
-        <th style="width:25%;">Who are they? (1–2 words)</th>
-        <th style="width:20%;">Their #1 personality trait</th>
-        <th style="width:20%;">What do they want?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="genre-cell"><span class="tag-sho">⚡ Shōnen</span></td>
-        <td><input placeholder="" /></td>
-        <td><input placeholder="e.g. scrappy outcast" /></td>
-        <td><input placeholder="e.g. stubborn" /></td>
-        <td><input placeholder="e.g. to be accepted" /></td>
-      </tr>
-      <tr>
-        <td class="genre-cell"><span class="tag-shj">🌸 Shōjo</span></td>
-        <td><input placeholder="" /></td>
-        <td><input placeholder="e.g. quiet bookworm" /></td>
-        <td><input placeholder="e.g. loyal" /></td>
-        <td><input placeholder="e.g. to find her voice" /></td>
-      </tr>
-      <tr>
-        <td class="genre-cell"><span class="tag-isk">🌀 Isekai</span></td>
-        <td><input placeholder="" /></td>
-        <td><input placeholder="e.g. burned-out student" /></td>
-        <td><input placeholder="e.g. curious" /></td>
-        <td><input placeholder="e.g. a second chance" /></td>
-      </tr>
-      <tr>
-        <td class="genre-cell"><span class="tag-sol">☀️ Slice of Life</span></td>
-        <td><input placeholder="" /></td>
-        <td><input placeholder="e.g. cheerful club leader" /></td>
-        <td><input placeholder="e.g. energetic" /></td>
-        <td><input placeholder="e.g. to keep the band together" /></td>
-      </tr>
-      <tr>
-        <td class="genre-cell"><span class="tag-mec">🤖 Mecha</span></td>
-        <td><input placeholder="" /></td>
-        <td><input placeholder="e.g. reluctant pilot" /></td>
-        <td><input placeholder="e.g. conflicted" /></td>
-        <td><input placeholder="e.g. to protect what's left" /></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<hr class="div" />
-
-
-<!-- ══ PART 2 — CHOOSE YOUR GENRE ══ -->
-<div class="sec-badge" style="background:#f5f3ff;color:#5b21b6;">🎯 Part 2 — Choose</div>
-<div class="sec-title">Pick Your Genre & Theme</div>
-<div class="sec-sub">Now go all in. Select one genre and one theme — this is the foundation of your character.</div>
-
-<div class="card">
-  <div class="card-head" style="color:#5b21b6;">Circle the genre you are choosing:</div>
-  <div class="genre-selector">
-    <div class="gs-btn blue">⚡ Shōnen</div>
-    <div class="gs-btn pink">🌸 Shōjo</div>
-    <div class="gs-btn violet">🌀 Isekai</div>
-    <div class="gs-btn green">☀️ Slice of Life</div>
-    <div class="gs-btn orange">🤖 Mecha</div>
-  </div>
-
-  <div class="card-head" style="color:#5b21b6;margin-top:4px;">Circle the central theme your character will carry:</div>
-  <div class="theme-chips">
-    <span class="chip blue">Perseverance</span>
-    <span class="chip blue">Friendship as strength</span>
-    <span class="chip pink">Emotional honesty</span>
-    <span class="chip pink">Finding your identity</span>
-    <span class="chip violet">Reinvention</span>
-    <span class="chip violet">Escape &amp; purpose</span>
-    <span class="chip green">Belonging</span>
-    <span class="chip green">Small joys matter</span>
-    <span class="chip orange">Humanity vs. machine</span>
-    <span class="chip orange">Sacrifice</span>
-    <span class="chip">My own: _______________</span>
-  </div>
-
-  <span class="fl">Why does this genre fit the character you have in mind?</span>
-  <textarea class="warea" rows="2" placeholder="I chose this genre because my character..."></textarea>
-</div>
-
-<hr class="div" />
-
-
-<!-- ══ PART 3 — CHARACTER PROFILE ══ -->
-<div class="sec-badge" style="background:#f0fdf4;color:#15803d;">🧩 Part 3 — Character Profile</div>
-<div class="sec-title">Build Your Protagonist</div>
-<div class="sec-sub">Answer every section below. The more detail you add, the more real your character becomes.</div>
-
-<!-- Row 1 — Basic info + Sketch -->
-<div class="two-col" style="margin-bottom:16px;">
-
-  <div>
-    <div class="card" style="margin-bottom:14px;">
-      <div class="card-head" style="color:#15803d;">Basic Identity</div>
-      <span class="fl">Character Name</span>
-      <input class="wline" placeholder="" />
-      <div class="two-col" style="gap:10px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:12px;">
         <div>
-          <span class="fl">Age</span>
-          <input class="wline" placeholder="" />
+            <span class="field-label">Character Name</span>
+            <input type="text" placeholder="e.g. Naruto Uzumaki">
         </div>
         <div>
-          <span class="fl">Pronouns</span>
-          <input class="wline" placeholder="" />
+            <span class="field-label">Anime Series</span>
+            <input type="text" placeholder="e.g. Naruto Shippuden">
         </div>
-      </div>
-      <span class="fl">Where do they live? (Setting)</span>
-      <input class="wline" placeholder="e.g. modern Tokyo, a fantasy kingdom, a giant city-ship..." />
-      <span class="fl">Their role / title in this world</span>
-      <input class="wline" placeholder="e.g. student, warrior, pilot, transfer student..." />
-      <span class="fl">Genre</span>
-      <input class="wline" placeholder="" />
-    </div>
-
-    <div class="card">
-      <div class="card-head" style="color:#15803d;">Visual Description</div>
-      <div class="sec-sub" style="font-size:0.78rem;margin-bottom:10px;">Anime genre shapes how characters <em>look</em> — bold lines &amp; bright colors in Shōnen, soft eyes &amp; pastels in Shōjo, worn armor in Mecha.</div>
-      <span class="fl">Hair style &amp; color</span>
-      <input class="wline" placeholder="" />
-      <span class="fl">Eye color &amp; expression they always have</span>
-      <input class="wline" placeholder="" />
-      <span class="fl">Signature outfit or item they always carry</span>
-      <input class="wline" placeholder="e.g. a cracked headband, an oversized cardigan, a glowing gauntlet..." />
-      <span class="fl">One visual detail that hints at your THEME</span>
-      <input class="wline" placeholder="e.g. a worn photo of their old life for Isekai..." />
-    </div>
-  </div>
-
-  <!-- Sketch -->
-  <div class="card" style="display:flex;flex-direction:column;">
-    <div class="card-head" style="color:#15803d;">Character Sketch</div>
-    <div class="sketch" style="flex:1;">
-      <span class="ico-big">✏️</span>
-      Draw your character here
-      <span class="hint">Show their genre through visual style — big energy, soft details, mechanical parts, etc.</span>
-      <span class="hint" style="margin-top:4px;font-weight:700;color:#64748b;">Label: Genre + one theme detail</span>
-    </div>
-    <div style="margin-top:12px;">
-      <span class="fl">One sentence describing what someone would immediately notice about this character:</span>
-      <textarea class="warea" rows="2" placeholder="At first glance, you'd notice..."></textarea>
-    </div>
-  </div>
-
-</div>
-
-<!-- Personality Traits -->
-<div class="card">
-  <div class="card-head" style="color:#15803d;">Personality Traits</div>
-  <div class="trait-grid">
-    <div class="trait-slot">
-      <span class="tlabel">Greatest strength</span>
-      <input placeholder="e.g. never backs down" />
-    </div>
-    <div class="trait-slot">
-      <span class="tlabel">Biggest flaw / weakness</span>
-      <input placeholder="e.g. trusts no one" />
-    </div>
-    <div class="trait-slot">
-      <span class="tlabel">Secret fear</span>
-      <input placeholder="e.g. being forgotten" />
-    </div>
-    <div class="trait-slot">
-      <span class="tlabel">What makes them laugh</span>
-      <input placeholder="" />
-    </div>
-    <div class="trait-slot">
-      <span class="tlabel">What makes them angry</span>
-      <input placeholder="" />
-    </div>
-    <div class="trait-slot">
-      <span class="tlabel">How they treat strangers</span>
-      <input placeholder="" />
-    </div>
-  </div>
-  <span class="fl" style="margin-top:10px;">Describe your character's personality in 2–3 sentences. How would their best friend describe them?</span>
-  <textarea class="warea" rows="3" placeholder="My character is someone who..."></textarea>
-</div>
-
-<!-- Stats -->
-<div class="card">
-  <div class="card-head" style="color:#15803d;">Character Stats — Fill in the boxes (1 = low, 5 = high)</div>
-  <div class="two-col">
-    <div>
-      <div class="stat-row">
-        <span class="stat-label">Courage</span>
-        <div class="stat-boxes">
-          <div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div>
+        <div>
+            <span class="field-label">Arc Type</span>
+            <div class="radio-group" style="margin-top:6px;">
+                <label class="radio-item"><input type="radio" name="arc-type-1" value="positive"> Positive</label>
+                <label class="radio-item"><input type="radio" name="arc-type-1" value="negative"> Negative</label>
+                <label class="radio-item"><input type="radio" name="arc-type-1" value="flat"> Flat</label>
+            </div>
         </div>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Kindness</span>
-        <div class="stat-boxes">
-          <div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div>
+    </div>
+
+    <div class="arc-diagram">
+        <div class="arc-box" style="border-color:rgba(239,68,68,0.4);">
+            <div class="arc-label" style="color:#dc2626;">🔴 START — Who are they?</div>
+            <p style="font-size:0.7rem;font-weight:700;color:var(--muted);margin-bottom:6px;">Main flaw, fear, or desire?</p>
+            <textarea rows="3" placeholder="At the beginning of the story, this character…"></textarea>
         </div>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Intelligence</span>
-        <div class="stat-boxes">
-          <div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div>
+        <div class="arc-arrow">→</div>
+        <div class="arc-box" style="border-color:rgba(245,158,11,0.4);">
+            <div class="arc-label" style="color:#d97706;">🟡 MIDDLE — What changes?</div>
+            <p style="font-size:0.7rem;font-weight:700;color:var(--muted);margin-bottom:6px;">Event, person, or choice that pushes them?</p>
+            <textarea rows="3" placeholder="The turning point was when…"></textarea>
         </div>
-      </div>
-    </div>
-    <div>
-      <div class="stat-row">
-        <span class="stat-label">Loyalty</span>
-        <div class="stat-boxes">
-          <div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div>
+        <div class="arc-arrow">→</div>
+        <div class="arc-box" style="border-color:rgba(16,185,129,0.4);">
+            <div class="arc-label" style="color:#059669;">🟢 END — Who have they become?</div>
+            <p style="font-size:0.7rem;font-weight:700;color:var(--muted);margin-bottom:6px;">How are they different from the start?</p>
+            <textarea rows="3" placeholder="By the end of the story, this character…"></textarea>
         </div>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Determination</span>
-        <div class="stat-boxes">
-          <div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div>
+    </div>
+
+    <div class="qa-block">
+        <div class="q"><span class="q-num q-num-amber">?</span><span>In one sentence — what LESSON does this character's arc teach the audience?</span></div>
+        <textarea rows="2" placeholder="This arc teaches us that…"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Part 4: Foil Analysis -->
+    <div class="section-title st-purple">🪞 Part 4: Foil Character Analysis</div>
+    <p style="font-size:0.8rem;font-weight:700;color:var(--muted);margin-bottom:12px;">Pick a foil pair from any anime. Compare them, then answer the questions below.</p>
+
+    <table class="foil-table">
+        <thead>
+            <tr>
+                <th style="border-radius:10px 0 0 0;">Character 1</th>
+                <th class="vs-cell" style="background:var(--purple);color:white;">VS</th>
+                <th style="border-radius:0 10px 0 0;">Character 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" placeholder="Name &amp; series…"></td>
+                <td class="vs-cell" style="font-size:0.7rem;">Name</td>
+                <td><input type="text" placeholder="Name &amp; series…"></td>
+            </tr>
+            <tr>
+                <td><textarea rows="2" placeholder="3 key personality traits…"></textarea></td>
+                <td class="vs-cell" style="font-size:0.7rem;">Traits</td>
+                <td><textarea rows="2" placeholder="3 key personality traits…"></textarea></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Their main goal is…"></td>
+                <td class="vs-cell" style="font-size:0.7rem;">Goal</td>
+                <td><input type="text" placeholder="Their main goal is…"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="They achieve it by…"></td>
+                <td class="vs-cell" style="font-size:0.7rem;">Method</td>
+                <td><input type="text" placeholder="They achieve it by…"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Their biggest flaw is…"></td>
+                <td class="vs-cell" style="font-size:0.7rem;">Flaw</td>
+                <td><input type="text" placeholder="Their biggest flaw is…"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="qa-block">
+        <div class="q"><span class="q-num q-num-purple">?</span><span>How does Character 2 make Character 1's qualities <em>more visible</em> to the audience? Be specific.</span></div>
+        <textarea rows="2" placeholder="Character 2 highlights Character 1's qualities because…"></textarea>
+    </div>
+    <div class="qa-block">
+        <div class="q"><span class="q-num q-num-purple">?</span><span>What path does the foil represent that the main character <em>chose not to take</em>?</span></div>
+        <textarea rows="2" placeholder="The foil shows us what would happen if…"></textarea>
+    </div>
+
+    <div class="sheet-footer">
+        <p>🎌 Anime Club — Concorde Education · Lesson 4</p>
+        <p>Page 2 of 3</p>
+    </div>
+</div>
+
+
+<!-- PAGE 3 -->
+<div class="page">
+    <div class="sheet-header">
+        <div class="sheet-header-left">
+            <h1>🦸 Character Development &amp; Archetypes</h1>
+            <p>🎌 Anime Club · Lesson 4 · Activity Sheet</p>
         </div>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Humor</span>
-        <div class="stat-boxes">
-          <div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div><div class="stat-box"></div>
+        <div class="header-badges">
+            <span class="badge badge-blue">Name: <input type="text" style="width:130px;font-size:0.72rem;border-bottom:1px solid #aaa;" placeholder="_______________"></span>
         </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Part 5: Video Notes -->
+    <div class="section-title st-blue">🎬 Part 5: Video Analysis Notes</div>
+
+    <div class="video-box">
+        <div class="video-title">🎥 Video 1 — Every Anime Protagonist Archetype Explained</div>
+        <a class="video-url" href="https://www.youtube.com/watch?v=Dj2KLzGVSxA" target="_blank">▶ youtube.com/watch?v=Dj2KLzGVSxA</a>
+        <div class="two-col" style="margin-bottom:0;">
+            <div>
+                <div class="qa-block">
+                    <div class="q" style="font-size:0.75rem;"><span class="q-num">1</span><span>Which protagonist type surprised you most? Why?</span></div>
+                    <textarea rows="2" placeholder="I was most surprised by…"></textarea>
+                </div>
+            </div>
+            <div>
+                <div class="qa-block">
+                    <div class="q" style="font-size:0.75rem;"><span class="q-num">2</span><span>Can a protagonist be MORE than one archetype? Name an example.</span></div>
+                    <textarea rows="2" placeholder="Yes/No, because…"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-box">
+        <div class="video-title">🎥 Video 2 — Why Naruto is the Greatest Anime MC Ever</div>
+        <a class="video-url" href="https://www.youtube.com/watch?v=A9THWDuHk0c" target="_blank">▶ youtube.com/watch?v=A9THWDuHk0c</a>
+        <div class="two-col" style="margin-bottom:0;">
+            <div>
+                <div class="qa-block">
+                    <div class="q" style="font-size:0.75rem;"><span class="q-num q-num-green">1</span><span>What was Naruto's core flaw at the beginning?</span></div>
+                    <textarea rows="2" placeholder="Naruto's main flaw was…"></textarea>
+                </div>
+            </div>
+            <div>
+                <div class="qa-block">
+                    <div class="q" style="font-size:0.75rem;"><span class="q-num q-num-green">2</span><span>What event or person pushed him to change most?</span></div>
+                    <textarea rows="2" placeholder="The biggest turning point was…"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-box">
+        <div class="video-title">🎥 Video 3 — Every Anime Antagonist Archetype Explained</div>
+        <a class="video-url" href="https://www.youtube.com/watch?v=5EU-PXJtAts" target="_blank">▶ youtube.com/watch?v=5EU-PXJtAts</a>
+        <div class="two-col" style="margin-bottom:0;">
+            <div>
+                <div class="qa-block">
+                    <div class="q" style="font-size:0.75rem;"><span class="q-num q-num-red">1</span><span>Which villain archetype is your favorite? Name a character that fits it.</span></div>
+                    <textarea rows="2" placeholder="My favorite villain archetype is… because…"></textarea>
+                </div>
+            </div>
+            <div>
+                <div class="qa-block">
+                    <div class="q" style="font-size:0.75rem;"><span class="q-num q-num-red">2</span><span>Can you feel sympathy for a villain AND still think they're wrong? Explain.</span></div>
+                    <textarea rows="2" placeholder="I think this is possible/not possible because…"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Part 6: Sketch -->
+    <div class="section-title st-amber">✏️ Part 6: My Character Sketch</div>
+    <p style="font-size:0.8rem;font-weight:700;color:var(--muted);margin-bottom:8px;">Draw your character in the canvas below. Use the toolbar to pick color and brush size.</p>
+
+    <div style="display:flex;flex-direction:column;gap:0;">
+        <div>
+            <div class="canvas-toolbar">
+                <button id="btn-draw" class="active-tool" onclick="setTool('draw')">✏️ Draw</button>
+                <button id="btn-erase" onclick="setTool('erase')">⬜ Erase</button>
+                <button onclick="clearCanvas()">🗑️ Clear</button>
+                <div class="color-picker-wrap">
+                    <label for="brush-color">Color:</label>
+                    <input type="color" id="brush-color" value="#1f2a37">
+                </div>
+                <div class="size-wrap">
+                    <label for="brush-size">Size:</label>
+                    <input type="range" id="brush-size" min="1" max="30" value="4">
+                </div>
+            </div>
+            <div class="sketch-zone" id="sketch-zone">
+                <canvas id="sketch-canvas"></canvas>
+                <span class="sketch-placeholder" id="sketch-hint">✏️ Draw your character here</span>
+            </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+            <div>
+                <span class="field-label">Character Name &amp; Series</span>
+                <input type="text" placeholder="e.g. Tanjiro — Demon Slayer">
+            </div>
+            <div>
+                <span class="field-label">Archetype (check all that apply)</span>
+                <div class="cb-group">
+                    <label class="cb-item"><input type="checkbox"> 🦸 Hero</label>
+                    <label class="cb-item"><input type="checkbox"> 🧙 Mentor</label>
+                    <label class="cb-item"><input type="checkbox"> 😈 Villain</label>
+                    <label class="cb-item"><input type="checkbox"> 👥 Ally</label>
+                    <label class="cb-item"><input type="checkbox"> ⚔️ Rival</label>
+                    <label class="cb-item"><input type="checkbox"> 🌀 Trickster</label>
+                </div>
+            </div>
+            <div>
+                <span class="field-label">3 Personality Traits</span>
+                <input type="text" placeholder="e.g. kind, determined, empathetic…">
+            </div>
+            <div>
+                <span class="field-label">Their Foil Character (if any)</span>
+                <input type="text" placeholder="Name &amp; series…">
+            </div>
+            <div>
+                <span class="field-label">Arc Type</span>
+                <div class="radio-group">
+                    <label class="radio-item"><input type="radio" name="sketch-arc"> Positive</label>
+                    <label class="radio-item"><input type="radio" name="sketch-arc"> Negative</label>
+                    <label class="radio-item"><input type="radio" name="sketch-arc"> Flat</label>
+                </div>
+            </div>
+            <div>
+                <span class="field-label">One way they CHANGED during the series</span>
+                <textarea rows="3" placeholder="At the start they were… but by the end they…"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Exit Ticket -->
+    <div class="exit-box">
+        <h3>🎯 Exit Ticket — Complete Before You Leave</h3>
+        <div class="qa-block">
+            <div class="q"><span class="q-num">1</span><span>Name one archetype you learned today. Define it in your own words and give one anime example.</span></div>
+            <textarea rows="2" placeholder="The archetype I learned is… It means… An example is…"></textarea>
+        </div>
+        <div class="qa-block">
+            <div class="q"><span class="q-num q-num-green">2</span><span>Describe the character arc of any anime character. Was it positive, negative, or flat? Use specific evidence.</span></div>
+            <textarea rows="2" placeholder="[Character name]'s arc is [type] because… At the start they were… By the end they…"></textarea>
+        </div>
+        <div class="qa-block" style="margin-bottom:0;">
+            <div class="q"><span class="q-num q-num-amber">3</span><span>Which archetype will YOUR original anime character (end-of-term project) use? What flaw will they need to overcome?</span></div>
+            <textarea rows="2" placeholder="My character will be a [archetype]. Their flaw will be… They will overcome it by…"></textarea>
+        </div>
+    </div>
+
+    <div class="sheet-footer">
+        <p>🎌 Anime Club — Concorde Education · Lesson 4</p>
+        <p>Page 3 of 3 · 🏠 Ext: Watch a new anime ep · identify 2 archetypes · bring notes next class</p>
+    </div>
 </div>
 
-<hr class="div" />
+<script>
+    // ── Auto-fill date ──
+    (function() {
+        const df = document.getElementById('date-field');
+        if (df) { const d = new Date(); df.value = (d.getMonth()+1).toString().padStart(2,'0') + ' / ' + d.getDate().toString().padStart(2,'0') + ' / ' + d.getFullYear(); }
+    })();
 
+    // ── Auto-resize textareas ──
+    document.querySelectorAll('textarea').forEach(ta => {
+        ta.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+    });
 
-<!-- ══ PART 4 — WANT vs NEED ══ -->
-<div class="sec-badge" style="background:#fff7ed;color:#9a3412;">💡 Part 4 — Want vs. Need</div>
-<div class="sec-title">The Heart of Your Character</div>
-<div class="sec-sub">The best anime characters want one thing on the surface — but <em>need</em> something deeper. That gap is where your theme lives.</div>
+    // ── Canvas sketch tool ──
+    const canvas = document.getElementById('sketch-canvas');
+    const zone = document.getElementById('sketch-zone');
+    const hint = document.getElementById('sketch-hint');
+    const ctx = canvas.getContext('2d');
+    let drawing = false, tool = 'draw';
 
-<div class="two-col">
-  <div class="card" style="border-top: 3px solid #0b63ce;">
-    <div class="card-head" style="color:#0b63ce;">🎯 What does your character WANT?</div>
-    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">The external goal — visible, concrete, and driving the story forward. What are they chasing?</p>
-    <textarea class="warea" rows="4" placeholder="My character wants to..."></textarea>
-    <span class="fl">Examples by genre:</span>
-    <p style="font-size:0.74rem;color:#64748b;line-height:1.5;">⚡ Shōnen: become the best / protect their friends<br/>🌸 Shōjo: be understood / fix a broken relationship<br/>🌀 Isekai: gain power / find a way home<br/>☀️ Slice of Life: keep the club alive / make a friend<br/>🤖 Mecha: win the war / prove their worth</p>
-  </div>
+    function resizeCanvas() {
+        const rect = zone.getBoundingClientRect();
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        ctx.putImageData(imgData, 0, 0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    setTimeout(resizeCanvas, 100);
 
-  <div class="card" style="border-top: 3px solid #7c3aed;">
-    <div class="card-head" style="color:#7c3aed;">💜 What does your character secretly NEED?</div>
-    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">The internal truth — emotional, tied to your theme, and often something they won't admit. What must they learn?</p>
-    <textarea class="warea" rows="4" placeholder="Deep down, my character needs to..."></textarea>
-    <span class="fl">Connect this to your theme:</span>
-    <p style="font-size:0.74rem;color:#64748b;line-height:1.5;">If your theme is <em>belonging</em> → they need to stop seeing themselves as an outsider<br/>If your theme is <em>perseverance</em> → they need to believe their effort has worth<br/>If your theme is <em>reinvention</em> → they need to forgive their old self</p>
-  </div>
-</div>
+    function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        if (e.touches) return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top };
+        return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
 
-<div class="card">
-  <div class="card-head" style="color:#9a3412;">How does your character's FLAW get in the way of getting what they need?</div>
-  <textarea class="warea" rows="3" placeholder="My character's flaw is _______ and it stops them from getting what they need because..."></textarea>
-</div>
+    function startDraw(e) { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); hint.style.display = 'none'; e.preventDefault(); }
+    function doDraw(e) {
+        if (!drawing) return;
+        const p = getPos(e);
+        const size = parseInt(document.getElementById('brush-size').value);
+        if (tool === 'erase') {
+            ctx.clearRect(p.x - size, p.y - size, size * 2, size * 2);
+        } else {
+            ctx.strokeStyle = document.getElementById('brush-color').value;
+            ctx.lineWidth = size;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+        }
+        e.preventDefault();
+    }
+    function endDraw() { drawing = false; ctx.beginPath(); }
 
-<hr class="div" />
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', doDraw);
+    canvas.addEventListener('mouseup', endDraw);
+    canvas.addEventListener('mouseleave', endDraw);
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', doDraw, { passive: false });
+    canvas.addEventListener('touchend', endDraw);
 
-
-<!-- ══ PART 5 — GENRE FIT ══ -->
-<div class="sec-badge" style="background:#e0f2ff;color:#0b63ce;">🔍 Part 5 — Genre Fit</div>
-<div class="sec-title">How Does Your Character Fit Their Genre?</div>
-<div class="sec-sub">Genre isn't just a category — it shapes how a character looks, acts, speaks, and what kind of story they belong in.</div>
-
-<div class="card">
-  <div class="two-col">
-    <div>
-      <div class="card-head" style="color:#0b63ce;">Visual Style Check</div>
-      <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">From the lesson clips — every genre has a distinct visual energy.</p>
-      <span class="fl">What visual style fits your genre? (bold, soft, dark, colorful, mechanical…)</span>
-      <input class="wline" placeholder="" />
-      <span class="fl">How does your character's appearance match that style?</span>
-      <textarea class="warea" rows="2" placeholder="My character looks like they belong in this genre because..."></textarea>
-    </div>
-    <div>
-      <div class="card-head" style="color:#0b63ce;">Audience &amp; Tone</div>
-      <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">Genre sets what the audience <em>expects</em> to feel.</p>
-      <span class="fl">What emotion should the audience feel when they first meet your character?</span>
-      <input class="wline" placeholder="e.g. inspired, sympathetic, excited, curious..." />
-      <span class="fl">What makes your character feel DIFFERENT from a typical character in this genre?</span>
-      <textarea class="warea" rows="2" placeholder="Unlike most [genre] characters, mine..."></textarea>
-    </div>
-  </div>
-
-  <span class="fl">Imagine your character appears in a 30-second trailer. What do we see and hear first?</span>
-  <textarea class="warea" rows="3" placeholder="The first shot shows... We hear... The audience immediately feels..."></textarea>
-</div>
-
-<hr class="div" />
-
-
-<!-- ══ PART 6 — CULTURE CONNECTION ══ -->
-<div class="sec-badge" style="background:#f5f3ff;color:#5b21b6;">🌏 Part 6 — Culture Connection</div>
-<div class="sec-title">Your Character &amp; Japanese Values</div>
-<div class="sec-sub">The themes in anime aren't random — they come from real Japanese cultural values. Your character should carry one of these values, even if they struggle against it.</div>
-
-<div class="card">
-  <div class="card-head" style="color:#5b21b6;">Cultural Values from Today's Lesson</div>
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;">
-    <div style="background:#f0f9ff;border-left:3px solid #0b63ce;border-radius:0 8px 8px 0;padding:10px 12px;">
-      <strong style="font-size:0.8rem;color:#0b63ce;display:block;margin-bottom:3px;">Ganbaru (頑張る)</strong>
-      <span style="font-size:0.74rem;color:var(--muted);">Do your absolute best, always — perseverance as a daily value, not just a battle cry</span>
-    </div>
-    <div style="background:#f0fdf4;border-left:3px solid #10b981;border-radius:0 8px 8px 0;padding:10px 12px;">
-      <strong style="font-size:0.8rem;color:#15803d;display:block;margin-bottom:3px;">Group Over Self</strong>
-      <span style="font-size:0.74rem;color:var(--muted);">Loyalty to the team, club, or family unit; individual success means less without your group</span>
-    </div>
-    <div style="background:#fdf2f8;border-left:3px solid #db2777;border-radius:0 8px 8px 0;padding:10px 12px;">
-      <strong style="font-size:0.8rem;color:#9d174d;display:block;margin-bottom:3px;">Respect for Nature &amp; Spirits</strong>
-      <span style="font-size:0.74rem;color:var(--muted);">Shinto roots — balance, care for the natural world, and awareness of forces beyond the visible</span>
-    </div>
-    <div style="background:#f5f3ff;border-left:3px solid #7c3aed;border-radius:0 8px 8px 0;padding:10px 12px;">
-      <strong style="font-size:0.8rem;color:#5b21b6;display:block;margin-bottom:3px;">Identity &amp; Belonging</strong>
-      <span style="font-size:0.74rem;color:var(--muted);">The struggle to find your place — from Naruto as an outsider to Isekai heroes reborn in new worlds</span>
-    </div>
-  </div>
-
-  <span class="fl">Which cultural value does your character carry? How does it show up in who they are?</span>
-  <textarea class="warea" rows="3" placeholder="My character reflects the value of _______ because..."></textarea>
-
-  <span class="fl">Does your character embrace this value, resist it, or struggle with it? Explain.</span>
-  <textarea class="warea" rows="2" placeholder="My character [embraces / resists / struggles with] this because..."></textarea>
-
-  <span class="fl">Could a character like yours exist in YOUR own culture? What would be the same — and what would change?</span>
-  <textarea class="warea" rows="3" placeholder="A similar character in my culture might..."></textarea>
-</div>
-
-<hr class="div" />
-
-
-<!-- ══ PART 7 — REFLECTION ══ -->
-<div class="sec-badge" style="background:#fdf2f8;color:#9d174d;">📝 Part 7 — Reflection</div>
-<div class="sec-title">Exit Reflection</div>
-<div class="sec-sub">Answer in complete sentences. Use at least <strong>two vocabulary words</strong> from the lesson: <em>genre, theme, shōnen, shōjo, isekai, slice of life, mecha.</em></div>
-
-<div class="card">
-  <p style="font-size:0.86rem;margin-bottom:14px;"><span class="rnum">1.</span> The genre I chose is <strong>_____________</strong> and one defining characteristic of this genre that shaped my character is:</p>
-  <div class="rline"></div><div class="rline"></div>
-
-  <p style="font-size:0.86rem;margin-bottom:8px;"><span class="rnum">2.</span> The theme my character carries is <strong>_____________</strong> and it shows up in my character through:</p>
-  <div class="rline"></div><div class="rline"></div>
-
-  <p style="font-size:0.86rem;margin-bottom:8px;"><span class="rnum">3.</span> One Japanese cultural value that is reflected in my character's design or personality is:</p>
-  <div class="rline"></div><div class="rline"></div>
-
-  <p style="font-size:0.86rem;margin-bottom:8px;"><span class="rnum">4.</span> If I could change one thing about my character to make them fit the genre even better, it would be:</p>
-  <div class="rline"></div><div class="rline"></div>
-
-  <p style="font-size:0.86rem;margin-bottom:8px;"><span class="rnum">5.</span> One question I still have about genre, theme, or character design is:</p>
-  <div class="rline"></div>
-</div>
-
-<!-- Self-rating -->
-<div class="card" style="background:#f8fafc;">
-  <div class="card-head">⭐ Rate your own character — how well does this character fit their genre?</div>
-  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-    <div class="stars">
-      <span title="1">⭐</span><span title="2">⭐</span><span title="3">⭐</span><span title="4">⭐</span><span title="5">⭐</span>
-    </div>
-    <span style="font-size:0.8rem;color:var(--muted);">Circle your rating above, then explain your score:</span>
-  </div>
-  <input class="wline" style="margin-top:8px;" placeholder="I gave myself a ___ because..." />
-</div>
-
-<hr class="div" />
-
-<!-- Vocab strip -->
-<div class="card" style="background:#f0f9ff;border-color:#bae6fd;">
-  <div class="card-head" style="color:#0b63ce;">📘 Vocabulary — Use These Words in Your Reflection</div>
-  <div class="vocab-strip">
-    <div class="vitem"><span class="vw">Genre</span><span class="vd">A category of story defined by tone, elements &amp; audience</span></div>
-    <div class="vitem"><span class="vw">Theme</span><span class="vd">The central idea or message a story explores</span></div>
-    <div class="vitem"><span class="vw">Shōnen</span><span class="vd">Action &amp; growth — perseverance, friendship</span></div>
-    <div class="vitem"><span class="vw">Shōjo</span><span class="vd">Emotion &amp; relationships — self-discovery</span></div>
-    <div class="vitem"><span class="vw">Isekai</span><span class="vd">Transported to another world — reinvention</span></div>
-    <div class="vitem"><span class="vw">Slice of Life</span><span class="vd">Everyday moments — emotional realism</span></div>
-    <div class="vitem"><span class="vw">Mecha</span><span class="vd">Giant robots — humanity vs. technology</span></div>
-  </div>
-</div>
-
-<p style="font-size:0.7rem;color:#94a3b8;text-align:center;margin-top:26px;">
-  Lesson 2 · Exploring Anime Genres &amp; Themes · Anime Club Grades 6–8 &nbsp;|&nbsp; Character Creation Activity Sheet
-</p>
-
+    function setTool(t) {
+        tool = t;
+        document.getElementById('btn-draw').classList.toggle('active-tool', t === 'draw');
+        document.getElementById('btn-erase').classList.toggle('active-tool', t === 'erase');
+        canvas.style.cursor = t === 'erase' ? 'cell' : 'crosshair';
+    }
+    function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); hint.style.display = ''; }
+</script>
 </body>
 </html>
