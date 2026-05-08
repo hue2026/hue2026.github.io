@@ -1,6 +1,5 @@
-DAY 16 · SPRING 2026
-Anime Club for Beginners
-"What Makes a Great Character?" — Character Analysis & Development
+Game Engines: Scratch, Unity & Godot
+"What Makes a Game Come Alive?" — Introduction to Game Engines
 Expert Teaching Script (PhD-Level Explanations, Beginner-Friendly Delivery)
 Instructor: Mr. Hsiao "Hue" Weng
 Total Time: ~60 minutes
@@ -17,915 +16,636 @@ HOW TO USE THIS SCRIPT
 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 1 — TITLE SLIDE & LEARNING OBJECTIVES
+SLIDE 1 — TITLE SLIDE & WELCOME
 [Duration: ~3 minutes]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[As students settle in, display the title slide. Begin with energy and
-a genuine smile. This should feel like the start of something exciting.]
+[As students enter, display the title slide with game pad icons. Begin
+with high energy, genuine excitement.]
 
-"Good morning everyone — welcome back to Anime Club! Today's lesson is
-one that I have been genuinely looking forward to, because we are going
-to tackle the most fundamental question in all of storytelling."
+"Good morning / afternoon, game designers! Welcome to a very special
+lesson. Today, we are going to answer a question that every single
+one of you has probably wondered while playing your favorite games:
+How do they actually make these games work?"
 
-"Here it is: Why do some characters feel REAL? Why do certain characters
-live in your head for years after you finish a series — while others you
-forget the moment the credits roll?"
+"Think about it. When you play Roblox, or Mario, or Minecraft, or anything
+else — there is something invisible happening underneath. Something that
+makes the characters move, the music play, the collisions happen, and the
+rules work smoothly every single time. That invisible thing is called a
+game engine."
 
-"The answer is CHARACTER DESIGN — not the visual design, though that
-matters too — but the deeper design: who a character IS, how they THINK,
-what they WANT, and most importantly, how they CHANGE."
+"By the end of today, you will know what a game engine is, you’ll meet
+three real ones that real developers use — Scratch, Unity, and Godot —
+and you’ll even start building your own very first game. You are all
+going to think like game designers today. Let’s jump in."
 
-💡 [DEEP CONTEXT — deliver this slowly and with conviction]:
-"Character is the engine of every great story. Aristotle — a philosopher
-who lived over two thousand years ago — wrote that in great stories,
-everything exists to serve character. Plot is just a series of tests
-that reveal who a character really is. Theme is what a character's
-choices say about the human condition. Even visual design — the colors
-of a character's clothes, their hairstyle, the shape of their eyes —
-is crafted to communicate personality before a single word is spoken.
+💡 [DEEP CONTEXT — deliver this slowly]:
+"Here’s something incredible: every video game you have ever loved is not
+magic. It is a giant set of instructions running on a computer. But writing
+those instructions from scratch every time would take forever. Imagine if
+every time someone made a new game, they had to rewrite how the screen
+shows images, or how sound comes out of the speakers, or how two objects
+know they touched. That would be like re-inventing the wheel for every car!
 
-When we talk about a character being 'well-written,' we are making a
-claim about CRAFT — the specific techniques and choices a writer made
-to create the illusion of a real, complex human being. Today you are
-going to learn those techniques. You will never watch anime the same
-way again."
-
-[Point to the learning objectives on the slide]
-
-"By the end of today, you will be able to do three things:
-  1. Describe ANY character using precise vocabulary
-  2. Explain the difference between a static and a dynamic character
-  3. Analyze why a specific character matters to the story they live in —
-     not just that you like them
-
-Those three skills are what separate a fan from a literary critic.
-You are going to be both today. Let's go."
+A game engine is a toolbox that solves all those common problems so game
+creators can focus on the fun parts — their characters, their world, their
+story. Today we will open that toolbox and look inside."
 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 2 — TODAY'S PLAN
+SLIDE 2 — DO NOW: BRAIN DUMP — GAMES WE LOVE
+[Duration: ~7 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Read the slide prompt with warmth — make this personal]
+
+"Let’s start with you. No right or wrong answers, just your honest
+thoughts. I want you to do a quick brain dump about games. In your
+notebook or on a piece of paper — or just in your head if you don’t
+have one yet — list three games you love to play. They can be video
+games, computer games, tablet games, even board games if you want."
+
+[Give students 60 seconds to write or think]
+
+"Now, next to each game, write ONE thing that makes it awesome.
+Is it the characters? The challenges? The graphics? The way it feels
+when you win? Dig deep."
+
+[Give another 60 seconds]
+
+"Now, with a partner — turn to someone nearby. Take 2 minutes to share
+your lists. But here’s the twist: as you share, I want you to ask each
+other this question: 'What do you think is happening on the computer
+to make that work?' Just guess. No one knows yet, that’s the point."
+
+✋ [Give pairs exactly 2 minutes, then gather attention. Call on 3-4
+   students to share ONE interesting guess from their partner. Listen
+   for guesses like “code,” “commands,” “the game knows where you are,”
+   etc. Affirm them.]
+
+"I’m hearing amazing guesses. Some of you are already thinking like
+computer scientists. And here’s the secret: everything you guessed —
+movement, rules, graphics, sound — that is exactly what a game engine
+handles. You already knew more than you thought you did."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — TODAY'S LEARNING TARGETS
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Point to the slide with learning targets]
+
+"Here’s what we’re aiming for today. Two kinds of goals: knowledge and
+skills."
+
+"Knowledge goals: by the end of this hour, you will be able to explain
+what a game engine is and why developers use one. You will be able to
+compare Scratch, Unity, and Godot — who each one is for and what makes
+each one special. And you’ll understand a big, important process called
+iterative design — which is just a fancy way of saying 'test, fix,
+improve' over and over, like true creators do."
+
+"Skill goals: you are actually going to create a simple game today in
+Scratch, where a sprite moves with arrow keys. You’re going to give
+feedback to each other using a kind, helpful format. And you’ll start
+thinking about which engine you might use for different game ideas."
+
+"Let me show you the materials we have. Laptops with Scratch ready,
+paper and pencils for sketching ideas. We’re set. Let’s build something."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — KEY VOCABULARY
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Before we go any further, let’s arm ourselves with five powerful words.
+Only five. But if you learn these five words, you can talk about game
+creation like a pro. Say each one after me."
+
+[Go through each word on the slide. Show the definition, then elaborate.
+Point to the card as you speak.]
+
+"WORD 1: GAME ENGINE — software that helps build games. It handles
+graphics, physics, sound, and lots more. 💡 Think of it as the brain and
+skeleton of your game. It gives you the basic structure so you can focus
+on the creative stuff — like designing your characters and levels."
+
+"WORD 2: SCRATCH — a drag-and-drop coding environment made by MIT. It’s
+perfect for beginners and for telling stories. 💡 Under the hood, Scratch
+is still a real game engine, but simplified. It teaches you the logic of
+programming without having to type complicated code. Every block you snap
+together is actually a line of code in disguise."
+
+"WORD 3: UNITY — a professional engine used to make 2D and 3D games. Many
+famous games like Among Us and Cuphead were made with Unity. 💡 Unity is
+like a grown-up version of what we’ll do in Scratch, but much more
+powerful. It uses a real programming language called C#. Professionals
+love it because it can handle huge worlds and complex physics."
+
+"WORD 4: GODOT — pronounced 'guh-DOH.' It’s totally free and open-source,
+meaning anyone can look at its code and change it. It’s lightweight and
+great for learning real engine logic. 💡 Godot has its own easy scripting
+language called GDScript that looks a lot like Python. Many indie game
+developers choose it because it’s free and friendly."
+
+"WORD 5: ITERATIVE DESIGN — a cycle: make a version, test it, get feedback,
+and improve. 💡 This is the secret superpower of all good game creators.
+No one makes a perfect game on the first try. They build something rough,
+see what works, fix what doesn’t, and keep polishing. The best games in
+the world went through this loop hundreds or even thousands of times."
+
+"BONUS WORD: SPRITE — any object in a game: your character, an enemy,
+a coin, a power-up. Everything you see moving is a sprite."
+
+✋ [Quick check: Point at random students and ask, 'What is a sprite?'
+   'What engine did we say is free and open-source?' Keep it fast and fun.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — WHAT IS A GAME ENGINE? (THE CAR ANALOGY)
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the slide with the car image]
+
+"Alright, picture this. You’re building a car. You could go into a field,
+dig up metal, shape it into an engine by hand, then build wheels, then
+figure out brakes... OR you could use an engine that someone already
+designed, and just focus on the color, the seats, the cool sound system."
+
+"A game engine is exactly like a car engine. It’s the hidden machinery
+that makes everything run. It already knows how to do the heavy lifting —
+like making things move smoothly, checking if two objects have bumped into
+each other, playing sounds at the right time, and showing all the graphics
+on screen. Without it, a game developer would have to write millions of
+lines of code just to get a character to walk across the screen."
+
+💡 [DEEP EXPLANATION]:
+"In a professional engine like Unity or Godot, the engine provides a
+'scene graph' — a hierarchy of all the objects in the game. It runs a
+'game loop' that updates everything dozens of times per second: check
+inputs, move objects, detect collisions, render graphics, repeat. The
+developer just plugs their own code into that loop. It’s like the
+engine knows how to breathe, and you tell it how to dance."
+
+"Without a game engine, today we would spend all class just trying to make
+a dot appear on screen. Instead, with Scratch, we’ll make a character
+move in about five minutes. That’s the power of using an engine."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — VIDEO 1: EVERY GAME ENGINE EXPLAINED IN 4 MINUTES
+[Duration: ~7 minutes (video + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"We’re going to watch a short video that explains different game engines.
+Pay attention because after it ends, I’ll ask you two things."
+
+[Click the play button on the embedded YouTube video, or open the link
+in a new tab for the class. The video is about 4 minutes.]
+
+[After the video ends]
+
+"That was fast, right? Let’s discuss. With a partner, talk about these
+two questions — I’ll put them up:"
+
+✋ 'What do game engines do for developers?' (Expected: they save time,
+   provide tools, handle physics/graphics, etc.)
+
+✋ 'What makes each engine different?' (Scratch is block-based, Unity
+   is powerful for 3D, Godot is free and open-source.)
+
+[Give pairs 2 minutes. Then ask 2-3 students to share.]
+
+💡 [SYNTHESIS]:
+"Here’s the key idea: different game engines are like different kinds of
+toolboxes. A beginner’s toolbox has big, colorful, easy-to-use tools.
+A professional’s toolbox has more tools, but they’re more complicated.
+No single engine is 'best' — it depends on what you want to build and
+how much time you want to spend learning. Today, we start with Scratch,
+the friendliest toolbox in the world."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — MEET SCRATCH
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Now let’s zoom in on our first engine: Scratch! Raise your hand if
+you’ve ever used Scratch before. [Note hands] Great! You’ll be able
+to help others. If you haven’t, no problem — it’s built for beginners."
+
+[Point to the Scratch editor breakdown on the slide]
+
+"Scratch has three main areas:
+  1. The Block Palette — this is where you find all the code blocks.
+     They're color-coded by type: motion, looks, sound, events...
+  2. The Sprite Area — here you see all the characters and objects
+     in your game. You can add, remove, and edit sprites.
+  3. The Stage — where your game actually plays. The big white area
+     on the right."
+
+💡 [BEHIND THE CONCEPT]:
+"Scratch might look like just snapping colorful blocks, but what you’re
+really doing is something called 'event-driven programming.' Each block
+is a command, and when you connect them, you're building a sequence of
+instructions that the computer will follow. The 'green flag' block is
+the event that starts everything. This is the same fundamental logic
+used in every programming language on Earth — just wrapped in a friendly
+package."
+
+"You can use Scratch right now at scratch.mit.edu. It’s free and runs in
+a web browser, no installation needed. In a few minutes, we’ll all build
+a simple game together. But first, let’s meet the other two engines."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 8 — UNITY
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Unity slide]
+
+"This is Unity. It’s like the big brother of Scratch. It’s what many
+professional game studios use. You might have played games made with
+Unity and not even known it. Among Us — Unity. Cuphead — Unity.
+Hollow Knight — Unity."
+
+💡 [DEEPER INSIGHT]:
+"Unity uses a programming language called C# (pronounced 'C-sharp').
+C# is a high-level language that gives you incredible control. But
+with that control comes complexity. In Scratch, you drag a 'move 10
+steps' block. In Unity, you might write actual math code to move an
+object smoothly. The trade-off is: more power, but more to learn."
+
+"But here’s what’s cool — Unity isn’t just for games. It’s also used for
+virtual reality, architecture walkthroughs, film production (like the
+Mandalorian virtual sets!), and even self-driving car simulations. So
+learning Unity is learning a tool that might one day land you a job
+in many different fields."
+
+"Should you start with Unity right now? Probably not while you’re first
+learning. But it’s a great goal for the future. Once you’ve mastered the
+logic of game engines in Scratch, moving to Unity will feel like leveling
+up to a bigger, more powerful world."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 9 — GODOT
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Now meet Godot. If Unity is like a giant corporation’s tool, Godot is
+like a community-built clubhouse. It’s completely free — no fees, ever.
+And its source code is open for anyone to see and modify. That means a
+whole world of volunteers improve it every day."
+
+💡 [MAKE IT RELATABLE]:
+"Imagine a cookbook. Unity is a fancy cookbook that costs money and you
+can’t peek inside the secret recipes. Godot is a cookbook that’s free,
+and the recipes are written on the walls for everyone to read and improve.
+If you find a way to make a recipe better, you can share it with the world."
+
+"Godot uses a scripting language called GDScript that is designed to be
+easy for beginners. It looks a lot like Python, which is one of the most
+popular first languages to learn. Many indie developers — small teams or
+even one person making a game in their bedroom — choose Godot because it’s
+light and runs on almost any computer. Games like Brotato and prototypes
+of Celeste were made with Godot."
+
+"For a young learner who is ready to go beyond Scratch but not ready for
+the complexity of Unity, Godot is a perfect next step."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 10 — VIDEO 2: MAKE A GAME IN SCRATCH — TUTORIAL FOR BEGINNERS
+[Duration: ~7 minutes (video + preview)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Time for our second video! This one shows how to make a simple game
+in Scratch. Watch closely — because right after this, you will make
+your own version."
+
+[Play the embedded video. It demonstrates: how to add a sprite, make it
+move with arrow keys, use 'when green flag clicked', etc. About 5 min.]
+
+[After video]
+
+"Alright, you just saw the basic recipe. Let’s list the key steps we’ll
+follow together: add a sprite, add movement blocks, add an object to
+collect, and maybe a score. What did you notice about the blocks they
+used? [Take a few responses.]
+
+💡 "Notice that all of it started with one block: 'when green flag
+clicked.' That’s an EVENT. In all game development, things happen in
+response to events — a key press, a mouse click, a timer. Understanding
+that is the secret to making interactive experiences."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 11 — COMPARISON: SCRATCH vs UNITY vs GODOT
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Let’s put all three engines side by side so you can see the differences
+clearly."
+
+[Refer to the three comparison cards]
+
+"Scratch: no install needed, block coding, instant sharing online. Perfect
+for beginners and school projects. But it’s mostly for 2D and simple games."
+
+"Unity: professional 2D and 3D, huge asset store with pre-made parts,
+needs real coding in C#. Best for bigger, more complex games."
+
+"Godot: completely free, lightweight, uses beginner-friendly GDScript.
+Perfect for learning real engine logic, especially 2D games."
+
+💡 "Choosing the right engine is like choosing the right vehicle. A
+bicycle is perfect for a short ride. A car for a road trip. A spaceship
+for going to the moon. Scratch is your bicycle; Unity and Godot are
+cars and spaceships. Start with the bicycle, and when you’re ready,
+you’ll have the skills to pilot anything."
+
+✋ "Quick show of hands: who thinks they might want to try Godot someday?
+Unity? Both? Awesome."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 12 — HANDS-ON ACTIVITY: LET'S BUILD A SIMPLE SCRATCH GAME
+[Duration: ~12 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"This is it — the lab portion of our lesson. You’re going to build a
+tiny game right now. Follow these steps on your laptop. If you don’t
+have a laptop, pair up with someone who does."
+
+[Walk through the timeline steps one at a time. Pause between each to
+allow students to follow along.]
+
+"STEP 1: Open scratch.mit.edu and click 'Create.' Choose any sprite —
+the cat is fine, or pick a character you like."
+
+[Wait 60 sec, circulate]
+
+"STEP 2: From the Events category, drag out 'when green flag clicked.'
+Then from Control, attach a 'forever' block. Inside forever, put an
+'if key pressed' block (sensing), and if right arrow, add a 'change x
+by 10' from Motion. Do the same for left arrow (change x by -10), up
+and down (change y by 10 / -10)."
+
+[Walk around, assist. This is the core coding moment.]
+
+"STEP 3: Add a second sprite — a star or a ball — something to collect.
+We’re going to add a score system. Make a variable called 'Score' (Data
+category). Then in your player sprite, inside the forever, add: 'if
+touching [treasure] then change Score by 1 and go to random position.'
+Play! Does the score go up?"
+
+"STEP 4: Test your game. Does the sprite move? Can you make it go
+faster? Can you make the treasure harder to catch? Try adjusting the
+numbers. Remember iterative design: test, think, improve. You might
+even add a sound effect from the Sound category."
+
+✋ [Circulate actively, ask questions: 'What happens if you change the
+   speed? What could you add to make it more fun?']
+
+💡 "Notice what you just did. You set up interaction between sprites
+(detecting touching), you used variables (score), and you controlled
+movement with keyboard input — all with just a handful of blocks. This
+is a prototype. In a real studio, they’d do the same thing, then test
+it with players, then improve it again and again."
+
+"Take 2 more minutes to tweak your game. Then pause. We'll share a few."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 13 — ITERATIVE DESIGN
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Let’s talk about the secret ingredient of all great games: iterative
+design."
+
+[Point to the cycle on the slide: Prototype → Playtest → Feedback → Refine]
+
+"Nobody — not Nintendo, not Ubisoft, not the creators of Minecraft —
+made a perfect game on the first try. They build a rough version (a
+prototype), test it, get feedback, and then refine. Then they do it
+again. And again. Sometimes hundreds of times."
+
+💡 "This process is at the heart of what we call 'engineering' in the
+broadest sense. In software, it’s called agile development. In games,
+it’s how we turn a good idea into a great experience. The first time
+you play a game and think 'this is perfect,' you’re seeing the result
+of hundreds of tiny improvements that started from something very, very
+rough."
+
+"Now, you’re going to practice giving feedback. With a partner, play each
+other’s game for 1 minute. Use this format: 'I like how your character
+moves because...' 'I wonder if you could add...'. Keep it kind and
+specific."
+
+✋ [Give 3 minutes for peer testing. Ask 2 students to share something
+   they liked about their partner’s game and one constructive suggestion.]
+
+"The feedback you gave just now? That’s part of the iterative design
+cycle. And it’s exactly how real game studios work."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 14 — QUICK CHECK
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Let’s see how much we absorbed. I’ll ask four quick questions. You can
+answer in your head, with a partner, or raise your hand."
+
+[Go through the four cards on the slide]
+
+"1. Which game engine would you use to make a huge 3D open world? Why?"
+   [Expected: Unity because it’s powerful for 3D.]
+
+"2. What does 'iterative design' mean in your own words?"
+
+"3. Why is Scratch great for a beginner game designer?"
+   [No install, blocks, easy sharing, instant results.]
+
+"4. Name one thing all game engines share (movement, collision, graphics)."
+
+✋ [Call on a few students for each. Keep it upbeat. Affirm creative
+   answers, gently correct misconceptions.]
+
+💡 "Notice that even though the engines are different, they all deal with
+the same basic problems — moving things, detecting when things touch,
+playing sounds, showing graphics. The concepts you learn in Scratch
+transfer directly to Unity and Godot. That’s why starting simple is so
+smart."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 15 — EXIT TICKET
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Before you leave, I want one final piece of evidence of your learning.
+Take a sticky note or a scratch piece of paper and write two things:"
+
+"1. One thing you learned about game engines today that you didn’t know
+before."
+
+"2. One question you still have about making games."
+
+"If you’re not sure, think about what surprised you or what you’d like
+to learn next."
+
+✋ [Give 2 minutes to write. Collect notes or have students stick them
+   on the board. Use these to gauge understanding for next class.]
+
+💡 "This exit ticket helps me understand what clicked for you and what we
+should explore more. It’s also a way for you to process what you learned.
+Teaching research shows that reflecting right after learning helps lock
+the knowledge into your brain."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 16 — OUT-OF-CLASS LEARNING
 [Duration: ~2 minutes]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[Use this as a roadmap moment — give students the big picture before
-diving in. Knowing what's coming reduces anxiety and improves focus.]
+"Today’s lesson doesn’t have to stop here. Here are two things you can
+do at home this week:"
 
-"Here's our roadmap for today. Five stops:"
+"1. Explore Scratch more. Try adding a new sprite, make it shoot
+something, add a timer, or turn your simple movement into a platformer.
+Share it with your family. The Scratch website has millions of projects
+by kids like you to remix and learn from."
 
-"Stop 1: A warm-up activity — you pick a character and start thinking.
-Stop 2: Five vocabulary words. Just five — I promise.
-Stop 3: We go deep on the difference between static and dynamic characters.
-Stop 4: You map your character's arc using a real analytical framework.
-Stop 5: You design your OWN original character from scratch."
+"2. Curious about Unity or Godot? Ask a parent to help you explore
+Unity Learn Junior or Godot’s 'Dodge the Creeps' tutorial. These are
+free and made for learners."
 
-"I want you to hold onto this sentence. We are going to build up to it
-together over the course of the class:
-
-  'A great character has a wound that the story forces them to confront,
-   and what they do at that moment of confrontation tells us what the
-   story is actually about.'
-
-That one sentence IS the lesson. By the time we get to Stop 5, you will
-be able to explain exactly what it means — and apply it to any anime
-you have ever watched."
-
-✋ [Have students say the sentence out loud together once — don't skip this.
-   Hearing it aloud, even without understanding it yet, primes the brain
-   to organize everything that follows around it.]
-
-💡 [CONNECT TO BIG PICTURE]:
-"What you are learning today is not just anime analysis. It is the same
-framework used in screenwriting programs at UCLA and NYU, in literary
-criticism departments at Harvard, and by every professional storyteller
-who has ever built a character audiences will remember for the rest of
-their lives. You are learning the real thing."
+"Just 10 minutes of tinkering a day can turn you into an amazing game
+creator faster than you’d believe."
 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 3 — WARM-UP: WHO IS YOUR FAVORITE CHARACTER?
-[Duration: ~8 minutes]
+SLIDE 17 — REAL-WORLD CONNECTIONS
+[Duration: ~2 minutes]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[Read the activity steps with warmth — this should feel inviting,
-not like a test. Every student has an answer. There is no wrong one.]
+"Before we close, I want to show you that game engines aren't just toys —
+they're tools that shape our world."
 
-"Let's start with YOU. This is personal. There are no wrong answers.
-Notebooks out — we are doing a three-step activity."
+💡 "Unity is used by Waymo, the self-driving car company, to simulate
+millions of driving scenarios without putting real cars on the road.
+The Mandalorian TV show used Unity to create virtual sets — the actors
+stood in front of giant screens showing real-time game-engine graphics."
 
-[STEP 1 — read slowly, give them time]
+"The iterative design loop we learned? It’s exactly what AI researchers
+use to train robots — they run thousands of simulations, see what
+works, and improve. The same skills you practiced today apply to
+engineering, architecture, film, and more."
 
-"STEP 1: Pick a character.
-Write the name of your absolute favorite anime character. It can be from
-anything — Naruto, My Hero Academia, Demon Slayer, Haikyuu!!, Spirited
-Away, One Piece, Attack on Titan, anything at all.
-The only rule: it has to be YOUR genuine favorite. Not the one you think
-sounds coolest. Not the one your friends like. YOUR real answer."
-
-[Give 60 seconds to write. Do not rush this — the personal investment
-they make in Step 1 carries the whole rest of the lesson.]
-
-[STEP 2 — shift tone slightly, make it feel like a creative challenge]
-
-"STEP 2: Describe them in three words.
-Not what they LOOK like — what they ARE LIKE. Their personality.
-Three adjectives that capture who this person is at their core. Go."
-
-[Give 90 seconds. Circulate and glance at what they write — it gives
-you enormous information about prior knowledge and depth of thinking.
-Some will write 'strong, cool, fast.' Others will write 'lonely,
-determined, selfless.' Both are valid starting points.]
-
-[STEP 3 — pause before reading this one. Let silence build anticipation.]
-
-"STEP 3: The most important question of the day.
-Write one more sentence: Did this character stay the same throughout the
-whole series? Or did they CHANGE? And if they changed — how?"
-
-[Give 90 seconds. Some students will find this easy. Others will pause
-and genuinely wrestle with it — that wrestling is the learning happening.]
-
-[PROMPTING HINTS — circulate and offer these to students who are stuck]:
-"Think about who they were in Episode 1 versus who they were at the end.
-Did they get stronger — not just physically, but emotionally?
-Did they change their mind about something they believed deeply?
-Did they lose something that altered who they were forever?"
-
-💡 [DEEP CONCEPT — introduce this AFTER they write, not before.
-    You want their unprimed, authentic answers first.]:
-"Here's why I asked that third question specifically. In literary theory —
-the academic study of stories — characters are divided into two fundamental
-types. We're going to spend a lot of time on these today, so write them
-down:
-
-  STATIC characters: They do not change. Their personality, values, and
-  worldview at the end of the story are essentially the same as at the
-  beginning. This is NOT always bad. Some of the most beloved characters
-  in all of fiction are static. Sherlock Holmes barely changes across
-  60 stories. He is a fixed point of certainty that the plot REVOLVES
-  around — and that fixed quality is part of what makes him compelling.
-
-  DYNAMIC characters: They undergo a genuine internal transformation.
-  Something in the story forces them to grow, break, rebuild, or completely
-  reverse who they were. This transformation is called a CHARACTER ARC.
-
-Most great anime protagonists have dramatic character arcs — and
-understanding that arc is the key to understanding what the story is
-ACTUALLY about. The plot is the vehicle. The arc is the destination."
-
-[Display the share prompt — transition to partner work]
-
-"Turn to the person next to you. Two minutes. Share your character and
-your three words. Then ask your partner: did THEIR character change?
-In what way?"
-
-✋ [Give pairs exactly 2 minutes. Then call on 3-4 students to share
-   ONE observation — not their whole analysis, just one thing they
-   noticed in the conversation. Keep it fast and energetic.]
-
-[Listen actively and validate every response — then use their specific
-answers as bridges into the next section. Example: if a student says
-'My character got sadder,' say 'That's a great instinct — let's build
-the vocabulary to describe exactly what changed and why.']
-
-"What I'm hearing is fascinating. Some of you picked characters who
-grew stronger and braver. Some picked characters who started confident
-and got humbled. Some picked characters who barely changed at all but
-somehow carried the emotional weight of an entire series. Every one of
-those is a legitimate character design strategy — and today we're going
-to understand WHY each one works."
+"So when people ask what you learned today, you can tell them: 'I learned
+how to build a universe — and it started in Scratch.'"
 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 4 — KEY VOCABULARY: 5 WORDS THAT UNLOCK CHARACTER
-[Duration: ~6 minutes]
+SLIDE 18 — CLOSING
+[Duration: ~2 minutes]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"Before we go deeper, we need five vocabulary words. Not ten. Not twenty.
-Five. These are the professional tools that writers, critics, and
-screenwriters actually use. Learn these five words and you can discuss
-any character in any story — ever made."
+[With enthusiasm and warmth]
 
-"WORD 1: TRAIT — A consistent feature of a character's personality.
+"Give yourselves a round of applause! You are now game designers. You
+started the hour as players, and you’re leaving as creators. You
+understood what an engine does, you met three real tools, and you built
+a playable game."
 
-  💡 A trait is something that shows up REPEATEDLY, across many situations.
-  Naruto is not just SOMETIMES determined — he is ALWAYS determined, even
-  when he is losing badly, even when everyone tells him to quit. That
-  persistence is a TRAIT. Traits are the building blocks of character.
-  A fully realized character typically has three to five core traits that
-  influence every decision they make.
+"Scratch, Unity, Godot — three paths, one journey. The skills you
+learned today — programming logic, design thinking, iterative
+improvement — will stay with you forever, no matter what you do."
 
-  Real people work exactly the same way — psychologists call this
-  PERSONALITY CONSISTENCY, the tendency for our fundamental tendencies to
-  shape our behavior across very different situations. When we say someone
-  is 'reliable,' we don't mean they were reliable once. We mean they are
-  reliably reliable. That is a trait."
+"I am genuinely excited to see what you’ll create. Send me your projects,
+ask me questions, keep exploring. My email is on the screen."
 
-"WORD 2: MOTIVATION — What a character WANTS, and why they want it.
+"Thank you for bringing your imagination today. Game on!"
 
-  💡 This is where beginning writers most often go wrong. They describe
-  what characters DO without explaining WHY. But motivation is the source
-  of all meaningful action. Screenwriting professors teach a rule:
-  'Motivation explains behavior, and behavior reveals character.'
-
-  In anime, motivations are often stated explicitly — 'I want to be
-  Hokage' — but the deeper, more interesting motivation is almost always
-  UNSTATED. Naruto doesn't just want political power. He wants to be
-  SEEN. He wants to belong. He wants proof that he exists and matters.
-  That emotional truth beneath the surface goal is sometimes called the
-  CHARACTER'S WOUND or INTERNAL MOTIVATION — and it's what makes audiences
-  feel deeply moved rather than just entertained."
-
-"WORD 3: ARC — The journey of change a character goes through.
-
-  💡 An arc is not just ANY change — it is a MEANINGFUL change that emerges
-  from everything the character experiences. The story's events are like a
-  forge: they apply pressure and heat to a character, and what comes out
-  the other side is either refined or broken. In narrative theory, a
-  complete character arc has three movements:
-    - The WOUND: what happened before the story that shaped who they are
-    - The DESIRE: what they are chasing throughout the story
-    - The TRANSFORMATION: how the story changes who they are at their core
-  Tanjiro Kamado begins with a wound (his family's murder), a desire (to
-  cure his sister and avenge his family), and transforms into someone who
-  finds compassion even for the demons who destroyed him. That arc IS
-  Demon Slayer — everything else is beautiful packaging."
-
-"WORD 4: CONFLICT — The force that challenges a character and DRIVES the arc.
-
-  💡 No conflict, no story. This is not an exaggeration — it is a
-  structural truth. Conflict is the engine of narrative. In literary
-  analysis, conflict takes five classic forms:
-    - Character vs. Character    (Izuku vs. Bakugo)
-    - Character vs. Self         (Eren Yeager's entire existence)
-    - Character vs. Society      (most of My Hero Academia)
-    - Character vs. Nature       (characters surviving an indifferent world)
-    - Character vs. Fate         (characters who refuse their destiny —
-                                  a signature theme of anime specifically)
-
-  The deepest and most resonant conflicts are internal — character vs.
-  self — because they mirror the universal human experience of wanting
-  to be better than we currently are. That is a feeling every person
-  in this room knows intimately."
-
-"WORD 5: THEME — The BIG IDEA a character's story is trying to tell us.
-
-  💡 Theme is the answer to the question: 'So what?' A story can be
-  about a boy who wants to be a ninja — that's PLOT. But THEME asks:
-  what does this story say about FRIENDSHIP? About LONELINESS? About
-  what it costs to be extraordinary in a world that is afraid of you?
-  Theme is always about the human condition — the universal experiences
-  of love, loss, belonging, power, and identity.
-
-  The reason anime resonates globally across language and culture barriers
-  is that the greatest anime tells universal human truths through
-  fantastical stories. That is what the ancient Greeks called MYTHOS —
-  narrative as a vehicle for truth. Anime, at its best, is myth."
-
-✋ [Quick verbal check — go around the room fast. Point to a student at
-   random and ask: 'Give me a character and one of their TRAITS.'
-   Then: 'Now give me their MOTIVATION.' Keep it brisk — 4 to 5 students,
-   low stakes, just warming up the new vocabulary in real time.]
-
-"Quick mental test: if I told you a character's TRAIT is 'loyalty,' but
-their MOTIVATION is 'fear of abandonment' — do those two things connect?"
-✋ [Let students respond — yes, they connect. Loyalty can be a surface-
-   level trait that masks a deeper fear. This is EXACTLY how layered
-   character writing works.]
-"Exactly. Traits can be armor. Motivations are the wound underneath.
-That gap is where interesting characters live."
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 5 — STATIC VS. DYNAMIC: THE CORE DISTINCTION
-[Duration: ~6 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Now let's go deeper on the question from the warm-up: did your character
-CHANGE? This is the distinction between STATIC and DYNAMIC characters —
-and understanding it unlocks how all stories are built."
-
-[Write STATIC and DYNAMIC on the board with a line between them,
-or point to the two columns on the slide]
-
-"A STATIC character stays essentially the same from beginning to end.
-Their core values, personality, and worldview — unchanged.
-This does NOT mean they're boring. It does NOT mean they're unimportant."
-
-"Example: Levi Ackerman in Attack on Titan. He begins as a ruthless,
-emotionally closed-off soldier. He ends as a ruthless, emotionally
-closed-off soldier. He does not change. BUT — over the course of the
-story, we understand more and more about WHY he is the way he is. We
-see the depth beneath the surface. He functions as a fixed point of
-competence and grim clarity around which more dynamic characters orbit.
-Without him, the emotional chaos of other characters would feel rootless."
-
-💡 [CRITICAL NUANCE — say this carefully, and slowly]:
-"Here is the distinction that trips up even college literature students:
-a character CAN experience enormous pain, loss, and trauma without having
-a dynamic arc. Change in CIRCUMSTANCES is NOT the same as change in
-CHARACTER.
-
-If Levi loses everyone he loves — again — but responds in the same stoic,
-relentless way he always has, his SITUATION has changed. His CHARACTER
-has not. The test for a dynamic arc is this specific question:
-
-  'Does the character make a DIFFERENT CHOICE at the end than they would
-   have made at the beginning — because of what they learned or suffered?'
-
-If yes: dynamic. The story transformed them.
-If no: static. The story revealed them."
-
-[Pause and let that sink in]
-
-"Write that test in your notebook. You will use it in the next activity."
-
-"Now — a DYNAMIC character undergoes genuine internal transformation.
-
-Example: Shoto Todoroki in My Hero Academia. He BEGINS the series as
-someone who has rejected half of his own identity — the fire side
-inherited from his abusive father. He refuses to use it. He has built
-emotional walls to protect himself from his own pain. By the end of his
-arc, he chooses — deliberately, freely — to use both his fire AND his ice.
-That choice is the moment his arc completes.
-
-He is no longer the person who rejected himself.
-He becomes someone who has integrated his whole identity.
-That transformation IS his arc. The entire Sports Festival arc exists
-to create the conditions in which that transformation becomes possible."
-
-💡 [CONNECT TO REAL LIFE — get very quiet and genuine here.
-    Students will remember this moment.]:
-"Here is what makes great character arcs emotionally devastating:
-we recognize ourselves in them.
-
-Every human being has a wound — something in their past that shaped
-who they became. Usually something they are still working through,
-even if they don't talk about it. The reason we cry at character arcs
-is not that we feel sorry for them. It is that watching them work through
-their wound REMINDS US OF OUR OWN.
-
-Great anime is, at its core, a safe space to process the hardest parts
-of being alive. That is not an accident. That is the purpose of story."
-
-✋ [Ask the class — keep this personal and low-pressure]:
-"Based on what we just learned — is YOUR character from the warm-up
-STATIC or DYNAMIC? Has your answer changed from what you first wrote?
-Take 30 seconds — update your notebook if you want to."
-
-[Give them 30 seconds in silence. This reflective pause is important.]
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 6 — THE ANATOMY OF A CHARACTER ARC
-[Duration: ~6 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Let's put the arc under a microscope. Every complete character arc
-has an internal structure — and once you see it, you see it everywhere."
-
-"The arc has THREE stages. Write these down with arrows between them."
-
-[Write or point to: ORDINARY WORLD → CRISIS → TRANSFORMATION]
-
-"STAGE 1: THE ORDINARY WORLD
-Who the character is BEFORE the story forces them to change. This is
-not just backstory. It is a carefully constructed portrait of a
-character's FLAW — the specific thing they believe, or the fear they
-carry, that will be challenged by everything that follows.
-
-  → Izuku Midoriya in Season 1: A boy with no powers in a world built
-    entirely around powers. His wound is SHAME — the deeply held belief
-    that he was born fundamentally inadequate, that he does not deserve
-    to be a hero. His entire arc is the gradual dismantling and
-    rebuilding of that belief. Season 1 cannot work without establishing
-    that wound precisely and painfully."
-
-"STAGE 2: THE CRISIS
-The point where the story confronts the character with the ONE thing
-they cannot survive without changing. This is sometimes called the
-DARK NIGHT OF THE SOUL. The old version of this character cannot handle
-what is happening. They must either break and rebuild — or fail.
-
-  → For Todoroki, the crisis is his fight with Midoriya at the Sports
-    Festival. Midoriya refuses to let him play it safe. He screams at
-    him: 'Your power IS your own.' That moment CRACKS the wall.
-    Todoroki breaks. And from the break — comes the fire."
-
-"STAGE 3: THE TRANSFORMATION
-The character makes a new CHOICE that would have been IMPOSSIBLE in
-Stage 1. They have changed. The world around them may or may not
-acknowledge it — but internally, they are a different person.
-
-  → The transformation is ALWAYS shown through action, never through a
-    character simply saying 'I have changed.' This is one of the most
-    important rules in all of storytelling: SHOW, DON'T TELL. We see
-    Todoroki use his fire. We do not need him to make a speech about it.
-    The image is the argument."
-
-💡 [LITERARY THEORY — only use this if class energy is high]:
-"This three-stage arc structure is not invented for anime. It maps
-directly onto what mythologist Joseph Campbell called THE HERO'S JOURNEY
-— a pattern he identified across myths, legends, and stories from every
-culture in human history. Campbell argued this pattern resonates so
-universally because it mirrors the psychological process of genuine
-human growth.
-
-In psychology, the same pattern appears in grief therapy, addiction
-recovery, and trauma processing. The 'crisis' is what psychologists
-call ADAPTIVE BREAKDOWN — the moment where old coping mechanisms fail
-and new ones must be built. Your favorite anime character is, at some
-deep level, enacting one of the oldest patterns in human existence.
-That is why they feel real. They are real — in every way that matters."
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 7 — GUIDED ANALYSIS: MAP YOUR CHARACTER'S ARC
-[Duration: ~8 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Now it's your turn. You're going to do a real character analysis —
-the exact same kind of analysis that film critics, anime reviewers,
-and literature professors write about for a living."
-
-"Go back to the character you chose in the warm-up. In your notebook,
-draw three boxes side by side and label them:
-  BOX 1: ORDINARY WORLD
-  BOX 2: CRISIS
-  BOX 3: TRANSFORMATION"
-
-"Here is what goes in each box:"
-
-  BOX 1 — Ordinary World:
-  'What is their FLAW or WOUND at the very beginning?
-   What do they believe about themselves or the world
-   that turns out to be incomplete — or completely wrong?'
-
-  BOX 2 — Crisis:
-  'What is the single moment — the scene, the fight, the loss —
-   that forces them to confront that flaw directly?
-   What happens that their old self simply cannot handle?'
-
-  BOX 3 — Transformation:
-  'What is different about them at the end?
-   What choice do they make that PROVES they have changed?
-   What would the Season 1 version of this character have done instead?'
-
-"If your character is STATIC — great. Use the boxes differently:
-  BOX 1: Who are they at the start?
-  BOX 2: What is the hardest thing the story puts them through?
-  BOX 3: What do we LEARN about them by the end that we didn't know before?
-  A static character reveals rather than transforms. That is still
-  a character arc — just a different kind."
-
-✋ [Give students 4-5 minutes to write. Circulate actively — peek at
-   notebooks, ask targeted questions: 'What is the wound?', 'What was
-   the crisis moment?', 'How would Season 1 them have reacted differently
-   to the same situation?']
-
-[PROMPTS FOR STUDENTS WHO ARE STUCK]:
-"If you cannot name the wound — ask yourself: what is this character
-AFRAID of, or what are they ASHAMED of? That is almost always the wound."
-
-"If you cannot name the crisis — think about the saddest or most
-emotionally intense scene in the whole series for this character.
-That is probably it."
-
-"If you cannot name the transformation — think about the LAST major
-choice your character makes. What does it say about who they have become?
-Could the person from Episode 1 have made that same choice? Why or why not?"
-
-[After writing — quick pair share, then class share]
-
-✋ [Have students briefly walk their partner through their three boxes.
-   Then ask 2-3 volunteers to share with the class. After each one,
-   ask a single follow-up question: 'What THEME do you think this arc
-   is exploring? What big human truth is the story telling us through
-   this character's journey?']
-
-💡 [SYNTHESIZE after sharing — say this with genuine excitement]:
-"Notice what just happened. You started this class by saying: 'I like
-this character.' Now you can say:
-
-  'This character carries a wound rooted in [specific fear or shame].
-   The story applies pressure to that wound through [specific event].
-   Their transformation reveals a theme about [human truth].'
-
-That is literary analysis. That is the kind of thinking that earns you
-an A in an English class, gets you into film school, and lets you build
-stories of your own that other people will feel in their bones."
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 8 — THE IRREPLACEABILITY TEST
-[Duration: ~5 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Step 3 of the warm-up asked a very specific question I want to return
-to now: 'Would the story be the same without this character? Why or why not?'"
-
-"This is what professional writers call the IRREPLACEABILITY TEST —
-and it is one of the most powerful tools for evaluating whether a
-character is truly well-designed."
-
-"A character passes the irreplaceability test if — and ONLY if —
-removing them would require the STORY ITSELF to fundamentally change.
-Not just a few scenes. The STORY. Its argument. Its meaning."
-
-"Let's test it with an example."
-
-"Could you remove Rock Lee from Naruto?
-
-Think about what Rock Lee REPRESENTS. He exists to prove a specific
-argument: that dedication and hard work can match, or even exceed,
-natural genius. He is the living thesis statement of one of the show's
-central themes. Remove Rock Lee, and the story loses a crucial part of
-its philosophical argument. He passes the test."
-
-"Could you remove a random background ninja from Naruto? Yes — easily.
-The story does not change. That character fails the test. In writing,
-we call these FUNCTIONAL characters — they serve a plot role but are
-interchangeable with any other character who could fill that role."
-
-💡 [ELEVATE THE CONCEPT]:
-"Here is the deeper principle behind the test:
-
-A well-designed major character is not just a person in a story.
-They are an ARGUMENT. Every major character embodies a specific
-WORLDVIEW — a set of beliefs about how the world works and what matters.
-The story is structured as a DEBATE between those worldviews.
-
-In My Hero Academia:
-  Izuku believes in saving everyone — without exception.
-  All For One believes power exists purely for domination.
-  Todoroki believed his power belonged to his father, not himself.
-
-Each of these is a different philosophy about what it means to have
-power. The story is a debate between them, and the philosophical
-'winner' of that debate at the end is how the story delivers its theme.
-
-A character who passes the irreplaceability test is one whose worldview
-is NECESSARY for the story's argument to be complete. Remove them, and
-the debate has a missing voice — and the theme collapses."
-
-✋ [Discussion — open to the class]:
-"Does YOUR character pass the irreplaceability test?
-What argument does their existence make in the story?
-Take 60 seconds and write one sentence in your notebook:
-  'This character represents the idea that _______________.'
-
-That sentence is the character's philosophical function in the story."
-
-[Take 2-3 responses. Affirm every one — this is high-level thinking
-and students should feel genuinely proud for attempting it.]
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 9 — TALK TIME: BEST AND WORST WRITTEN CHARACTER
-[Duration: ~5 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"This is your critical thinking time. We are going to do something that
-literary critics and professional story analysts do: compare a STRONG
-example to a WEAK one."
-
-"Think of the best-written character you have ever seen in anime.
-Now think of the worst-written character you have ever seen in anime —
-a character who felt flat, boring, fake, or frustrating."
-
-"Don't hold back. This is a safe space for honest opinions."
-
-✋ [Open discussion — 3 to 4 minutes. Your role here is facilitator,
-   not lecturer. Let students lead. When they use informal language,
-   translate it into the vocabulary: if they say 'he's just evil for
-   no reason,' say 'so his MOTIVATION is unclear or absent — great
-   observation.' If they say 'she just randomly changed,' say 'so her
-   arc felt INCONSISTENT — the transformation wasn't earned. Exactly.']
-
-[Listen for these common patterns and NAME them when you hear them:]
-
-"When you say a character felt FLAT — that usually means they had one
-trait and no internal conflict. A villain who is simply evil with no
-backstory or internal logic has no MOTIVATION in the deeper sense.
-They fail the wound test. They are a narrative function, not a person."
-
-"When you say a character felt FAKE — that is usually CHARACTER
-INCONSISTENCY. Their choices didn't follow logically from who they were
-established to be. Our brains are extraordinarily sensitive to this —
-we evolved to notice when people act 'out of character' because it was
-once a survival signal. A fake character triggers that same alarm."
-
-"When you say a character was BORING even though they were clearly
-important to the plot — that might be because their arc was too CLEAN.
-A character who has a wound, gets challenged, transforms perfectly, and
-ends up happy can feel unrealistically smooth. Real growth is messy,
-partial, and sometimes tragic. That discomfort is part of why characters
-like Eren Yeager are so divisive — their arcs are profoundly, deliberately
-flawed transformations, and that realism unsettles us."
-
-💡 [CRITICAL MEDIA LITERACY MOMENT]:
-"Here is a question worth sitting with: why does it actually MATTER
-whether characters are well-written? It is 'just' entertainment, right?
-
-No. Psychologists have documented that we process fictional characters
-through the same neural pathways we use to process real people. When you
-follow a character's arc, your brain files it as genuine social experience.
-The lessons they learn become — at some level — lessons you have lived.
-This is why stories are one of the most powerful tools for building
-empathy that has ever existed in human culture.
-
-When a character is poorly written — especially a character from a group
-that is already underrepresented or misrepresented — it doesn't just make
-a weak story. It reinforces false and harmful mental models of real human
-beings. Good character writing is not just a craft question. It is an
-ethical one."
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 10 — MAKE IT YOURS: DESIGN YOUR OWN CHARACTER
-[Duration: ~8 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Now we flip the lens completely. Instead of analyzing a character
-someone else created — you are going to DESIGN one."
-
-"You do not have to be an artist. You do not have to write beautifully.
-You just have to THINK carefully about what makes a person real."
-
-"Copy this template into your notebook:"
-
-  ─────────────────────────────────────────────
-  CHARACTER NAME:      _______________
-  SERIES (real or invented): ____________
-
-  TRAITS (3 words that describe their personality):
-    1. _______________
-    2. _______________
-    3. _______________
-
-  MOTIVATION:
-    Surface goal:   'They want to _______________'
-    Deeper truth:   'What they REALLY need is _______________'
-
-  WOUND (what shaped them before the story begins):
-    _______________
-
-  ARC TYPE:
-    [ ] Dynamic — they will transform
-    [ ] Static  — they will reveal
-
-  IF DYNAMIC — in one sentence, what transforms?
-    _______________
-
-  THEME (what human truth does their story explore?):
-    _______________
-
-  IRREPLACEABILITY:
-    'This character represents the idea that _______________'
-  ─────────────────────────────────────────────
-
-[Walk the room. Ask questions. Be genuinely curious about their ideas.
-This is the most creatively alive moment of the class — protect it.]
-
-✋ [After 5-6 minutes, ask 2-3 volunteers to share their character.
-   After each share, open it briefly to the class:
-   'Does this character pass the irreplaceability test?
-    What happens to their story if you remove them?']
-
-💡 [REFLECTION PROMPT — ask this while circulating, to individual students]:
-"Notice where you got stuck. Was it the TRAITS? Probably not — everyone
-can write 'brave, funny, kind.' Was it the MOTIVATION and WOUND?
-Almost certainly. Those are the hard ones. They require you to imagine a
-whole person — their history, their fears, their desires, their specific
-kind of brokenness.
-
-That difficulty is INTENTIONAL. Creating a convincing character is hard
-because creating a believable human being from scratch requires genuine
-empathy and imagination. Those are skills. And like every skill, they
-get better with practice — but only if you are willing to sit with the
-difficulty. The discomfort you feel right now IS the learning."
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 11 — HOMEWORK
-[Duration: ~3 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Tonight's homework has two parts — an ANALYSIS and a CREATION."
-
-"PART A — WRITTEN ANALYSIS (5-7 sentences):
-Pick any character from any anime you are currently watching or have
-recently finished. Analyze them using at least THREE of today's five
-vocabulary words: trait, motivation, arc, conflict, theme.
-
-Your analysis must answer all three of these:
-  1. What is their core wound or flaw?
-  2. Is their arc dynamic or static — and what is your evidence?
-  3. Would the story change without them? How and why?"
-
-💡 [EXPLAIN THE DEEPER PURPOSE]:
-"This writing assignment is not busy work. Every career that involves
-storytelling — screenwriting, novel writing, game design, graphic novels,
-marketing, UX writing — requires you to articulate WHY a character
-works or doesn't. The ability to analyze something you love and explain
-it in precise language is one of the most transferable skills you will
-ever build. That is what you are practicing right now."
-
-"PART B — COMPLETE YOUR CHARACTER PROFILE:
-If you did not finish your design in class, complete the full template
-at home. Then add one more thing:
-
-  Write 2-3 sentences that SHOW your character's wound before the story
-  begins. Not TELL — SHOW. A specific moment. A specific image. A
-  specific action or silence that reveals who they are without ever
-  stating it directly.
-
-  Remember: SHOW, DON'T TELL. A character who stares at a photograph for
-  a long time tells us more than a character who says 'I miss my family.'"
-
-"Email BOTH parts — your analysis AND your completed character profile —
-to hue.weng.88@gmail.com before next class."
-
-💡 [EXPLAIN WHY THE CREATION PART MATTERS]:
-"Designing your own character is the single fastest way to develop
-empathy for the writers whose work you love. Once you have struggled
-to make a character feel real, you will never read or watch a story
-the same way again. You will notice every technique, every shortcut,
-every bold choice the writer made — because you will have attempted
-those same choices yourself. That is how artists learn from artists."
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 12 — RECAP & EXIT TICKET
-[Duration: ~3 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[Display the summary on the slide. Say this with genuine pride.]
-
-"Look at what you did today:"
-
-  5    Vocabulary words: Trait · Motivation · Arc · Conflict · Theme
-  2    Character types you can now identify: Static · Dynamic
-  3    Stages of a complete arc: Ordinary World · Crisis · Transformation
-  1    Original character you built from scratch using professional tools
-  ∞    Characters you can now analyze — any series, any genre, ever
-
-"That infinity symbol is real. Every character ever written can be
-examined through the framework you learned today. The tools scale."
-
-"You walked in knowing you LIKED characters.
-You are walking out knowing WHY they work.
-That is a genuine, permanent upgrade."
-
-"Before you leave — sticky note exit ticket. Answer ONE of these two
-questions. Write it, stick it on the board as you walk out."
-
-"QUESTION 1: In your own words — what is the difference between a
-STATIC and a DYNAMIC character?
-
-  💡 A strong answer sounds like: 'A static character stays essentially
-  the same — their personality and values don't change even if their
-  situation does. A dynamic character goes through a real internal
-  transformation, and by the end makes choices the original version of
-  them could not have made.' If a student writes that unprompted,
-  they have genuinely understood the core of today's lesson."
-
-"QUESTION 2: Give one example of an anime character and name their
-central MOTIVATION — surface goal AND deeper truth.
-
-  💡 Strong answers separate the surface from the emotional underneath.
-  'Naruto wants to be Hokage — but what he actually needs is to be seen
-  and loved.' 'Todoroki wants to win without using his fire — but what
-  he actually needs is to accept himself.' If a student makes that
-  separation clearly, they are thinking like a writer.
-
-  This surface-versus-depth distinction is one of the central insights
-  of both narrative craft AND modern psychology. Therapists call it the
-  difference between a 'presenting problem' and the underlying need it
-  represents. Stories are, in part, a safe place to rehearse that kind
-  of emotional honesty. That is not nothing. That is everything."
-
-✋ [Collect sticky notes as students leave — sort into 'got it' and
-   'still forming' piles to guide how you open next class.]
-
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 13 — CLOSING SLIDE
-[Duration: ~1 minute]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[Deliver this slowly. Let it land.]
-
-"Every character you have ever loved — every one that made you laugh,
-cry, stay up until 2 AM to see what happens next — was designed by a
-human being sitting at a desk, asking the exact same questions you
-answered in your notebook today.
-
-What does this person want? What are they afraid of? What will break
-them? What will they become?
-
-You are now asking those questions too. That means you are doing the
-same work that storytellers have done for as long as human beings have
-sat around fires and tried to tell each other who we are."
-
-"Great work today. See you next class. I am genuinely proud of all of you."
-
-[Display contact info]
-  Email:   hue.weng.88@gmail.com
-  Website: hue881.github.io
-  Phone:   646-280-7089
+[Display contact info and let students exit with the feeling they’ve
+accomplished something real.]
 
 
 ================================================================================
-APPENDIX A — COMMON DISCUSSION PITFALLS & HOW TO HANDLE THEM
+APPENDIX A — COMMON PITFALLS & HOW TO HANDLE THEM
 ================================================================================
 
-PITFALL: Student says 'I don't know' when asked about a character's motivation
-  Handle: Ask: 'What does this character do in almost every single episode?'
-          Then: 'Why do you think they keep doing it?' Behavior almost always
-          points back to motivation. Let students work backward from action
-          to intention — that is how detectives and psychologists work too.
+PITFALL: Student says "I can't code" or "This is too hard."
+  Handle: "That's exactly how every game developer felt the first time
+          they opened a tool. Start by copying the blocks I show you.
+          Then change one number. You're already coding."
 
-PITFALL: Student says a character is 'just cool' with no deeper reasoning
-  Handle: Say: 'I believe you — now help me understand WHY they're cool.
-          Is it how they fight? How they talk? How they handle failure?
-          How they treat people who can't help them?' Drilling down into
-          specifics almost always surfaces traits and motivation naturally.
+PITFALL: Student's Scratch sprites don't move correctly.
+  Handle: Ask them to check: "Is 'when green flag clicked' at the top?
+          Is the movement block inside a forever loop? Did you use the
+          right key in the 'if key pressed' block? Debugging is part of
+          learning — even pros spend half their time fixing bugs."
 
-PITFALL: Student insists a character is dynamic but only cites changed
-         circumstances, not changed character
-  Handle: Apply the test explicitly: 'If this character faced the EXACT
-          SAME situation as in Episode 1 — would they make the same choice
-          or a different one? That is our test. What do you think?'
+PITFALL: Student says "Why use Unity or Godot when Scratch is easier?"
+  Handle: "Great question. Scratch is perfect for learning the logic.
+          But if you ever want to make a 3D world, or a game you can
+          sell, or something that runs on a console, you'll need the
+          power of Unity or Godot. It's like learning to ride a bike
+          before you drive a car."
 
-PITFALL: Student cannot identify a wound for their character
-  Handle: Reframe it: 'What is something this character is ashamed of?
-          Something they lost? Something someone told them about themselves
-          that they still believe even if they shouldn't?' This shifts wound
-          from 'tragic backstory' (external event) to 'limiting belief'
-          (internal consequence) — which is where it actually lives.
+PITFALL: Student doesn't see the point of iterative design.
+  Handle: "Think of your favorite game. Now imagine the very first version
+          the creators made. I guarantee it was ugly, boring, and might
+          not have even worked. The game you love is version 100. That's
+          iterative design — polishing a rock until it's a diamond."
 
-PITFALL: Discussion drifts into plot summary rather than analysis
-  Handle: Gently interrupt and redirect: 'Great context — now let's
-          connect it: what does that moment reveal about who they ARE?
-          What TRAIT does it show us? What does it tell us about their
-          MOTIVATION?' Always pull back from what happened to what it means.
-
-PITFALL: A student dismisses anime as 'not real literature'
-  Handle: Ask them to define 'real literature.' Then note that Homer's
-          Iliad was oral performance dismissed as folklore by later scholars.
-          Shakespeare's plays were considered lowbrow entertainment.
-          The question is never the medium — it is always the quality of
-          the human truth being told. That criterion applies to anime
-          as rigorously as to anything else.
+PITFALL: Student is frustrated that their game doesn't look professional.
+  Handle: "Professional-looking games take teams of artists years to make.
+          Your job right now is not to make a perfect game — it's to make
+          something that works and have fun doing it. Every game artist
+          started with a stick figure."
 
 
 ================================================================================
-APPENDIX B — EXTENSION QUESTIONS FOR ADVANCED STUDENTS
+APPENDIX B — EXTENSION QUESTIONS FOR CURIOUS MINDS
 ================================================================================
 
-1. Can an ANTAGONIST have a better character arc than the protagonist?
-   [Answer: Absolutely. Some of the greatest arcs in anime belong to
-   characters we begin by fearing or hating: Vegeta in Dragon Ball Z,
-   Gaara in Naruto, Zuko in Avatar: The Last Airbender. A compelling
-   antagonist almost always has a MIRROR arc to the hero — they face
-   the same wound but make opposite choices. That mirroring is what
-   makes great villains feel inevitable and tragic rather than simply
-   evil for its own sake.]
+1. Could you write your own game without an engine?
+   Answer: Yes, but you'd have to write DirectX or OpenGL code for
+   graphics, implement physics from scratch, and manage sound drivers. An
+   engine saves literally years of work. However, building a tiny game
+   from scratch in Python with a simple library is a great way to
+   understand what engines do under the hood.
 
-2. What is the difference between a character CHANGING and a character
-   being INCONSISTENT?
-   [Answer: Change is earned — it emerges from specific experiences the
-   story shows us step by step. Inconsistency is unexplained — a character
-   acts differently from how they've been established with no story reason.
-   The former builds trust; the latter destroys emotional investment.]
+2. What’s the difference between a game engine and a game framework?
+   Answer: An engine is a complete tool with an editor, asset manager, and
+   built-in systems (like Unity). A framework is a lighter set of code
+   libraries you use to build things more manually (like Phaser or
+   Pygame). Engines give you more pre-made structure; frameworks give you
+   more control.
 
-3. Can a story with NO dynamic characters still be great?
-   [Answer: Yes. Many comedies, mysteries, and slice-of-life works use
-   static protagonists by design. What changes is the SITUATION and our
-   UNDERSTANDING of the character — not the character themselves. The
-   interest comes from watching a fixed personality navigate an
-   increasingly complex world.]
+3. Why are there so many game engines? Why not just one?
+   Answer: Different engines serve different needs — 2D vs 3D, small team
+   vs large studio, simple vs complex. Also, competition drives
+   innovation. Godot’s open-source freedom pushes Unity to stay
+   accessible, and vice versa.
 
-4. What is a FOIL character, and how does it deepen a protagonist's arc?
-   [Answer: A foil is a character designed specifically to contrast with
-   another — usually the protagonist. The contrast makes both characters'
-   traits and choices more visible. Bakugo is Midoriya's foil: same goal,
-   radically different philosophy. Their contrast makes both arcs richer
-   and clarifies the story's central argument about what kind of strength
-   actually matters.]
+4. How do you become a game engine developer?
+   Answer: Start by using engines, then learn C++ (many engines are built
+   in it), study computer graphics, and contribute to open-source engines
+   like Godot. It’s a big goal, but beginning with Scratch is literally
+   step one on that path.
 
-5. Is it possible to have a meaningful emotional bond with a character
-   who does not exist?
-   [Answer: Yes — and this is not just sentiment. Research on 'parasocial
-   relationships' documents that human brains form genuine emotional
-   attachments to fictional characters, producing real effects on empathy,
-   values, and behavior. The emotional experience is real, the brain
-   processing is real, and the lasting effects on how we understand other
-   people are real. Stories matter. Characters matter. That is not a soft
-   claim — it is a neuroscientific one.]
-
-
-================================================================================
-END OF SCRIPT — Day 16 · Spring 2026 · Mr. Hsiao "Hue" Weng
-================================================================================
+5. Can AI make game engines obsolete?
+   Answer: No. AI can help generate code or art, but engines solve deep
+   computational problems — real-time physics, efficient rendering,
+   cross-platform deployment. AI might assist, but the fundamental need
+   for an engine remains. In fact, many AI training simulations use game
+   engines, so they work together.
