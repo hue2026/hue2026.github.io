@@ -2,843 +2,619 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="slides-format" content="viewport">
-    <title>Lesson 4 – Character Development & Archetypes</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Game Engines: Scratch, Unity & Godot | 3rd–5th Grade</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
     <style type="text/tailwindcss">
         @theme {
-            --color-bg: #f4fbff;
-            --color-bg-deep: #e0f2ff;
-            --color-surface: rgba(255,255,255,0.9);
-            --color-text: #1f2a37;
-            --color-text-secondary: #4b5563;
-            --color-text-muted: #5b6b7e;
+            --color-bg: #f4fbfe;
+            --color-surface: rgba(255,255,255,0.96);
             --color-accent-1: #0b63ce;
             --color-accent-2: #10b981;
-            --color-accent-3: #f59e0b;
-            --color-glass-bg: rgba(255,255,255,0.85);
-            --color-glass-border: rgba(11,99,206,0.16);
-            --color-vignette: rgba(15,23,42,0.08);
-            --font-display: 'Fredoka', 'Trebuchet MS', sans-serif;
-            --font-body: 'Nunito', Arial, sans-serif;
+            --font-display: "Fredoka", system-ui, sans-serif;
+            --font-body: "Nunito", system-ui, sans-serif;
         }
     </style>
-
     <style>
-        :root { --color-bg: #f4fbff; --color-text: #1f2a37; --glow-color-rgb: 11,99,206; }
-        *, *::before, *::after { box-sizing: border-box; }
-        html, body { background: var(--color-bg); margin: 0; }
-        body { font-family: 'Nunito', Arial, sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
-        .deck { width: 100vw; height: 100vh; position: relative; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: #f4fbfe;
+            font-family: "Nunito", system-ui, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        .deck {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
         .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 40%),
-                        radial-gradient(circle at bottom right, rgba(16,185,129,0.12), transparent 40%),
-                        var(--color-bg);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease;
-            pointer-events: none; overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(11,99,206,0.08), transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(16,185,129,0.08), transparent 55%),
+                        #f4fbfe;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+            overflow-y: auto;
+            padding: 1rem;
         }
-        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
-        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1040px; padding: clamp(1.2rem, 3.5vw, 3rem); }
-        .nav-controls { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.45); box-shadow: 0 10px 30px rgba(15,23,42,0.15); }
-        .nav-btn { width: 38px; height: 38px; border: none; background: rgba(15,23,42,0.06); color: #0b63ce; border-radius: 999px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.15s; }
-        .nav-btn:hover { background: rgba(15,23,42,0.12); transform: translateY(-1px); }
-        .slide-dots { display: flex; gap: 8px; }
-        .slide-dots .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(148,163,184,0.6); cursor: pointer; transition: background 0.25s, transform 0.25s; }
-        .slide-dots .dot.active { background: #0b63ce; transform: scale(1.3); }
-        .slide-counter { font-size: 0.8rem; color: #64748b; min-width: 50px; text-align: center; font-weight: 600; }
-        .reveal { opacity: 0; transform: translateY(18px); }
-        .mouse-spotlight { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
-        .card { background: var(--color-surface); border-radius: 20px; padding: 18px 20px; box-shadow: 0 10px 28px rgba(15,23,42,0.08); border: 1px solid rgba(255,255,255,0.65); }
-        .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.55); background: rgba(255,255,255,0.9); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #0b63ce; }
-        .media-embed { position: relative; padding-top: 56.25%; border-radius: 14px; overflow: hidden; background: #020617; cursor: pointer; }
-        .media-embed img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .media-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-        .play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; }
-        .play-circle { width: 60px; height: 60px; background: rgba(220,38,38,0.88); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.2s; }
-        .media-embed:hover .play-circle { transform: scale(1.12); }
-        .video-source { display: block; font-size: 0.7rem; color: #64748b; text-align: center; margin-top: 5px; font-weight: 700; text-decoration: none; }
-        .video-source:hover { color: #0b63ce; text-decoration: underline; }
-        .grid-cards { display: grid; gap: 18px; }
-        @media (min-width: 840px) {
-            .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-            .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
-            .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
         }
-        .question-chip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(245,158,11,0.08); color: #92400e; font-size: 0.82rem; font-weight: 700; }
-        .question-chip .icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 999px; background: rgba(245,158,11,0.95); color: #fff; font-size: 0.8rem; }
-        .timeline { position: relative; padding-left: 26px; }
-        .timeline::before { content: ""; position: absolute; left: 10px; top: 4px; bottom: 4px; width: 3px; border-radius: 999px; background: linear-gradient(to bottom, #0b63ce, #10b981); }
-        .timeline-step { position: relative; margin-bottom: 14px; }
-        .timeline-dot { position: absolute; left: -2px; top: 4px; width: 14px; height: 14px; border-radius: 999px; border: 2px solid #f4fbff; background: #0b63ce; box-shadow: 0 0 0 4px rgba(59,130,246,0.25); }
-        .exit-line { margin-top: 10px; padding-bottom: 10px; border-bottom: 2px dashed rgba(148,163,184,0.8); }
-        .technique-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-        .emoji-float { animation: float 3.5s ease-in-out infinite; display: inline-block; }
-        .archetype-tag { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em; }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+        .content {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .nav-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            padding: 8px 20px;
+            border-radius: 60px;
+            border: 1px solid rgba(148,163,184,0.4);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            z-index: 100;
+        }
+        .nav-btn {
+            background: rgba(15,23,42,0.05);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #0b63ce;
+            transition: 0.2s;
+        }
+        .nav-btn:hover { background: rgba(11,99,206,0.15); transform: scale(1.02);}
+        .slide-dots { display: flex; gap: 8px; align-items: center;}
+        .dot {
+            width: 9px;
+            height: 9px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .dot.active { background: #0b63ce; transform: scale(1.4);}
+        .slide-counter { font-size: 0.8rem; font-weight: 700; color: #475569; min-width: 50px; text-align: center;}
+        .pill {
+            display: inline-flex;
+            background: white;
+            border-radius: 40px;
+            padding: 4px 14px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid rgba(11,99,206,0.3);
+            color: #0b63ce;
+        }
+        .card {
+            background: var(--color-surface);
+            border-radius: 24px;
+            padding: 1rem 1.3rem;
+            box-shadow: 0 10px 22px -8px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.6);
+            backdrop-filter: blur(2px);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .slide.active .reveal { opacity: 1; transform: translateY(0); }
+        .timeline { position: relative; padding-left: 1.4rem; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 3px;
+            background: linear-gradient(to bottom, #0b63ce, #10b981);
+            border-radius: 4px;
+        }
+        .timeline-step { position: relative; margin-bottom: 1rem; }
+        .timeline-dot {
+            position: absolute;
+            left: -1.2rem;
+            top: 0.2rem;
+            width: 12px;
+            height: 12px;
+            background: #0b63ce;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(11,99,206,0.2);
+        }
+        .grid-cards { display: grid; gap: 1.2rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%;
+            background: #0f172a;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .video-wrapper img.video-thumb {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+            border-radius: 14px;
+        }
+        .video-play-btn {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.25);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: 14px;
+            width: 100%;
+            padding: 0;
+        }
+        .video-play-btn:hover { background: rgba(0,0,0,0.45); }
+        .video-play-btn:hover .play-circle { transform: scale(1.1); background: #dc2626; }
+        .play-circle {
+            background: #ef4444;
+            border-radius: 50%;
+            width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .video-source {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #0b63ce;
+            text-decoration: none;
+            justify-content: center;
+        }
+        .video-source:hover { text-decoration: underline; }
+        .vocab-tag { display: inline-block; background: rgba(11,99,206,0.1); padding: 4px 12px; border-radius: 30px; font-weight: 800; font-size: 0.75rem; color: #0b63ce; margin-bottom: 6px; }
+        .grad-text { background: linear-gradient(135deg, #0b63ce, #10b981, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+
+        footer { font-size: 0.7rem; text-align: center; margin-top: 1rem; opacity: 0.7; }
+        @media (max-width: 700px) { .content { padding: 0.8rem; } .card { padding: 0.8rem; } }
     </style>
 </head>
 <body>
-<div class="mouse-spotlight"></div>
 <div class="deck">
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 1: TITLE
-═══════════════════════════════════════════════ -->
-<div class="slide slide-1 active" data-slide="1">
-    <div class="content text-center">
-        <div class="flex flex-wrap justify-center gap-3 mb-5">
-            <span class="pill">🎌 Anime Club</span>
-            <span class="pill">📖 Lesson 4 of 10</span>
-            <span class="pill">Grade 6</span>
-        </div>
-        <div class="emoji-float text-[78px] mb-3 reveal">🦸</div>
-        <h1 class="font-display text-[clamp(2.2rem,5vw,4rem)] font-bold leading-tight mb-3 reveal"
-            style="background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-            Character Development<br>&amp; Archetypes
-        </h1>
-        <p class="text-[clamp(0.95rem,1.8vw,1.2rem)] text-text-muted font-semibold tracking-wide mb-7 reveal">
-            Why do certain characters feel so <em>real</em> — and what makes us root for them?
-        </p>
-        <div class="card inline-block reveal" style="max-width:600px;">
-            <p class="text-base font-bold text-text-secondary">
-                <span style="color:#f59e0b">🔍 Big Question:</span>
-                <em>"Think of your all-time favorite anime character. What is it about them that made you care — was it who they <u>were</u> at the start, or who they <u>became</u>?"</em>
-            </p>
+    <!-- SLIDE 1: TITLE -->
+    <div class="slide active" data-slide="1">
+        <div class="content text-center">
+            <div class="reveal text-6xl mb-3">🎮🕹️</div>
+            <h1 class="font-display grad-text text-5xl md:text-6xl font-bold reveal">Game Engines</h1>
+            <p class="text-xl font-semibold text-gray-600 reveal mt-2">Scratch · Unity · Godot</p>
+            <div class="flex flex-wrap justify-center gap-3 mt-6 reveal">
+                <span class="pill">🧑‍🏫 Lesson 6</span>
+                <span class="pill">🎯 3rd–5th Grade</span>
+                <span class="pill">🕹️ Create Your Own Game</span>
+            </div>
+            <div class="mt-8 text-gray-500 reveal text-sm">💡 Every game you love started with a <strong>game engine</strong> — today you'll learn how!</div>
         </div>
     </div>
-</div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 2: DO NOW — Discussion Hook
-═══════════════════════════════════════════════ -->
-<div class="slide slide-2" data-slide="2">
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Do Now — 4 min</span>
-            <span class="pill">🧠 Think Before We Dive In</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Who Is Your Favorite Character?</h2>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-sm font-bold text-accent-1 mb-1">Step 1: Pick a character</p>
-                    <p class="text-sm font-bold text-text-secondary">In your notebook, write the name of your favorite anime character. Could be from Naruto, My Hero Academia, Demon Slayer, Haikyuu!!, Spirited Away — anything!</p>
-                </div>
-                <div class="card" style="border-left:4px solid #10b981;">
-                    <p class="text-sm font-bold text-accent-2 mb-1">Step 2: Describe them</p>
-                    <p class="text-sm font-bold text-text-secondary">Write 3 words that describe their personality. Then write: did they stay the same throughout the series, or did they change?</p>
-                </div>
-                <div class="card" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-1">Step 3: Ask yourself</p>
-                    <p class="text-sm font-bold text-text-secondary">Would the story be the same without this character? Why or why not?</p>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="background:rgba(11,99,206,0.04);border-color:rgba(11,99,206,0.2);">
-                    <p class="text-sm font-bold text-accent-1 mb-2">💬 Share &amp; Discuss (2 min)</p>
-                    <div class="timeline">
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#0b63ce;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4">Turn to a partner. Share your character and 3 words.</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#10b981;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4">Did your partner's character change? In what way?</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#f59e0b;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4">Be ready to share one observation with the class.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>If your character never changed at all — would they still be interesting? Why or why not?</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 3: VOCABULARY
-═══════════════════════════════════════════════ -->
-<div class="slide slide-3" data-slide="3">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill">📚 Vocabulary</span>
-            <span class="pill">5 Key Terms</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Words That Unlock Character Analysis</h2>
-        <div class="grid-cards grid-3 gap-4 mb-4">
-            <div class="card reveal" style="border-top:4px solid #0b63ce;">
-                <p class="text-xs font-black uppercase tracking-widest" style="color:#0b63ce;">Archetype</p>
-                <p class="text-sm font-bold text-text-secondary mt-1">A universal character type that appears across many stories and cultures — like the hero, the mentor, or the villain.</p>
-                <div class="mt-2">
-                    <span class="archetype-tag" style="background:rgba(11,99,206,0.1);color:#1e40af;">Ex: The Hero</span>
-                </div>
-            </div>
-            <div class="card reveal" style="border-top:4px solid #10b981;">
-                <p class="text-xs font-black uppercase tracking-widest" style="color:#10b981;">Protagonist</p>
-                <p class="text-sm font-bold text-text-secondary mt-1">The main character the story follows — not always a "good guy," but the one we experience the story through.</p>
-                <div class="mt-2">
-                    <span class="archetype-tag" style="background:rgba(16,185,129,0.1);color:#065f46;">Ex: Naruto, Deku</span>
-                </div>
-            </div>
-            <div class="card reveal" style="border-top:4px solid #ef4444;">
-                <p class="text-xs font-black uppercase tracking-widest" style="color:#ef4444;">Antagonist</p>
-                <p class="text-sm font-bold text-text-secondary mt-1">The force or character that opposes the protagonist — can be a villain, a rival, or even the hero's own fear.</p>
-                <div class="mt-2">
-                    <span class="archetype-tag" style="background:rgba(239,68,68,0.1);color:#991b1b;">Ex: All For One</span>
-                </div>
-            </div>
-        </div>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="card reveal" style="border-top:4px solid #f59e0b;">
-                <p class="text-xs font-black uppercase tracking-widest" style="color:#f59e0b;">Character Arc</p>
-                <p class="text-sm font-bold text-text-secondary mt-1">The transformation a character goes through from the beginning to the end of a story. The "journey within the journey."</p>
-                <div class="mt-2">
-                    <span class="archetype-tag" style="background:rgba(245,158,11,0.1);color:#92400e;">Deku: Powerless → Symbol of Hope</span>
-                </div>
-            </div>
-            <div class="card reveal" style="border-top:4px solid #8b5cf6;">
-                <p class="text-xs font-black uppercase tracking-widest" style="color:#8b5cf6;">Foil</p>
-                <p class="text-sm font-bold text-text-secondary mt-1">A character whose contrasting traits highlight the qualities of another character. A "mirror" that shows us who the main character really is.</p>
-                <div class="mt-2">
-                    <span class="archetype-tag" style="background:rgba(139,92,246,0.1);color:#4c1d95;">Naruto ↔ Sasuke</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 4: WHAT IS AN ARCHETYPE?
-═══════════════════════════════════════════════ -->
-<div class="slide slide-4" data-slide="4">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill">🧩 Core Concept</span>
-            <span class="pill">Archetypes Across Anime</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-2 reveal">The 6 Core Archetypes in Anime</h2>
-        <p class="text-sm font-bold text-text-muted mb-4 reveal">These patterns repeat across thousands of anime — because they mirror real human experiences.</p>
-        <div class="grid-cards grid-3 gap-3">
-            <div class="card reveal" style="border-left:4px solid #0b63ce;">
-                <div class="text-2xl mb-1">🦸</div>
-                <p class="text-sm font-black text-accent-1">The Hero</p>
-                <p class="text-xs font-bold text-text-secondary">Driven by courage and a desire to protect others. Often starts inexperienced but grows through trials.</p>
-                <p class="text-xs font-bold mt-1" style="color:#0b63ce;">Naruto, Deku, Tanjiro</p>
-            </div>
-            <div class="card reveal" style="border-left:4px solid #8b5cf6;">
-                <div class="text-2xl mb-1">🧙</div>
-                <p class="text-sm font-black" style="color:#7c3aed;">The Mentor</p>
-                <p class="text-xs font-bold text-text-secondary">Guides the hero with wisdom and often sacrifice. They hold the key lesson the hero needs to grow.</p>
-                <p class="text-xs font-bold mt-1" style="color:#7c3aed;">Iruka, All Might, Jiraiya</p>
-            </div>
-            <div class="card reveal" style="border-left:4px solid #ef4444;">
-                <div class="text-2xl mb-1">😈</div>
-                <p class="text-sm font-black" style="color:#dc2626;">The Villain</p>
-                <p class="text-xs font-bold text-text-secondary">Opposes the hero's values. The best villains have understandable motivations — even if their methods are wrong.</p>
-                <p class="text-xs font-bold mt-1" style="color:#dc2626;">Madara, Shigaraki, Orochimaru</p>
-            </div>
-            <div class="card reveal" style="border-left:4px solid #10b981;">
-                <div class="text-2xl mb-1">👥</div>
-                <p class="text-sm font-black text-accent-2">The Ally</p>
-                <p class="text-xs font-bold text-text-secondary">Supports the hero, often providing emotional grounding or a specific skill the hero lacks.</p>
-                <p class="text-xs font-bold mt-1" style="color:#10b981;">Sakura, Ochaco, Inosuke</p>
-            </div>
-            <div class="card reveal" style="border-left:4px solid #f59e0b;">
-                <div class="text-2xl mb-1">⚔️</div>
-                <p class="text-sm font-black text-accent-3">The Rival</p>
-                <p class="text-xs font-bold text-text-secondary">Pushes the hero to grow by competing with them. Often starts as an enemy but evolves into a complex relationship.</p>
-                <p class="text-xs font-bold mt-1" style="color:#d97706;">Sasuke, Bakugo, Iwaizumi</p>
-            </div>
-            <div class="card reveal" style="border-left:4px solid #ec4899;">
-                <div class="text-2xl mb-1">🌀</div>
-                <p class="text-sm font-black" style="color:#db2777;">The Trickster</p>
-                <p class="text-xs font-bold text-text-secondary">Breaks rules, causes chaos, and challenges the hero in unexpected ways. Often provides comic relief but also deep insights.</p>
-                <p class="text-xs font-bold mt-1" style="color:#db2777;">Gojo, Hisoka, Zenitsu</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 5: ARCHETYPES VIDEO — Every Protagonist Type
-═══════════════════════════════════════════════ -->
-<div class="slide slide-5" data-slide="5">
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎬 Video Analysis</span>
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">⏱ Watch ~5 min</span>
-        </div>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="reveal">
-                <div class="media-embed" id="player-Dj2KLzGVSxA" onclick="playVideo('Dj2KLzGVSxA')">
-                    <img src="https://img.youtube.com/vi/Dj2KLzGVSxA/hqdefault.jpg" alt="Every Anime Protagonist Archetype Explained">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=Dj2KLzGVSxA" target="_blank">▶ YouTube: Every Anime Protagonist Archetype Explained in 12 Minutes</a>
-            </div>
-            <div class="flex flex-col justify-center gap-3">
-                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">Watch &amp; Classify</h2>
-                <p class="text-sm font-bold text-text-secondary reveal">As you watch, keep your notebook open and jot down:</p>
-                <div class="timeline reveal">
-                    <div class="timeline-step">
-                        <div class="timeline-dot" style="background:#0b63ce;"></div>
-                        <p class="text-xs font-bold text-text-secondary pl-4">Which archetype matches a character <em>you</em> know?</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-dot" style="background:#10b981;"></div>
-                        <p class="text-xs font-bold text-text-secondary pl-4">What makes that archetype feel familiar or realistic?</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="timeline-dot" style="background:#f59e0b;"></div>
-                        <p class="text-xs font-bold text-text-secondary pl-4">Can a character be MORE than one archetype?</p>
-                    </div>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>After watching — can a protagonist also be a villain? Name an example.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 6: CHARACTER ARC — What Is Growth?
-═══════════════════════════════════════════════ -->
-<div class="slide slide-6" data-slide="6">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill">📈 Character Arc</span>
-            <span class="pill">The Journey Within the Journey</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">How Characters Change Over Time</h2>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="flex flex-col gap-3">
-                <div class="card reveal" style="background:linear-gradient(135deg,rgba(11,99,206,0.07),rgba(16,185,129,0.05));border:1px solid rgba(11,99,206,0.18);">
-                    <p class="text-xs font-black uppercase tracking-widest text-accent-1 mb-2">Naruto Uzumaki's Arc</p>
-                    <div class="timeline">
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#ef4444;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Start:</strong> Lonely outcast — wants recognition but acts out</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#f59e0b;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Middle:</strong> Learns teamwork, forms bonds, faces loss</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#10b981;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>End:</strong> Becomes Hokage — respected leader, not because he demanded it, but because he earned it</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card reveal" style="background:linear-gradient(135deg,rgba(139,92,246,0.07),rgba(245,158,11,0.04));border:1px solid rgba(139,92,246,0.18);">
-                    <p class="text-xs font-black uppercase tracking-widest mb-2" style="color:#7c3aed;">Deku's Arc (My Hero Academia)</p>
-                    <div class="timeline">
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#ef4444;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Start:</strong> Quirkless, dismissed as powerless, dreams of heroism</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#f59e0b;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>Middle:</strong> Receives power, but must learn to use it without destroying himself</p>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="timeline-dot" style="background:#10b981;"></div>
-                            <p class="text-xs font-bold text-text-secondary pl-4"><strong>End:</strong> Embraces All Might's legacy — becomes a hero who saves with a smile</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 justify-between">
+    <!-- SLIDE 2: DO NOW -->
+    <div class="slide" data-slide="2">
+        <div class="content">
+            <span class="pill reveal">✏️ Do Now · Think & Share</span>
+            <h2 class="font-display text-3xl font-bold mt-3 reveal">🎮 Brain dump: Games we love!</h2>
+            <div class="grid-cards grid-2 mt-5">
                 <div class="card reveal">
-                    <p class="text-sm font-black text-accent-1 mb-2">3 Types of Character Arcs</p>
-                    <div class="flex flex-col gap-2">
-                        <div class="flex gap-2 items-start">
-                            <span style="font-size:1.2rem">📈</span>
-                            <div>
-                                <p class="text-xs font-black" style="color:#10b981;">Positive Arc</p>
-                                <p class="text-xs font-bold text-text-secondary">Character learns, grows, and overcomes a flaw. (Naruto, Deku)</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-start">
-                            <span style="font-size:1.2rem">📉</span>
-                            <div>
-                                <p class="text-xs font-black" style="color:#ef4444;">Negative (Tragic) Arc</p>
-                                <p class="text-xs font-bold text-text-secondary">Character fails to change or changes for the worse. (Sasuke in early arcs)</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2 items-start">
-                            <span style="font-size:1.2rem">➡️</span>
-                            <div>
-                                <p class="text-xs font-black" style="color:#0b63ce;">Flat Arc</p>
-                                <p class="text-xs font-bold text-text-secondary">Character stays consistent but CHANGES THE WORLD. (All Might)</p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="text-2xl">🎲🧩</div>
+                    <p class="font-bold mt-1">With a partner, list 3 games you enjoy.</p>
+                    <p class="text-sm text-gray-600">What makes them exciting? The characters? The challenges? The graphics?</p>
+                    <div class="bg-blue-50 p-3 rounded-xl mt-3 text-sm">💬 “Mario jumps, Minecraft builds, Roblox creates — all use hidden engines!”</div>
                 </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>Which arc type do YOU find most compelling — and why does the answer say something about what you value in stories?</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 7: VIDEO — Naruto Character Analysis
-═══════════════════════════════════════════════ -->
-<div class="slide slide-7" data-slide="7">
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎬 Video Analysis</span>
-            <span class="pill" style="background:#dcfce7;border-color:#10b981;color:#065f46;">Naruto</span>
-        </div>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="reveal">
-                <div class="media-embed" id="player-A9THWDuHk0c" onclick="playVideo('A9THWDuHk0c')">
-                    <img src="https://img.youtube.com/vi/A9THWDuHk0c/hqdefault.jpg" alt="Why Naruto is the Greatest Anime MC Ever">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=A9THWDuHk0c" target="_blank">▶ YouTube: Why Naruto is the Greatest Anime MC Ever | Character Analysis</a>
-            </div>
-            <div class="flex flex-col justify-center gap-3">
-                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">Analyzing Naruto's Arc</h2>
-                <p class="text-sm font-bold text-text-secondary reveal">As you watch, look for evidence of Naruto's character arc:</p>
-                <div class="flex flex-col gap-2 reveal">
-                    <div class="card" style="padding:10px 14px;border-left:3px solid #0b63ce;">
-                        <p class="text-xs font-bold text-text-secondary">🔍 What was Naruto's <strong>core flaw</strong> at the beginning?</p>
-                    </div>
-                    <div class="card" style="padding:10px 14px;border-left:3px solid #10b981;">
-                        <p class="text-xs font-bold text-text-secondary">🔍 What <strong>event or relationship</strong> pushed him to change?</p>
-                    </div>
-                    <div class="card" style="padding:10px 14px;border-left:3px solid #f59e0b;">
-                        <p class="text-xs font-bold text-text-secondary">🔍 How does his <strong>archetype</strong> (The Hero) shape his arc?</p>
-                    </div>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>Is the "underdog hero" archetype more powerful because of Naruto's flaw — or in spite of it?</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 8: THE FOIL — Contrast Makes Characters Shine
-═══════════════════════════════════════════════ -->
-<div class="slide slide-8" data-slide="8">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill">🪞 The Foil</span>
-            <span class="pill">Contrast as a Storytelling Tool</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">Why Opposites Tell Better Stories</h2>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="flex flex-col gap-3">
-                <div class="card reveal" style="background:linear-gradient(135deg,rgba(245,158,11,0.07),rgba(239,68,68,0.04));border:1px solid rgba(245,158,11,0.25);">
-                    <p class="text-xs font-black uppercase tracking-widest text-accent-3 mb-2">Naruto ↔ Sasuke (Naruto)</p>
-                    <div class="grid-cards grid-2 gap-2">
-                        <div style="background:rgba(11,99,206,0.07);border-radius:12px;padding:8px 10px;">
-                            <p class="text-xs font-black text-accent-1">Naruto</p>
-                            <p class="text-xs font-bold text-text-secondary">Loud • Emotional • Loyal • Impulsive • Driven by love</p>
-                        </div>
-                        <div style="background:rgba(239,68,68,0.07);border-radius:12px;padding:8px 10px;">
-                            <p class="text-xs font-black" style="color:#dc2626;">Sasuke</p>
-                            <p class="text-xs font-bold text-text-secondary">Quiet • Calculated • Lone wolf • Revenge-driven • Driven by pain</p>
-                        </div>
-                    </div>
-                    <p class="text-xs font-bold text-text-muted mt-2">Their contrast makes us ask: what path <em>should</em> someone take when they're in pain?</p>
-                </div>
-                <div class="card reveal" style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(139,92,246,0.04));border:1px solid rgba(16,185,129,0.25);">
-                    <p class="text-xs font-black uppercase tracking-widest text-accent-2 mb-2">Deku ↔ Bakugo (My Hero Academia)</p>
-                    <div class="grid-cards grid-2 gap-2">
-                        <div style="background:rgba(16,185,129,0.07);border-radius:12px;padding:8px 10px;">
-                            <p class="text-xs font-black text-accent-2">Deku</p>
-                            <p class="text-xs font-bold text-text-secondary">Humble • Analytical • Quirkless → receives power • Empathy-first</p>
-                        </div>
-                        <div style="background:rgba(245,158,11,0.07);border-radius:12px;padding:8px 10px;">
-                            <p class="text-xs font-black text-accent-3">Bakugo</p>
-                            <p class="text-xs font-bold text-text-secondary">Arrogant • Instinct-driven • Born with power • Pride-first</p>
-                        </div>
-                    </div>
-                    <p class="text-xs font-bold text-text-muted mt-2">Bakugo forces us to see Deku's kindness as a <em>choice</em>, not just his nature.</p>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3">
                 <div class="card reveal">
-                    <p class="text-sm font-black text-accent-1 mb-2">How Foils Work as a Technique</p>
-                    <ul class="flex flex-col gap-1">
-                        <li class="text-xs font-bold text-text-secondary">🪞 <strong>Highlight traits:</strong> A foil makes the hero's qualities stand out by showing what they're NOT like</li>
-                        <li class="text-xs font-bold text-text-secondary">❓ <strong>Raise moral questions:</strong> When two people have similar pasts but make different choices, we ask WHY</li>
-                        <li class="text-xs font-bold text-text-secondary">📈 <strong>Accelerate development:</strong> Foils push characters to grow faster through competition and conflict</li>
-                        <li class="text-xs font-bold text-text-secondary">💭 <strong>Show the "other path":</strong> A foil often represents what the hero COULD have become</li>
+                    <div class="text-2xl">🤔💭</div>
+                    <p class="font-bold">Think-pair-share:</p>
+                    <p class="text-sm text-gray-700">“What does a video game need to work?” (movement, rules, sounds, art) That’s exactly what a <strong>game engine</strong> provides!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: LEARNING TARGETS -->
+    <div class="slide" data-slide="3">
+        <div class="content">
+            <span class="pill reveal">🎯 Today's Targets</span>
+            <div class="grid-cards grid-2 mt-4">
+                <div class="card reveal">
+                    <p class="font-black text-accent-1">📖 Knowledge Goals</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 mt-2">
+                        <li>Explain what a game engine is and why developers use them.</li>
+                        <li>Compare Scratch, Unity, and Godot.</li>
+                        <li>Understand iterative design — test → fix → improve.</li>
                     </ul>
                 </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>If Naruto and Sasuke swapped backgrounds — would they swap personalities too? What does that tell us about these characters?</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 9: VIDEO — Foil Characters
-═══════════════════════════════════════════════ -->
-<div class="slide slide-9" data-slide="9">
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎬 Video Analysis</span>
-            <span class="pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.4);color:#7c3aed;">Foil Characters</span>
-        </div>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="reveal">
-                <div class="media-embed" id="player-pBU3C-C7rek" onclick="playVideo('pBU3C-C7rek')">
-                    <img src="https://img.youtube.com/vi/pBU3C-C7rek/hqdefault.jpg" alt="Does Your Manga NEED Foil Characters?">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=pBU3C-C7rek" target="_blank">▶ YouTube: Does Your Manga NEED Foil Characters?</a>
-            </div>
-            <div class="flex flex-col justify-center gap-3">
-                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">The Power of Contrast</h2>
-                <p class="text-sm font-bold text-text-secondary reveal">This video breaks down WHY foil characters work — with manga/anime examples.</p>
-                <div class="flex flex-col gap-2 reveal">
-                    <div class="card" style="padding:10px 14px;border-left:3px solid #8b5cf6;">
-                        <p class="text-xs font-bold text-text-secondary">🔍 Identify one foil pair from the video. How do their differences <em>reveal</em> the main character's values?</p>
-                    </div>
-                    <div class="card" style="padding:10px 14px;border-left:3px solid #10b981;">
-                        <p class="text-xs font-bold text-text-secondary">🔍 Can a foil also be a <em>friend</em>? Or does a foil have to be an enemy?</p>
-                    </div>
-                    <div class="card" style="padding:10px 14px;border-left:3px solid #f59e0b;">
-                        <p class="text-xs font-bold text-text-secondary">🔍 Think of a foil pair from your own favorite anime. What do their differences tell us?</p>
-                    </div>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>Is a story MORE interesting when the foil is someone the hero actually cares about? Why might that be?</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 10: VILLAIN ARCHETYPES
-═══════════════════════════════════════════════ -->
-<div class="slide slide-10" data-slide="10">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#fee2e2;border-color:#ef4444;color:#991b1b;">😈 Antagonists</span>
-            <span class="pill">Video Analysis</span>
-        </div>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="flex flex-col gap-3">
-                <h2 class="font-display text-[1.6rem] font-bold text-accent-1 reveal">What Makes a Villain Memorable?</h2>
-                <div class="card reveal" style="border-left:4px solid #ef4444;">
-                    <p class="text-sm font-bold text-text-secondary">The best antagonists don't just fight the hero physically — they challenge the hero's values and force them to CHOOSE who they are.</p>
-                </div>
-                <div class="flex flex-col gap-2 reveal">
-                    <div class="card" style="padding:10px 14px;">
-                        <p class="text-xs font-black" style="color:#dc2626;">The Mirror Villain</p>
-                        <p class="text-xs font-bold text-text-secondary">Same background as the hero, different choices. (Obito mirrors Naruto; both were lonely kids.)</p>
-                    </div>
-                    <div class="card" style="padding:10px 14px;">
-                        <p class="text-xs font-black" style="color:#7c3aed;">The Ideological Villain</p>
-                        <p class="text-xs font-bold text-text-secondary">Wrong methods, understandable goal. (Thanos logic applied to anime — Shigaraki wants to destroy a broken system)</p>
-                    </div>
-                    <div class="card" style="padding:10px 14px;">
-                        <p class="text-xs font-black" style="color:#0b63ce;">The Embodiment of Fear</p>
-                        <p class="text-xs font-bold text-text-secondary">Represents the hero's deepest fear about themselves. (All For One represents power without responsibility)</p>
-                    </div>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>Can you feel sorry for a villain AND still think they're wrong? What does that say about moral complexity in storytelling?</span>
-                </div>
-            </div>
-            <div class="reveal">
-                <div class="media-embed" id="player-5EU-PXJtAts" onclick="playVideo('5EU-PXJtAts')">
-                    <img src="https://img.youtube.com/vi/5EU-PXJtAts/hqdefault.jpg" alt="Every Anime Antagonist Archetype Explained">
-                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=5EU-PXJtAts" target="_blank">▶ YouTube: Every Anime Antagonist Archetype Explained in 5 Minutes</a>
-                <div class="card mt-3" style="padding:10px 14px;border-left:3px solid #ef4444;">
-                    <p class="text-xs font-bold text-text-secondary">📝 After watching: Pick one villain archetype from the video. Name a real anime villain that fits it and explain why they're memorable.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 11: CULTURAL SIGNIFICANCE
-═══════════════════════════════════════════════ -->
-<div class="slide slide-11" data-slide="11">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill">🇯🇵 Cultural Context</span>
-            <span class="pill">Japanese Values in Anime Characters</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">Archetypes Rooted in Japanese Culture</h2>
-        <div class="grid-cards grid-3 gap-4 mb-4">
-            <div class="card reveal" style="border-top:4px solid #0b63ce;">
-                <div class="text-2xl mb-1">🥋</div>
-                <p class="text-sm font-black text-accent-1">Ganbaru (頑張る)</p>
-                <p class="text-xs font-bold text-text-secondary mt-1">The spirit of perseverance and giving 100%. Nearly every shonen hero embodies this — Naruto, Rock Lee, Hinata.</p>
-                <p class="text-xs font-bold mt-2 text-text-muted italic">"Hard work beats talent when talent doesn't work hard."</p>
-            </div>
-            <div class="card reveal" style="border-top:4px solid #10b981;">
-                <div class="text-2xl mb-1">🤝</div>
-                <p class="text-sm font-black text-accent-2">Nakama (仲間)</p>
-                <p class="text-xs font-bold text-text-secondary mt-1">Bonds of friendship and found-family are central to most anime. The "lone wolf" archetype is often challenged by this value.</p>
-                <p class="text-xs font-bold mt-2 text-text-muted italic">Why does Naruto always fight for his friends first?</p>
-            </div>
-            <div class="card reveal" style="border-top:4px solid #f59e0b;">
-                <div class="text-2xl mb-1">⚖️</div>
-                <p class="text-sm font-black text-accent-3">Giri (義理)</p>
-                <p class="text-xs font-bold text-text-secondary mt-1">Duty and obligation — often the source of internal conflict for mentors and rivals. Characters torn between personal desire and duty.</p>
-                <p class="text-xs font-bold mt-2 text-text-muted italic">All Might's struggle between being a hero and protecting Deku.</p>
-            </div>
-        </div>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="card reveal" style="border-top:4px solid #8b5cf6;">
-                <div class="text-2xl mb-1">🌸</div>
-                <p class="text-sm font-black" style="color:#7c3aed;">Mono no Aware (物の哀れ)</p>
-                <p class="text-xs font-bold text-text-secondary mt-1">"Pathos of things" — the beauty of impermanence. Why tragic arcs hit so hard in anime. Loss makes growth meaningful.</p>
-            </div>
-            <div class="question-chip reveal" style="align-self:center;flex-direction:column;align-items:flex-start;gap:6px;padding:14px;">
-                <div class="flex gap-2 items-center">
-                    <span class="icon">?</span>
-                    <span>Are these values (ganbaru, nakama) specific to Japanese culture — or do you see them in stories from YOUR background too?</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 12: SKETCH ACTIVITY
-═══════════════════════════════════════════════ -->
-<div class="slide slide-12" data-slide="12">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Creative Activity — 15 min</span>
-            <span class="pill">Art + Analysis</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-3 reveal">Sketch Your Character Analysis</h2>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="flex flex-col gap-3">
-                <div class="card reveal" style="border-left:4px solid #0b63ce;">
-                    <p class="text-sm font-bold text-accent-1 mb-2">Step 1: Choose &amp; Sketch</p>
-                    <p class="text-xs font-bold text-text-secondary">Pick any anime character. Sketch them in your sketchbook using colored markers. Focus on <em>details that show their archetype</em> — their expression, pose, clothing, weapon, or symbol.</p>
-                </div>
-                <div class="card reveal" style="border-left:4px solid #10b981;">
-                    <p class="text-sm font-bold text-accent-2 mb-2">Step 2: Label the Traits</p>
-                    <p class="text-xs font-bold text-text-secondary">Around your sketch, write labels that connect to archetypes:</p>
-                    <ul class="text-xs font-bold text-text-secondary mt-1 flex flex-col gap-1">
-                        <li>• Their archetype (hero, mentor, rival, trickster…)</li>
-                        <li>• 3 personality traits that define them</li>
-                        <li>• One way they <em>changed</em> during the series</li>
-                        <li>• Their foil character (if they have one)</li>
+                <div class="card reveal">
+                    <p class="font-black text-accent-2">🛠️ Skill Goals</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 mt-2">
+                        <li>Create a simple sprite movement game in Scratch.</li>
+                        <li>Give feedback to classmates using “I like… I wonder…”</li>
+                        <li>Choose the right engine for different game ideas.</li>
                     </ul>
                 </div>
-                <div class="card reveal" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-2">Step 3: Write Your Arc</p>
-                    <p class="text-xs font-bold text-text-secondary">In 2–3 sentences, describe their character arc: where did they START, what CHANGED them, and where do they END UP?</p>
+            </div>
+            <div class="card bg-white/80 mt-4 reveal">
+                <p class="font-bold">📦 Materials we use:</p>
+                <div class="flex flex-wrap gap-2 mt-2 text-sm">
+                    <span class="bg-gray-100 px-3 py-1 rounded-full">💻 Laptops</span>
+                    <span class="bg-gray-100 px-3 py-1 rounded-full">🐱 Scratch (scratch.mit.edu)</span>
+                    <span class="bg-gray-100 px-3 py-1 rounded-full">📓 Paper & pencils</span>
                 </div>
             </div>
-            <div class="flex flex-col gap-3 justify-between">
-                <div class="card reveal" style="background:rgba(11,99,206,0.04);border-color:rgba(11,99,206,0.2);">
-                    <p class="text-sm font-black text-accent-1 mb-2">💡 Character Ideas (if you need one!)</p>
-                    <div class="grid-cards grid-2 gap-2">
-                        <div class="flex flex-col gap-1">
-                            <span class="technique-badge" style="background:rgba(11,99,206,0.08);color:#1e3a8a;">Tanjiro Kamado</span>
-                            <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;">Chihiro (Spirited Away)</span>
-                            <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;">Rock Lee</span>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <span class="technique-badge" style="background:rgba(139,92,246,0.08);color:#4c1d95;">Hinata Shoyo</span>
-                            <span class="technique-badge" style="background:rgba(239,68,68,0.08);color:#991b1b;">Sasuke Uchiha</span>
-                            <span class="technique-badge" style="background:rgba(236,72,153,0.08);color:#9d174d;">San (Mononoke)</span>
-                        </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: VOCABULARY -->
+    <div class="slide" data-slide="4">
+        <div class="content">
+            <span class="pill reveal">🔑 Key Vocabulary</span>
+            <div class="grid-cards grid-3 mt-5">
+                <div class="card reveal"><span class="vocab-tag">🎮 Game Engine</span><p class="text-sm">Software that helps build games — handles graphics, physics, sound.</p></div>
+                <div class="card reveal"><span class="vocab-tag">🐱 Scratch</span><p class="text-sm">Drag‑and‑drop coding, perfect for beginners and storytelling.</p></div>
+                <div class="card reveal"><span class="vocab-tag">⚡ Unity</span><p class="text-sm">Professional engine used for 2D/3D games (Among Us, Cuphead).</p></div>
+                <div class="card reveal"><span class="vocab-tag">🕹️ Godot</span><p class="text-sm">Open-source, free, and great for small teams & learning.</p></div>
+                <div class="card reveal"><span class="vocab-tag">🔄 Iterative Design</span><p class="text-sm">Make → test → get feedback → improve again! 🔁</p></div>
+                <div class="card reveal"><span class="vocab-tag">🧩 Sprite</span><p class="text-sm">Any object in a game: character, enemy, power-up.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: WHAT IS A GAME ENGINE? -->
+    <div class="slide" data-slide="5">
+        <div class="content">
+            <span class="pill reveal">🤖 What is a game engine?</span>
+            <h2 class="font-display text-3xl font-bold mt-2 reveal">It's like the engine in a car 🚗</h2>
+            <div class="grid-cards grid-2 mt-5">
+                <div class="card reveal"><p class="text-sm">A <strong>game engine</strong> is the hidden brain that makes games run. It handles:</p><ul class="list-disc pl-5 text-sm mt-2"><li>Moving characters</li><li>Detecting collisions</li><li>Playing sounds & music</li><li>Displaying art</li></ul></div>
+                <div class="card bg-gradient-to-br from-blue-50 to-green-50 reveal"><img src="https://cdn-icons-png.flaticon.com/512/1995/1995572.png" alt="game engine concept" class="w-28 mx-auto my-2"><p class="text-center text-xs text-gray-500">Without engine → you'd have to code everything from scratch!</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: VIDEO 1 — Game Engine Explained (fixed working video) -->
+    <div class="slide" data-slide="6">
+        <div class="content">
+            <span class="pill reveal">🎬 VIDEO · Game Engines Explained</span>
+            <h2 class="font-display text-2xl font-bold mt-2 reveal">Watch: Every Game Engine Explained (4 min)</h2>
+            <div class="grid-cards grid-2 mt-4">
+                <div class="card reveal p-2">
+                    <div class="video-wrapper" id="vwrap-gameengine">
+                        <img class="video-thumb" src="https://img.youtube.com/vi/trNFsFq21Uw/hqdefault.jpg" alt="Every Game Engine Explained In 4 Minutes">
+                        <button class="video-play-btn" data-videoid="trNFsFq21Uw" data-wrapid="vwrap-gameengine" aria-label="Play video">
+                            <div class="play-circle">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                            </div>
+                        </button>
                     </div>
+                    <a href="https://www.youtube.com/watch?v=trNFsFq21Uw" target="_blank" rel="noopener noreferrer" class="video-source">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ef4444"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.2 2.8 12 2.8 12 2.8s-4.2 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2.1.3 4.2.3 4.2s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.5 12 21.5 12 21.5s4.2 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.2v-2C23.3 9.1 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
+                        📺 "Every Game Engine Explained In 4 Minutes" — open in YouTube
+                    </a>
                 </div>
-                <div class="card reveal" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.25);">
-                    <p class="text-sm font-black text-accent-2 mb-1">🎯 Connecting to YOUR Story</p>
-                    <p class="text-xs font-bold text-text-secondary">Remember: by the end of this course, you'll create your <em>own</em> anime character. Which archetype do you want your character to embody — and why?</p>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span>What does your choice of character to sketch say about the kind of story <em>you</em> want to tell?</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 13: SHARE + DISCUSSION
-═══════════════════════════════════════════════ -->
-<div class="slide slide-13" data-slide="13">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🤝 Gallery Share</span>
-            <span class="pill">Peer Discussion</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Share Your Sketch &amp; Analysis</h2>
-        <div class="grid-cards grid-3 gap-4 mb-4">
-            <div class="card reveal" style="border-top:3px solid #0b63ce;">
-                <p class="text-sm font-bold text-accent-1 mb-1">👁️ Step 1: Show</p>
-                <p class="text-xs font-bold text-text-secondary">Display your sketch. Give your partner 45 seconds to look — <em>in silence</em> — before you explain anything.</p>
-            </div>
-            <div class="card reveal" style="border-top:3px solid #10b981;">
-                <p class="text-sm font-bold text-accent-2 mb-1">💬 Step 2: Name the Archetype</p>
-                <p class="text-xs font-bold text-text-secondary">Point to a specific feature in the sketch: <em>"This character's expression shows they are a [archetype] because…"</em></p>
-            </div>
-            <div class="card reveal" style="border-top:3px solid #f59e0b;">
-                <p class="text-sm font-bold text-accent-3 mb-1">❓ Step 3: Ask a Question</p>
-                <p class="text-xs font-bold text-text-secondary">Ask your partner one genuine question about their character's arc or foil. Make it specific — not just "Why did you pick this character?"</p>
-            </div>
-        </div>
-        <div class="card reveal mb-3">
-            <p class="text-sm font-bold text-text mb-2">Discussion Sentence Starters:</p>
-            <div class="flex flex-wrap gap-2">
-                <span class="technique-badge" style="background:rgba(11,99,206,0.08);color:#1e3a8a;font-size:0.72rem;">"The archetype I see is ___ because…"</span>
-                <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;font-size:0.72rem;">"Their foil would be ___ because…"</span>
-                <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;font-size:0.72rem;">"This character's arc changed when…"</span>
-                <span class="technique-badge" style="background:rgba(139,92,246,0.08);color:#4c1d95;font-size:0.72rem;">"What would happen if this character had…"</span>
-            </div>
-        </div>
-        <div class="question-chip reveal">
-            <span class="icon">?</span>
-            <span>After hearing your partner's analysis — did they notice something about the character YOU missed? What does that reveal about how different readers connect with the same story?</span>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     SLIDE 14: EXIT TICKET
-═══════════════════════════════════════════════ -->
-<div class="slide slide-14" data-slide="14">
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-4">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">🎯 Exit Ticket — Before You Leave</span>
-            <span class="pill">3 min · Write in Notebook</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-bold text-accent-1 mb-4 reveal">Show What You Know</h2>
-        <div class="grid-cards grid-2 gap-5">
-            <div class="flex flex-col gap-3">
-                <div class="card reveal" style="border-left:4px solid #0b63ce;">
-                    <p class="text-sm font-bold text-accent-1 mb-1">✍️ Question 1</p>
-                    <p class="text-sm font-bold text-text-secondary">Name <strong>one character archetype</strong> you learned about today. Write the vocabulary word, its definition in YOUR own words, and a character example.</p>
-                    <div class="exit-line mt-3"></div>
-                    <div class="exit-line"></div>
-                </div>
-                <div class="card reveal" style="border-left:4px solid #10b981;">
-                    <p class="text-sm font-bold text-accent-2 mb-1">✍️ Question 2</p>
-                    <p class="text-sm font-bold text-text-secondary">Choose an anime character and describe their <em>character arc</em>. Was it a positive, negative, or flat arc? Use specific evidence from the series.</p>
-                    <div class="exit-line mt-3"></div>
-                    <div class="exit-line"></div>
-                    <div class="exit-line"></div>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="card reveal" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-1">✍️ Question 3 (Course Connect)</p>
-                    <p class="text-sm font-bold text-text-secondary">Which archetype will your <em>own</em> anime character (the one you'll create by end of term) use? What flaw will they need to overcome?</p>
-                    <div class="exit-line mt-3"></div>
-                    <div class="exit-line"></div>
-                    <div class="exit-line"></div>
-                </div>
-                <div class="card reveal" style="background:rgba(16,185,129,0.06);border-color:rgba(16,185,129,0.3);">
-                    <p class="text-sm font-bold" style="color:#065f46;">🏠 Out-of-Class Extension</p>
-                    <p class="text-xs font-bold text-text-secondary mt-1">Watch a new anime episode you've never seen. Identify <strong>at least 2 character archetypes</strong> present in that episode. For each, write: (1) the archetype name, (2) 2 traits that prove it, and (3) how that character contributes to the story. Use MyAnimeList to research the series. Bring your notes next class!</p>
+                <div class="card reveal">
+                    <p class="font-bold">🔍 While watching, notice:</p>
+                    <ul class="list-disc pl-4 text-sm mt-2 space-y-1">
+                        <li>What do game engines do for developers?</li>
+                        <li>What makes each engine different (Scratch, Unity, Godot)?</li>
+                    </ul>
+                    <div class="bg-yellow-50 p-3 rounded-xl mt-3">💬 Discussion after: “How is using an engine faster than building from zero?”</div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- SLIDE 7: Meet Scratch -->
+    <div class="slide" data-slide="7">
+        <div class="content">
+            <span class="pill reveal">🐱 Meet Scratch</span>
+            <div class="grid-cards grid-2 mt-4">
+                <div class="card reveal"><img src="https://cdn.simpleicons.org/scratch/4D97FF" class="h-16 mb-2" alt="Scratch logo" style="background:#fff;padding:4px;border-radius:8px;"><p class="text-sm">Drag-and-drop coding blocks. Made by MIT. Ideal for ages 8–16. Create stories, animations, games without typing code!</p></div>
+                <div class="card reveal" style="background:linear-gradient(135deg,#e8f4ff,#f0fff8);">
+                    <p class="font-bold text-sm text-blue-700 mb-2">🖥️ Scratch Editor has 3 parts:</p>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <div style="background:#4D97FF;color:white;border-radius:8px;padding:6px 10px;font-size:0.75rem;font-weight:700;">🧩 Block Palette — drag code blocks</div>
+                        <div style="background:#9966FF;color:white;border-radius:8px;padding:6px 10px;font-size:0.75rem;font-weight:700;">🐱 Sprite Area — your characters</div>
+                        <div style="background:#5CB1D6;color:white;border-radius:8px;padding:6px 10px;font-size:0.75rem;font-weight:700;">🎬 Stage — where the game plays</div>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-2">Try it free at scratch.mit.edu →</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: Unity -->
+    <div class="slide" data-slide="8">
+        <div class="content">
+            <span class="pill reveal">⚡ Unity · Real power</span>
+            <div class="grid-cards grid-2 mt-4">
+                <div class="card reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" class="h-14 mb-2" alt="Unity logo"><p class="text-sm">Used by professionals! Games like <strong>Among Us, Cuphead, Hollow Knight</strong>. Supports 2D, 3D, VR. You write C# code.</p></div>
+                <div class="card reveal" style="background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;">
+                    <p class="font-bold text-sm mb-2" style="color:#fff;">⚡ Built with Unity:</p>
+                    <div style="display:flex;flex-direction:column;gap:5px;">
+                        <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:5px 10px;font-size:0.75rem;">🎮 Among Us · Cuphead · Hollow Knight</div>
+                        <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:5px 10px;font-size:0.75rem;">🎥 Used in The Mandalorian virtual sets</div>
+                        <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:5px 10px;font-size:0.75rem;">🚗 Waymo self-driving car simulations</div>
+                    </div>
+                    <p class="text-xs mt-2" style="color:rgba(255,255,255,0.6);">Unity isn't just for games!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: Godot -->
+    <div class="slide" data-slide="9">
+        <div class="content">
+            <span class="pill reveal">🕹️ Godot · Free & open source</span>
+            <div class="grid-cards grid-2 mt-4">
+                <div class="card reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg" class="h-14 mb-2" alt="Godot"><p class="text-sm">Totally free! Lightweight, great for 2D games. Uses its own scripting language (GDscript) similar to Python. Growing community.</p></div>
+                <div class="card reveal"><div class="bg-gray-100 rounded p-2 text-center">🎨 Games like "Celeste" (prototype), "Brotato" made with Godot! Perfect for learning game dev without costs.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: VIDEO 2 — Scratch Basics (fixed working video) -->
+    <div class="slide" data-slide="10">
+        <div class="content">
+            <span class="pill reveal">🎬 Video · Make a Game in Scratch: Beginners</span>
+            <div class="grid-cards grid-2 mt-4">
+                <div class="card reveal p-2">
+                    <div class="video-wrapper" id="vwrap-scratchbasics">
+                        <img class="video-thumb" src="https://img.youtube.com/vi/MN1YqD_FxPc/hqdefault.jpg" alt="Make a Game in Scratch — Tutorial for Beginners">
+                        <button class="video-play-btn" data-videoid="MN1YqD_FxPc" data-wrapid="vwrap-scratchbasics" aria-label="Play video">
+                            <div class="play-circle">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                            </div>
+                        </button>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=MN1YqD_FxPc" target="_blank" rel="noopener noreferrer" class="video-source">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ef4444"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.2 2.8 12 2.8 12 2.8s-4.2 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2.1.3 4.2.3 4.2s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.5 12 21.5 12 21.5s4.2 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.2v-2C23.3 9.1 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
+                        📺 "Make a Game in Scratch — Tutorial for Beginners" — open in YouTube
+                    </a>
+                </div>
+                <div class="card reveal">
+                    <p class="font-bold">📝 Watch for these key steps:</p>
+                    <ul class="list-disc pl-4 text-sm space-y-1 mt-2"><li>How to add a sprite</li><li>Make it move with arrow keys</li><li>What is the “when green flag clicked” block?</li></ul>
+                    <div class="bg-green-50 p-2 rounded mt-3">💬 “We’ll build a simple game after this!”</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: Comparison -->
+    <div class="slide" data-slide="11">
+        <div class="content">
+            <span class="pill reveal">⚖️ Compare: Scratch vs Unity vs Godot</span>
+            <div class="grid-cards grid-3 mt-4">
+                <div class="card"><div class="font-black text-blue-600">🐱 Scratch</div><p class="text-xs mt-1">✅ No install, block coding, instant sharing. Great for beginners & school projects.</p></div>
+                <div class="card"><div class="font-black text-amber-700">⚡ Unity</div><p class="text-xs mt-1">✅ Professional 2D/3D, huge asset store. Needs coding (C#). Ideal bigger games.</p></div>
+                <div class="card"><div class="font-black text-purple-700">🕹️ Godot</div><p class="text-xs mt-1">✅ Fully free, lightweight, friendly scripting. Perfect for 2D & learning real engine logic.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: Hands-on Activity -->
+    <div class="slide" data-slide="12">
+        <div class="content">
+            <span class="pill reveal">💻 Let's build! Simple Scratch Game</span>
+            <div class="timeline mt-4">
+                <div class="timeline-step"><div class="timeline-dot"></div><p class="font-bold">Step 1</p><p class="text-sm">Open scratch.mit.edu → Create → Choose a sprite (cat or any character).</p></div>
+                <div class="timeline-step"><div class="timeline-dot"></div><p class="font-bold">Step 2</p><p class="text-sm">Add “when green flag clicked” + “forever” + “if key (right arrow) pressed, change x by 10”.</p></div>
+                <div class="timeline-step"><div class="timeline-dot"></div><p class="font-bold">Step 3</p><p class="text-sm">Add another sprite as a “treasure”. Add point system: “if touching treasure, change score by 1”.</p></div>
+                <div class="timeline-step"><div class="timeline-dot"></div><p class="font-bold">Step 4</p><p class="text-sm">Test! Does it work? Iterate: adjust speed, add sounds, or walls.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: Iterative Design -->
+    <div class="slide" data-slide="13">
+        <div class="content">
+            <span class="pill reveal">🔄 Iterative Design · test · improve</span>
+            <div class="grid-cards grid-2 mt-5">
+                <div class="card reveal"><div class="text-3xl">🔁</div><p><strong>Prototype → Playtest → Feedback → Refine</strong></p><p class="text-sm mt-2">Game designers never finish at the first try! The <em>best games</em> are improved again and again.</p></div>
+                <div class="card reveal bg-orange-50"><p class="font-bold">✏️ Peer Review sentence starters:</p><p class="text-sm mt-1">“I like how your character moves because…” “I wonder if you could add…” “One suggestion is…”</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: Quick Check -->
+    <div class="slide" data-slide="14">
+        <div class="content">
+            <span class="pill reveal">📝 Quick Check · Think & Answer</span>
+            <div class="grid-cards grid-2 mt-5 gap-4">
+                <div class="card"><p class="font-black">1️⃣</p><p>Which game engine would you use to make a huge 3D open world? Why?</p><div class="bg-gray-100 p-2 mt-2 text-xs">🟢 Unity is powerful for 3D.</div></div>
+                <div class="card"><p class="font-black">2️⃣</p><p>What does “iterative design” mean in your own words?</p></div>
+                <div class="card"><p class="font-black">3️⃣</p><p>Why is Scratch great for a beginner game designer?</p></div>
+                <div class="card"><p class="font-black">4️⃣</p><p>Name one thing all game engines share (movement, collision, graphics).</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: Exit Ticket -->
+    <div class="slide" data-slide="15">
+        <div class="content">
+            <span class="pill reveal">🎫 Exit Ticket</span>
+            <div class="card mt-4 reveal">
+                <p class="text-lg font-bold">On a sticky note (or journal):</p>
+                <p class="mt-2">⭐ <strong>One thing I learned about game engines</strong> that I didn’t know before.</p>
+                <p class="mt-2">❓ <strong>One question I still have</strong> about making games.</p>
+                <div class="mt-4 border-t pt-3 text-sm text-gray-600">🌟 Bonus: Share one game you would love to create using Scratch or Unity.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 16: Out-of-class extension -->
+    <div class="slide" data-slide="16">
+        <div class="content">
+            <span class="pill reveal">🏠 Out-of-class Learning</span>
+            <div class="grid-cards grid-2 mt-5">
+                <div class="card reveal"><div class="text-2xl">🎮 Explore Scratch at home</div><p>Try adding new sprites, sounds, or make a platformer. Share with family! <a href="https://scratch.mit.edu" target="_blank" class="text-blue-600 underline">scratch.mit.edu</a></p></div>
+                <div class="card reveal"><div class="text-2xl">📚 Unity Learn Junior</div><p>Ask a parent to explore free “Unity Learn” tutorials for kids. <br> Or Godot’s “Dodge the Creeps” tutorial.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 17: Real-world connections -->
+    <div class="slide" data-slide="17">
+        <div class="content">
+            <span class="pill reveal">🌟 Real-World AI & Games</span>
+            <div class="card reveal"><p>Game engines are used not just for fun — they train self-driving cars (Unity simulation), help architects design buildings, and even used in filmmaking! The same iterative design helps AI learn to play games too.</p><div class="flex gap-2 mt-3"><span class="bg-blue-100 px-3 py-1 rounded-full">🎥 Mandalorian virtual sets</span><span class="bg-green-100 px-3 py-1 rounded-full">🚗 Waymo simulator</span></div></div>
+        </div>
+    </div>
+
+    <!-- SLIDE 18: Closing -->
+    <div class="slide" data-slide="18">
+        <div class="content text-center">
+            <div class="text-7xl mb-2">🏁🎉</div>
+            <h2 class="font-display text-4xl font-bold grad-text">You're a game designer now!</h2>
+            <p class="text-lg mt-3">Today you learned the tools, vocabulary, and process behind every video game.</p>
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+                <div class="bg-white rounded-2xl p-3 w-32 shadow">🐱 Scratch</div>
+                <div class="bg-white rounded-2xl p-3 w-32 shadow">⚡ Unity</div>
+                <div class="bg-white rounded-2xl p-3 w-32 shadow">🕹️ Godot</div>
+            </div>
+            <footer class="mt-8 text-sm text-gray-500">📧 hue.weng.88@gmail.com · 🌐 hue881.github.io · 🧑‍🏫 Ms. Hsiao</footer>
+        </div>
+    </div>
 </div>
 
-</div><!-- end .deck -->
-
-<!-- NAVIGATION -->
 <div class="nav-controls">
-    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+    <button class="nav-btn" onclick="changeSlide(-1)">◀</button>
     <div class="slide-dots" id="dots"></div>
-    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
-    <span class="slide-counter" id="counter">1 / 14</span>
+    <button class="nav-btn" onclick="changeSlide(1)">▶</button>
+    <span class="slide-counter" id="counter">1 / 18</span>
 </div>
 
 <script>
-    let current = 1;
-    const total = document.querySelectorAll('.slide').length;
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 1;
+    const total = slides.length;
     const dotsContainer = document.getElementById('dots');
-    const counter = document.getElementById('counter');
+    const counterSpan = document.getElementById('counter');
+
     for (let i = 1; i <= total; i++) {
         const dot = document.createElement('div');
-        dot.className = 'dot' + (i === 1 ? ' active' : '');
-        dot.onclick = () => goToSlide(i);
+        dot.classList.add('dot');
+        if (i === 1) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
         dotsContainer.appendChild(dot);
     }
-    function goToSlide(n) {
-        document.querySelector('.slide.active')?.classList.remove('active');
-        const next = document.querySelector(`.slide[data-slide="${n}"]`);
-        if (next) { next.classList.add('active'); animateSlide(next); }
-        current = n; updateNav();
-    }
-    function changeSlide(dir) { let n = current + dir; if (n < 1) n = total; if (n > total) n = 1; goToSlide(n); }
-    function updateNav() {
-        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === current));
-        counter.textContent = current + ' / ' + total;
-    }
-    document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); } });
-    let touchStartX = 0;
-    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-    document.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
 
-    function animateSlide(slide) {
-        slide.querySelectorAll('.reveal').forEach((el, i) => {
+    function goToSlide(n) {
+        if (n < 1) n = total;
+        if (n > total) n = 1;
+        document.querySelector('.slide.active')?.classList.remove('active');
+        const nextSlide = document.querySelector(`.slide[data-slide="${n}"]`);
+        if (nextSlide) {
+            nextSlide.classList.add('active');
+            animateSlideReveal(nextSlide);
+        }
+        currentSlide = n;
+        updateDotsAndCounter();
+    }
+
+    function changeSlide(delta) {
+        goToSlide(currentSlide + delta);
+    }
+
+    function updateDotsAndCounter() {
+        document.querySelectorAll('.dot').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx + 1 === currentSlide);
+        });
+        counterSpan.innerText = `${currentSlide} / ${total}`;
+    }
+
+    function animateSlideReveal(slideEl) {
+        const revealElements = slideEl.querySelectorAll('.reveal');
+        revealElements.forEach((el, idx) => {
             el.style.transition = 'none';
             el.style.opacity = '0';
-            el.style.transform = 'translateY(18px)';
+            el.style.transform = 'translateY(16px)';
             el.offsetHeight;
-            const delay = i * 0.07;
+            const delay = idx * 0.05;
             el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
         });
     }
 
-    function playVideo(id) {
-        const container = document.getElementById('player-' + id);
-        container.style.cursor = 'default';
-        container.onclick = null;
-        container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" title="Video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>';
-    }
-
-    document.addEventListener('mousemove', e => {
-        const spotlight = document.querySelector('.mouse-spotlight');
-        if (spotlight) spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.05), transparent 40%)`;
+    // Video player: event delegation on document catches all .video-play-btn clicks
+    // regardless of opacity/transform state from .reveal animations
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.video-play-btn');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const videoId = btn.dataset.videoid;
+        const wrapId  = btn.dataset.wrapid;
+        const wrapper = document.getElementById(wrapId);
+        if (!wrapper || !videoId) return;
+        // Remove thumbnail and play button, inject iframe
+        wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>';
     });
 
-    animateSlide(document.querySelector('.slide.active'));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); changeSlide(1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+    });
+
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) changeSlide(diff > 0 ? 1 : -1);
+    });
+
+    animateSlideReveal(document.querySelector('.slide.active'));
+    updateDotsAndCounter();
 </script>
 </body>
 </html>
