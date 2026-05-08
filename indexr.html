@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Managing Competition Stress & Sportsmanship | Rocket League | Grades 6–12</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-bg: #f4fbfe;
+            --color-surface: rgba(255,255,255,0.96);
+            --color-accent-1: #0b63ce;
+            --color-accent-2: #10b981;
+            --color-accent-3: #f59e0b;
+            --color-danger: #ef4444;
+            --font-display: "Fredoka", system-ui, sans-serif;
+            --font-body: "Nunito", system-ui, sans-serif;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            background: #f4fbfe;
+            font-family: "Nunito", system-ui, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        .deck {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(11, 99, 206, 0.08), transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08), transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.04), transparent 60%),
+                #f4fbfe;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        .content {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .nav-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 8px 20px;
+            border-radius: 60px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+        }
+        .nav-btn {
+            background: rgba(15, 23, 42, 0.05);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #0b63ce;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover {
+            background: rgba(11, 99, 206, 0.15);
+            transform: scale(1.02);
+        }
+        .slide-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .dot {
+            width: 9px;
+            height: 9px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .dot.active {
+            background: #0b63ce;
+            transform: scale(1.4);
+        }
+        .slide-counter {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            min-width: 50px;
+            text-align: center;
+        }
+        .pill {
+            display: inline-flex;
+            background: white;
+            border-radius: 40px;
+            padding: 4px 14px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid rgba(11, 99, 206, 0.3);
+            color: #0b63ce;
+        }
+        .pill-orange {
+            display: inline-flex;
+            background: white;
+            border-radius: 40px;
+            padding: 4px 14px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            color: #d97706;
+        }
+        .pill-green {
+            display: inline-flex;
+            background: white;
+            border-radius: 40px;
+            padding: 4px 14px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: #059669;
+        }
+        .card {
+            background: var(--color-surface);
+            border-radius: 24px;
+            padding: 1rem 1.3rem;
+            box-shadow: 0 10px 22px -8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(2px);
+        }
+        .card-accent {
+            background: var(--color-surface);
+            border-radius: 24px;
+            padding: 1rem 1.3rem;
+            box-shadow: 0 10px 22px -8px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(11, 99, 206, 0.25);
+            backdrop-filter: blur(2px);
+            border-left: 5px solid #0b63ce;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .slide.active .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .grid-cards {
+            display: grid;
+            gap: 1.2rem;
+        }
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        }
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%;
+            background: #0f172a;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .video-wrapper img.video-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 14px;
+        }
+        .video-play-btn {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: 14px;
+            width: 100%;
+            padding: 0;
+        }
+        .video-play-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .video-play-btn:hover .play-circle {
+            transform: scale(1.1);
+            background: #dc2626;
+        }
+        .play-circle {
+            background: #ef4444;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+        .video-source {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #0b63ce;
+            text-decoration: none;
+            justify-content: center;
+        }
+        .video-source:hover {
+            text-decoration: underline;
+        }
+        .vocab-tag {
+            display: inline-block;
+            background: rgba(11, 99, 206, 0.1);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            color: #0b63ce;
+            margin-bottom: 6px;
+        }
+        .grad-text {
+            background: linear-gradient(135deg, #0b63ce, #10b981, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .question-box {
+            background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+            border-radius: 16px;
+            padding: 1rem 1.3rem;
+            border: 2px dashed rgba(11, 99, 206, 0.3);
+            margin-top: 0.8rem;
+        }
+        .question-box strong {
+            color: #0b63ce;
+        }
+        .rl-orange {
+            color: #f59e0b;
+        }
+        .rl-blue {
+            color: #0b63ce;
+        }
+        .breathing-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(#0b63ce 0deg 90deg, #10b981 90deg 180deg, #f59e0b 180deg 270deg, #0b63ce 270deg 360deg);
+            animation: breatheSpin 8s ease-in-out infinite;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .breathing-circle-inner {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            animation: breathePulse 8s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.7rem;
+            color: #0b63ce;
+            text-align: center;
+        }
+        @keyframes breathePulse {
+            0%,
+            25% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.35);
+            }
+            75%,
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes breatheSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .highlight-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #0b63ce;
+            line-height: 1;
+        }
+        footer {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 1rem;
+            opacity: 0.7;
+        }
+        @media (max-width: 700px) {
+            .content {
+                padding: 0.8rem;
+            }
+            .card {
+                padding: 0.8rem;
+            }
+            .breathing-circle {
+                width: 70px;
+                height: 70px;
+            }
+            .breathing-circle-inner {
+                width: 48px;
+                height: 48px;
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="deck">
+
+        <!-- SLIDE 1: TITLE -->
+        <div class="slide active" data-slide="1">
+            <div class="content text-center">
+                <div class="reveal text-7xl mb-3">🚗⚽🔥</div>
+                <h1 class="font-display grad-text text-4xl md:text-5xl font-bold reveal">Managing Competition Stress</h1>
+                <p class="text-2xl font-semibold text-gray-600 reveal mt-2">Maintaining Sportsmanship in Rocket League</p>
+                <div class="flex flex-wrap justify-center gap-3 mt-6 reveal">
+                    <span class="pill">🧑‍🏫 Lesson 9</span>
+                    <span class="pill-orange">🎯 6th–12th Grade</span>
+                    <span class="pill-green">🤝 Sportsmanship & Mindset</span>
+                </div>
+                <div class="mt-8 text-gray-500 reveal text-sm">💡 <strong>Competitive greatness</strong> isn't just about mechanics — it's about mastering your mind and respecting the game.</div>
+                <div class="mt-3 reveal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Rocket_League_coverart.jpg/220px-Rocket_League_coverart.jpg"
+                    alt="Rocket League cover art"
+                    class="mx-auto rounded-xl shadow-lg"
+                    style="max-width:200px;"
+                    loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: DO NOW -->
+        <div class="slide" data-slide="2">
+            <div class="content">
+                <span class="pill reveal">✏️ Do Now · Reflect & Share</span>
+                <h2 class="font-display text-3xl font-bold mt-3 reveal">🧠 Think back to a tense moment…</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <div class="text-3xl">😤💢</div>
+                        <p class="font-bold mt-1">Recall a time you felt genuinely stressed or frustrated during a competitive game.</p>
+                        <div class="question-box text-sm">
+                            <strong>🤔 What triggered that feeling?</strong> Was it a mistake you made? A teammate's action? The score? The opponent's behavior?
+                        </div>
+                    </div>
+                    <div class="card reveal">
+                        <div class="text-3xl">🪞🔍</div>
+                        <p class="font-bold">Now reflect honestly:</p>
+                        <div class="question-box text-sm">
+                            <strong>🤔 How did you respond in that moment?</strong> Did it help or hurt your performance? Did it affect your teammates? What might you do differently now?
+                        </div>
+                    </div>
+                </div>
+                <div class="card reveal mt-3 text-center text-sm text-gray-600 bg-blue-50/60">
+                    💬 <strong>Pair-share:</strong> Turn to a partner. Each person shares for 90 seconds. Listen without interrupting.
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: LEARNING TARGETS -->
+        <div class="slide" data-slide="3">
+            <div class="content">
+                <span class="pill reveal">🎯 Today's Learning Targets</span>
+                <div class="grid-cards grid-2 mt-4">
+                    <div class="card reveal">
+                        <p class="font-black text-accent-1 text-lg">📖 Knowledge Goals</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1 mt-2">
+                            <li>Explain the physiological and psychological effects of competition stress.</li>
+                            <li>Identify at least <strong>3 concrete stress-management techniques</strong> applicable during gameplay.</li>
+                            <li>Analyze how sportsmanship (or its absence) shapes team dynamics and match outcomes.</li>
+                        </ul>
+                    </div>
+                    <div class="card reveal">
+                        <p class="font-black text-accent-2 text-lg">🛠️ Skill Goals</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1 mt-2">
+                            <li>Apply <strong>breathing exercises</strong> and <strong>positive self-talk</strong> in real-time during a Rocket League session.</li>
+                            <li>Demonstrate respectful communication with teammates and opponents.</li>
+                            <li>Self-assess stress levels before and after using management techniques.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card bg-white/80 mt-4 reveal">
+                    <p class="font-bold">📦 Materials for this lesson:</p>
+                    <div class="flex flex-wrap gap-2 mt-2 text-sm">
+                        <span class="bg-gray-100 px-3 py-1 rounded-full">💻 PC/Switch/Xbox/PS with Rocket League</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full">🎧 Headphones</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full">🧰 Stress ball or tactile object</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded-full">📋 Handouts & timer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: VOCABULARY -->
+        <div class="slide" data-slide="4">
+            <div class="content">
+                <span class="pill reveal">🔑 Key Vocabulary</span>
+                <div class="grid-cards grid-3 mt-5">
+                    <div class="card reveal"><span class="vocab-tag">😰 Competition Stress</span><p class="text-sm">The mental and physical tension that arises when we perceive a competitive situation as challenging or threatening.</p></div>
+                    <div class="card reveal"><span class="vocab-tag">🤝 Sportsmanship</span><p class="text-sm">Fair, respectful, and gracious behavior toward all participants — win or lose.</p></div>
+                    <div class="card reveal"><span class="vocab-tag">🌬️ Breathing Exercises</span><p class="text-sm">Deliberate breathing patterns (like box breathing) that calm the nervous system.</p></div>
+                    <div class="card reveal"><span class="vocab-tag">💬 Positive Self-Talk</span><p class="text-sm">Replacing negative inner dialogue with constructive, encouraging statements.</p></div>
+                    <div class="card reveal"><span class="vocab-tag">🧘 Mindfulness</span><p class="text-sm">Paying full attention to the present moment without judgment — staying grounded in the now.</p></div>
+                    <div class="card reveal"><span class="vocab-tag">⚡ Tilt</span><p class="text-sm">A state of emotional frustration that causes poor decision-making and impulsive play.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: UNDERSTANDING COMPETITION STRESS -->
+        <div class="slide" data-slide="5">
+            <div class="content">
+                <span class="pill reveal">🧬 Understanding Competition Stress</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">What's actually happening in your body?</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2913/2913465.png"
+                        alt="Brain stress response illustration"
+                        class="w-20 mx-auto mb-2"
+                        loading="lazy">
+                        <p class="text-sm"><strong>🧠 Fight-or-Flight Response:</strong> Your brain releases adrenaline and cortisol. Heart rate increases. Muscles tense. Your focus narrows — which can help <em>or</em> hurt your gameplay.</p>
+                        <div class="question-box text-sm mt-3">
+                            <strong>🤔 When might this stress response actually be useful in a match?</strong>
+                        </div>
+                    </div>
+                    <div class="card reveal" style="background:linear-gradient(135deg,#fff7ed,#fef3c7);">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4661/4661318.png"
+                        alt="Performance vs stress curve"
+                        class="w-24 mx-auto mb-2"
+                        loading="lazy">
+                        <p class="text-sm"><strong>📈 The Yerkes-Dodson Curve:</strong> Some stress boosts performance — but too much causes sharp decline. Elite players learn to stay in the <em>optimal zone</em>.</p>
+                        <p class="text-xs text-center text-gray-500 mt-2">Peak performance = moderate arousal, not zero stress.</p>
+                    </div>
+                </div>
+                <div class="card reveal mt-3 text-center text-sm">
+                    <strong>🔑 Key insight:</strong> Stress isn't the enemy. <em>Unmanaged</em> stress is. The goal is regulation, not elimination.
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: VIDEO 1 — Stress & Tilt in Competitive Gaming -->
+        <div class="slide" data-slide="6">
+            <div class="content">
+                <span class="pill reveal">🎬 VIDEO · The Science of Tilt</span>
+                <h2 class="font-display text-2xl font-bold mt-2 reveal">Watch: How Stress Affects Your Game & How to Reset</h2>
+                <div class="grid-cards grid-2 mt-4">
+                    <div class="card reveal p-2">
+                        <div class="video-wrapper" id="vwrap-tilt">
+                            <img class="video-thumb" src="https://img.youtube.com/vi/Ll9jUeQpH4k/hqdefault.jpg"
+                            alt="Managing Tilt in Competitive Gaming — Video Thumbnail"
+                            loading="lazy">
+                            <button class="video-play-btn" data-videoid="Ll9jUeQpH4k" data-wrapid="vwrap-tilt" aria-label="Play video about managing tilt">
+                                <div class="play-circle">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                                </div>
+                            </button>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=Ll9jUeQpH4k" target="_blank" rel="noopener noreferrer" class="video-source">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#ef4444"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.2 2.8 12 2.8 12 2.8s-4.2 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2.1.3 4.2.3 4.2s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.5 12 21.5 12 21.5s4.2 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.2v-2C23.3 9.1 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
+                            📺 "Managing Tilt in Competitive Gaming" — open in YouTube
+                        </a>
+                    </div>
+                    <div class="card reveal">
+                        <p class="font-bold">🔍 Guiding questions while you watch:</p>
+                        <ul class="list-disc pl-4 text-sm mt-2 space-y-1">
+                            <li>What physical signs of tilt does the video describe?</li>
+                            <li>What's the <strong>difference between reacting and responding</strong> after a mistake?</li>
+                            <li>Which reset strategy resonates most with you?</li>
+                        </ul>
+                        <div class="question-box text-sm mt-3">
+                            <strong>🤔 After watching:</strong> Why do you think even professional players sometimes struggle with tilt? What does that tell us?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: BREATHING EXERCISES -->
+        <div class="slide" data-slide="7">
+            <div class="content">
+                <span class="pill reveal">🌬️ Breathing Techniques</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">Your built-in reset button</h2>
+                <div class="grid-cards grid-3 mt-5">
+                    <div class="card reveal text-center">
+                        <p class="font-black text-accent-1">🟦 Box Breathing</p>
+                        <div class="breathing-circle mx-auto my-3">
+                            <div class="breathing-circle-inner">In<br>Hold<br>Out<br>Hold</div>
+                        </div>
+                        <p class="text-xs">Inhale 4s → Hold 4s → Exhale 4s → Hold 4s. Repeat 4×. Used by Navy SEALs and elite athletes.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <p class="font-black text-accent-2">🟩 4-7-8 Breathing</p>
+                        <div class="text-5xl my-3">🫁</div>
+                        <p class="text-xs">Inhale 4s → Hold 7s → Exhale 8s. Activates the parasympathetic nervous system. Great between matches.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <p class="font-black rl-orange">🟨 Tactical Breath</p>
+                        <div class="text-5xl my-3">🎮</div>
+                        <p class="text-xs">One deep exhale right after a goal is scored against you. Releases tension instantly. Use during replay screens.</p>
+                    </div>
+                </div>
+                <div class="card reveal mt-4 text-center bg-blue-50/70">
+                    <p class="font-bold">🧪 Let's practice together:</p>
+                    <p class="text-sm">Sit comfortably. Feet flat. Hands on your stress ball. We'll do <strong>3 rounds of box breathing</strong> as a class. Follow my voice.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: POSITIVE SELF-TALK -->
+        <div class="slide" data-slide="8">
+            <div class="content">
+                <span class="pill reveal">💬 Positive Self-Talk</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">The inner voice is your most powerful coach</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <p class="font-black text-red-500">🚫 Negative Self-Talk (The Saboteur)</p>
+                        <div class="bg-red-50 p-3 rounded-xl text-sm mt-2">
+                            <p>❌ "I'm so bad at this game."</p>
+                            <p>❌ "We already lost, there's no point."</p>
+                            <p>❌ "My teammates are going to hate me."</p>
+                            <p>❌ "I always whiff these shots."</p>
+                        </div>
+                        <div class="question-box text-sm mt-3">
+                            <strong>🤔 What do these thoughts do to your confidence and decision-making?</strong>
+                        </div>
+                    </div>
+                    <div class="card reveal">
+                        <p class="font-black text-green-600">✅ Positive Self-Talk (The Coach)</p>
+                        <div class="bg-green-50 p-3 rounded-xl text-sm mt-2">
+                            <p>✅ "I'm still learning — every mistake is data."</p>
+                            <p>✅ "We're down but there's still time. One play at a time."</p>
+                            <p>✅ "My teammates want me to succeed."</p>
+                            <p>✅ "Focus on the next touch, not the last one."</p>
+                        </div>
+                        <div class="question-box text-sm mt-3">
+                            <strong>🤔 Which of these feel authentic to you? Can you create your own?</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="card reveal mt-4">
+                    <p class="font-bold">✍️ Your turn:</p>
+                    <p class="text-sm">Write down <strong>3 personal affirmations</strong> you can use during a Rocket League match. Make them specific, believable, and actionable.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: MINDFULNESS -->
+        <div class="slide" data-slide="9">
+            <div class="content">
+                <span class="pill reveal">🧘 Mindfulness in Gaming</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">Staying present when everything is chaos</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4144/4144781.png"
+                        alt="Mindfulness concept illustration"
+                        class="w-20 mx-auto mb-2"
+                        loading="lazy">
+                        <p class="text-sm"><strong>Mindfulness =</strong> paying attention to the present moment on purpose, without judgment. In Rocket League, this means noticing the ball, your positioning, your breathing — not the mistake 30 seconds ago or the final score.</p>
+                    </div>
+                    <div class="card reveal" style="background:linear-gradient(135deg,#f0f9ff,#ecfdf5);">
+                        <p class="font-bold">🧪 Quick mindfulness exercise:</p>
+                        <ol class="list-decimal pl-4 text-sm space-y-1 mt-2">
+                            <li>Hold your stress ball in both hands.</li>
+                            <li>Close your eyes for 30 seconds.</li>
+                            <li>Focus only on <strong>sensations</strong>: texture, temperature, weight.</li>
+                            <li>When your mind wanders, gently bring it back to the ball.</li>
+                        </ol>
+                        <div class="question-box text-sm mt-3">
+                            <strong>🤔 How might this skill transfer to a high-pressure match moment?</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: VIDEO 2 — Sportsmanship in Esports -->
+        <div class="slide" data-slide="10">
+            <div class="content">
+                <span class="pill reveal">🎬 VIDEO · Sportsmanship in Competitive Gaming</span>
+                <h2 class="font-display text-2xl font-bold mt-2 reveal">Watch: Why Respect Matters in Esports</h2>
+                <div class="grid-cards grid-2 mt-4">
+                    <div class="card reveal p-2">
+                        <div class="video-wrapper" id="vwrap-sportsmanship">
+                            <img class="video-thumb" src="https://img.youtube.com/vi/QJZl6Vw0Fzo/hqdefault.jpg"
+                            alt="Good Sportsmanship in Rocket League & Esports — Video Thumbnail"
+                            loading="lazy">
+                            <button class="video-play-btn" data-videoid="QJZl6Vw0Fzo" data-wrapid="vwrap-sportsmanship" aria-label="Play video about sportsmanship">
+                                <div class="play-circle">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+                                </div>
+                            </button>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=QJZl6Vw0Fzo" target="_blank" rel="noopener noreferrer" class="video-source">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#ef4444"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.2 2.8 12 2.8 12 2.8s-4.2 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2.1.3 4.2.3 4.2s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.5 12 21.5 12 21.5s4.2 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.2v-2C23.3 9.1 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
+                            📺 "The Power of Sportsmanship in Esports" — open in YouTube
+                        </a>
+                    </div>
+                    <div class="card reveal">
+                        <p class="font-bold">🔍 While watching, consider:</p>
+                        <ul class="list-disc pl-4 text-sm mt-2 space-y-1">
+                            <li>What specific behaviors demonstrate good sportsmanship?</li>
+                            <li>How do teammates react to a player who stays positive after a loss?</li>
+                            <li>What's the <strong>ripple effect</strong> of one player's poor sportsmanship on the whole lobby?</li>
+                        </ul>
+                        <div class="question-box text-sm mt-3">
+                            <strong>🤔 After watching:</strong> Is sportsmanship a sign of weakness or strength in competitive gaming? Defend your answer.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: WHAT IS SPORTSMANSHIP -->
+        <div class="slide" data-slide="11">
+            <div class="content">
+                <span class="pill reveal">🤝 Defining Sportsmanship</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">More than just saying "gg"</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <p class="font-black text-accent-1">✅ Sportsmanship Looks Like:</p>
+                        <ul class="list-disc pl-4 text-sm space-y-1 mt-2">
+                            <li>Complimenting an opponent on a great shot or save.</li>
+                            <li>Encouraging a teammate after a mistake.</li>
+                            <li>Accepting a loss graciously — no excuses, no blame.</li>
+                            <li>Using quick chat constructively ("Nice shot!", "Close one!").</li>
+                            <li>Owning your errors: "My bad."</li>
+                        </ul>
+                    </div>
+                    <div class="card reveal">
+                        <p class="font-black text-red-500">❌ Poor Sportsmanship Looks Like:</p>
+                        <ul class="list-disc pl-4 text-sm space-y-1 mt-2">
+                            <li>Blaming teammates for every conceded goal.</li>
+                            <li>Spamming "What a save!" sarcastically.</li>
+                            <li>Going AFK or throwing when losing.</li>
+                            <li>Trash-talking opponents in chat.</li>
+                            <li>Refusing to acknowledge others' skill.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="question-box text-sm mt-4 reveal">
+                    <strong>🤔 Think about it:</strong> Which type of player do <em>you</em> want to be known as? Which type would you rather have on your team? Why?
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: THE IMPACT OF SPORTSMANSHIP -->
+        <div class="slide" data-slide="12">
+            <div class="content">
+                <span class="pill reveal">📊 The Ripple Effect</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">How sportsmanship shapes your entire experience</h2>
+                <div class="grid-cards grid-3 mt-5">
+                    <div class="card reveal text-center">
+                        <div class="highlight-num">📉</div>
+                        <p class="font-bold text-sm">On Poor Sportsmanship</p>
+                        <p class="text-xs mt-1">Teams with toxic players lose more — not just because of skill, but because <strong>trust and coordination collapse</strong>. Teammates play scared, hesitant, and distracted.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <div class="highlight-num">📈</div>
+                        <p class="font-bold text-sm">On Good Sportsmanship</p>
+                        <p class="text-xs mt-1">Positive teams <strong>recover faster</strong> from deficits. Players take smarter risks. Morale stays high. Even losses feel like learning opportunities.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <div class="highlight-num">🔄</div>
+                        <p class="font-bold text-sm">On You Personally</p>
+                        <p class="text-xs mt-1">Your sportsmanship reputation follows you. Players remember who was respectful. Being a good teammate <strong>opens doors</strong> to better teams and communities.</p>
+                    </div>
+                </div>
+                <div class="card reveal mt-4 text-center bg-amber-50/70">
+                    <p class="font-bold">🏆 Real talk:</p>
+                    <p class="text-sm">Professional Rocket League players are known for their sportsmanship as much as their mechanics. Watch any RLCS Grand Final — the handshakes, the respect, the humility. That's not an accident; it's a standard.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: STRESS MANAGEMENT TECHNIQUES DEEP DIVE -->
+        <div class="slide" data-slide="13">
+            <div class="content">
+                <span class="pill reveal">🛠️ Techniques Deep Dive</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">Building your personal stress-management toolkit</h2>
+                <div class="grid-cards grid-4 mt-5">
+                    <div class="card reveal text-center">
+                        <div class="text-3xl">🌬️</div>
+                        <p class="font-bold text-sm">Breathing</p>
+                        <p class="text-xs">Box breathing, 4-7-8, tactical exhale. Use between goals, during replays, or before kickoff.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <div class="text-3xl">💬</div>
+                        <p class="font-bold text-sm">Self-Talk</p>
+                        <p class="text-xs">Pre-load 3 affirmations. Say them aloud or in your head after every conceded goal.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <div class="text-3xl">🧘</div>
+                        <p class="font-bold text-sm">Mindfulness</p>
+                        <p class="text-xs">Focus on your hands on the controller. Feel the buttons. Stay anchored in the present play.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <div class="text-3xl">⏸️</div>
+                        <p class="font-bold text-sm">Strategic Pause</p>
+                        <p class="text-xs">Between matches, stand up. Shake out your hands. Take 30 seconds to reset completely.</p>
+                    </div>
+                </div>
+                <div class="question-box text-sm mt-4 reveal text-center">
+                    <strong>🤔 All four techniques are free and always available. Which one will you commit to trying first today?</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: GUIDED PRACTICE — GAMEPLAY SESSION -->
+        <div class="slide" data-slide="14">
+            <div class="content">
+                <span class="pill-orange reveal">🎮 Guided Practice · Gameplay Session</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">Applying techniques in real-time</h2>
+                <div class="card reveal mt-4">
+                    <p class="font-bold text-lg">📋 Instructions:</p>
+                    <ol class="list-decimal pl-5 text-sm space-y-2 mt-2">
+                        <li><strong>Start a Rocket League match</strong> (casual or competitive — your choice).</li>
+                        <li><strong>Before kickoff:</strong> Take one deep breath. Set an intention: "I will stay calm and respectful."</li>
+                        <li><strong>During play:</strong> When you feel tension rising, apply <em>at least one</em> technique from your toolkit.</li>
+                        <li><strong>After a goal (for or against):</strong> Use the replay to breathe. Reset. Refocus.</li>
+                        <li><strong>Communicate:</strong> Use quick chat or voice positively. No sarcasm. No blame.</li>
+                    </ol>
+                </div>
+                <div class="grid-cards grid-2 mt-4">
+                    <div class="card reveal bg-blue-50/60">
+                        <p class="font-bold">⏱️ First interval (10 min)</p>
+                        <p class="text-sm">Play freely. Focus on <strong>noticing</strong> your stress signals without judging them.</p>
+                    </div>
+                    <div class="card reveal bg-green-50/60">
+                        <p class="font-bold">⏱️ Second interval (10 min)</p>
+                        <p class="text-sm">Actively apply techniques. After each goal, do a <strong>2-second tactical exhale</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: MID-SESSION CHECK-IN -->
+        <div class="slide" data-slide="15">
+            <div class="content">
+                <span class="pill-green reveal">🔄 Mid-Session Check-In</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">Pause. Reflect. Adjust.</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <div class="text-3xl">🪞</div>
+                        <p class="font-bold">Pair Discussion (3 min each):</p>
+                        <ul class="list-disc pl-4 text-sm space-y-1 mt-2">
+                            <li>What stress signals did you notice in your body?</li>
+                            <li>Which technique did you try? Did it help?</li>
+                            <li>Were there moments you wanted to react negatively but held back?</li>
+                            <li>How did your communication affect your teammate's energy?</li>
+                        </ul>
+                    </div>
+                    <div class="card reveal">
+                        <div class="text-3xl">📝</div>
+                        <p class="font-bold">Quick self-assessment:</p>
+                        <p class="text-sm mt-2">On a scale of <strong>1–10</strong>:</p>
+                        <div class="bg-gray-100 p-3 rounded-xl mt-2 text-sm">
+                            <p>🔹 <strong>Stress level BEFORE</strong> the session: ___ / 10</p>
+                            <p>🔹 <strong>Stress level NOW</strong>: ___ / 10</p>
+                            <p>🔹 <strong>Sportsmanship rating</strong> (self): ___ / 10</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-box text-sm mt-4 reveal">
+                    <strong>🤔 If your stress dropped — what worked? If it stayed high — what might you try differently in the second half?</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 16: REFLECTION & DISCUSSION -->
+        <div class="slide" data-slide="16">
+            <div class="content">
+                <span class="pill reveal">💭 Reflection Discussion</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">Connecting the dots</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <p class="font-black text-accent-1">🔗 Big-picture questions:</p>
+                        <div class="space-y-2 mt-2 text-sm">
+                            <div class="question-box">
+                                <strong>🤔 How does managing your own stress affect your teammates' performance?</strong>
+                            </div>
+                            <div class="question-box">
+                                <strong>🤔 Can you think of a time when staying calm helped you win a game you might have otherwise lost?</strong>
+                            </div>
+                            <div class="question-box">
+                                <strong>🤔 How do these skills transfer beyond gaming — to school, sports, or life?</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card reveal" style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);">
+                        <p class="font-black text-pink-600">🌟 Key takeaways from today:</p>
+                        <ul class="list-disc pl-4 text-sm space-y-1 mt-2">
+                            <li>Stress is natural — it's your <strong>response</strong> that determines the outcome.</li>
+                            <li>Breathing is the fastest way to reset your nervous system mid-game.</li>
+                            <li>Positive self-talk rewires your brain over time — it's a <strong>skill you build</strong>.</li>
+                            <li>Sportsmanship isn't just "being nice" — it's a <strong>competitive advantage</strong>.</li>
+                            <li>Mindfulness keeps you focused on what you can control: <strong>your next play</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 17: EXIT TICKET -->
+        <div class="slide" data-slide="17">
+            <div class="content">
+                <span class="pill reveal">🎫 Exit Ticket</span>
+                <div class="card mt-4 reveal">
+                    <p class="text-lg font-bold">📝 On your handout or a notecard, answer:</p>
+                    <div class="space-y-3 mt-3">
+                        <div class="bg-blue-50 p-3 rounded-xl">
+                            <p class="font-bold text-sm">1. 🌬️ One stress management technique I found genuinely helpful today:</p>
+                            <p class="text-xs text-gray-500 mt-1">Be specific — which technique and when did you use it?</p>
+                        </div>
+                        <div class="bg-amber-50 p-3 rounded-xl">
+                            <p class="font-bold text-sm">2. 🤝 One moment where I could have demonstrated better sportsmanship:</p>
+                            <p class="text-xs text-gray-500 mt-1">Be honest — self-awareness is the first step to growth.</p>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded-xl">
+                            <p class="font-bold text-sm">3. 🎯 One commitment for my next gaming session:</p>
+                            <p class="text-xs text-gray-500 mt-1">What will you do differently starting today?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 18: OUT-OF-CLASS EXTENSION -->
+        <div class="slide" data-slide="18">
+            <div class="content">
+                <span class="pill-green reveal">🏠 Out-of-Class Learning Extension</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">Keep building your mental game</h2>
+                <div class="grid-cards grid-2 mt-5">
+                    <div class="card reveal">
+                        <div class="text-3xl">📺</div>
+                        <p class="font-bold">Watch a professional Rocket League match</p>
+                        <p class="text-sm mt-1">Find an RLCS match on <a href="https://twitch.tv/RocketLeague" target="_blank" rel="noopener" class="text-blue-600 underline">Twitch</a> or <a href="https://youtube.com/@RocketLeagueEsports" target="_blank" rel="noopener" class="text-blue-600 underline">YouTube</a>. Observe:</p>
+                        <ul class="list-disc pl-4 text-xs space-y-1 mt-2">
+                            <li>How do pros react after conceding a goal?</li>
+                            <li>What do they say in post-match interviews after a loss?</li>
+                            <li>How do they support teammates during tough moments?</li>
+                        </ul>
+                    </div>
+                    <div class="card reveal">
+                        <div class="text-3xl">📓</div>
+                        <p class="font-bold">Keep a "Mental Game Journal"</p>
+                        <p class="text-sm mt-1">For one week, after each gaming session, jot down:</p>
+                        <ul class="list-disc pl-4 text-xs space-y-1 mt-2">
+                            <li>Stress level (1–10) at start and end.</li>
+                            <li>One technique you used and its effect.</li>
+                            <li>One sportsmanship win or challenge.</li>
+                        </ul>
+                        <p class="text-xs text-gray-500 mt-2">Bring your observations to the next class for discussion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 19: REAL-WORLD CONNECTIONS -->
+        <div class="slide" data-slide="19">
+            <div class="content">
+                <span class="pill-orange reveal">🌍 Real-World Connections</span>
+                <h2 class="font-display text-3xl font-bold mt-2 reveal">These skills go way beyond gaming</h2>
+                <div class="grid-cards grid-3 mt-5">
+                    <div class="card reveal text-center">
+                        <div class="text-4xl">🏀</div>
+                        <p class="font-bold text-sm">Traditional Sports</p>
+                        <p class="text-xs mt-1">NBA players use breathing exercises at the free-throw line. Olympic athletes practice mindfulness before races.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <div class="text-4xl">🎓</div>
+                        <p class="font-bold text-sm">Academics</p>
+                        <p class="text-xs mt-1">Test anxiety? Same physiological response. Box breathing before an exam uses identical brain pathways.</p>
+                    </div>
+                    <div class="card reveal text-center">
+                        <div class="text-4xl">💼</div>
+                        <p class="font-bold text-sm">Future Careers</p>
+                        <p class="text-xs mt-1">Job interviews, presentations, high-stakes decisions — stress management and composure set top performers apart.</p>
+                    </div>
+                </div>
+                <div class="card reveal mt-4 text-center bg-gradient-to-r from-blue-50 to-green-50">
+                    <p class="font-bold">🔑 The transferable truth:</p>
+                    <p class="text-sm">Learning to manage your mind under pressure in Rocket League is <strong>training for life</strong>. The same neural pathways that keep you calm in overtime will help you stay composed in any high-stakes moment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 20: CLOSING -->
+        <div class="slide" data-slide="20">
+            <div class="content text-center">
+                <div class="text-7xl mb-2 reveal">🏁🤝🎉</div>
+                <h2 class="font-display text-4xl font-bold grad-text reveal">You're more than your rank.</h2>
+                <p class="text-lg mt-3 reveal">Today you learned that <strong>competitive greatness</strong> is built on composure, respect, and self-awareness — not just mechanics.</p>
+                <div class="flex flex-wrap justify-center gap-4 mt-6 reveal">
+                    <div class="bg-white rounded-2xl p-3 w-32 shadow text-center">🌬️ Breathe</div>
+                    <div class="bg-white rounded-2xl p-3 w-32 shadow text-center">💬 Self-Talk</div>
+                    <div class="bg-white rounded-2xl p-3 w-32 shadow text-center">🧘 Stay Present</div>
+                    <div class="bg-white rounded-2xl p-3 w-32 shadow text-center">🤝 Respect All</div>
+                </div>
+                <p class="text-sm text-gray-500 mt-5 reveal">"In the end, it's not about the goals you score — it's about the player you become."</p>
+                <footer class="mt-8 text-sm text-gray-500 reveal">📧 hue.weng.88@gmail.com · 🌐 hue881.github.io · 🧑‍🏫 Ms. Hsiao · Lesson 9</footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="changeSlide(-1)" aria-label="Previous slide">◀</button>
+        <div class="slide-dots" id="dots"></div>
+        <button class="nav-btn" onclick="changeSlide(1)" aria-label="Next slide">▶</button>
+        <span class="slide-counter" id="counter">1 / 20</span>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 1;
+        const total = slides.length;
+        const dotsContainer = document.getElementById('dots');
+        const counterSpan = document.getElementById('counter');
+
+        for (let i = 1; i <= total; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 1) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+
+        function goToSlide(n) {
+            if (n < 1) n = total;
+            if (n > total) n = 1;
+            const activeSlide = document.querySelector('.slide.active');
+            if (activeSlide) activeSlide.classList.remove('active');
+            const nextSlide = document.querySelector(`.slide[data-slide="${n}"]`);
+            if (nextSlide) {
+                nextSlide.classList.add('active');
+                animateSlideReveal(nextSlide);
+            }
+            currentSlide = n;
+            updateDotsAndCounter();
+        }
+
+        function changeSlide(delta) {
+            goToSlide(currentSlide + delta);
+        }
+
+        function updateDotsAndCounter() {
+            document.querySelectorAll('.dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx + 1 === currentSlide);
+            });
+            counterSpan.innerText = `${currentSlide} / ${total}`;
+        }
+
+        function animateSlideReveal(slideEl) {
+            const revealElements = slideEl.querySelectorAll('.reveal');
+            revealElements.forEach((el, idx) => {
+                el.style.transition = 'none';
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(16px)';
+                el.offsetHeight;
+                const delay = idx * 0.04;
+                el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.video-play-btn');
+            if (!btn) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const videoId = btn.dataset.videoid;
+            const wrapId = btn.dataset.wrapid;
+            const wrapper = document.getElementById(wrapId);
+            if (!wrapper || !videoId) return;
+            wrapper.innerHTML =
+                '<iframe src="https://www.youtube.com/embed/' + videoId +
+                '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') { e.preventDefault();
+                changeSlide(1); }
+            if (e.key === 'ArrowLeft') { e.preventDefault();
+                changeSlide(-1); }
+        });
+
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) changeSlide(diff > 0 ? 1 : -1);
+        });
+
+        animateSlideReveal(document.querySelector('.slide.active'));
+        updateDotsAndCounter();
+    </script>
+</body>
+</html>

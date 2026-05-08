@@ -1,0 +1,651 @@
+Game Engines: Scratch, Unity & Godot
+"What Makes a Game Come Alive?" — Introduction to Game Engines
+Expert Teaching Script (PhD-Level Explanations, Beginner-Friendly Delivery)
+Instructor: Mr. Hsiao "Hue" Weng
+Total Time: ~60 minutes
+================================================================================
+
+HOW TO USE THIS SCRIPT
+─────────────────────────────────────────────────────────────────────
+- Text in [BRACKETS] = instructor stage directions or timing cues
+- "Quoted text" = suggested exact words to say aloud
+- → means a natural transition or follow-up thought
+- 💡 = deep conceptual explanation (say or adapt as needed)
+- ✋ = student interaction moment — pause and wait for responses
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 1 — TITLE SLIDE & WELCOME
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[As students enter, display the title slide with game pad icons. Begin
+with high energy, genuine excitement.]
+
+"Good morning / afternoon, game designers! Welcome to a very special
+lesson. Today, we are going to answer a question that every single
+one of you has probably wondered while playing your favorite games:
+How do they actually make these games work?"
+
+"Think about it. When you play Roblox, or Mario, or Minecraft, or anything
+else — there is something invisible happening underneath. Something that
+makes the characters move, the music play, the collisions happen, and the
+rules work smoothly every single time. That invisible thing is called a
+game engine."
+
+"By the end of today, you will know what a game engine is, you’ll meet
+three real ones that real developers use — Scratch, Unity, and Godot —
+and you’ll even start building your own very first game. You are all
+going to think like game designers today. Let’s jump in."
+
+💡 [DEEP CONTEXT — deliver this slowly]:
+"Here’s something incredible: every video game you have ever loved is not
+magic. It is a giant set of instructions running on a computer. But writing
+those instructions from scratch every time would take forever. Imagine if
+every time someone made a new game, they had to rewrite how the screen
+shows images, or how sound comes out of the speakers, or how two objects
+know they touched. That would be like re-inventing the wheel for every car!
+
+A game engine is a toolbox that solves all those common problems so game
+creators can focus on the fun parts — their characters, their world, their
+story. Today we will open that toolbox and look inside."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 2 — DO NOW: BRAIN DUMP — GAMES WE LOVE
+[Duration: ~7 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Read the slide prompt with warmth — make this personal]
+
+"Let’s start with you. No right or wrong answers, just your honest
+thoughts. I want you to do a quick brain dump about games. In your
+notebook or on a piece of paper — or just in your head if you don’t
+have one yet — list three games you love to play. They can be video
+games, computer games, tablet games, even board games if you want."
+
+[Give students 60 seconds to write or think]
+
+"Now, next to each game, write ONE thing that makes it awesome.
+Is it the characters? The challenges? The graphics? The way it feels
+when you win? Dig deep."
+
+[Give another 60 seconds]
+
+"Now, with a partner — turn to someone nearby. Take 2 minutes to share
+your lists. But here’s the twist: as you share, I want you to ask each
+other this question: 'What do you think is happening on the computer
+to make that work?' Just guess. No one knows yet, that’s the point."
+
+✋ [Give pairs exactly 2 minutes, then gather attention. Call on 3-4
+   students to share ONE interesting guess from their partner. Listen
+   for guesses like “code,” “commands,” “the game knows where you are,”
+   etc. Affirm them.]
+
+"I’m hearing amazing guesses. Some of you are already thinking like
+computer scientists. And here’s the secret: everything you guessed —
+movement, rules, graphics, sound — that is exactly what a game engine
+handles. You already knew more than you thought you did."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — TODAY'S LEARNING TARGETS
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Point to the slide with learning targets]
+
+"Here’s what we’re aiming for today. Two kinds of goals: knowledge and
+skills."
+
+"Knowledge goals: by the end of this hour, you will be able to explain
+what a game engine is and why developers use one. You will be able to
+compare Scratch, Unity, and Godot — who each one is for and what makes
+each one special. And you’ll understand a big, important process called
+iterative design — which is just a fancy way of saying 'test, fix,
+improve' over and over, like true creators do."
+
+"Skill goals: you are actually going to create a simple game today in
+Scratch, where a sprite moves with arrow keys. You’re going to give
+feedback to each other using a kind, helpful format. And you’ll start
+thinking about which engine you might use for different game ideas."
+
+"Let me show you the materials we have. Laptops with Scratch ready,
+paper and pencils for sketching ideas. We’re set. Let’s build something."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — KEY VOCABULARY
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Before we go any further, let’s arm ourselves with five powerful words.
+Only five. But if you learn these five words, you can talk about game
+creation like a pro. Say each one after me."
+
+[Go through each word on the slide. Show the definition, then elaborate.
+Point to the card as you speak.]
+
+"WORD 1: GAME ENGINE — software that helps build games. It handles
+graphics, physics, sound, and lots more. 💡 Think of it as the brain and
+skeleton of your game. It gives you the basic structure so you can focus
+on the creative stuff — like designing your characters and levels."
+
+"WORD 2: SCRATCH — a drag-and-drop coding environment made by MIT. It’s
+perfect for beginners and for telling stories. 💡 Under the hood, Scratch
+is still a real game engine, but simplified. It teaches you the logic of
+programming without having to type complicated code. Every block you snap
+together is actually a line of code in disguise."
+
+"WORD 3: UNITY — a professional engine used to make 2D and 3D games. Many
+famous games like Among Us and Cuphead were made with Unity. 💡 Unity is
+like a grown-up version of what we’ll do in Scratch, but much more
+powerful. It uses a real programming language called C#. Professionals
+love it because it can handle huge worlds and complex physics."
+
+"WORD 4: GODOT — pronounced 'guh-DOH.' It’s totally free and open-source,
+meaning anyone can look at its code and change it. It’s lightweight and
+great for learning real engine logic. 💡 Godot has its own easy scripting
+language called GDScript that looks a lot like Python. Many indie game
+developers choose it because it’s free and friendly."
+
+"WORD 5: ITERATIVE DESIGN — a cycle: make a version, test it, get feedback,
+and improve. 💡 This is the secret superpower of all good game creators.
+No one makes a perfect game on the first try. They build something rough,
+see what works, fix what doesn’t, and keep polishing. The best games in
+the world went through this loop hundreds or even thousands of times."
+
+"BONUS WORD: SPRITE — any object in a game: your character, an enemy,
+a coin, a power-up. Everything you see moving is a sprite."
+
+✋ [Quick check: Point at random students and ask, 'What is a sprite?'
+   'What engine did we say is free and open-source?' Keep it fast and fun.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — WHAT IS A GAME ENGINE? (THE CAR ANALOGY)
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the slide with the car image]
+
+"Alright, picture this. You’re building a car. You could go into a field,
+dig up metal, shape it into an engine by hand, then build wheels, then
+figure out brakes... OR you could use an engine that someone already
+designed, and just focus on the color, the seats, the cool sound system."
+
+"A game engine is exactly like a car engine. It’s the hidden machinery
+that makes everything run. It already knows how to do the heavy lifting —
+like making things move smoothly, checking if two objects have bumped into
+each other, playing sounds at the right time, and showing all the graphics
+on screen. Without it, a game developer would have to write millions of
+lines of code just to get a character to walk across the screen."
+
+💡 [DEEP EXPLANATION]:
+"In a professional engine like Unity or Godot, the engine provides a
+'scene graph' — a hierarchy of all the objects in the game. It runs a
+'game loop' that updates everything dozens of times per second: check
+inputs, move objects, detect collisions, render graphics, repeat. The
+developer just plugs their own code into that loop. It’s like the
+engine knows how to breathe, and you tell it how to dance."
+
+"Without a game engine, today we would spend all class just trying to make
+a dot appear on screen. Instead, with Scratch, we’ll make a character
+move in about five minutes. That’s the power of using an engine."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — VIDEO 1: EVERY GAME ENGINE EXPLAINED IN 4 MINUTES
+[Duration: ~7 minutes (video + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"We’re going to watch a short video that explains different game engines.
+Pay attention because after it ends, I’ll ask you two things."
+
+[Click the play button on the embedded YouTube video, or open the link
+in a new tab for the class. The video is about 4 minutes.]
+
+[After the video ends]
+
+"That was fast, right? Let’s discuss. With a partner, talk about these
+two questions — I’ll put them up:"
+
+✋ 'What do game engines do for developers?' (Expected: they save time,
+   provide tools, handle physics/graphics, etc.)
+
+✋ 'What makes each engine different?' (Scratch is block-based, Unity
+   is powerful for 3D, Godot is free and open-source.)
+
+[Give pairs 2 minutes. Then ask 2-3 students to share.]
+
+💡 [SYNTHESIS]:
+"Here’s the key idea: different game engines are like different kinds of
+toolboxes. A beginner’s toolbox has big, colorful, easy-to-use tools.
+A professional’s toolbox has more tools, but they’re more complicated.
+No single engine is 'best' — it depends on what you want to build and
+how much time you want to spend learning. Today, we start with Scratch,
+the friendliest toolbox in the world."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — MEET SCRATCH
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Now let’s zoom in on our first engine: Scratch! Raise your hand if
+you’ve ever used Scratch before. [Note hands] Great! You’ll be able
+to help others. If you haven’t, no problem — it’s built for beginners."
+
+[Point to the Scratch editor breakdown on the slide]
+
+"Scratch has three main areas:
+  1. The Block Palette — this is where you find all the code blocks.
+     They're color-coded by type: motion, looks, sound, events...
+  2. The Sprite Area — here you see all the characters and objects
+     in your game. You can add, remove, and edit sprites.
+  3. The Stage — where your game actually plays. The big white area
+     on the right."
+
+💡 [BEHIND THE CONCEPT]:
+"Scratch might look like just snapping colorful blocks, but what you’re
+really doing is something called 'event-driven programming.' Each block
+is a command, and when you connect them, you're building a sequence of
+instructions that the computer will follow. The 'green flag' block is
+the event that starts everything. This is the same fundamental logic
+used in every programming language on Earth — just wrapped in a friendly
+package."
+
+"You can use Scratch right now at scratch.mit.edu. It’s free and runs in
+a web browser, no installation needed. In a few minutes, we’ll all build
+a simple game together. But first, let’s meet the other two engines."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 8 — UNITY
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Unity slide]
+
+"This is Unity. It’s like the big brother of Scratch. It’s what many
+professional game studios use. You might have played games made with
+Unity and not even known it. Among Us — Unity. Cuphead — Unity.
+Hollow Knight — Unity."
+
+💡 [DEEPER INSIGHT]:
+"Unity uses a programming language called C# (pronounced 'C-sharp').
+C# is a high-level language that gives you incredible control. But
+with that control comes complexity. In Scratch, you drag a 'move 10
+steps' block. In Unity, you might write actual math code to move an
+object smoothly. The trade-off is: more power, but more to learn."
+
+"But here’s what’s cool — Unity isn’t just for games. It’s also used for
+virtual reality, architecture walkthroughs, film production (like the
+Mandalorian virtual sets!), and even self-driving car simulations. So
+learning Unity is learning a tool that might one day land you a job
+in many different fields."
+
+"Should you start with Unity right now? Probably not while you’re first
+learning. But it’s a great goal for the future. Once you’ve mastered the
+logic of game engines in Scratch, moving to Unity will feel like leveling
+up to a bigger, more powerful world."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 9 — GODOT
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Now meet Godot. If Unity is like a giant corporation’s tool, Godot is
+like a community-built clubhouse. It’s completely free — no fees, ever.
+And its source code is open for anyone to see and modify. That means a
+whole world of volunteers improve it every day."
+
+💡 [MAKE IT RELATABLE]:
+"Imagine a cookbook. Unity is a fancy cookbook that costs money and you
+can’t peek inside the secret recipes. Godot is a cookbook that’s free,
+and the recipes are written on the walls for everyone to read and improve.
+If you find a way to make a recipe better, you can share it with the world."
+
+"Godot uses a scripting language called GDScript that is designed to be
+easy for beginners. It looks a lot like Python, which is one of the most
+popular first languages to learn. Many indie developers — small teams or
+even one person making a game in their bedroom — choose Godot because it’s
+light and runs on almost any computer. Games like Brotato and prototypes
+of Celeste were made with Godot."
+
+"For a young learner who is ready to go beyond Scratch but not ready for
+the complexity of Unity, Godot is a perfect next step."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 10 — VIDEO 2: MAKE A GAME IN SCRATCH — TUTORIAL FOR BEGINNERS
+[Duration: ~7 minutes (video + preview)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Time for our second video! This one shows how to make a simple game
+in Scratch. Watch closely — because right after this, you will make
+your own version."
+
+[Play the embedded video. It demonstrates: how to add a sprite, make it
+move with arrow keys, use 'when green flag clicked', etc. About 5 min.]
+
+[After video]
+
+"Alright, you just saw the basic recipe. Let’s list the key steps we’ll
+follow together: add a sprite, add movement blocks, add an object to
+collect, and maybe a score. What did you notice about the blocks they
+used? [Take a few responses.]
+
+💡 "Notice that all of it started with one block: 'when green flag
+clicked.' That’s an EVENT. In all game development, things happen in
+response to events — a key press, a mouse click, a timer. Understanding
+that is the secret to making interactive experiences."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 11 — COMPARISON: SCRATCH vs UNITY vs GODOT
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Let’s put all three engines side by side so you can see the differences
+clearly."
+
+[Refer to the three comparison cards]
+
+"Scratch: no install needed, block coding, instant sharing online. Perfect
+for beginners and school projects. But it’s mostly for 2D and simple games."
+
+"Unity: professional 2D and 3D, huge asset store with pre-made parts,
+needs real coding in C#. Best for bigger, more complex games."
+
+"Godot: completely free, lightweight, uses beginner-friendly GDScript.
+Perfect for learning real engine logic, especially 2D games."
+
+💡 "Choosing the right engine is like choosing the right vehicle. A
+bicycle is perfect for a short ride. A car for a road trip. A spaceship
+for going to the moon. Scratch is your bicycle; Unity and Godot are
+cars and spaceships. Start with the bicycle, and when you’re ready,
+you’ll have the skills to pilot anything."
+
+✋ "Quick show of hands: who thinks they might want to try Godot someday?
+Unity? Both? Awesome."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 12 — HANDS-ON ACTIVITY: LET'S BUILD A SIMPLE SCRATCH GAME
+[Duration: ~12 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"This is it — the lab portion of our lesson. You’re going to build a
+tiny game right now. Follow these steps on your laptop. If you don’t
+have a laptop, pair up with someone who does."
+
+[Walk through the timeline steps one at a time. Pause between each to
+allow students to follow along.]
+
+"STEP 1: Open scratch.mit.edu and click 'Create.' Choose any sprite —
+the cat is fine, or pick a character you like."
+
+[Wait 60 sec, circulate]
+
+"STEP 2: From the Events category, drag out 'when green flag clicked.'
+Then from Control, attach a 'forever' block. Inside forever, put an
+'if key pressed' block (sensing), and if right arrow, add a 'change x
+by 10' from Motion. Do the same for left arrow (change x by -10), up
+and down (change y by 10 / -10)."
+
+[Walk around, assist. This is the core coding moment.]
+
+"STEP 3: Add a second sprite — a star or a ball — something to collect.
+We’re going to add a score system. Make a variable called 'Score' (Data
+category). Then in your player sprite, inside the forever, add: 'if
+touching [treasure] then change Score by 1 and go to random position.'
+Play! Does the score go up?"
+
+"STEP 4: Test your game. Does the sprite move? Can you make it go
+faster? Can you make the treasure harder to catch? Try adjusting the
+numbers. Remember iterative design: test, think, improve. You might
+even add a sound effect from the Sound category."
+
+✋ [Circulate actively, ask questions: 'What happens if you change the
+   speed? What could you add to make it more fun?']
+
+💡 "Notice what you just did. You set up interaction between sprites
+(detecting touching), you used variables (score), and you controlled
+movement with keyboard input — all with just a handful of blocks. This
+is a prototype. In a real studio, they’d do the same thing, then test
+it with players, then improve it again and again."
+
+"Take 2 more minutes to tweak your game. Then pause. We'll share a few."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 13 — ITERATIVE DESIGN
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Let’s talk about the secret ingredient of all great games: iterative
+design."
+
+[Point to the cycle on the slide: Prototype → Playtest → Feedback → Refine]
+
+"Nobody — not Nintendo, not Ubisoft, not the creators of Minecraft —
+made a perfect game on the first try. They build a rough version (a
+prototype), test it, get feedback, and then refine. Then they do it
+again. And again. Sometimes hundreds of times."
+
+💡 "This process is at the heart of what we call 'engineering' in the
+broadest sense. In software, it’s called agile development. In games,
+it’s how we turn a good idea into a great experience. The first time
+you play a game and think 'this is perfect,' you’re seeing the result
+of hundreds of tiny improvements that started from something very, very
+rough."
+
+"Now, you’re going to practice giving feedback. With a partner, play each
+other’s game for 1 minute. Use this format: 'I like how your character
+moves because...' 'I wonder if you could add...'. Keep it kind and
+specific."
+
+✋ [Give 3 minutes for peer testing. Ask 2 students to share something
+   they liked about their partner’s game and one constructive suggestion.]
+
+"The feedback you gave just now? That’s part of the iterative design
+cycle. And it’s exactly how real game studios work."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 14 — QUICK CHECK
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Let’s see how much we absorbed. I’ll ask four quick questions. You can
+answer in your head, with a partner, or raise your hand."
+
+[Go through the four cards on the slide]
+
+"1. Which game engine would you use to make a huge 3D open world? Why?"
+   [Expected: Unity because it’s powerful for 3D.]
+
+"2. What does 'iterative design' mean in your own words?"
+
+"3. Why is Scratch great for a beginner game designer?"
+   [No install, blocks, easy sharing, instant results.]
+
+"4. Name one thing all game engines share (movement, collision, graphics)."
+
+✋ [Call on a few students for each. Keep it upbeat. Affirm creative
+   answers, gently correct misconceptions.]
+
+💡 "Notice that even though the engines are different, they all deal with
+the same basic problems — moving things, detecting when things touch,
+playing sounds, showing graphics. The concepts you learn in Scratch
+transfer directly to Unity and Godot. That’s why starting simple is so
+smart."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 15 — EXIT TICKET
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Before you leave, I want one final piece of evidence of your learning.
+Take a sticky note or a scratch piece of paper and write two things:"
+
+"1. One thing you learned about game engines today that you didn’t know
+before."
+
+"2. One question you still have about making games."
+
+"If you’re not sure, think about what surprised you or what you’d like
+to learn next."
+
+✋ [Give 2 minutes to write. Collect notes or have students stick them
+   on the board. Use these to gauge understanding for next class.]
+
+💡 "This exit ticket helps me understand what clicked for you and what we
+should explore more. It’s also a way for you to process what you learned.
+Teaching research shows that reflecting right after learning helps lock
+the knowledge into your brain."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 16 — OUT-OF-CLASS LEARNING
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Today’s lesson doesn’t have to stop here. Here are two things you can
+do at home this week:"
+
+"1. Explore Scratch more. Try adding a new sprite, make it shoot
+something, add a timer, or turn your simple movement into a platformer.
+Share it with your family. The Scratch website has millions of projects
+by kids like you to remix and learn from."
+
+"2. Curious about Unity or Godot? Ask a parent to help you explore
+Unity Learn Junior or Godot’s 'Dodge the Creeps' tutorial. These are
+free and made for learners."
+
+"Just 10 minutes of tinkering a day can turn you into an amazing game
+creator faster than you’d believe."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 17 — REAL-WORLD CONNECTIONS
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Before we close, I want to show you that game engines aren't just toys —
+they're tools that shape our world."
+
+💡 "Unity is used by Waymo, the self-driving car company, to simulate
+millions of driving scenarios without putting real cars on the road.
+The Mandalorian TV show used Unity to create virtual sets — the actors
+stood in front of giant screens showing real-time game-engine graphics."
+
+"The iterative design loop we learned? It’s exactly what AI researchers
+use to train robots — they run thousands of simulations, see what
+works, and improve. The same skills you practiced today apply to
+engineering, architecture, film, and more."
+
+"So when people ask what you learned today, you can tell them: 'I learned
+how to build a universe — and it started in Scratch.'"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 18 — CLOSING
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[With enthusiasm and warmth]
+
+"Give yourselves a round of applause! You are now game designers. You
+started the hour as players, and you’re leaving as creators. You
+understood what an engine does, you met three real tools, and you built
+a playable game."
+
+"Scratch, Unity, Godot — three paths, one journey. The skills you
+learned today — programming logic, design thinking, iterative
+improvement — will stay with you forever, no matter what you do."
+
+"I am genuinely excited to see what you’ll create. Send me your projects,
+ask me questions, keep exploring. My email is on the screen."
+
+"Thank you for bringing your imagination today. Game on!"
+
+[Display contact info and let students exit with the feeling they’ve
+accomplished something real.]
+
+
+================================================================================
+APPENDIX A — COMMON PITFALLS & HOW TO HANDLE THEM
+================================================================================
+
+PITFALL: Student says "I can't code" or "This is too hard."
+  Handle: "That's exactly how every game developer felt the first time
+          they opened a tool. Start by copying the blocks I show you.
+          Then change one number. You're already coding."
+
+PITFALL: Student's Scratch sprites don't move correctly.
+  Handle: Ask them to check: "Is 'when green flag clicked' at the top?
+          Is the movement block inside a forever loop? Did you use the
+          right key in the 'if key pressed' block? Debugging is part of
+          learning — even pros spend half their time fixing bugs."
+
+PITFALL: Student says "Why use Unity or Godot when Scratch is easier?"
+  Handle: "Great question. Scratch is perfect for learning the logic.
+          But if you ever want to make a 3D world, or a game you can
+          sell, or something that runs on a console, you'll need the
+          power of Unity or Godot. It's like learning to ride a bike
+          before you drive a car."
+
+PITFALL: Student doesn't see the point of iterative design.
+  Handle: "Think of your favorite game. Now imagine the very first version
+          the creators made. I guarantee it was ugly, boring, and might
+          not have even worked. The game you love is version 100. That's
+          iterative design — polishing a rock until it's a diamond."
+
+PITFALL: Student is frustrated that their game doesn't look professional.
+  Handle: "Professional-looking games take teams of artists years to make.
+          Your job right now is not to make a perfect game — it's to make
+          something that works and have fun doing it. Every game artist
+          started with a stick figure."
+
+
+================================================================================
+APPENDIX B — EXTENSION QUESTIONS FOR CURIOUS MINDS
+================================================================================
+
+1. Could you write your own game without an engine?
+   Answer: Yes, but you'd have to write DirectX or OpenGL code for
+   graphics, implement physics from scratch, and manage sound drivers. An
+   engine saves literally years of work. However, building a tiny game
+   from scratch in Python with a simple library is a great way to
+   understand what engines do under the hood.
+
+2. What’s the difference between a game engine and a game framework?
+   Answer: An engine is a complete tool with an editor, asset manager, and
+   built-in systems (like Unity). A framework is a lighter set of code
+   libraries you use to build things more manually (like Phaser or
+   Pygame). Engines give you more pre-made structure; frameworks give you
+   more control.
+
+3. Why are there so many game engines? Why not just one?
+   Answer: Different engines serve different needs — 2D vs 3D, small team
+   vs large studio, simple vs complex. Also, competition drives
+   innovation. Godot’s open-source freedom pushes Unity to stay
+   accessible, and vice versa.
+
+4. How do you become a game engine developer?
+   Answer: Start by using engines, then learn C++ (many engines are built
+   in it), study computer graphics, and contribute to open-source engines
+   like Godot. It’s a big goal, but beginning with Scratch is literally
+   step one on that path.
+
+5. Can AI make game engines obsolete?
+   Answer: No. AI can help generate code or art, but engines solve deep
+   computational problems — real-time physics, efficient rendering,
+   cross-platform deployment. AI might assist, but the fundamental need
+   for an engine remains. In fact, many AI training simulations use game
+   engines, so they work together.
