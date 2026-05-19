@@ -1,895 +1,1334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="slides-format" content="viewport">
-    <title>Lesson 5 – Animation Style &amp; Visual Storytelling</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="slides-format" content="viewport">
+<title>Lesson 6: The History of Anime & Its Evolution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+@theme {
+  --color-bg: #f4fbff;
+  --color-bg-deep: #e6f4ff;
+  --color-surface: #ffffff;
+  --color-text: #1a2a3a;
+  --color-text-secondary: #2d4a6b;
+  --color-text-muted: #5a7a9a;
+  --color-accent-1: #0b63ce;
+  --color-accent-2: #10b981;
+  --color-accent-3: #f59e0b;
+  --color-glass-bg: rgba(255,255,255,0.88);
+  --color-glass-border: rgba(11,99,206,0.12);
+  --color-vignette: rgba(0,0,0,0.04);
+  --font-display: "Fredoka", sans-serif;
+  --font-body: "Nunito", sans-serif;
+}
+</style>
+<style>
+:root { --color-bg:#f4fbff; --color-text:#1a2a3a; --glow-color-rgb:11,99,206; }
+*,*::before,*::after{box-sizing:border-box;}
+html,body{background:var(--color-bg);margin:0;}
+body{font-family:"Nunito",sans-serif;color:var(--color-text);overflow:hidden;height:100vh;width:100vw;}
+.deck{width:100vw;height:calc(100vh - 72px);position:relative;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(0.96);transition:opacity 0.6s ease,transform 0.6s ease;pointer-events:none;overflow:hidden;}
+.slide.active{opacity:1;transform:scale(1);pointer-events:all;}
+.slide>.content{position:relative;z-index:2;width:100%;max-width:1100px;padding:clamp(1rem,3vw,3rem);}
+.nav-controls{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:14px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);padding:10px 24px;border-radius:0;border-top:1.5px solid rgba(11,99,206,0.15);box-shadow:0 -4px 24px rgba(11,99,206,0.09);height:72px;}
+.nav-btn{width:40px;height:40px;border:none;background:rgba(11,99,206,0.08);color:#0b63ce;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.nav-btn:hover{background:rgba(11,99,206,0.18);}
+.slide-dots{display:flex;gap:6px;flex-wrap:wrap;max-width:300px;justify-content:center;}
+.slide-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(11,99,206,0.2);cursor:pointer;transition:background 0.3s,transform 0.3s;}
+.slide-dots .dot.active{background:#0b63ce;transform:scale(1.4);}
+.slide-counter{font-size:0.75rem;color:#5a7a9a;min-width:36px;text-align:center;font-family:"Nunito",sans-serif;}
+.reveal{opacity:0;transform:translateY(18px);}
+@keyframes float-slow{0%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-35px) scale(1.1);}66%{transform:translate(-30px,30px) scale(0.92);}100%{transform:translate(0,0) scale(1);}}
+@keyframes float-drift{0%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(-40px,-50px) scale(1.12) rotate(2deg);}100%{transform:translate(0,0) scale(1) rotate(0deg);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);animation:float-slow 12s ease-in-out infinite;}
+.blob:nth-child(2){animation:float-drift 16s ease-in-out infinite;}
+.blob:nth-child(3){animation:float-slow 20s ease-in-out infinite reverse;}
+.slide::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,var(--color-vignette) 100%);}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important;}}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+/* ─── card & input styles ─── */
+.card{background:rgba(255,255,255,0.92);border:1px solid rgba(11,99,206,0.12);border-radius:16px;box-shadow:0 4px 18px rgba(11,99,206,0.08);transition:transform 0.2s,box-shadow 0.2s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(11,99,206,0.14);}
+.pill{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+.fill-input{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:7px 12px;font-family:"Nunito",sans-serif;font-size:0.9rem;color:#1a2a3a;outline:none;transition:border-color 0.2s,background 0.2s;}
+.fill-input:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
+.fill-textarea{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:8px 12px;font-family:"Nunito",sans-serif;font-size:0.88rem;color:#1a2a3a;outline:none;resize:none;transition:border-color 0.2s;}
+.fill-textarea:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
+.accent-bar{width:52px;height:5px;border-radius:3px;background:linear-gradient(90deg,#0b63ce,#10b981);margin-bottom:12px;}
+.section-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:4px 14px;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;}
+.vid-thumb-wrap{position:relative;cursor:pointer;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);background:#0b1929;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
+.vid-thumb-wrap img{width:100%;height:100%;display:block;object-fit:cover;background:#0b1929;position:absolute;top:0;left:0;}
+.vid-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:rgba(255,60,60,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;}
+.vid-thumb-wrap:hover .vid-play-btn{transform:translate(-50%,-50%) scale(1.12);background:rgb(255,0,0);}
+.vid-play-btn svg{width:22px;height:22px;fill:white;margin-left:3px;}
+.vid-iframe-wrap{display:none;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);position:relative;width:100%;}
+.vid-source-link{font-size:0.72rem;color:#0b63ce;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:5px;opacity:0.8;}
+.vid-thumb-wrap .vid-fallback-label{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.7);padding:0 8px;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,0.8);}
+.vid-source-link:hover{opacity:1;text-decoration:underline;}
 
-    <style type="text/tailwindcss">
-        @theme {
-            --color-bg: #f4fbff;
-            --color-bg-deep: #e0f2ff;
-            --color-surface: rgba(255,255,255,0.9);
-            --color-text: #1f2a37;
-            --color-text-secondary: #4b5563;
-            --color-text-muted: #5b6b7e;
-            --color-accent-1: #0b63ce;
-            --color-accent-2: #10b981;
-            --color-accent-3: #f59e0b;
-            --color-glass-bg: rgba(255,255,255,0.85);
-            --color-glass-border: rgba(11,99,206,0.16);
-            --color-vignette: rgba(15,23,42,0.08);
-            --font-display: 'Fredoka', 'Trebuchet MS', sans-serif;
-            --font-body: 'Nunito', Arial, sans-serif;
-        }
-    </style>
-
-    <style>
-        :root { --color-bg: #f4fbff; --color-text: #1f2a37; --glow-color-rgb: 11,99,206; }
-        *, *::before, *::after { box-sizing: border-box; }
-        html, body { background: var(--color-bg); margin: 0; }
-        body { font-family: 'Nunito', Arial, sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
-        .deck { width: 100vw; height: 100vh; position: relative; }
-        .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 40%),
-                        radial-gradient(circle at bottom right, rgba(16,185,129,0.12), transparent 40%),
-                        var(--color-bg);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease;
-            pointer-events: none; overflow: hidden;
-        }
-        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
-        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1040px; padding: clamp(1rem, 3vw, 2.5rem); }
-        .nav-controls { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.45); box-shadow: 0 10px 30px rgba(15,23,42,0.15); }
-        .nav-btn { width: 38px; height: 38px; border: none; background: rgba(15,23,42,0.06); color: #0b63ce; border-radius: 999px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.15s; }
-        .nav-btn:hover { background: rgba(15,23,42,0.12); transform: translateY(-1px); }
-        .slide-dots { display: flex; gap: 7px; }
-        .slide-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(148,163,184,0.6); cursor: pointer; transition: background 0.25s, transform 0.25s; }
-        .slide-dots .dot.active { background: #0b63ce; transform: scale(1.3); }
-        .slide-counter { font-size: 0.8rem; color: #64748b; min-width: 50px; text-align: center; font-weight: 700; font-family: 'Nunito', Arial, sans-serif; }
-        .reveal { opacity: 0; transform: translateY(18px); }
-        .mouse-spotlight { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
-        .card { background: var(--color-surface); border-radius: 18px; padding: 16px 18px; box-shadow: 0 8px 24px rgba(15,23,42,0.08); border: 1px solid rgba(255,255,255,0.65); }
-        .pill { display: inline-flex; align-items: center; gap: 8px; padding: 5px 13px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.55); background: rgba(255,255,255,0.9); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #0b63ce; font-family: 'Nunito', Arial, sans-serif; }
-        .media-embed { position: relative; padding-top: 56.25%; border-radius: 14px; overflow: hidden; background: #020617; cursor: pointer; }
-        .media-embed img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .media-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-        .play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none; }
-        .play-circle { width: 56px; height: 56px; background: rgba(220,38,38,0.92); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.45); transition: transform 0.2s; }
-        .media-embed:hover .play-circle { transform: scale(1.12); }
-        .video-source { display: block; font-size: 0.68rem; color: #64748b; text-align: center; margin-top: 5px; font-weight: 700; text-decoration: none; font-family: 'Nunito', Arial, sans-serif; }
-        .video-source:hover { color: #0b63ce; text-decoration: underline; }
-        .grid-cards { display: grid; gap: 16px; }
-        @media (min-width: 720px) {
-            .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-            .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
-        }
-        .question-chip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(245,158,11,0.09); color: #92400e; font-size: 0.82rem; font-weight: 700; font-family: 'Nunito', Arial, sans-serif; }
-        .question-chip .icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 999px; background: rgba(245,158,11,0.95); color: #fff; font-size: 0.8rem; }
-        .technique-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 999px; font-size: 0.76rem; font-weight: 800; letter-spacing: 0.03em; font-family: 'Nunito', Arial, sans-serif; }
-        .timeline { position: relative; padding-left: 24px; }
-        .timeline::before { content: ""; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 3px; border-radius: 999px; background: linear-gradient(to bottom, #0b63ce, #10b981); }
-        .timeline-step { position: relative; margin-bottom: 12px; }
-        .timeline-dot { position: absolute; left: -2px; top: 3px; width: 13px; height: 13px; border-radius: 999px; border: 2px solid #f4fbff; background: #0b63ce; box-shadow: 0 0 0 3px rgba(59,130,246,0.25); }
-        .exit-line { margin-top: 10px; padding-bottom: 10px; border-bottom: 2px dashed rgba(148,163,184,0.8); }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-        .emoji-float { animation: float 3.5s ease-in-out infinite; display: inline-block; }
-        .vocab-card { background: var(--color-surface); border-radius: 14px; padding: 12px 14px; border-left: 4px solid #0b63ce; box-shadow: 0 4px 16px rgba(15,23,42,0.07); }
-        .vocab-term { font-family: 'Fredoka', sans-serif; font-weight: 600; color: #0b63ce; font-size: 1rem; }
-        .style-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 800; font-family: 'Nunito', Arial, sans-serif; letter-spacing: 0.04em; }
-        .gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-        .blob { position: absolute; border-radius: 50%; filter: blur(80px); }
-        @keyframes float-slow { 0%{transform:translate(0,0) scale(1)} 25%{transform:translate(50px,-40px) scale(1.1)} 50%{transform:translate(-30px,35px) scale(0.92)} 75%{transform:translate(45px,15px) scale(1.07)} 100%{transform:translate(0,0) scale(1)} }
-        .blob { animation: float-slow 12s ease-in-out infinite; }
-        .blob:nth-child(2) { animation-duration: 16s; animation-direction: reverse; }
-        .blob:nth-child(3) { animation-duration: 20s; }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
-    </style>
+/* ─── DRAWING CANVAS STYLES ─── */
+#drawing-canvas{display:block;border-radius:14px;background:#fff;border:2px solid rgba(11,99,206,0.18);cursor:crosshair;touch-action:none;box-shadow:0 4px 24px rgba(11,99,206,0.1);}
+.brush-btn{width:34px;height:34px;border-radius:50%;border:2.5px solid rgba(11,99,206,0.2);cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;flex-shrink:0;}
+.brush-btn:hover,.brush-btn.active-brush{transform:scale(1.2);box-shadow:0 0 0 3px rgba(11,99,206,0.3);}
+.tool-btn{padding:6px 14px;border-radius:20px;border:1.5px solid rgba(11,99,206,0.2);background:rgba(11,99,206,0.06);color:#0b63ce;font-family:"Nunito",sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
+.tool-btn:hover,.tool-btn.active-tool{background:#0b63ce;color:#fff;border-color:#0b63ce;}
+</style>
 </head>
 <body>
-<div class="mouse-spotlight"></div>
+<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
 <div class="deck">
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 1: TITLE
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 1: TITLE ═══════════ -->
 <div class="slide slide-1 active" data-slide="1">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:#38bdf8;opacity:0.18;"></div>
-        <div class="blob" style="width:350px;height:350px;bottom:-80px;left:-60px;background:#10b981;opacity:0.14;"></div>
-        <div class="blob" style="width:220px;height:220px;top:40%;left:10%;background:#f59e0b;opacity:0.10;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.08;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;top:45%;left:20%;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content text-center" style="display:flex;flex-direction:column;align-items:center;">
+    <div style="font-size:clamp(4rem,10vw,7rem);animation:float 3s ease-in-out infinite;margin-bottom:0.5rem;" class="reveal">🎌</div>
+    <div class="accent-bar mx-auto reveal"></div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:700;color:#0b63ce;letter-spacing:-0.01em;margin-bottom:0.4rem;line-height:1.1;">The History of Anime<br>&amp; Its Evolution</h1>
+    <p class="reveal" style="font-size:clamp(0.85rem,1.5vw,1.1rem);color:#5a7a9a;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;margin-bottom:1.2rem;">Lesson 6 · Anime Studies</p>
+    <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <span class="pill" style="background:rgba(11,99,206,0.1);color:#0b63ce;">📅 1907 → Today</span>
+      <span class="pill" style="background:rgba(16,185,129,0.1);color:#059669;">🌍 Global Influence</span>
+      <span class="pill" style="background:rgba(245,158,11,0.1);color:#d97706;">🎨 Art &amp; Technology</span>
     </div>
-    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
-    <div class="content text-center">
-        <div class="flex flex-wrap justify-center gap-3 mb-5">
-            <span class="pill">🎌 Anime Club</span>
-            <span class="pill">🎨 Lesson 5 of 10</span>
-            <span class="pill">Grade 6</span>
-        </div>
-        <div class="emoji-float text-[78px] mb-3 reveal">🎬</div>
-        <h1 class="font-display text-[clamp(2.1rem,5vw,3.8rem)] font-bold leading-tight mb-3 reveal"
-            style="background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-            Animation Style &amp;<br>Visual Storytelling
-        </h1>
-        <p class="text-[clamp(0.9rem,1.7vw,1.15rem)] text-text-muted font-semibold tracking-wide mb-6 reveal"
-           style="font-family:'Nunito',Arial,sans-serif;">
-            Why does an anime <em>look</em> the way it does — and how does that shape the story you feel?
-        </p>
-        <div class="card inline-block reveal" style="max-width:620px;">
-            <p class="text-base font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">
-                <span style="color:#f59e0b">🔍 Big Question:</span>
-                <em>"Before you read a single word of dialogue — what do the colors, lines, and movement of an anime scene already tell you about how to feel?"</em>
-            </p>
-        </div>
-    </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 2: DO NOW
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 2: DO NOW – VIDEO ═══════════ -->
 <div class="slide slide-2" data-slide="2">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;right:-80px;background:#38bdf8;opacity:0.10;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#10b981;opacity:0.08;"></div>
-    </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Do Now — 4 min</span>
-            <span class="pill">👀 Look Before We Talk</span>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-80px;right:-60px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#10b981;opacity:0.05;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🎬 Do Now — 5 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:600;color:#1a2a3a;margin-bottom:0.3rem;">Watch &amp; Notice</h2>
+    <p class="reveal" style="color:#5a7a9a;font-size:0.92rem;margin-bottom:1rem;">As you watch, think: <em>How has animation style changed over the decades?</em></p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;" class="reveal">
+      <div>
+        <div class="vid-thumb-wrap" id="vid-donow-wrap" onclick="playVid('donow')" style="position:relative;aspect-ratio:16/9;">
+          <img onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/3DqCMBJiSzE/hqdefault.jpg';this.onerror=function(){this.style.display='none';this.parentNode.style.background='#0b1929';}" src="https://i.ytimg.com/vi/3DqCMBJiSzE/maxresdefault.jpg" alt="History of Anime Part 1 (3:40) video thumbnail" style="aspect-ratio:16/9;object-fit:cover;">
+          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
-        <h2 class="font-display text-[clamp(1.4rem,2.8vw,2rem)] font-bold text-accent-1 mb-3 reveal">What Do You See Before You Hear Anything?</h2>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-sm font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">Step 1: Two Anime, No Sound</p>
-                    <p class="text-sm font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Think of <em>Spirited Away</em> and <em>Naruto</em>. In your notebook, draw or write 3 visual differences you notice between the two — without mentioning the plot at all.</p>
-                </div>
-                <div class="card" style="border-left:4px solid #10b981;">
-                    <p class="text-sm font-bold text-accent-2 mb-1" style="font-family:'Nunito',Arial,sans-serif;">Step 2: Name the Feeling</p>
-                    <p class="text-sm font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Next to each difference, write one emotion word: calm, urgent, playful, dark, epic, soft… How does each visual choice make you feel?</p>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-1" style="font-family:'Nunito',Arial,sans-serif;">Step 3: Ask Yourself</p>
-                    <p class="text-sm font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">If both stories were told in exactly the same animation style, would they still feel different? Why or why not? Write 1-2 sentences.</p>
-                </div>
-                <div class="card" style="background:rgba(11,99,206,0.04);border-color:rgba(11,99,206,0.2);">
-                    <p class="text-sm font-bold mb-1" style="color:#1e3a8a;font-family:'Nunito',Arial,sans-serif;">💬 Share &amp; Discuss (2 min)</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Turn to a partner. Read your three visual differences aloud. Did they notice the same things you did? What did they see that you missed?</p>
-                </div>
-                <div class="question-chip reveal">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">What does it mean that two different anime about adventure can feel so completely different just from how they're drawn?</span>
-                </div>
-            </div>
+        <div class="vid-iframe-wrap" id="vid-donow-iframe" style="aspect-ratio:16/9;width:100%;"></div>
+        <a href="https://www.youtube.com/watch?v=3DqCMBJiSzE" target="_blank" class="vid-source-link">▶ youtube.com — History of Anime Part 1 (3:40)</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:14px 16px;">
+          <p style="font-size:0.8rem;font-weight:700;color:#0b63ce;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Notice &amp; Wonder</p>
+          <p style="font-size:0.88rem;color:#2d4a6b;">Write one thing you <strong>notice</strong> about how the animation style changes:</p>
+          <input class="fill-input" style="margin-top:6px;" placeholder="I notice…" type="text">
         </div>
+        <div class="card" style="padding:14px 16px;">
+          <p style="font-size:0.88rem;color:#2d4a6b;">What do you <strong>wonder</strong> about the history of anime?</p>
+          <input class="fill-input" style="margin-top:6px;" placeholder="I wonder…" type="text">
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 3: VIDEO — Types of Animation Styles
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 3: VOCABULARY ═══════════ -->
 <div class="slide slide-3" data-slide="3">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:300px;height:300px;top:-60px;left:-60px;background:#0b63ce;opacity:0.09;"></div>
-        <div class="blob" style="width:200px;height:200px;bottom:-50px;right:-40px;background:#10b981;opacity:0.08;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;left:-40px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-70px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">📖 Vocabulary</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Key Terms for Today</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;" class="reveal">
+      <div class="card" style="padding:14px 16px;border-left:4px solid #0b63ce;">
+        <p style="font-weight:800;font-size:1rem;color:#0b63ce;margin-bottom:4px;">Anime</p>
+        <p style="font-size:0.82rem;color:#2d4a6b;">Japanese animation originating in the early 1900s; now a global $25B+ industry</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-left:4px solid #10b981;">
+        <p style="font-weight:800;font-size:1rem;color:#059669;margin-bottom:4px;">Manga</p>
+        <p style="font-size:0.82rem;color:#2d4a6b;">Japanese comic books; the primary source material for most anime adaptations</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-left:4px solid #f59e0b;">
+        <p style="font-weight:800;font-size:1rem;color:#d97706;margin-bottom:4px;">Mecha</p>
+        <p style="font-size:0.82rem;color:#2d4a6b;">Genre featuring giant robots; pioneered by Gundam (1979) and Evangelion (1995)</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-left:4px solid #8b5cf6;">
+        <p style="font-weight:800;font-size:1rem;color:#7c3aed;margin-bottom:4px;">Shōjo</p>
+        <p style="font-size:0.82rem;color:#2d4a6b;">Genre aimed at young women; focuses on emotion, relationships, and growth</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-left:4px solid #ef4444;">
+        <p style="font-weight:800;font-size:1rem;color:#dc2626;margin-bottom:4px;">Shōnen</p>
+        <p style="font-size:0.82rem;color:#2d4a6b;">Genre aimed at young men; focuses on action, friendship, and self-improvement</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-left:4px solid #06b6d4;">
+        <p style="font-weight:800;font-size:1rem;color:#0891b2;margin-bottom:4px;">Cel Animation</p>
+        <p style="font-size:0.82rem;color:#2d4a6b;">Hand-drawn frames on transparent acetate sheets; used 1963–mid-1990s</p>
+      </div>
     </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#fee2e2;border-color:#ef4444;color:#991b1b;">▶️ Watch — 5 min</span>
-            <span class="pill">Animation Styles Explained</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-bold text-accent-1 mb-3 reveal">What Makes Anime Different From Other Animation?</h2>
-        <div class="grid-cards grid-2 gap-4 reveal">
-            <div>
-                <div class="media-embed" id="player-LmyRZR8MaJI" onclick="playVideo('LmyRZR8MaJI')">
-                    <img src="https://i.ytimg.com/vi/LmyRZR8MaJI/hqdefault.jpg" alt="Types of Animation Styles Explained">
-                    <div class="play-btn"><div class="play-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=LmyRZR8MaJI" target="_blank" rel="noopener">▶ Types of Animation Styles Explained — ShotDeck (YouTube)</a>
-                <p class="text-xs font-bold text-text-muted mt-1" style="font-family:'Nunito',Arial,sans-serif;">Watch from <strong>11:09</strong> (Anime section). ~5 minutes.</p>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-sm font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎯 While You Watch — Notice</p>
-                    <ul class="text-xs font-bold text-text-secondary list-disc pl-4 space-y-1" style="font-family:'Nunito',Arial,sans-serif;">
-                        <li>Anime is animated on <strong>threes</strong> (1 new image every 3 frames) — why does that allow more detail?</li>
-                        <li>US animation emphasizes <strong>movement</strong>; anime emphasizes <strong>detailed visuals</strong></li>
-                        <li>Camera in anime uses pans, Dutch tilts, zooms — not just the characters moving</li>
-                    </ul>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">Why might animating on "threes" instead of "ones" let artists create more detailed backgrounds? What's the trade-off?</span>
-                </div>
-                <div class="card" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.2);">
-                    <p class="text-xs font-bold" style="color:#065f46;font-family:'Nunito',Arial,sans-serif;">📝 After watching: Write ONE sentence that explains a key difference between anime and Western animation, in your own words.</p>
-                </div>
-            </div>
-        </div>
+    <div class="reveal" style="margin-top:10px;">
+      <input class="fill-input" placeholder="Pick one term and write your own example from an anime you know…" type="text">
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 4: VOCABULARY
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 4: ORIGINS 1907–1940s ═══════════ -->
 <div class="slide slide-4" data-slide="4">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;right:-80px;background:#38bdf8;opacity:0.11;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#10b981;opacity:0.09;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-70px;right:-60px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-50px;left:-30px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🕰️ Origins</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:1rem;">1907–1940s: Where It All Began</h2>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;" class="reveal">
+      <div style="position:relative;padding-left:28px;">
+      <div style="position:absolute;left:10px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#0b63ce,#10b981,#f59e0b);border-radius:3px;"></div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="card" style="padding:12px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:1.4rem;">🎞️</span>
+          <div><strong style="color:#0b63ce;font-size:0.92rem;">1907 — Katsudō Shashin</strong><br><span style="font-size:0.82rem;color:#2d4a6b;">Earliest known Japanese animation: a 2-second boy drawing kanji on a board. Found in a Kyoto flea market in 2005.</span></div>
+        </div>
+        <div class="card" style="padding:12px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:1.4rem;">✏️</span>
+          <div><strong style="color:#059669;font-size:0.92rem;">1917 — First Commercial Anime</strong><br><span style="font-size:0.82rem;color:#2d4a6b;">Seitaro Kitayama and Junichi Kouchi produce short films inspired by Western animation (Méliès, Bray). Japan begins its own visual storytelling tradition.</span></div>
+        </div>
+        <div class="card" style="padding:12px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:1.4rem;">⚔️</span>
+          <div><strong style="color:#d97706;font-size:0.92rem;">1940s — WWII Propaganda Films</strong><br><span style="font-size:0.82rem;color:#2d4a6b;">Government-funded animations like <em>Momotarō's Divine Sea Warriors</em> (1945) — Japan's first feature-length anime — used the medium as war propaganda.</span></div>
+        </div>
+        <div class="card" style="padding:12px 16px;display:flex;gap:12px;align-items:flex-start;">
+          <span style="font-size:1.4rem;">🌏</span>
+          <div><strong style="color:#7c3aed;font-size:0.92rem;">Context Question</strong><br><span style="font-size:0.82rem;color:#2d4a6b;">Why might a government want to use animation during wartime?</span>
+          <input class="fill-input" style="margin-top:5px;font-size:0.82rem;" placeholder="Your thinking…" type="text"></div>
+        </div>
+      </div>
     </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill">📖 Vocabulary</span>
-            <span class="pill">5 Key Terms for Today</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">Words That Open Up How We See Anime</h2>
-        <div class="grid-cards grid-2 gap-3 reveal">
-            <div class="vocab-card" style="border-left-color:#0b63ce;">
-                <p class="vocab-term">🎨 Animation Style</p>
-                <p class="text-xs font-bold text-text-secondary mt-1" style="font-family:'Nunito',Arial,sans-serif;">The visual language a studio uses — line thickness, color choices, character proportions, movement fluidity. Studio Ghibli's style differs radically from Shonen battle anime.</p>
-            </div>
-            <div class="vocab-card" style="border-left-color:#10b981;">
-                <p class="vocab-term" style="color:#10b981;">📖 Visual Storytelling</p>
-                <p class="text-xs font-bold text-text-secondary mt-1" style="font-family:'Nunito',Arial,sans-serif;">Communicating emotion, character, and plot through images alone — framing, color, lighting, expression — without relying on dialogue or narration.</p>
-            </div>
-            <div class="vocab-card" style="border-left-color:#f59e0b;">
-                <p class="vocab-term" style="color:#c07714;">🎞️ Frame Rate</p>
-                <p class="text-xs font-bold text-text-secondary mt-1" style="font-family:'Nunito',Arial,sans-serif;">How many images are shown per second. High frame rate = smoother but expensive. Anime often runs on twos or threes (8–12 fps drawn) to allow richer artwork per frame.</p>
-            </div>
-            <div class="vocab-card" style="border-left-color:#8b5cf6;">
-                <p class="vocab-term" style="color:#7c3aed;">🖼️ Art Direction</p>
-                <p class="text-xs font-bold text-text-secondary mt-1" style="font-family:'Nunito',Arial,sans-serif;">The overall visual vision for a series — how backgrounds, lighting, and design all work together to create a consistent world that feels believable and emotionally cohesive.</p>
-            </div>
-        </div>
-        <div class="vocab-card mt-3 reveal" style="border-left-color:#ef4444;padding:12px 14px;">
-            <p class="vocab-term" style="color:#ef4444;">🌈 Color Palette</p>
-            <p class="text-xs font-bold text-text-secondary mt-1" style="font-family:'Nunito',Arial,sans-serif;">The set of colors chosen for a scene or entire series. Warm colors (orange, red) feel energetic or dangerous; cool colors (blue, purple) feel calm or melancholy. Color is emotion made visible.</p>
-        </div>
-        <div class="question-chip mt-3 reveal">
-            <span class="icon">?</span>
-            <span style="font-family:'Nunito',Arial,sans-serif;">Which of these five terms do you think has the biggest impact on how an anime <em>feels</em>? Can you give an example from a show you've watched?</span>
-        </div>
+      <div style="flex-shrink:0;">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/2e87d444237c0eee598711ab26c6bcd796702635.jpg" alt="Astro Boy 1963 vintage manga cover" width="160" height="220" loading="lazy" style="border-radius:12px;object-fit:cover;box-shadow:0 4px 18px rgba(11,99,206,0.13);display:block;width:160px;height:220px;">
+        <p style="font-size:0.65rem;color:#5a7a9a;margin-top:4px;text-align:center;">Tetsuwan Atom manga, 1963</p>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 5: STUDIO GHIBLI STYLE
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 5: TEZUKA & 1963 ═══════════ -->
 <div class="slide slide-5" data-slide="5">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;left:-60px;background:#10b981;opacity:0.12;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-50px;right:-40px;background:#38bdf8;opacity:0.09;"></div>
-    </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#d1fae5;border-color:#10b981;color:#065f46;">🌿 Style Deep Dive #1</span>
-            <span class="pill">Studio Ghibli</span>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;right:-50px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-30px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">⭐ 1963 — The Birth of Modern Anime</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Osamu Tezuka &amp; Astro Boy</h2>
+    <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:18px;align-items:start;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Why Tezuka Changed Everything</p>
+          <ul style="font-size:0.83rem;color:#2d4a6b;line-height:1.7;margin:0;padding-left:18px;">
+            <li>Introduced <strong>limited animation</strong>: 8 frames/sec vs Disney's 24 — made TV production affordable</li>
+            <li>Pioneered <strong>large expressive eyes</strong> to convey emotion — inspired by Betty Boop &amp; Disney</li>
+            <li>Launched Japan's first weekly TV anime: <em>Tetsuwan Atom</em> (Astro Boy) Jan 1, 1963</li>
+            <li>4,000 episodes directed over his career; called the "God of Manga"</li>
+          </ul>
         </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">Why Does Ghibli Feel So Alive?</h2>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="reveal">
-                <div style="border-radius:14px;overflow:hidden;height:185px;position:relative;">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/b34facbaad8f095582017e4354ac82500d94426e.jpg" alt="Spirited Away scene" style="width:100%;height:100%;object-fit:cover;">
-                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,0.5),transparent 60%);"></div>
-                    <p style="position:absolute;bottom:8px;left:12px;color:white;font-size:0.7rem;font-weight:800;font-family:'Nunito',Arial,sans-serif;">Spirited Away (2001) — Studio Ghibli</p>
-                </div>
-                <div class="card mt-2">
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;"><strong style="color:#10b981;">Color:</strong> Soft, natural palettes — greens, golds, and warm earth tones that mirror the natural world. No harsh neons.</p>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #10b981;">
-                    <p class="text-xs font-bold text-accent-2 mb-1" style="font-family:'Nunito',Arial,sans-serif;">✏️ Line Work &amp; Movement</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Miyazaki's team hand-draws every frame. Movement is deliberate and weighty — characters don't snap between poses, they flow. Even wind and water are animated with purpose.</p>
-                </div>
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-xs font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎬 Visual Storytelling Technique</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Ghibli uses long, quiet scenes with no dialogue. A character simply walks, eats, or stares — and yet we understand everything. The environment becomes a character itself.</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">In <em>Spirited Away</em>, why do you think Miyazaki chose soft greens and golds instead of bright, saturated colors? What would change if the palette were neon?</span>
-                </div>
-            </div>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #f59e0b;">
+          <p style="font-size:0.83rem;color:#2d4a6b;margin-bottom:5px;"><strong>Your Turn:</strong> Astro Boy is a robot who wants to be human. What type of conflict is this?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="Type of conflict + explanation…" type="text">
         </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:16px;background:linear-gradient(135deg,rgba(11,99,206,0.06),rgba(245,158,11,0.06));border:1.5px solid rgba(11,99,206,0.15);">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">⭐ Astro Boy by the Numbers</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.8rem;">
+            <div style="text-align:center;padding:10px;background:rgba(11,99,206,0.07);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#0b63ce;">193</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Episodes (1963–1966)</p>
+            </div>
+            <div style="text-align:center;padding:10px;background:rgba(245,158,11,0.07);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#d97706;">1st</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Weekly TV anime series in Japan</p>
+            </div>
+            <div style="text-align:center;padding:10px;background:rgba(16,185,129,0.07);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#059669;">8</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Frames/sec (vs Disney's 24)</p>
+            </div>
+            <div style="text-align:center;padding:10px;background:rgba(139,92,246,0.07);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#7c3aed;">4K+</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Pages of manga by Tezuka</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 16px;background:rgba(245,158,11,0.06);border-left:4px solid #f59e0b;">
+          <p style="font-size:0.8rem;color:#2d4a6b;font-style:italic;">"I want to create manga that becomes a social phenomenon." — Osamu Tezuka</p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 6: VIDEO — How Ghibli Makes Animation Feel Alive
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 6: GOLDEN AGE 1970s–80s ═══════════ -->
 <div class="slide slide-6" data-slide="6">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:#10b981;opacity:0.10;"></div>
-        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-40px;background:#0b63ce;opacity:0.08;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-70px;left:-60px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🌟 Golden Age</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">1970s–1980s: Japan Goes Global</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;" class="reveal">
+      <div class="card" style="padding:14px 16px;border-top:4px solid #0b63ce;">
+        <p style="font-size:1.4rem;margin-bottom:5px;">🤖</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#0b63ce;margin-bottom:4px;">Gundam (1979)</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Launched the Mecha genre; first anime to explore war as morally complex — not just good vs. evil</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #f59e0b;">
+        <p style="font-size:1.4rem;margin-bottom:5px;">🐉</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#d97706;margin-bottom:4px;">Dragon Ball (1984)</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Akira Toriyama's manga becomes the blueprint for the shōnen power-progression genre; 40M+ copies sold</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #10b981;">
+        <p style="font-size:1.4rem;margin-bottom:5px;">🏰</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:4px;">Studio Ghibli (1985)</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Miyazaki &amp; Takahata co-found the studio that produces <em>Castle in the Sky</em>, <em>Totoro</em>, and eventually <em>Spirited Away</em></p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #8b5cf6;">
+        <p style="font-size:1.4rem;margin-bottom:5px;">🎬</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#7c3aed;margin-bottom:4px;">Akira (1988)</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">$11M budget; first anime to use 327 colors simultaneously; blew open Western markets for adult animation</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #ef4444;">
+        <p style="font-size:1.4rem;margin-bottom:5px;">🌙</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#dc2626;margin-bottom:4px;">Sailor Moon (1992)</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Redefined shōjo globally; proved female-led anime could dominate ratings in 23+ countries</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #06b6d4;">
+        <p style="font-size:1.4rem;margin-bottom:5px;">📺</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#0891b2;margin-bottom:4px;">Toonami (1997)</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Cartoon Network block introduced DBZ, Sailor Moon, and Gundam Wing to 60M+ US viewers</p>
+      </div>
     </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#fee2e2;border-color:#ef4444;color:#991b1b;">▶️ Watch — 6 min</span>
-            <span class="pill">Ghibli Visual Magic</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-bold text-accent-1 mb-3 reveal">How Ghibli Composes Visuals That Feel Alive</h2>
-        <div class="grid-cards grid-2 gap-4 reveal">
-            <div>
-                <div class="media-embed" id="player-6tXkjy7M594" onclick="playVideo('6tXkjy7M594')">
-                    <img src="https://i.ytimg.com/vi/6tXkjy7M594/hqdefault.jpg" alt="How Studio Ghibli composes visuals">
-                    <div class="play-btn"><div class="play-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=6tXkjy7M594" target="_blank" rel="noopener">▶ How Studio Ghibli Composes Visuals (YouTube)</a>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="card" style="border-left:4px solid #10b981;">
-                    <p class="text-sm font-bold text-accent-2 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎯 Watch For</p>
-                    <ul class="text-xs font-bold text-text-secondary list-disc pl-4 space-y-1" style="font-family:'Nunito',Arial,sans-serif;">
-                        <li>How does the <strong>camera angle</strong> change the emotional impact of a scene?</li>
-                        <li>What role does <strong>negative space</strong> (empty areas) play in the composition?</li>
-                        <li>How does <strong>light direction</strong> communicate the mood of the story?</li>
-                    </ul>
-                </div>
-                <div class="card" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.2);">
-                    <p class="text-xs font-bold" style="color:#065f46;font-family:'Nunito',Arial,sans-serif;">📝 <strong>Notice:</strong> Find one moment in the video where the visual alone — no sound, no words — tells you exactly how to feel. What was it? Why did it work?</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">If Ghibli can make you feel wonder just from how a scene is framed, what does that say about the power of visual storytelling compared to dialogue?</span>
-                </div>
-            </div>
-        </div>
+    <div class="reveal" style="margin-top:10px;">
+      <input class="fill-input" placeholder="Which of these 6 milestones do you think had the biggest impact on anime today, and why?" type="text">
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 7: SHONEN STYLE — NARUTO
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 7: STUDIO GHIBLI ═══════════ -->
 <div class="slide slide-7" data-slide="7">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-70px;right:-70px;background:#f59e0b;opacity:0.13;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.09;"></div>
-    </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">⚡ Style Deep Dive #2</span>
-            <span class="pill">Shonen — Naruto</span>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:340px;height:340px;top:-70px;right:-50px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🏰 Deep Dive</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Studio Ghibli &amp; Spirited Away</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 18px rgba(11,99,206,0.13);margin-bottom:10px;max-height:160px;display:flex;align-items:center;justify-content:center;background:#0b1929;">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/a2d3efab66b43ed81208d48cdd06a0185ce7067e.jpg" alt="Spirited Away official poster" width="100%" height="160" loading="lazy" style="width:100%;height:160px;object-fit:cover;object-position:top;display:block;">
         </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">What Does Shonen Animation Tell You to Feel?</h2>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="reveal">
-                <div style="border-radius:14px;overflow:hidden;height:185px;position:relative;">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/398c419134a00fbc6416f38fcf4e6604b54185e9.jpg" alt="Naruto anime style" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,0.5),transparent 60%);"></div>
-                    <p style="position:absolute;bottom:8px;left:12px;color:white;font-size:0.7rem;font-weight:800;font-family:'Nunito',Arial,sans-serif;">Naruto — Masashi Kishimoto / Studio Pierrot</p>
-                </div>
-                <div class="card mt-2">
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;"><strong style="color:#f59e0b;">Color:</strong> Bold, saturated oranges and blues. High contrast creates urgency. Color tells you: this character is powerful, this moment is important.</p>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #f59e0b;">
-                    <p class="text-xs font-bold text-accent-3 mb-1" style="font-family:'Nunito',Arial,sans-serif;">💥 Line Work &amp; Speed</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Speed lines, dramatic angles, extreme close-ups on eyes. The style is designed to make every emotional beat feel HUGE. Even stillness is charged with tension.</p>
-                </div>
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-xs font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎬 Visual Storytelling Technique</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Fight scenes use sakuga — moments of exceptional animation where a key animator is given freedom. These bursts of fluidity signal: this moment matters above all others.</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">Why does Naruto's style use such bold, saturated colors? What would happen to the story's emotional impact if the palette were soft and muted like Ghibli?</span>
-                </div>
-            </div>
+        <div class="card" style="padding:16px;background:linear-gradient(135deg,rgba(16,185,129,0.06),rgba(11,99,206,0.04));">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">🏰 Studio Ghibli Founded 1985</p>
+          <ul style="font-size:0.82rem;color:#2d4a6b;line-height:1.7;margin:0;padding-left:18px;">
+            <li>Co-founded by Hayao Miyazaki &amp; Isao Takahata</li>
+            <li><em>Nausicaä</em>, <em>Castle in the Sky</em>, <em>My Neighbor Totoro</em> — all cel-animated</li>
+            <li>Themes: environmentalism, anti-war, coming-of-age</li>
+            <li>Unique: Ghibli rarely adapts manga — original screenplays</li>
+          </ul>
         </div>
+        <div class="card" style="padding:12px 16px;background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(245,158,11,0.05));border-left:4px solid #10b981;">
+          <p style="font-weight:800;font-size:0.82rem;color:#059669;margin-bottom:4px;">Spirited Away (2001) — Spirited Away is:</p>
+          <p style="font-size:0.8rem;color:#2d4a6b;">Japan's highest-grossing film of all time; first anime to win an Academy Award; $395M worldwide box office. Watch the official trailer: <a href="https://www.youtube.com/watch?v=b_I6IGHh-HE" target="_blank" style="color:#0b63ce;font-weight:700;">▶ youtube.com</a></p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:12px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">Ghibli by the Numbers</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="text-align:center;padding:8px;background:rgba(16,185,129,0.07);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:#059669;">$395M</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Spirited Away box office worldwide</p>
+            </div>
+            <div style="text-align:center;padding:8px;background:rgba(11,99,206,0.07);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:#0b63ce;">2003</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Academy Award — Best Animated Film</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #10b981;">
+          <p style="font-size:0.82rem;color:#2d4a6b;margin-bottom:5px;"><strong>Chihiro's conflict:</strong> A 10-year-old must work in a spirit bathhouse to free her parents. What type(s) of conflict do you see?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="Conflict type(s) and evidence…" type="text">
+        </div>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #f59e0b;">
+          <p style="font-size:0.82rem;color:#2d4a6b;margin-bottom:5px;">Ghibli films often feature nature vs. industry. Which of our course themes does this connect to?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="Connection to course themes…" type="text">
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 8: VIDEO — Naruto's Genius Fight Animation
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 8: DIGITAL REVOLUTION ═══════════ -->
 <div class="slide slide-8" data-slide="8">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:300px;height:300px;top:-60px;left:-60px;background:#f59e0b;opacity:0.10;"></div>
-        <div class="blob" style="width:200px;height:200px;bottom:-50px;right:-40px;background:#ef4444;opacity:0.08;"></div>
-    </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#fee2e2;border-color:#ef4444;color:#991b1b;">▶️ Watch — 5 min</span>
-            <span class="pill">Shonen Action Animation</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-bold text-accent-1 mb-3 reveal">The Genius Behind Naruto's Fight Animations</h2>
-        <div class="grid-cards grid-2 gap-4 reveal">
-            <div>
-                <div class="media-embed" id="player-i6Z9m_0-DVo" onclick="playVideo('i6Z9m_0-DVo')">
-                    <img src="https://i.ytimg.com/vi/i6Z9m_0-DVo/hqdefault.jpg" alt="The Genius Behind Naruto's Fight Scene Animations">
-                    <div class="play-btn"><div class="play-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=i6Z9m_0-DVo" target="_blank" rel="noopener">▶ The Genius Behind Naruto's Fight Scene Animations (YouTube)</a>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;left:-40px;background:#8b5cf6;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">💻 Digital Revolution</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">1990s–2000s: Cel → Digital</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.82rem;color:#7c3aed;margin-bottom:8px;">🎬 Key Transition Titles</p>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:0.8rem;">
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;padding:6px 8px;background:rgba(245,158,11,0.07);border-radius:8px;">
+              <span style="font-weight:800;color:#d97706;">1988</span>
+              <span style="color:#2d4a6b;"><strong>Akira</strong> — 327 colors, $11M budget, cel pinnacle</span>
             </div>
-            <div class="flex flex-col gap-3">
-                <div class="card" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎯 Watch For</p>
-                    <ul class="text-xs font-bold text-text-secondary list-disc pl-4 space-y-1" style="font-family:'Nunito',Arial,sans-serif;">
-                        <li>How do <strong>speed lines</strong> and <strong>impact frames</strong> create a sense of force?</li>
-                        <li>When the animation slows down, what does that signal emotionally?</li>
-                        <li>Notice how <strong>stillness before a strike</strong> creates tension</li>
-                    </ul>
-                </div>
-                <div class="card" style="background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.25);">
-                    <p class="text-xs font-bold" style="color:#92400e;font-family:'Nunito',Arial,sans-serif;">📝 <strong>Pause and notice:</strong> Pick one specific moment in this video where the animation alone (not the music or dialogue) tells you something important about the story.</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">Why might an animator choose to use fewer, more detailed frames instead of faster, simpler movement during a climactic scene?</span>
-                </div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;padding:6px 8px;background:rgba(139,92,246,0.07);border-radius:8px;">
+              <span style="font-weight:800;color:#7c3aed;">1995</span>
+              <span style="color:#2d4a6b;"><strong>Evangelion</strong> — last major cel TV series</span>
             </div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;padding:6px 8px;background:rgba(11,99,206,0.07);border-radius:8px;">
+              <span style="font-weight:800;color:#0b63ce;">1998</span>
+              <span style="color:#2d4a6b;"><strong>Cowboy Bebop</strong> — 1st fully digital TV anime</span>
+            </div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;padding:6px 8px;background:rgba(16,185,129,0.07);border-radius:8px;">
+              <span style="font-weight:800;color:#059669;">2000s</span>
+              <span style="color:#2d4a6b;"><strong>Full digital</strong> — unlimited palette + 3D compositing</span>
+            </div>
+          </div>
         </div>
+        <div class="card" style="padding:10px 14px;border-left:4px solid #8b5cf6;">
+          <p style="font-size:0.78rem;color:#5a7a9a;">See the evolution in detail: <a href="https://www.youtube.com/watch?v=I1zjl1cLLuM" target="_blank" style="color:#0b63ce;font-weight:700;">▶ youtube.com — Evolution of Anime Art Styles</a></p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">Cel vs. Digital: The Shift</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.8rem;">
+            <div style="background:rgba(245,158,11,0.08);border-radius:10px;padding:10px;">
+              <p style="font-weight:800;color:#d97706;margin-bottom:4px;">🖌 Cel Era (pre-1995)</p>
+              <p style="color:#2d4a6b;">Hand-painted acetate sheets; warm organic color; Neon Genesis Evangelion last major cel series (1995)</p>
+            </div>
+            <div style="background:rgba(11,99,206,0.08);border-radius:10px;padding:10px;">
+              <p style="font-weight:800;color:#0b63ce;margin-bottom:4px;">🖥 Digital Era (1995+)</p>
+              <p style="color:#2d4a6b;">Computer coloring; unlimited palette; 3D compositing; Cowboy Bebop (1998) first fully digital TV series</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #8b5cf6;">
+          <p style="font-size:0.83rem;color:#2d4a6b;margin-bottom:5px;">Which style do you think is <em>more expressive</em> for storytelling?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="Cel / Digital — because…" type="text">
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 9: DEMON SLAYER — MODERN STYLE
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 9: STREAMING ERA ═══════════ -->
 <div class="slide slide-9" data-slide="9">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-70px;right:-70px;background:#8b5cf6;opacity:0.12;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#ef4444;opacity:0.09;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:340px;height:340px;top:-60px;right:-50px;background:#ef4444;opacity:0.06;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-30px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">📱 Streaming Era</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">2010s–Now: Anime Goes Truly Global</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;" class="reveal">
+      <div class="card" style="padding:12px;text-align:center;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#0b63ce;">$25B+</p>
+        <p style="font-size:0.72rem;color:#5a7a9a;">Global anime industry value (2023)</p>
+      </div>
+      <div class="card" style="padding:12px;text-align:center;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#059669;">100M+</p>
+        <p style="font-size:0.72rem;color:#5a7a9a;">Crunchyroll subscribers worldwide</p>
+      </div>
+      <div class="card" style="padding:12px;text-align:center;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#d97706;">1B+</p>
+        <p style="font-size:0.72rem;color:#5a7a9a;">Demon Slayer movie tickets sold in Japan (2020)</p>
+      </div>
+      <div class="card" style="padding:12px;text-align:center;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:#7c3aed;">190+</p>
+        <p style="font-size:0.72rem;color:#5a7a9a;">Countries where anime streams on Netflix</p>
+      </div>
     </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#ede9fe;border-color:#7c3aed;color:#4c1d95;">🌊 Style Deep Dive #3</span>
-            <span class="pill">Demon Slayer — Ufotable</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">When 2D Art and 3D Technology Meet</h2>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="reveal">
-                <div style="border-radius:14px;overflow:hidden;height:185px;position:relative;">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/6894a36416b8fd52740454d0afa9893c47a772f0.jpg" alt="Demon Slayer visual style" style="width:100%;height:100%;object-fit:cover;">
-                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,0.55),transparent 60%);"></div>
-                    <p style="position:absolute;bottom:8px;left:12px;color:white;font-size:0.7rem;font-weight:800;font-family:'Nunito',Arial,sans-serif;">Demon Slayer — Ufotable (2019–present)</p>
-                </div>
-                <div class="card mt-2">
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;"><strong style="color:#7c3aed;">Color:</strong> Blue for swords, purple for enemies, gold for sparks. Color is a language — each hue signals exactly who is doing what in a fight.</p>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #7c3aed;">
-                    <p class="text-xs font-bold mb-1" style="color:#7c3aed;font-family:'Nunito',Arial,sans-serif;">🔮 2D + 3D Blended Style</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Ufotable blends hand-drawn animation with CGI environments. Characters are 2D; backgrounds and camera movements use 3D — creating a depth impossible with either method alone.</p>
-                </div>
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-xs font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎬 Visual Storytelling Technique</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">The <em>breathing techniques</em> are visualized as elemental effects — water, fire, thunder. You can <em>see</em> the emotion of each style through its animation. The technique is the character.</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">Demon Slayer uses color to show <em>who</em> is attacking without slowing down. What literary device does this remind you of? How is color a form of writing?</span>
-                </div>
-            </div>
-        </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
+      <div class="card" style="padding:14px 16px;border-left:4px solid #ef4444;">
+        <p style="font-weight:800;font-size:0.85rem;color:#dc2626;margin-bottom:6px;">Platform Revolution</p>
+        <ul style="font-size:0.8rem;color:#2d4a6b;line-height:1.8;margin:0;padding-left:16px;">
+          <li>Crunchyroll (est. 2006) made subtitled anime available same-week as Japan</li>
+          <li>Netflix invested $1B in anime originals by 2022</li>
+          <li>TikTok &amp; YouTube clips drive discovery for Gen Z globally</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:14px 16px;border-left:4px solid #10b981;">
+        <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">Discussion Prompt</p>
+        <p style="font-size:0.83rem;color:#2d4a6b;margin-bottom:6px;">How did streaming change who watches anime? Is global popularity good or bad for the art form?</p>
+        <input class="fill-input" style="font-size:0.82rem;" placeholder="Your argument…" type="text">
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 10: VIDEO — Demon Slayer Revolutionized Anime
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 10: NARUTO CASE STUDY ═══════════ -->
 <div class="slide slide-10" data-slide="10">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:#7c3aed;opacity:0.10;"></div>
-        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-40px;background:#ef4444;opacity:0.08;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:340px;height:340px;top:-70px;right:-50px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🍥 Case Study</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:0.6rem;">
+      <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin:0;flex:1;">Naruto (2002): Conflict &amp; Growth</h2>
+      <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/70029c4b8ee7a31ae9ab9e17f041f314aec9318e.jpg" alt="Naruto running to shrine gate artwork" width="110" height="78" loading="lazy" style="border-radius:12px;object-fit:cover;box-shadow:0 4px 18px rgba(11,99,206,0.13);display:block;width:110px;height:78px;flex-shrink:0;">
     </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#fee2e2;border-color:#ef4444;color:#991b1b;">▶️ Watch — 5 min</span>
-            <span class="pill">Modern Anime Visual Tech</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="vid-thumb-wrap" id="vid-naruto-wrap" onclick="playVid('naruto')" style="position:relative;aspect-ratio:16/9;">
+          <img onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/q1aq9GEHR8Q/hqdefault.jpg';this.onerror=function(){this.style.display='none';this.parentNode.style.background='#0b1929';}" src="https://i.ytimg.com/vi/q1aq9GEHR8Q/maxresdefault.jpg" alt="Naruto Opening 1" style="aspect-ratio:16/9;object-fit:cover;">
+          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-bold text-accent-1 mb-3 reveal">How Demon Slayer Changed Anime Forever</h2>
-        <div class="grid-cards grid-2 gap-4 reveal">
-            <div>
-                <div class="media-embed" id="player-jRS_LcFPSQs" onclick="playVideo('jRS_LcFPSQs')">
-                    <img src="https://i.ytimg.com/vi/jRS_LcFPSQs/hqdefault.jpg" alt="How Demon Slayer Revolutionized Anime's Production Forever">
-                    <div class="play-btn"><div class="play-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=jRS_LcFPSQs" target="_blank" rel="noopener">▶ How Demon Slayer Revolutionized Anime's Production (YouTube)</a>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="card" style="border-left:4px solid #7c3aed;">
-                    <p class="text-sm font-bold mb-1" style="color:#7c3aed;font-family:'Nunito',Arial,sans-serif;">🎯 Watch For</p>
-                    <ul class="text-xs font-bold text-text-secondary list-disc pl-4 space-y-1" style="font-family:'Nunito',Arial,sans-serif;">
-                        <li>How Ufotable blends <strong>2D and 3D</strong> seamlessly</li>
-                        <li>Why CGI in anime was once considered "cheap" — and what changed</li>
-                        <li>How <strong>camera movement</strong> in 3D space adds cinematic depth</li>
-                    </ul>
-                </div>
-                <div class="card" style="background:rgba(124,58,237,0.05);border-color:rgba(124,58,237,0.2);">
-                    <p class="text-xs font-bold" style="color:#4c1d95;font-family:'Nunito',Arial,sans-serif;">📝 <strong>Connect:</strong> This video mentions that Demon Slayer raised audience <em>expectations</em> for anime visuals. How does a higher bar in animation affect the stories studios are willing to tell?</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">Is it possible for a story with poor animation to still be great? Can you think of examples where visual style compensated for (or hurt) a weak story?</span>
-                </div>
-            </div>
+        <div class="vid-iframe-wrap" id="vid-naruto-iframe" style="aspect-ratio:16/9;width:100%;"></div>
+        <a href="https://www.youtube.com/watch?v=q1aq9GEHR8Q" target="_blank" class="vid-source-link">▶ youtube.com — Naruto OP1 "R★O★C★K★S" (Official)</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:12px 16px;border-left:4px solid #f59e0b;">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:5px;">Primary Conflict Type</p>
+          <p style="font-size:0.82rem;color:#2d4a6b;">Naruto vs. himself — he must overcome the Nine-Tails fox spirit within him AND his own self-doubt. Classic <strong>Man vs. Self</strong>.</p>
+          <input class="fill-input" style="margin-top:6px;font-size:0.82rem;" placeholder="Add a second conflict type you see in the opening…" type="text">
         </div>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #0b63ce;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:5px;">By the Numbers</p>
+          <ul style="font-size:0.8rem;color:#2d4a6b;line-height:1.7;margin:0;padding-left:16px;">
+            <li>720 episodes (2002–2017)</li>
+            <li>250M+ manga volumes sold worldwide</li>
+            <li>3rd best-selling manga of all time</li>
+            <li>Aired in 70+ countries</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #10b981;">
+          <p style="font-size:0.83rem;color:#2d4a6b;margin-bottom:5px;">How does Naruto's "outsider" story connect to your own experience?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="Personal connection…" type="text">
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 11: COLOR AS STORYTELLING
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 11: MHA ═══════════ -->
 <div class="slide slide-11" data-slide="11">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;right:-70px;background:#f59e0b;opacity:0.12;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#10b981;opacity:0.10;"></div>
-    </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">🌈 Color Theory</span>
-            <span class="pill">Emotion Made Visible</span>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:340px;height:340px;top:-70px;left:-50px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-60px;right:-30px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🦸 Case Study</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">My Hero Academia (2016): Hero Evolution</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:14px 16px;border-left:4px solid #10b981;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">The Hero Arc: 1963 → 2016</p>
+          <ul style="font-size:0.8rem;color:#2d4a6b;line-height:1.7;margin:0;padding-left:16px;">
+            <li><strong>Astro Boy (1963):</strong> Robot hero = technology solves problems</li>
+            <li><strong>Dragon Ball (1984):</strong> Hero = raw power through training</li>
+            <li><strong>Naruto (2002):</strong> Hero = perseverance despite rejection</li>
+            <li><strong>MHA (2016):</strong> Hero = moral choice — what does heroism <em>mean</em>?</li>
+          </ul>
         </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">How Does Color Tell the Story Before the Words Do?</h2>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="reveal">
-                <div style="border-radius:14px;overflow:hidden;height:175px;position:relative;">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/56164633863319fd3f79daa0c69ac91883624189.jpg" alt="Anime color palette analysis" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-                </div>
-                <p class="text-xs font-bold text-text-muted text-center mt-1" style="font-family:'Nunito',Arial,sans-serif;">Color theory breakdown in anime (Kyoto Animation)</p>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #f59e0b;">
+          <p style="font-size:0.83rem;color:#2d4a6b;margin-bottom:5px;">Deku has no powers in a world where 80% of people do. How does this create both internal and external conflict?</p>
+          <textarea class="fill-textarea" rows="2" placeholder="Internal conflict: … / External conflict: …"></textarea>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:14px 16px;background:linear-gradient(135deg,rgba(16,185,129,0.06),rgba(245,158,11,0.04));">
+          <p style="font-weight:800;font-size:0.82rem;color:#059669;margin-bottom:8px;">📊 MHA by the Numbers</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.8rem;">
+            <div style="text-align:center;padding:8px;background:rgba(16,185,129,0.08);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.6rem;font-weight:700;color:#059669;">#3</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Best-selling manga of the 2010s</p>
             </div>
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #ef4444;">
-                    <p class="text-xs font-bold mb-1" style="color:#ef4444;font-family:'Nunito',Arial,sans-serif;">🔴 Warm Colors (Red, Orange, Yellow)</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Energy, danger, passion, power. Naruto's orange jumpsuit signals: this character is impossible to ignore. Fire = transformation or threat.</p>
-                </div>
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-xs font-bold mb-1" style="color:#0b63ce;font-family:'Nunito',Arial,sans-serif;">🔵 Cool Colors (Blue, Purple, Grey)</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Calm, sadness, mystery, distance. Sasuke's dark palette says: isolation, power through restraint. Water scenes feel melancholy vs energizing.</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">Choose your favorite anime character. What colors are they associated with — and do those colors match their personality? Is that a coincidence?</span>
-                </div>
+            <div style="text-align:center;padding:8px;background:rgba(245,158,11,0.08);border-radius:10px;">
+              <p style="font-family:'Fredoka',sans-serif;font-size:1.6rem;font-weight:700;color:#d97706;">90M+</p>
+              <p style="font-size:0.72rem;color:#5a7a9a;">Manga copies in circulation</p>
             </div>
+          </div>
         </div>
-        <div class="card mt-3 reveal" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.25);">
-            <p class="text-xs font-bold" style="color:#065f46;font-family:'Nunito',Arial,sans-serif;">🎨 <strong>Color Palette Activity:</strong> Look at the anime color chart. Which palette feels most like the show you're creating your own character for? Why did the creators make those choices?</p>
+        <div class="card" style="padding:12px 16px;border-left:4px solid #10b981;">
+          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:5px;"><strong>Why does the hero archetype keep evolving?</strong> What does each new version tell us about what society values?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="Your thinking…" type="text">
         </div>
+        <div class="card" style="padding:10px 14px;border-left:4px solid #f59e0b;">
+          <p style="font-size:0.78rem;color:#5a7a9a;">Watch the opening: <a href="https://www.youtube.com/watch?v=L1FdEBTJXus" target="_blank" style="color:#0b63ce;font-weight:700;">▶ youtube.com — MHA OP1 "The Day"</a></p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 12: VIDEO — Color Theory in Anime
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 12: TIMELINE ACTIVITY ═══════════ -->
 <div class="slide slide-12" data-slide="12">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:300px;height:300px;top:-60px;left:-60px;background:#f59e0b;opacity:0.11;"></div>
-        <div class="blob" style="width:200px;height:200px;bottom:-50px;right:-40px;background:#10b981;opacity:0.09;"></div>
-    </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#fee2e2;border-color:#ef4444;color:#991b1b;">▶️ Watch — 5 min</span>
-            <span class="pill">Color &amp; Storytelling</span>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-30px;background:#10b981;opacity:0.05;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">📊 Activity — 8 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Build Your Anime Timeline</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="card" style="padding:14px 16px;border-left:4px solid #0b63ce;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:8px;">Instructions</p>
+          <ol style="font-size:0.82rem;color:#2d4a6b;line-height:1.8;margin:0;padding-left:16px;">
+            <li>Choose <strong>5 key moments</strong> from today's lesson</li>
+            <li>Add 1 anime work per moment</li>
+            <li>Write what <em>changed</em> at that moment</li>
+            <li>Use different colors per era</li>
+            <li>Circle your personal favorite</li>
+          </ol>
         </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-bold text-accent-1 mb-3 reveal">How to Make an Anime Stand Out — Color Theory</h2>
-        <div class="grid-cards grid-2 gap-4 reveal">
-            <div>
-                <div class="media-embed" id="player-3Za3lTJnE-k" onclick="playVideo('3Za3lTJnE-k')">
-                    <img src="https://i.ytimg.com/vi/3Za3lTJnE-k/hqdefault.jpg" alt="How to make an anime stand out - Color theory in anime">
-                    <div class="play-btn"><div class="play-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
-                </div>
-                <a class="video-source" href="https://www.youtube.com/watch?v=3Za3lTJnE-k" target="_blank" rel="noopener">▶ How to Make an Anime Stand Out — Color Theory (YouTube)</a>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="card" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎯 Watch For</p>
-                    <ul class="text-xs font-bold text-text-secondary list-disc pl-4 space-y-1" style="font-family:'Nunito',Arial,sans-serif;">
-                        <li>How do complementary colors create <strong>visual tension</strong>?</li>
-                        <li>What happens emotionally when a color <strong>shifts mid-scene</strong>?</li>
-                        <li>How does <strong>desaturation</strong> (washing out color) signal loss or sadness?</li>
-                    </ul>
-                </div>
-                <div class="card" style="background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.25);">
-                    <p class="text-xs font-bold" style="color:#92400e;font-family:'Nunito',Arial,sans-serif;">📝 <strong>Design Connection:</strong> After watching, think about the character or scene you'll create today. What color palette will you choose — and what emotion do you want viewers to feel <em>before</em> reading anything?</p>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">If an anime changed its entire color palette halfway through the series, what might that signal about the story's direction?</span>
-                </div>
-            </div>
+        <div class="card" style="padding:12px 16px;background:rgba(16,185,129,0.05);border:1.5px solid rgba(16,185,129,0.2);">
+          <p style="font-weight:800;font-size:0.82rem;color:#059669;margin-bottom:6px;">Quick Reference Dates</p>
+          <div style="font-size:0.78rem;color:#2d4a6b;line-height:1.9;">
+            1907 · 1917 · 1945 · 1963 · 1979 · 1984 · 1985 · 1988 · 1992 · 1995 · 1997 · 1998 · 2002 · 2006 · 2016 · 2020
+          </div>
         </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <p style="font-size:0.8rem;font-weight:700;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.05em;">Your 5 Timeline Entries:</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;">
+            <input class="fill-input" style="font-size:0.8rem;text-align:center;font-weight:700;" placeholder="Year" type="text">
+            <input class="fill-input" style="font-size:0.8rem;" placeholder="Event / Work / What changed…" type="text">
+          </div>
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;">
+            <input class="fill-input" style="font-size:0.8rem;text-align:center;font-weight:700;" placeholder="Year" type="text">
+            <input class="fill-input" style="font-size:0.8rem;" placeholder="Event / Work / What changed…" type="text">
+          </div>
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;">
+            <input class="fill-input" style="font-size:0.8rem;text-align:center;font-weight:700;" placeholder="Year" type="text">
+            <input class="fill-input" style="font-size:0.8rem;" placeholder="Event / Work / What changed…" type="text">
+          </div>
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;">
+            <input class="fill-input" style="font-size:0.8rem;text-align:center;font-weight:700;" placeholder="Year" type="text">
+            <input class="fill-input" style="font-size:0.8rem;" placeholder="Event / Work / What changed…" type="text">
+          </div>
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;">
+            <input class="fill-input" style="font-size:0.8rem;text-align:center;font-weight:700;" placeholder="Year" type="text">
+            <input class="fill-input" style="font-size:0.8rem;" placeholder="Event / Work / What changed…" type="text">
+          </div>
+        </div>
+        <input class="fill-input" style="font-size:0.8rem;" placeholder="★ Most important moment because…" type="text">
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 13: COMPARING STYLES SIDE BY SIDE
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 13: CULTURE & CONTEXT ═══════════ -->
 <div class="slide slide-13" data-slide="13">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;right:-70px;background:#0b63ce;opacity:0.10;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#f59e0b;opacity:0.09;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;left:-40px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-40px;background:#8b5cf6;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🌸 Culture &amp; Context</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Why Does Japan Tell Stories This Way?</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;" class="reveal">
+      <div class="card" style="padding:14px 16px;border-top:4px solid #f59e0b;">
+        <p style="font-size:1.3rem;margin-bottom:4px;">⚔️</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#d97706;margin-bottom:4px;">Post-WWII Trauma</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Tezuka survived the firebombing of Osaka. His work reflects hopes for peace technology (Astro Boy) and anti-war themes.</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #10b981;">
+        <p style="font-size:1.3rem;margin-bottom:4px;">🌿</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:4px;">Shinto &amp; Nature</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Shinto teaches all things have spirits. Ghibli's forests, rivers, and spirits directly reflect this worldview.</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #8b5cf6;">
+        <p style="font-size:1.3rem;margin-bottom:4px;">📈</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#7c3aed;margin-bottom:4px;">Economic Miracle → Bust</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">1980s bubble economy funded lavish productions (Akira). The 1990s crash brought existential themes — Evangelion (1995) reflects societal collapse anxiety.</p>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #0b63ce;">
+        <p style="font-size:1.3rem;margin-bottom:4px;">🫂</p>
+        <p style="font-weight:800;font-size:0.88rem;color:#0b63ce;margin-bottom:4px;">Collectivist Culture</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;">Japanese society values group harmony. Anime heroes almost always succeed through <em>teamwork</em>, not individual genius alone.</p>
+      </div>
     </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill">🔍 Compare &amp; Analyze</span>
-            <span class="pill">3 Styles, 3 Stories</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-bold text-accent-1 mb-3 reveal">Style Is Never Accidental — What Does Each Choice Say?</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;" class="reveal">
-            <div class="card" style="border-top:4px solid #10b981;text-align:center;">
-                <p class="text-xs font-bold mb-1" style="color:#10b981;font-family:'Nunito',Arial,sans-serif;">🌿 GHIBLI</p>
-                <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;"><strong>Soft palettes</strong><br>Hand-drawn fluidity<br>Long quiet scenes<br>Nature = character<br><em>Feel: Wonder, peace</em></p>
-            </div>
-            <div class="card" style="border-top:4px solid #f59e0b;text-align:center;">
-                <p class="text-xs font-bold mb-1" style="color:#c07714;font-family:'Nunito',Arial,sans-serif;">⚡ SHONEN</p>
-                <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;"><strong>Saturated bold color</strong><br>Speed lines + sakuga<br>Extreme close-ups<br>Impact frames<br><em>Feel: Urgency, power</em></p>
-            </div>
-            <div class="card" style="border-top:4px solid #7c3aed;text-align:center;">
-                <p class="text-xs font-bold mb-1" style="color:#7c3aed;font-family:'Nunito',Arial,sans-serif;">🌊 MODERN (UFOTABLE)</p>
-                <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;"><strong>Color = character</strong><br>2D + 3D blend<br>Dynamic camera<br>Light as emotion<br><em>Feel: Awe, intensity</em></p>
-            </div>
-        </div>
-        <div class="card mt-3 reveal">
-            <p class="text-sm font-bold text-text mb-2" style="font-family:'Nunito',Arial,sans-serif;">Discussion Starters:</p>
-            <div class="flex flex-wrap gap-2">
-                <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;">"Ghibli's style works for its story because…"</span>
-                <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;">"If Naruto used Ghibli's style, the story would feel…"</span>
-                <span class="technique-badge" style="background:rgba(124,58,237,0.08);color:#4c1d95;">"The most important visual choice in __ is…"</span>
-            </div>
-        </div>
-        <div class="question-chip mt-3 reveal">
-            <span class="icon">?</span>
-            <span style="font-family:'Nunito',Arial,sans-serif;">Could any of these anime swap animation styles and still tell the same story? What would be gained or lost?</span>
-        </div>
+    <div class="reveal" style="margin-top:10px;display:flex;align-items:center;gap:12px;">
+      <input class="fill-input" placeholder="Which cultural factor surprises you most? How does it show up in anime you watch?" type="text">
+      <div style="flex-shrink:0;border-radius:10px;overflow:hidden;box-shadow:0 4px 14px rgba(11,99,206,0.12);">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/964ceffb1dc862d23d2cee4e242e489840e7d533.jpg" alt="Akira 1988 anime film poster" width="70" height="70" loading="lazy" style="width:70px;height:70px;object-fit:cover;display:block;">
+      </div>
     </div>
+    <p style="font-size:0.65rem;color:#5a7a9a;margin-top:3px;text-align:right;">Akira (1988) — $11M budget, 327 colors</p>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 14: CREATIVE ACTIVITY
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 14: PRESENTATION ACTIVITY ═══════════ -->
 <div class="slide slide-14" data-slide="14">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;right:-70px;background:#10b981;opacity:0.12;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.09;"></div>
-    </div>
-    <div class="content">
-        <div class="flex flex-wrap items-center gap-3 mb-3">
-            <span class="pill" style="background:#d1fae5;border-color:#10b981;color:#065f46;">🎨 Create — 20 min</span>
-            <span class="pill">Design Your Scene or Character</span>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#10b981;opacity:0.06;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-30px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🎨 Activity — 10 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Mini Poster: Your Anime Era</h2>
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:18px;" class="reveal">
+      <div class="card" style="padding:16px 18px;border-left:4px solid #10b981;">
+        <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:8px;">Your Poster Must Include:</p>
+        <ol style="font-size:0.82rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
+          <li><strong>Title:</strong> One anime from any era</li>
+          <li><strong>Era:</strong> When it was made &amp; the historical context</li>
+          <li><strong>Visual Style:</strong> Cel or digital? Describe the look</li>
+          <li><strong>Conflict Type:</strong> What is the main conflict? Evidence?</li>
+          <li><strong>Impact:</strong> Why does it still matter?</li>
+          <li><strong>Image:</strong> Quick sketch or description of key scene</li>
+        </ol>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <p style="font-size:0.78rem;font-weight:700;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.05em;">Draft Your Poster Here:</p>
+        <input class="fill-input" placeholder="Anime Title" type="text">
+        <input class="fill-input" placeholder="Era + Historical Context (1-2 sentences)" type="text">
+        <input class="fill-input" placeholder="Visual Style — Cel or Digital? What does it look like?" type="text">
+        <input class="fill-input" placeholder="Conflict Type + Evidence from the show" type="text">
+        <textarea class="fill-textarea" rows="2" placeholder="Why does this anime still matter today? Connect to real-world events or themes…"></textarea>
+        <div class="card" style="padding:10px 14px;background:rgba(16,185,129,0.05);">
+          <p style="font-size:0.78rem;color:#5a7a9a;">💬 <strong>Share:</strong> Be ready to pitch your era in 60 seconds to the class!</p>
         </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">Now It's Your Turn — Make Visual Choices That Speak</h2>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="border-left:4px solid #0b63ce;">
-                    <p class="text-sm font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">Step 1: Choose Your Style (3 min)</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Pick <strong>one</strong> animation style: Ghibli-inspired (soft, detailed backgrounds), Shonen (bold lines, high contrast), or Modern Blended (clean, cinematic). Write down <em>why</em> this style fits your character or scene.</p>
-                </div>
-                <div class="card" style="border-left:4px solid #10b981;">
-                    <p class="text-sm font-bold text-accent-2 mb-1" style="font-family:'Nunito',Arial,sans-serif;">Step 2: Choose Your Palette (3 min)</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Select 3–4 colors for your scene. Write next to each one: what emotion does this color carry? How does it reinforce your character's personality or the moment you're capturing?</p>
-                </div>
-                <div class="card" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-1" style="font-family:'Nunito',Arial,sans-serif;">Step 3: Sketch (14 min)</p>
-                    <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Draw your character or a key scene. Use your chosen palette with markers, colored pencils, or watercolors. Focus on: line weight, expression, and how the background environment reflects the character's inner state.</p>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3 reveal">
-                <div class="card" style="background:rgba(11,99,206,0.04);border-color:rgba(11,99,206,0.2);">
-                    <p class="text-sm font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">🎨 Art Direction Checklist</p>
-                    <ul class="text-xs font-bold text-text-secondary list-disc pl-4 space-y-1" style="font-family:'Nunito',Arial,sans-serif;">
-                        <li>Does your color palette match the emotional tone?</li>
-                        <li>Is your line work consistent with your chosen style?</li>
-                        <li>Does the background environment say something about the character?</li>
-                        <li>Could someone understand the <em>mood</em> without reading dialogue?</li>
-                    </ul>
-                </div>
-                <div class="question-chip">
-                    <span class="icon">?</span>
-                    <span style="font-family:'Nunito',Arial,sans-serif;">As you draw, ask yourself: what would a viewer feel in the first 3 seconds of looking at your scene, before reading anything? Is that the feeling you intended?</span>
-                </div>
-                <div class="card" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.2);">
-                    <p class="text-xs font-bold" style="color:#065f46;font-family:'Nunito',Arial,sans-serif;">💡 <strong>Connect to your anime character:</strong> This sketch will become part of your end-of-term original character. Make visual choices that serve <em>their</em> story.</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 15: GALLERY SHARE + PEER FEEDBACK
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 15: CLASS DISCUSSION ═══════════ -->
 <div class="slide slide-15" data-slide="15">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;right:-70px;background:#0b63ce;opacity:0.10;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#10b981;opacity:0.09;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-40px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content">
+    <div class="section-badge reveal">💬 Class Discussion</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:600;color:#1a2a3a;margin-bottom:1rem;">Three Big Questions</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;" class="reveal">
+      <div class="card" style="padding:14px 18px;display:flex;gap:14px;align-items:flex-start;">
+        <span style="font-size:1.5rem;flex-shrink:0;">🤔</span>
+        <div style="flex:1;">
+          <p style="font-weight:800;color:#0b63ce;margin-bottom:5px;font-size:0.92rem;">Question 1</p>
+          <p style="font-size:0.88rem;color:#2d4a6b;margin-bottom:6px;">Anime began as government propaganda. Does its <em>origins</em> affect how we should see it today?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="I think… because…" type="text">
+        </div>
+      </div>
+      <div class="card" style="padding:14px 18px;display:flex;gap:14px;align-items:flex-start;">
+        <span style="font-size:1.5rem;flex-shrink:0;">🌍</span>
+        <div style="flex:1;">
+          <p style="font-weight:800;color:#059669;margin-bottom:5px;font-size:0.92rem;">Question 2</p>
+          <p style="font-size:0.88rem;color:#2d4a6b;margin-bottom:6px;">As anime becomes more global, does it risk losing the Japanese cultural elements that make it unique?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="Yes/No/Maybe — because…" type="text">
+        </div>
+      </div>
+      <div class="card" style="padding:14px 18px;display:flex;gap:14px;align-items:flex-start;">
+        <span style="font-size:1.5rem;flex-shrink:0;">✍️</span>
+        <div style="flex:1;">
+          <p style="font-weight:800;color:#d97706;margin-bottom:5px;font-size:0.92rem;">Question 3 — Course Connection</p>
+          <p style="font-size:0.88rem;color:#2d4a6b;margin-bottom:6px;">If you were creating your own anime character, which <em>era's</em> storytelling style would you use, and why?</p>
+          <input class="fill-input" style="font-size:0.82rem;" placeholder="I would use [era] because… my character would…" type="text">
+        </div>
+      </div>
     </div>
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-3">
-            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🤝 Gallery Share</span>
-            <span class="pill">Peer Feedback — 8 min</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">Your Visual Choices Tell a Story — What Story Did You Tell?</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px;" class="reveal">
-            <div class="card" style="border-top:3px solid #0b63ce;">
-                <p class="text-sm font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">👁️ Step 1: Show (45 sec)</p>
-                <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Show your sketch silently. Give your partner 45 seconds to look without explanation. They observe; you stay quiet.</p>
-            </div>
-            <div class="card" style="border-top:3px solid #10b981;">
-                <p class="text-sm font-bold text-accent-2 mb-1" style="font-family:'Nunito',Arial,sans-serif;">💬 Step 2: Name It</p>
-                <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Partner says: "The style I see is ___ because…" and "The color palette makes me feel ___ because…" Be specific — point to the actual lines and colors.</p>
-            </div>
-            <div class="card" style="border-top:3px solid #f59e0b;">
-                <p class="text-sm font-bold text-accent-3 mb-1" style="font-family:'Nunito',Arial,sans-serif;">❓ Step 3: Ask One Question</p>
-                <p class="text-xs font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Ask one genuine question about a visual choice: "Why did you choose this specific color for ___?" Not "Did you like drawing this?"</p>
-            </div>
-        </div>
-        <div class="card reveal mb-3">
-            <p class="text-sm font-bold text-text mb-2" style="font-family:'Nunito',Arial,sans-serif;">Feedback Sentence Starters:</p>
-            <div class="flex flex-wrap gap-2">
-                <span class="technique-badge" style="background:rgba(11,99,206,0.08);color:#1e3a8a;font-size:0.7rem;">"The style choice that surprised me was…"</span>
-                <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;font-size:0.7rem;">"The color that told me the most was…"</span>
-                <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;font-size:0.7rem;">"What if you used ___ instead of ___ for…"</span>
-                <span class="technique-badge" style="background:rgba(124,58,237,0.08);color:#4c1d95;font-size:0.7rem;">"This scene reminded me of ___ because…"</span>
-            </div>
-        </div>
-        <div class="question-chip reveal">
-            <span class="icon">?</span>
-            <span style="font-family:'Nunito',Arial,sans-serif;">After hearing your partner's reaction — did they feel what you intended? If not, what visual element might you change to communicate more clearly?</span>
-        </div>
-    </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SLIDE 16: EXIT TICKET
-═══════════════════════════════════════════════ -->
+<!-- ═══════════ SLIDE 16: EXIT TICKET ═══════════ -->
 <div class="slide slide-16" data-slide="16">
-    <div class="gradient-mesh">
-        <div class="blob" style="width:350px;height:350px;top:-80px;right:-70px;background:#f59e0b;opacity:0.12;"></div>
-        <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.09;"></div>
-        <div class="blob" style="width:180px;height:180px;top:40%;right:15%;background:#10b981;opacity:0.08;"></div>
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-70px;right:-50px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🎟️ Exit Ticket — 5 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Before You Go…</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
+      <div class="card" style="padding:14px 16px;border-top:4px solid #0b63ce;">
+        <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">📚 I learned…</p>
+        <textarea class="fill-textarea" rows="2" placeholder="One new thing about anime history that surprised me…"></textarea>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #10b981;">
+        <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">🔗 This connects to MY anime…</p>
+        <textarea class="fill-textarea" rows="2" placeholder="Something from today that I see in an anime I already watch…"></textarea>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #f59e0b;">
+        <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:6px;">❓ I'm still wondering…</p>
+        <textarea class="fill-textarea" rows="2" placeholder="A question I still have about anime history or its future…"></textarea>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #8b5cf6;">
+        <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:6px;">✏️ For MY own anime…</p>
+        <textarea class="fill-textarea" rows="2" placeholder="One historical or cultural detail I want to use in my own anime story/character…"></textarea>
+      </div>
     </div>
-    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
-    <div class="content">
-        <div class="flex flex-wrap gap-3 mb-3">
-            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">🎯 Exit Ticket — 3 min</span>
-            <span class="pill">Write in Notebook</span>
-        </div>
-        <h2 class="font-display text-[clamp(1.3rem,2.5vw,1.9rem)] font-bold text-accent-1 mb-3 reveal">Show What You Know</h2>
-        <div class="grid-cards grid-2 gap-4">
-            <div class="flex flex-col gap-3">
-                <div class="card reveal" style="border-left:4px solid #0b63ce;">
-                    <p class="text-sm font-bold text-accent-1 mb-1" style="font-family:'Nunito',Arial,sans-serif;">✍️ Question 1 — Define &amp; Example</p>
-                    <p class="text-sm font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Choose <strong>one vocabulary term</strong> from today. Write its definition in your own words. Give one specific anime example where you saw it used — and explain the effect it had.</p>
-                    <div class="exit-line mt-2"></div>
-                    <div class="exit-line"></div>
-                </div>
-                <div class="card reveal" style="border-left:4px solid #10b981;">
-                    <p class="text-sm font-bold text-accent-2 mb-1" style="font-family:'Nunito',Arial,sans-serif;">✍️ Question 2 — Compare</p>
-                    <p class="text-sm font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">Name two anime with <em>different</em> visual styles. Describe one specific visual difference and explain what story effect each choice creates.</p>
-                    <div class="exit-line mt-2"></div>
-                    <div class="exit-line"></div>
-                    <div class="exit-line"></div>
-                </div>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="card reveal" style="border-left:4px solid #f59e0b;">
-                    <p class="text-sm font-bold text-accent-3 mb-1" style="font-family:'Nunito',Arial,sans-serif;">✍️ Question 3 — Create &amp; Connect</p>
-                    <p class="text-sm font-bold text-text-secondary" style="font-family:'Nunito',Arial,sans-serif;">For <em>your own original anime character</em> (the one you're building this term): what animation style and color palette would you choose, and why? What emotion should the viewer feel immediately upon seeing this character?</p>
-                    <div class="exit-line mt-2"></div>
-                    <div class="exit-line"></div>
-                </div>
-                <div class="card reveal" style="background:rgba(16,185,129,0.06);border-color:rgba(16,185,129,0.3);">
-                    <p class="text-sm font-bold" style="color:#065f46;font-family:'Nunito',Arial,sans-serif;">🏠 Out-of-Class Extension</p>
-                    <p class="text-xs font-bold text-text-secondary mt-1" style="font-family:'Nunito',Arial,sans-serif;">Watch <strong>one episode</strong> of an anime you've never seen. Write a short reflection (5–8 sentences): describe the animation style, the color palette, and explain how those visual choices shaped your emotional experience of the story. Bring your notes next class.</p>
-                </div>
-            </div>
-        </div>
+    <div class="reveal" style="margin-top:10px;">
+      <div class="card" style="padding:10px 16px;background:rgba(245,158,11,0.06);border:1.5px dashed rgba(245,158,11,0.3);text-align:center;">
+        <p style="font-size:0.82rem;color:#d97706;font-weight:700;">🏠 Extension: Watch a classic anime from a decade you haven't explored. Research its historical context and bring 3 facts to next class.</p>
+      </div>
     </div>
+  </div>
 </div>
 
-</div><!-- end .deck -->
+<!-- ═══════════ SLIDE 17: ERA DETECTIVE ═══════════ -->
+<div class="slide slide-17" data-slide="17">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-50px;right:-40px;background:#8b5cf6;opacity:0.07;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🔍 Activity — 6 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Era Detective</h2>
+    <p class="reveal" style="font-size:0.85rem;color:#5a7a9a;margin-bottom:10px;">Read each description. Write the decade it's from AND the visual clue that gave it away.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
+      <div class="card" style="padding:12px 14px;">
+        <p style="font-size:0.82rem;font-weight:700;color:#0b63ce;margin-bottom:4px;">Scene A</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:6px;font-style:italic;">"The characters have simple oval eyes and thick outlines. The background is a hand-painted cel. Only 3 frames of animation per second. The story involves a robot boy fighting for peace."</p>
+        <input class="fill-input" style="font-size:0.78rem;margin-bottom:4px;" placeholder="Decade: 19___" type="text">
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="Visual clue that told you…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;">
+        <p style="font-size:0.82rem;font-weight:700;color:#059669;margin-bottom:4px;">Scene B</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:6px;font-style:italic;">"Vivid digital colors, fluid 24fps action sequences. Characters have spiky hair and power levels. Giant energy blasts light up richly detailed CGI backgrounds."</p>
+        <input class="fill-input" style="font-size:0.78rem;margin-bottom:4px;" placeholder="Decade: 19/20___" type="text">
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="Visual clue that told you…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;">
+        <p style="font-size:0.82rem;font-weight:700;color:#d97706;margin-bottom:4px;">Scene C</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:6px;font-style:italic;">"Lush watercolor-style backgrounds, soft lighting, and detailed nature scenes. A girl interacts with forest spirits. Cel paint gives warm, slightly uneven color tones."</p>
+        <input class="fill-input" style="font-size:0.78rem;margin-bottom:4px;" placeholder="Decade: 19___" type="text">
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="Visual clue that told you…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;">
+        <p style="font-size:0.82rem;font-weight:700;color:#7c3aed;margin-bottom:4px;">Scene D</p>
+        <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:6px;font-style:italic;">"Ultra-detailed character designs, 3D crowd effects, and cinematic camera angles. Characters use smartphones. Streaming thumbnail-style key visuals with gradient glows."</p>
+        <input class="fill-input" style="font-size:0.78rem;margin-bottom:4px;" placeholder="Decade: 20___" type="text">
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="Visual clue that told you…" type="text">
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- NAVIGATION -->
+<!-- ═══════════ SLIDE 18: CEL VS DIGITAL T-CHART ═══════════ -->
+<div class="slide slide-18" data-slide="18">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;left:-40px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-30px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">📊 Activity — 5 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Cel vs. Digital: Fill the T-Chart</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
+      <div class="card" style="padding:14px 16px;border-top:4px solid #f59e0b;">
+        <p style="font-weight:800;font-size:0.9rem;color:#d97706;text-align:center;margin-bottom:10px;">🖌 Cel Animation</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Advantage 1…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Advantage 2…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Disadvantage 1…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Disadvantage 2…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Famous example from today's lesson…" type="text">
+        </div>
+      </div>
+      <div class="card" style="padding:14px 16px;border-top:4px solid #0b63ce;">
+        <p style="font-weight:800;font-size:0.9rem;color:#0b63ce;text-align:center;margin-bottom:10px;">🖥 Digital Animation</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Advantage 1…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Advantage 2…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Disadvantage 1…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Disadvantage 2…" type="text">
+          <input class="fill-input" style="font-size:0.8rem;" placeholder="Famous example from today's lesson…" type="text">
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:10px;">
+      <div class="card" style="padding:12px 16px;border-left:4px solid #8b5cf6;">
+        <p style="font-size:0.82rem;color:#2d4a6b;margin-bottom:5px;"><strong>Opinion:</strong> If you were directing an anime today, which would you choose and why?</p>
+        <input class="fill-input" style="font-size:0.82rem;" placeholder="I would choose ___ because…" type="text">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 19: CREATE YOUR ERA PITCH ═══════════ -->
+<div class="slide slide-19" data-slide="19">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:330px;height:330px;top:-60px;right:-50px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-30px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🎬 Activity — 8 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">"Create Your Era" Anime Pitch</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="card" style="padding:12px 14px;">
+          <p style="font-size:0.8rem;font-weight:700;color:#059669;margin-bottom:6px;">Step 1: Choose Your Era</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;" id="era-tags">
+            <button onclick="selectEra(this,'1960s')" class="tool-btn">1960s</button>
+            <button onclick="selectEra(this,'1980s')" class="tool-btn">1980s</button>
+            <button onclick="selectEra(this,'1990s')" class="tool-btn">1990s</button>
+            <button onclick="selectEra(this,'2000s')" class="tool-btn">2000s</button>
+            <button onclick="selectEra(this,'2020s')" class="tool-btn">2020s</button>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 14px;">
+          <p style="font-size:0.8rem;font-weight:700;color:#d97706;margin-bottom:6px;">Step 2: Pick Conflict Type(s)</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;" id="conflict-tags">
+            <button onclick="toggleTag(this)" class="tool-btn">Man vs Self</button>
+            <button onclick="toggleTag(this)" class="tool-btn">Man vs Man</button>
+            <button onclick="toggleTag(this)" class="tool-btn">Man vs Society</button>
+            <button onclick="toggleTag(this)" class="tool-btn">Man vs Nature</button>
+            <button onclick="toggleTag(this)" class="tool-btn">Man vs Tech</button>
+          </div>
+        </div>
+        <input class="fill-input" style="font-size:0.82rem;" placeholder="Anime Series Title" type="text">
+        <input class="fill-input" style="font-size:0.82rem;" placeholder="Main Character Name + Power/Trait" type="text">
+        <input class="fill-input" style="font-size:0.82rem;" placeholder="Genre (Shōnen / Shōjo / Mecha / Other)" type="text">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <input class="fill-input" style="font-size:0.82rem;" placeholder="Real historical event from your era that shapes the story…" type="text">
+        <textarea class="fill-textarea" rows="3" placeholder="One-sentence pitch: 'My anime is about [character] who must [conflict] in a world where [historical context]…'"></textarea>
+        <div class="card" style="padding:12px 14px;background:rgba(11,99,206,0.04);">
+          <p style="font-size:0.8rem;font-weight:700;color:#0b63ce;margin-bottom:6px;">Animation Style Notes</p>
+          <input class="fill-input" style="font-size:0.78rem;margin-bottom:5px;" placeholder="Visual style for your era (cel/digital/specific look)…" type="text">
+          <input class="fill-input" style="font-size:0.78rem;" placeholder="One cultural element from Japan that appears in your story…" type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 20: ANIME IMPACT WEB ═══════════ -->
+<div class="slide slide-20" data-slide="20">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;left:-40px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-60px;right:-30px;background:#8b5cf6;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🕸️ Activity — 6 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Anime's Global Impact Web</h2>
+    <p class="reveal" style="font-size:0.85rem;color:#5a7a9a;margin-bottom:10px;">Anime influences more than TV. Write ONE specific example in each spoke.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" class="reveal">
+      <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
+        <p style="font-size:0.78rem;font-weight:800;color:#0b63ce;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">🎬 Film &amp; TV</p>
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. The Matrix borrowed from Akira's bullet-dodge…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #10b981;">
+        <p style="font-size:0.78rem;font-weight:800;color:#059669;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">👗 Fashion</p>
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. Harajuku cosplay culture…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #f59e0b;">
+        <p style="font-size:0.78rem;font-weight:800;color:#d97706;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">🎮 Video Games</p>
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. Final Fantasy art style influenced by Yoshitaka Amano…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #8b5cf6;">
+        <p style="font-size:0.78rem;font-weight:800;color:#7c3aed;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">📚 Literature</p>
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. Light novels adapted to manga/anime pipeline…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #ef4444;">
+        <p style="font-size:0.78rem;font-weight:800;color:#dc2626;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">💰 Merchandise</p>
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. Pokémon = #1 media franchise at $150B+…" type="text">
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #06b6d4;">
+        <p style="font-size:0.78rem;font-weight:800;color:#0891b2;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">🗣 Language</p>
+        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. Baka, kawaii, senpai entered global vocabulary…" type="text">
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:10px;display:flex;align-items:center;gap:12px;">
+      <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/2a520724532601077b9aa13291e08fdaba440f5b.jpg" alt="Astro Boy flying above futuristic city" width="72" height="54" loading="lazy" style="border-radius:10px;object-fit:cover;box-shadow:0 3px 10px rgba(11,99,206,0.14);flex-shrink:0;width:72px;height:54px;display:block;">
+      <input class="fill-input" placeholder="Which impact surprises you most? Why do you think anime spread this way?" type="text">
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 21: PEER INTERVIEW ═══════════ -->
+<div class="slide slide-21" data-slide="21">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🤝 Activity — 7 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Peer Interview: Ask &amp; Record</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <p style="font-size:0.78rem;font-weight:800;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.05em;">Partner's Name:</p>
+        <input class="fill-input" style="font-size:0.88rem;font-weight:700;" placeholder="My partner is…" type="text">
+        <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
+          <p style="font-size:0.8rem;font-weight:700;color:#0b63ce;margin-bottom:5px;">Q1: Which anime era do you think was most important, and why?</p>
+          <textarea class="fill-textarea" rows="2" placeholder="Partner's answer…"></textarea>
+        </div>
+        <div class="card" style="padding:12px 14px;border-left:4px solid #059669;">
+          <p style="font-size:0.8rem;font-weight:700;color:#059669;margin-bottom:5px;">Q2: What's one thing about anime history that changed how you see your favorite show?</p>
+          <textarea class="fill-textarea" rows="2" placeholder="Partner's answer…"></textarea>
+        </div>
+        <div class="card" style="padding:12px 14px;border-left:4px solid #d97706;">
+          <p style="font-size:0.8rem;font-weight:700;color:#d97706;margin-bottom:5px;">Q3: What conflict type will you use in your own anime character's story?</p>
+          <textarea class="fill-textarea" rows="2" placeholder="Partner's answer…"></textarea>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="card" style="padding:14px 16px;border-top:4px solid #8b5cf6;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:8px;">Your Reflection</p>
+          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:5px;">How did your partner's answers differ from yours?</p>
+          <textarea class="fill-textarea" rows="2" placeholder="We disagreed about / both agreed that…"></textarea>
+        </div>
+        <div class="card" style="padding:14px 16px;border-top:4px solid #0b63ce;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">Class Question Generator</p>
+          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:5px;">Based on your interview, write one question you'd want the whole class to discuss:</p>
+          <textarea class="fill-textarea" rows="2" placeholder="Our class question: If anime had never gone global…"></textarea>
+        </div>
+        <div class="card" style="padding:10px 14px;background:rgba(16,185,129,0.05);">
+          <p style="font-size:0.78rem;color:#059669;">💬 After sharing: Did hearing your partner's perspective change your own thinking?</p>
+          <input class="fill-input" style="font-size:0.78rem;margin-top:5px;" placeholder="Yes / No / Somewhat — because…" type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 22: ARGUMENT BUILDER ═══════════ -->
+<div class="slide slide-22" data-slide="22">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;left:-40px;background:#ef4444;opacity:0.06;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">⚖️ Activity — 8 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Argument Builder: Most Important Era</h2>
+    <p class="reveal" style="font-size:0.85rem;color:#5a7a9a;margin-bottom:10px;">Build a 4-part argument for which era of anime was most impactful on the art form.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
+      <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
+        <p style="font-size:0.82rem;font-weight:800;color:#0b63ce;margin-bottom:5px;">① CLAIM</p>
+        <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:5px;">State your position clearly.</p>
+        <textarea class="fill-textarea" rows="2" placeholder="The most important era was ___ because…"></textarea>
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #10b981;">
+        <p style="font-size:0.82rem;font-weight:800;color:#059669;margin-bottom:5px;">② EVIDENCE</p>
+        <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:5px;">Use 1–2 specific facts from today.</p>
+        <textarea class="fill-textarea" rows="2" placeholder="Specific evidence: dates, works, numbers…"></textarea>
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #f59e0b;">
+        <p style="font-size:0.82rem;font-weight:800;color:#d97706;margin-bottom:5px;">③ REASONING</p>
+        <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:5px;">Connect evidence to claim. Why does it matter?</p>
+        <textarea class="fill-textarea" rows="2" placeholder="This shows that… which means anime…"></textarea>
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:4px solid #ef4444;">
+        <p style="font-size:0.82rem;font-weight:800;color:#dc2626;margin-bottom:5px;">④ COUNTER-ARGUMENT</p>
+        <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:5px;">Challenge yourself: What would someone who disagrees say?</p>
+        <textarea class="fill-textarea" rows="2" placeholder="Someone might argue that ___ era was more important because…"></textarea>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:8px;">
+      <input class="fill-input" placeholder="One-sentence response to your counter-argument…" type="text">
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 23: DRAWING CANVAS ═══════════ -->
+<div class="slide slide-23" data-slide="23">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:340px;height:340px;top:-70px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.06;"></div>
+    <div class="blob" style="width:200px;height:200px;top:40%;right:10%;background:#f59e0b;opacity:0.05;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content" style="display:flex;flex-direction:column;align-items:stretch;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;" class="reveal">
+      <div>
+        <div class="section-badge" style="margin-bottom:4px;">🎨 Drawing Activity — 8 min</div>
+        <h2 style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:600;color:#1a2a3a;margin:0;">Sketch Your Anime Character</h2>
+        <p style="font-size:0.78rem;color:#5a7a9a;margin:2px 0 0;">Draw a character from your chosen era — or your own original anime hero!</p>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+        <!-- Color palette -->
+        <div style="display:flex;gap:5px;align-items:center;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.15);border-radius:12px;padding:6px 10px;">
+          <button class="brush-btn active-brush" id="color-black" onclick="setColor('#1a2a3a')" style="background:#1a2a3a;" title="Dark"></button>
+          <button class="brush-btn" id="color-blue" onclick="setColor('#0b63ce')" style="background:#0b63ce;" title="Blue"></button>
+          <button class="brush-btn" id="color-green" onclick="setColor('#10b981')" style="background:#10b981;" title="Green"></button>
+          <button class="brush-btn" id="color-orange" onclick="setColor('#f59e0b')" style="background:#f59e0b;" title="Orange"></button>
+          <button class="brush-btn" id="color-red" onclick="setColor('#ef4444')" style="background:#ef4444;" title="Red"></button>
+          <button class="brush-btn" id="color-purple" onclick="setColor('#8b5cf6')" style="background:#8b5cf6;" title="Purple"></button>
+          <button class="brush-btn" id="color-pink" onclick="setColor('#ec4899')" style="background:#ec4899;" title="Pink"></button>
+          <button class="brush-btn" id="color-white" onclick="setColor('#ffffff')" style="background:#ffffff;border:2px solid #ccc;" title="White"></button>
+        </div>
+        <!-- Brush sizes -->
+        <div style="display:flex;gap:4px;align-items:center;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.15);border-radius:12px;padding:6px 10px;">
+          <button onclick="setBrush(2,'thin')" id="brush-thin" class="tool-btn active-tool" style="font-size:0.7rem;">Thin</button>
+          <button onclick="setBrush(5,'med')" id="brush-med" class="tool-btn" style="font-size:0.7rem;">Med</button>
+          <button onclick="setBrush(12,'thick')" id="brush-thick" class="tool-btn" style="font-size:0.7rem;">Thick</button>
+          <button onclick="setBrush(28,'fill')" id="brush-fill" class="tool-btn" style="font-size:0.7rem;">Fill</button>
+        </div>
+        <!-- Tools -->
+        <div style="display:flex;gap:4px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.15);border-radius:12px;padding:6px 10px;">
+          <button onclick="setMode('draw')" id="mode-draw" class="tool-btn active-tool" style="font-size:0.7rem;">✏️ Draw</button>
+          <button onclick="setMode('erase')" id="mode-erase" class="tool-btn" style="font-size:0.7rem;">🧹 Erase</button>
+          <button onclick="clearCanvas()" class="tool-btn" style="font-size:0.7rem;background:rgba(239,68,68,0.1);color:#dc2626;border-color:rgba(239,68,68,0.3);">🗑 Clear</button>
+          <button onclick="downloadDrawing()" class="tool-btn" style="font-size:0.7rem;background:rgba(16,185,129,0.1);color:#059669;border-color:rgba(16,185,129,0.3);">💾 Save</button>
+        </div>
+      </div>
+    </div>
+    <!-- Canvas + Prompt side panel -->
+    <div style="display:grid;grid-template-columns:1fr 220px;gap:12px;align-items:start;" class="reveal">
+      <canvas id="drawing-canvas"></canvas>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
+          <p style="font-size:0.78rem;font-weight:800;color:#0b63ce;margin-bottom:6px;">Drawing Prompt</p>
+          <p style="font-size:0.78rem;color:#2d4a6b;line-height:1.6;">Draw your character with <strong>at least 3</strong> of these era-specific traits:</p>
+          <ul style="font-size:0.75rem;color:#5a7a9a;line-height:1.8;margin:6px 0 0;padding-left:14px;">
+            <li>Big expressive eyes (1963 style)</li>
+            <li>Spiky hair (1980s shōnen)</li>
+            <li>Futuristic outfit (1990s)</li>
+            <li>Nature/spirit element (Ghibli)</li>
+            <li>Cape or hero costume (2010s)</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:12px 14px;border-left:4px solid #10b981;">
+          <p style="font-size:0.78rem;font-weight:800;color:#059669;margin-bottom:5px;">Character Notes</p>
+          <input class="fill-input" style="font-size:0.75rem;margin-bottom:5px;" placeholder="Character name…" type="text">
+          <input class="fill-input" style="font-size:0.75rem;margin-bottom:5px;" placeholder="Era this character is from…" type="text">
+          <input class="fill-input" style="font-size:0.75rem;" placeholder="Main conflict type…" type="text">
+        </div>
+        <div class="card" style="padding:10px 12px;background:rgba(245,158,11,0.05);border:1.5px dashed rgba(245,158,11,0.3);">
+          <p style="font-size:0.73rem;color:#d97706;font-weight:700;">💡 Tip: Use the era design choices you studied — they tell a story before the character even speaks!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 24: CLOSE / THANK YOU ═══════════ -->
+<div class="slide slide-24" data-slide="24">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.09;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:220px;height:220px;top:40%;left:20%;background:#f59e0b;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content text-center" style="display:flex;flex-direction:column;align-items:center;">
+    <div style="font-size:clamp(3.5rem,8vw,6rem);animation:float 3s ease-in-out infinite;margin-bottom:0.5rem;" class="reveal">🎌</div>
+    <div class="accent-bar mx-auto reveal"></div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;color:#0b63ce;margin-bottom:0.5rem;">See You Next Lesson!</h1>
+    <p class="reveal" style="font-size:clamp(0.9rem,1.5vw,1.1rem);color:#5a7a9a;margin-bottom:1.2rem;max-width:600px;">Your own anime story is next — the history you learned today is the foundation you'll build from.</p>
+    <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <span class="pill" style="background:rgba(11,99,206,0.1);color:#0b63ce;">📖 Bring your Extension research</span>
+      <span class="pill" style="background:rgba(16,185,129,0.1);color:#059669;">✏️ Start thinking about your character</span>
+      <span class="pill" style="background:rgba(245,158,11,0.1);color:#d97706;">🎬 Next: Story Structure &amp; Archetypes</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /.deck -->
+
 <div class="nav-controls">
-    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
-    <div class="slide-dots" id="dots"></div>
-    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
-    <span class="slide-counter" id="counter">1 / 16</span>
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 24</span>
 </div>
 
 <script>
-    let current = 1;
-    const total = document.querySelectorAll('.slide').length;
-    const dotsContainer = document.getElementById('dots');
-    const counter = document.getElementById('counter');
-    for (let i = 1; i <= total; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (i === 1 ? ' active' : '');
-        dot.onclick = () => goToSlide(i);
-        dotsContainer.appendChild(dot);
-    }
-    function goToSlide(n) {
-        document.querySelector('.slide.active')?.classList.remove('active');
-        const next = document.querySelector(`.slide[data-slide="${n}"]`);
-        if (next) { next.classList.add('active'); animateSlide(next); }
-        current = n; updateNav();
-    }
-    function changeSlide(dir) { let n = current + dir; if (n < 1) n = total; if (n > total) n = 1; goToSlide(n); }
-    function updateNav() {
-        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === current));
-        counter.textContent = current + ' / ' + total;
-    }
-    document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
-        if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
-    });
-    let touchStartX = 0;
-    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-    document.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+/* ═══ DECK NAVIGATION ═══ */
+let current = 1;
+const total = document.querySelectorAll('.slide').length;
+const dotsContainer = document.getElementById('dots');
+const counter = document.getElementById('counter');
+for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot);}
+function goToSlide(n){const prev=document.querySelector('.slide.active');const next=document.querySelector('.slide[data-slide="'+n+'"]');if(prev)prev.classList.remove('active');if(next){next.classList.add('active');animateSlide(next);}current=n;updateNav();}
+function changeSlide(dir){let n=current+dir;if(n<1)n=total;if(n>total)n=1;goToSlide(n);}
+function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i+1===current));counter.textContent=current+' / '+total;}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1);}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1);}});
+let touchStartX=0;
+document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;});
+document.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1);});
 
-    function animateSlide(slide) {
-        slide.querySelectorAll('.reveal').forEach((el, i) => {
-            el.style.transition = 'none';
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(18px)';
-            el.offsetHeight;
-            const delay = i * 0.07;
-            el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        });
-    }
+/* ═══ REVEAL ANIMATIONS ═══ */
+function animateSlide(slide){
+  slide.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transition='none';el.style.opacity='0';el.style.transform='translateY(18px)';
+    el.offsetHeight;
+    const delay=i*0.07;
+    el.style.transition='opacity 0.35s ease '+delay+'s, transform 0.35s ease '+delay+'s';
+    el.style.opacity='1';el.style.transform='translateY(0)';
+  });
+  // Re-init canvas if drawing slide
+  if(slide.dataset.slide==='23') setTimeout(initDrawingCanvas, 100);
+}
 
-    function playVideo(id) {
-        const container = document.getElementById('player-' + id);
-        container.style.cursor = 'default';
-        container.onclick = null;
-        container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" title="Video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px;"></iframe>';
-    }
+/* ═══ VIDEO THUMBNAIL → PLAYER ═══ */
+const vidMap={
+  donow:{yt:'3DqCMBJiSzE'},
+  naruto:{yt:'q1aq9GEHR8Q'}
+};
+function playVid(id){
+  const wrap=document.getElementById('vid-'+id+'-wrap');
+  const iframeWrap=document.getElementById('vid-'+id+'-iframe');
+  if(!wrap||!iframeWrap)return;
+  const ytId=vidMap[id].yt;
+  iframeWrap.innerHTML='<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/'+ytId+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:14px;width:100%;height:100%;display:block;"></iframe>';
+  wrap.style.display='none';
+  iframeWrap.style.display='block';
+}
 
-    document.addEventListener('mousemove', e => {
-        const spotlight = document.querySelector('.mouse-spotlight');
-        if (spotlight) spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.05), transparent 40%)`;
-    });
+/* ═══ VIDEO THUMBNAIL FALLBACK LABELS ═══ */
+const vidTitles={
+  donow:'History of Anime — Part 1 (3:40)',
+  naruto:'Naruto OP1 "R★O★C★K★S"'
+};
+Object.keys(vidTitles).forEach(id=>{
+  const wrap=document.getElementById('vid-'+id+'-wrap');
+  if(!wrap)return;
+  const lbl=document.createElement('div');
+  lbl.className='vid-fallback-label';
+  lbl.textContent=vidTitles[id];
+  wrap.appendChild(lbl);
+});
 
-    window.initParticles = function(canvas, options) {
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-        resize();
-        window.addEventListener('resize', resize);
-        const count = options.count || 20;
-        const interactive = options.interactive !== false;
-        let mx = -9999, my = -9999;
-        const particles = Array.from({length: count}, () => ({
-            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-            vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,
-            size: Math.random()*2+0.8, alpha: Math.random()*0.3+0.08
-        }));
-        if (interactive) {
-            canvas.addEventListener('mousemove', e => { const r=canvas.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; });
-            canvas.addEventListener('mouseleave', () => { mx=-9999; my=-9999; });
-        }
-        (function animate() {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            particles.forEach(p => {
-                if (interactive) { const dx=p.x-mx,dy=p.y-my,dist=Math.sqrt(dx*dx+dy*dy); if(dist<100){const f=(100-dist)/100*1.5;p.vx+=(dx/dist)*f*0.08;p.vy+=(dy/dist)*f*0.08;} }
-                p.vx*=0.98; p.vy*=0.98; p.x+=p.vx; p.y+=p.vy;
-                if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
-                if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
-                ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-                ctx.fillStyle=`rgba(11,99,206,${p.alpha})`; ctx.fill();
-            });
-            requestAnimationFrame(animate);
-        })();
-    };
-    document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, {interactive:true,count:50}));
-    document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, {interactive:false,count:18}));
+/* ═══ ACTIVITY TAG TOGGLES ═══ */
+function selectEra(btn){document.querySelectorAll('#era-tags .tool-btn').forEach(b=>b.classList.remove('active-tool'));btn.classList.add('active-tool');}
+function toggleTag(btn){btn.classList.toggle('active-tool');}
 
-    animateSlide(document.querySelector('.slide.active'));
+/* ═══ MOUSE SPOTLIGHT ═══ */
+document.addEventListener('mousemove',e=>{const s=document.querySelector('.mouse-spotlight');if(s)s.style.background='radial-gradient(600px circle at '+e.clientX+'px '+e.clientY+'px, rgba(11,99,206,0.05), transparent 40%)';});
+
+/* ═══ PARTICLES ═══ */
+window.initParticles=function(canvas,opts){
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+  const interactive=opts.interactive!==false;
+  const count=opts.count||(interactive?40:15);
+  let mx=-1000,my=-1000;
+  const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,size:Math.random()*2+0.6,alpha:Math.random()*0.3+0.08}));
+  if(interactive){canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});canvas.addEventListener('mouseleave',()=>{mx=-1000;my=-1000;});}
+  (function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{if(interactive){const dx=p.x-mx,dy=p.y-my,dist=Math.sqrt(dx*dx+dy*dy);if(dist<100){const f=(100-dist)/100*1.5;p.vx+=(dx/dist)*f*0.1;p.vy+=(dy/dist)*f*0.1;}}p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle='rgba(11,99,206,'+p.alpha+')';ctx.fill();});requestAnimationFrame(animate);})();
+};
+document.querySelectorAll('.particle-canvas').forEach(c=>window.initParticles(c,{interactive:true,count:40}));
+document.querySelectorAll('.particle-canvas-ambient').forEach(c=>window.initParticles(c,{interactive:false,count:15}));
+
+/* ═══════════════════════════════════
+   DRAWING CANVAS — Slide 23
+   ═══════════════════════════════════ */
+let drawCtx, drawCanvas, isDrawing=false, currentColor='#1a2a3a', currentSize=2, drawMode='draw';
+let lastX=0, lastY=0;
+
+function initDrawingCanvas(){
+  drawCanvas=document.getElementById('drawing-canvas');
+  if(!drawCanvas)return;
+  // Size canvas to fill its CSS width
+  const container=drawCanvas.parentElement;
+  const panelWidth=220+12; // side panel
+  const contentPad=80;
+  const availW=Math.min(1100,window.innerWidth)-contentPad-panelWidth;
+  const availH=window.innerHeight*0.62;
+  drawCanvas.width=Math.max(400,availW);
+  drawCanvas.height=Math.max(280,availH);
+  drawCtx=drawCanvas.getContext('2d');
+  drawCtx.fillStyle='#ffffff';
+  drawCtx.fillRect(0,0,drawCanvas.width,drawCanvas.height);
+  // Draw light grid guide lines
+  drawCtx.strokeStyle='rgba(11,99,206,0.06)';
+  drawCtx.lineWidth=1;
+  for(let x=0;x<drawCanvas.width;x+=40){drawCtx.beginPath();drawCtx.moveTo(x,0);drawCtx.lineTo(x,drawCanvas.height);drawCtx.stroke();}
+  for(let y=0;y<drawCanvas.height;y+=40){drawCtx.beginPath();drawCtx.moveTo(0,y);drawCtx.lineTo(drawCanvas.width,y);drawCtx.stroke();}
+  // Watermark hint
+  drawCtx.font='bold 13px Nunito,sans-serif';
+  drawCtx.fillStyle='rgba(11,99,206,0.12)';
+  drawCtx.textAlign='center';
+  drawCtx.fillText('Draw your anime character here ✏️', drawCanvas.width/2, drawCanvas.height/2);
+  drawCtx.textAlign='left';
+
+  // Mouse events
+  drawCanvas.onmousedown=startDraw;
+  drawCanvas.onmousemove=draw;
+  drawCanvas.onmouseup=stopDraw;
+  drawCanvas.onmouseleave=stopDraw;
+  // Touch events
+  drawCanvas.ontouchstart=e=>{e.preventDefault();const t=e.touches[0];const r=drawCanvas.getBoundingClientRect();lastX=t.clientX-r.left;lastY=t.clientY-r.top;isDrawing=true;};
+  drawCanvas.ontouchmove=e=>{e.preventDefault();if(!isDrawing)return;const t=e.touches[0];const r=drawCanvas.getBoundingClientRect();const x=t.clientX-r.left,y=t.clientY-r.top;doStroke(lastX,lastY,x,y);lastX=x;lastY=y;};
+  drawCanvas.ontouchend=e=>{e.preventDefault();isDrawing=false;};
+}
+
+function startDraw(e){
+  isDrawing=true;
+  const r=drawCanvas.getBoundingClientRect();
+  lastX=e.clientX-r.left;lastY=e.clientY-r.top;
+}
+function draw(e){
+  if(!isDrawing)return;
+  const r=drawCanvas.getBoundingClientRect();
+  const x=e.clientX-r.left,y=e.clientY-r.top;
+  doStroke(lastX,lastY,x,y);
+  lastX=x;lastY=y;
+}
+function stopDraw(){isDrawing=false;}
+function doStroke(x1,y1,x2,y2){
+  drawCtx.beginPath();
+  drawCtx.moveTo(x1,y1);
+  drawCtx.lineTo(x2,y2);
+  if(drawMode==='erase'){
+    drawCtx.strokeStyle='#ffffff';
+    drawCtx.lineWidth=currentSize*4;
+  } else {
+    drawCtx.strokeStyle=currentColor;
+    drawCtx.lineWidth=currentSize;
+  }
+  drawCtx.lineCap='round';
+  drawCtx.lineJoin='round';
+  drawCtx.stroke();
+}
+
+function setColor(c){
+  currentColor=c;
+  document.querySelectorAll('.brush-btn').forEach(b=>b.classList.remove('active-brush'));
+  // find matching button
+  const map={'#1a2a3a':'color-black','#0b63ce':'color-blue','#10b981':'color-green','#f59e0b':'color-orange','#ef4444':'color-red','#8b5cf6':'color-purple','#ec4899':'color-pink','#ffffff':'color-white'};
+  if(map[c]){const el=document.getElementById(map[c]);if(el)el.classList.add('active-brush');}
+  if(drawMode==='erase')setMode('draw');
+}
+function setBrush(size,id){
+  currentSize=size;
+  ['thin','med','thick','fill'].forEach(n=>{const el=document.getElementById('brush-'+n);if(el)el.classList.remove('active-tool');});
+  const el=document.getElementById('brush-'+id);if(el)el.classList.add('active-tool');
+}
+function setMode(mode){
+  drawMode=mode;
+  ['draw','erase'].forEach(n=>{const el=document.getElementById('mode-'+n);if(el)el.classList.remove('active-tool');});
+  const el=document.getElementById('mode-'+mode);if(el)el.classList.add('active-tool');
+}
+function clearCanvas(){
+  if(!drawCtx||!drawCanvas)return;
+  drawCtx.fillStyle='#ffffff';
+  drawCtx.fillRect(0,0,drawCanvas.width,drawCanvas.height);
+}
+function downloadDrawing(){
+  if(!drawCanvas)return;
+  const link=document.createElement('a');
+  link.download='my-anime-character.png';
+  link.href=drawCanvas.toDataURL('image/png');
+  link.click();
+}
+
+/* ═══ INIT FIRST SLIDE ═══ */
+try{animateSlide(document.querySelector('.slide.active'));}catch(e){}
 </script>
 </body>
 </html>

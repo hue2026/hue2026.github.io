@@ -1,797 +1,214 @@
-I can’t directly resend the file object in this environment, but here is the full contents of AnimeClub_VisualDesign_Script.txt as plain text so you can copy, save, or paste it wherever you like:
-
-Anime Club for Beginners
-"Animation as a Language: How Visual Style Tells the Story" — Visual Design & Cinematic Craft
-Expert Teaching Script (PhD-Level Explanations, Beginner-Friendly Delivery)
-Instructor: Mr. Hsiao "Hue" Weng
-Total Time: ~60 minutes
-================================================================================
+Anime Club Lesson 6 — Teacher Script (60 minutes)
 
-HOW TO USE THIS SCRIPT
-─────────────────────────────────────────────────────────────────────
-
-    Text in [BRACKETS] = instructor stage directions or timing cues
-
-    "Quoted text" = suggested exact words to say aloud
-
-    → means a natural transition or follow-up thought
-
-    💡 = deep conceptual explanation (say or adapt as needed)
-
-    ✋ = student interaction moment — pause and wait for responses
-    ================================================================================
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 1 — TITLE SLIDE & LEARNING OBJECTIVES
-[Duration: ~3 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[As students settle in, display the title slide. Begin with curiosity — lean in slightl
-lower your voice just a touch, like you're about to share a secret.]
-
-"Welcome back, everyone. Before we say another word — I want you to
-do something. Close your eyes for five seconds. I'm serious. Close them."
-
-[Wait five seconds. Let the silence sit.]
-
-"Now open them. What you just did — that moment of pure sight before
-thought — is exactly what today's lesson is about."
-
-"Today we are asking one of the deepest questions in all of visual art:
-What does the WAY something looks tell us about what it MEANS?
-Not the plot. Not the dialogue. Not the characters' names.
-Just — the visual design itself."
+Topic: The History of Anime & Its Evolution (1907 – Today)
 
-"Before a single word of dialogue is spoken in any anime, before
-a character even opens their mouth — the animation is already
-communicating with you. The colors. The line weight. The way
-backgrounds are painted. The speed of the movement. All of it
-is a language. And today you are going to start reading it."
-
-💡 [DEEP CONTEXT — deliver this slowly and with genuine weight]:
-"This idea — that visual form carries meaning independent of content —
-is at the heart of a field called AESTHETICS, which is the philosophy
-of beauty and art. And within film and animation studies specifically,
-the visual language of a work is called its MISE-EN-SCÈNE — a French
-term that means, literally, 'everything placed in the scene.'
-
-Mise-en-scène is a checklist of visual choices: the colors used,
-the composition of each frame, the level of detail in backgrounds,
-the speed and fluidity of motion, the style of character design.
-Every one of these choices is a decision a director or animator
-made intentionally. When you learn to read those choices, you stop
-being a passive viewer. You become a visual thinker — someone who
-understands not just WHAT is being shown, but HOW and WHY."
-
-[Point to the 'By the end of today...' section of the slide]
-
-"Here's what you'll walk out of today knowing how to do:
-1. Identify specific visual choices in anime and describe them precisely
-2. Connect visual design to emotional tone and narrative meaning
-3. Explain why different stories use different animation styles —
-not as random aesthetic taste, but as deliberate storytelling craft
-
-Those three skills? That is how animators, directors, and critics think.
-That is where we are going today. Let's get started."
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 2 — WARM-UP: WHAT DO YOU SEE BEFORE YOU HEAR ANYTHING?
-[Duration: ~8 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[Read the activity prompt with warmth and genuine curiosity — this should fe
-like a game, not an assignment. The goal is to awaken their visual awareness
-before introducing any vocabulary.]
-
-"Let's start with something fun. We're going to do a pure observation
-exercise — no right answers, no grades, just noticing. Take out your
-notebook."
-
-"STEP 1: Two Anime, No Sound.
-I want you to think of two anime side by side in your mind:
-Spirited Away and Naruto.
-
-You know both of these — or you know enough. Bring them to mind
-visually. Not the stories. Not the characters. Just the WAY they LOOK.
-
-In your notebook, draw OR write three visual differences you notice
-between the two. The only rule: you cannot mention the PLOT at all.
-No 'Chihiro works at a bathhouse' or 'Naruto is training to be a ninja.'
-Only what you SEE. Color. Lines. Movement. The faces. The backgrounds.
-Three differences. Go."
-
-[Give students 2-3 minutes to write or draw. Circulate and peek at notebooks
-you will learn a great deal about their visual literacy right now. Some students
-will write detailed observations; others will struggle to move past "Spirited Away
-has soft colors." Both are valid starting points.]
-
-[PROMPTING HINTS if students are stuck]:
-"Think about the COLOR PALETTE — warm or cool? Saturated or muted?
-Think about the LINE WORK — are the outlines thick or thin? Sharp or soft?
-Think about the BACKGROUNDS — are they detailed or simple?
-Think about the FACES — how are eyes drawn? How much detail is in the expressions?"
-
-"STEP 2: Name the Feeling.
-Next to each visual difference you wrote — add one emotion word.
-Just one. Calm. Urgent. Playful. Dark. Epic. Soft. Dreamy. Tense.
-How does that specific visual choice make you FEEL?
-
-Not what you think you're supposed to feel. What you actually feel
-when you picture it."
-
-[Give students 90 seconds]
-
-"STEP 3: Ask Yourself.
-Here's the big question. Write 1-2 sentences in response:
-If both stories — Spirited Away AND Naruto — were told in exactly
-the same animation style, would they still feel different?
-Why or why not?"
-
-[Give students 90 seconds. This question is philosophically rich — it as
-students to separate STORY from STYLE, which is the core insight of the lesson.
-Don't rush it.]
-
-💡 [PLANT THIS IDEA before the share — just briefly, one sentence]:
-"Here's a hint for your answer: think about whether the WAY something
-looks is part of WHAT it's saying."
-
-💬 [SHARE & DISCUSS — 2 minutes]
-
-"Turn to a partner. Read your three visual differences aloud.
-Did they notice the same things you did? What did they see that you missed?"
-
-✋ [Give pairs exactly 2 minutes. Then call on 3-4 students to sha
-ONE observation with the class. Listen for students who have begun
-to connect visual choices to emotional meaning — elevate those answers
-and name what they're doing: 'You just did visual analysis. That is
-exactly what we're learning today.']
-
-[Bridge to the next section]:
-"What I'm hearing tells me something important. Most of you instinctively
-FELT the difference between these two shows long before today — you just
-didn't have the vocabulary to explain it precisely. That changes right now."
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 3 — THE LANGUAGE OF ANIMATION: 5 VISUAL DESIGN ELEMENTS
-[Duration: ~10 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Every visual language has grammar. In animation, that grammar is built
-from five core design elements. Learn these five, and you can describe
-and analyze any anime — or any visual art — ever made."
-
-"ELEMENT 1: COLOR PALETTE — the range of colors a work consistently uses,
-and the emotional atmosphere those colors create.
-
-💡 Color is one of the most powerful and underestimated tools in visual
-storytelling. Human beings respond to color on a neurological level before
-conscious thought — our brains evolved to read environmental color as
-information about safety, warmth, and danger.
-
-In animation, directors use this instinct deliberately.
-Spirited Away is built on warm golds, deep teals, and soft pinks —
-colors associated with nostalgia, mystery, and wonder. The palette
-says: you are in a magical, slightly frightening, beautiful world.
-Naruto uses high-contrast orange, blue, and black — energetic, urgent,
-combative colors. The palette says: this world is about conflict,
-determination, and raw power.
-
-A color palette is not decoration. It is an emotional argument made
-before a single character speaks."
-
-"ELEMENT 2: LINE QUALITY — the weight, sharpness, and consistency of
-the outlines used to define characters, objects, and environments.
-
-💡 Line quality communicates personality and tone. Thick, bold outlines
-create visual confidence — they say: 'This image is strong and clear.
-Nothing is ambiguous here.' Thin, delicate lines suggest fragility,
-subtlety, and interiority. Irregular, sketchy lines suggest rawness,
-energy, and impermanence.
-
-Spirited Away uses soft, slightly imprecise lines — especially in the
-backgrounds — that create a dreamlike quality, as if the world itself
-might dissolve. Naruto uses aggressive, defined linework — especially
-during action sequences — that makes every impact feel concrete and real.
-
-You can usually identify a studio's house style by its linework alone.
-It becomes a visual signature."
-
-"ELEMENT 3: BACKGROUND DETAIL & ENVIRONMENT DESIGN — the level of
-artistic complexity and intentionality in the settings of a story.
-
-💡 Backgrounds in animation are never accidental. Studio Ghibli — the
-studio that made Spirited Away — is famous for having its background
-artists paint environments in extraordinary detail, using real-world
-reference to create spaces that feel genuinely inhabited. The goal is
-to make the viewer feel they could STEP INTO the world.
-
-This approach is called ENVIRONMENTAL STORYTELLING — the idea that
-a space communicates history, culture, and mood without any character
-present. You can often learn everything about a story's world just by
-studying its empty backgrounds.
-
-In contrast, many action anime deliberately simplify backgrounds during
-combat sequences — reducing detail to pure geometry and motion lines.
-This is not laziness. It is a deliberate choice to direct the viewer's
-attention to movement and force rather than place. The background
-disappears so the ACTION becomes the environment."
-
-"ELEMENT 4: CHARACTER DESIGN — the visual vocabulary used to build
-characters: face shape, eye style, proportions, color choices.
-
-💡 Character design is an entire discipline within animation. Professional
-character designers make dozens of deliberate choices to communicate
-personality, role, and emotional range visually — before the character
-has done or said anything.
-
-Eye design alone carries enormous meaning. Large, round eyes typically
-signal openness, youth, vulnerability, and emotional accessibility —
-they invite the viewer into the character's inner life. Sharp, narrow
-eyes suggest guardedness, intensity, or threat. This is not culturally
-arbitrary: it draws on evolutionary biology. Large eyes mimic infantile
-features, triggering nurturing instincts. Narrow eyes mimic the squint
-of someone calculating or concealing.
-
-Body proportions also communicate tone. Highly stylized, exaggerated
-proportions (large heads, tiny bodies) signal that a world is comedic,
-expressive, and not meant to be taken literally. Realistic proportions
-signal gravity — this story lives closer to the real world and its
-consequences."
-
-"ELEMENT 5: MOVEMENT STYLE & ANIMATION FLUIDITY — how characters and
-the world move, and how much detail is in that motion.
-
-💡 Animation fluidity is expensive. Every additional frame of movement
-requires additional labor. This means that where a studio CHOOSES to
-invest fluidity tells you exactly what it considers most important.
-
-Anime is generally known for using LIMITED ANIMATION — fewer frames
-per second than Western animated films — combined with highly expressive
-KEY FRAMES: single images of peak emotional or physical intensity.
-This technique actually intensifies emotional impact, because the
-stillness makes the motion feel MORE powerful when it arrives.
-
-But when a studio like Ufotable — makers of Demon Slayer — deploys
-full fluid animation for a fight sequence, the effect is overwhelming
-precisely because of the contrast with quieter moments. Fluidity
-becomes a reward. Movement becomes meaning."
-
-✋ [Quick verbal check — ask 3-4 students at random:]
-'Tell me one anime — any anime — and one of the five elements.
-What do you notice?' Fast pace. This warms up the vocabulary
-for everything that follows.]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 4 — STYLE vs. STORY: WHY THEY'RE NOT THE SAME THING
-[Duration: ~6 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Now I want to address something you thought about in the warm-up —
-the question: would Spirited Away and Naruto still feel different
-if they used the SAME animation style?
-
-I'm going to give you the answer, and then I'm going to explain WHY."
-
-"The answer is: YES — but they would feel profoundly WRONG.
-And that wrongness is the whole lesson."
-
-[Write on the board: STYLE = MEANING]
-
-"In great visual storytelling, style is not a costume you put on a story.
-Style IS part of the story. Style IS part of the meaning.
-Let me show you why."
-
-"Imagine Spirited Away redrawn in the hyper-detailed, high-contrast,
-action-forward style of Demon Slayer. Same story. Same characters.
-Same dialogue. Just different visuals.
-
-Would it feel like Spirited Away? Absolutely not.
-The dreamlike, surreal quality of that film — the sense that the spirit
-world is real and ancient and just slightly beyond grasp — is inseparable
-from the soft, watercolor-influenced palette and delicate linework.
-The VISUAL STYLE performs the theme of the story: that there are worlds
-beyond the ordinary that we can only barely perceive."
-
-💡 [CRITICAL INSIGHT — say this with conviction]:
-"This is the principle that art directors and directors fight for in
-every animated film: form and content must be unified.
-FORM is HOW something looks. CONTENT is WHAT it's about.
-In weak visual storytelling, form and content are independent — the look
-of a story is chosen by convention or committee without deep intention.
-In great visual storytelling, form embodies content — the way the story
-LOOKS IS part of what the story MEANS.
-
-The philosopher Marshall McLuhan captured this in one of the most famous
-sentences in media theory: 'The medium is the message.'
-In animation, that translates directly: the visual style IS part of
-the story's message. You cannot separate them without losing meaning."
-
-"Let's test this another way. Think about Mob Psycho 100.
-The animation in Mob Psycho looks deliberately crude in quieter moments —
-loose, sketchy, almost like a child drew it. But during psychic battles,
-it EXPLODES into some of the most technically sophisticated animation
-ever made.
-
-This is not inconsistency. This is INTENTIONAL contrast.
-Mob's story is about a boy who suppresses his extraordinary power to
-remain ordinary. The animation ENACTS that story. When he suppresses —
-crude and ordinary. When he releases — transcendent and overwhelming.
-The style is not illustrating the story. The style IS the story."
-
-✋ [Ask the class: 'Can you think of another anime where the animati
-style shifts to communicate something about the story or character?
-Even a moment — not the whole show.' Take 2-3 responses.
-This builds independent visual thinking.]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 5 — STUDIO SIGNATURES: HOW TO IDENTIFY A STUDIO BY ITS LOOK
-[Duration: ~6 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Here's something that experienced anime viewers can do that beginners
-usually can't: they can identify which studio made an anime just from
-watching 30 seconds of footage — with the title covered.
-
-This is called recognizing a VISUAL SIGNATURE. Today you're going to
-start building that skill."
-
-"Let's look at three major studios and their signature styles."
-
-"STUDIO 1: STUDIO GHIBLI (Spirited Away, My Neighbor Totoro, Princess Mononoke)
-
-The Ghibli signature is one of the most distinctive in animation history.
-Look for:
-- Lush, hand-painted backgrounds with extraordinary environmental detail
-- Soft, organic color palettes: greens, blues, warm yellows, dusky pinks
-- Fluid, naturalistic character movement — especially in small details
-(hair moving in wind, fingers wrapping around objects, food being eaten)
-- Expressive, wide-eyed characters who feel genuinely childlike
-- A tendency toward SILENCE and stillness as emotional beats
-
-💡 Hayao Miyazaki — Ghibli's legendary director — has spoken extensively
-about his philosophy of 'ma': the Japanese concept of meaningful negative
-space. In music, ma is the pause. In visual art, it is the empty space
-around objects. In animation, Miyazaki uses ma as deliberate moments of
-stillness and quiet — a character just watching the world, a scene with
-no dialogue, a slow pan across an environment. Western animation rarely
-does this. Ghibli is built on it. The silence is not empty — it is full
-of feeling."
-
-"STUDIO 2: UFOTABLE (Demon Slayer, Fate/Zero, Fate/stay night)
-
-Ufotable's signature is the opposite end of the spectrum from Ghibli.
-Look for:
-- Cinematic, high-contrast lighting — dramatic shadows, luminous glows
-- Seamless integration of 2D drawing and 3D CGI visual effects
-- Extremely fluid, technically virtuosic action animation
-- Rich, saturated color palettes with jewel-toned energy effects
-- A tendency toward grand, theatrical visual scale — making everything
-feel like a spectacle
-
-💡 Ufotable pioneered what fans call 'God-tier animation' — sequences
-so technically ambitious they redefined industry expectations.
-The water-breathing sequences in Demon Slayer are a masterclass in
-how animation can physicalize something invisible: the technique
-LOOKS like water because the character THINKS in water. Visual metaphor
-made literal."
-
-"STUDIO 3: MADHOUSE (One Punch Man Season 1, Death Note, Hunter x Hunter)
-
-Madhouse's signature is harder to pin down because they work in many
-styles — but their hallmarks include:
-- Extremely detailed facial close-ups for psychological tension
-- Restrained, precise color palettes that shift dramatically in
-key emotional moments
-- A directorial focus on FRAMING — composition and camera angle
-as emotional tools
-- Willingness to hold on a still image (freeze-frame) for extended
-dramatic effect
-
-💡 Death Note is a masterclass in how camera angle and framing carry
-psychological meaning. Director Tetsurō Araki frequently shoots
-characters from low angles — looking UP at them — to make them appear
-powerful and threatening, or from high angles — looking DOWN — to
-emphasize vulnerability and isolation. Light Yagami is almost always
-filmed from angles that make him look either godlike or trapped.
-The camera itself is telling you what to feel about him."
-
-✋ [Quick quiz — point to 3 students and describe a visual style elemen
-Ask them: 'Which studio does that sound like?' Not a test —
-just warming up their pattern recognition.]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 6 — GUIDED ACTIVITY: READ THE FRAME
-[Duration: ~8 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Now it's your turn. You're going to do a real visual analysis —
-the same kind of thinking that animation critics, art directors,
-and film scholars do for a living."
-
-"I'm going to describe a scene — or show a still image if we have
-projection — and you're going to analyze it using our five elements."
-
-[If using projection: display a still frame from an anime — ideal
-one the class is likely to know. Demon Slayer, My Hero Academia,
-and Spirited Away all work well. If no projection, ask students to
-close their eyes and vividly recall a scene from any anime they love.]
-
-"In your notebook, draw five rows and label them:
-ROW 1: COLOR PALETTE
-ROW 2: LINE QUALITY
-ROW 3: BACKGROUND / ENVIRONMENT
-ROW 4: CHARACTER DESIGN
-ROW 5: MOVEMENT / ENERGY (describe what you imagine or see)"
-
-"For each row, do THREE things:
-A. DESCRIBE what you see — just the facts, objectively.
-'The palette is primarily cool blues and grays with one warm orange point.'
-B. NAME the FEELING it creates — one or two emotion words.
-C. CONNECT it to MEANING — why might the director/studio have chosen this?
-What is this visual choice SAYING about the story, the character, or the world?"
-
-[Give students 4-5 minutes to write. Circulate actively and ask questio
-as they work: 'What does that color remind you of?' / 'Why do you think
-they kept the background so simple here?' / 'What would change if that
-outline were softer?']
-
-[PROMPTS FOR STUDENTS WHO ARE STUCK ON THE 'MEANING' COLUMN]:
-"If you're struggling with the meaning connection — ask yourself:
-'If I showed this frame to someone who had never seen this anime,
-what would they understand about the world of this story just from
-the image?' That is the meaning the visual is carrying."
-
-✋ [After writing time, run a quick pair-share: compare analyse
-Then call on 2-3 volunteers to share one ROW — not the whole thing.
-Focus on the MEANING column. Ask the class: 'Does anyone agree?
-Does anyone see it differently?']
-
-💡 [SYNTHESIZE after sharing]:
-"What just happened in this room is visual literacy in action.
-You started by just seeing an image. Now you can say: 'This production
-made specific choices about color, line, and composition that communicate
-[specific meaning], creating an emotional tone of [specific feeling] that
-serves the story's themes of [deeper truth].'
-
-That is the language of animation criticism. That is how professionals
-talk about visual art. You are doing it right now."
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 7 — DISCUSSION: WHEN ANIMATION STYLE TAKES A RISK
-[Duration: ~5 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Here's where it gets interesting. Not all anime plays it safe visually.
-Some animation directors make choices that are deliberately strange,
-uncomfortable, or unconventional — and those choices are often the most
-meaningful of all."
-
-"Think about Neon Genesis Evangelion. In later episodes, Hideaki Anno
-stripped away almost all conventional animation. You get still images.
-Text on screen. Real-world photographs. Scenes that are just black.
-This was not a budget problem. It was a deliberate artistic decision —
-the visual language breaks down because the protagonist's mind is
-breaking down. The animation enacts a psychological collapse."
-
-"Think about FLCL — Fooly Cooly. The visual style shifts between
-conventional anime, manga panels, South Park-like flat cutouts, and
-full cinematic quality — sometimes within the same episode. This is
-NOT random. It mirrors the protagonist's experience of adolescence:
-chaotic, genre-less, impossible to define, lurching between absurdity
-and genuine emotional weight."
-
-💡 [CRITICAL THINKING MOMENT]:
-"What these examples show us is that the most powerful visual choices
-in animation are often the ones that BREAK CONVENTIONS.
-To break a convention effectively, you first have to ESTABLISH it —
-the viewer has to know what 'normal' looks like for THIS story before
-the abnormal lands with impact.
-
-This is called ESTABLISHING AND VIOLATING VISUAL EXPECTATION —
-and it is one of the most sophisticated tools in a director's toolkit.
-It requires the audience to be reading the visual language closely
-enough to notice when it changes. Today, for the first time, you are
-capable of noticing that. You have the vocabulary."
-
-✋ [Open discussion — 3 minutes]:
-"Has any anime ever made you feel uncomfortable or confused because
-of how it LOOKED — not what happened, but how it looked?
-Take a guess: was that intentional? What might the director have
-been trying to make you feel?
-
-Use our vocabulary. Talk about COLOR, LINE, STYLE SHIFT.
-I want to hear the language."
-
-[This is a high-level discussion moment. Accept all thoughtful answer
-The goal is not a right answer — it is getting students to apply
-visual analysis to their own aesthetic experiences.]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 8 — MAKE IT YOURS: DESIGN YOUR OWN VISUAL WORLD
-[Duration: ~8 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Now we flip the lens. Instead of analyzing choices someone else made,
-you are going to MAKE them. You are the director. You are the art director.
-You don't have to draw beautifully. You just have to THINK deliberately."
-
-"You're going to design the visual language for an original anime series —
-using everything we've learned today. Copy this template into your notebook:"
-
-SERIES TITLE: _
-GENRE / TONE (circle one or write your own):
-Adventure / Horror / Slice-of-Life / Romance / Psychological / Other: _
-
-COLOR PALETTE:
-Dominant colors: _
-What feeling does this palette create? _
-Why is this right for YOUR story? _
-
-LINE QUALITY:
-Thick & bold / Thin & delicate / Rough & sketchy / Clean & precise
-Why did you choose this? What does it say about your world? _
-
-BACKGROUND DETAIL:
-Highly detailed / Minimal / Shifts depending on scene — describe: _
-What does the environment of your world FEEL like? _
-
-CHARACTER DESIGN PHILOSOPHY:
-How will you design faces to communicate your characters' personalities?
-One specific choice: _
-
-MOVEMENT STYLE:
-When is your animation most fluid? _
-When is it deliberately still or slow? _
-Why? What does that contrast mean for your story? _
-
-VISUAL THEME (the one idea your visual design communicates before any plot):
-'The look of this anime says: _'
-
-[Walk the room. Ask questions. Challenge the
-'Why that color — what does it MEAN?'
-'What happens if someone sees your background — what do they know
-about your world before a character appears?'
-'Is there a moment where your visual style SHIFTS? What causes it?']
-
-✋ [After 5-6 minutes, ask 2-3 volunteers to share their VISUAL THEME sentence
-the last line: 'The look of this anime says: _.'
-After each share, ask the class: 'Does the visual design they described
-actually say that? Does it feel unified?']
-
-💡 [REFLECTION as they work — circulate and plant this idea]:
-"Notice how hard the VISUAL THEME line is.
-Describing your palette is easy. Saying what it MEANS — what unified idea
-all those choices add up to — is very hard. That difficulty is real.
-Art directors spend months fighting for that unity. The fact that you're
-wrestling with it now means you're doing the same thinking they do.
-This is the work. It gets easier with practice. But it is never easy."
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 9 — HOMEWORK
-[Duration: ~3 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"Tonight's homework has two parts — an OBSERVATION part and a CREATION part."
-
-"PART A — VISUAL ANALYSIS JOURNAL:
-Watch the OPENING SEQUENCE ONLY — the first 90 seconds — of any anime
-you are currently watching or have watched recently.
-Watch it TWICE. The second time, watch it on MUTE.
-
-In 5-7 sentences, analyze the opening sequence using at least THREE
-of today's five visual elements: color palette, line quality, background
-detail, character design, movement style.
-
-Your analysis must answer:
-1. What emotional tone does the visual design establish?
-2. What one specific visual choice surprised you or stuck with you?
-3. Based only on the visuals — no plot knowledge — what kind of story
-would you EXPECT this to be? Why?"
-
-💡 [EXPLAIN THE DEEPER PURPOSE]:
-"Opening sequences are one of the most concentrated pieces of visual
-communication in all of anime. Studios spend enormous resources on them.
-Every second is an argument about who this story is, what it feels like,
-and who it is for. Watching an opening on mute teaches you to hear
-what the images are saying without the music telling you what to feel.
-That discipline — separating signal from reinforcement — is a core skill
-in visual literacy."
-
-"PART B — FINISH YOUR VISUAL WORLD DESIGN:
-If you did not complete your series design in class, finish it at home.
-Then add one more entry at the bottom:
-
-WRITE OR DRAW one SCENE DESCRIPTION — just 3-4 sentences — that shows
-your visual language at work. Describe a moment in your series where
-the visual design does something SPECIFIC to communicate a specific
-emotion or meaning. Not just 'it looks cool.' What does it SAY?"
-
-"Email BOTH parts — your opening analysis and your completed design —
-to hue.weng.88@gmail.com before next class."
-
-💡 [EXPLAIN WHY THE CREATION PART MATTERS]:
-"When you design your own visual world, you are forced to make every
-decision you previously took for granted. The color palette is not just
-there — YOU put it there. The backgrounds are not just pretty — YOU
-decided what they communicate. That responsibility is what makes a
-director. And even if you never direct anything, that responsibility
-is what makes you a truly sophisticated viewer. Once you've made these
-choices yourself, you will never look at someone else's choices
-the same way again."
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 10 — RECAP & EXIT TICKET
-[Duration: ~3 minutes]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[Display the summary on the slide with genuine pride]
-
-"Look at what you can do now that you could not do when you walked in:"
-
-5 Visual design elements: Color Palette · Line Quality · Background
-Detail · Character Design · Movement Style
-3 Studios and their visual signatures: Ghibli · Ufotable · Madhouse
-1 Core principle: Form and content are unified —
-the WAY a story looks IS part of what it MEANS
-1 Design framework you can apply to any anime — or any visual art —
-ever made
-
-"You walked in seeing anime. You are walking out READING it.
-That is not a small upgrade."
-
-"Before you go — sticky note exit ticket. Answer ONE of these two questions:"
-
-"QUESTION 1: In your own words — why can't you just put any story
-into any animation style?
-
-💡 A great answer sounds like: 'Because the visual style is not
-separate from the story's meaning — it IS part of the meaning.
-If you changed the style, you would change what the story communicates
-emotionally and thematically, even if the plot stayed the same.'
-If a student can say that without notes, they've genuinely got it."
-
-"QUESTION 2: Pick any anime and name ONE visual design element
-that is doing something specific — describe what it looks like
-AND what it means.
-
-💡 Great answers separate DESCRIPTION from INTERPRETATION.
-'The color palette in Demon Slayer uses jewel-bright purples and blues
-for the water breathing technique — cold, precise colors for
-a technique that requires perfect calm and control' is strong.
-'It looks cool' is not yet visual analysis.
-
-The separation of observation from interpretation is one of the
-most important intellectual skills you can develop — in art criticism,
-in science, in any field that requires seeing clearly and thinking
-carefully. Animation is just a very beautiful place to practice it."
-
-✋ [Collect sticky notes as students leave — sort into 'got it' a
-'needs more' piles. The 'needs more' pile tells you exactly where
-to open next class.]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SLIDE 11 — CLOSING SLIDE
-[Duration: ~1 minute]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"I want to leave you with this thought."
-
-"Every frame of every anime you have ever loved was drawn by a human
-being who made a deliberate choice. Color. Line. Composition.
-Movement. Silence. Every single one of those choices was a decision —
-a decision about what to say visually, about what emotion to create,
-about what truth to communicate without words."
-
-"You are now someone who notices those choices. You have the language
-to describe them and the framework to understand them.
-That changes what it means to watch anime for the rest of your life."
-
-"The world is full of visual languages — film, photography, advertising,
-architecture, fashion, games. Every one of them is speaking to you
-constantly, whether you are reading them or not.
-Today you started reading."
-
-"See you next class. Excellent work, everyone. I am genuinely proud of you."
-
-[Display contact info]
-Email: hue.weng.88@gmail.com
-Website: hue881.github.io
-Phone: 646-280-7089
-
-================================================================================
-APPENDIX A — COMMON DISCUSSION PITFALLS & HOW TO HANDLE THEM
-================================================================================
-
-PITFALL: Student says a visual difference between two anime is 'better' or 'worse'
-Handle: Redirect from quality judgment to intentional analysis.
-'I hear you saying one is better — that's a valid opinion.
-Now let's go one level deeper: what SPECIFIC choices make it feel
-that way to you? And do you think those choices were intentional?
-What was the creator trying to achieve?'
-
-PITFALL: Student struggles to move from description to meaning
-Handle: Use the 'stranger test': 'If someone who had never seen any anime
-was shown only this image — what would they understand about this
-world? What would they feel?' The student's answer to that question
-IS the visual meaning. They already know it; they just don't know
-they know it yet.
-
-PITFALL: Student argues that animation style is just 'budget' or 'time period' —
-not artistic choice
-Handle: Acknowledge that budget and era are real constraints, then push:
-'That's true — but within those constraints, directors still
-make choices. Miyazaki had a large budget and CHOSE quietness
-and stillness. Anno had a smaller budget but CHOSE to use that
-constraint as a psychological storytelling tool. What was EACH
-choice saying?' This reframes limitation as intention.
-
-PITFALL: Student defaults to plot summary when asked about visual analysis
-Handle: Gently stop them: 'I believe you about the plot — now cover
-the story for a second. Pretend you have no idea what happens.
-What do the IMAGES alone tell you?' This forces them off the
-narrative crutch and into visual observation.
-
-PITFALL: Students feel their 'made-up' anime concept is not good enough to share
-Handle: 'There is no bad visual world design — there are only
-unexplained choices. Tell me your palette. Tell me why.
-That's all I need. We'll figure out the rest together.'
-This lowers the barrier and emphasizes process over product.
-
-================================================================================
-APPENDIX B — EXTENSION QUESTIONS FOR ADVANCED STUDENTS
-================================================================================
-
-    Can a visual style CONTRADICT the story's genre and make the work stronger?
-    [Answer: Absolutely — and this is one of the most powerful advanced technique
-    Puella Magi Madoka Magica is the perfect example: it uses the bright,
-    soft-pastel visual language of a cheerful magical girl show to tell a
-    story about grief, trauma, and existential horror. The dissonance between
-    style and content is entirely deliberate and amplifies the horror.
-    The cute aesthetic makes the darkness more disturbing, not less.
-    This technique is called TONAL SUBVERSION and is a hallmark of
-    sophisticated storytelling.]
-
-    What is the relationship between an anime's visual style and its target audience?
-    [Answer: This is a rich sociological question. Visual design choic
-    signal intended audience in dozens of ways: the complexity of color palettes,
-    the level of abstraction in character design, the density of background detail.
-    Shounen anime aimed at young boys typically uses high-contrast, energetic
-    palettes and dynamic action composition. Josei anime aimed at adult women
-    often uses softer palettes and more intimate, psychological framing.
-    These are not universal rules — they are industry conventions that
-    can and should be questioned.]
-
-    How has digital technology changed anime visual style over the past 30 years?
-    [Answer: The shift from hand-painted cels to digital coloring and compositi
-    enabled visual possibilities impossible in analog animation — particularly
-    in lighting effects, color gradients, and layered transparency effects.
-    Ufotable's glowing energy effects would be physically impossible on cel.
-    However, many critics argue that digital anime has also lost some of the
-    tactile warmth of hand-painted work. Ghibli notably continued hand-painting
-    backgrounds long after the industry shifted digital. The choice to remain
-    analog was a visual philosophy statement.]
-
-    What is 'sakuga' — and why do fans track specific animators' work?
-    [Answer: Sakuga (作画) refers to sequences of exceptional animation qualit
-    and there is an entire community of fans and critics who identify, catalog,
-    and celebrate individual animators' contributions to specific scenes.
-    This is possible because skilled animators develop unique visual styles —
-    particular ways of drawing motion, weight, and impact — that are recognizable
-    across different productions. Tracking sakuga is the ultimate form of
-    visual literacy: reading animation at the level of the individual
-    human hand that drew it.]
-
-    Is there an ethical dimension to visual design in anime?
-    [Answer: Yes, and this is an important conversation. Visual conventio
-    carry cultural assumptions — about gender, beauty, power, and normalcy.
-    The way female characters are designed versus male characters, the visual
-    coding of villains, the representation of non-Japanese characters —
-    all of these reflect and reinforce social ideas through repetition.
-    Critical visual literacy includes asking: whose worldview is embedded
-    in these choices? Who is centered, and who is made peripheral or monstrous?
-    This is not about canceling art — it's about reading it with full
-    awareness of what it is doing.]
-
-================================================================================
-END OF SCRIPT
-================================================================================
+Below is a slide-by-slide spoken script. Stage directions are in italics. Time codes accumulate to 60 minutes. Read it conversationally — the script is written the way you'd actually say it to a room of curious kids.
+Slide 1 — Title (0:00 – 0:30)
+
+[Open the deck. Stand near the screen. Smile.]
+
+"Welcome back, anime club! Today is Lesson 6, and it might be the most important one yet — because today we travel back in time. We're going to find out where anime actually came from. Not Naruto, not Demon Slayer — I mean the very, very beginning. Two seconds of black-and-white animation found in a flea market. By the end of today, you'll know how a tiny experimental film from 1907 grew into a billion-dollar global art form. Ready? Let's go."
+Slide 2 — Do Now: Watch & Notice (0:30 – 5:00)
+
+[Click play on the embedded 3:40 video, "History of Anime — Part 1."]
+
+"Here's your Do Now. We're watching a short 3-minute-40-second video. Your job: notice three things that surprise you. Don't write yet — just watch. We'll talk after."
+
+[Let the video play. Stand to the side, watch with them. When it ends:]
+
+"Okay — turn and talk to your neighbor for thirty seconds. What surprised you? What did you not expect?"
+
+[Listen in. Pull two students to share aloud. Validate:]
+
+"Great noticing. Hold those ideas — we're going to confirm and expand all of them in the next 50 minutes."
+Slide 3 — Key Terms (5:00 – 8:00)
+
+"Before we time-travel, four quick vocabulary words. These are the tools we'll use all class."
+
+    Anime — Japanese animated film or TV. In Japan it just means "animation," but globally it means anime style.
+
+    Manga — Japanese comics. Almost every anime starts as manga first.
+
+    Cel animation — old-school: drawings on transparent plastic sheets, photographed one frame at a time. Twelve drawings for one second of motion.
+
+    Mangaka — a manga artist. Like saying "novelist," but for manga.
+
+"Repeat after me — anime, manga, cel, mangaka. Good. These words are your passport for today."
+Slide 4 — 1907–1940s: Where It All Began (8:00 – 13:00)
+
+[Point at the timeline and the vintage manga image on the right.]
+
+"1907. Picture this: in a Kyoto flea market in 2005, somebody finds a tiny film reel. They play it. It's two seconds long — a little boy drawing kanji on a chalkboard. That's Katsudō Shashin, and it's the oldest known Japanese animation. Older than Mickey Mouse by twenty-one years."
+
+"Ten years later, 1917, three artists — Kitayama, Kouchi, and Shimokawa — start making short films inspired by Western animators. Japan is officially in the animation game."
+
+"Then jump to the 1940s. World War II. The Japanese government funds an animation called Momotarō's Divine Sea Warriors — Japan's first feature-length anime. But here's the catch: it's propaganda. Made to convince Japanese children the war was good."
+
+[Pause. Tap the context-question card.]
+
+"So my question to you — type or jot it down — why might a government want to use animation during wartime? Think about audience, emotion, and trust. I'll give you sixty seconds."
+
+[Cold-call two students. The right answer territory: kids trust cartoons, animation hides reality behind cute art, emotional manipulation is easier in drawings than live action.]
+Slide 5 — Osamu Tezuka & Astro Boy (13:00 – 17:00)
+
+[Switch to slide 5.]
+
+"Okay — meet the most important person in anime history. Osamu Tezuka. He's called the God of Manga. In 1963, he creates a TV show called Tetsuwan Atom — you know it as Astro Boy — and that's the moment anime, as we know it, is born."
+
+"Three things Tezuka invented that we still use today:"
+
+    Big expressive eyes. He borrowed them from Disney's Bambi. That's why anime characters have huge eyes — it makes emotion readable.
+
+    Limited animation. He couldn't afford 24 drawings per second like Disney, so he used 8. Reuse cycles. Hold frames longer. He turned a budget cut into a style.
+
+    Serial storytelling. Each week, the story continues. That's why anime has long arcs — Tezuka invented that habit.
+
+"Astro Boy was also the first anime exported to America, in 1963. So when your grandparents say 'I watched cartoons as a kid,' they might literally mean anime."
+Slide 6 — 1970s–1980s: Japan Goes Global (17:00 – 22:00)
+
+"After Tezuka, the floodgates open. The 70s and 80s are anime's adolescence — louder, weirder, more ambitious."
+
+    Mobile Suit Gundam (1979) — giant robots, but with politics. War is messy. Heroes have doubts. This is anime growing up.
+
+    Akira (1988) — a feature film that costs 11 million dollars. Hand-drawn. 327 different colors when most films used 50. It blows minds in Tokyo and New York. Akira is the moment Hollywood realizes — wait, anime can do things we can't.
+
+    Sailor Moon and Dragon Ball — late 80s into the 90s — these are the shows that hook the global audience. Suddenly there are American kids drawing transformation sequences in their notebooks.
+
+"Big idea here: anime stops being 'Japanese cartoons' and starts being a global language."
+Slide 7 — Studio Ghibli & Spirited Away (22:00 – 27:00)
+
+[Show slide 7 with the Spirited Away poster.]
+
+"1985. Two animators, Hayao Miyazaki and Isao Takahata, start a studio called Ghibli. Their philosophy is the opposite of fast TV anime — they hand-draw everything, slowly, beautifully, with nature and silence and emotion."
+
+"In 2001, Ghibli releases Spirited Away. A ten-year-old girl, parents turned into pigs, a bathhouse for spirits. In 2003, it wins the Academy Award for Best Animated Feature. That's the first non-English film to ever win that Oscar."
+
+"Why does Ghibli matter? Because they prove anime is art — not just entertainment. Forests have spirits. Wind matters. Silence is allowed. And kids around the world cry watching it."
+
+[Optional: ask, "Has anyone here seen a Ghibli film? Which one? What did you feel?"]
+Slide 8 — 1990s–2000s: Cel → Digital (27:00 – 32:00)
+
+"Now the technology revolution. For 80 years, every anime frame is hand-drawn on a clear plastic cel and photographed. Slow. Expensive. Unforgiving — one mistake means redrawing the whole cel."
+
+"Then in the late 90s, computers get fast enough. Toy Story lands in 1995 and the entire animation world realizes — we don't need plastic anymore. By the early 2000s, almost every anime studio in Japan switches to digital."
+
+"What changes?"
+
+    Color counts go from hundreds to millions.
+
+    Studios produce more episodes per year.
+
+    Digital effects — glowing energy, lens flares, 3D backgrounds — become normal.
+
+"But something is also lost. Hand-drawn cels had little imperfections, paint texture, warmth. Some fans miss that. Which is exactly the cel-vs-digital debate you'll do later in this lesson."
+Slide 9 — 2010s–Now: Anime Goes Truly Global (32:00 – 36:00)
+
+"Last era — the one you're living in. Three big shifts:"
+
+    Streaming. Crunchyroll, Netflix, Hulu. You can watch a Tokyo show the same day it airs in Japan. That used to take years.
+
+    Global hits. Attack on Titan, Demon Slayer, Jujutsu Kaisen, My Hero Academia. These trend on TikTok worldwide.
+
+    Demon Slayer's Mugen Train (2020) — the highest-grossing Japanese film ever, and one of the highest-grossing animated films in history. Anime is no longer niche. It's mainstream culture.
+
+"Industry value today: more than $30 billion. Bigger than the entire NFL."
+Slide 10 — Naruto (2002) Case Study (36:00 – 41:00)
+
+[Click the Naruto thumbnail to play the 1:30 opening video.]
+
+"Listen to this opening. Watch the visuals."
+
+[Let it play — about 90 seconds.]
+
+"Naruto, 2002. A loud orange ninja kid that nobody believes in. Why is it the perfect example of modern anime?"
+
+    Conflict & growth — every arc, Naruto fails, then trains, then succeeds. That's the shounen formula.
+
+    Teamwork over individual genius — remember collectivist culture from the slides? Naruto wins because of friends. Always.
+
+    Long-form serialized storytelling — 720 episodes. That's only possible because of the digital era.
+
+"Naruto is what happens when you take Tezuka's recipe and run it through 40 years of evolution."
+Slide 11 — My Hero Academia (2016) (41:00 – 43:00)
+
+"Quick comparison. My Hero Academia, 2016. Same shounen DNA — kid with a dream, found family, growth — but now mixed with Western superheroes. American comic-book influence flowing back into Japanese animation. Anime is now in conversation with the whole world. The arrows go both ways."
+Slide 12 — Build Your Anime Timeline (43:00 – 45:00)
+
+[Activity slide.]
+
+"Two-minute speed activity. On the timeline on screen, drag or write one anime per era. 1960s — what? 1980s — what? 2000s — what? 2020s — what? Go."
+
+[Walk the room. Spot-check answers. Sample correct: 60s = Astro Boy, 80s = Akira, 2000s = Naruto, 2020s = Demon Slayer.]
+Slide 13 — Why Does Japan Tell Stories This Way? (45:00 – 48:00)
+
+"Now the deepest question. Why does Japanese animation feel different from American? Four reasons."
+
+    Post-WWII trauma. Tezuka survived the firebombing of Osaka. That's why so much anime is anti-war or about peaceful technology.
+
+    Shinto. The native religion teaches every river, tree, and stone has a spirit. That's why Ghibli forests are alive.
+
+    Economic boom and crash. The 1980s bubble funded Akira. The 1990s crash birthed Evangelion — a show literally about teenagers crushed by depression.
+
+    Collectivist culture. Heroes win through teamwork. Naruto needs Sakura and Sasuke. Deku needs Class 1-A. That's not accidental — it's cultural.
+
+"Look at the Akira poster on screen. Eleven million dollars. 327 colors. That film is bubble-economy Japan in one image."
+Slide 14 — Mini Poster: Your Anime Era (48:00 – 50:00)
+
+"Two-minute mini poster sketch. Pick any anime. On a sticky note or in your notebook write: title, era, one historical context fact, and one cultural connection. We'll share next class — but I want a draft on paper before you leave."
+Slide 15 — Three Big Questions (50:00 – 53:00)
+
+"Pull-it-together moment. Three questions. I want one student to answer each."
+
+    What did Tezuka invent that we still use today? (Big eyes, limited animation, serial stories.)
+
+    What changed when anime went from cel to digital? (More colors, faster production, less hand-drawn warmth.)
+
+    Why did anime go global? (Streaming, cultural curiosity, universal themes of growth and friendship.)
+
+[Cold-call. Affirm. Correct gently.]
+Slide 16 — Before You Go… Exit Ticket (53:00 – 56:00)
+
+"Exit ticket. One sentence each:"
+
+    One thing you learned today.
+
+    One thing you're still curious about.
+
+    The anime you most want to watch because of this lesson.
+
+"Drop it in the box on your way out. I read every single one."
+Slides 17–22 — Optional Extension Activities (use as time allows)
+
+If you finish early or want bonus engagement, choose one of these to extend:
+
+    Slide 17 — Era Detective: Show a clip with no title. Students guess the decade based on art and tech.
+
+    Slide 18 — Cel vs. Digital T-Chart: Pros and cons. Great for debate.
+
+    Slide 19 — Create-Your-Era pitch: Imagine the 2030s — what does anime look like?
+
+    Slide 20 — Global Impact Web: Where do you see anime outside anime? (Fashion, games, language, film.)
+
+    Slide 21 — Peer interview: Pair up. Ask each other what era they'd live in.
+
+    Slide 22 — Argument Builder: "The most important era of anime is _ because _." Three pieces of evidence.
+
+Slide 23 — Sketch Your Anime Character (56:00 – 59:00)
+
+"Final three minutes — and this is the fun part. Use the canvas. Sketch a character that belongs to a specific era. 1960s = simple lines, big eyes. 1980s = mecha. 2020s = wild colors, dynamic poses. Don't worry about being good. Worry about being era-accurate."
+Slide 24 — Wrap (59:00 – 60:00)
+
+"Here's the takeaway, club: anime is 117 years old. It started as a 2-second flicker of a boy at a chalkboard. It survived a world war, a recession, a digital revolution, and a global pandemic. Every show you love is standing on the shoulders of Tezuka, Miyazaki, and a thousand artists you've never heard of."
+
+"Next class we're going deeper into one era. Vote on the way out — Ghibli, mecha, or modern shounen. Thanks, club. Dismissed."
+Teaching Tips Throughout
+
+    Pacing rule: never spend more than 5 minutes on any single slide except videos.
+
+    Cold-call always: every slide should produce at least one student voice.
+
+    Use the images: slides 4, 7, 10, 13, 20 have visuals — point at them, don't just stand near them.
+
+    Save the Akira moment for slide 6 OR 13 emphasis — it's your most "wow" data point ($11M, 327 colors).
+
+    If you run long: cut slides 17–22, keep 23–24. The exit ticket is non-negotiable.
