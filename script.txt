@@ -1,214 +1,239 @@
-Anime Club Lesson 6 — Teacher Script (60 minutes)
+I have enough context. Let me draft the script for Lesson 7 — Anime Goes Global.
+Anime Club Lesson 7 — Teacher Script (60 minutes)
 
-Topic: The History of Anime & Its Evolution (1907 – Today)
+Topic: Anime Goes Global — Cultural Exchange, Soft Power, and the World's New Pop Language
 
-Below is a slide-by-slide spoken script. Stage directions are in italics. Time codes accumulate to 60 minutes. Read it conversationally — the script is written the way you'd actually say it to a room of curious kids.
-Slide 1 — Title (0:00 – 0:30)
+Below is a slide-by-slide spoken script. Stage directions are in italics. Time codes accumulate to 60 minutes. Read it the way you'd actually say it to a room of curious kids — warm, fast, a little dramatic where it counts.
+Slide 1 — Title & Driving Question (0:00 – 1:00)
 
-[Open the deck. Stand near the screen. Smile.]
+[Open the deck. Stand at the front. Hold for a beat before speaking.]
 
-"Welcome back, anime club! Today is Lesson 6, and it might be the most important one yet — because today we travel back in time. We're going to find out where anime actually came from. Not Naruto, not Demon Slayer — I mean the very, very beginning. Two seconds of black-and-white animation found in a flea market. By the end of today, you'll know how a tiny experimental film from 1907 grew into a billion-dollar global art form. Ready? Let's go."
-Slide 2 — Do Now: Watch & Notice (0:30 – 5:00)
+"Welcome back, anime club. Lesson 7. Last time we did the history — 1907, Tezuka, Ghibli, Naruto, all of it. Today we ask the bigger, weirder question: 'If anime was made in Japan, why does the whole world feel like it belongs to them?' That's our driving question. Hold onto it. Every slide today is a clue."
 
-[Click play on the embedded 3:40 video, "History of Anime — Part 1."]
+"By the end of class, you'll be able to argue — with evidence — whether anime is still Japanese, or whether it has quietly become the planet's shared visual language."
+Slide 2 — Do Now: Notice & Wonder (1:00 – 5:00)
 
-"Here's your Do Now. We're watching a short 3-minute-40-second video. Your job: notice three things that surprise you. Don't write yet — just watch. We'll talk after."
+[Click play on the embedded opening video. Step to the side.]
 
-[Let the video play. Stand to the side, watch with them. When it ends:]
+"Do Now. Watch this clip. Two columns in your notebook — Notice on the left, Wonder on the right. I want at least three of each. No talking, just looking."
 
-"Okay — turn and talk to your neighbor for thirty seconds. What surprised you? What did you not expect?"
+[Let it play. When it ends, give 30 seconds of silent writing time, then:]
 
-[Listen in. Pull two students to share aloud. Validate:]
+"Turn and talk — thirty seconds. Share one Notice and one Wonder with your neighbor."
 
-"Great noticing. Hold those ideas — we're going to confirm and expand all of them in the next 50 minutes."
-Slide 3 — Key Terms (5:00 – 8:00)
+[Cold-call two pairs. Validate. Don't correct yet — just collect.]
+Slide 3 — Six Key Terms (5:00 – 9:00)
 
-"Before we time-travel, four quick vocabulary words. These are the tools we'll use all class."
+"Six vocabulary words today. These are the lenses we'll use all class — without them, today's conversation falls apart."
 
-    Anime — Japanese animated film or TV. In Japan it just means "animation," but globally it means anime style.
+    Globalization — cultures, economies, and media spreading worldwide
 
-    Manga — Japanese comics. Almost every anime starts as manga first.
+    Cultural Exchange — ideas, art, or customs crossing between communities
 
-    Cel animation — old-school: drawings on transparent plastic sheets, photographed one frame at a time. Twelve drawings for one second of motion.
+    Pop Culture — entertainment everyone consumes, from kids to grandmas
 
-    Mangaka — a manga artist. Like saying "novelist," but for manga.
+    Cross-media Influence — when one art form, like anime, shapes another, like film or fashion
 
-"Repeat after me — anime, manga, cel, mangaka. Good. These words are your passport for today."
-Slide 4 — 1907–1940s: Where It All Began (8:00 – 13:00)
+    Iconography — the recognizable symbols of a culture or genre, the spiky hair, the speed lines
 
-[Point at the timeline and the vintage manga image on the right.]
+    Soft Power — a country's influence through culture, not force or money
 
-"1907. Picture this: in a Kyoto flea market in 2005, somebody finds a tiny film reel. They play it. It's two seconds long — a little boy drawing kanji on a chalkboard. That's Katsudō Shashin, and it's the oldest known Japanese animation. Older than Mickey Mouse by twenty-one years."
+"Don't copy the slide — re-write each one as if you're explaining it to a friend who has never watched anime. That's the assignment. Last question on this slide: which term best explains why anime went global? Pick one. We'll vote in two minutes."
 
-"Ten years later, 1917, three artists — Kitayama, Kouchi, and Shimokawa — start making short films inspired by Western animators. Japan is officially in the animation game."
+[Quick show of hands. Most kids will say globalization or soft power — both correct, push them to defend it.]
+Slide 4 — By the Numbers: The $33B Industry (9:00 – 13:00)
 
-"Then jump to the 1940s. World War II. The Japanese government funds an animation called Momotarō's Divine Sea Warriors — Japan's first feature-length anime. But here's the catch: it's propaganda. Made to convince Japanese children the war was good."
+[Point at the stats panel.]
 
-[Pause. Tap the context-question card.]
+"Numbers matter, so listen carefully. Anime is a $33 billion industry, up from $25B in 2020. 150 million Netflix households watch anime. 80% of viewing happens outside Japan. It's available in 190 countries on Netflix alone."
 
-"So my question to you — type or jot it down — why might a government want to use animation during wartime? Think about audience, emotion, and trust. I'll give you sixty seconds."
+"Fastest-growing markets? Southeast Asia plus 42%, Latin America plus 38%, Middle East plus 29% — all between 2020 and 2023. The most-watched globally are Attack on Titan, Demon Slayer, One Piece, Naruto, and My Hero Academia."
 
-[Cold-call two students. The right answer territory: kids trust cartoons, animation hides reality behind cute art, emotional manipulation is easier in drawings than live action.]
-Slide 5 — Osamu Tezuka & Astro Boy (13:00 – 17:00)
+"Now your job: fill in the four-row table. For each stat — what does it mean in plain English? Why is it surprising? What question does it raise? Three minutes."
 
-[Switch to slide 5.]
+[Walk the room. Spot-check. Close with: "Which region surprised you most, and why?" Cold-call two students.]
+Slide 5 — Anime in Western Film (13:00 – 19:00)
 
-"Okay — meet the most important person in anime history. Osamu Tezuka. He's called the God of Manga. In 1963, he creates a TV show called Tetsuwan Atom — you know it as Astro Boy — and that's the moment anime, as we know it, is born."
+"Now we get into the proof. Four Western films — all enormous — that cannot exist without anime."
 
-"Three things Tezuka invented that we still use today:"
+    Avatar: The Last Airbender — creators openly cited Dragon Ball Z, FLCL, and Miyazaki. It changed what an American cartoon was allowed to be.
 
-    Big expressive eyes. He borrowed them from Disney's Bambi. That's why anime characters have huge eyes — it makes emotion readable.
+    Spider-Man: Into the Spider-Verse — used manga Ben-Day dots, speed lines, and 12-fps "anime smears." Won the 2019 Oscar for Best Animated Film.
 
-    Limited animation. He couldn't afford 24 drawings per second like Disney, so he used 8. Reuse cycles. Hold frames longer. He turned a budget cut into a style.
+    Creed III, 2023 — Michael B. Jordan cited Hajime no Ippo and Baki. First mainstream Hollywood film to openly use anime fight grammar.
 
-    Serial storytelling. Each week, the story continues. That's why anime has long arcs — Tezuka invented that habit.
+    The Matrix, 1999 — the Wachowskis storyboarded scenes from Ghost in the Shell and screened it for Warner Bros. executives to pitch the movie. Bullet-time? Borrowed from anime.
 
-"Astro Boy was also the first anime exported to America, in 1963. So when your grandparents say 'I watched cartoons as a kid,' they might literally mean anime."
-Slide 6 — 1970s–1980s: Japan Goes Global (17:00 – 22:00)
+[Tap the "Think About It" card.]
 
-"After Tezuka, the floodgates open. The 70s and 80s are anime's adolescence — louder, weirder, more ambitious."
+"My question: without anime, would these films look the way they do? Take 60 seconds. Write yes or no, then one sentence of why."
 
-    Mobile Suit Gundam (1979) — giant robots, but with politics. War is messy. Heroes have doubts. This is anime growing up.
+[Cold-call. The point you're driving at: anime isn't influencing Western film at the edges. It's in the bones.]
+Slide 6 — Anime vs. Western Animation T-Chart (19:00 – 23:00)
 
-    Akira (1988) — a feature film that costs 11 million dollars. Hand-drawn. 327 different colors when most films used 50. It blows minds in Tokyo and New York. Akira is the moment Hollywood realizes — wait, anime can do things we can't.
+"Compare-and-contrast time. Five rows: art style, storytelling, characters, cultural roots, famous example. Anime column, Western column, and the third column is your opinion — which do you prefer and why? "
 
-    Sailor Moon and Dragon Ball — late 80s into the 90s — these are the shows that hook the global audience. Suddenly there are American kids drawing transformation sequences in their notebooks.
+[Give them four minutes. Then:]
 
-"Big idea here: anime stops being 'Japanese cartoons' and starts being a global language."
-Slide 7 — Studio Ghibli & Spirited Away (22:00 – 27:00)
+"Last question on this slide: what do both have in common? Don't skip it — that's the most important box. The answer territory: both want to make you feel something. Both use heroes. Both use color emotionally. The medium is the same — the accent is different."
 
-[Show slide 7 with the Spirited Away poster.]
+[Bonus prompt:] "Spider-Verse borrowed from anime. Was that homage, influence, or appropriation? Vote with your feet — left wall, middle, right wall."
+Slide 7 — Spirited Away & Soft Power (23:00 – 28:00)
 
-"1985. Two animators, Hayao Miyazaki and Isao Takahata, start a studio called Ghibli. Their philosophy is the opposite of fast TV anime — they hand-draw everything, slowly, beautifully, with nature and silence and emotion."
+[Show the Spirited Away panel.]
 
-"In 2001, Ghibli releases Spirited Away. A ten-year-old girl, parents turned into pigs, a bathhouse for spirits. In 2003, it wins the Academy Award for Best Animated Feature. That's the first non-English film to ever win that Oscar."
+"Roger Ebert in 2003: 'Miyazaki films exist outside the usual anime box. They're cinema.' Spirited Away won the Oscar in 2003 — first non-English animated film to ever do that."
 
-"Why does Ghibli matter? Because they prove anime is art — not just entertainment. Forests have spirits. Wind matters. Silence is allowed. And kids around the world cry watching it."
+"Universal themes, check all you see — coming of age, greed, environment, family, identity. Then name one specifically Japanese element in the film — bathhouses, kami, the train across the sea — and ask yourself: would removing it weaken the film? "
 
-[Optional: ask, "Has anyone here seen a Ghibli film? Which one? What did you feel?"]
-Slide 8 — 1990s–2000s: Cel → Digital (27:00 – 32:00)
+[Color-analysis micro-activity.] "Pick a scene. Warm tones or cool tones? What emotion is the color carrying? Thirty seconds."
 
-"Now the technology revolution. For 80 years, every anime frame is hand-drawn on a clear plastic cel and photographed. Slow. Expensive. Unforgiving — one mistake means redrawing the whole cel."
+[Big question to land the slide:] "Soft power question. When a Japanese film wins a Hollywood Oscar, who benefits more — Japan or Hollywood? Defend your answer in one sentence."
+Slide 8 — Hip-Hop × Anime (28:00 – 33:00)
 
-"Then in the late 90s, computers get fast enough. Toy Story lands in 1995 and the entire animation world realizes — we don't need plastic anymore. By the early 2000s, almost every anime studio in Japan switches to digital."
+"Now the fun one. Music."
 
-"What changes?"
+    Kanye West × Akira, 2010 — the Stronger music video used Akira footage directly. The whole Graduation visual language is cyberpunk-Akira.
 
-    Color counts go from hundreds to millions.
+    Megan Thee Stallion — calls herself a "Houston hottie Naruto runner." Her My Hero Academia and Demon Slayer collabs sold 2 million units in 48 hours.
 
-    Studios produce more episodes per year.
+    Michael Jackson — hired Akira's director Katsuhiro Otomo for the HIStory tour, and was reportedly developing an anime film when he died.
 
-    Digital effects — glowing energy, lens flares, 3D backgrounds — become normal.
+    Cowboy Bebop's soundtrack — Yoko Kanno's jazz-fusion has 200M+ Spotify streams, and anime OSTs now chart on Billboard.
 
-"But something is also lost. Hand-drawn cels had little imperfections, paint texture, warmth. Some fans miss that. Which is exactly the cel-vs-digital debate you'll do later in this lesson."
-Slide 9 — 2010s–Now: Anime Goes Truly Global (32:00 – 36:00)
+[Tap the Think About This prompt.] "Both hip-hop and anime were once seen as niche or underground. What do they have in common? Talk for sixty seconds with a partner."
 
-"Last era — the one you're living in. Three big shifts:"
+[Listen. The answer territory: outsider art, emotional honesty, both built by people the mainstream ignored, both scaled through the internet.]
 
-    Streaming. Crunchyroll, Netflix, Hulu. You can watch a Tokyo show the same day it airs in Japan. That used to take years.
+"Fill in the three-row music table — artist, anime reference, type of connection, and the hardest column: cultural exchange or appropriation? "
 
-    Global hits. Attack on Titan, Demon Slayer, Jujutsu Kaisen, My Hero Academia. These trend on TikTok worldwide.
+[Closing vote:] "'Anime is just entertainment — not real cultural exchange.' Agree, disagree, or it depends? "
+Slide 9 — Fashion, Streetwear & Cosplay (33:00 – 37:00)
 
-    Demon Slayer's Mugen Train (2020) — the highest-grossing Japanese film ever, and one of the highest-grossing animated films in history. Anime is no longer niche. It's mainstream culture.
+"Fashion is where soft power gets worn."
 
-"Industry value today: more than $30 billion. Bigger than the entire NFL."
-Slide 10 — Naruto (2002) Case Study (36:00 – 41:00)
+    Streetwear collabs — Nike × Dragon Ball Z, Uniqlo × Evangelion, Supreme × Akira, Louis Vuitton × Murakami. Anime merch is now a $15B+ industry.
 
-[Click the Naruto thumbnail to play the 1:30 opening video.]
+    Cosplay economy — $6.7B globally, 40 million active cosplayers, and 60% of convention costumes are anime.
 
-"Listen to this opening. Watch the visuals."
+    Harajuku → global — Lolita, Fairy Kei, Visual Kei all started in Tokyo and now show up from São Paulo to Seoul.
 
-[Let it play — about 90 seconds.]
+[Personal hook.] "Have you ever worn anime-inspired clothing? What did it mean to you — fandom, identity, just looked cool? Two volunteers, share."
 
-"Naruto, 2002. A loud orange ninja kid that nobody believes in. Why is it the perfect example of modern anime?"
+[Two-minute design challenge.] "On a sticky note: pick an item — shirt, bag, sneaker. Pick an anime. Name your target audience. Go."
 
-    Conflict & growth — every arc, Naruto fails, then trains, then succeeds. That's the shounen formula.
+[Closing vote:] "Wearing anime merch is — fandom, fashion, cultural appreciation, or appropriation? "
+Slide 10 — The Outsider Story: Naruto Case Study (37:00 – 42:00)
 
-    Teamwork over individual genius — remember collectivist culture from the slides? Naruto wins because of friends. Always.
+[Click the Naruto opening — about 90 seconds.]
 
-    Long-form serialized storytelling — 720 episodes. That's only possible because of the digital era.
+"Watch. Listen. Don't write yet."
 
-"Naruto is what happens when you take Tezuka's recipe and run it through 40 years of evolution."
-Slide 11 — My Hero Academia (2016) (41:00 – 43:00)
+[After it plays:]
 
-"Quick comparison. My Hero Academia, 2016. Same shounen DNA — kid with a dream, found family, growth — but now mixed with Western superheroes. American comic-book influence flowing back into Japanese animation. Anime is now in conversation with the whole world. The arrows go both ways."
-Slide 12 — Build Your Anime Timeline (43:00 – 45:00)
+"Three quick reflection questions on the slide:"
 
-[Activity slide.]
+    "What emotion does the opening create in the first 10 seconds? "
 
-"Two-minute speed activity. On the timeline on screen, drag or write one anime per era. 1960s — what? 1980s — what? 2000s — what? 2020s — what? Go."
+    "What visual or sound choice hits hardest, and why? "
 
-[Walk the room. Spot-check answers. Sample correct: 60s = Astro Boy, 80s = Akira, 2000s = Naruto, 2020s = Demon Slayer.]
-Slide 13 — Why Does Japan Tell Stories This Way? (45:00 – 48:00)
+    "What does the animation style tell you about Naruto before you know the story? "
 
-"Now the deepest question. Why does Japanese animation feel different from American? Four reasons."
+"Now the big idea. Naruto is the kid nobody believed in. That story resonated across Latin America, Africa, and Southeast Asia because every culture has a version of the outsider. Lil Uzi Vert, 21 Savage, and Offset have all cited Naruto. The Naruto run became global — 720,000 people RSVP'd to Storm Area 51 doing it."
 
-    Post-WWII trauma. Tezuka survived the firebombing of Osaka. That's why so much anime is anti-war or about peaceful technology.
+[Connect to their lives.] "Naruto's exclusion is about something he was born with. What does that represent in real life? Disability, class, race, religion, neurodivergence — there's no wrong answer if you can defend it."
+Slide 11 — My Hero Academia & Quirk Inequality (42:00 – 45:00)
 
-    Shinto. The native religion teaches every river, tree, and stone has a spirit. That's why Ghibli forests are alive.
+"Quick parallel. Deku is born without a power in a world where 80% of people have abilities. Western fans read that as a mirror for disability, class inequality, and privilege."
 
-    Economic boom and crash. The 1980s bubble funded Akira. The 1990s crash birthed Evangelion — a show literally about teenagers crushed by depression.
+[Partner activity.] "Pair up. Which outsider story hits harder — Naruto or Deku, and why? Then ask your partner: what real-world issue does your favorite anime secretly explore? Two minutes."
 
-    Collectivist culture. Heroes win through teamwork. Naruto needs Sakura and Sasuke. Deku needs Class 1-A. That's not accidental — it's cultural.
+[Reflection prompt:] "On the way back to your seat — how did your partner's perspective challenge yours? One sentence."
 
-"Look at the Akira poster on screen. Eleven million dollars. 327 colors. That film is bubble-economy Japan in one image."
-Slide 14 — Mini Poster: Your Anime Era (48:00 – 50:00)
+[Class Question Generator:] "Each pair, write one question for the whole class based on your conversation. We'll pull two at random."
+Slide 12 — Anime in Games & Tech (45:00 – 49:00)
 
-"Two-minute mini poster sketch. Pick any anime. On a sticky note or in your notebook write: title, era, one historical context fact, and one cultural connection. We'll share next class — but I want a draft on paper before you leave."
-Slide 15 — Three Big Questions (50:00 – 53:00)
+"Anime didn't just shape film and music. It rewired technology."
 
-"Pull-it-together moment. Three questions. I want one student to answer each."
+    JRPGs — Final Fantasy, Dragon Quest, Persona, all anime-coded. $8B genre.
 
-    What did Tezuka invent that we still use today? (Big eyes, limited animation, serial stories.)
+    Pokémon — $150B franchise. Most valuable media IP on Earth. 440M+ games sold.
 
-    What changed when anime went from cel to digital? (More colors, faster production, less hand-drawn warmth.)
+    Mecha → real robots — Gundam shaped Boston Dynamics design, and Japanese engineers cite Evangelion as bipedal-locomotion inspiration.
 
-    Why did anime go global? (Streaming, cultural curiosity, universal themes of growth and friendship.)
+    VTubers — Hololive's anime-avatar streamers have 70M combined subscribers.
 
-[Cold-call. Affirm. Correct gently.]
-Slide 16 — Before You Go… Exit Ticket (53:00 – 56:00)
+    AI Art — most image-generation models are trained on anime datasets, and "anime-style" is the #1 prompt on Midjourney and Stable Diffusion.
 
-"Exit ticket. One sentence each:"
+    Genshin Impact — a Chinese anime-style game made $4.4B in year one, proving anime aesthetics now belong to the world, not only Japan.
 
-    One thing you learned today.
+[Push-further table.] "Fill in the four-row table — Pokémon, mecha, AI art, Ghibli-Minecraft. Plain English. So what? What does it prove about anime's power? "
 
-    One thing you're still curious about.
+[Sentence stem to land the slide.] "When someone says 'anime is just cartoons,' you'd now say… finish the sentence."
+Slide 13 — Debate: Is Anime Still Japanese? (49:00 – 53:00)
 
-    The anime you most want to watch because of this lesson.
+"This is the big debate. The driving question, finally answered — by you."
 
-"Drop it in the box on your way out. I read every single one."
-Slides 17–22 — Optional Extension Activities (use as time allows)
+"Two stances on screen: YES, it stays Japanese, or NO, it's becoming global. Pick a side. Then build a four-part argument: claim, evidence (1–2 facts from today), reasoning, counter-argument."
 
-If you finish early or want bonus engagement, choose one of these to extend:
+[Four minutes silent writing. Then sample two from each side. Don't declare a winner — protect both stances.]
 
-    Slide 17 — Era Detective: Show a clip with no title. Students guess the decade based on art and tech.
+"Notice what just happened. Both sides used facts from today's slides. That means the question isn't which side is right — it's which framing tells you more about the world."
+Slide 14 — Where Do You See Anime? (53:00 – 55:00)
 
-    Slide 18 — Cel vs. Digital T-Chart: Pros and cons. Great for debate.
+"Look around your life. Six categories on screen — Film & TV, Fashion, Music, Games, Language, Merch."
 
-    Slide 19 — Create-Your-Era pitch: Imagine the 2030s — what does anime look like?
+"Think beyond the obvious — sports, memes, school slang, your friendships, your career dreams. In two minutes, jot down at least one example per category. We'll share three out loud."
+Slide 15 — Mini Poster Pitch (55:00 – 57:00)
 
-    Slide 20 — Global Impact Web: Where do you see anime outside anime? (Fashion, games, language, film.)
+"Mini poster. Draw a scene, symbol, or character that represents how anime changed the world. Add a one-liner hook that would make someone stop and look at your poster."
 
-    Slide 21 — Peer interview: Pair up. Ask each other what era they'd live in.
+"Be ready to pitch in 60 seconds: what anime, which industry, one key stat, your argument. We'll do two pitches now and the rest next class."
 
-    Slide 22 — Argument Builder: "The most important era of anime is _ because _." Three pieces of evidence.
+[Pick two volunteers. Time them strictly. Snap to celebrate.]
+Slide 16 — Three Big Questions (57:00 – 58:30)
 
-Slide 23 — Sketch Your Anime Character (56:00 – 59:00)
+"Pull-it-together moment. Three questions, three different students."
 
-"Final three minutes — and this is the fun part. Use the canvas. Sketch a character that belongs to a specific era. 1960s = simple lines, big eyes. 1980s = mecha. 2020s = wild colors, dynamic poses. Don't worry about being good. Worry about being era-accurate."
-Slide 24 — Wrap (59:00 – 60:00)
+    "If anime stopped being made in Japan tomorrow but kept being made globally — would it still be anime? "
 
-"Here's the takeaway, club: anime is 117 years old. It started as a 2-second flicker of a boy at a chalkboard. It survived a world war, a recession, a digital revolution, and a global pandemic. Every show you love is standing on the shoulders of Tezuka, Miyazaki, and a thousand artists you've never heard of."
+    "As global pop culture adopts anime aesthetics, does Japan gain or lose cultural power? "
 
-"Next class we're going deeper into one era. Vote on the way out — Ghibli, mecha, or modern shounen. Thanks, club. Dismissed."
+    "Based on today, what global topic would YOU put at the center of your own anime story? "
+
+[Cold-call. Affirm. No need to resolve — let the questions linger.]
+Slide 17 — The K-On! Soft Power Case (58:30 – 59:30)
+
+"One last micro-story before you go. K-On! is an anime about a high school light-music club. Sounds small. Watch the chain reaction:"
+
+"Music → language learning → tourism → cultural ambassador. There are active K-On! tribute bands in Brazil, Indonesia, Germany, and the USA. Members learned Japanese to understand the lyrics. Tourism to filming locations grew 400% after the film. That is exactly what soft power looks like in real time."
+
+[One reflection prompt.] "Has an anime ever made you want to learn something new — an instrument, a language, a skill, a recipe? Hold that — it's your exit ticket."
+Slide 18 — Exit Ticket & Wrap (59:30 – 60:00)
+
+"Exit ticket — four lines, one sentence each:"
+
+    "📚 I learned… "
+
+    "🔗 This connects to my anime… "
+
+    "❓ I'm still wondering… "
+
+    "✏️ For my own anime story… "
+
+"Drop it in the box on your way out. Homework — pick one industry anime influenced, find three more facts we didn't cover, and bring your most surprising discovery next class."
+
+"Takeaway, club: anime started as a Japanese art form. Today it's the closest thing the planet has to a shared visual language — sneakers, hip-hop, robots, video games, AI art, the kid in São Paulo learning Japanese from a guitar anime. That's not entertainment. That's soft power. And you're fluent in it. Dismissed."
 Teaching Tips Throughout
 
-    Pacing rule: never spend more than 5 minutes on any single slide except videos.
+    Pacing rule: never spend more than 5 minutes on any single slide except videos and the debate.
 
     Cold-call always: every slide should produce at least one student voice.
 
-    Use the images: slides 4, 7, 10, 13, 20 have visuals — point at them, don't just stand near them.
+    Use the panels: slides 4, 5, 8, 9, and 12 are stat-heavy — point at the numbers, don't just read them.
 
-    Save the Akira moment for slide 6 OR 13 emphasis — it's your most "wow" data point ($11M, 327 colors).
+    Save the wow-stat for emphasis: "$33B, 80% outside Japan, 190 countries" — drop one of those whenever energy dips.
 
-    If you run long: cut slides 17–22, keep 23–24. The exit ticket is non-negotiable.
+    Protect both sides of the debate on Slide 13 — your job is rigor, not a verdict.
+
+    If you run long: cut Slide 17 (K-On!) and the second mini-poster pitch. The exit ticket on Slide 18 is non-negotiable.
