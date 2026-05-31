@@ -1,1 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="slides-format" content="viewport">
+<title>Lesson 1: Introduction to Scratch & Basic Game Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+@theme {
+  --color-bg: #f4fbff;
+  --color-bg-deep: #e6f4ff;
+  --color-surface: #ffffff;
+  --color-text: #1a2a3a;
+  --color-text-secondary: #2d4a6b;
+  --color-text-muted: #5a7a9a;
+  --color-accent-1: #0b63ce;
+  --color-accent-2: #10b981;
+  --color-accent-3: #f59e0b;
+  --color-glass-bg: rgba(255,255,255,0.88);
+  --color-glass-border: rgba(11,99,206,0.12);
+  --color-vignette: rgba(0,0,0,0.04);
+  --font-display: "Fredoka", sans-serif;
+  --font-body: "Nunito", sans-serif;
+}
+</style>
+<style>
+:root { --color-bg:#f4fbff; --color-text:#1a2a3a; --glow-color-rgb:11,99,206; }
+*,*::before,*::after{box-sizing:border-box;}
+html,body{background:var(--color-bg);margin:0;}
+body{font-family:"Nunito",sans-serif;color:var(--color-text);overflow:hidden;height:100vh;width:100vw;}
+.deck{width:100vw;height:calc(100vh - 72px);position:relative;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(0.96);transition:opacity 0.6s ease,transform 0.6s ease;pointer-events:none;overflow:hidden;}
+.slide.active{opacity:1;transform:scale(1);pointer-events:all;}
+.slide>.content{position:relative;z-index:2;width:100%;max-width:1100px;padding:clamp(0.8rem,2.5vw,2.5rem);}
+.nav-controls{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:14px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);padding:10px 24px;border-radius:0;border-top:1.5px solid rgba(11,99,206,0.15);box-shadow:0 -4px 24px rgba(11,99,206,0.09);height:72px;}
+.nav-btn{width:40px;height:40px;border:none;background:rgba(11,99,206,0.08);color:#0b63ce;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.nav-btn:hover{background:rgba(11,99,206,0.18);}
+.slide-dots{display:flex;gap:5px;flex-wrap:wrap;max-width:380px;justify-content:center;}
+.slide-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(11,99,206,0.2);cursor:pointer;transition:background 0.3s,transform 0.3s;}
+.slide-dots .dot.active{background:#0b63ce;transform:scale(1.4);}
+.slide-counter{font-size:0.75rem;color:#5a7a9a;min-width:44px;text-align:center;font-family:"Nunito",sans-serif;}
+.reveal{opacity:0;transform:translateY(18px);}
+@keyframes float-slow{0%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-35px) scale(1.1);}66%{transform:translate(-30px,30px) scale(0.92);}100%{transform:translate(0,0) scale(1);}}
+@keyframes float-drift{0%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(-40px,-50px) scale(1.12) rotate(2deg);}100%{transform:translate(0,0) scale(1) rotate(0deg);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);animation:float-slow 12s ease-in-out infinite;}
+.blob:nth-child(2){animation:float-drift 16s ease-in-out infinite;}
+.blob:nth-child(3){animation:float-slow 20s ease-in-out infinite reverse;}
+.slide::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,var(--color-vignette) 100%);}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important;}}
 
+/* ─── Shared component styles (matching index.html) ─── */
+.card{background:rgba(255,255,255,0.92);border:1px solid rgba(11,99,206,0.12);border-radius:16px;box-shadow:0 4px 18px rgba(11,99,206,0.08);transition:transform 0.2s,box-shadow 0.2s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(11,99,206,0.14);}
+.pill{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+.accent-bar{width:52px;height:5px;border-radius:3px;background:linear-gradient(90deg,#0b63ce,#10b981);margin-bottom:12px;}
+.section-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:4px 14px;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;}
+
+/* ─── Video embed (same as index.html) ─── */
+.vid-thumb-wrap{position:relative;cursor:pointer;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);background:linear-gradient(135deg,#051630 0%,#0b3a7a 100%);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
+.vid-thumb-wrap img{width:100%;height:100%;display:block;object-fit:cover;background:#0b1929;position:absolute;top:0;left:0;}
+.vid-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:rgba(255,60,60,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;z-index:3;}
+.vid-thumb-wrap:hover .vid-play-btn{transform:translate(-50%,-50%) scale(1.12);background:rgb(255,0,0);}
+.vid-play-btn svg{width:22px;height:22px;fill:white;margin-left:3px;}
+.vid-iframe-wrap{display:none;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);position:relative;width:100%;}
+.vid-source-link{font-size:0.72rem;color:#0b63ce;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:5px;opacity:0.8;font-family:"Nunito",sans-serif;}
+.vid-thumb-wrap .vid-fallback-label{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.85);padding:0 8px;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,0.8);z-index:4;}
+.vid-source-link:hover{opacity:1;text-decoration:underline;}
+.vid-title-bar{position:absolute;top:0;left:0;right:0;background:linear-gradient(to bottom,rgba(0,0,0,0.6),transparent);padding:8px 12px;font-size:0.7rem;color:rgba(255,255,255,0.9);font-family:"Nunito",sans-serif;font-weight:700;z-index:4;pointer-events:none;}
+
+/* ─── Question cards ─── */
+.q-card{background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);border-radius:14px;padding:12px 16px;margin-bottom:8px;font-family:"Nunito",sans-serif;}
+.q-mark{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#0b63ce;color:white;border-radius:50%;font-weight:900;font-size:0.85rem;flex-shrink:0;margin-right:10px;font-family:"Fredoka",sans-serif;}
+
+/* ─── Think bubble ─── */
+.think-bubble{background:linear-gradient(135deg,rgba(11,99,206,0.07),rgba(16,185,129,0.07));border:1.5px dashed rgba(11,99,206,0.25);border-radius:16px;padding:12px 16px;font-style:italic;color:#2d4a6b;font-family:"Nunito",sans-serif;}
+
+/* ─── Block chip (visual block representation) ─── */
+.block-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:8px;font-family:"Nunito",sans-serif;font-size:0.78rem;font-weight:700;color:white;margin:2px;}
+.block-motion{background:#4C97FF;}
+.block-event{background:#FFD500;color:#333;}
+.block-control{background:#FFAB19;}
+.block-sound{background:#CF63CF;}
+.block-looks{background:#9966FF;}
+
+/* ─── Algorithm steps ─── */
+.algo-step{display:flex;align-items:flex-start;gap:12px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.7);border:1px solid rgba(11,99,206,0.1);margin-bottom:6px;}
+.algo-num{width:28px;height:28px;background:linear-gradient(135deg,#0b63ce,#10b981);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;flex-shrink:0;font-family:"Fredoka",sans-serif;}
+
+/* ─── vocab card ─── */
+.vocab-card{border-radius:14px;padding:10px 14px;border-left:4px solid;background:rgba(255,255,255,0.85);}
+
+/* ─── Stat pill ─── */
+.stat-big{font-family:"Fredoka",sans-serif;font-size:2rem;font-weight:700;line-height:1;}
+</style>
+</head>
+<body>
+<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
+<div class="deck">
+
+<!-- ═══════════ SLIDE 1: TITLE ═══════════ -->
+<div class="slide slide-1 active" data-slide="1">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.09;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;top:45%;left:20%;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content text-center" style="display:flex;flex-direction:column;align-items:center;">
+    <div style="font-size:clamp(4rem,9vw,6.5rem);animation:float 3s ease-in-out infinite;margin-bottom:0.4rem;" class="reveal">🐱</div>
+    <div class="accent-bar mx-auto reveal"></div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5vw,4rem);font-weight:700;color:#0b63ce;letter-spacing:-0.01em;margin-bottom:0.3rem;line-height:1.1;">Introduction to Scratch<br>&amp; Basic Game Concepts</h1>
+    <p class="reveal" style="font-size:clamp(0.8rem,1.4vw,1rem);color:#5a7a9a;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;margin-bottom:1rem;">Lesson 1 · Game Development with Scratch</p>
+    <div class="reveal" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <span class="pill" style="background:rgba(11,99,206,0.1);color:#0b63ce;">🎮 Game Design</span>
+      <span class="pill" style="background:rgba(16,185,129,0.1);color:#059669;">🧩 Block Coding</span>
+      <span class="pill" style="background:rgba(245,158,11,0.1);color:#d97706;">⚡ Algorithms</span>
+      <span class="pill" style="background:rgba(139,92,246,0.1);color:#7c3aed;">🕹️ Interactive Projects</span>
+    </div>
+    <p class="reveal" style="margin-top:1rem;font-size:0.8rem;color:#5a7a9a;">90-minute lesson · MIT Scratch (scratch.mit.edu)</p>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 2: DO NOW — WARM UP ═══════════ -->
+<div class="slide slide-2" data-slide="2">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-80px;right:-60px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#10b981;opacity:0.05;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🎯 Do Now — 5 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">What Makes a Video Game Fun?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
+      <div>
+        <div class="q-card reveal">
+          <div style="display:flex;align-items:flex-start;">
+            <span class="q-mark">?</span>
+            <div>
+              <p style="font-weight:700;font-size:0.9rem;margin:0 0 4px;font-family:'Fredoka',sans-serif;color:#0b63ce;">Think about your favorite game.</p>
+              <p style="font-size:0.82rem;color:#2d4a6b;margin:0;">What keeps you coming back to play it again and again? Write down 2 things.</p>
+            </div>
+          </div>
+        </div>
+        <div class="q-card reveal">
+          <div style="display:flex;align-items:flex-start;">
+            <span class="q-mark">?</span>
+            <div>
+              <p style="font-weight:700;font-size:0.9rem;margin:0 0 4px;font-family:'Fredoka',sans-serif;color:#0b63ce;">Has a game ever felt boring or frustrating?</p>
+              <p style="font-size:0.82rem;color:#2d4a6b;margin:0;">What was missing from that game experience?</p>
+            </div>
+          </div>
+        </div>
+        <div class="q-card reveal">
+          <div style="display:flex;align-items:flex-start;">
+            <span class="q-mark">?</span>
+            <div>
+              <p style="font-weight:700;font-size:0.9rem;margin:0 0 4px;font-family:'Fredoka',sans-serif;color:#0b63ce;">If you could build any game right now…</p>
+              <p style="font-size:0.82rem;color:#2d4a6b;margin:0;">What would it look like? What would the player do?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card reveal" style="padding:14px;height:100%;display:flex;flex-direction:column;justify-content:center;">
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#0b63ce;margin-bottom:10px;">🎮 Great games usually have…</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.2rem;">⭐</span><span style="font-size:0.82rem;color:#2d4a6b;"><strong>Challenge</strong> — hard enough to be interesting</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.2rem;">🎯</span><span style="font-size:0.82rem;color:#2d4a6b;"><strong>Goals</strong> — something to aim for</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.2rem;">🔁</span><span style="font-size:0.82rem;color:#2d4a6b;"><strong>Feedback</strong> — the game reacts to you</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.2rem;">🎨</span><span style="font-size:0.82rem;color:#2d4a6b;"><strong>Creativity</strong> — looks and sounds engaging</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:1.2rem;">🕹️</span><span style="font-size:0.82rem;color:#2d4a6b;"><strong>Control</strong> — player makes decisions</span></div>
+          </div>
+          <div class="think-bubble reveal" style="margin-top:10px;">
+            <span style="font-size:0.8rem;">💭 Today you'll start building games with ALL of these elements — using <strong>Scratch!</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 3: WHAT IS SCRATCH? + VIDEO ═══════════ -->
+<div class="slide slide-3" data-slide="3">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-30px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🐱 What Is Scratch?</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Scratch: Your Creative Coding Playground</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;">
+      <div>
+        <div style="display:flex;flex-direction:column;gap:7px;" class="reveal">
+          <div class="card" style="padding:10px 14px;border-left:4px solid #0b63ce;">
+            <p style="font-weight:700;font-size:0.85rem;margin:0 0 2px;font-family:'Fredoka',sans-serif;color:#0b63ce;">🏛️ Created by MIT Media Lab</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">Free block-based coding platform — launched 2007, redesigned as Scratch 3.0 in 2019</p>
+          </div>
+          <div class="card" style="padding:10px 14px;border-left:4px solid #10b981;">
+            <p style="font-weight:700;font-size:0.85rem;margin:0 0 2px;font-family:'Fredoka',sans-serif;color:#059669;">🌍 Used in 200+ countries</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">135M+ registered users, 164M+ shared projects. Available in 70+ languages.</p>
+          </div>
+          <div class="card" style="padding:10px 14px;border-left:4px solid #f59e0b;">
+            <p style="font-weight:700;font-size:0.85rem;margin:0 0 2px;font-family:'Fredoka',sans-serif;color:#d97706;">🎓 Used in schools & universities</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">Intro CS courses at Harvard, Wellesley, UC Berkeley use Scratch concepts to teach computational thinking</p>
+          </div>
+          <div class="card" style="padding:10px 14px;border-left:4px solid #8b5cf6;">
+            <p style="font-weight:700;font-size:0.85rem;margin:0 0 2px;font-family:'Fredoka',sans-serif;color:#7c3aed;">🧩 What can you build?</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">Games · Animations · Interactive stories · Art · Music · Simulations</p>
+          </div>
+        </div>
+        <div class="think-bubble reveal" style="margin-top:8px;">
+          <span style="font-size:0.78rem;">💭 <strong>The name "Scratch"</strong> comes from DJs who "scratch" records — mixing and remixing sounds creatively. You'll do the same with code blocks!</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="vid-thumb-wrap" id="vid-whatscratch-wrap" onclick="playVid('whatscratch')" style="position:relative;aspect-ratio:16/9;">
+          <div class="vid-title-bar">What is Scratch MIT? — 2:20</div>
+          <img src="https://i.ytimg.com/vi/9jTPZfhuVro/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/9jTPZfhuVro/hqdefault.jpg';this.addEventListener('error',function(){this.style.display='none';});" alt="Getting Started with Scratch - Official Scratch Team" style="aspect-ratio:16/9;object-fit:cover;width:100%;height:100%;position:absolute;top:0;left:0;">
+          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="vid-iframe-wrap" id="vid-whatscratch-iframe" style="aspect-ratio:16/9;width:100%;"></div>
+        <a href="https://www.youtube.com/watch?v=9jTPZfhuVro" target="_blank" class="vid-source-link">▶ youtube.com — Getting Started with Scratch (Scratch Team, 1:42)</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 4: KEY VOCABULARY ═══════════ -->
+<div class="slide slide-4" data-slide="4">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-20px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">📖 Vocabulary</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Key Terms — Lesson 1</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;" class="reveal">
+      <div class="vocab-card" style="border-color:#0b63ce;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">🐱 Sprite</p>
+        <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">Any character, object, or shape in your Scratch project. Can move, animate, and react to code.</p>
+      </div>
+      <div class="vocab-card" style="border-color:#10b981;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#059669;margin:0 0 3px;">🖼️ Backdrop</p>
+        <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">The background image of the Stage. Changes scenery without affecting sprites. Like a movie set.</p>
+      </div>
+      <div class="vocab-card" style="border-color:#f59e0b;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#d97706;margin:0 0 3px;">🧩 Block-Based Coding</p>
+        <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">Programming by snapping visual blocks together — no typing! Each block = one instruction.</p>
+      </div>
+      <div class="vocab-card" style="border-color:#8b5cf6;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#7c3aed;margin:0 0 3px;">🔢 Algorithm</p>
+        <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">A step-by-step set of instructions. In Scratch, a stack of blocks = an algorithm. Order matters!</p>
+      </div>
+      <div class="vocab-card" style="border-color:#ef4444;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#dc2626;margin:0 0 3px;">⚡ Interactive</p>
+        <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">A project that responds to player input — keyboard keys, mouse clicks, timer events.</p>
+      </div>
+      <div class="vocab-card" style="border-color:#06b6d4;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#0891b2;margin:0 0 3px;">🎬 Animation</p>
+        <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">Using the Repeat block to cycle through costumes (poses) so a sprite appears to move.</p>
+      </div>
+      <div class="vocab-card" style="border-color:#f97316;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#ea580c;margin:0 0 3px;">🎭 Costume</p>
+        <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">Different "looks" for a sprite. Switching between costumes creates animation frames.</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:8px;">
+      <div class="think-bubble">
+        <span style="font-size:0.8rem;">💭 <strong>Quick check:</strong> An algorithm is like a recipe — what happens if you follow the steps in the wrong order?</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 5: SCRATCH INTERFACE TOUR ═══════════ -->
+<div class="slide slide-5" data-slide="5">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;left:-40px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;right:-30px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🗺️ Interface Tour</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Navigating the Scratch Editor</h2>
+    <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:14px;align-items:start;">
+      <div class="reveal">
+        <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;box-shadow:0 4px 20px rgba(11,99,206,0.18);display:block;background:#f8faff;font-family:'Nunito',sans-serif;">
+  <!-- Background -->
+  <rect width="520" height="300" fill="#f0f4ff" rx="12"/>
+  <!-- Title bar -->
+  <rect width="520" height="28" fill="#0b63ce" rx="12"/>
+  <rect y="16" width="520" height="12" fill="#0b63ce"/>
+  <text x="260" y="19" text-anchor="middle" fill="white" font-size="11" font-weight="700">🐱 Scratch Editor — Interface Map</text>
+  <!-- Blocks Palette -->
+  <rect x="6" y="32" width="130" height="262" fill="#dbeafe" rx="8" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="71" y="48" text-anchor="middle" fill="#1d4ed8" font-size="9" font-weight="800">📦 BLOCKS PALETTE</text>
+  <rect x="12" y="52" width="118" height="14" fill="#4C97FF" rx="3"/><text x="71" y="62" text-anchor="middle" fill="white" font-size="8" font-weight="700">Motion</text>
+  <rect x="12" y="69" width="118" height="14" fill="#9966FF" rx="3"/><text x="71" y="79" text-anchor="middle" fill="white" font-size="8" font-weight="700">Looks</text>
+  <rect x="12" y="86" width="118" height="14" fill="#CF63CF" rx="3"/><text x="71" y="96" text-anchor="middle" fill="white" font-size="8" font-weight="700">Sound</text>
+  <rect x="12" y="103" width="118" height="14" fill="#FFD500" rx="3"/><text x="71" y="113" text-anchor="middle" fill="#333" font-size="8" font-weight="700">Events</text>
+  <rect x="12" y="120" width="118" height="14" fill="#FFAB19" rx="3"/><text x="71" y="130" text-anchor="middle" fill="white" font-size="8" font-weight="700">Control</text>
+  <rect x="12" y="137" width="118" height="14" fill="#5CB1D6" rx="3"/><text x="71" y="147" text-anchor="middle" fill="white" font-size="8" font-weight="700">Sensing</text>
+  <rect x="12" y="154" width="118" height="14" fill="#59C059" rx="3"/><text x="71" y="164" text-anchor="middle" fill="white" font-size="8" font-weight="700">Operators</text>
+  <rect x="12" y="171" width="118" height="14" fill="#FF8C1A" rx="3"/><text x="71" y="181" text-anchor="middle" fill="white" font-size="8" font-weight="700">Variables</text>
+  <rect x="12" y="188" width="118" height="14" fill="#FF6680" rx="3"/><text x="71" y="198" text-anchor="middle" fill="white" font-size="8" font-weight="700">My Blocks</text>
+  <!-- Scripts Area -->
+  <rect x="142" y="32" width="240" height="195" fill="white" rx="8" stroke="#0b63ce" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="262" y="50" text-anchor="middle" fill="#0b63ce" font-size="9" font-weight="800">✏️ SCRIPTS AREA</text>
+  <text x="262" y="65" text-anchor="middle" fill="#5a7a9a" font-size="8">(Drag blocks here to build code)</text>
+  <!-- Block stack example -->
+  <rect x="165" y="75" width="130" height="17" fill="#FFD500" rx="4"/><text x="185" y="87" fill="#333" font-size="8" font-weight="700">🚩 when green flag clicked</text>
+  <rect x="165" y="94" width="130" height="17" fill="#FFAB19" rx="4"/><text x="185" y="106" fill="white" font-size="8" font-weight="700">🔁 forever</text>
+  <rect x="175" y="113" width="110" height="17" fill="#4C97FF" rx="4"/><text x="195" y="125" fill="white" font-size="8" font-weight="700">➡️ move 10 steps</text>
+  <rect x="175" y="132" width="110" height="17" fill="#4C97FF" rx="4"/><text x="195" y="144" fill="white" font-size="8" font-weight="700">🔄 turn 15 degrees</text>
+  <!-- Stage -->
+  <rect x="388" y="32" width="126" height="100" fill="#e0f2fe" rx="8" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="451" y="48" text-anchor="middle" fill="#0369a1" font-size="9" font-weight="800">🎭 STAGE</text>
+  <rect x="396" y="52" width="110" height="72" fill="#bfdbfe" rx="5"/>
+  <text x="451" y="90" text-anchor="middle" font-size="28">🐱</text>
+  <!-- Green flag + stop buttons -->
+  <circle cx="425" cy="140" r="8" fill="#22c55e"/><text x="425" y="144" text-anchor="middle" fill="white" font-size="9">▶</text>
+  <circle cx="445" cy="140" r="8" fill="#ef4444"/><text x="445" y="144" text-anchor="middle" fill="white" font-size="10">■</text>
+  <text x="451" y="156" text-anchor="middle" fill="#5a7a9a" font-size="7.5">▶ Run  ■ Stop</text>
+  <!-- Sprite Panel -->
+  <rect x="388" y="165" width="126" height="62" fill="#fef9c3" rx="8" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="451" y="180" text-anchor="middle" fill="#92400e" font-size="9" font-weight="800">🐾 SPRITE PANEL</text>
+  <circle cx="405" cy="200" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5"/><text x="405" y="204" text-anchor="middle" font-size="11">🐱</text>
+  <circle cx="435" cy="200" r="12" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5"/><text x="435" y="204" text-anchor="middle" font-size="11">⭐</text>
+  <circle cx="465" cy="200" r="12" fill="#d1fae5" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,2"/><text x="465" y="204" text-anchor="middle" font-size="11">+</text>
+  <!-- Backdrop area -->
+  <rect x="142" y="232" width="240" height="62" fill="#f0fdf4" rx="8" stroke="#10b981" stroke-width="1.5"/>
+  <text x="262" y="248" text-anchor="middle" fill="#065f46" font-size="9" font-weight="800">🖼️ BACKDROPS / COSTUMES TABS</text>
+  <text x="162" y="265" fill="#374151" font-size="8">Code | Costumes | Sounds</text>
+  <rect x="158" y="255" width="36" height="14" fill="#0b63ce" rx="3"/><text x="176" y="265" text-anchor="middle" fill="white" font-size="7.5" font-weight="700">Code</text>
+  <rect x="198" y="255" width="44" height="14" fill="#d1d5db" rx="3"/><text x="220" y="265" text-anchor="middle" fill="#374151" font-size="7.5">Costumes</text>
+  <rect x="246" y="255" width="36" height="14" fill="#d1d5db" rx="3"/><text x="264" y="265" text-anchor="middle" fill="#374151" font-size="7.5">Sounds</text>
+  <!-- Labels/arrows -->
+  <text x="71" y="305" text-anchor="middle" fill="#1d4ed8" font-size="7.5" font-weight="700">① Pick blocks</text>
+  <text x="262" y="305" text-anchor="middle" fill="#0b63ce" font-size="7.5" font-weight="700">② Drag to scripts area</text>
+  <text x="451" y="305" text-anchor="middle" fill="#0369a1" font-size="7.5" font-weight="700">③ See it live</text>
+</svg>
+        <p style="font-size:0.68rem;color:#5a7a9a;margin:4px 0 0;text-align:center;font-family:'Nunito',sans-serif;">Source: Digital-Travellers</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;" class="reveal">
+        <div class="card" style="padding:8px 12px;border-left:4px solid #4C97FF;">
+          <p style="font-weight:700;font-size:0.82rem;margin:0 0 1px;font-family:'Fredoka',sans-serif;color:#4C97FF;">📦 Blocks Palette</p>
+          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">10 color-coded categories: Motion, Looks, Sound, Events, Control, Sensing, Operators, Variables, My Blocks</p>
+        </div>
+        <div class="card" style="padding:8px 12px;border-left:4px solid #f59e0b;">
+          <p style="font-weight:700;font-size:0.82rem;margin:0 0 1px;font-family:'Fredoka',sans-serif;color:#d97706;">✏️ Scripts Area</p>
+          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">The white canvas where you drag & drop blocks to build your code scripts. Your workspace!</p>
+        </div>
+        <div class="card" style="padding:8px 12px;border-left:4px solid #10b981;">
+          <p style="font-weight:700;font-size:0.82rem;margin:0 0 1px;font-family:'Fredoka',sans-serif;color:#059669;">🎭 Stage</p>
+          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Where your project runs. 480×360 pixels. Green Flag = ▶ Play. Red button = ⏹ Stop.</p>
+        </div>
+        <div class="card" style="padding:8px 12px;border-left:4px solid #8b5cf6;">
+          <p style="font-weight:700;font-size:0.82rem;margin:0 0 1px;font-family:'Fredoka',sans-serif;color:#7c3aed;">🐾 Sprite Panel</p>
+          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Shows all your sprites. Click a sprite to edit its code. Each sprite has its own scripts!</p>
+        </div>
+        <div class="think-bubble reveal">
+          <p style="font-size:0.77rem;margin:0;">💭 <strong>Why does each sprite have its own code?</strong> How is that like real-life actors following their own scripts in a play?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 6: INTERFACE TUTORIAL VIDEO ═══════════ -->
+<div class="slide slide-6" data-slide="6">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">▶ Watch Together — 5 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Scratch Interface: Beginner's Guide</h2>
+    <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:16px;align-items:start;">
+      <div class="reveal">
+        <div class="vid-thumb-wrap" id="vid-interface-wrap" onclick="playVid('interface')" style="position:relative;aspect-ratio:16/9;">
+          <div class="vid-title-bar">Scratch Basics: Beginner's Guide — 4:50</div>
+          <img src="https://i.ytimg.com/vi/zOa5o9Yq_ZU/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/zOa5o9Yq_ZU/hqdefault.jpg';this.addEventListener('error',function(){this.style.display='none';});" alt="Scratch Basics Beginners Guide video thumbnail" style="aspect-ratio:16/9;object-fit:cover;width:100%;height:100%;position:absolute;top:0;left:0;">
+          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="vid-iframe-wrap" id="vid-interface-iframe" style="aspect-ratio:16/9;width:100%;"></div>
+        <a href="https://www.youtube.com/watch?v=zOa5o9Yq_ZU" target="_blank" class="vid-source-link">▶ youtube.com — Scratch Basics: A Beginner's Guide (Griffpatch)</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;" class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#0b63ce;margin:0 0 6px;">As you watch, notice:</p>
+        <div class="q-card">
+          <p style="font-size:0.8rem;margin:0;color:#2d4a6b;">🔍 Where do you drag blocks to build code?</p>
+        </div>
+        <div class="q-card">
+          <p style="font-size:0.8rem;margin:0;color:#2d4a6b;">🏁 What does the green flag do? When would you use it?</p>
+        </div>
+        <div class="q-card">
+          <p style="font-size:0.8rem;margin:0;color:#2d4a6b;">🎭 How many sprites can one project have?</p>
+        </div>
+        <div class="q-card">
+          <p style="font-size:0.8rem;margin:0;color:#2d4a6b;">💾 How do you save and share a project?</p>
+        </div>
+        <div class="think-bubble">
+          <p style="font-size:0.77rem;margin:0;">💭 What block categories do you think we'll use most for building a game?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 7: BLOCK CATEGORIES ═══════════ -->
+<div class="slide slide-7" data-slide="7">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🧩 Block Categories</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">The Building Blocks of Your Game</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" class="reveal">
+      <div class="card" style="padding:12px 14px;border-top:4px solid #4C97FF;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#4C97FF;font-size:0.95rem;margin:0 0 4px;">🏃 Motion</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0 0 6px;">Move sprites around the stage. Change X/Y position, point in direction, glide to coordinates.</p>
+        <div><span class="block-chip block-motion">move 10 steps</span><span class="block-chip block-motion">change x by 10</span></div>
+      </div>
+      <div class="card" style="padding:12px 14px;border-top:4px solid #FFD500;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#cc9900;font-size:0.95rem;margin:0 0 4px;">⚡ Events</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0 0 6px;">Trigger code when something happens — green flag clicked, key pressed, sprite clicked.</p>
+        <div><span class="block-chip block-event">when 🏁 clicked</span><span class="block-chip block-event">when [space] key pressed</span></div>
+      </div>
+      <div class="card" style="padding:12px 14px;border-top:4px solid #FFAB19;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#d97706;font-size:0.95rem;margin:0 0 4px;">🔁 Control</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0 0 6px;">Loop code (repeat, forever), conditionals (if/else), wait, stop. Controls flow of your program.</p>
+        <div><span class="block-chip block-control">forever</span><span class="block-chip block-control">repeat 10</span><span class="block-chip block-control">if &lt;&gt; then</span></div>
+      </div>
+      <div class="card" style="padding:12px 14px;border-top:4px solid #CF63CF;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#9d4a9d;font-size:0.95rem;margin:0 0 4px;">🔊 Sound</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0 0 6px;">Play sounds, control volume. Over 100+ built-in sounds. Essential for game feedback!</p>
+        <div><span class="block-chip block-sound">play sound [pop]</span></div>
+      </div>
+      <div class="card" style="padding:12px 14px;border-top:4px solid #9966FF;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#7c3aed;font-size:0.95rem;margin:0 0 4px;">👁️ Looks</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0 0 6px;">Change costume, show/hide sprite, set size, say something. Controls visual appearance.</p>
+        <div><span class="block-chip block-looks">switch costume to</span><span class="block-chip block-looks">say [Hello!] for 2 sec</span></div>
+      </div>
+      <div class="card" style="padding:12px 14px;border-top:4px solid #5CB1D6;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#0891b2;font-size:0.95rem;margin:0 0 4px;">🎯 Sensing</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0 0 6px;">Detect if touching a sprite/color, mouse position, key presses. Critical for collision in games!</p>
+        <div><span class="block-chip" style="background:#5CB1D6;">touching [sprite]?</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:8px;">
+      <div class="think-bubble">
+        <span style="font-size:0.8rem;">💭 <strong>For a simple game where a character moves left/right</strong> — which block categories do you absolutely need? Which ones would add polish?</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 8: UNDERSTANDING ALGORITHMS ═══════════ -->
+<div class="slide slide-8" data-slide="8">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-50px;right:-40px;background:#8b5cf6;opacity:0.06;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-20px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🔢 Algorithms</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Thinking Like a Programmer</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#0b63ce;margin:0 0 8px;">📋 A Simple Movement Algorithm</p>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="algo-step">
+            <span class="algo-num">1</span>
+            <div><span class="block-chip block-event">when 🏁 clicked</span><p style="font-size:0.75rem;color:#2d4a6b;margin:2px 0 0;">The "trigger" — sets everything in motion</p></div>
+          </div>
+          <div class="algo-step">
+            <span class="algo-num">2</span>
+            <div><span class="block-chip block-control">forever</span><p style="font-size:0.75rem;color:#2d4a6b;margin:2px 0 0;">Keep checking — the game loop runs 30x/sec</p></div>
+          </div>
+          <div class="algo-step">
+            <span class="algo-num">3</span>
+            <div><span class="block-chip block-control">if &lt;key [→] pressed?&gt; then</span><p style="font-size:0.75rem;color:#2d4a6b;margin:2px 0 0;">Check user input before acting</p></div>
+          </div>
+          <div class="algo-step">
+            <span class="algo-num">4</span>
+            <div><span class="block-chip block-motion">change x by 10</span><p style="font-size:0.75rem;color:#2d4a6b;margin:2px 0 0;">Execute the action — sprite moves right</p></div>
+          </div>
+        </div>
+        <div class="think-bubble reveal" style="margin-top:8px;">
+          <p style="font-size:0.77rem;margin:0;">💭 What happens if you remove the <strong>forever</strong> block? Would the game still work?</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#0b63ce;margin:0 0 8px;">🍳 Algorithm = Recipe</p>
+        <div class="card" style="padding:12px 14px;margin-bottom:8px;">
+          <p style="font-size:0.78rem;color:#2d4a6b;margin:0 0 6px;"><strong>Making a sandwich:</strong></p>
+          <div class="algo-step" style="margin-bottom:4px;"><span class="algo-num" style="font-size:0.7rem;width:22px;height:22px;">1</span><p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Get bread</p></div>
+          <div class="algo-step" style="margin-bottom:4px;"><span class="algo-num" style="font-size:0.7rem;width:22px;height:22px;">2</span><p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Spread peanut butter</p></div>
+          <div class="algo-step"><span class="algo-num" style="font-size:0.7rem;width:22px;height:22px;">3</span><p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Put bread on top</p></div>
+          <p style="font-size:0.72rem;color:#5a7a9a;margin:6px 0 0;font-style:italic;">What if you do Step 3 first? Algorithms require correct order!</p>
+        </div>
+        <div class="card" style="padding:12px 14px;background:linear-gradient(135deg,rgba(11,99,206,0.05),rgba(139,92,246,0.05));">
+          <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.85rem;color:#0b63ce;margin:0 0 4px;">⚡ Key Insight</p>
+          <p style="font-size:0.78rem;color:#2d4a6b;margin:0;">In Scratch, blocks are <strong>read top-to-bottom</strong>. The computer executes EXACTLY what you tell it — nothing more, nothing less. Bugs = wrong instructions!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 9: GAME DESIGN CONCEPTS ═══════════ -->
+<div class="slide slide-9" data-slide="9">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-20px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🎮 Game Design</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">What Makes a Game a <em>Game</em>?</h2>
+    <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:14px;align-items:start;">
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;" class="reveal">
+          <div class="card" style="padding:10px 12px;border-top:3px solid #0b63ce;">
+            <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#0b63ce;margin:0 0 3px;">🎯 Goal / Objective</p>
+            <p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Every game has a purpose. Reach the finish line, collect all stars, survive waves of enemies. Without a goal, it's a toy — not a game.</p>
+          </div>
+          <div class="card" style="padding:10px 12px;border-top:3px solid #10b981;">
+            <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#059669;margin:0 0 3px;">🕹️ Player Input</p>
+            <p style="font-size:0.74rem;color:#2d4a6b;margin:0;">How the player controls the game. Keyboard, mouse, touch. Your Event + Motion blocks create this!</p>
+          </div>
+          <div class="card" style="padding:10px 12px;border-top:3px solid #f59e0b;">
+            <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#d97706;margin:0 0 3px;">🔄 Game Loop</p>
+            <p style="font-size:0.74rem;color:#2d4a6b;margin:0;">The heart of any game. Check input → Update state → Display result → Repeat. The <strong>forever</strong> block IS the game loop in Scratch!</p>
+          </div>
+          <div class="card" style="padding:10px 12px;border-top:3px solid #8b5cf6;">
+            <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#7c3aed;margin:0 0 3px;">💥 Feedback</p>
+            <p style="font-size:0.74font-size:0.74rem;color:#2d4a6b;margin:0;">Sound effects, score changes, visual reactions. Tells the player: "Yes! That worked!" Critical for engagement.</p>
+          </div>
+          <div class="card" style="padding:10px 12px;border-top:3px solid #ef4444;">
+            <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#dc2626;margin:0 0 3px;">⚖️ Challenge Curve</p>
+            <p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Too easy = boring. Too hard = frustrating. Great games start easy and get progressively harder.</p>
+          </div>
+          <div class="card" style="padding:10px 12px;border-top:3px solid #06b6d4;">
+            <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#0891b2;margin:0 0 3px;">🌍 Game World</p>
+            <p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Your backdrop, sprite designs, and sounds. Creates the atmosphere and pulls players into your universe.</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;box-shadow:0 4px 20px rgba(11,99,206,0.15);display:block;margin-bottom:8px;font-family:'Nunito',sans-serif;background:#f8faff;">
+  <!-- BG -->
+  <rect width="520" height="300" fill="#f0f4ff" rx="12"/>
+  <!-- Header -->
+  <rect width="520" height="30" fill="#0b63ce" rx="12"/>
+  <rect y="18" width="520" height="12" fill="#0b63ce"/>
+  <text x="260" y="20" text-anchor="middle" fill="white" font-size="12" font-weight="800">🎮 The 6 Elements of Great Game Design</text>
+  <!-- Center game icon -->
+  <circle cx="260" cy="155" r="38" fill="#0b63ce" opacity="0.12" stroke="#0b63ce" stroke-width="2"/>
+  <text x="260" y="148" text-anchor="middle" font-size="28">🎮</text>
+  <text x="260" y="170" text-anchor="middle" fill="#0b63ce" font-size="9" font-weight="800">YOUR GAME</text>
+  <!-- Card 1: Goal -->
+  <rect x="8" y="38" width="155" height="60" fill="#dbeafe" rx="10" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="85" y="56" text-anchor="middle" fill="#1d4ed8" font-size="20">🎯</text>
+  <text x="85" y="72" text-anchor="middle" fill="#1e3a5f" font-size="10" font-weight="800">GOAL</text>
+  <text x="85" y="87" text-anchor="middle" fill="#374151" font-size="8">What must the player achieve?</text>
+  <!-- Card 2: Rules -->
+  <rect x="357" y="38" width="155" height="60" fill="#fef3c7" rx="10" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="434" y="56" text-anchor="middle" fill="#d97706" font-size="20">📋</text>
+  <text x="434" y="72" text-anchor="middle" fill="#78350f" font-size="10" font-weight="800">RULES</text>
+  <text x="434" y="87" text-anchor="middle" fill="#374151" font-size="8">What can/can't the player do?</text>
+  <!-- Card 3: Controls -->
+  <rect x="8" y="115" width="155" height="60" fill="#d1fae5" rx="10" stroke="#10b981" stroke-width="1.5"/>
+  <text x="85" y="133" text-anchor="middle" fill="#059669" font-size="20">🕹️</text>
+  <text x="85" y="149" text-anchor="middle" fill="#064e3b" font-size="10" font-weight="800">CONTROLS</text>
+  <text x="85" y="165" text-anchor="middle" fill="#374151" font-size="8">How does player interact?</text>
+  <!-- Card 4: Feedback -->
+  <rect x="357" y="115" width="155" height="60" fill="#fce7f3" rx="10" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="434" y="133" text-anchor="middle" fill="#db2777" font-size="20">💥</text>
+  <text x="434" y="149" text-anchor="middle" fill="#831843" font-size="10" font-weight="800">FEEDBACK</text>
+  <text x="434" y="165" text-anchor="middle" fill="#374151" font-size="8">Sound/score = player knows they won!</text>
+  <!-- Card 5: Challenge -->
+  <rect x="8" y="192" width="155" height="60" fill="#ede9fe" rx="10" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="85" y="210" text-anchor="middle" fill="#7c3aed" font-size="20">⚖️</text>
+  <text x="85" y="226" text-anchor="middle" fill="#4c1d95" font-size="10" font-weight="800">CHALLENGE</text>
+  <text x="85" y="242" text-anchor="middle" fill="#374151" font-size="8">Not too easy, not too hard</text>
+  <!-- Card 6: Game World -->
+  <rect x="357" y="192" width="155" height="60" fill="#fee2e2" rx="10" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="434" y="210" text-anchor="middle" fill="#dc2626" font-size="20">🌍</text>
+  <text x="434" y="226" text-anchor="middle" fill="#7f1d1d" font-size="10" font-weight="800">GAME WORLD</text>
+  <text x="434" y="242" text-anchor="middle" fill="#374151" font-size="8">Backdrop + sprites + sounds = vibe!</text>
+  <!-- Connecting lines -->
+  <line x1="163" y1="68" x2="222" y2="135" stroke="#0b63ce" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="357" y1="68" x2="298" y2="135" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="163" y1="145" x2="222" y2="155" stroke="#10b981" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="357" y1="145" x2="298" y2="155" stroke="#ec4899" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="163" y1="222" x2="222" y2="175" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="357" y1="222" x2="298" y2="175" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <!-- Bottom quote -->
+  <rect x="100" y="262" width="320" height="28" fill="rgba(11,99,206,0.08)" rx="8"/>
+  <text x="260" y="278" text-anchor="middle" fill="#0b63ce" font-size="9" font-weight="700">💡 "Great games are simple to learn, hard to master." — Nolan Bushnell (Atari founder)</text>
+</svg>
+        <div class="think-bubble">
+          <p style="font-size:0.77rem;margin:0;">💭 <strong>Think of Minecraft:</strong> Does it have all 6 elements? Which ones make it SO addictive to so many people?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 10: SPRITES + BACKDROPS HANDS-ON ═══════════ -->
+<div class="slide slide-10" data-slide="10">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;left:-40px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;right:-30px;background:#f59e0b;opacity:0.05;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🖥️ Activity — 10 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Log In &amp; Explore: Your First Project</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#0b63ce;margin:0 0 7px;">📋 Step-by-Step</p>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="algo-step"><span class="algo-num">1</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Go to scratch.mit.edu</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Log in with your pre-made account</p></div></div>
+          <div class="algo-step"><span class="algo-num">2</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Click "Create" (top menu)</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Opens the Scratch editor with default Cat sprite</p></div></div>
+          <div class="algo-step"><span class="algo-num">3</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Choose a Sprite</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Delete the cat → click "Choose a Sprite" → pick any character</p></div></div>
+          <div class="algo-step"><span class="algo-num">4</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Add a Backdrop</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Bottom-right corner → "Choose a Backdrop" → pick a scene</p></div></div>
+          <div class="algo-step"><span class="algo-num">5</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Name your project</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Click the project title field → give it a creative name!</p></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="padding:12px 14px;margin-bottom:8px;">
+          <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#059669;margin:0 0 5px;">🤔 Explore & Discover</p>
+          <div class="q-card" style="margin-bottom:5px;">
+            <p style="font-size:0.78rem;margin:0;color:#2d4a6b;">What happens when you click on a sprite in the sprite panel?</p>
+          </div>
+          <div class="q-card" style="margin-bottom:5px;">
+            <p style="font-size:0.78rem;margin:0;color:#2d4a6b;">Can you find the "Costumes" tab? How many costumes does your sprite have?</p>
+          </div>
+          <div class="q-card">
+            <p style="font-size:0.78rem;margin:0;color:#2d4a6b;">What block categories appear in the palette? Which looks most useful for games?</p>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 14px;background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(11,99,206,0.07));">
+          <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.85rem;color:#059669;margin:0 0 4px;">💡 Pro Tip</p>
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Hover over any block to see a tooltip! Right-click a block to "see inside" what it does. Scratch is designed for exploration — you can't break it!</p>
+        </div>
+        <div class="think-bubble reveal" style="margin-top:6px;">
+          <p style="font-size:0.77rem;margin:0;">💭 Why might MIT make Scratch free with no login required to explore?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 11: INTRODUCING BASIC BLOCKS ═══════════ -->
+<div class="slide slide-11" data-slide="11">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-20px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🧱 Coding Demo</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Your First Script: Motion + Events</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#0b63ce;margin:0 0 7px;">🏗️ Build This Script</p>
+        <div style="background:rgba(11,99,206,0.04);border:1.5px dashed rgba(11,99,206,0.2);border-radius:12px;padding:12px 14px;">
+          <div style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;">
+            <span class="block-chip block-event" style="font-size:0.85rem;padding:6px 16px;">when 🏁 clicked</span>
+            <span class="block-chip block-control" style="font-size:0.85rem;padding:6px 16px;margin-left:12px;">forever</span>
+            <span class="block-chip block-control" style="font-size:0.85rem;padding:6px 16px;margin-left:24px;">if &lt;key [→ arrow] pressed?&gt; then</span>
+            <span class="block-chip block-motion" style="font-size:0.85rem;padding:6px 16px;margin-left:36px;">change x by (10)</span>
+            <span class="block-chip block-control" style="font-size:0.85rem;padding:6px 16px;margin-left:24px;">if &lt;key [← arrow] pressed?&gt; then</span>
+            <span class="block-chip block-motion" style="font-size:0.85rem;padding:6px 16px;margin-left:36px;">change x by (-10)</span>
+          </div>
+        </div>
+        <div class="think-bubble reveal" style="margin-top:8px;">
+          <p style="font-size:0.78rem;margin:0;">💭 What does the <strong>forever</strong> block do here? What would happen if the sprite reached the edge of the screen?</p>
+        </div>
+        <div class="card reveal" style="padding:10px 12px;margin-top:6px;border-left:4px solid #10b981;">
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0;"><strong>⬆️ Challenge:</strong> Can you add UP and DOWN arrow movement too? <em>Hint: which axis changes for vertical movement?</em></p>
+        </div>
+      </div>
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#0b63ce;margin:0 0 7px;">🔍 Why Each Block Matters</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:10px;align-items:flex-start;padding:7px 10px;background:rgba(255,213,0,0.08);border-radius:10px;border:1px solid rgba(255,213,0,0.3);">
+            <span class="block-chip block-event" style="flex-shrink:0;font-size:0.72rem;">when 🏁 clicked</span>
+            <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">The <em>starter</em>. Without it, code never runs. It's the game's power button.</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;padding:7px 10px;background:rgba(255,171,25,0.08);border-radius:10px;border:1px solid rgba(255,171,25,0.3);">
+            <span class="block-chip block-control" style="flex-shrink:0;font-size:0.72rem;">forever</span>
+            <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">The <em>game loop</em>. Keeps checking input ~30 times/second. Stops only when you click Stop.</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;padding:7px 10px;background:rgba(255,171,25,0.08);border-radius:10px;border:1px solid rgba(255,171,25,0.3);">
+            <span class="block-chip block-control" style="flex-shrink:0;font-size:0.72rem;">if &lt;&gt; then</span>
+            <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">The <em>decision maker</em>. Only runs the code inside IF the condition is true.</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;padding:7px 10px;background:rgba(76,151,255,0.08);border-radius:10px;border:1px solid rgba(76,151,255,0.3);">
+            <span class="block-chip block-motion" style="flex-shrink:0;font-size:0.72rem;">change x by</span>
+            <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">The <em>action</em>. Positive = move right. Negative = move left. X is the horizontal axis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 12: KEYBOARD MOVEMENT VIDEO ═══════════ -->
+<div class="slide slide-12" data-slide="12">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#10b981;opacity:0.05;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">▶ Tutorial — 6 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Moving Sprites with Arrow Keys</h2>
+    <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:16px;align-items:start;">
+      <div class="reveal">
+        <div class="vid-thumb-wrap" id="vid-keys-wrap" onclick="playVid('keys')" style="position:relative;aspect-ratio:16/9;">
+          <div class="vid-title-bar">Scratch — Programming Arrow Keys to Move Sprites</div>
+          <img src="https://i.ytimg.com/vi/F1DRmstiiok/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/F1DRmstiiok/hqdefault.jpg';this.addEventListener('error',function(){this.style.display='none';});" alt="Scratch Arrow Keys tutorial thumbnail" style="aspect-ratio:16/9;object-fit:cover;width:100%;height:100%;position:absolute;top:0;left:0;">
+          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="vid-iframe-wrap" id="vid-keys-iframe" style="aspect-ratio:16/9;width:100%;"></div>
+        <a href="https://www.youtube.com/watch?v=F1DRmstiiok" target="_blank" class="vid-source-link">▶ youtube.com — Programming Arrow Keys to Move Sprites</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;" class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#0b63ce;margin:0 0 5px;">Two Methods Shown:</p>
+        <div class="card" style="padding:10px 12px;border-left:4px solid #FFD500;">
+          <p style="font-weight:700;font-size:0.82rem;margin:0 0 2px;font-family:'Fredoka',sans-serif;color:#cc9900;">Method 1: Event Blocks</p>
+          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Separate "when key pressed" for each direction. Simple but slight delay between presses.</p>
+        </div>
+        <div class="card" style="padding:10px 12px;border-left:4px solid #5CB1D6;">
+          <p style="font-weight:700;font-size:0.82rem;margin:0 0 2px;font-family:'Fredoka',sans-serif;color:#0891b2;">Method 2: Forever + Sensing</p>
+          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Uses <strong>forever + if &lt;key pressed?&gt;</strong> — smoother movement, perfect for games!</p>
+        </div>
+        <div class="q-card">
+          <p style="font-size:0.78rem;margin:0;color:#2d4a6b;">Which method is more like how professional games handle input? Why might smooth movement matter?</p>
+        </div>
+        <div class="think-bubble">
+          <p style="font-size:0.76rem;margin:0;">💭 After watching: which method will you use and why?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 13: SOUNDS + ANIMATION ═══════════ -->
+<div class="slide slide-13" data-slide="13">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#cf63cf;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-20px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">🔊 Sound &amp; Animation</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Bringing Your Game to Life</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#9d4a9d;margin:0 0 7px;">🔊 Adding Sound Effects</p>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="algo-step"><span class="algo-num">1</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Click "Sounds" tab</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Each sprite has its own sound library</p></div></div>
+          <div class="algo-step"><span class="algo-num">2</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Choose a Sound</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">100+ built-in sounds: pop, meow, cheer, explosion…</p></div></div>
+          <div class="algo-step"><span class="algo-num">3</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Use Sound Block</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;"><span class="block-chip block-sound">play sound [pop] until done</span></p></div></div>
+        </div>
+        <div class="card reveal" style="padding:10px 12px;margin-top:8px;background:rgba(207,99,207,0.05);border-left:4px solid #cf63cf;">
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">🔑 <strong>Game Feedback Rule:</strong> Every significant action should have a sound. Collecting a coin? Play a "ding." Hitting an obstacle? Play a "crash." Sound = confirmation!</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#7c3aed;margin:0 0 7px;">🎬 Creating Animation Loops</p>
+        <div style="background:rgba(11,99,206,0.04);border:1.5px dashed rgba(11,99,206,0.2);border-radius:12px;padding:10px 12px;margin-bottom:8px;">
+          <div style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;">
+            <span class="block-chip block-event" style="font-size:0.82rem;padding:5px 14px;">when 🏁 clicked</span>
+            <span class="block-chip block-control" style="font-size:0.82rem;padding:5px 14px;margin-left:10px;">forever</span>
+            <span class="block-chip block-looks" style="font-size:0.82rem;padding:5px 14px;margin-left:20px;">next costume</span>
+            <span class="block-chip block-control" style="font-size:0.82rem;padding:5px 14px;margin-left:20px;">wait (0.2) seconds</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(153,102,255,0.07);border-radius:10px;border:1px solid rgba(153,102,255,0.15);">
+            <span style="font-size:1.2rem;">🔁</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;"><strong>next costume</strong> cycles through all costumes in order (like a flip-book!)</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(153,102,255,0.07);border-radius:10px;border:1px solid rgba(153,102,255,0.15);">
+            <span style="font-size:1.2rem;">⏱️</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;"><strong>wait 0.2 seconds</strong> controls animation speed. Smaller = faster!</p>
+          </div>
+        </div>
+        <div class="think-bubble reveal" style="margin-top:6px;">
+          <p style="font-size:0.77rem;margin:0;">💭 Real animation = 24 frames/sec. Disney uses 12 drawings/sec. What's the right wait time for smooth Scratch animation?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 14: HANDS-ON PRACTICE ═══════════ -->
+<div class="slide slide-14" data-slide="14">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content">
+    <div class="section-badge reveal">🛠️ Hands-On Practice — 20 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Build Your Moving Game!</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#0b63ce;margin:0 0 7px;">🎯 Your Mission:</p>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="algo-step"><span class="algo-num">1</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Choose your hero sprite</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Pick any character from the library that feels right</p></div></div>
+          <div class="algo-step"><span class="algo-num">2</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Add a backdrop / scene</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Set the game world! Forest? Space? City?</p></div></div>
+          <div class="algo-step"><span class="algo-num">3</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Code 4-directional movement</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Arrow keys → move sprite left, right, up, down</p></div></div>
+          <div class="algo-step"><span class="algo-num">4</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Add a walking animation</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Use next costume + wait in a forever loop</p></div></div>
+          <div class="algo-step"><span class="algo-num">5</span><div><p style="font-size:0.78rem;font-weight:700;margin:0;color:#1a2a3a;">Add at least 1 sound effect</p><p style="font-size:0.72rem;color:#5a7a9a;margin:0;">Play sound when green flag starts, or when key pressed</p></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="padding:12px 14px;border-left:4px solid #10b981;margin-bottom:8px;">
+          <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#059669;margin:0 0 5px;">⬆️ Extension Challenges</p>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="display:flex;align-items:center;gap:6px;"><span style="font-size:0.95rem;">🌟</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Add a <strong>second sprite</strong> as an obstacle that moves automatically</p></div>
+            <div style="display:flex;align-items:center;gap:6px;"><span style="font-size:0.95rem;">🌟🌟</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Make the sprite <strong>bounce off edges</strong> (use "if on edge, bounce" block)</p></div>
+            <div style="display:flex;align-items:center;gap:6px;"><span style="font-size:0.95rem;">🌟🌟🌟</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Add a <strong>score variable</strong> that counts up every second</p></div>
+          </div>
+        </div>
+        <div class="q-card">
+          <div style="display:flex;align-items:flex-start;">
+            <span class="q-mark">?</span>
+            <div>
+              <p style="font-weight:700;font-size:0.82rem;margin:0 0 3px;font-family:'Fredoka',sans-serif;color:#0b63ce;">While you code, think:</p>
+              <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">What's the difference between your sprite moving with <strong>separate key-press events</strong> vs. a <strong>forever loop with sensing</strong>? Try both and feel the difference!</p>
+            </div>
+          </div>
+        </div>
+        <div class="think-bubble reveal" style="margin-top:6px;">
+          <p style="font-size:0.77rem;margin:0;">💭 What's ONE thing that would make your game more fun? How would you code it?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 15: SCRATCH GAME DEV VIDEO ═══════════ -->
+<div class="slide slide-15" data-slide="15">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">▶ Inspiration — 8 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">See What's Possible in Scratch</h2>
+    <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:16px;align-items:start;">
+      <div class="reveal">
+        <div class="vid-thumb-wrap" id="vid-game-wrap" onclick="playVid('game')" style="position:relative;aspect-ratio:16/9;">
+          <div class="vid-title-bar">Make a Jumping Game in Scratch (5:04) — Step-by-Step</div>
+          <img src="https://i.ytimg.com/vi/1jHvXakt1qw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/1jHvXakt1qw/hqdefault.jpg';this.addEventListener('error',function(){this.style.display='none';});" alt="Make a Jumping Game in Scratch (5:04) video thumbnail" style="aspect-ratio:16/9;object-fit:cover;width:100%;height:100%;position:absolute;top:0;left:0;">
+          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="vid-iframe-wrap" id="vid-game-iframe" style="aspect-ratio:16/9;width:100%;"></div>
+        <a href="https://www.youtube.com/watch?v=1jHvXakt1qw" target="_blank" class="vid-source-link">▶ youtube.com — How to Make a Jumping Game in Scratch (Scratch Team, 5:04)</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;" class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#0b63ce;margin:0 0 5px;">In this tutorial you'll see:</p>
+        <div class="card" style="padding:9px 12px;border-left:3px solid #0b63ce;">
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">🎨 Designing sprites and environments in the paint editor</p>
+        </div>
+        <div class="card" style="padding:9px 12px;border-left:3px solid #10b981;">
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">🏃 Coding jumping physics with gravity simulation</p>
+        </div>
+        <div class="card" style="padding:9px 12px;border-left:3px solid #f59e0b;">
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">💥 Adding collision detection between sprites</p>
+        </div>
+        <div class="card" style="padding:9px 12px;border-left:3px solid #8b5cf6;">
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">🏆 Implementing a score counter using Variables</p>
+        </div>
+        <div class="think-bubble">
+          <p style="font-size:0.77rem;margin:0;">💭 What game design elements from Slide 9 can you spot in this project?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 16: KEY CONCEPTS REVIEW ═══════════ -->
+<div class="slide slide-16" data-slide="16">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-20px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">📊 Lesson Summary</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">What We Built Today</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px;" class="reveal">
+      <div class="card" style="padding:12px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:4px;">135M+</div>
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.78rem;color:#0b63ce;margin:0 0 2px;">Scratch Users</p>
+        <p style="font-size:0.68rem;color:#5a7a9a;margin:0;">Worldwide registered creators</p>
+      </div>
+      <div class="card" style="padding:12px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:4px;">10</div>
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.78rem;color:#059669;margin:0 0 2px;">Block Categories</p>
+        <p style="font-size:0.68rem;color:#5a7a9a;margin:0;">Color-coded in the palette</p>
+      </div>
+      <div class="card" style="padding:12px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:4px;">6</div>
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.78rem;color:#d97706;margin:0 0 2px;">Game Design Elements</p>
+        <p style="font-size:0.68rem;color:#5a7a9a;margin:0;">Goal, input, loop, feedback, challenge, world</p>
+      </div>
+      <div class="card" style="padding:12px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:4px;">164M+</div>
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.78rem;color:#7c3aed;margin:0 0 2px;">Shared Projects</p>
+        <p style="font-size:0.68rem;color:#5a7a9a;margin:0;">Available to explore & remix</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
+      <div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#0b63ce;margin:0 0 6px;">✅ Skills You Practiced</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;background:rgba(11,99,206,0.05);border-radius:8px;"><span>🗺️</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Navigating the Scratch interface</p></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;background:rgba(11,99,206,0.05);border-radius:8px;"><span>🧩</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Connecting block-based scripts</p></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;background:rgba(11,99,206,0.05);border-radius:8px;"><span>🔢</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Writing your first algorithm</p></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;background:rgba(11,99,206,0.05);border-radius:8px;"><span>🎮</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Applying game design concepts</p></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;background:rgba(11,99,206,0.05);border-radius:8px;"><span>🎬</span><p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Creating interactive animation</p></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:600;color:#059669;margin:0 0 6px;">🚀 Coming Next…</p>
+        <div class="card" style="padding:10px 12px;border-left:4px solid #059669;">
+          <p style="font-size:0.76rem;color:#2d4a6b;margin:0 0 5px;"><strong>Lesson 2: Sprites, Costumes &amp; Collision Detection</strong></p>
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <p style="font-size:0.73rem;color:#5a7a9a;margin:0;">→ Custom sprite design in the paint editor</p>
+            <p style="font-size:0.73rem;color:#5a7a9a;margin:0;">→ Multi-sprite interactions &amp; sensing blocks</p>
+            <p style="font-size:0.73rem;color:#5a7a9a;margin:0;">→ Score variables and game logic</p>
+          </div>
+        </div>
+        <div class="think-bubble reveal" style="margin-top:8px;">
+          <p style="font-size:0.77rem;margin:0;">💭 What concept from today surprised you most? What question do you still have?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 17: SCRATCH CODING TUTORIAL VIDEO ═══════════ -->
+<div class="slide slide-17" data-slide="17">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">▶ Bonus Resource</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Intro to Coding with Scratch — Full Tutorial</h2>
+    <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:16px;align-items:start;">
+      <div class="reveal">
+        <div class="vid-thumb-wrap" id="vid-fullintro-wrap" onclick="playVid('fullintro')" style="position:relative;aspect-ratio:16/9;">
+          <div class="vid-title-bar">Introduction to Coding with Scratch — Beginner's Guide (5:42)</div>
+          <img src="https://i.ytimg.com/vi/0Tl-QUqVz6g/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/0Tl-QUqVz6g/hqdefault.jpg';this.addEventListener('error',function(){this.style.display='none';});" alt="Introduction to Coding with Scratch tutorial thumbnail" style="aspect-ratio:16/9;object-fit:cover;width:100%;height:100%;position:absolute;top:0;left:0;">
+          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="vid-iframe-wrap" id="vid-fullintro-iframe" style="aspect-ratio:16/9;width:100%;"></div>
+        <a href="https://www.youtube.com/watch?v=0Tl-QUqVz6g" target="_blank" class="vid-source-link">▶ youtube.com — Introduction to Coding with Scratch (Madly Learning)</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;" class="reveal">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#0b63ce;margin:0 0 5px;">📍 Chapters Covered:</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;padding:5px 8px;background:rgba(11,99,206,0.05);border-radius:7px;"><span style="font-size:0.7rem;font-weight:700;color:#5a7a9a;min-width:38px;">00:00</span><p style="font-size:0.74rem;color:#2d4a6b;margin:0;">What is Scratch?</p></div>
+          <div style="display:flex;align-items:center;gap:7px;padding:5px 8px;background:rgba(11,99,206,0.05);border-radius:7px;"><span style="font-size:0.7rem;font-weight:700;color:#5a7a9a;min-width:38px;">00:15</span><p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Scratch Dashboard overview</p></div>
+          <div style="display:flex;align-items:center;gap:7px;padding:5px 8px;background:rgba(11,99,206,0.05);border-radius:7px;"><span style="font-size:0.7rem;font-weight:700;color:#5a7a9a;min-width:38px;">00:45</span><p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Working with Sprites</p></div>
+          <div style="display:flex;align-items:center;gap:7px;padding:5px 8px;background:rgba(11,99,206,0.05);border-radius:7px;"><span style="font-size:0.7rem;font-weight:700;color:#5a7a9a;min-width:38px;">01:15</span><p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Using Code Blocks</p></div>
+          <div style="display:flex;align-items:center;gap:7px;padding:5px 8px;background:rgba(11,99,206,0.05);border-radius:7px;"><span style="font-size:0.7rem;font-weight:700;color:#5a7a9a;min-width:38px;">03:00</span><p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Changing Costumes</p></div>
+          <div style="display:flex;align-items:center;gap:7px;padding:5px 8px;background:rgba(11,99,206,0.05);border-radius:7px;"><span style="font-size:0.7rem;font-weight:700;color:#5a7a9a;min-width:38px;">04:00</span><p style="font-size:0.74rem;color:#2d4a6b;margin:0;">Customizing the Stage</p></div>
+        </div>
+        <div class="think-bubble">
+          <p style="font-size:0.77rem;margin:0;">💭 Use this as a reference after class — pause and code along at your own speed!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 18: EXIT TICKET ═══════════ -->
+<div class="slide slide-18" data-slide="18">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.09;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;top:45%;left:20%;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content">
+    <div class="section-badge reveal" style="justify-content:center;">🎟️ Exit Ticket</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:700;color:#1a2a3a;text-align:center;margin-bottom:0.2rem;">Before You Go…</h2>
+    <p class="reveal" style="text-align:center;color:#5a7a9a;font-size:0.82rem;margin-bottom:0.8rem;">Answer these on paper or type in your project notes</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;" class="reveal">
+      <div class="q-card" style="text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:5px;">💡</div>
+        <p style="font-weight:700;font-size:0.85rem;margin:0 0 5px;font-family:'Fredoka',sans-serif;color:#0b63ce;">I learned…</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Write ONE new thing you discovered about Scratch or game design today</p>
+      </div>
+      <div class="q-card" style="text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:5px;">🔗</div>
+        <p style="font-weight:700;font-size:0.85rem;margin:0 0 5px;font-family:'Fredoka',sans-serif;color:#059669;">This connects to…</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">How does what you learned today connect to a game you already play?</p>
+      </div>
+      <div class="q-card" style="text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:5px;">❓</div>
+        <p style="font-weight:700;font-size:0.85rem;margin:0 0 5px;font-family:'Fredoka',sans-serif;color:#d97706;">I'm still wondering…</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Write ONE question you still have about Scratch or game programming</p>
+      </div>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card" style="padding:12px 14px;background:linear-gradient(135deg,rgba(11,99,206,0.07),rgba(16,185,129,0.07));">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#0b63ce;margin:0 0 5px;">🏠 Extension Challenge</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Explore the Scratch community at <strong>scratch.mit.edu/explore</strong>. Find a game that interests you and "look inside" to see how it's coded. Bring 3 things you notice to the next class!</p>
+      </div>
+      <div class="card" style="padding:12px 14px;background:linear-gradient(135deg,rgba(245,158,11,0.07),rgba(239,68,68,0.07));">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.88rem;color:#d97706;margin:0 0 5px;">🌐 Keep Exploring</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;">Resources: <strong>ScratchEd</strong> (Harvard), <strong>CS First by Google</strong>, <strong>Code.org</strong>, <strong>Khan Academy</strong> — all have free Scratch lessons at your pace!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAVIGATION -->
+<div class="nav-controls">
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 18</span>
+</div>
+
+<script>
+/* ═══ DECK NAVIGATION ═══ */
+let current = 1;
+const total = document.querySelectorAll('.slide').length;
+const dotsContainer = document.getElementById('dots');
+const counter = document.getElementById('counter');
+for (let i = 1; i <= total; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 1 ? ' active' : '');
+  dot.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(dot);
+}
+function goToSlide(n) {
+  const prev = document.querySelector('.slide.active');
+  const next = document.querySelector('.slide[data-slide="' + n + '"]');
+  if (prev) prev.classList.remove('active');
+  if (next) { next.classList.add('active'); animateSlide(next); }
+  current = n; updateNav();
+}
+function changeSlide(dir) { let n = current + dir; if (n < 1) n = total; if (n > total) n = 1; goToSlide(n); }
+function updateNav() {
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === current));
+  counter.textContent = current + ' / ' + total;
+}
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); } });
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+
+/* ═══ REVEAL ANIMATION ═══ */
+function animateSlide(slide) {
+  slide.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transition = 'none';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.offsetHeight;
+    const delay = i * 0.06;
+    el.style.transition = 'opacity 0.32s ease ' + delay + 's, transform 0.32s ease ' + delay + 's';
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0px)';
+  });
+  animateSlideEffects(slide);
+}
+function animateSlideEffects(slide) {
+  slide.querySelectorAll('[data-count]:not(.counted)').forEach(el => {
+    el.classList.add('counted');
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '', prefix = el.dataset.prefix || '';
+    let cur = 0; const step = target / 40;
+    const timer = setInterval(() => { cur += step; if (cur >= target) { cur = target; clearInterval(timer); } el.textContent = prefix + Math.round(cur).toLocaleString() + suffix; }, 30);
+  });
+}
+
+/* ═══ VIDEO MAP ═══ */
+const vidMap = {
+  whatscratch: { yt: '9jTPZfhuVro' },
+  interface: { yt: 'zOa5o9Yq_ZU' },
+  keys: { yt: 'F1DRmstiiok' },
+  game: { yt: '1jHvXakt1qw' },
+  fullintro: { yt: '0Tl-QUqVz6g' }
+};
+function playVid(id) {
+  const wrap = document.getElementById('vid-' + id + '-wrap');
+  const iframeWrap = document.getElementById('vid-' + id + '-iframe');
+  if (!wrap || !iframeWrap) return;
+  wrap.style.display = 'none';
+  const ytId = vidMap[id].yt;
+  iframeWrap.style.position = 'relative';
+  iframeWrap.style.paddingTop = '56.25%';
+  iframeWrap.style.height = '0';
+  iframeWrap.style.overflow = 'hidden';
+  iframeWrap.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + ytId + '?autoplay=1&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:14px;"></iframe>';
+  wrap.style.display = 'none';
+  iframeWrap.style.display = 'block';
+  iframeWrap.style.aspectRatio = '16/9';
+  iframeWrap.style.width = '100%';
+}
+
+/* ═══ VIDEO FALLBACK LABELS ═══ */
+const vidTitles = {
+  whatscratch: 'Getting Started with Scratch (1:42)',
+  interface: 'Scratch Basics: Beginner\'s Guide',
+  keys: 'Arrow Keys to Move Sprites',
+  game: 'Make a Jumping Game in Scratch (5:04)',
+  fullintro: 'Intro to Coding with Scratch (5:42)'
+};
+Object.keys(vidTitles).forEach(id => {
+  const wrap = document.getElementById('vid-' + id + '-wrap');
+  if (!wrap) return;
+  const existing = wrap.querySelector('.vid-fallback-label');
+  if (!existing) {
+    const lbl = document.createElement('div');
+    lbl.className = 'vid-fallback-label';
+    lbl.textContent = vidTitles[id];
+    wrap.appendChild(lbl);
+  }
+});
+
+/* ═══ MOUSE SPOTLIGHT ═══ */
+document.addEventListener('mousemove', e => {
+  const s = document.querySelector('.mouse-spotlight');
+  if (s) s.style.background = 'radial-gradient(600px circle at ' + e.clientX + 'px ' + e.clientY + 'px, rgba(11,99,206,0.05), transparent 40%)';
+});
+
+/* ═══ PARTICLE CANVAS ═══ */
+window.initParticles = function(canvas, opts) {
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || window.innerWidth;
+  canvas.height = canvas.offsetHeight || window.innerHeight;
+  const interactive = opts.interactive !== false;
+  const count = opts.count || (interactive ? 55 : 18);
+  let mx = -1000, my = -1000;
+  const particles = Array.from({ length: count }, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    size: Math.random() * 2.5 + 0.8, alpha: Math.random() * 0.3 + 0.08
+  }));
+  if (interactive) {
+    canvas.addEventListener('mousemove', e => { const r = canvas.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+    canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
+  }
+  (function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      if (interactive) { const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx * dx + dy * dy); if (dist < 100) { const f = (100 - dist) / 100 * 1.5; p.vx += (dx / dist) * f * 0.1; p.vy += (dy / dist) * f * 0.1; } }
+      p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(11,99,206,' + p.alpha + ')'; ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  })();
+};
+document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, { interactive: true, count: 55 }));
+document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, { interactive: false, count: 18 }));
+
+/* Animate first slide on load */
+try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn('Init anim error:', e); }
+</script>
+</body>
+</html>
