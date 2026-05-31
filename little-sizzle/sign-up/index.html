@@ -1,1 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity Sheet: How to Create a Scratch Account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0b63ce;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #dc2626;
+    --purple: #7c3aed;
+    --bg: #f4fbff;
+    --surface: #ffffff;
+    --text: #1a2a3a;
+    --muted: #5a7a9a;
+    --border: rgba(11,99,206,0.15);
+  }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 32px 36px;
+    background: white;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .sheet-header {
+    border-top: 5px solid var(--blue);
+    padding-top: 18px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .header-cat {
+    font-size: 2.8rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .header-text {}
+  .badge-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+  }
+  .badge-blue  { background: rgba(11,99,206,0.1);  color: var(--blue); }
+  .badge-green { background: rgba(16,185,129,0.1); color: #059669; }
+  .badge-amber { background: rgba(245,158,11,0.1); color: #d97706; }
+  .header-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .header-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: 'Nunito', sans-serif;
+  }
+  .accent-bar {
+    width: 48px;
+    height: 4px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    margin-bottom: 8px;
+  }
+
+  /* ── INFO ROW ── */
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .info-box {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    background: var(--bg);
+  }
+  .info-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-family: 'Fredoka', sans-serif;
+    margin-bottom: 2px;
+  }
+  .info-line {
+    border-bottom: 1.5px solid rgba(11,99,206,0.2);
+    margin-top: 6px;
+    min-height: 16px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-hdr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0 10px;
+  }
+  .section-num {
+    width: 26px;
+    height: 26px;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    font-family: 'Fredoka', sans-serif;
+  }
+  .section-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .section-title-alt {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 10px rgba(11,99,206,0.06);
+  }
+  .card-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  /* ── THINK BUBBLE ── */
+  .think {
+    background: linear-gradient(135deg, rgba(11,99,206,0.05), rgba(16,185,129,0.05));
+    border: 1.5px dashed rgba(11,99,206,0.25);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    font-style: italic;
+    color: #2d4a6b;
+    font-size: 0.82rem;
+    font-family: 'Nunito', sans-serif;
+  }
+  .think strong { font-style: normal; font-family: 'Fredoka', sans-serif; color: var(--blue); }
+
+  /* ── Q CARD ── */
+  .q-card {
+    background: rgba(11,99,206,0.04);
+    border: 1.5px solid rgba(11,99,206,0.14);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .q-mark {
+    width: 22px;
+    height: 22px;
+    background: var(--blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.72rem;
+    flex-shrink: 0;
+    font-family: 'Fredoka', sans-serif;
+    margin-top: 1px;
+  }
+  .q-text { font-size: 0.82rem; color: #2d4a6b; }
+  .q-text strong { font-family: 'Fredoka', sans-serif; color: var(--blue); }
+
+  /* ── WRITE LINE ── */
+  .write-area {
+    border-bottom: 1.5px solid rgba(11,99,206,0.18);
+    min-height: 20px;
+    margin: 5px 0 10px;
+    width: 100%;
+  }
+  .write-area-tall {
+    border: 1.5px solid rgba(11,99,206,0.15);
+    border-radius: 8px;
+    min-height: 48px;
+    margin: 5px 0 10px;
+    width: 100%;
+    background: rgba(11,99,206,0.02);
+  }
+  .line-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Fredoka', sans-serif;
+  }
+
+  /* ── STEP ROW ── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .step-num-sm {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--blue), var(--green));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.72rem;
+    flex-shrink: 0;
+    font-family: 'Fredoka', sans-serif;
+  }
+  .step-content { flex: 1; }
+  .step-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1px;
+  }
+  .step-desc {
+    font-size: 0.78rem;
+    color: #2d4a6b;
+  }
+  .step-desc em { font-style: italic; color: var(--muted); }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 6px 0;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #2d4a6b;
+  }
+  .check-box {
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid rgba(11,99,206,0.3);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── GRID LAYOUTS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 12px; }
+
+  /* ── USERNAME PRACTICE ── */
+  .username-box {
+    border: 2px dashed rgba(11,99,206,0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+    background: rgba(11,99,206,0.02);
+    margin-bottom: 6px;
+  }
+  .username-box .label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .username-line {
+    border-bottom: 2px solid var(--blue);
+    min-height: 24px;
+    margin: 0 20px;
+    font-size: 0.95rem;
+    font-family: 'Fredoka', sans-serif;
+  }
+
+  /* ── PILL TAG ── */
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .pill-green { background: rgba(16,185,129,0.12); color: #059669; }
+  .pill-red   { background: rgba(220,38,38,0.09);  color: #dc2626; }
+  .pill-amber { background: rgba(245,158,11,0.12); color: #d97706; }
+
+  /* ── MINI STEP ROADMAP ── */
+  .roadmap {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .roadmap-step {
+    flex: 1;
+    padding: 10px 8px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    background: white;
+  }
+  .roadmap-step:last-child { border-right: none; }
+  .roadmap-step .emoji { font-size: 1.3rem; display: block; margin-bottom: 3px; }
+  .roadmap-step .num {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .roadmap-step .name {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1px;
+  }
+  .roadmap-step .desc {
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-family: 'Nunito', sans-serif;
+  }
+  .roadmap-step.done { background: rgba(16,185,129,0.05); }
+  .done-check {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(16,185,129,0.4);
+    border-radius: 3px;
+    margin-top: 3px;
+  }
+
+  /* ── SAFETY TABLE ── */
+  .safety-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .safety-table th {
+    background: var(--blue);
+    color: white;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    padding: 7px 12px;
+    text-align: left;
+    font-size: 0.82rem;
+  }
+  .safety-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid rgba(11,99,206,0.08);
+    color: #2d4a6b;
+    vertical-align: top;
+  }
+  .safety-table tr:nth-child(even) td { background: rgba(11,99,206,0.02); }
+  .safety-table tr:last-child td { border-bottom: none; }
+
+  /* ── EXIT TICKET BLOCK ── */
+  .exit-block {
+    background: linear-gradient(135deg, rgba(11,99,206,0.06), rgba(16,185,129,0.06));
+    border: 1.5px solid rgba(11,99,206,0.15);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-top: 18px;
+  }
+  .exit-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1.5px dashed rgba(11,99,206,0.15);
+    margin: 18px 0;
+  }
+
+  /* ── VOCAB BOX ── */
+  .vocab-box {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .vocab-item {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(11,99,206,0.07);
+  }
+  .vocab-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .vocab-term {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--blue);
+    min-width: 90px;
+    flex-shrink: 0;
+  }
+  .vocab-blank {
+    flex: 1;
+    border-bottom: 1.5px solid rgba(11,99,206,0.2);
+    min-height: 14px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 2px solid rgba(11,99,206,0.12);
+    margin-top: 28px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .footer-logo { font-family: 'Fredoka', sans-serif; font-weight: 700; color: var(--blue); font-size: 0.78rem; }
+
+  
+  /* ══ FILLABLE STYLES ══ */
+
+  /* Info row inputs */
+  .info-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid rgba(11,99,206,0.2);
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text);
+    padding: 3px 2px;
+    margin-top: 4px;
+    outline: none;
+  }
+  .info-input:focus { border-bottom-color: var(--blue); }
+  .info-input::placeholder { color: transparent; }
+
+  /* Contenteditable write areas */
+  [contenteditable="true"] {
+    outline: none;
+    cursor: text;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .write-area[contenteditable="true"] {
+    display: block;
+    min-height: 22px;
+    padding: 2px 4px;
+    border-bottom: 1.5px solid rgba(11,99,206,0.18);
+    margin: 5px 0 10px;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text);
+    background: transparent;
+  }
+  .write-area[contenteditable="true"]:focus {
+    border-bottom-color: var(--blue);
+    background: rgba(11,99,206,0.02);
+  }
+  .write-area-tall[contenteditable="true"] {
+    display: block;
+    min-height: 52px;
+    padding: 6px 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text);
+    border: 1.5px solid rgba(11,99,206,0.15);
+    border-radius: 8px;
+    margin: 5px 0 10px;
+    width: 100%;
+    background: rgba(11,99,206,0.02);
+  }
+  .write-area-tall[contenteditable="true"]:focus {
+    border-color: var(--blue);
+    background: rgba(11,99,206,0.04);
+  }
+  .vocab-blank[contenteditable="true"] {
+    flex: 1;
+    min-height: 18px;
+    border-bottom: 1.5px solid rgba(11,99,206,0.2);
+    padding: 1px 4px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text);
+    background: transparent;
+  }
+  .vocab-blank[contenteditable="true"]:focus { border-bottom-color: var(--blue); background: rgba(11,99,206,0.02); }
+
+  .username-line[contenteditable="true"] {
+    display: block;
+    min-height: 26px;
+    border-bottom: 2px solid var(--blue);
+    margin: 0 20px;
+    padding: 2px 4px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: transparent;
+    text-align: center;
+  }
+  .username-line[contenteditable="true"]:focus { background: rgba(11,99,206,0.03); }
+
+  /* Safety table editable cells */
+  td[contenteditable="true"] {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    color: var(--text);
+  }
+  td[contenteditable="true"]:focus { background: rgba(11,99,206,0.04) !important; outline: none; }
+
+  /* Inline input spans (rules, step A/B) */
+  .inline-input {
+    display: inline-block;
+    min-width: 280px;
+    border-bottom: 1.5px solid rgba(11,99,206,0.22);
+    padding: 1px 4px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    color: var(--text);
+    background: transparent;
+    vertical-align: bottom;
+  }
+  .inline-input:focus { border-bottom-color: var(--blue); background: rgba(11,99,206,0.03); }
+
+  /* Placeholder simulation via JS — show placeholder text in ::before */
+  [contenteditable="true"]:empty::before,
+  .inline-input:empty::before {
+    content: attr(data-placeholder);
+    color: rgba(90,122,154,0.45);
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  /* Real checkboxes */
+  .check-cb, .done-check-cb {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1.5px solid rgba(11,99,206,0.35);
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+    position: relative;
+  }
+  .check-cb { width: 15px; height: 15px; margin-top: 2px; }
+  .done-check-cb { width: 18px; height: 18px; margin-top: 4px; }
+  .check-cb:checked, .done-check-cb:checked {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check-cb:checked::after, .done-check-cb:checked::after {
+    content: '✓';
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 900;
+    position: absolute;
+  }
+  .check-cb:hover, .done-check-cb:hover { border-color: var(--blue); }
+
+  /* Save/Print toolbar */
+  .toolbar {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 999;
+  }
+  .toolbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+  .btn-save { background: var(--blue); color: white; }
+  .btn-save:hover { background: #094fb0; transform: translateY(-1px); }
+  .btn-print { background: white; color: var(--text); border: 1.5px solid rgba(11,99,206,0.2); }
+  .btn-print:hover { background: var(--bg); transform: translateY(-1px); }
+  .btn-clear { background: white; color: #dc2626; border: 1.5px solid rgba(220,38,38,0.2); }
+  .btn-clear:hover { background: rgba(220,38,38,0.04); transform: translateY(-1px); }
+
+  .save-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: #059669;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(5,150,105,0.35);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+  }
+  .save-toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media print {
+    .toolbar, .save-toast { display: none !important; }
+    [contenteditable="true"] { border-color: rgba(11,99,206,0.1) !important; background: transparent !important; }
+    .check-cb:checked::after, .done-check-cb:checked::after { content: '✓'; }
+  }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 18px 24px; }
+    @page { margin: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ HEADER ══ -->
+  <div class="sheet-header">
+    <div class="header-cat">🐱</div>
+    <div class="header-text">
+      <div class="accent-bar"></div>
+      <div class="badge-row">
+        <span class="badge badge-blue">🎓 Beginner</span>
+        <span class="badge badge-green">🆓 Free</span>
+        <span class="badge badge-amber">⏱️ ~45 min</span>
+      </div>
+      <h1 class="header-title">How to Create a Scratch Account</h1>
+      <p class="header-sub">Step-by-Step Activity Sheet &nbsp;·&nbsp; scratch.mit.edu &nbsp;·&nbsp; Socratic Learning Edition</p>
+    </div>
+  </div>
+
+  <!-- ══ INFO ROW ══ -->
+  <div class="info-row">
+    <div class="info-box">
+      <div class="info-label">📛 Name</div>
+      <input class="info-input" type="text" placeholder="">
+    </div>
+    <div class="info-box">
+      <div class="info-label">📅 Date</div>
+      <input class="info-input" type="text" placeholder="">
+    </div>
+    <div class="info-box">
+      <div class="info-label">🏫 Class / Period</div>
+      <input class="info-input" type="text" placeholder="">
+    </div>
+    <div class="info-box">
+      <div class="info-label">🎭 Scratch Username</div>
+      <input class="info-input" type="text" placeholder="">
+    </div>
+  </div>
+
+  <!-- ══ WARM-UP ══ -->
+  <div class="section-hdr">
+    <div class="section-num">🤔</div>
+    <span class="section-title">Warm-Up: Think First!</span>
+    <span class="section-title-alt">(Before you open a browser)</span>
+  </div>
+
+  <div class="think">
+    💡 <strong>Before we start</strong> — answer these questions from your own knowledge. There are no wrong answers here!
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="q-card">
+        <span class="q-mark">?</span>
+        <div class="q-text">What do you think Scratch is used for?</div>
+      </div>
+      <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+    </div>
+    <div>
+      <div class="q-card">
+        <span class="q-mark">?</span>
+        <div class="q-text">What information do you think you'll need to sign up for a free website?</div>
+      </div>
+      <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <span class="q-mark">?</span>
+    <div class="q-text">Why do you think websites ask for your email when you create an account? What problem does it solve?</div>
+  </div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+
+  <hr class="divider">
+
+  <!-- ══ KEY VOCAB ══ -->
+  <div class="section-hdr">
+    <div class="section-num">📖</div>
+    <span class="section-title">Key Vocabulary — Fill in the Definitions</span>
+  </div>
+  <div class="vocab-box">
+    <div class="vocab-item">
+      <span class="vocab-term">🐱 Scratch</span>
+      <div class="vocab-blank" contenteditable="true" data-placeholder="Your definition…"></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-term">🎭 Username</span>
+      <div class="vocab-blank" contenteditable="true" data-placeholder="Your definition…"></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-term">✉️ Verification</span>
+      <div class="vocab-blank" contenteditable="true" data-placeholder="Your definition…"></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-term">🔐 Password</span>
+      <div class="vocab-blank" contenteditable="true" data-placeholder="Your definition…"></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-term">🛡️ Privacy</span>
+      <div class="vocab-blank" contenteditable="true" data-placeholder="Your definition…"></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-term">🧩 COPPA</span>
+      <div class="vocab-blank" contenteditable="true" data-placeholder="Your definition…"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══ 5-STEP ROADMAP ══ -->
+  <div class="section-hdr">
+    <div class="section-num">🗺️</div>
+    <span class="section-title">Your 5-Step Journey — Check off each step as you complete it</span>
+  </div>
+  <div class="roadmap">
+    <div class="roadmap-step">
+      <span class="emoji">🌐</span>
+      <div class="num">Step 1</div>
+      <div class="name">Visit &amp; Click</div>
+      <div class="desc">Go to scratch.mit.edu &amp; click "Join Scratch"</div>
+      <input type="checkbox" class="done-check-cb" title="Check when complete">
+    </div>
+    <div class="roadmap-step">
+      <span class="emoji">🎭</span>
+      <div class="num">Step 2</div>
+      <div class="name">Username &amp; PW</div>
+      <div class="desc">Create a safe, creative username &amp; strong password</div>
+      <input type="checkbox" class="done-check-cb" title="Check when complete">
+    </div>
+    <div class="roadmap-step">
+      <span class="emoji">🎂</span>
+      <div class="num">Step 3</div>
+      <div class="name">Personal Info</div>
+      <div class="desc">Enter birthday, gender &amp; country</div>
+      <input type="checkbox" class="done-check-cb" title="Check when complete">
+    </div>
+    <div class="roadmap-step">
+      <span class="emoji">📧</span>
+      <div class="num">Step 4</div>
+      <div class="name">Email &amp; Create</div>
+      <div class="desc">Enter email &amp; click "Create Account"</div>
+      <input type="checkbox" class="done-check-cb" title="Check when complete">
+    </div>
+    <div class="roadmap-step done">
+      <span class="emoji">✅</span>
+      <div class="num">Step 5</div>
+      <div class="name">Verify Email</div>
+      <div class="desc">Click confirm link in your inbox</div>
+      <input type="checkbox" class="done-check-cb" title="Check when complete">
+    </div>
+  </div>
+
+  <!-- ══ STEP 1 ══ -->
+  <div class="section-hdr">
+    <div class="section-num">1</div>
+    <span class="section-title">Visit scratch.mit.edu &amp; Click "Join Scratch"</span>
+  </div>
+
+  <div class="think">
+    🤔 <strong>Before you click anything</strong> — when you land on a new website and want to create an account, where do you look first? Top-left? Top-right? Center?
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="steps">
+        <div class="step-row">
+          <span class="step-num-sm">1</span>
+          <div class="step-content">
+            <div class="step-title">Open your browser</div>
+            <div class="step-desc">Chrome, Firefox, Safari, or Edge all work.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-num-sm">2</span>
+          <div class="step-content">
+            <div class="step-title">Type the address</div>
+            <div class="step-desc">Type <strong>scratch.mit.edu</strong> in the address bar. Hit Enter.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-num-sm">3</span>
+          <div class="step-content">
+            <div class="step-title">Find "Join Scratch"</div>
+            <div class="step-desc">Look in the top-right corner of the nav bar. Click it!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="q-card">
+        <span class="q-mark">?</span>
+        <div class="q-text"><strong>Describe</strong> what you see when you first land on scratch.mit.edu. What stands out?</div>
+      </div>
+      <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+      <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+      <div class="q-card" style="margin-top:6px;">
+        <span class="q-mark">?</span>
+        <div class="q-text"><strong>Why</strong> might Scratch NOT require a download or installation?</div>
+      </div>
+      <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══ STEP 2 ══ -->
+  <div class="section-hdr">
+    <div class="section-num">2</div>
+    <span class="section-title">Choose Your Username &amp; Password</span>
+  </div>
+
+  <div class="think">
+    🤔 <strong>Think about it:</strong> Why should you NOT use your real name as your Scratch username? What could happen? Discuss with a partner before reading on.
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <p class="card-title" style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:700;color:#059669;margin-bottom:6px;">✅ A GOOD Username:</p>
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" class="check-cb">Does NOT include your real name</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Does NOT include your school or location</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Is creative and easy to remember</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Can include numbers or underscores</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">You'd be comfortable showing a teacher</div>
+      </div>
+
+      <p class="card-title" style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:700;color:#dc2626;margin-bottom:6px;margin-top:10px;">❌ A BAD Username includes:</p>
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" class="check-cb">Your first + last name (e.g., JohnSmith)</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Your school name or grade</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Your phone number or birthday</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Your address or neighborhood</div>
+      </div>
+    </div>
+    <div>
+      <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:700;color:var(--blue);margin-bottom:8px;">✏️ Practice: Brainstorm 3 possible usernames below</p>
+
+      <div class="username-box">
+        <div class="label">Option 1:</div>
+        <div class="username-line" contenteditable="true" data-placeholder="e.g. CoderCat42"></div>
+      </div>
+      <div class="username-box">
+        <div class="label">Option 2:</div>
+        <div class="username-line" contenteditable="true" data-placeholder="e.g. CoderCat42"></div>
+      </div>
+      <div class="username-box" style="border-color:rgba(16,185,129,0.4);">
+        <div class="label" style="color:#059669;">My Final Choice ⭐</div>
+        <div class="username-line" contenteditable="true" data-placeholder="My chosen username ⭐" style="border-color:#059669;"></div>
+      </div>
+
+      <div class="q-card" style="margin-top:8px;">
+        <span class="q-mark">?</span>
+        <div class="q-text">What makes your final username better than the others?</div>
+      </div>
+      <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:4px;margin-bottom:8px;">
+    <p class="card-title" style="color:var(--blue);">🔐 Strong Password Rules — Check each rule your password will follow:</p>
+    <div class="grid-2" style="margin-bottom:0;">
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" class="check-cb">At least 6 characters long</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Contains at least one number</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Contains a letter AND a symbol (!, @, #…)</div>
+      </div>
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" class="check-cb">Does NOT contain your name or username</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Is NOT "password" or "123456"</div>
+        <div class="check-item"><input type="checkbox" class="check-cb">Written down somewhere safe offline</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══ STEP 3 ══ -->
+  <div class="section-hdr">
+    <div class="section-num">3</div>
+    <span class="section-title">Enter Birthday, Gender &amp; Country</span>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div style="font-size:1.5rem;margin-bottom:4px;">🎂</div>
+      <p class="card-title" style="color:#d97706;">Birth Month &amp; Year</p>
+      <p style="font-size:0.76rem;color:#2d4a6b;font-family:'Nunito',sans-serif;">Select from the dropdown. Your full birthday stays <strong>private</strong> — no one else can see it.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem;margin-bottom:4px;">🧑</div>
+      <p class="card-title" style="color:var(--purple);">Gender</p>
+      <p style="font-size:0.76rem;color:#2d4a6b;font-family:'Nunito',sans-serif;">Optional. Used for MIT research on who uses the platform. You can select "Prefer not to say."</p>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem;margin-bottom:4px;">🌍</div>
+      <p class="card-title" style="color:#059669;">Country</p>
+      <p style="font-size:0.76rem;color:#2d4a6b;font-family:'Nunito',sans-serif;">Scratch is available in 200+ countries and 60+ languages. Choose from the dropdown list.</p>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <span class="q-mark">?</span>
+    <div class="q-text"><strong>Why</strong> do you think a coding platform like Scratch needs to know your birth year? What law or rule might require it? <em>(Hint: Think about children's online safety laws.)</em></div>
+  </div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+
+  <hr class="divider">
+
+  <!-- ══ STEP 4 ══ -->
+  <div class="section-hdr">
+    <div class="section-num">4</div>
+    <span class="section-title">Add Your Email &amp; Click "Create Account"</span>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="steps">
+        <div class="step-row">
+          <span class="step-num-sm">1</span>
+          <div class="step-content">
+            <div class="step-title">Enter email address</div>
+            <div class="step-desc">Type carefully — copy-paste is disabled. Use a parent's email if you don't have one.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-num-sm">2</span>
+          <div class="step-content">
+            <div class="step-title">Confirm email</div>
+            <div class="step-desc">Retype the email address in the second box to confirm it matches.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-num-sm">3</span>
+          <div class="step-content">
+            <div class="step-title">Complete CAPTCHA</div>
+            <div class="step-desc">If prompted, identify the images to prove you're a real person.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-num-sm">4</span>
+          <div class="step-content">
+            <div class="step-title">Click "Create Account"</div>
+            <div class="step-desc">Your account is created instantly! A welcome page will appear.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="q-card">
+        <span class="q-mark">?</span>
+        <div class="q-text"><strong>What is a CAPTCHA?</strong> Why do websites use them? What problem do they solve for Scratch?</div>
+      </div>
+      <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+      <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+      <div class="q-card" style="margin-top:4px;">
+        <span class="q-mark">?</span>
+        <div class="q-text">What happens if you make a typo in your email address during sign-up? How might that cause a problem later?</div>
+      </div>
+      <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══ STEP 5 ══ -->
+  <div class="section-hdr">
+    <div class="section-num">5</div>
+    <span class="section-title">Verify Your Email — The Final Step!</span>
+  </div>
+
+  <div class="think">
+    🤔 <strong>Before verifying:</strong> Can you still use Scratch without verifying your email? What features do you think would be unavailable? Make a prediction, then check the list below.
+  </div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…" style="margin-bottom:12px;"></div>
+
+  <div class="grid-2">
+    <div>
+      <div class="card">
+        <p class="card-title" style="color:var(--blue);">📬 How to Verify:</p>
+        <div class="checklist">
+          <div class="check-item"><input type="checkbox" class="check-cb">Open the email inbox you used to sign up</div>
+          <div class="check-item"><input type="checkbox" class="check-cb">Look for an email from no-reply@scratch.mit.edu</div>
+          <div class="check-item"><input type="checkbox" class="check-cb">Click the blue "Confirm my email address" link</div>
+          <div class="check-item"><input type="checkbox" class="check-cb">You're returned to Scratch — account fully active! ✅</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="border-left:4px solid var(--green);">
+        <p class="card-title" style="color:#059669;">✅ Verification Unlocks:</p>
+        <div class="checklist">
+          <div class="check-item"><input type="checkbox" class="check-cb">Share your projects publicly</div>
+          <div class="check-item"><input type="checkbox" class="check-cb">Comment on other people's projects</div>
+          <div class="check-item"><input type="checkbox" class="check-cb">Follow other Scratchers</div>
+          <div class="check-item"><input type="checkbox" class="check-cb">Password reset if you forget it</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" style="margin-top:8px;">
+    <span class="q-mark">?</span>
+    <div class="q-text"><strong>What should you do</strong> if the confirmation email doesn't arrive within 5 minutes? List 2 troubleshooting steps:</div>
+  </div>
+  <p style="font-size:0.78rem;font-family:'Nunito',sans-serif;color:#2d4a6b;margin:4px 0 2px;">Step A: <span class="inline-input" contenteditable="true" data-placeholder="Type your troubleshooting step…"></span></p>
+  <p style="font-size:0.78rem;font-family:'Nunito',sans-serif;color:#2d4a6b;margin-top:8px;">Step B: <span class="inline-input" contenteditable="true" data-placeholder="Type your troubleshooting step…"></span></p>
+
+  <hr class="divider">
+
+  <!-- ══ SAFETY & PRIVACY ══ -->
+  <div class="section-hdr">
+    <div class="section-num">🛡️</div>
+    <span class="section-title">Online Safety — Be a Smart Scratcher</span>
+  </div>
+
+  <div class="think">
+    🤔 <strong>Design challenge:</strong> If YOU were building Scratch, what 3 safety rules would you create for all users? Write them before looking at the real ones below!
+  </div>
+  <p style="font-family:'Nunito',sans-serif;font-size:0.78rem;color:#2d4a6b;margin:4px 0 3px;">My Rule 1: <span class="inline-input" contenteditable="true" data-placeholder="Type your rule…"></span></p>
+  <p style="font-family:'Nunito',sans-serif;font-size:0.78rem;color:#2d4a6b;margin:4px 0 3px;">My Rule 2: <span class="inline-input" contenteditable="true" data-placeholder="Type your rule…"></span></p>
+  <p style="font-family:'Nunito',sans-serif;font-size:0.78rem;color:#2d4a6b;margin-bottom:10px;">My Rule 3: <span class="inline-input" contenteditable="true" data-placeholder="Type your rule…"></span></p>
+
+  <table class="safety-table">
+    <thead>
+      <tr>
+        <th>🔒 Safety Area</th>
+        <th>✅ Scratch's Real Rule</th>
+        <th>❓ Why does this rule exist?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="font-family:'Fredoka',sans-serif;">Username</strong></td>
+        <td>No real names, school names, or location hints</td>
+        <td style="border-bottom:1px dashed rgba(11,99,206,0.15);min-width:160px;" contenteditable="true" data-placeholder="Your reason…"></td>
+      </tr>
+      <tr>
+        <td><strong style="font-family:'Fredoka',sans-serif;">Password</strong></td>
+        <td>Never share — not even with friends</td>
+        <td style="border-bottom:1px dashed rgba(11,99,206,0.15);" contenteditable="true" data-placeholder="Your reason…"></td>
+      </tr>
+      <tr>
+        <td><strong style="font-family:'Fredoka',sans-serif;">Comments</strong></td>
+        <td>Be kind; no personal info in comments</td>
+        <td style="border-bottom:1px dashed rgba(11,99,206,0.15);" contenteditable="true" data-placeholder="Your reason…"></td>
+      </tr>
+      <tr>
+        <td><strong style="font-family:'Fredoka',sans-serif;">Reporting</strong></td>
+        <td>Flag inappropriate content for moderators</td>
+        <td contenteditable="true" data-placeholder="Your reason…"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="q-card">
+    <span class="q-mark">?</span>
+    <div class="q-text">Were any of Scratch's real rules the same as yours? Which surprised you? Would you add anything they're missing?</div>
+  </div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+
+  <hr class="divider">
+
+  <!-- ══ REFLECTION ══ -->
+  <div class="section-hdr">
+    <div class="section-num">💬</div>
+    <span class="section-title">Reflection — Connect &amp; Deepen</span>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:10px;">
+    <div>
+      <div class="q-card">
+        <span class="q-mark">?</span>
+        <div class="q-text"><strong>Which of the 5 steps do you think is MOST important for your security?</strong> Explain your reasoning.</div>
+      </div>
+      <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+    </div>
+    <div>
+      <div class="q-card">
+        <span class="q-mark">?</span>
+        <div class="q-text"><strong>Other free websites</strong> (Google, Instagram, Roblox) also require email. Why do you think <em>all</em> these platforms require it, not just Scratch?</div>
+      </div>
+      <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <span class="q-mark">?</span>
+    <div class="q-text"><strong>Scratch is made by MIT and is 100% free.</strong> Why might a top university give away a coding tool for free? What do they get out of it?</div>
+  </div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+  <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+
+  <!-- ══ EXIT TICKET ══ -->
+  <div class="exit-block">
+    <div class="exit-title">🎟️ Exit Ticket — Before You Go!</div>
+    <div class="grid-3">
+      <div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue);margin-bottom:4px;">💡 I can now…</p>
+        <p style="font-size:0.75rem;color:#5a7a9a;font-family:'Nunito',sans-serif;margin-bottom:4px;">Name the 5 steps to create a Scratch account:</p>
+        <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+        <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+        <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+        <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+        <div class="write-area" contenteditable="true" data-placeholder="Write your answer here…"></div>
+      </div>
+      <div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#059669;margin-bottom:4px;">🔐 I now understand…</p>
+        <p style="font-size:0.75rem;color:#5a7a9a;font-family:'Nunito',sans-serif;margin-bottom:4px;">Why we use a creative username (not our real name):</p>
+        <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+        <p style="font-size:0.75rem;color:#5a7a9a;font-family:'Nunito',sans-serif;margin-bottom:4px;margin-top:6px;">Why email verification matters:</p>
+        <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+      </div>
+      <div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#d97706;margin-bottom:4px;">🚀 My first project will be…</p>
+        <p style="font-size:0.75rem;color:#5a7a9a;font-family:'Nunito',sans-serif;margin-bottom:4px;">Describe what you want to build on Scratch:</p>
+        <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.8rem;font-weight:700;color:var(--purple);margin-top:8px;margin-bottom:4px;">❓ I'm still wondering…</p>
+        <div class="write-area-tall" contenteditable="true" data-placeholder="Write your answer here…"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;padding:10px 14px;background:white;border-radius:10px;border:1px solid rgba(11,99,206,0.12);">
+      <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:700;color:var(--blue);margin-bottom:4px;">🏠 Do-Now Homework Challenge:</p>
+      <p style="font-size:0.78rem;color:#2d4a6b;font-family:'Nunito',sans-serif;">Go to <strong>scratch.mit.edu</strong> tonight and create your account using the 5 steps on this sheet. Write down your username in the box at the top of this sheet and bring it to next class! Then explore <strong>scratch.mit.edu/explore</strong> — find 1 project you love and bring a screenshot.</p>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="footer">
+    <span class="footer-logo">🐱 Scratch Lesson Activity Sheet</span>
+    <span>scratch.mit.edu &nbsp;·&nbsp; Created with MIT Scratch &amp; Socratic Method</span>
+    <span>Page 1 of 1</span>
+  </div>
+
+</div>
+
+<!-- ── TOOLBAR ── -->
+<div class="toolbar">
+  <button class="toolbar-btn btn-save" onclick="saveData()">💾 Save Progress</button>
+  <button class="toolbar-btn btn-print" onclick="window.print()">🖨️ Print</button>
+  <button class="toolbar-btn btn-clear" onclick="clearData()">🗑️ Clear</button>
+</div>
+<div class="save-toast" id="saveToast">✅ Saved!</div>
+
+<script>
+  // ── Save to localStorage ──
+  const STORAGE_KEY = 'scratch_activity_v1';
+
+  function collectData() {
+    const data = {};
+    // contenteditable elements
+    document.querySelectorAll('[contenteditable="true"]').forEach((el, i) => {
+      data['ce_' + i] = el.innerHTML;
+    });
+    // text inputs
+    document.querySelectorAll('input[type="text"].info-input').forEach((el, i) => {
+      data['txt_' + i] = el.value;
+    });
+    // checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach((el, i) => {
+      data['cb_' + i] = el.checked;
+    });
+    return data;
+  }
+
+  function restoreData(data) {
+    document.querySelectorAll('[contenteditable="true"]').forEach((el, i) => {
+      if (data['ce_' + i] !== undefined) el.innerHTML = data['ce_' + i];
+    });
+    document.querySelectorAll('input[type="text"].info-input').forEach((el, i) => {
+      if (data['txt_' + i] !== undefined) el.value = data['txt_' + i];
+    });
+    document.querySelectorAll('input[type="checkbox"]').forEach((el, i) => {
+      if (data['cb_' + i] !== undefined) el.checked = data['cb_' + i];
+    });
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('saveToast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  function saveData() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(collectData()));
+    showToast('✅ Progress saved!');
+  }
+
+  function clearData() {
+    if (!confirm('Clear all your answers? This cannot be undone.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('[contenteditable="true"]').forEach(el => el.innerHTML = '');
+    document.querySelectorAll('input[type="text"].info-input').forEach(el => el.value = '');
+    document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+    showToast('🗑️ Answers cleared.');
+  }
+
+  // Auto-save every 30s
+  setInterval(saveData, 30000);
+
+  // Save on any input
+  document.addEventListener('input', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(collectData()));
+  });
+  document.addEventListener('change', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(collectData()));
+  });
+
+  // Restore on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try { restoreData(JSON.parse(saved)); } catch(e) {}
+    }
+  });
+
+  // Tab key in contenteditable → move to next field
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      const focusable = Array.from(document.querySelectorAll(
+        '[contenteditable="true"], input[type="text"], input[type="checkbox"]'
+      ));
+      const idx = focusable.indexOf(document.activeElement);
+      if (idx !== -1) {
+        e.preventDefault();
+        const next = focusable[e.shiftKey ? idx - 1 : idx + 1];
+        if (next) { next.focus(); if (next.select) next.select(); }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
