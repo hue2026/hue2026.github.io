@@ -1,1 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1 · Student Worksheet · Introduction to Scratch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #f4fbff;
+    --color-surface: #ffffff;
+    --color-text: #1a2a3a;
+    --color-text-secondary: #2d4a6b;
+    --color-text-muted: #5a7a9a;
+    --color-accent-1: #0b63ce;
+    --color-accent-2: #10b981;
+    --color-accent-3: #f59e0b;
+    --color-accent-4: #8b5cf6;
+    --color-accent-5: #ef4444;
+    --color-accent-6: #06b6d4;
+    --color-glass-bg: rgba(255,255,255,0.92);
+    --color-glass-border: rgba(11,99,206,0.13);
+    --font-display: 'Fredoka', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+  }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ── PRINT ────────────────────────────────────────────── */
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    .section-card { box-shadow: none !important; border: 1.5px solid #d0dce8 !important; }
+    .header-band { background: #0b63ce !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .block-chip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .vocab-strip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .answer-box { min-height: 56px; }
+  }
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  .page-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 24px 60px;
+  }
+
+  /* ── HEADER BAND ─────────────────────────────────────── */
+  .header-band {
+    background: linear-gradient(135deg, #0b63ce 0%, #1e4fd8 60%, #10b981 100%);
+    border-radius: 20px;
+    padding: 28px 32px 22px;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(11,99,206,0.18);
+  }
+  .header-band::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+  }
+  .header-band .emoji-row {
+    font-size: 2rem;
+    margin-bottom: 6px;
+    letter-spacing: 4px;
+  }
+  .header-band h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+  .header-band .subtitle {
+    color: rgba(255,255,255,0.82);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .meta-field {
+    background: rgba(255,255,255,0.18);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    min-width: 160px;
+  }
+  .meta-field .label {
+    opacity: 0.72;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    display: block;
+    margin-bottom: 1px;
+  }
+  .meta-field .blank {
+    border-bottom: 1.5px solid rgba(255,255,255,0.55);
+    min-width: 100px;
+    display: inline-block;
+  }
+
+  /* ── PILLS ────────────────────────────────────────────── */
+  .pill {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION CARDS ────────────────────────────────────── */
+  .section-card {
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 18px rgba(11,99,206,0.07);
+  }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(11,99,206,0.1);
+    color: #0b63ce;
+    border-radius: 20px;
+    padding: 4px 13px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a2a3a;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  /* ── ANSWER BOXES ─────────────────────────────────────── */
+  .answer-box {
+    background: rgba(11,99,206,0.04);
+    border: 1.5px dashed rgba(11,99,206,0.25);
+    border-radius: 10px;
+    min-height: 72px;
+    width: 100%;
+    padding: 8px 12px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    line-height: 1.6;
+  }
+  .answer-box:focus {
+    border-color: rgba(11,99,206,0.5);
+    background: rgba(11,99,206,0.07);
+  }
+  .answer-box::placeholder {
+    color: #a0b4c8;
+    font-style: italic;
+    font-size: 0.8rem;
+  }
+
+  .answer-line {
+    border: none;
+    border-bottom: 1.5px solid rgba(11,99,206,0.22);
+    background: transparent;
+    width: 100%;
+    padding: 4px 2px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text);
+    outline: none;
+    margin-bottom: 8px;
+    transition: border-color 0.2s;
+  }
+  .answer-line:focus { border-bottom-color: #0b63ce; }
+  .answer-line::placeholder { color: #a0b4c8; font-style: italic; }
+
+  /* ── QUESTION CARD ────────────────────────────────────── */
+  .q-card {
+    background: rgba(11,99,206,0.05);
+    border: 1.5px solid rgba(11,99,206,0.14);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+  }
+  .q-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    background: #0b63ce;
+    color: white;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    margin-right: 9px;
+    font-family: var(--font-display);
+  }
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .q-label {
+    font-weight: 700;
+    font-size: 0.87rem;
+    color: #0b63ce;
+    font-family: var(--font-display);
+    line-height: 1.3;
+  }
+  .q-sub {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    margin-top: 1px;
+  }
+
+  /* ── THINK BUBBLE ─────────────────────────────────────── */
+  .think-bubble {
+    background: linear-gradient(135deg, rgba(11,99,206,0.07), rgba(16,185,129,0.07));
+    border: 1.5px dashed rgba(11,99,206,0.25);
+    border-radius: 14px;
+    padding: 10px 14px;
+    font-style: italic;
+    color: #2d4a6b;
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+  .think-bubble strong { font-style: normal; }
+
+  /* ── BLOCK CHIPS ──────────────────────────────────────── */
+  .block-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 7px;
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: white;
+    margin: 2px;
+  }
+  .block-motion { background: #4C97FF; }
+  .block-event   { background: #FFD500; color: #333; }
+  .block-control { background: #FFAB19; }
+  .block-sound   { background: #CF63CF; }
+  .block-looks   { background: #9966FF; }
+  .block-sensing { background: #5CB1D6; }
+
+  /* ── VOCAB GRID ───────────────────────────────────────── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .vocab-card {
+    border-radius: 12px;
+    padding: 10px 13px;
+    background: rgba(255,255,255,0.9);
+    border-left: 4px solid;
+  }
+  .vocab-term {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .vocab-def-input {
+    border: none;
+    border-bottom: 1.5px dashed rgba(11,99,206,0.3);
+    background: transparent;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    color: var(--color-text);
+    padding: 2px 0;
+    outline: none;
+    margin-bottom: 3px;
+    line-height: 1.5;
+  }
+  .vocab-def-input:focus { border-bottom-color: #0b63ce; }
+  .vocab-def-input::placeholder { color: #aac0d0; font-style: italic; font-size: 0.73rem; }
+
+  /* ── CATEGORY MATCH ───────────────────────────────────── */
+  .match-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .match-chip {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: white;
+    padding: 5px 14px;
+    border-radius: 8px;
+    min-width: 100px;
+    text-align: center;
+  }
+  .match-arrow { color: #a0b4c8; font-size: 1rem; flex-shrink: 0; }
+  .match-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1.5px solid rgba(11,99,206,0.2);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--color-text);
+    padding: 3px 4px;
+    outline: none;
+  }
+  .match-input:focus { border-bottom-color: #0b63ce; }
+  .match-input::placeholder { color: #aac0d0; font-style: italic; }
+
+  /* ── ALGO BUILDER ─────────────────────────────────────── */
+  .algo-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(11,99,206,0.1);
+    margin-bottom: 6px;
+  }
+  .algo-num {
+    width: 26px; height: 26px;
+    background: linear-gradient(135deg, #0b63ce, #10b981);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+  }
+  .algo-text {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    padding-top: 4px;
+  }
+
+  /* ── GAME DESIGN GRID ─────────────────────────────────── */
+  .design-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .design-card {
+    border-radius: 12px;
+    padding: 11px 13px;
+    background: rgba(255,255,255,0.9);
+    border-top: 3px solid;
+  }
+  .design-label {
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  /* ── CHECKLIST ────────────────────────────────────────── */
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 9px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(11,99,206,0.1);
+    margin-bottom: 6px;
+  }
+  .checklist-item input[type="checkbox"] {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: #0b63ce;
+    cursor: pointer;
+  }
+  .checklist-text {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+  .checklist-text strong {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  /* ── REFLECTION GRID ──────────────────────────────────── */
+  .reflection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .reflection-card {
+    border-radius: 12px;
+    padding: 12px 13px;
+    background: rgba(255,255,255,0.9);
+    border: 1.5px solid rgba(11,99,206,0.13);
+    text-align: center;
+  }
+  .reflection-icon { font-size: 1.8rem; margin-bottom: 6px; }
+  .reflection-prompt {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0b63ce;
+    margin-bottom: 6px;
+  }
+
+  /* ── GRID HELPERS ─────────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .label-sm {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  /* ── ACCENT BAR ───────────────────────────────────────── */
+  .accent-bar {
+    width: 44px; height: 4px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #0b63ce, #10b981);
+    margin-bottom: 10px;
+  }
+
+  /* ── DIVIDER ──────────────────────────────────────────── */
+  .divider {
+    border: none;
+    border-top: 1.5px dashed rgba(11,99,206,0.13);
+    margin: 14px 0;
+  }
+
+  /* ── CODE SCAFFOLD ────────────────────────────────────── */
+  .code-scaffold {
+    background: rgba(11,99,206,0.04);
+    border: 1.5px dashed rgba(11,99,206,0.22);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+  }
+  .code-blank {
+    display: inline-block;
+    border-bottom: 2px solid #0b63ce;
+    min-width: 80px;
+    color: transparent;
+    vertical-align: bottom;
+  }
+
+  /* ── STAR RATING ──────────────────────────────────────── */
+  .stars { display: flex; gap: 6px; align-items: center; margin-top: 6px; }
+  .stars span { font-size: 1.4rem; cursor: pointer; transition: transform 0.15s; }
+  .stars span:hover { transform: scale(1.3); }
+
+  /* ── PRINT BUTTON ─────────────────────────────────────── */
+  .print-btn {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: linear-gradient(135deg, #0b63ce, #10b981);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 22px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(11,99,206,0.25);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.18s, box-shadow 0.18s;
+    z-index: 100;
+  }
+  .print-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(11,99,206,0.32); }
+
+  /* ── SECTION NUMBER BADGE ─────────────────────────────── */
+  .sec-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    background: linear-gradient(135deg, #0b63ce, #1e4fd8);
+    color: white;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 0.9rem;
+    font-family: var(--font-display);
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .sec-title-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  /* ── INFO BOX ─────────────────────────────────────────── */
+  .info-box {
+    background: rgba(16,185,129,0.07);
+    border: 1.5px solid rgba(16,185,129,0.22);
+    border-radius: 10px;
+    padding: 9px 13px;
+    font-size: 0.78rem;
+    color: #065f46;
+    margin-top: 10px;
+  }
+  .info-box strong { color: #047857; }
+
+  @media (max-width: 600px) {
+    .reflection-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .design-grid { grid-template-columns: 1fr; }
+    .vocab-grid { grid-template-columns: 1fr 1fr; }
+    .page-wrapper { padding: 16px 14px 50px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════════════ -->
+  <div class="header-band">
+    <div class="emoji-row">🎮 💻 🧩</div>
+    <h1>Lesson 1 — Student Worksheet</h1>
+    <div class="subtitle">Introduction to Scratch · Basic Game Concepts</div>
+    <div class="meta-row">
+      <div class="meta-field">
+        <div>
+          <span class="label">Student Name</span>
+          <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+      <div class="meta-field">
+        <div>
+          <span class="label">Date</span>
+          <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+      <div class="meta-field">
+        <div>
+          <span class="label">Period / Class</span>
+          <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+      <div class="meta-field">
+        <div>
+          <span class="label">Scratch Username</span>
+          <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 1 · DO NOW / WARM-UP
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num">1</span>
+      <div>
+        <div class="section-badge">📝 Do Now · Warm-Up</div>
+        <div class="section-title">What Makes a Video Game Fun?</div>
+      </div>
+    </div>
+    <p style="font-size:0.8rem;color:#5a7a9a;margin-bottom:12px;">
+      Answer <strong>before</strong> the lesson starts. There are no wrong answers — write what YOU honestly think.
+    </p>
+
+    <div class="q-card">
+      <div class="q-header">
+        <span class="q-num">1</span>
+        <div>
+          <div class="q-label">Think about your favorite game.</div>
+          <div class="q-sub">What keeps you coming back to play it again and again? Write down <strong>2 specific things</strong>.</div>
+        </div>
+      </div>
+      <div style="margin-bottom:5px;">
+        <div class="label-sm">My favorite game:</div>
+        <input class="answer-line" type="text" placeholder="Game title…">
+      </div>
+      <div class="label-sm">2 things that keep me playing:</div>
+      <input class="answer-line" type="text" placeholder="1.">
+      <input class="answer-line" type="text" placeholder="2.">
+    </div>
+
+    <div class="q-card">
+      <div class="q-header">
+        <span class="q-num">2</span>
+        <div>
+          <div class="q-label">Has a game ever felt boring or frustrating?</div>
+          <div class="q-sub">What was <em>missing</em> — or what was too much?</div>
+        </div>
+      </div>
+      <textarea class="answer-box" placeholder="Write about the game and what didn't work for you…"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-header">
+        <span class="q-num">3</span>
+        <div>
+          <div class="q-label">If you could build ANY game right now…</div>
+          <div class="q-sub">What would it look like? What would the player do?</div>
+        </div>
+      </div>
+      <textarea class="answer-box" placeholder="Describe your dream game idea…"></textarea>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 · KEY VOCABULARY
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#10b981,#059669);">2</span>
+      <div>
+        <div class="section-badge" style="background:rgba(16,185,129,0.1);color:#059669;">🔑 Vocabulary</div>
+        <div class="section-title">Key Terms — Lesson 1</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:12px;">
+      Fill in each definition <strong>in your own words</strong> during or after the lesson. Use the hints if you need them.
+    </p>
+
+    <div class="vocab-grid">
+      <div class="vocab-card" style="border-color:#0b63ce;">
+        <div class="vocab-term" style="color:#0b63ce;">🐱 Sprite</div>
+        <input class="vocab-def-input" type="text" placeholder="Any character, object, or…">
+        <input class="vocab-def-input" type="text" placeholder="Can move, animate, and…">
+      </div>
+
+      <div class="vocab-card" style="border-color:#10b981;">
+        <div class="vocab-term" style="color:#059669;">🏞️ Backdrop</div>
+        <input class="vocab-def-input" type="text" placeholder="The background image of…">
+        <input class="vocab-def-input" type="text" placeholder="Like a movie…">
+      </div>
+
+      <div class="vocab-card" style="border-color:#f59e0b;">
+        <div class="vocab-term" style="color:#d97706;">🧩 Block-Based Coding</div>
+        <input class="vocab-def-input" type="text" placeholder="Programming by snapping…">
+        <input class="vocab-def-input" type="text" placeholder="Each block is one…">
+      </div>
+
+      <div class="vocab-card" style="border-color:#8b5cf6;">
+        <div class="vocab-term" style="color:#7c3aed;">📋 Algorithm</div>
+        <input class="vocab-def-input" type="text" placeholder="A step-by-step set of…">
+        <input class="vocab-def-input" type="text" placeholder="Order…">
+      </div>
+
+      <div class="vocab-card" style="border-color:#ef4444;">
+        <div class="vocab-term" style="color:#dc2626;">🎮 Interactive</div>
+        <input class="vocab-def-input" type="text" placeholder="A project that responds to…">
+        <input class="vocab-def-input" type="text" placeholder="Examples: keyboard…">
+      </div>
+
+      <div class="vocab-card" style="border-color:#06b6d4;">
+        <div class="vocab-term" style="color:#0891b2;">🎞️ Animation</div>
+        <input class="vocab-def-input" type="text" placeholder="Switching quickly between…">
+        <input class="vocab-def-input" type="text" placeholder="Like a…">
+      </div>
+
+      <div class="vocab-card" style="border-color:#f97316;">
+        <div class="vocab-term" style="color:#ea580c;">👕 Costume</div>
+        <input class="vocab-def-input" type="text" placeholder="Different looks for a…">
+        <input class="vocab-def-input" type="text" placeholder="Switching creates…">
+      </div>
+
+      <div class="vocab-card" style="border-color:#a855f7;">
+        <div class="vocab-term" style="color:#9333ea;">🔁 Game Loop</div>
+        <input class="vocab-def-input" type="text" placeholder="The heartbeat of any game…">
+        <input class="vocab-def-input" type="text" placeholder="In Scratch, the ___ block IS the game loop">
+      </div>
+    </div>
+
+    <div class="think-bubble" style="margin-top:12px;">
+      <strong>🧠 Quick Check:</strong> An algorithm is like a recipe. What happens if you follow the steps in the <strong>wrong order</strong>? Write your answer below.
+      <textarea class="answer-box" style="margin-top:6px;min-height:48px;" placeholder="If you mix steps up…"></textarea>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 · SCRATCH INTERFACE
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#f59e0b,#d97706);">3</span>
+      <div>
+        <div class="section-badge" style="background:rgba(245,158,11,0.1);color:#d97706;">🗺️ Interface</div>
+        <div class="section-title">The Scratch Editor — 4 Areas</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:12px;">Label each area of the Scratch editor and write what it does.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="q-card">
+        <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:#4C97FF;margin-bottom:5px;">🔵 Area 1 Name:</div>
+        <input class="answer-line" type="text" placeholder="Name of this area…">
+        <div class="label-sm" style="margin-top:6px;">What you do here:</div>
+        <input class="answer-line" type="text" placeholder="You drag blocks from here to…">
+      </div>
+
+      <div class="q-card">
+        <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:#0b63ce;margin-bottom:5px;">📄 Area 2 Name:</div>
+        <input class="answer-line" type="text" placeholder="Name of this area…">
+        <div class="label-sm" style="margin-top:6px;">What you do here:</div>
+        <input class="answer-line" type="text" placeholder="You snap blocks together here to…">
+      </div>
+
+      <div class="q-card">
+        <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:#10b981;margin-bottom:5px;">🟢 Area 3 Name:</div>
+        <input class="answer-line" type="text" placeholder="Name of this area…">
+        <div class="label-sm" style="margin-top:6px;">What you do here:</div>
+        <input class="answer-line" type="text" placeholder="This is where your game…">
+      </div>
+
+      <div class="q-card">
+        <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:#f59e0b;margin-bottom:5px;">⭐ Area 4 Name:</div>
+        <input class="answer-line" type="text" placeholder="Name of this area…">
+        <div class="label-sm" style="margin-top:6px;">What you do here:</div>
+        <input class="answer-line" type="text" placeholder="Shows all your sprites. Click one to…">
+      </div>
+    </div>
+
+    <div class="think-bubble" style="margin-top:10px;">
+      <strong>💡 Deep Think:</strong> Why does <em>each sprite</em> have its <em>own</em> code instead of one giant program for everything? How is that like actors in a school play?
+      <textarea class="answer-box" style="margin-top:6px;min-height:52px;" placeholder="Each sprite is like an actor because…"></textarea>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 · BLOCK CATEGORIES
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);">4</span>
+      <div>
+        <div class="section-badge" style="background:rgba(139,92,246,0.1);color:#7c3aed;">🧩 Block Categories</div>
+        <div class="section-title">Match the Block to Its Job</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:12px;">
+      Write what each colored block category does. Use the word bank at the bottom if needed.
+    </p>
+
+    <div class="match-row">
+      <div class="match-chip block-motion">🔵 MOTION</div>
+      <span class="match-arrow">→</span>
+      <input class="match-input" type="text" placeholder="What this category does…">
+    </div>
+    <div class="match-row">
+      <div class="match-chip block-event" style="color:#333;">🟡 EVENTS</div>
+      <span class="match-arrow">→</span>
+      <input class="match-input" type="text" placeholder="What this category does…">
+    </div>
+    <div class="match-row">
+      <div class="match-chip block-control">🟠 CONTROL</div>
+      <span class="match-arrow">→</span>
+      <input class="match-input" type="text" placeholder="What this category does…">
+    </div>
+    <div class="match-row">
+      <div class="match-chip block-looks">🟣 LOOKS</div>
+      <span class="match-arrow">→</span>
+      <input class="match-input" type="text" placeholder="What this category does…">
+    </div>
+    <div class="match-row">
+      <div class="match-chip block-sound">🩷 SOUND</div>
+      <span class="match-arrow">→</span>
+      <input class="match-input" type="text" placeholder="What this category does…">
+    </div>
+    <div class="match-row">
+      <div class="match-chip block-sensing">🩵 SENSING</div>
+      <span class="match-arrow">→</span>
+      <input class="match-input" type="text" placeholder="What this category does…">
+    </div>
+
+    <div class="info-box">
+      <strong>📦 Word Bank:</strong> detects collisions &amp; key presses · moves sprites on screen · triggers code when something happens · loops &amp; makes decisions (if/then) · changes costumes/appearance · plays sounds
+    </div>
+
+    <hr class="divider">
+
+    <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#0b63ce;margin-bottom:7px;">🎯 Category Challenge</div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:8px;">For a simple game where a character moves <strong>left and right</strong>, which categories do you <strong>absolutely need</strong>?</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Motion</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Events</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Control</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Looks</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Sound</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Sensing</label>
+    </div>
+    <input class="answer-line" type="text" placeholder="Explain why you chose those categories…">
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 · ALGORITHMS
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#ef4444,#dc2626);">5</span>
+      <div>
+        <div class="section-badge" style="background:rgba(239,68,68,0.1);color:#dc2626;">🧠 Algorithms</div>
+        <div class="section-title">Thinking Like a Programmer</div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:12px;">
+      <div>
+        <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#0b63ce;margin-bottom:8px;">Read this algorithm. Label what each block does.</div>
+        <div style="background:rgba(11,99,206,0.04);border:1.5px dashed rgba(11,99,206,0.2);border-radius:12px;padding:12px 14px;">
+          <div class="algo-step">
+            <span class="algo-num">1</span>
+            <div class="algo-text">
+              <span class="block-chip block-event">when 🏳 clicked</span><br>
+              <input class="answer-line" style="margin-top:4px;" type="text" placeholder="This block is the ___">
+            </div>
+          </div>
+          <div class="algo-step">
+            <span class="algo-num">2</span>
+            <div class="algo-text">
+              <span class="block-chip block-control">forever</span><br>
+              <input class="answer-line" style="margin-top:4px;" type="text" placeholder="This block creates the ___">
+            </div>
+          </div>
+          <div class="algo-step">
+            <span class="algo-num">3</span>
+            <div class="algo-text">
+              <span class="block-chip block-control">if &lt;key right pressed?&gt; then</span><br>
+              <input class="answer-line" style="margin-top:4px;" type="text" placeholder="This block is the ___">
+            </div>
+          </div>
+          <div class="algo-step">
+            <span class="algo-num">4</span>
+            <div class="algo-text">
+              <span class="block-chip block-motion">change x by 10</span><br>
+              <input class="answer-line" style="margin-top:4px;" type="text" placeholder="This block is the ___">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#0b63ce;margin-bottom:8px;">Answer these questions about the algorithm above.</div>
+
+        <div class="q-card" style="margin-bottom:8px;">
+          <div style="font-size:0.8rem;color:#2d4a6b;font-weight:700;margin-bottom:5px;">What happens if you REMOVE the <span class="block-chip block-control" style="font-size:0.7rem;">forever</span> block?</div>
+          <textarea class="answer-box" style="min-height:56px;" placeholder="The code would only check once, then…"></textarea>
+        </div>
+
+        <div class="q-card" style="margin-bottom:8px;">
+          <div style="font-size:0.8rem;color:#2d4a6b;font-weight:700;margin-bottom:5px;">To move the sprite <strong>UP</strong>, which block would you change? Why?</div>
+          <textarea class="answer-box" style="min-height:56px;" placeholder="I would change the ___ block to ___ because the Y axis controls…"></textarea>
+        </div>
+
+        <div class="q-card">
+          <div style="font-size:0.8rem;color:#2d4a6b;font-weight:700;margin-bottom:5px;">Read the full algorithm as ONE sentence in plain English:</div>
+          <textarea class="answer-box" style="min-height:52px;" placeholder=""When the game starts, keep checking forever — and if…""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="think-bubble">
+      <strong>🥪 Sandwich Analogy:</strong> An algorithm requires steps in the correct order — just like a recipe. If you put peanut butter on the bread <em>after</em> closing the sandwich, what goes wrong? How does this connect to your Scratch code?
+      <textarea class="answer-box" style="margin-top:6px;min-height:48px;" placeholder="The analogy connects to Scratch because…"></textarea>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 · GAME DESIGN ELEMENTS
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#06b6d4,#0891b2);">6</span>
+      <div>
+        <div class="section-badge" style="background:rgba(6,182,212,0.1);color:#0891b2;">🎲 Game Design</div>
+        <div class="section-title">The 6 Elements of a Great Game</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:12px;">Define each element and give an example from a game you know.</p>
+
+    <div class="design-grid">
+      <div class="design-card" style="border-color:#0b63ce;">
+        <div class="design-label" style="color:#0b63ce;">🎯 1. Goal / Objective</div>
+        <input class="answer-line" type="text" placeholder="Definition: The game's purpose…">
+        <input class="answer-line" type="text" placeholder="My example game + goal:">
+      </div>
+
+      <div class="design-card" style="border-color:#10b981;">
+        <div class="design-label" style="color:#059669;">🕹️ 2. Player Input</div>
+        <input class="answer-line" type="text" placeholder="Definition: How the player…">
+        <input class="answer-line" type="text" placeholder="My example:">
+      </div>
+
+      <div class="design-card" style="border-color:#f59e0b;">
+        <div class="design-label" style="color:#d97706;">🔁 3. Game Loop</div>
+        <input class="answer-line" type="text" placeholder="Definition: The heart of any game…">
+        <input class="answer-line" type="text" placeholder="In Scratch, this is the ___ block">
+      </div>
+
+      <div class="design-card" style="border-color:#8b5cf6;">
+        <div class="design-label" style="color:#7c3aed;">🎆 4. Feedback</div>
+        <input class="answer-line" type="text" placeholder="Definition: Sounds, scores, and…">
+        <input class="answer-line" type="text" placeholder="My example of feedback in a game:">
+      </div>
+
+      <div class="design-card" style="border-color:#ef4444;">
+        <div class="design-label" style="color:#dc2626;">📈 5. Challenge Curve</div>
+        <input class="answer-line" type="text" placeholder="Definition: Too easy is ___. Too hard is ___…">
+        <input class="answer-line" type="text" placeholder="A game with a good challenge curve:">
+      </div>
+
+      <div class="design-card" style="border-color:#06b6d4;">
+        <div class="design-label" style="color:#0891b2;">🌍 6. Game World</div>
+        <input class="answer-line" type="text" placeholder="Definition: Backdrop, sprites, sounds that…">
+        <input class="answer-line" type="text" placeholder="My game world idea:">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#0b63ce;margin-bottom:7px;">🎮 Minecraft Analysis</div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:8px;">Does Minecraft have ALL 6 elements? Which ones make it so addictive? Check the ones it has and explain.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Goal</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Player Input</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Game Loop</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Feedback</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Challenge Curve</label>
+      <label style="display:flex;align-items:center;gap:5px;font-size:0.8rem;cursor:pointer;"><input type="checkbox" style="accent-color:#0b63ce;"> Game World</label>
+    </div>
+    <textarea class="answer-box" placeholder="Minecraft is addictive because…"></textarea>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 7 · BUILD CHECKLIST
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#10b981,#047857);">7</span>
+      <div>
+        <div class="section-badge" style="background:rgba(16,185,129,0.1);color:#059669;">⌨️ Hands-On Build</div>
+        <div class="section-title">My Moving Game — Build Checklist</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:12px;">
+      Check off each step as you complete it. In the notes field, describe a block you used or something you noticed.
+    </p>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c1">
+      <div class="checklist-text">
+        <label for="c1"><strong>Step 1 — Hero Sprite:</strong> I chose my hero sprite and named my project.</label>
+        <input class="answer-line" style="margin-top:5px;" type="text" placeholder="My sprite is called ___, and I chose it because…">
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c2">
+      <div class="checklist-text">
+        <label for="c2"><strong>Step 2 — Backdrop:</strong> I added a backdrop that sets my game world.</label>
+        <input class="answer-line" style="margin-top:5px;" type="text" placeholder="My backdrop is called ___, it looks like…">
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c3">
+      <div class="checklist-text">
+        <label for="c3"><strong>Step 3 — 4-Direction Movement:</strong> Arrow keys move my sprite left, right, up, and down.</label>
+        <div style="margin-top:5px;font-size:0.78rem;color:#5a7a9a;">Which blocks did you use? Check all that apply:</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+          <label style="font-size:0.78rem;"><input type="checkbox" style="accent-color:#0b63ce;"> <span class="block-chip block-event" style="font-size:0.68rem;">when 🏳 clicked</span></label>
+          <label style="font-size:0.78rem;"><input type="checkbox" style="accent-color:#0b63ce;"> <span class="block-chip block-control" style="font-size:0.68rem;">forever</span></label>
+          <label style="font-size:0.78rem;"><input type="checkbox" style="accent-color:#0b63ce;"> <span class="block-chip block-control" style="font-size:0.68rem;">if &lt;&gt; then</span></label>
+          <label style="font-size:0.78rem;"><input type="checkbox" style="accent-color:#0b63ce;"> <span class="block-chip block-sensing" style="font-size:0.68rem;">key pressed?</span></label>
+          <label style="font-size:0.78rem;"><input type="checkbox" style="accent-color:#0b63ce;"> <span class="block-chip block-motion" style="font-size:0.68rem;">change x by</span></label>
+          <label style="font-size:0.78rem;"><input type="checkbox" style="accent-color:#0b63ce;"> <span class="block-chip block-motion" style="font-size:0.68rem;">change y by</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c4">
+      <div class="checklist-text">
+        <label for="c4"><strong>Step 4 — Walking Animation:</strong> My sprite has a walking animation using costumes.</label>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:5px;">
+          <div style="flex:1;min-width:140px;">
+            <div class="label-sm">How many costumes does your sprite have?</div>
+            <input class="answer-line" type="text" placeholder="Number of costumes:">
+          </div>
+          <div style="flex:1;min-width:140px;">
+            <div class="label-sm">What is your wait time (in seconds)?</div>
+            <input class="answer-line" type="text" placeholder="wait ___ seconds">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="c5">
+      <div class="checklist-text">
+        <label for="c5"><strong>Step 5 — Sound Effect:</strong> My game has at least one sound.</label>
+        <input class="answer-line" style="margin-top:5px;" type="text" placeholder="Sound name: ___. It plays when: ___">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#10b981;margin-bottom:7px;">⭐ Extension Challenges (bonus!)</div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="cx1">
+      <div class="checklist-text">
+        <label for="cx1"><strong>⭐ Bonus 1:</strong> Added a second sprite as an obstacle that moves automatically.</label>
+        <input class="answer-line" style="margin-top:4px;" type="text" placeholder="Describe how you made it move:">
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="cx2">
+      <div class="checklist-text">
+        <label for="cx2"><strong>⭐ Bonus 2:</strong> Used the "if on edge, bounce" block to keep the sprite on screen.</label>
+        <input class="answer-line" style="margin-top:4px;" type="text" placeholder="What happened before you added it?">
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="cx3">
+      <div class="checklist-text">
+        <label for="cx3"><strong>⭐ Bonus 3:</strong> Added a score variable that counts up every second.</label>
+        <input class="answer-line" style="margin-top:4px;" type="text" placeholder="Which category is the Variable block in?">
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:10px;">
+      <strong>💾 Save &amp; Share Reminder:</strong> Don't forget to save your project and, if you're proud of it, click <strong>Share</strong> — let the world play what you made! 🌍
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 8 · VIDEO NOTES
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#f97316,#ea580c);">8</span>
+      <div>
+        <div class="section-badge" style="background:rgba(249,115,22,0.1);color:#ea580c;">🎬 Video Notes</div>
+        <div class="section-title">Active Viewing — What Did You Notice?</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div style="font-family:var(--font-display);font-weight:600;font-size:0.87rem;color:#0b63ce;margin-bottom:6px;">📺 Griffpatch — Interface Tour</div>
+        <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:8px;">While watching, answer these questions:</p>
+
+        <div class="q-card" style="margin-bottom:6px;">
+          <div style="font-size:0.77rem;color:#2d4a6b;font-weight:700;margin-bottom:4px;">Where do you drag blocks to build code?</div>
+          <input class="answer-line" type="text" placeholder="">
+        </div>
+        <div class="q-card" style="margin-bottom:6px;">
+          <div style="font-size:0.77rem;color:#2d4a6b;font-weight:700;margin-bottom:4px;">What does the green flag do?</div>
+          <input class="answer-line" type="text" placeholder="">
+        </div>
+        <div class="q-card" style="margin-bottom:6px;">
+          <div style="font-size:0.77rem;color:#2d4a6b;font-weight:700;margin-bottom:4px;">How many sprites can one project have?</div>
+          <input class="answer-line" type="text" placeholder="">
+        </div>
+        <div class="q-card">
+          <div style="font-size:0.77rem;color:#2d4a6b;font-weight:700;margin-bottom:4px;">How do you save and share a project?</div>
+          <input class="answer-line" type="text" placeholder="">
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:var(--font-display);font-weight:600;font-size:0.87rem;color:#0b63ce;margin-bottom:6px;">📺 Arrow Keys — Two Methods</div>
+        <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:8px;">Compare the two movement methods shown:</p>
+
+        <div class="q-card" style="margin-bottom:6px;">
+          <div style="font-size:0.77rem;color:#2d4a6b;font-weight:700;margin-bottom:4px;">Method 1 (Event blocks) — What's the problem?</div>
+          <input class="answer-line" type="text" placeholder="">
+        </div>
+        <div class="q-card" style="margin-bottom:6px;">
+          <div style="font-size:0.77rem;color:#2d4a6b;font-weight:700;margin-bottom:4px;">Method 2 (Forever + Sensing) — Why is it smoother?</div>
+          <input class="answer-line" type="text" placeholder="">
+        </div>
+        <div class="q-card">
+          <div style="font-size:0.77rem;color:#2d4a6b;font-weight:700;margin-bottom:4px;">Which method will you use in your game? Why?</div>
+          <textarea class="answer-box" style="min-height:56px;" placeholder="I will use Method ___ because…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 9 · EXIT TICKET
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-card" style="background:linear-gradient(135deg,rgba(11,99,206,0.06),rgba(16,185,129,0.06));border-color:rgba(11,99,206,0.18);">
+    <div class="sec-title-row">
+      <span class="sec-num" style="background:linear-gradient(135deg,#0b63ce,#10b981);">9</span>
+      <div>
+        <div class="section-badge">🎟️ Exit Ticket</div>
+        <div class="section-title">Before You Go</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:14px;">Complete all three prompts. This is your ticket out the door!</p>
+
+    <div class="reflection-grid">
+      <div class="reflection-card">
+        <div class="reflection-icon">💡</div>
+        <div class="reflection-prompt" style="color:#0b63ce;">I learned…</div>
+        <p style="font-size:0.72rem;color:#5a7a9a;margin-bottom:8px;">Write ONE new thing you discovered about Scratch or game design today.</p>
+        <textarea class="answer-box" style="min-height:72px;" placeholder="Today I learned that…"></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <div class="reflection-icon">🔗</div>
+        <div class="reflection-prompt" style="color:#059669;">This connects to…</div>
+        <p style="font-size:0.72rem;color:#5a7a9a;margin-bottom:8px;">How does what you learned connect to a game you <em>already</em> play? Name the game and the element.</p>
+        <textarea class="answer-box" style="min-height:72px;" placeholder="In [game name], I can see the ___ element because…"></textarea>
+      </div>
+
+      <div class="reflection-card">
+        <div class="reflection-icon">🤔</div>
+        <div class="reflection-prompt" style="color:#d97706;">I still wonder…</div>
+        <p style="font-size:0.72rem;color:#5a7a9a;margin-bottom:8px;">What's one feature you'd add to your game next, and which blocks might help?</p>
+        <textarea class="answer-box" style="min-height:72px;" placeholder="I still wonder how to… / I want to add… using the ___ block"></textarea>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#0b63ce;margin-bottom:8px;">🔄 Warm-Up Callback</div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:8px;">Look back at your warm-up answers in Section 1. Did your thinking change? What did you discover?</p>
+    <textarea class="answer-box" style="min-height:56px;" placeholder="At the start of class I thought… but now I know that… because I actually built…"></textarea>
+
+    <hr class="divider">
+
+    <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#0b63ce;margin-bottom:8px;">⭐ Rate Your Confidence</div>
+    <p style="font-size:0.78rem;color:#5a7a9a;margin-bottom:8px;">Click or circle the stars for each skill (1 = not sure yet · 5 = I've got this!).</p>
+
+    <div style="display:grid;gap:6px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;">
+        <span style="min-width:200px;color:#2d4a6b;">Navigating the Scratch editor</span>
+        <div class="stars">
+          <span title="1">⭐</span><span title="2">⭐</span><span title="3">⭐</span><span title="4">⭐</span><span title="5">⭐</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;">
+        <span style="min-width:200px;color:#2d4a6b;">Writing an algorithm in Scratch</span>
+        <div class="stars">
+          <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;">
+        <span style="min-width:200px;color:#2d4a6b;">Building 4-direction movement</span>
+        <div class="stars">
+          <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;">
+        <span style="min-width:200px;color:#2d4a6b;">Explaining the 6 game-design elements</span>
+        <div class="stars">
+          <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="background:linear-gradient(135deg,rgba(11,99,206,0.08),rgba(16,185,129,0.08));border-radius:12px;padding:12px 14px;margin-top:4px;">
+      <div style="font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:#0b63ce;margin-bottom:4px;">📅 Coming Next — Lesson 2</div>
+      <div style="font-size:0.76rem;color:#2d4a6b;">
+        <strong>Sprites, Costumes &amp; Collision Detection</strong> — You'll design custom sprites in the paint editor, make multiple sprites interact using Sensing blocks, and add a real score using Variables.
+      </div>
+      <div style="margin-top:8px;font-size:0.76rem;color:#5a7a9a;">
+        <strong>Homework / Exploration:</strong> Visit <a href="https://scratch.mit.edu/explore" target="_blank" rel="noopener" style="color:#0b63ce;">scratch.mit.edu/explore</a>, find a game that interests you, and click <strong>See Inside</strong>. Bring 3 things you notice to the next class.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════ -->
+  <div style="text-align:center;margin-top:28px;padding-top:18px;border-top:1.5px dashed rgba(11,99,206,0.13);">
+    <div style="font-size:1.4rem;margin-bottom:4px;">🎮 💻 🧩</div>
+    <div style="font-family:var(--font-display);font-size:0.85rem;color:#0b63ce;font-weight:600;">Lesson 1 · Game Development with Scratch</div>
+    <div style="font-size:0.72rem;color:#a0b4c8;margin-top:2px;">Mr. Hsiao "Hue" Weng · scratch.mit.edu</div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+<!-- PRINT BUTTON -->
+<button class="print-btn no-print" onclick="window.print()">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M6 9V2h12v7"/><rect x="6" y="13" width="12" height="8"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+  </svg>
+  Print / Save PDF
+</button>
+
+<script>
+  // Interactive star rating
+  document.querySelectorAll('.stars').forEach(row => {
+    const spans = row.querySelectorAll('span');
+    spans.forEach((star, i) => {
+      star.addEventListener('click', () => {
+        spans.forEach((s, j) => {
+          s.style.filter = j <= i ? 'none' : 'grayscale(1) opacity(0.35)';
+        });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
