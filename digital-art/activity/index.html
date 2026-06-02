@@ -1,1 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 2 · Activity Sheet — Layers &amp; Composition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#0b63ce; --green:#10b981; --amber:#f59e0b; --red:#ef4444; --purple:#8b5cf6;
+  --bg:#f4fbff; --surface:#ffffff; --text:#1f2a37; --muted:#5b6b7e; --border:rgba(11,99,206,0.16);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Nunito",Arial,sans-serif;color:var(--text);background:#e8f4fd;padding:24px 16px 48px;}
+.page{background:var(--surface);max-width:900px;margin:0 auto 32px;border-radius:18px;box-shadow:0 6px 32px rgba(11,99,206,.10);overflow:hidden;}
+.page-header{background:linear-gradient(135deg,var(--blue),var(--green));padding:18px 28px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.page-header h1{font-family:"Fredoka",sans-serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.2;}
+.page-header .meta{font-size:.78rem;color:rgba(255,255,255,.85);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:right;white-space:nowrap;}
+.page-header .emoji-badge{font-size:2.4rem;flex-shrink:0;}
+.student-bar{background:#f0f7ff;border-bottom:1px solid var(--border);padding:10px 28px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;}
+.field-group label{font-size:.68rem;font-weight:800;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;}
+.field-line{border-bottom:1.5px solid var(--blue);height:22px;min-width:60px;}
+.page-body{padding:22px 28px 28px;}
+.pill{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;padding:5px 14px;border-radius:30px;font-size:.73rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.pill.amber{background:linear-gradient(135deg,var(--amber),#ef7c0b);}
+.pill.green{background:linear-gradient(135deg,var(--green),#059669);}
+.pill.purple{background:linear-gradient(135deg,var(--purple),#7c3aed);}
+.pill.red{background:linear-gradient(135deg,var(--red),#dc2626);}
+.pill.dark{background:linear-gradient(135deg,#1e293b,var(--blue));}
+.sec-title{font-family:"Fredoka",sans-serif;font-size:1.15rem;font-weight:700;color:var(--blue);margin-bottom:10px;}
+.card{background:#fff;border:1px solid var(--border);border-radius:13px;padding:14px 16px;box-shadow:0 2px 12px rgba(11,99,206,.06);}
+.cb{border-left:4px solid var(--blue);}
+.cg{border-left:4px solid var(--green);}
+.ca{border-left:4px solid var(--amber);}
+.cr{border-left:4px solid var(--red);}
+.cp{border-left:4px solid var(--purple);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.wline{border-bottom:1.5px solid rgba(11,99,206,.25);min-height:28px;margin-top:6px;margin-bottom:2px;}
+.wbox{border:1.5px solid rgba(11,99,206,.22);border-radius:8px;min-height:60px;margin-top:6px;background:#f8fbff;padding:6px 8px;}
+.wbox.tall{min-height:90px;}.wbox.sh{min-height:38px;}
+.step-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;font-family:"Fredoka",sans-serif;font-size:1rem;font-weight:700;flex-shrink:0;}
+.badge.g{background:linear-gradient(135deg,var(--green),#059669);}
+.badge.a{background:linear-gradient(135deg,var(--amber),#d97706);}
+.badge.p{background:linear-gradient(135deg,var(--purple),#6d28d9);}
+.badge.r{background:linear-gradient(135deg,var(--red),#b91c1c);}
+.step-content{flex:1;}
+.step-title{font-family:"Fredoka",sans-serif;font-size:.97rem;font-weight:700;color:var(--blue);margin-bottom:3px;}
+.step-desc{font-size:.82rem;color:#374151;line-height:1.55;}
+.vocab-cell{background:linear-gradient(135deg,rgba(11,99,206,.04),rgba(16,185,129,.04));border:1.5px solid rgba(11,99,206,.13);border-radius:10px;padding:10px 12px;}
+.vocab-cell .term{font-family:"Fredoka",sans-serif;font-size:.88rem;font-weight:700;color:var(--blue);margin-bottom:4px;}
+.checklist{list-style:none;padding:0;}
+.checklist li{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;color:#374151;line-height:1.55;margin-bottom:6px;}
+.checkbox{width:16px;height:16px;border:1.8px solid var(--blue);border-radius:4px;flex-shrink:0;margin-top:1px;background:#f8fbff;}
+.divider{border:none;border-top:1.5px dashed var(--border);margin:18px 0;}
+.q-bubble{background:linear-gradient(135deg,rgba(11,99,206,.07),rgba(16,185,129,.05));border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:10px 14px;font-style:italic;color:#1d4ed8;font-weight:700;font-size:.82rem;margin-top:8px;}
+.star-row{display:flex;align-items:center;gap:10px;font-size:.8rem;color:#374151;margin-bottom:6px;}
+.stars{font-size:1rem;letter-spacing:2px;color:#d1d5db;}
+.canvas-area{border:2px dashed rgba(11,99,206,.30);border-radius:12px;background:#f8fbff;position:relative;overflow:hidden;}
+.rot-h{position:absolute;left:0;right:0;border-top:1px dashed rgba(11,99,206,.25);}
+.rot-v{position:absolute;top:0;bottom:0;border-left:1px dashed rgba(11,99,206,.25);}
+.rot-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:rgba(245,158,11,.7);border:1.5px solid #d97706;transform:translate(-50%,-50%);}
+.layer-panel{background:#1e293b;border-radius:10px;padding:8px;}
+.lp-title{font-size:.65rem;font-weight:800;color:#94a3b8;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;padding-bottom:4px;border-bottom:1px solid #334155;}
+.layer-row{display:flex;align-items:center;gap:7px;padding:5px 7px;border-radius:6px;margin-bottom:3px;background:#293548;}
+.layer-thumb{width:26px;height:18px;border-radius:3px;flex-shrink:0;}
+.layer-row .lname{font-size:.73rem;color:#e2e8f0;font-weight:600;flex:1;}
+.mt8{margin-top:8px;}.mt12{margin-top:12px;}.mt16{margin-top:16px;}.mb8{margin-bottom:8px;}.mb12{margin-bottom:12px;}.mb16{margin-bottom:16px;}
+strong{color:var(--blue);}
+.print-btn{display:block;max-width:900px;margin:0 auto 16px;text-align:right;}
+.print-btn button{background:linear-gradient(135deg,var(--blue),var(--green));color:white;border:none;padding:10px 24px;border-radius:30px;font-family:"Nunito",sans-serif;font-size:.85rem;font-weight:800;cursor:pointer;letter-spacing:.05em;box-shadow:0 4px 16px rgba(11,99,206,.25);}
+@media print{body{background:white;padding:0;}.page{box-shadow:none;border-radius:0;}.no-print{display:none;}@page{size:A4;margin:12mm;}}
 
+/* ── FILLABLE FORM STYLES ── */
+.wline-input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1.8px solid rgba(11,99,206,0.35);
+  background: transparent;
+  font-family: "Nunito", sans-serif;
+  font-size: .82rem;
+  color: #1f2a37;
+  padding: 3px 2px;
+  outline: none;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  transition: border-color .2s;
+}
+.wline-input:focus { border-bottom-color: #0b63ce; background: rgba(11,99,206,.03); }
+
+.field-input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1.8px solid #0b63ce;
+  background: transparent;
+  font-family: "Nunito", sans-serif;
+  font-size: .85rem;
+  color: #1f2a37;
+  padding: 3px 2px;
+  outline: none;
+  transition: border-color .2s;
+}
+.field-input:focus { background: rgba(11,99,206,.04); }
+
+.wbox-input {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  border: 1.5px solid rgba(11,99,206,.22);
+  border-radius: 8px;
+  background: #f8fbff;
+  font-family: "Nunito", sans-serif;
+  font-size: .82rem;
+  color: #1f2a37;
+  padding: 7px 9px;
+  margin-top: 6px;
+  outline: none;
+  resize: vertical;
+  line-height: 1.5;
+  transition: border-color .2s, background .2s;
+}
+.wbox-input.sh { min-height: 38px; }
+.wbox-input.tall { min-height: 90px; }
+.wbox-input:focus { border-color: #0b63ce; background: #fff; }
+
+.cb-input {
+  width: 16px;
+  height: 16px;
+  accent-color: #0b63ce;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.cb-input.amber { accent-color: #f59e0b; }
+
+/* Radio ratings */
+.radio-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.radio-lbl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  font-size: .7rem;
+  font-weight: 800;
+  color: #64748b;
+}
+.radio-lbl input[type="radio"] {
+  accent-color: #f59e0b;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.radio-lbl input[type="radio"]:checked + span { color: #d97706; }
+.radio-lbl span { pointer-events: none; }
+
+/* ── Save / Clear toolbar ── */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.toolbar button {
+  padding: 9px 22px;
+  border-radius: 30px;
+  border: none;
+  font-family: "Nunito", sans-serif;
+  font-size: .82rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: opacity .2s, transform .1s;
+}
+.toolbar button:hover { opacity: .88; transform: translateY(-1px); }
+.btn-save   { background: linear-gradient(135deg,#0b63ce,#10b981); color: #fff; box-shadow: 0 4px 14px rgba(11,99,206,.28); }
+.btn-print  { background: linear-gradient(135deg,#8b5cf6,#0b63ce); color: #fff; }
+.btn-clear  { background: #fff; color: #ef4444; border: 1.5px solid #ef4444 !important; }
+.save-msg   { font-size: .75rem; font-weight: 700; color: #10b981; display: none; }
+
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <button class="btn-save" onclick="saveAnswers()">💾 Save Answers</button>
+  <button class="btn-print" onclick="window.print()">🖨️ Print / PDF</button>
+  <button class="btn-clear" onclick="clearAnswers()">🗑️ Clear All</button>
+  <span class="save-msg" id="save-msg">✅ Answers saved to this browser!</span>
+</div>
+
+<!-- PAGE 1: VOCAB + PLAN -->
+<div class="page">
+  <div class="page-header">
+    <div><h1>Lesson 2 · Layers &amp; Composition<br><span style="font-size:.95rem;font-weight:500;opacity:.9;">Activity Sheet — Canva &amp; Photopea</span></h1></div>
+    <div class="meta">Digital Art<br>~60 min</div>
+    <div class="emoji-badge">🎨</div>
+  </div>
+  <div class="student-bar">
+    <div class="field-group"><label>Name</label><input type="text" class="field-input" autocomplete="off"></div>
+    <div class="field-group"><label>Date</label><input type="text" class="field-input" autocomplete="off"></div>
+    <div class="field-group"><label>Class / Period</label><input type="text" class="field-input" autocomplete="off"></div>
+  </div>
+  <div class="page-body">
+
+    <!-- OBJECTIVE -->
+    <div class="card cb mb12" style="margin-bottom:14px;">
+      <p style="font-size:.8rem;color:#374151;"><span style="font-family:'Fredoka',sans-serif;font-weight:700;color:var(--blue);">🎯 Your Goal:</span> Build a digital illustration using <strong>at least 3 layers</strong> (foreground, middle ground, background) in <strong>Canva</strong>, then remix your layers in <strong>Photopea</strong>. Apply the Rule of Thirds, balance, and contrast throughout.</p>
+    </div>
+
+    <!-- VOCAB -->
+    <div class="pill">📖 Part A · Vocabulary Check</div>
+    <p class="sec-title">Define each term in your own words</p>
+    <div class="g3 mb12" style="margin-bottom:14px;">
+      <div class="vocab-cell"><div class="term">Layers 🗂️</div><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">In your own words:</div><textarea class="wbox-input sh" spellcheck="false"></textarea></div>
+      <div class="vocab-cell"><div class="term">Foreground 🌿</div><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">In your own words:</div><textarea class="wbox-input sh" spellcheck="false"></textarea></div>
+      <div class="vocab-cell"><div class="term">Background 🌄</div><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">In your own words:</div><textarea class="wbox-input sh" spellcheck="false"></textarea></div>
+      <div class="vocab-cell"><div class="term">Balance ⚖️</div><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">In your own words:</div><textarea class="wbox-input sh" spellcheck="false"></textarea></div>
+      <div class="vocab-cell"><div class="term">Contrast 🔲</div><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">In your own words:</div><textarea class="wbox-input sh" spellcheck="false"></textarea></div>
+      <div class="vocab-cell"><div class="term">Composition 🖼️</div><div style="font-size:.72rem;color:var(--muted);margin-bottom:3px;">In your own words:</div><textarea class="wbox-input sh" spellcheck="false"></textarea></div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PLAN -->
+    <div class="pill amber">✏️ Part B · Plan Your Scene (Do BEFORE Opening Any App)</div>
+    <p class="sec-title" style="color:#92400e;">Think first, create second!</p>
+    <div class="g2" style="margin-bottom:12px;">
+      <div>
+        <p style="font-size:.8rem;font-weight:800;margin-bottom:7px;">1. Choose your scene:</p>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <label style="font-size:.8rem;color:#374151;display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input"> Park or nature scene</label>
+          <label style="font-size:.8rem;color:#374151;display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input"> City skyline at night</label>
+          <label style="font-size:.8rem;color:#374151;display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input"> Underwater world</label>
+          <label style="font-size:.8rem;color:#374151;display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input"> Fantasy forest</label>
+          <label style="font-size:.8rem;color:#374151;display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input"> My own idea: <input type="text" class="wline-input" style="flex:1;margin:0 0 0 6px;" autocomplete="off"></label>
+        </div>
+        <p style="font-size:.8rem;font-weight:800;margin:10px 0 7px;">2. What goes in each layer?</p>
+        <div class="card ca" style="padding:8px 12px;margin-bottom:5px;"><span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:.8rem;color:#92400e;">🌿 Foreground:</span><input type="text" class="wline-input" autocomplete="off"></div>
+        <div class="card cg" style="padding:8px 12px;margin-bottom:5px;"><span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:.8rem;color:#059669;">🏘️ Middle Ground:</span><input type="text" class="wline-input" autocomplete="off"></div>
+        <div class="card cb" style="padding:8px 12px;"><span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:.8rem;color:var(--blue);">🌄 Background:</span><input type="text" class="wline-input" autocomplete="off"></div>
+      </div>
+      <div>
+        <p style="font-size:.8rem;font-weight:800;margin-bottom:7px;">3. Thumbnail sketch — mark your focal point ★ on an orange dot (Rule of Thirds):</p>
+        <div class="canvas-area" style="height:155px;">
+          <div class="rot-h" style="top:33.33%;"></div>
+          <div class="rot-h" style="top:66.66%;"></div>
+          <div class="rot-v" style="left:33.33%;"></div>
+          <div class="rot-v" style="left:66.66%;"></div>
+          <div class="rot-dot" style="left:33.33%;top:33.33%;"></div>
+          <div class="rot-dot" style="left:66.66%;top:33.33%;"></div>
+          <div class="rot-dot" style="left:33.33%;top:66.66%;"></div>
+          <div class="rot-dot" style="left:66.66%;top:66.66%;"></div>
+          <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-size:.58rem;font-weight:800;color:rgba(11,99,206,.35);text-transform:uppercase;letter-spacing:.07em;">Draw Here!</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:3px;">
+          <span style="font-size:.6rem;color:var(--muted);">← Foreground (bottom)</span>
+          <span style="font-size:.6rem;color:var(--muted);">Background (top) →</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end page 1 -->
+
+
+<!-- PAGE 2: CANVA STEPS -->
+<div class="page">
+  <div class="page-header" style="background:linear-gradient(135deg,#059669,#10b981);">
+    <div><h1>🖥️ Part 1 — Canva.com<br><span style="font-size:.95rem;font-weight:500;opacity:.9;">Step-by-Step: Build Your Layered Illustration</span></h1></div>
+    <div class="meta">canva.com<br>~25 min</div>
+    <div class="emoji-badge">🗂️</div>
+  </div>
+  <div class="page-body">
+
+    <div class="card cg mb12" style="font-size:.8rem;color:#374151;margin-bottom:14px;">
+      <strong>📌 Get started:</strong> Open your browser → go to <a href="https://www.canva.com" style="color:var(--blue);font-weight:800;">canva.com</a> → sign in → click <em>"Create a design"</em> → <em>"Custom size"</em> → enter <strong>1080 × 1080 px</strong> → click <em>"Create new design"</em>.
+    </div>
+
+    <div class="pill green">🌄 Steps 1–5 · Build the Background Layer</div>
+    <p class="sec-title" style="color:#059669;">Start at the back — work your way forward</p>
+
+    <div class="step-row"><div class="badge g">1</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Add a background colour or gradient</div>
+      <p class="step-desc">Click <strong>Background colour</strong> (paint-bucket icon, bottom-left) → choose your sky or horizon colour. Or: click <strong>Elements</strong> → search "gradient rectangle" → drag one onto the canvas and resize to fill it.</p>
+    </div></div>
+    <div class="step-row"><div class="badge g">2</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Add background elements</div>
+      <p class="step-desc">Click <strong>Elements</strong> → search for clouds, mountains, stars, or distant buildings. Drag items onto the canvas. Make them <strong>smaller than you think</strong> — things far away appear small!</p>
+    </div></div>
+    <div class="step-row"><div class="badge g">3</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Open the Layers panel</div>
+      <p class="step-desc">Click any element → click <strong>Position</strong> in the top toolbar → select the <strong>Layers tab</strong>. You'll see your background items listed. <strong>Double-click a layer name</strong> to rename it (e.g., "BG Clouds").</p>
+    </div></div>
+    <div class="step-row"><div class="badge g">4</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Reduce opacity for atmospheric depth</div>
+      <p class="step-desc">Select a background element → click <strong>Transparency</strong> (chequered square, top-right toolbar) → set it to <strong>60–75%</strong>. This "haze" makes it look further away. Foreground elements should stay at 100%.</p>
+    </div></div>
+    <div class="step-row"><div class="badge g">5</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Send background elements to back</div>
+      <p class="step-desc">Select each background element → <strong>Position → To Back</strong>. This ensures later layers always appear in front of your background.</p>
+    </div></div>
+
+    <hr class="divider">
+
+    <div class="pill" style="background:linear-gradient(135deg,var(--blue),var(--purple));">🏘️ Steps 6–8 · Add the Middle Ground Layer</div>
+
+    <div class="step-row"><div class="badge">6</div><div class="step-content">
+      <div class="step-title">Add medium-sized elements</div>
+      <p class="step-desc">Click <strong>Elements</strong> → search for trees, houses, hills, or buildings. Place them in the <strong>vertical centre</strong> of the canvas. They should be <em>larger</em> than BG objects but <em>smaller</em> than foreground ones.</p>
+    </div></div>
+    <div class="step-row"><div class="badge">7</div><div class="step-content">
+      <div class="step-title">Apply the Rule of Thirds</div>
+      <p class="step-desc">Imagine a 3×3 grid over your canvas. Place your <strong>most interesting element</strong> near one of the 4 intersection points. Compare it to your thumbnail sketch — does the composition match your plan?</p>
+    </div></div>
+    <div class="step-row"><div class="badge">8</div><div class="step-content">
+      <div class="step-title">Arrange the middle ground layer</div>
+      <p class="step-desc">In the Layers panel, <strong>drag middle-ground elements above</strong> the background layers. They should visually overlap the horizon line slightly.</p>
+    </div></div>
+
+    <hr class="divider">
+
+    <div class="pill amber">🌿 Steps 9–12 · Build the Foreground Layer</div>
+
+    <div class="step-row"><div class="badge a">9</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Add large foreground elements</div>
+      <p class="step-desc">Search Elements for your foreground items (person, large plant, rock, fence). <strong>Scale them up</strong> and position them near the <strong>bottom edge</strong> of the canvas.</p>
+    </div></div>
+    <div class="step-row"><div class="badge a">10</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Create contrast at your focal point</div>
+      <p class="step-desc">Select your most important element. Does it stand out from everything behind it? If not: <strong>change its colour</strong>, add a shadow (<em>Effects → Shadow</em>), or increase its size until it grabs the eye first.</p>
+    </div></div>
+    <div class="step-row"><div class="badge a">11</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Bring foreground to the front</div>
+      <p class="step-desc">Select each foreground element → <strong>Position → To Front</strong>. In the Layers panel, your foreground layers should appear <strong>at the very top</strong> of the list.</p>
+    </div></div>
+    <div class="step-row"><div class="badge a">12</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Check visual balance</div>
+      <p class="step-desc">Zoom out and squint at your design. Does it feel balanced left-to-right? If one side feels too "heavy", move an element or add a small object on the lighter side.</p>
+    </div></div>
+
+    <!-- Canva self-check -->
+    <div class="card cb mt16" style="margin-top:14px;padding:14px 16px;">
+      <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:.92rem;color:var(--blue);margin-bottom:9px;">✅ Canva Self-Check — tick when done:</p>
+      <div class="g2">
+        <ul class="checklist">
+          <li><input type="checkbox" class="cb-input">Canvas is 1080 × 1080 px</li>
+          <li><input type="checkbox" class="cb-input">I have at least 3 separate layers</li>
+          <li><input type="checkbox" class="cb-input">Layers are named (BG / Mid / FG)</li>
+          <li><input type="checkbox" class="cb-input">Background is at the bottom of the Layers panel</li>
+        </ul>
+        <ul class="checklist">
+          <li><input type="checkbox" class="cb-input">Focal element is NOT dead-centre</li>
+          <li><input type="checkbox" class="cb-input">Foreground elements are the largest</li>
+          <li><input type="checkbox" class="cb-input">My focal point has high contrast</li>
+          <li><input type="checkbox" class="cb-input">Design feels visually balanced</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="q-bubble mt8" style="margin-top:10px;">What was the most useful Canva feature for working with layers, and why?</div>
+    <textarea class="wbox-input" spellcheck="false"></textarea>
+
+  </div>
+</div><!-- end page 2 -->
+
+
+<!-- PAGE 3: PHOTOPEA STEPS -->
+<div class="page">
+  <div class="page-header dark" style="background:linear-gradient(135deg,#1e293b,#0b63ce);">
+    <div><h1>🖥️ Part 2 — Photopea.com<br><span style="font-size:.95rem;font-weight:500;opacity:.9;">Step-by-Step: Advanced Layer Control</span></h1></div>
+    <div class="meta">photopea.com<br>~25 min</div>
+    <div class="emoji-badge">🎭</div>
+  </div>
+  <div class="page-body">
+
+    <div class="card cb mb12" style="font-size:.8rem;color:#374151;margin-bottom:14px;">
+      <strong>📌 Get started:</strong> Open your browser → go to <a href="https://www.photopea.com" style="color:var(--blue);font-weight:800;">photopea.com</a> → click <em>"New Project"</em> → set <strong>Width: 800 px, Height: 600 px, Resolution: 72 dpi</strong> → click <em>"Create"</em>.
+    </div>
+
+    <!-- Interface overview -->
+    <div class="pill dark">🗺️ Know the Interface First</div>
+    <p class="sec-title">Label the areas you'll use most:</p>
+    <div class="g2 mb12" style="margin-bottom:14px;">
+      <div>
+        <div class="layer-panel">
+          <div class="lp-title">Layers Panel (bottom-right)</div>
+          <div class="layer-row"><span style="font-size:.7rem;">👁️</span><div class="layer-thumb" style="background:linear-gradient(135deg,#fde68a,#fbbf24);"></div><span class="lname">Foreground</span></div>
+          <div class="layer-row"><span style="font-size:.7rem;">👁️</span><div class="layer-thumb" style="background:linear-gradient(135deg,#bbf7d0,#6ee7b7);"></div><span class="lname">Middle Ground</span></div>
+          <div class="layer-row"><span style="font-size:.7rem;">👁️</span><div class="layer-thumb" style="background:linear-gradient(135deg,#bfdbfe,#93c5fd);"></div><span class="lname">Background</span></div>
+        </div>
+        <p style="font-size:.7rem;color:var(--muted);text-align:center;margin-top:5px;">Higher in list = in front visually</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div class="card cb" style="padding:8px 12px;font-size:.77rem;"><strong>Tools panel</strong> (left side) — Brush (B), Shape (U), Move (V), Fill (G), Text (T). Click any tool to activate.</div>
+        <div class="card cg" style="padding:8px 12px;font-size:.77rem;"><strong>Layers panel</strong> (bottom-right) — All your layers live here. Click a layer to select it. 👁️ hides/shows. 🔒 locks it.</div>
+        <div class="card ca" style="padding:8px 12px;font-size:.77rem;"><strong>Menu bar</strong> (top) — Use <em>Layer → New Layer</em> to add layers. <em>Filter → Blur</em> for depth effects.</div>
+        <div class="card cp" style="padding:8px 12px;font-size:.77rem;"><strong>Important:</strong> You can only draw on the <em>currently selected</em> layer. Always check which layer is highlighted before drawing!</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="pill green">🌄 Steps 1–4 · Create &amp; Name 3 Layers</div>
+
+    <div class="step-row"><div class="badge g">1</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Name the Background layer</div>
+      <p class="step-desc">The default layer is your background. <strong>Double-click its name</strong> in the Layers panel → type "Background" → press Enter. Select the <strong>Fill tool (G)</strong> → choose a sky-blue colour → click the canvas to fill it.</p>
+    </div></div>
+    <div class="step-row"><div class="badge g">2</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Create a Middle Ground layer</div>
+      <p class="step-desc">Click the <strong>+ icon</strong> (New Layer) at the bottom of the Layers panel. A new layer appears above Background. <strong>Double-click its name</strong> → rename it "Middle Ground". Make sure it is highlighted before drawing.</p>
+    </div></div>
+    <div class="step-row"><div class="badge g">3</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Create a Foreground layer</div>
+      <p class="step-desc">Click <strong>+ icon</strong> again → rename it "Foreground". This layer must be at the <strong>top</strong> of the Layers panel. If it's not, drag it upward.</p>
+    </div></div>
+    <div class="step-row"><div class="badge g">4</div><div class="step-content">
+      <div class="step-title" style="color:#059669;">Test the eye icon</div>
+      <p class="step-desc">Click the <strong>👁️ eye icon</strong> next to "Foreground" to hide it. Do you still see the other layers? Click the eye again to show it. Try hiding each layer one at a time.</p>
+    </div></div>
+
+    <hr class="divider">
+
+    <div class="pill amber">🎨 Steps 5–10 · Draw Your Scene &amp; Add Depth</div>
+
+    <div class="step-row"><div class="badge a">5</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Paint the Background</div>
+      <p class="step-desc">Click <strong>"Background"</strong> in the Layers panel. Select the <strong>Brush tool (B)</strong> → choose a large brush size → paint sky elements and distant shapes in the <strong>top half</strong> of the canvas.</p>
+    </div></div>
+    <div class="step-row"><div class="badge a">6</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Reduce Background layer opacity</div>
+      <p class="step-desc">With the Background layer selected, find the <strong>Opacity slider</strong> at the top of the Layers panel (shows "100%"). Drag it to <strong>75–80%</strong>. This creates an atmospheric haze effect.</p>
+    </div></div>
+    <div class="step-row"><div class="badge a">7</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Paint the Middle Ground</div>
+      <p class="step-desc">Click <strong>"Middle Ground"</strong>. Draw medium-sized shapes (hills, trees, buildings) in the <strong>centre section</strong> of the canvas. Try the <strong>Shape tool (U)</strong> for quick rectangles or ellipses.</p>
+    </div></div>
+    <div class="step-row"><div class="badge a">8</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Paint the Foreground</div>
+      <p class="step-desc">Click <strong>"Foreground"</strong>. Paint <strong>large, dark elements</strong> near the bottom of the canvas. Use a colour with strong contrast against the background (e.g., dark shapes against a light sky).</p>
+    </div></div>
+    <div class="step-row"><div class="badge a">9</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Apply Gaussian Blur to the Background</div>
+      <p class="step-desc">Click the <strong>"Background" layer</strong> → Menu: <strong>Filter → Blur → Gaussian Blur</strong> → set Radius to <strong>2–3 px</strong> → click OK. This softens the background, increasing depth. <em>Do NOT blur the Foreground layer.</em></p>
+    </div></div>
+    <div class="step-row"><div class="badge a">10</div><div class="step-content">
+      <div class="step-title" style="color:#92400e;">Save your work</div>
+      <p class="step-desc">Menu: <strong>File → Export as → PNG</strong> → click "Save". Also try <strong>File → Save as PSD</strong> to save the layered file — this keeps your layers editable, just like saving a Photoshop file!</p>
+    </div></div>
+
+    <!-- Photopea self-check -->
+    <div class="card cb mt16" style="margin-top:14px;padding:14px 16px;">
+      <p style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:.92rem;color:var(--blue);margin-bottom:9px;">✅ Photopea Self-Check — tick when done:</p>
+      <div class="g2">
+        <ul class="checklist">
+          <li><input type="checkbox" class="cb-input">Canvas is 800 × 600 px</li>
+          <li><input type="checkbox" class="cb-input">I have exactly 3 named layers</li>
+          <li><input type="checkbox" class="cb-input">Background is at the BOTTOM of the Layers panel</li>
+          <li><input type="checkbox" class="cb-input">I tested the 👁️ eye icon on each layer</li>
+        </ul>
+        <ul class="checklist">
+          <li><input type="checkbox" class="cb-input">Background has lower opacity than Foreground</li>
+          <li><input type="checkbox" class="cb-input">I applied Gaussian Blur to the Background</li>
+          <li><input type="checkbox" class="cb-input">Foreground elements are the largest/darkest</li>
+          <li><input type="checkbox" class="cb-input">I exported my file as PNG</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="q-bubble mt8" style="margin-top:10px;">When you hid the Foreground layer using the 👁️ icon, what changed in your artwork? What does this tell you about how layers work?</div>
+    <textarea class="wbox-input" spellcheck="false"></textarea>
+
+  </div>
+</div><!-- end page 3 -->
+
+
+<!-- PAGE 4: COMPARE + REFLECT + EXIT TICKET -->
+<div class="page">
+  <div class="page-header" style="background:linear-gradient(135deg,var(--purple),var(--blue));">
+    <div><h1>🔍 Compare, Reflect &amp; Exit Ticket<br><span style="font-size:.95rem;font-weight:500;opacity:.9;">Lesson 2 · Layers &amp; Composition</span></h1></div>
+    <div class="meta">Wrap-Up<br>~10 min</div>
+    <div class="emoji-badge">📝</div>
+  </div>
+  <div class="page-body">
+
+    <!-- COMPARISON TABLE -->
+    <div class="pill purple">⚖️ Part C · Canva vs. Photopea — What Did You Notice?</div>
+    <p class="sec-title" style="color:var(--purple);">Fill in the table based on your experience</p>
+    <div class="card" style="padding:0;overflow:hidden;margin-bottom:14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,var(--purple),var(--blue));">
+            <th style="padding:10px 14px;color:#fff;font-family:'Fredoka',sans-serif;font-size:.88rem;text-align:left;width:28%;">Feature</th>
+            <th style="padding:10px 14px;color:#fff;font-family:'Fredoka',sans-serif;font-size:.88rem;text-align:center;width:36%;">Canva 🖱️</th>
+            <th style="padding:10px 14px;color:#fff;font-family:'Fredoka',sans-serif;font-size:.88rem;text-align:center;width:36%;">Photopea 🎨</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#f8fbff;">
+            <td style="padding:9px 14px;font-weight:700;color:var(--blue);">How to add a layer</td>
+            <td style="padding:9px 14px;text-align:center;color:#5b6b7e;">Position → Layers tab</td>
+            <td style="padding:9px 14px;text-align:center;color:#5b6b7e;">+ icon in Layers panel</td>
+          </tr>
+          <tr style="background:white;">
+            <td style="padding:9px 14px;font-weight:700;color:var(--blue);">Can you paint/draw freely?</td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+          </tr>
+          <tr style="background:#f8fbff;">
+            <td style="padding:9px 14px;font-weight:700;color:var(--blue);">Blur / Filter effects</td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+          </tr>
+          <tr style="background:white;">
+            <td style="padding:9px 14px;font-weight:700;color:var(--blue);">Easier for beginners because…</td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+          </tr>
+          <tr style="background:#f8fbff;">
+            <td style="padding:9px 14px;font-weight:700;color:var(--blue);">I would use it for…</td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+            <td style="padding:9px 14px;text-align:center;"><input type="text" class="wline-input" style="margin:0 auto;width:85%;" autocomplete="off"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <!-- COMPOSITION ANALYSIS -->
+    <div class="pill">🖼️ Part D · Analyse Your Artwork</div>
+    <p class="sec-title">Look at your finished illustration and answer:</p>
+    <div class="g2 mb12" style="margin-bottom:12px;">
+      <div class="card cb" style="padding:12px 14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:var(--blue);font-size:.86rem;margin-bottom:6px;">1. Where is your focal point?</p>
+        <p style="font-size:.75rem;color:var(--muted);margin-bottom:5px;">Is it at a Rule of Thirds intersection? Circle one:</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:.78rem;">
+          <label style="display:flex;align-items:center;gap:5px;"><input type="checkbox" class="cb-input">Top-left ★</label>
+          <label style="display:flex;align-items:center;gap:5px;"><input type="checkbox" class="cb-input">Top-right ★</label>
+          <label style="display:flex;align-items:center;gap:5px;"><input type="checkbox" class="cb-input">Bottom-left ★</label>
+          <label style="display:flex;align-items:center;gap:5px;"><input type="checkbox" class="cb-input">Bottom-right ★</label>
+          <label style="display:flex;align-items:center;gap:5px;"><input type="checkbox" class="cb-input">Centred</label>
+        </div>
+      </div>
+      <div class="card ca" style="padding:12px 14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#92400e;font-size:.86rem;margin-bottom:6px;">2. What type of balance did you use?</p>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:.78rem;">
+          <label style="display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input amber">Symmetrical (mirror-image)</label>
+          <label style="display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input amber">Asymmetrical (balanced but different)</label>
+          <label style="display:flex;align-items:center;gap:7px;"><input type="checkbox" class="cb-input amber">Not sure yet</label>
+        </div>
+        <p style="font-size:.73rem;color:var(--muted);margin-top:6px;">Why does this type work for your scene?</p>
+        <input type="text" class="wline-input" autocomplete="off">
+      </div>
+    </div>
+    <div class="card cg" style="padding:12px 14px;margin-bottom:12px;">
+      <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#059669;font-size:.86rem;margin-bottom:5px;">3. How did you use contrast to guide the viewer's eye?</p>
+      <p style="font-size:.75rem;color:var(--muted);margin-bottom:5px;">Describe ONE specific contrast choice (colour, size, value, or detail):</p>
+      <textarea class="wbox-input" spellcheck="false"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- EXIT TICKET -->
+    <div class="pill red">🎟️ Exit Ticket — Complete Before You Leave</div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:12px;">
+      <div class="card cg" style="padding:11px 14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#059669;font-size:.86rem;margin-bottom:4px;">1️⃣ One new thing I learned about layers or composition today:</p>
+        <textarea class="wbox-input sh" spellcheck="false"></textarea>
+      </div>
+      <div class="card cb" style="padding:11px 14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:var(--blue);font-size:.86rem;margin-bottom:4px;">2️⃣ I used this technique in my illustration by:</p>
+        <textarea class="wbox-input sh" spellcheck="false"></textarea>
+      </div>
+      <div class="card cp" style="padding:11px 14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:var(--purple);font-size:.86rem;margin-bottom:4px;">3️⃣ One question I still have:</p>
+        <textarea class="wbox-input sh" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <!-- Self-rating -->
+    <div class="card" style="border-left:4px solid var(--amber);padding:13px 16px;background:rgba(245,158,11,.04);">
+      <p style="font-family:'Fredoka',sans-serif;font-weight:700;color:#92400e;font-size:.88rem;margin-bottom:8px;">⭐ Rate yourself (circle a number: 1 = Not yet · 4 = Got it!):</p>
+      <div>
+        <div class="star-row"><span style="font-size:.78rem;font-weight:700;width:240px;flex-shrink:0;">I can explain what layers are</span><div class="radio-group"><label class="radio-lbl"><input type="radio" name="skill1" value="1"><span>1</span></label><label class="radio-lbl"><input type="radio" name="skill1" value="2"><span>2</span></label><label class="radio-lbl"><input type="radio" name="skill1" value="3"><span>3</span></label><label class="radio-lbl"><input type="radio" name="skill1" value="4"><span>4</span></label></div></div>
+        <div class="star-row"><span style="font-size:.78rem;font-weight:700;width:240px;flex-shrink:0;">I used 3+ layers in my artwork</span><div class="radio-group"><label class="radio-lbl"><input type="radio" name="skill2" value="1"><span>1</span></label><label class="radio-lbl"><input type="radio" name="skill2" value="2"><span>2</span></label><label class="radio-lbl"><input type="radio" name="skill2" value="3"><span>3</span></label><label class="radio-lbl"><input type="radio" name="skill2" value="4"><span>4</span></label></div></div>
+        <div class="star-row"><span style="font-size:.78rem;font-weight:700;width:240px;flex-shrink:0;">I applied the Rule of Thirds</span><div class="radio-group"><label class="radio-lbl"><input type="radio" name="skill3" value="1"><span>1</span></label><label class="radio-lbl"><input type="radio" name="skill3" value="2"><span>2</span></label><label class="radio-lbl"><input type="radio" name="skill3" value="3"><span>3</span></label><label class="radio-lbl"><input type="radio" name="skill3" value="4"><span>4</span></label></div></div>
+        <div class="star-row"><span style="font-size:.78rem;font-weight:700;width:240px;flex-shrink:0;">My composition has contrast &amp; balance</span><div class="radio-group"><label class="radio-lbl"><input type="radio" name="skill4" value="1"><span>1</span></label><label class="radio-lbl"><input type="radio" name="skill4" value="2"><span>2</span></label><label class="radio-lbl"><input type="radio" name="skill4" value="3"><span>3</span></label><label class="radio-lbl"><input type="radio" name="skill4" value="4"><span>4</span></label></div></div>
+        <div class="star-row"><span style="font-size:.78rem;font-weight:700;width:240px;flex-shrink:0;">I can use the Canva Layers panel</span><div class="radio-group"><label class="radio-lbl"><input type="radio" name="skill5" value="1"><span>1</span></label><label class="radio-lbl"><input type="radio" name="skill5" value="2"><span>2</span></label><label class="radio-lbl"><input type="radio" name="skill5" value="3"><span>3</span></label><label class="radio-lbl"><input type="radio" name="skill5" value="4"><span>4</span></label></div></div>
+        <div class="star-row"><span style="font-size:.78rem;font-weight:700;width:240px;flex-shrink:0;">I can add &amp; rename layers in Photopea</span><div class="radio-group"><label class="radio-lbl"><input type="radio" name="skill6" value="1"><span>1</span></label><label class="radio-lbl"><input type="radio" name="skill6" value="2"><span>2</span></label><label class="radio-lbl"><input type="radio" name="skill6" value="3"><span>3</span></label><label class="radio-lbl"><input type="radio" name="skill6" value="4"><span>4</span></label></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;text-align:center;font-size:.66rem;color:var(--muted);letter-spacing:.05em;">
+      Lesson 2 · Understanding Layers &amp; Simple Composition Techniques · Digital Art · canva.com &amp; photopea.com
+    </div>
+  </div>
+</div><!-- end page 4 -->
+
+
+<script>
+// ── Auto-load on page open ──
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = JSON.parse(localStorage.getItem('lesson2_activity') || '{}');
+  document.querySelectorAll('input[type=text], textarea').forEach((el, i) => {
+    if (saved['t' + i] !== undefined) el.value = saved['t' + i];
+  });
+  document.querySelectorAll('input[type=checkbox]').forEach((el, i) => {
+    if (saved['c' + i] !== undefined) el.checked = saved['c' + i];
+  });
+  document.querySelectorAll('input[type=radio]').forEach((el, i) => {
+    if (saved['r' + i] !== undefined) el.checked = saved['r' + i];
+  });
+});
+
+// ── Save ──
+function saveAnswers() {
+  const data = {};
+  document.querySelectorAll('input[type=text], textarea').forEach((el, i) => { data['t' + i] = el.value; });
+  document.querySelectorAll('input[type=checkbox]').forEach((el, i) => { data['c' + i] = el.checked; });
+  document.querySelectorAll('input[type=radio]').forEach((el, i) => { data['r' + i] = el.checked; });
+  localStorage.setItem('lesson2_activity', JSON.stringify(data));
+  const msg = document.getElementById('save-msg');
+  msg.style.display = 'inline';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+// ── Clear ──
+function clearAnswers() {
+  if (!confirm('Clear all answers? This cannot be undone.')) return;
+  localStorage.removeItem('lesson2_activity');
+  document.querySelectorAll('input[type=text], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type=checkbox], input[type=radio]').forEach(el => el.checked = false);
+}
+
+// ── Auto-save on every change ──
+document.addEventListener('input', saveAnswers);
+document.addEventListener('change', saveAnswers);
+</script>
+
+</body>
+</html>
