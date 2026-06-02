@@ -1,1 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="slides-format" content="viewport">
+<title>Lesson 2 · Layers & Composition — Digital Art</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style type="text/tailwindcss">
+@theme {
+  --color-bg:            #f4fbff;
+  --color-bg-deep:       #e0f2ff;
+  --color-surface:       rgba(255,255,255,0.97);
+  --color-text:          #1f2a37;
+  --color-text-secondary:#374151;
+  --color-text-muted:    #5b6b7e;
+  --color-accent-1:      #0b63ce;
+  --color-accent-2:      #10b981;
+  --color-accent-3:      #f59e0b;
+  --color-glass-bg:      rgba(255,255,255,0.90);
+  --color-glass-border:  rgba(11,99,206,0.16);
+  --color-vignette:      rgba(15,23,42,0.06);
+  --font-display:        "Fredoka", "Trebuchet MS", sans-serif;
+  --font-body:           "Nunito", Arial, sans-serif;
+}
+</style>
+
+<style>
+/* ROOT & DECK NAVIGATION */
+:root {
+  --color-bg: #f4fbff;
+  --color-text: #1f2a37;
+  --glow-color-rgb: 11,99,206;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--color-bg);
+  height: 100vh; width: 100vw;
+  overflow: hidden;
+  font-family: "Nunito", Arial, sans-serif;
+  color: var(--color-text);
+}
+.deck { width: 100vw; height: 100vh; position: relative; }
+.slide {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--color-bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.96);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  pointer-events: none; overflow: hidden;
+}
+.slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
+.slide > .content {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1100px;
+  padding: clamp(1.2rem, 3vw, 3rem);
+}
+
+/* NAV */
+.nav-controls {
+  position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 14px; z-index: 100;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+  padding: 8px 22px; border-radius: 40px;
+  border: 1px solid rgba(11,99,206,0.16);
+  box-shadow: 0 4px 24px rgba(11,99,206,0.10);
+}
+.nav-btn {
+  width: 36px; height: 36px; border: none;
+  background: rgba(15,23,42,0.06); color: #0b63ce;
+  border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-btn:hover { background: rgba(15,23,42,0.12); transform: translateY(-1px); }
+.slide-dots { display: flex; gap: 7px; }
+.slide-dots .dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: rgba(148,163,184,0.6); cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.slide-dots .dot.active { background: #0b63ce; transform: scale(1.4); }
+.slide-counter { font-size: 0.78rem; color: #64748b; min-width: 38px; text-align: center; font-family: "Nunito", Arial, sans-serif; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(18px); }
+
+/* GRADIENT MESH BLOBS */
+@keyframes float-slow {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(50px,-40px) scale(1.1); }
+  50%  { transform: translate(-30px,35px) scale(0.92); }
+  75%  { transform: translate(40px,15px) scale(1.06); }
+  100% { transform: translate(0,0) scale(1); }
+}
+@keyframes float-drift {
+  0%   { transform: translate(0,0) scale(1) rotate(0deg); }
+  33%  { transform: translate(-40px,-50px) scale(1.12) rotate(2deg); }
+  66%  { transform: translate(35px,25px) scale(0.9) rotate(-2deg); }
+  100% { transform: translate(0,0) scale(1) rotate(0deg); }
+}
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(70px); animation: float-slow 12s ease-in-out infinite;
+}
+.blob:nth-child(2) { animation: float-drift 16s ease-in-out infinite; }
+.blob:nth-child(3) { animation: float-slow 20s ease-in-out infinite reverse; }
+
+/* VIGNETTE */
+.slide::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(15,23,42,0.06) 100%);
+}
+
+/* PARTICLE CANVAS */
+.particle-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+/* MOUSE SPOTLIGHT */
+.mouse-spotlight { position: fixed; inset: 0; z-index: 99; pointer-events: none; }
+
+/* GLOW EFFECTS */
+.text-glow { text-shadow: 0 0 18px rgba(11,99,206,0.35), 0 0 36px rgba(11,99,206,0.15); }
+.stat-glow { text-shadow: 0 0 24px rgba(11,99,206,0.5), 0 0 48px rgba(11,99,206,0.2); }
+@keyframes glow-pulse {
+  0%,100% { text-shadow: 0 0 18px rgba(11,99,206,0.4), 0 0 36px rgba(11,99,206,0.15); }
+  50%      { text-shadow: 0 0 28px rgba(11,99,206,0.7), 0 0 56px rgba(11,99,206,0.3); }
+}
+.glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+
+/* CARD COMPONENTS */
+.card {
+  background: rgba(255,255,255,0.93);
+  border: 1px solid rgba(11,99,206,0.13);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 3px 16px rgba(11,99,206,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: "Nunito", Arial, sans-serif;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(11,99,206,0.13); }
+.card-blue  { border-left: 4px solid #0b63ce; }
+.card-green { border-left: 4px solid #10b981; }
+.card-amber { border-left: 4px solid #f59e0b; }
+.card-red   { border-left: 4px solid #ef4444; }
+.card-purple{ border-left: 4px solid #8b5cf6; }
+
+/* TAGS */
+.tag {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  font-family: "Nunito", Arial, sans-serif;
+}
+.tag-blue   { background: rgba(11,99,206,0.12); color: #1d4ed8; }
+.tag-green  { background: rgba(16,185,129,0.12); color: #065f46; }
+.tag-amber  { background: rgba(245,158,11,0.12); color: #92400e; }
+.tag-red    { background: rgba(239,68,68,0.12); color: #991b1b; }
+.tag-purple { background: rgba(139,92,246,0.12); color: #5b21b6; }
+
+/* BAR CHART */
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.bar-label { width: 90px; font-size: 0.82rem; font-weight: 700; text-align: right; color: #374151; flex-shrink: 0; font-family: "Nunito", Arial, sans-serif; }
+.bar-track { flex: 1; height: 26px; border-radius: 8px; background: rgba(11,99,206,0.08); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 8px; width: 0%; transition: width 0.9s cubic-bezier(0.16,1,0.3,1); }
+.bar-val { width: 48px; font-size: 0.82rem; font-weight: 800; color: #0b63ce; flex-shrink: 0; font-family: "Nunito", Arial, sans-serif; }
+
+/* VIDEO EMBED */
+.video-thumb-wrap {
+  position: relative; cursor: pointer;
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 6px 28px rgba(15,23,42,0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+.video-thumb-wrap:hover { transform: scale(1.02); box-shadow: 0 10px 36px rgba(15,23,42,0.22); }
+.video-thumb-wrap img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+.play-btn {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,0,0,0.9);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  transition: transform 0.2s;
+}
+.video-thumb-wrap:hover .play-btn { transform: translate(-50%,-50%) scale(1.12); }
+.play-btn svg { margin-left: 4px; }
+.video-iframe-wrap {
+  position: relative; border-radius: 14px; overflow: hidden;
+  aspect-ratio: 16/9;
+  box-shadow: 0 6px 28px rgba(15,23,42,0.18);
+  flex-shrink: 0;
+}
+.video-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
+
+/* SECTION PILL */
+.section-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, #0b63ce, #10b981);
+  color: #fff; padding: 6px 16px; border-radius: 30px;
+  font-size: 0.78rem; font-weight: 800;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  box-shadow: 0 3px 14px rgba(11,99,206,0.25);
+  font-family: "Nunito", Arial, sans-serif;
+}
+
+/* TIMELINE */
+.timeline-track {
+  position: relative; padding-left: 28px;
+  border-left: 3px solid rgba(11,99,206,0.2);
+}
+.timeline-node {
+  position: absolute; left: -9px; top: 4px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #0b63ce;
+  box-shadow: 0 0 0 3px rgba(11,99,206,0.18);
+}
+
+/* DECO SHAPES */
+.deco-shape {
+  position: absolute; pointer-events: none; z-index: 1;
+  will-change: transform; transition: transform 0.05s linear;
+}
+
+/* LAYER STACK VISUAL */
+.layer-stack { display: flex; flex-direction: column-reverse; gap: 4px; }
+.layer-item {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(11,99,206,0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 8px rgba(11,99,206,0.06);
+  font-family: "Nunito", Arial, sans-serif;
+  transition: transform 0.2s;
+}
+.layer-item:hover { transform: translateX(4px); }
+.layer-eye { width: 20px; height: 20px; border-radius: 50%; background: rgba(11,99,206,0.12); display:flex;align-items:center;justify-content:center;font-size:12px; }
+.layer-thumb { width: 32px; height: 24px; border-radius: 5px; flex-shrink: 0; }
+
+/* VOCAB CARD */
+.vocab-card {
+  background: linear-gradient(135deg, rgba(11,99,206,0.06), rgba(16,185,129,0.06));
+  border: 1.5px solid rgba(11,99,206,0.14);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: "Nunito", Arial, sans-serif;
+}
+
+/* QUESTION BUBBLE */
+.question-bubble {
+  background: linear-gradient(135deg,rgba(11,99,206,0.08),rgba(16,185,129,0.06));
+  border-left: 4px solid #0b63ce;
+  border-radius: 0 12px 12px 0;
+  padding: 12px 16px;
+  font-style: italic;
+  color: #1d4ed8;
+  font-weight: 700;
+  font-family: "Nunito", Arial, sans-serif;
+}
+
+/* RULE OF THIRDS GRID */
+.rot-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(3,1fr);
+  width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0;
+}
+.rot-cell { border: 1.5px solid rgba(255,255,255,0.55); }
+.rot-dot {
+  position: absolute;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.35);
+  transform: translate(-50%,-50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+}
+</style>
+</head>
+<body>
+<div class="mouse-spotlight"></div>
+<div class="deck">
+
+<!-- ═══ SLIDE 1 · TITLE ═══ -->
+<div class="slide slide-1 active" data-slide="1">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.11;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.10;"></div>
+    <div class="blob" style="width:200px;height:200px;top:45%;left:10%;background:#f59e0b;opacity:0.09;"></div>
+  </div>
+  <canvas class="particle-canvas"></canvas>
+  <div class="content" style="text-align:center;">
+    <div style="font-size:clamp(3rem,7vw,5.5rem);margin-bottom:0.8rem;animation:float 3s ease-in-out infinite;" class="reveal">🎨</div>
+    <div class="reveal" style="display:inline-block;background:linear-gradient(135deg,#0b63ce,#10b981);color:#fff;padding:4px 16px;border-radius:20px;font-size:0.78rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;font-family:'Nunito',sans-serif;">Lesson 2 · Digital Art</div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.15;margin-bottom:0.6rem;">
+      Understanding Layers &<br>Simple Composition
+    </h1>
+    <p class="reveal" style="font-size:clamp(0.82rem,1.3vw,1.05rem);color:#5b6b7e;letter-spacing:5px;text-transform:uppercase;font-weight:600;margin-bottom:1.4rem;font-family:'Nunito',sans-serif;">
+      ~60 Minutes · Canva.com &amp; Photopea.com
+    </p>
+    <div class="reveal" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+      <span class="tag tag-blue">📐 Layers</span>
+      <span class="tag tag-green">🖼️ Composition</span>
+      <span class="tag tag-amber">⚖️ Balance</span>
+      <span class="tag tag-purple">🔲 Rule of Thirds</span>
+      <span class="tag tag-red">🎯 Depth</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 2 · LEARNING OBJECTIVES ═══ -->
+<div class="slide slide-2" data-slide="2">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-50px;left:-40px;background:#10b981;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:1rem;">🎯 Learning Objectives</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:700;color:#0b63ce;margin-bottom:1.2rem;">By the end of this lesson, you will be able to…</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card card-blue reveal" style="padding:14px 16px;">
+        <div style="font-size:1.6rem;margin-bottom:6px;">📚</div>
+        <p style="font-weight:800;color:#0b63ce;margin-bottom:4px;font-family:'Fredoka',sans-serif;font-size:1rem;">Understand Layers</p>
+        <p style="font-size:0.82rem;color:#374151;">Explain what digital layers are and how stacking them creates complex artwork — using <strong>Canva & Photopea</strong></p>
+      </div>
+      <div class="card card-green reveal" style="padding:14px 16px;">
+        <div style="font-size:1.6rem;margin-bottom:6px;">🗂️</div>
+        <p style="font-weight:800;color:#059669;margin-bottom:4px;font-family:'Fredoka',sans-serif;font-size:1rem;">Organise Elements</p>
+        <p style="font-size:0.82rem;color:#374151;">Separate foreground, middle ground, and background into distinct layers for clarity and editability</p>
+      </div>
+      <div class="card card-amber reveal" style="padding:14px 16px;">
+        <div style="font-size:1.6rem;margin-bottom:6px;">🎯</div>
+        <p style="font-weight:800;color:#92400e;margin-bottom:4px;font-family:'Fredoka',sans-serif;font-size:1rem;">Apply Composition</p>
+        <p style="font-size:0.82rem;color:#374151;">Use balance, contrast, and the <strong>Rule of Thirds</strong> to arrange elements within a digital canvas</p>
+      </div>
+      <div class="card card-purple reveal" style="padding:14px 16px;">
+        <div style="font-size:1.6rem;margin-bottom:6px;">✍️</div>
+        <p style="font-weight:800;color:#5b21b6;margin-bottom:4px;font-family:'Fredoka',sans-serif;font-size:1rem;">Create an Illustration</p>
+        <p style="font-size:0.82rem;color:#374151;">Build a 3-layer digital illustration with a clear foreground, middle ground &amp; background on Canva</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 3 · AGENDA ═══ -->
+<div class="slide slide-3" data-slide="3">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:280px;height:280px;top:-50px;right:-50px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-30px;background:#f59e0b;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:1rem;">📋 Today's Roadmap · 60 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:700;color:#0b63ce;margin-bottom:1.2rem;">What We'll Explore</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card card-blue reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#0b63ce;margin-bottom:3px;font-family:'Fredoka',sans-serif;">① Warm-Up &amp; Do Now <span style="font-size:0.75rem;color:#5b6b7e;font-weight:600;">(5 min)</span></p>
+        <p style="font-size:0.82rem;color:#374151;">Review layered artworks — discuss depth &amp; organisation</p>
+      </div>
+      <div class="card card-green reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#059669;margin-bottom:3px;font-family:'Fredoka',sans-serif;">② What Are Layers? <span style="font-size:0.75rem;color:#5b6b7e;font-weight:600;">(10 min)</span></p>
+        <p style="font-size:0.82rem;color:#374151;">Concepts, vocabulary &amp; real-world examples</p>
+      </div>
+      <div class="card card-amber reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#92400e;margin-bottom:3px;font-family:'Fredoka',sans-serif;">③ Composition Principles <span style="font-size:0.75rem;color:#5b6b7e;font-weight:600;">(10 min)</span></p>
+        <p style="font-size:0.82rem;color:#374151;">Balance, contrast &amp; Rule of Thirds</p>
+      </div>
+      <div class="card card-purple reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#5b21b6;margin-bottom:3px;font-family:'Fredoka',sans-serif;">④ Demo: Canva &amp; Photopea <span style="font-size:0.75rem;color:#5b6b7e;font-weight:600;">(10 min)</span></p>
+        <p style="font-size:0.82rem;color:#374151;">Layer panels, adding &amp; reordering layers</p>
+      </div>
+      <div class="card card-red reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#991b1b;margin-bottom:3px;font-family:'Fredoka',sans-serif;">⑤ Create Your Illustration <span style="font-size:0.75rem;color:#5b6b7e;font-weight:600;">(20 min)</span></p>
+        <p style="font-size:0.82rem;color:#374151;">3-layer digital artwork with composition techniques</p>
+      </div>
+      <div class="card reveal" style="padding:12px 16px;border-left:4px solid #0b63ce;">
+        <p style="font-weight:800;color:#0b63ce;margin-bottom:3px;font-family:'Fredoka',sans-serif;">⑥ Share &amp; Exit Ticket <span style="font-size:0.75rem;color:#5b6b7e;font-weight:600;">(5 min)</span></p>
+        <p style="font-size:0.82rem;color:#374151;">Gallery share + one thing learned reflection</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 4 · DO NOW / WARM-UP ═══ -->
+<div class="slide slide-4" data-slide="4">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-70px;right:-70px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient"></canvas>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:1rem;background:linear-gradient(135deg,#10b981,#0b63ce);">🌅 Do Now · 5 Minutes</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:#0b63ce;margin-bottom:1rem;">Look at the artwork on the board.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+      <div class="question-bubble reveal" style="grid-column:1/-1;margin-bottom:4px;">
+        <span style="font-size:1rem;">🤔 Think &amp; discuss with a partner:</span>
+      </div>
+      <div class="card card-blue reveal" style="padding:14px;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">👀</div>
+        <p style="font-weight:800;color:#0b63ce;font-size:0.9rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">What do you see first?</p>
+        <p style="font-size:0.8rem;color:#374151;">Which element catches your eye immediately? Why do you think that is?</p>
+      </div>
+      <div class="card card-green reveal" style="padding:14px;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">🗂️</div>
+        <p style="font-weight:800;color:#059669;font-size:0.9rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Spot the layers</p>
+        <p style="font-size:0.8rem;color:#374151;">Can you identify 2 or more distinct visual layers stacked in this image?</p>
+      </div>
+      <div class="card card-amber reveal" style="padding:14px;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">⚖️</div>
+        <p style="font-weight:800;color:#92400e;font-size:0.9rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Does it feel balanced?</p>
+        <p style="font-size:0.8rem;color:#374151;">Does the composition feel balanced or unbalanced? What creates that feeling?</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:10px;background:rgba(11,99,206,0.06);border-radius:10px;padding:10px 14px;font-size:0.82rem;color:#374151;">
+      ✏️ <strong>Write one observation in your notebook.</strong> We'll revisit it at the Exit Ticket!
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 5 · VOCABULARY ═══ -->
+<div class="slide slide-5" data-slide="5">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-50px;right:-40px;background:#8b5cf6;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:1rem;background:linear-gradient(135deg,#8b5cf6,#0b63ce);">📖 Key Vocabulary</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:#0b63ce;margin-bottom:1rem;">Words to Know</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+      <div class="vocab-card reveal">
+        <p style="font-weight:800;color:#0b63ce;font-size:0.95rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Layers 🗂️</p>
+        <p style="font-size:0.8rem;color:#374151;">Transparent sheets stacked on top of each other. Each holds separate elements you can edit independently.</p>
+      </div>
+      <div class="vocab-card reveal">
+        <p style="font-weight:800;color:#059669;font-size:0.95rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Composition 🖼️</p>
+        <p style="font-size:0.8rem;color:#374151;">The arrangement of visual elements within a frame to create a pleasing or purposeful image.</p>
+      </div>
+      <div class="vocab-card reveal">
+        <p style="font-weight:800;color:#92400e;font-size:0.95rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Foreground 🌿</p>
+        <p style="font-size:0.8rem;color:#374151;">The part of the image that appears closest to the viewer — usually at the bottom and largest in size.</p>
+      </div>
+      <div class="vocab-card reveal">
+        <p style="font-weight:800;color:#5b21b6;font-size:0.95rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Background 🌄</p>
+        <p style="font-size:0.8rem;color:#374151;">The furthest part from the viewer — sky, horizon, distant scenery. Usually smallest and least detailed.</p>
+      </div>
+      <div class="vocab-card reveal">
+        <p style="font-weight:800;color:#991b1b;font-size:0.95rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Balance ⚖️</p>
+        <p style="font-size:0.8rem;color:#374151;">The visual weight distribution in an image. Can be symmetrical (mirror) or asymmetrical (different but equal).</p>
+      </div>
+      <div class="vocab-card reveal">
+        <p style="font-weight:800;color:#0b63ce;font-size:0.95rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">Contrast 🔲</p>
+        <p style="font-size:0.8rem;color:#374151;">The difference between light and dark, or between colours — helps focal elements stand out clearly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 6 · WHAT ARE LAYERS? ═══ -->
+<div class="slide slide-6" data-slide="6">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;right:-60px;background:#0b63ce;opacity:0.08;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:#10b981;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient"></canvas>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:1rem;">📚 What Are Layers?</div>
+    <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:20px;align-items:center;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">Think of layers like a sandwich 🥪</h2>
+        <p class="reveal" style="font-size:0.88rem;color:#374151;margin-bottom:0.8rem;">Each ingredient sits on its own "level." You can remove the tomato without affecting the cheese — just like digital layers! Every layer holds separate elements you can move, edit, or delete <strong>without touching the others</strong>.</p>
+        <div class="layer-stack reveal">
+          <div class="layer-item">
+            <div class="layer-eye">👁️</div>
+            <div class="layer-thumb" style="background:linear-gradient(135deg,#bfdbfe,#93c5fd);"></div>
+            <div>
+              <p style="font-weight:800;font-size:0.82rem;color:#0b63ce;font-family:'Fredoka',sans-serif;">Layer 1 — Background</p>
+              <p style="font-size:0.72rem;color:#5b6b7e;">Sky, horizon, distant elements</p>
+            </div>
+          </div>
+          <div class="layer-item" style="transform:translateX(8px);">
+            <div class="layer-eye">👁️</div>
+            <div class="layer-thumb" style="background:linear-gradient(135deg,#bbf7d0,#6ee7b7);"></div>
+            <div>
+              <p style="font-weight:800;font-size:0.82rem;color:#059669;font-family:'Fredoka',sans-serif;">Layer 2 — Middle Ground</p>
+              <p style="font-size:0.72rem;color:#5b6b7e;">Hills, trees, buildings in distance</p>
+            </div>
+          </div>
+          <div class="layer-item" style="transform:translateX(16px);">
+            <div class="layer-eye">👁️</div>
+            <div class="layer-thumb" style="background:linear-gradient(135deg,#fde68a,#fbbf24);"></div>
+            <div>
+              <p style="font-weight:800;font-size:0.82rem;color:#92400e;font-family:'Fredoka',sans-serif;">Layer 3 — Foreground</p>
+              <p style="font-size:0.72rem;color:#5b6b7e;">Closest objects — largest &amp; most detailed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/52b978235ea8c848b2fa684df3bab116181b232d.jpg"
+             alt="Layered digital art illustration showing stacked visual layers like a burger"
+             style="width:100%;border-radius:14px;box-shadow:0 6px 28px rgba(11,99,206,0.15);object-fit:cover;max-height:280px;">
+        <p style="font-size:0.7rem;color:#5b6b7e;margin-top:6px;text-align:center;">
+          <a href="https://wingedcanvas.ac-page.com/digital-art-video-companion-guide" target="_blank" style="color:#0b63ce;">Source: Winged Canvas</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 7 · LAYERS IN DIGITAL ART VIDEO ═══ -->
+<div class="slide slide-7" data-slide="7">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-30px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;">🎥 Video: Layers Explained</div>
+    <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:18px;align-items:start;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.8vw,1.8rem);font-weight:700;color:#0b63ce;margin-bottom:0.6rem;">How to Use Layers (like Burgers!)</h2>
+        <p class="reveal" style="font-size:0.82rem;color:#374151;margin-bottom:0.8rem;">Watch how layers work in digital art — the burger analogy makes it crystal clear! Each ingredient = one layer.</p>
+        <div class="reveal">
+          <div class="video-thumb-wrap" onclick="playVideo(this,'YTZnTASRtDg')" style="max-width:100%;">
+            <img src="https://img.youtube.com/vi/YTZnTASRtDg/maxresdefault.jpg"
+                 onerror="this.src='https://img.youtube.com/vi/YTZnTASRtDg/hqdefault.jpg'"
+                 alt="How to Use Layers (like Burgers) Digital Art for Beginners thumbnail">
+            <div class="play-btn"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;">
+            <a href="https://www.youtube.com/watch?v=YTZnTASRtDg" target="_blank" style="color:#0b63ce;">▶ youtube.com/watch?v=YTZnTASRtDg</a> · Winged Canvas
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="card card-blue reveal" style="margin-bottom:10px;padding:12px 14px;">
+          <p style="font-weight:800;color:#0b63ce;font-size:0.85rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">🤔 Watch &amp; Think</p>
+          <p style="font-size:0.8rem;color:#374151;">How many layers does the artist use? What would happen if you merged them all?</p>
+        </div>
+        <div class="card card-green reveal" style="padding:12px 14px;">
+          <p style="font-weight:800;color:#059669;font-size:0.85rem;margin-bottom:6px;font-family:'Fredoka',sans-serif;">🔑 Key Benefits of Layers</p>
+          <ul style="font-size:0.78rem;color:#374151;line-height:1.7;padding-left:1.2em;">
+            <li>Edit one part without affecting others</li>
+            <li>Rearrange elements easily</li>
+            <li>Control opacity &amp; blend modes</li>
+            <li>Non-destructive editing workflow</li>
+            <li>Undo only what you need</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 8 · FOREGROUND MIDGROUND BACKGROUND ═══ -->
+<div class="slide slide-8" data-slide="8">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;right:-50px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#10b981,#0b63ce);">🌄 Foreground · Middle Ground · Background</div>
+    <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:18px;align-items:center;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.8vw,1.8rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">Three Zones Create Depth</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card card-amber reveal" style="padding:12px 16px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:1.6rem;">🌿</span>
+              <div>
+                <p style="font-weight:800;color:#92400e;font-size:0.88rem;font-family:'Fredoka',sans-serif;">Foreground — Closest to viewer</p>
+                <p style="font-size:0.78rem;color:#374151;">Largest elements, most detail, highest contrast. Sits at the <em>bottom</em> of the canvas.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card card-green reveal" style="padding:12px 16px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:1.6rem;">🏘️</span>
+              <div>
+                <p style="font-weight:800;color:#059669;font-size:0.88rem;font-family:'Fredoka',sans-serif;">Middle Ground — In between</p>
+                <p style="font-size:0.78rem;color:#374151;">Medium-sized elements with moderate detail. Connects foreground to background.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card card-blue reveal" style="padding:12px 16px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:1.6rem;">🌄</span>
+              <div>
+                <p style="font-weight:800;color:#0b63ce;font-size:0.88rem;font-family:'Fredoka',sans-serif;">Background — Furthest away</p>
+                <p style="font-size:0.78rem;color:#374151;">Small elements, least detail, softer colours. Sky, distant hills, horizon.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:8px;">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/c5ce503af38f165817d390cbe123398ffd502fdb.jpg"
+             alt="Landscape photo showing clear foreground midground background layers"
+             style="width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(11,99,206,0.15);object-fit:cover;max-height:210px;">
+        <p style="font-size:0.7rem;color:#5b6b7e;text-align:center;">
+          <a href="https://photojeepers.com/foreground-middleground-background-landscape-photography/" target="_blank" style="color:#0b63ce;">Source: PhotoJeepers</a>
+        </p>
+        <div class="question-bubble" style="font-size:0.78rem;">Can you spot 3 layers in this photo? 🤔</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 9 · FMB VIDEO ═══ -->
+<div class="slide slide-9" data-slide="9">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:280px;height:280px;top:-55px;right:-55px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-30px;background:#f59e0b;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#10b981,#059669);">🎥 Video: Depth &amp; Layers in Landscape</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:700;color:#059669;margin-bottom:0.6rem;">Foreground, Middleground, Background — CtrlPaint</h2>
+        <p class="reveal" style="font-size:0.82rem;color:#374151;margin-bottom:0.8rem;">Film studies breakdown showing how depth &amp; scale relationships work using the 3-zone composition model in digital painting.</p>
+        <div class="reveal">
+          <div class="video-thumb-wrap" onclick="playVideo(this,'ylzvu_oI3gQ')" style="max-width:100%;">
+            <img src="https://img.youtube.com/vi/ylzvu_oI3gQ/maxresdefault.jpg"
+                 onerror="this.src='https://img.youtube.com/vi/ylzvu_oI3gQ/hqdefault.jpg'"
+                 alt="Foreground Middleground Background CtrlPaint video thumbnail">
+            <div class="play-btn"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;">
+            <a href="https://www.youtube.com/watch?v=ylzvu_oI3gQ" target="_blank" style="color:#0b63ce;">▶ youtube.com/watch?v=ylzvu_oI3gQ</a> · CtrlPaint / Digital Painting Lessons
+          </p>
+        </div>
+      </div>
+      <div>
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/0dbb278968deee9b43dc0e1748e0672d46fa0eb5.jpg"
+             alt="Digital landscape showing foreground midground background zones"
+             style="width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(16,185,129,0.15);object-fit:cover;max-height:180px;" class="reveal">
+        <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;text-align:center;" class="reveal">
+          <a href="https://www.shutterstock.com" target="_blank" style="color:#0b63ce;">Source: Digital Art Landscape Illustration</a>
+        </p>
+        <div class="card card-green reveal" style="margin-top:10px;padding:12px 14px;">
+          <p style="font-weight:800;color:#059669;font-size:0.85rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">🤔 Discussion Prompt</p>
+          <p style="font-size:0.78rem;color:#374151;">What happens to the <em>level of detail</em> as objects get further away? Why does this help create the feeling of depth?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 10 · COMPOSITION INTRO ═══ -->
+<div class="slide slide-10" data-slide="10">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-70px;right:-70px;background:#f59e0b;opacity:0.08;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient"></canvas>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#f59e0b,#0b63ce);">🖼️ Composition</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">What makes an image <em>feel right</em>?</h2>
+        <p class="reveal" style="font-size:0.85rem;color:#374151;margin-bottom:0.8rem;">Composition is the art of arranging elements in your canvas so the viewer knows exactly where to look — and feels something when they do.</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div class="card card-blue reveal" style="padding:10px 14px;">
+            <p style="font-weight:800;color:#0b63ce;font-size:0.85rem;font-family:'Fredoka',sans-serif;">⚖️ Balance — Visual weight</p>
+            <p style="font-size:0.77rem;color:#374151;">Elements feel equally distributed so nothing feels like it's "falling off" one side</p>
+          </div>
+          <div class="card card-amber reveal" style="padding:10px 14px;">
+            <p style="font-weight:800;color:#92400e;font-size:0.85rem;font-family:'Fredoka',sans-serif;">🔲 Contrast — Difference</p>
+            <p style="font-size:0.77rem;color:#374151;">Light vs dark, large vs small, detailed vs plain — contrast creates focus points</p>
+          </div>
+          <div class="card card-green reveal" style="padding:10px 14px;">
+            <p style="font-weight:800;color:#059669;font-size:0.85rem;font-family:'Fredoka',sans-serif;">🎯 Focal Point — The star</p>
+            <p style="font-size:0.77rem;color:#374151;">Every strong composition has ONE main element the eye is drawn to first</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/38b91808c0b62054ac36b38326ac58286655658e.jpg"
+             alt="Landscape painting with rule of thirds grid overlay showing composition"
+             style="width:100%;border-radius:14px;box-shadow:0 5px 22px rgba(245,158,11,0.18);object-fit:cover;max-height:270px;">
+        <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;text-align:center;">
+          <a href="https://www.invaluable.com/blog/rule-of-thirds-in-art/" target="_blank" style="color:#0b63ce;">Source: invaluable.com — Rule of Thirds in Art</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 11 · BALANCE ═══ -->
+<div class="slide slide-11" data-slide="11">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-50px;right:-50px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#8b5cf6;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#0b63ce,#8b5cf6);">⚖️ Balance in Composition</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:700;color:#0b63ce;margin-bottom:1rem;">Two types of balance</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="card card-blue reveal" style="padding:16px 18px;">
+        <div style="text-align:center;margin-bottom:10px;">
+          <div style="display:inline-grid;grid-template-columns:1fr 1fr;gap:6px;width:120px;">
+            <div style="height:50px;background:linear-gradient(135deg,#bfdbfe,#3b82f6);border-radius:8px;"></div>
+            <div style="height:50px;background:linear-gradient(135deg,#bfdbfe,#3b82f6);border-radius:8px;"></div>
+            <div style="height:30px;background:linear-gradient(135deg,#93c5fd,#60a5fa);border-radius:6px;"></div>
+            <div style="height:30px;background:linear-gradient(135deg,#93c5fd,#60a5fa);border-radius:6px;"></div>
+          </div>
+        </div>
+        <p style="font-weight:800;color:#0b63ce;font-size:0.95rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">Symmetrical Balance</p>
+        <p style="font-size:0.78rem;color:#374151;">Both sides are mirror images of each other. Creates a sense of <strong>calm, formality, and order</strong>. Think: portraits, logos, mandalas.</p>
+        <div class="question-bubble" style="margin-top:8px;font-size:0.76rem;">Can you think of a famous symmetrical artwork? 🤔</div>
+      </div>
+      <div class="card card-purple reveal" style="padding:16px 18px;">
+        <div style="text-align:center;margin-bottom:10px;">
+          <div style="display:inline-grid;grid-template-columns:2fr 1fr;gap:6px;width:120px;">
+            <div style="height:60px;background:linear-gradient(135deg,#ddd6fe,#8b5cf6);border-radius:8px;"></div>
+            <div style="height:30px;background:linear-gradient(135deg,#c4b5fd,#7c3aed);border-radius:8px;align-self:flex-end;"></div>
+            <div style="height:25px;background:linear-gradient(135deg,#ede9fe,#a78bfa);border-radius:6px;"></div>
+            <div style="height:45px;background:linear-gradient(135deg,#c4b5fd,#7c3aed);border-radius:6px;"></div>
+          </div>
+        </div>
+        <p style="font-weight:800;color:#5b21b6;font-size:0.95rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">Asymmetrical Balance</p>
+        <p style="font-size:0.78rem;color:#374151;">Different elements balance each other through size, colour, and position. Creates <strong>dynamic tension and energy</strong>. More natural and interesting.</p>
+        <div class="question-bubble" style="margin-top:8px;font-size:0.76rem;border-left-color:#8b5cf6;color:#5b21b6;">Which type feels more exciting to you? 🤔</div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:10px;background:rgba(11,99,206,0.06);border-radius:10px;padding:9px 14px;font-size:0.8rem;color:#374151;text-align:center;">
+      💡 <strong>Pro tip:</strong> Asymmetrical balance is used in <strong>85% of professional digital illustrations</strong> — it feels more alive!
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 12 · CONTRAST ═══ -->
+<div class="slide slide-12" data-slide="12">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-50px;right:-50px;background:#ef4444;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#ef4444,#0b63ce);">🔲 Contrast</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">Contrast makes things pop!</h2>
+        <p class="reveal" style="font-size:0.83rem;color:#374151;margin-bottom:0.8rem;">Contrast is the <em>difference</em> between two elements. High contrast = easy to see. Low contrast = subtle and calm. Use it deliberately to guide the viewer's eye.</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div class="card reveal" style="padding:9px 14px;border-left:4px solid #1f2a37;">
+            <p style="font-weight:800;font-size:0.82rem;font-family:'Fredoka',sans-serif;">🌓 Value Contrast</p>
+            <p style="font-size:0.76rem;color:#374151;">Light vs dark — the most powerful contrast. White text on black = maximum readability</p>
+          </div>
+          <div class="card card-amber reveal" style="padding:9px 14px;">
+            <p style="font-weight:800;color:#92400e;font-size:0.82rem;font-family:'Fredoka',sans-serif;">🎨 Colour Contrast</p>
+            <p style="font-size:0.76rem;color:#374151;">Opposite colours (red/green, blue/orange) create vibrant, attention-grabbing contrast</p>
+          </div>
+          <div class="card card-green reveal" style="padding:9px 14px;">
+            <p style="font-weight:800;color:#059669;font-size:0.82rem;font-family:'Fredoka',sans-serif;">📐 Size Contrast</p>
+            <p style="font-size:0.76rem;color:#374151;">A tiny object next to a large one tells the viewer immediately what's more important</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+          <div style="background:#1f2a37;border-radius:10px;padding:20px;display:flex;align-items:center;justify-content:center;">
+            <span style="color:#f4fbff;font-weight:800;font-family:'Fredoka',sans-serif;font-size:1.1rem;">HIGH<br>CONTRAST</span>
+          </div>
+          <div style="background:#c0cfe0;border-radius:10px;padding:20px;display:flex;align-items:center;justify-content:center;">
+            <span style="color:#8fa3b5;font-weight:800;font-family:'Fredoka',sans-serif;font-size:1.1rem;">low<br>contrast</span>
+          </div>
+        </div>
+        <div class="question-bubble reveal">Which is easier to read? Why does that matter for your artwork? 🤔</div>
+        <div class="card card-red reveal" style="margin-top:8px;padding:10px 14px;">
+          <p style="font-weight:800;color:#991b1b;font-size:0.82rem;margin-bottom:3px;font-family:'Fredoka',sans-serif;">🎯 Remember:</p>
+          <p style="font-size:0.76rem;color:#374151;">Use <strong>high contrast</strong> at your focal point to draw the eye there first. Reduce contrast in background layers to push them back.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 13 · RULE OF THIRDS ═══ -->
+<div class="slide slide-13" data-slide="13">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;right:-60px;background:#f59e0b;opacity:0.09;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#f59e0b,#ef4444);">🔲 Rule of Thirds</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:700;color:#0b63ce;margin-bottom:0.6rem;">Divide your canvas into 9 equal parts</h2>
+        <p class="reveal" style="font-size:0.83rem;color:#374151;margin-bottom:0.8rem;">Place your most important element at one of the <strong>4 intersection points</strong> (power points). This creates natural, dynamic composition that feels engaging — not boring and centered.</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div class="card card-amber reveal" style="padding:9px 14px;">
+            <p style="font-size:0.8rem;color:#374151;"><strong>✅ Do:</strong> Place your subject along the lines or at intersections</p>
+          </div>
+          <div class="card card-red reveal" style="padding:9px 14px;">
+            <p style="font-size:0.8rem;color:#374151;"><strong>❌ Avoid:</strong> Dead-center placement — it feels static and uninteresting</p>
+          </div>
+          <div class="card card-green reveal" style="padding:9px 14px;">
+            <p style="font-size:0.8rem;color:#374151;"><strong>💡 Tip:</strong> Align your horizon line with the top or bottom third line</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <!-- Rule of Thirds visual grid -->
+        <div style="position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;box-shadow:0 5px 22px rgba(245,158,11,0.2);">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/6ad83e2747f2427b9bfe0629a56942da9eea8784.jpg"
+               alt="Rule of thirds grid overlay on portrait painting"
+               style="width:100%;height:100%;object-fit:cover;">
+          <div class="rot-grid">
+            <div class="rot-cell"></div><div class="rot-cell"></div><div class="rot-cell"></div>
+            <div class="rot-cell"></div><div class="rot-cell"></div><div class="rot-cell"></div>
+            <div class="rot-cell"></div><div class="rot-cell"></div><div class="rot-cell"></div>
+          </div>
+          <div class="rot-dot" style="left:33.33%;top:33.33%;"></div>
+          <div class="rot-dot" style="left:66.66%;top:33.33%;"></div>
+          <div class="rot-dot" style="left:33.33%;top:66.66%;"></div>
+          <div class="rot-dot" style="left:66.66%;top:66.66%;"></div>
+        </div>
+        <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;text-align:center;">
+          <a href="https://www.invaluable.com/blog/rule-of-thirds-in-art/" target="_blank" style="color:#0b63ce;">Source: invaluable.com — Rule of Thirds in Art</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 14 · RULE OF THIRDS VIDEO ═══ -->
+<div class="slide slide-14" data-slide="14">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:280px;height:280px;top:-50px;right:-50px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-30px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#f59e0b,#0b63ce);">🎥 Video: Rule of Thirds</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:700;color:#0b63ce;margin-bottom:0.6rem;">How to Use the Rule of Thirds for Digital Art</h2>
+        <p class="reveal" style="font-size:0.82rem;color:#374151;margin-bottom:0.8rem;">See the Rule of Thirds applied in real digital artwork — how to place subjects, horizons, and focal points to create dynamic compositions.</p>
+        <div class="reveal">
+          <div class="video-thumb-wrap" onclick="playVideo(this,'DlW6xOi8gAg')" style="max-width:100%;">
+            <img src="https://img.youtube.com/vi/DlW6xOi8gAg/maxresdefault.jpg"
+                 onerror="this.src='https://img.youtube.com/vi/DlW6xOi8gAg/hqdefault.jpg'"
+                 alt="How to Use the Rule of Thirds for Digital Art thumbnail">
+            <div class="play-btn"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;">
+            <a href="https://www.youtube.com/watch?v=DlW6xOi8gAg" target="_blank" style="color:#0b63ce;">▶ youtube.com/watch?v=DlW6xOi8gAg</a> · Aaron Rutten · Digital Art Smart
+          </p>
+        </div>
+      </div>
+      <div>
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/0ca40e1635f847164fb3fb1aee21ebb9f1a940ac.jpg"
+             alt="Abstract art with rule of thirds grid overlay"
+             style="width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(245,158,11,0.15);object-fit:cover;max-height:160px;" class="reveal">
+        <p style="font-size:0.7rem;color:#5b6b7e;margin-top:4px;text-align:center;" class="reveal">
+          <a href="https://www.invaluable.com/blog/rule-of-thirds-in-art/" target="_blank" style="color:#0b63ce;">Source: invaluable.com</a>
+        </p>
+        <div class="card card-amber reveal" style="margin-top:10px;padding:10px 14px;">
+          <p style="font-weight:800;color:#92400e;font-size:0.83rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">🤔 Watch &amp; Notice</p>
+          <p style="font-size:0.77rem;color:#374151;">Where does Aaron place his main subject? Does the composition feel more or less interesting than center-placement? Why?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 15 · LAYERS IN PHOTOPEA ═══ -->
+<div class="slide slide-15" data-slide="15">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-55px;right:-55px;background:#0b63ce;opacity:0.08;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-45px;left:-35px;background:#10b981;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#0b63ce,#10b981);">💻 Demo: Layers in Photopea</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:700;color:#0b63ce;margin-bottom:0.6rem;">Understanding Layers in Photopea</h2>
+        <p class="reveal" style="font-size:0.82rem;color:#374151;margin-bottom:0.7rem;">Step-by-step tutorial for beginners — how to create, reorder, and use layers in Photopea (free Photoshop alternative at photopea.com)</p>
+        <div class="reveal">
+          <div class="video-thumb-wrap" onclick="playVideo(this,'AmQTDS6tx2c')" style="max-width:100%;">
+            <img src="https://img.youtube.com/vi/AmQTDS6tx2c/maxresdefault.jpg"
+                 onerror="this.src='https://img.youtube.com/vi/AmQTDS6tx2c/hqdefault.jpg'"
+                 alt="Photopea Understanding Layers tutorial thumbnail">
+            <div class="play-btn"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;">
+            <a href="https://www.youtube.com/watch?v=AmQTDS6tx2c" target="_blank" style="color:#0b63ce;">▶ youtube.com/watch?v=AmQTDS6tx2c</a> · Tutor Tube · Photopea Tutorial
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="card card-blue reveal" style="padding:12px 14px;margin-bottom:8px;">
+          <p style="font-weight:800;color:#0b63ce;font-size:0.85rem;margin-bottom:6px;font-family:'Fredoka',sans-serif;">📋 What to look for in the demo:</p>
+          <ul style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.2em;">
+            <li>Where is the <strong>Layers panel</strong> on screen?</li>
+            <li>How do you add a <strong>new layer</strong>?</li>
+            <li>How do you <strong>reorder</strong> layers?</li>
+            <li>What happens when you click the <strong>eye icon</strong>?</li>
+          </ul>
+        </div>
+        <div class="card card-green reveal" style="padding:12px 14px;">
+          <p style="font-weight:800;color:#059669;font-size:0.85rem;margin-bottom:4px;font-family:'Fredoka',sans-serif;">🔗 Try it yourself:</p>
+          <p style="font-size:0.78rem;color:#374151;">Open <a href="https://www.photopea.com" target="_blank" style="color:#0b63ce;font-weight:700;">photopea.com</a> and:</p>
+          <ol style="font-size:0.76rem;color:#374151;line-height:1.8;padding-left:1.4em;margin-top:4px;">
+            <li>Create a new document (800×600px)</li>
+            <li>Add 3 layers and name them</li>
+            <li>Draw a simple shape on each</li>
+            <li>Try reordering them!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 16 · CANVA LAYERS DEMO ═══ -->
+<div class="slide slide-16" data-slide="16">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:290px;height:290px;top:-55px;right:-55px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:210px;height:210px;bottom:-45px;left:-35px;background:#f59e0b;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#10b981,#0b63ce);">💻 Demo: Layers in Canva</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:700;color:#059669;margin-bottom:0.6rem;">How to Use Layers in Canva</h2>
+        <p class="reveal" style="font-size:0.82rem;color:#374151;margin-bottom:0.7rem;">Learn Canva's layer system — the Position tool, moving elements forward/backward, and creating multi-layer design effects.</p>
+        <div class="reveal">
+          <div class="video-thumb-wrap" onclick="playVideo(this,'S5-rhxHbBJI')" style="max-width:100%;">
+            <img src="https://img.youtube.com/vi/S5-rhxHbBJI/maxresdefault.jpg"
+                 onerror="this.src='https://img.youtube.com/vi/S5-rhxHbBJI/hqdefault.jpg'"
+                 alt="How to Use Layers in Canva Beginner Tutorial thumbnail">
+            <div class="play-btn"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;">
+            <a href="https://www.youtube.com/watch?v=S5-rhxHbBJI" target="_blank" style="color:#0b63ce;">▶ youtube.com/watch?v=S5-rhxHbBJI</a> · Canva Layers Beginner Tutorial (2026)
+          </p>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card card-green reveal" style="padding:12px 14px;">
+            <p style="font-weight:800;color:#059669;font-size:0.85rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">📋 Canva Layer Steps:</p>
+            <ol style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.4em;">
+              <li>Open Canva → <strong>Create New Design</strong></li>
+              <li>Click any element → click <strong>Position</strong></li>
+              <li>Choose the <strong>Layers</strong> tab</li>
+              <li>Drag layers up/down to reorder</li>
+              <li>Click <strong>eye icon</strong> to show/hide</li>
+            </ol>
+          </div>
+          <div class="question-bubble reveal">
+            In Canva, how is the Layers panel different from what you saw in Photopea? What's similar? 🤔
+          </div>
+          <div class="reveal" style="background:rgba(16,185,129,0.06);border-radius:10px;padding:8px 12px;font-size:0.76rem;color:#374151;">
+            🔗 <strong>Go to:</strong> <a href="https://www.canva.com" target="_blank" style="color:#0b63ce;font-weight:700;">canva.com</a> → Start a blank canvas (1080×1080px) for your project
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 17 · COMPOSITION VIDEO ═══ -->
+<div class="slide slide-17" data-slide="17">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-55px;right:-55px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-45px;left:-35px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#f59e0b,#ef4444);">🎥 Video: Composition for Beginners</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.8vw,1.75rem);font-weight:700;color:#0b63ce;margin-bottom:0.6rem;">Composition for Artists — A Beginner's Guide</h2>
+        <p class="reveal" style="font-size:0.82rem;color:#374151;margin-bottom:0.8rem;">Balance, focal point, golden ratio, Rule of Thirds, rhythm &amp; repetition — all the fundamentals in one clear walkthrough.</p>
+        <div class="reveal">
+          <div class="video-thumb-wrap" onclick="playVideo(this,'jlbbffkavoE')" style="max-width:100%;">
+            <img src="https://img.youtube.com/vi/jlbbffkavoE/maxresdefault.jpg"
+                 onerror="this.src='https://img.youtube.com/vi/jlbbffkavoE/hqdefault.jpg'"
+                 alt="Composition for Artists A Beginners Guide thumbnail">
+            <div class="play-btn"><svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p style="font-size:0.7rem;color:#5b6b7e;margin-top:5px;">
+            <a href="https://www.youtube.com/watch?v=jlbbffkavoE" target="_blank" style="color:#0b63ce;">▶ youtube.com/watch?v=jlbbffkavoE</a> · Reese Artworks (2023)
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="card card-blue reveal" style="padding:12px 14px;margin-bottom:8px;">
+          <p style="font-weight:800;color:#0b63ce;font-size:0.85rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">📋 Video covers:</p>
+          <ul style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.2em;">
+            <li>Balance (symmetrical vs asymmetrical)</li>
+            <li>Focal point — where should the eye go?</li>
+            <li>The Golden Ratio in practice</li>
+            <li>Rule of Thirds grid walkthrough</li>
+            <li>Rhythm &amp; repetition in composition</li>
+          </ul>
+        </div>
+        <div class="question-bubble reveal">
+          After watching: which technique do you want to try most in your illustration? Why? 🤔
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 18 · STUDENT ACTIVITY INSTRUCTIONS ═══ -->
+<div class="slide slide-18" data-slide="18">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:320px;height:320px;top:-60px;right:-60px;background:#0b63ce;opacity:0.09;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:#10b981;opacity:0.08;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient"></canvas>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#0b63ce,#10b981);">✍️ Create Your Illustration · 20 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">Your Digital Landscape Challenge</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="card card-blue reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#0b63ce;font-size:0.88rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">📋 Requirements</p>
+        <ul style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.2em;">
+          <li><strong>At least 3 layers</strong> — foreground, middle ground, background</li>
+          <li>Use the <strong>Rule of Thirds</strong> — place your focal point off-centre</li>
+          <li>Show <strong>balance</strong> — symmetrical or asymmetrical</li>
+          <li>Use <strong>contrast</strong> — make your focal element stand out</li>
+        </ul>
+      </div>
+      <div class="card card-green reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#059669;font-size:0.88rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">🛠️ Tools to Use</p>
+        <ul style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.2em;">
+          <li><a href="https://www.canva.com" target="_blank" style="color:#0b63ce;font-weight:700;">canva.com</a> — drag &amp; drop layers</li>
+          <li><a href="https://www.photopea.com" target="_blank" style="color:#0b63ce;font-weight:700;">photopea.com</a> — paint &amp; layer effects</li>
+          <li>Shapes, brushes, images, text allowed</li>
+          <li>Name your layers! (Background / Mid / FG)</li>
+        </ul>
+      </div>
+      <div class="card card-amber reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#92400e;font-size:0.88rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">💡 Ideas for Your Scene</p>
+        <ul style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.2em;">
+          <li>A park with a person in the foreground</li>
+          <li>An underwater scene with coral and fish</li>
+          <li>A city skyline at night</li>
+          <li>A fantasy forest with creatures</li>
+        </ul>
+      </div>
+      <div class="card card-purple reveal" style="padding:12px 16px;">
+        <p style="font-weight:800;color:#5b21b6;font-size:0.88rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">🌟 Stretch Challenge</p>
+        <ul style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.2em;">
+          <li>Add a <strong>4th layer</strong> for special effects</li>
+          <li>Use <strong>opacity</strong> — make background layers lighter</li>
+          <li>Add <strong>blur</strong> to distant background elements</li>
+          <li>Experiment with <strong>5+ composition techniques</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 19 · GOOD VS POOR COMPOSITION ═══ -->
+<div class="slide slide-19" data-slide="19">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:280px;height:280px;top:-50px;right:-50px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-30px;background:#ef4444;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#10b981,#ef4444);">👀 Good vs Poor Composition</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">Can you spot the difference?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="reveal">
+        <div style="background:#f1f5f9;border-radius:14px;padding:16px;border:2px solid #10b981;">
+          <div style="font-size:0.72rem;font-weight:800;color:#059669;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;font-family:'Nunito',sans-serif;">✅ Strong Composition</div>
+          <!-- Mockup: off-center composition -->
+          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(180deg,#bfdbfe 0%,#bfdbfe 40%,#bbf7d0 40%,#bbf7d0 70%,#fde68a 70%,#fde68a 100%);border-radius:10px;overflow:hidden;">
+            <div style="position:absolute;left:30%;top:25%;width:12%;height:50%;background:#374151;border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;left:25%;top:15%;width:22%;height:25%;background:#f87171;border-radius:50% 50% 0 0;"></div>
+            <div style="position:absolute;right:10%;top:40%;width:18%;height:30%;background:#34d399;border-radius:6px;"></div>
+            <div style="position:absolute;left:5%;top:35%;width:14%;height:24%;background:#60a5fa;border-radius:50%;"></div>
+            <!-- rule of thirds grid overlay -->
+            <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;pointer-events:none;">
+              <div style="border:0.5px dashed rgba(255,255,255,0.4);"></div><div style="border:0.5px dashed rgba(255,255,255,0.4);"></div><div style="border:0.5px dashed rgba(255,255,255,0.4);"></div>
+              <div style="border:0.5px dashed rgba(255,255,255,0.4);"></div><div style="border:0.5px dashed rgba(255,255,255,0.4);"></div><div style="border:0.5px dashed rgba(255,255,255,0.4);"></div>
+              <div style="border:0.5px dashed rgba(255,255,255,0.4);"></div><div style="border:0.5px dashed rgba(255,255,255,0.4);"></div><div style="border:0.5px dashed rgba(255,255,255,0.4);"></div>
+            </div>
+          </div>
+          <ul style="font-size:0.76rem;color:#374151;line-height:1.8;padding-left:1.2em;margin-top:8px;">
+            <li>Main subject at Rule of Thirds intersection</li>
+            <li>Clear foreground, mid, background layers</li>
+            <li>Asymmetrical balance — feels dynamic</li>
+            <li>High contrast on focal element (dark house)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="background:#f1f5f9;border-radius:14px;padding:16px;border:2px solid #ef4444;">
+          <div style="font-size:0.72rem;font-weight:800;color:#dc2626;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;font-family:'Nunito',sans-serif;">❌ Weak Composition</div>
+          <div style="position:relative;aspect-ratio:4/3;background:linear-gradient(180deg,#bfdbfe 0%,#bfdbfe 50%,#bbf7d0 50%,#bbf7d0 100%);border-radius:10px;overflow:hidden;">
+            <!-- Everything centred and same size = boring -->
+            <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14%;height:50%;background:#374151;border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;left:50%;top:20%;transform:translateX(-50%);width:22%;height:25%;background:#f87171;border-radius:50% 50% 0 0;"></div>
+          </div>
+          <ul style="font-size:0.76rem;color:#374151;line-height:1.8;padding-left:1.2em;margin-top:8px;">
+            <li>Dead-center placement — feels static</li>
+            <li>No foreground/background — flat depth</li>
+            <li>No size variation — everything equal</li>
+            <li>No contrast to create a focal point</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="question-bubble reveal" style="margin-top:10px;font-size:0.82rem;">What one change would most improve the weak composition? How would you fix it? 🤔</div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 20 · ASSESSMENT CRITERIA ═══ -->
+<div class="slide slide-20" data-slide="20">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-55px;right:-55px;background:#8b5cf6;opacity:0.08;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-45px;left:-35px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#8b5cf6,#0b63ce);">📊 Assessment Criteria</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">How your illustration will be evaluated</h2>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="bar-row reveal">
+        <div class="bar-label" style="width:160px;text-align:left;font-size:0.78rem;font-weight:700;">🗂️ Layer use (3+)</div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="80" style="background:linear-gradient(90deg,#0b63ce,#3b82f6);"></div>
+        </div>
+        <div class="bar-val">80%</div>
+      </div>
+      <div class="bar-row reveal">
+        <div class="bar-label" style="width:160px;text-align:left;font-size:0.78rem;font-weight:700;">🎯 Focal point clarity</div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="75" style="background:linear-gradient(90deg,#10b981,#34d399);"></div>
+        </div>
+        <div class="bar-val">75%</div>
+      </div>
+      <div class="bar-row reveal">
+        <div class="bar-label" style="width:160px;text-align:left;font-size:0.78rem;font-weight:700;">🔲 Rule of Thirds use</div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="70" style="background:linear-gradient(90deg,#f59e0b,#fbbf24);"></div>
+        </div>
+        <div class="bar-val">70%</div>
+      </div>
+      <div class="bar-row reveal">
+        <div class="bar-label" style="width:160px;text-align:left;font-size:0.78rem;font-weight:700;">⚖️ Balance &amp; contrast</div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="65" style="background:linear-gradient(90deg,#8b5cf6,#a78bfa);"></div>
+        </div>
+        <div class="bar-val">65%</div>
+      </div>
+      <div class="bar-row reveal">
+        <div class="bar-label" style="width:160px;text-align:left;font-size:0.78rem;font-weight:700;">🌄 Depth (FG/MG/BG)</div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="60" style="background:linear-gradient(90deg,#ef4444,#f87171);"></div>
+        </div>
+        <div class="bar-val">60%</div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card card-green" style="padding:10px 14px;">
+        <p style="font-weight:800;color:#059669;font-size:0.82rem;margin-bottom:3px;font-family:'Fredoka',sans-serif;">✅ Success looks like:</p>
+        <p style="font-size:0.76rem;color:#374151;">3+ named layers, off-centre focal point, clear depth zones, visible contrast at focus area</p>
+      </div>
+      <div class="card card-blue" style="padding:10px 14px;">
+        <p style="font-weight:800;color:#0b63ce;font-size:0.82rem;margin-bottom:3px;font-family:'Fredoka',sans-serif;">💬 Share &amp; explain:</p>
+        <p style="font-size:0.76rem;color:#374151;">Be ready to name your layers and explain one composition choice you made deliberately</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 21 · GALLERY SHARE ═══ -->
+<div class="slide slide-21" data-slide="21">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-55px;right:-55px;background:#0b63ce;opacity:0.08;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-45px;left:-35px;background:#10b981;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#0b63ce,#8b5cf6);">🖼️ Gallery Share</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2.1rem);font-weight:700;color:#0b63ce;margin-bottom:1rem;">Share &amp; Discuss Your Artwork</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div class="card card-blue reveal" style="padding:14px 16px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">🗣️</div>
+        <p style="font-weight:800;color:#0b63ce;font-size:0.88rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">Present</p>
+        <p style="font-size:0.77rem;color:#374151;line-height:1.6;">Show your illustration. Point out your layers in the panel. Tell us what your scene is.</p>
+      </div>
+      <div class="card card-green reveal" style="padding:14px 16px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
+        <p style="font-weight:800;color:#059669;font-size:0.88rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">Explain One Choice</p>
+        <p style="font-size:0.77rem;color:#374151;line-height:1.6;">Tell the class one deliberate composition decision you made — and why you made it.</p>
+      </div>
+      <div class="card card-amber reveal" style="padding:14px 16px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">🤝</div>
+        <p style="font-weight:800;color:#92400e;font-size:0.88rem;margin-bottom:5px;font-family:'Fredoka',sans-serif;">Give Feedback</p>
+        <p style="font-size:0.77rem;color:#374151;line-height:1.6;">For each classmate: name one thing that works well, and suggest one improvement using vocabulary words.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+      <div class="question-bubble reveal" style="font-size:0.8rem;">How did using layers change the way you worked? What would have been different without them? 🤔</div>
+      <div class="question-bubble reveal" style="border-left-color:#10b981;color:#059669;font-size:0.8rem;">If you could add one more layer to your artwork, what would you put on it? Where would it sit? 🤔</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 22 · EXIT TICKET ═══ -->
+<div class="slide slide-22" data-slide="22">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:-70px;right:-70px;background:#10b981;opacity:0.09;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.08;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient"></canvas>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#10b981,#059669);">🎟️ Exit Ticket</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2.1rem);font-weight:700;color:#059669;margin-bottom:1rem;">Before you go — write in your notebook:</h2>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="card card-green reveal" style="padding:12px 16px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <span style="font-size:1.6rem;flex-shrink:0;">1️⃣</span>
+          <div>
+            <p style="font-weight:800;color:#059669;font-size:0.88rem;font-family:'Fredoka',sans-serif;">One new thing you learned</p>
+            <p style="font-size:0.8rem;color:#374151;">What is ONE concept about layers or composition that you didn't know before today? Use a vocabulary word in your answer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card card-blue reveal" style="padding:12px 16px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <span style="font-size:1.6rem;flex-shrink:0;">2️⃣</span>
+          <div>
+            <p style="font-weight:800;color:#0b63ce;font-size:0.88rem;font-family:'Fredoka',sans-serif;">How you used it</p>
+            <p style="font-size:0.8rem;color:#374151;">How did you apply this technique in your digital illustration today? Give a specific example from YOUR artwork.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card card-amber reveal" style="padding:12px 16px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <span style="font-size:1.6rem;flex-shrink:0;">3️⃣</span>
+          <div>
+            <p style="font-weight:800;color:#92400e;font-size:0.88rem;font-family:'Fredoka',sans-serif;">One question you still have</p>
+            <p style="font-size:0.8rem;color:#374151;">What do you still want to know about layers or composition? What would you explore next time?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 23 · EXTENSION / HOMEWORK ═══ -->
+<div class="slide slide-23" data-slide="23">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-55px;right:-55px;background:#f59e0b;opacity:0.08;"></div>
+    <div class="blob" style="width:220px;height:220px;bottom:-45px;left:-35px;background:#8b5cf6;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-pill reveal" style="margin-bottom:0.8rem;background:linear-gradient(135deg,#f59e0b,#8b5cf6);">🏠 Out-of-Classroom Extension</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;color:#0b63ce;margin-bottom:0.8rem;">Keep learning at home</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div>
+        <div class="card card-amber reveal" style="padding:13px 16px;margin-bottom:10px;">
+          <p style="font-weight:800;color:#92400e;font-size:0.88rem;margin-bottom:6px;font-family:'Fredoka',sans-serif;">📷 Photography Challenge</p>
+          <p style="font-size:0.78rem;color:#374151;line-height:1.6;">Take <strong>5 photographs</strong> with your phone or camera. For each, identify the foreground, middle ground, and background. Then ask: does the subject sit at a Rule of Thirds intersection?</p>
+        </div>
+        <div class="card card-purple reveal" style="padding:13px 16px;">
+          <p style="font-weight:800;color:#5b21b6;font-size:0.88rem;margin-bottom:6px;font-family:'Fredoka',sans-serif;">🔬 Research &amp; Analyse</p>
+          <p style="font-size:0.78rem;color:#374151;line-height:1.6;">Find one famous painting online (e.g., Van Gogh's Starry Night). Draw the Rule of Thirds grid over it. Does the main element sit at a power point? Write 3 sentences about the composition.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card card-green reveal" style="padding:13px 16px;margin-bottom:10px;">
+          <p style="font-weight:800;color:#059669;font-size:0.88rem;margin-bottom:6px;font-family:'Fredoka',sans-serif;">🎥 Recommended Channels</p>
+          <ul style="font-size:0.78rem;color:#374151;line-height:1.8;padding-left:1.2em;">
+            <li><a href="https://www.youtube.com/@drawwithjazza" target="_blank" style="color:#0b63ce;font-weight:700;">Draw with Jazza</a> — fun, beginner-friendly digital art tutorials</li>
+            <li><a href="https://www.youtube.com/@ctrlpaint" target="_blank" style="color:#0b63ce;font-weight:700;">Ctrl+Paint</a> — free digital painting fundamentals course</li>
+            <li><a href="https://www.youtube.com/@TheVirtualArtDesk" target="_blank" style="color:#0b63ce;font-weight:700;">The Virtual Art Desk</a> — composition &amp; technique tips</li>
+          </ul>
+        </div>
+        <div class="card card-blue reveal" style="padding:13px 16px;">
+          <p style="font-weight:800;color:#0b63ce;font-size:0.88rem;margin-bottom:6px;font-family:'Fredoka',sans-serif;">🎨 Bonus Tutorial to Watch</p>
+          <div class="video-thumb-wrap" onclick="playVideo(this,'szxDoCHvERI')" style="max-width:100%;border-radius:8px;">
+            <img src="https://img.youtube.com/vi/szxDoCHvERI/hqdefault.jpg"
+                 alt="How to Use Layers for Digital Painting Proko thumbnail"
+                 style="border-radius:8px;">
+            <div class="play-btn" style="width:40px;height:40px;"><svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <p style="font-size:0.68rem;color:#5b6b7e;margin-top:4px;">
+            <a href="https://www.youtube.com/watch?v=szxDoCHvERI" target="_blank" style="color:#0b63ce;">Proko: How to Use Layers for Digital Painting</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 24 · WRAP-UP / CLOSE ═══ -->
+<div class="slide slide-24" data-slide="24">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.12;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.11;"></div>
+    <div class="blob" style="width:200px;height:200px;top:45%;left:10%;background:#f59e0b;opacity:0.09;"></div>
+  </div>
+  <canvas class="particle-canvas"></canvas>
+  <div class="content" style="text-align:center;">
+    <div style="font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:0.8rem;animation:float 3s ease-in-out infinite;" class="reveal">🎨</div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.7rem;">
+      Lesson 2 Complete!
+    </h1>
+    <p class="reveal" style="font-size:clamp(0.85rem,1.4vw,1.1rem);color:#5b6b7e;margin-bottom:1.2rem;font-family:'Nunito',sans-serif;">Great work today — you've unlocked the power of layers and composition.</p>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:720px;margin:0 auto 1.2rem;">
+      <div class="card card-blue" style="padding:10px 12px;text-align:center;">
+        <div style="font-size:1.6rem;margin-bottom:4px;">🗂️</div>
+        <p style="font-weight:800;color:#0b63ce;font-size:0.82rem;font-family:'Fredoka',sans-serif;">Layers</p>
+        <p style="font-size:0.72rem;color:#374151;">Stack &amp; separate elements for full control</p>
+      </div>
+      <div class="card card-green" style="padding:10px 12px;text-align:center;">
+        <div style="font-size:1.6rem;margin-bottom:4px;">🔲</div>
+        <p style="font-weight:800;color:#059669;font-size:0.82rem;font-family:'Fredoka',sans-serif;">Rule of Thirds</p>
+        <p style="font-size:0.72rem;color:#374151;">Off-centre = dynamic composition</p>
+      </div>
+      <div class="card card-amber" style="padding:10px 12px;text-align:center;">
+        <div style="font-size:1.6rem;margin-bottom:4px;">⚖️</div>
+        <p style="font-weight:800;color:#92400e;font-size:0.82rem;font-family:'Fredoka',sans-serif;">Balance &amp; Contrast</p>
+        <p style="font-size:0.72rem;color:#374151;">Guide the viewer's eye with intention</p>
+      </div>
+    </div>
+    <div class="reveal" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+      <span class="tag tag-blue">Next: Lesson 3 coming soon →</span>
+      <span class="tag tag-green">canva.com</span>
+      <span class="tag tag-purple">photopea.com</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .deck -->
+
+<!-- NAVIGATION -->
+<div class="nav-controls">
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 24</span>
+</div>
+
+<script>
+/* ═══ DECK NAVIGATION ═══ */
+let current = 1;
+const total = document.querySelectorAll('.slide').length;
+const dotsContainer = document.getElementById('dots');
+const counter = document.getElementById('counter');
+for (let i = 1; i <= total; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 1 ? ' active' : '');
+  dot.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(dot);
+}
+function goToSlide(n) {
+  const prev = document.querySelector('.slide.active');
+  const next = document.querySelector(`.slide[data-slide="${n}"]`);
+  if (prev) prev.classList.remove('active');
+  if (next) { next.classList.add('active'); animateSlide(next); }
+  current = n; updateNav();
+}
+function changeSlide(dir) { let next = current + dir; if (next < 1) next = total; if (next > total) next = 1; goToSlide(next); }
+function updateNav() { document.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i + 1 === current); }); counter.textContent = current + ' / ' + total; }
+document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); } });
+let touchStartX = 0;
+document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+
+/* ═══ REVEAL ANIMATIONS ═══ */
+function animateSlide(slide) {
+  slide.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transition = 'none';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.offsetHeight;
+    const delay = i * 0.07;
+    el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0px)';
+  });
+  animateSlideEffects(slide);
+}
+
+function animateSlideEffects(slide) {
+  /* Bar fills */
+  slide.querySelectorAll('.bar-fill:not(.fill-init)').forEach((bar, i) => {
+    bar.classList.add('fill-init');
+    bar.style.width = '0%';
+    bar.style.transition = `width 0.8s ease ${i * 0.1}s`;
+    bar.offsetHeight;
+    bar.style.width = bar.dataset.width + '%';
+  });
+  /* Counters */
+  slide.querySelectorAll('[data-count]:not(.counted)').forEach(el => {
+    el.classList.add('counted');
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '', prefix = el.dataset.prefix || '';
+    let cur = 0; const step = target / 40;
+    const timer = setInterval(() => { cur += step; if (cur >= target) { cur = target; clearInterval(timer); } el.textContent = prefix + Math.round(cur).toLocaleString() + suffix; }, 30);
+  });
+}
+
+/* ═══ VIDEO PLAYER ═══ */
+function playVideo(wrapper, videoId) {
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:14px;';
+  wrapper.style.position = 'relative';
+  wrapper.style.aspectRatio = '16/9';
+  wrapper.innerHTML = '';
+  wrapper.appendChild(iframe);
+  wrapper.style.cursor = 'default';
+}
+
+/* ═══ MOUSE SPOTLIGHT ═══ */
+document.addEventListener('mousemove', (e) => {
+  const spotlight = document.querySelector('.mouse-spotlight');
+  if (spotlight) spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.06), transparent 40%)`;
+});
+
+/* ═══ PARALLAX DECO SHAPES ═══ */
+(function() {
+  let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+  const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+  (function tick() {
+    const ox = (mouseX - cx) / cx, oy = (mouseY - cy) / cy;
+    document.querySelectorAll('.deco-shape').forEach(shape => {
+      const speed = parseFloat(shape.dataset.speed) || 0.03;
+      shape.style.transform = `translate(${ox * speed * 100}px, ${oy * speed * 100}px)`;
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* ═══ PARTICLE CANVAS ═══ */
+window.initParticles = function(canvas, options) {
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || window.innerWidth;
+  canvas.height = canvas.offsetHeight || window.innerHeight;
+  const interactive = options.interactive !== false;
+  const count = options.count || (interactive ? 55 : 18);
+  let mx = -1000, my = -1000;
+  const particles = Array.from({ length: count }, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    size: Math.random() * 2.2 + 0.8, alpha: Math.random() * 0.3 + 0.1
+  }));
+  if (interactive) {
+    canvas.addEventListener('mousemove', (e) => { const rect = canvas.getBoundingClientRect(); mx = e.clientX - rect.left; my = e.clientY - rect.top; });
+    canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
+  }
+  (function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      if (interactive) { const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx*dx+dy*dy); if (dist < 120) { const force = (120-dist)/120*2; p.vx += (dx/dist)*force*0.1; p.vy += (dy/dist)*force*0.1; } }
+      p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(11,99,206,${p.alpha})`; ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  })();
+};
+document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, { interactive: true, count: 55 }));
+document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, { interactive: false, count: 18 }));
+
+/* Animate first slide on load */
+try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn(e); }
+</script>
+</body>
+</html>
