@@ -1,0 +1,924 @@
+Lesson 2 · Understanding Layers & Simple Composition
+Expert Teaching Script (PhD-Level Explanations, Beginner-Friendly Delivery)
+Instructor: Mr. Hsiao "Hue" Weng
+Tools: Canva.com & Photopea.com
+Total Time: ~60 minutes
+================================================================================
+
+HOW TO USE THIS SCRIPT
+─────────────────────────────────────────────────────────────────────
+- Text in [BRACKETS] = instructor stage directions or timing cues
+- "Quoted text" = suggested exact words to say aloud
+- → means a natural transition or follow-up thought
+- 💡 = deep conceptual explanation (say or adapt as needed)
+- ✋ = student interaction moment — pause and wait for responses
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 1 — TITLE SLIDE & WELCOME
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the title slide as students settle. The animated palette icon
+and the tags — Layers, Composition, Balance, Rule of Thirds, Depth —
+are on screen. Open with genuine creative energy.]
+
+"Good morning / afternoon, artists! Welcome to Lesson 2. Today you
+are going to learn the two ideas that separate a flat, accidental
+image from a deliberate, professional piece of digital art: LAYERS
+and COMPOSITION."
+
+"You have all seen artwork that just feels right — a movie poster,
+an album cover, a game splash screen — and artwork that feels off,
+even if you can't say why. By the end of these sixty minutes, you
+will be able to say exactly why. And you will build your own
+three-layer digital landscape that uses every principle we cover."
+
+💡 [DEEP CONTEXT — deliver slowly, with weight]:
+"Here is the truth that anchors everything today. A finished image
+is really two separate things wearing one costume. The first is the
+CONTENT — the trees, the person, the sky. The second is the
+STRUCTURE — how that content is organized, both in the file and on
+the canvas. Layers are the structure inside the file. Composition is
+the structure on the canvas. Amateurs think only about content.
+Professionals think about all three. Today you become professionals."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 2 — LEARNING OBJECTIVES
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four objective cards. Read each as a promise, not a
+checklist. Point to each card as you name it.]
+
+"Four promises for today. First: you will UNDERSTAND LAYERS — what
+a digital layer actually is and how stacking them builds complex
+artwork in Canva and Photopea. Second: you will ORGANISE ELEMENTS —
+separating foreground, middle ground, and background into distinct
+layers so your work stays clear and editable."
+
+"Third: you will APPLY COMPOSITION — using balance, contrast, and
+the Rule of Thirds to arrange elements with intention. And fourth:
+you will CREATE — an actual three-layer illustration with a clear
+foreground, middle ground, and background."
+
+💡 "Notice the verbs climb a ladder: understand, organise, apply,
+create. That is not an accident — it is Bloom's Taxonomy, the
+learning hierarchy every good lesson is built on. We move from
+knowing, to using, to making. Making is where understanding becomes
+permanent. You don't truly own a concept until you've built
+something with it."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — AGENDA / TODAY'S ROADMAP
+[Duration: ~1 minute]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the six roadmap cards with their time allocations. Walk the
+path quickly — this is a map, not a destination.]
+
+"Here is our hour. Five minutes of warm-up. Ten minutes on what
+layers are. Ten on composition principles. Ten on the Canva and
+Photopea demos. Then the heart of the lesson — twenty minutes where
+YOU create your illustration. And five minutes to share and reflect."
+
+"The first half fills your toolbox. The second half is you using
+those tools to build. Keep one eye on the clock with me — the making
+time is sacred, and I will protect it."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — DO NOW / WARM-UP
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display a piece of layered artwork on the board. The three warm-up
+questions appear as cards. These are not filler — each one previews
+a core concept. Do not rush.]
+
+"Before we name anything, I want your eyes to do the work. Open your
+notebook. Three questions about the artwork on the board. Talk with a
+partner. There are no wrong answers — I want honest seeing."
+
+"QUESTION 1: What do you see FIRST? Which element catches your eye
+immediately, and why do you think that is?"
+
+"QUESTION 2: Spot the layers. Can you identify two or more distinct
+visual layers stacked in this image — things that sit at different
+distances from you?"
+
+"QUESTION 3: Does it feel BALANCED, or does it feel like it's tipping
+to one side? What exactly creates that feeling?"
+
+[Give students 3 minutes to discuss and write.]
+
+✋ [Call on 2–3 pairs. For Question 1, listen for WHY — they will say
+   things like "it's the biggest" or "it's the brightest." Affirm
+   without naming "contrast" yet. For Question 2, watch them
+   intuitively separate near from far — that is depth perception, and
+   it is the seed of the whole lesson. For Question 3, accept any
+   answer with a reason.]
+
+💡 "Here is what just happened. Without any vocabulary, you noticed
+focal points, depth layers, and balance — the three things we will
+spend the next hour naming and controlling. Your eyes already know
+this language. Today we give your hands the words to speak it on
+purpose. Write down your ONE observation — we revisit it at the Exit
+Ticket, and you will be amazed how much sharper your seeing got."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — KEY VOCABULARY
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the six vocabulary cards: Layers, Composition, Foreground,
+Background, Balance, Contrast. Don't read definitions mechanically —
+tie each to something the warm-up already showed.]
+
+"Six words. You will use every one of them today, with your hands,
+not just your ears."
+
+"LAYERS — transparent sheets stacked on top of each other, each
+holding separate elements you can edit independently. COMPOSITION —
+the arrangement of those elements within the frame. FOREGROUND — the
+part closest to you, usually largest and at the bottom. BACKGROUND —
+the furthest part: sky, horizon, distant scenery, usually smallest
+and softest."
+
+"BALANCE — how visual weight is distributed across the image.
+CONTRAST — the difference between light and dark, or between colours,
+that makes things stand out."
+
+💡 "Pay attention to a hidden pattern here. Three of these words —
+layers, foreground, background — are about SPACE and STRUCTURE. The
+other three — composition, balance, contrast — are about ATTENTION:
+where the viewer's eye goes and how it feels getting there. Great art
+controls both. You manage space with layers; you direct attention
+with composition. Same artwork, two completely different jobs."
+
+✋ [Quick check]: "Without looking — what is the difference between
+   a LAYER and the FOREGROUND?" [Listen for: a layer is a structural
+   sheet in the file; foreground is a spatial zone in the image. A
+   foreground usually lives ON its own layer, but they are not the
+   same idea. Clarify if the distinction is fuzzy.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — WHAT ARE LAYERS? (THE SANDWICH)
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the layer-stack visual — Background, Middle Ground,
+Foreground — and the sandwich/burger image. Point to each layer in
+the stack as you speak.]
+
+"Think of layers like a sandwich. Each ingredient sits on its own
+level. You can pull out the tomato without touching the cheese. That
+is the whole magic of digital layers: every layer holds separate
+elements you can move, edit, or delete WITHOUT affecting the others."
+
+"Look at the stack on screen. Layer 1 at the bottom: the BACKGROUND —
+sky, horizon, distant elements. Layer 2 in the middle: the MIDDLE
+GROUND — hills, trees, buildings in the distance. Layer 3 on top: the
+FOREGROUND — the closest objects, largest and most detailed. Stack
+them, and you have a scene with real depth."
+
+💡 [DEEP EXPLANATION]:
+"Here is the genuinely important idea, and it has a name:
+NON-DESTRUCTIVE EDITING. On a single flat layer, painting a tree over
+the sky destroys the sky underneath forever — the pixels are gone.
+But on separate layers, the tree floats above the untouched sky. Hide
+the tree, and the sky is perfectly intact. Nothing was destroyed.
+
+This is why professionals never work on one flat layer. A movie poster
+might have two hundred layers. A character illustration separates the
+line art, the flat colors, the shading, and the highlights onto
+different layers — so the artist can recolor the shirt at 11 PM
+without repainting the entire character. Layers turn permanent
+decisions into reversible experiments. And experiments are where good
+art comes from."
+
+[Point to the eye icons in the layer-stack visual:]
+
+"See the little eye icon on each layer? That toggles visibility on and
+off without deleting anything. It is the single most-used button in
+all of digital art. Remember it — you'll use it in ten minutes."
+
+✋ [Ask students]: "If you merged all your layers into one — what is
+   the one thing you would permanently lose the ability to do?"
+   [Expected: the ability to move or edit any single element
+   independently. Merging is a one-way door — emphasize this.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — VIDEO 1: "LAYERS LIKE BURGERS"
+[Duration: ~4 minutes (clip + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Play the embedded Winged Canvas video — "How to Use Layers like
+Burgers." Watch a focused 2–3 minute segment, not the whole thing,
+to protect studio time.]
+
+"Let's watch a real artist work with layers — the burger analogy
+makes it crystal clear. As you watch, count the layers, and ask
+yourself one question I'll put on screen."
+
+✋ [Watch & think, displayed on slide]: "How many distinct layers
+   does the artist use? And — the big one — what would happen if you
+   merged them all into one?"
+
+[After the clip, take 60 seconds of responses. Then point to the
+"Key Benefits" card:]
+
+💡 [SYNTHESIS]:
+"Look at the benefits listed: edit one part without affecting others,
+rearrange elements easily, control opacity and blend modes,
+non-destructive editing, undo only what you need. Notice that EVERY
+single benefit is really the same benefit stated five ways:
+SEPARATION. Layers separate decisions from each other. When your
+decisions are separated, every one of them stays changeable. That
+freedom to keep changing things is what lets art evolve from a rough
+sketch into something polished. A flat image is a finished sentence.
+A layered file is a conversation you can keep having."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 8 — FOREGROUND, MIDDLE GROUND, BACKGROUND
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the three zone cards and the landscape photo. Trace the
+three depth bands on the image with your finger.]
+
+"Three zones create the illusion of depth on a flat screen.
+FOREGROUND: closest to the viewer — largest elements, most detail,
+highest contrast, sits at the bottom. MIDDLE GROUND: in between —
+medium size, moderate detail, the bridge that connects near to far.
+BACKGROUND: furthest away — small, least detail, softer colours: sky,
+distant hills, horizon."
+
+💡 [DEEP INSIGHT — atmospheric perspective]:
+"Why does the background get softer and lighter? This is not just an
+art rule — it is physics. The air between you and a distant mountain
+is full of tiny particles that scatter light. The further away
+something is, the more air you're looking through, so distant objects
+lose contrast, lose detail, and shift toward pale blue. Leonardo da
+Vinci named this 'atmospheric perspective' over five hundred years
+ago, and it is why distant hills always look hazy blue-gray.
+
+So when you make your background softer and your foreground sharper,
+you are not decorating — you are recreating how human vision actually
+works. The viewer's brain reads 'soft and pale equals far away'
+automatically. You are speaking directly to their visual instincts."
+
+✋ [Point to the photo]: "Can you spot all three zones in this image?
+   Where exactly does the foreground end and the middle ground begin?"
+   [Let them debate the boundary — there's often no hard line, and
+   that ambiguity is itself a useful lesson about real scenes.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 9 — VIDEO 2: DEPTH & LAYERS IN LANDSCAPE
+[Duration: ~3 minutes (clip + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Play a short segment of the CtrlPaint video on foreground,
+middleground, and background. Keep it tight.]
+
+"This clip from CtrlPaint shows how depth and scale relationships work
+in actual digital painting. Watch how the artist uses SIZE and DETAIL
+to push things back and pull things forward."
+
+[After the clip, point to the discussion prompt card:]
+
+✋ "Discussion: what happens to the LEVEL OF DETAIL as objects get
+   further away? And why does that help create the feeling of depth?"
+   [Expected: detail decreases with distance; less detail signals
+   'far,' which our brain reads as depth — connecting straight back
+   to atmospheric perspective from Slide 8.]
+
+💡 "Here is the rule to carry into your own work: DEPTH IS A
+RELATIONSHIP, NOT A SINGLE LAYER. One tree alone has no depth. A big,
+sharp, dark tree in front of a small, soft, pale mountain — THAT has
+depth, because the two are in conversation. Depth lives in the
+contrast between layers, never in any one layer by itself."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 10 — COMPOSITION INTRO
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the composition intro with the Balance / Contrast / Focal
+Point cards and the rule-of-thirds image. This is the pivot from
+STRUCTURE to ATTENTION.]
+
+"We've handled the file structure — layers and depth. Now we turn to
+the canvas itself. COMPOSITION is the art of arranging elements so
+the viewer knows exactly where to look — and feels something when
+they look there."
+
+"Three tools do most of the work. BALANCE: visual weight feels evenly
+distributed, so nothing seems to be falling off one side. CONTRAST:
+differences in light, size, and colour create focus. FOCAL POINT:
+every strong composition has ONE main element the eye finds first."
+
+💡 [DEEP EXPLANATION — composition as a path]:
+"Here is the mental model that changes everything. A composition is
+not a static arrangement — it is a PATH you design for the viewer's
+eye. The eye enters the image, lands on the focal point first, then
+travels through the supporting elements in an order YOU control. Bad
+composition leaves the eye wandering, lost, unsure where to settle.
+Good composition is a guided tour where you are the tour guide.
+
+Every tool we cover — balance, contrast, the Rule of Thirds — is
+really an instrument for controlling that journey. You are not
+decorating a rectangle. You are directing where a human being looks,
+and for how long. That is real power, and it is learnable."
+
+✋ [Quick poll]: "In the image on screen — where did YOUR eye go
+   first? Point at it." [Most will point at the same spot. Use that:
+   "That agreement is not coincidence — the artist engineered it.")]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 11 — BALANCE
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the two balance diagrams — symmetrical and asymmetrical.
+Point to each visual block layout as you describe it.]
+
+"Two kinds of balance. SYMMETRICAL: both sides mirror each other.
+This creates calm, formality, and order — think portraits, logos,
+mandalas, grand buildings. ASYMMETRICAL: different elements balance
+each other through size, colour, and position. This creates dynamic
+tension and energy — and it feels more natural and alive."
+
+💡 [DEEP INSIGHT — visual weight]:
+"The key concept hiding inside balance is VISUAL WEIGHT. Elements have
+weight in your eye even though they weigh nothing on a screen. A large
+object is heavier than a small one. A dark object is heavier than a
+light one. A bright, saturated red is heavier than a dull gray. An
+element of high detail is heavier than a plain one.
+
+Asymmetrical balance is the art of trading these weights. One big pale
+shape on the left can be balanced by one small intense-red dot on the
+right — different elements, equal pull. It's a seesaw, but instead of
+balancing pounds, you're balancing attention. This is why
+asymmetrical balance feels alive: the eye senses the tension being
+held, like a gymnast frozen mid-motion."
+
+[Point to the Pro Tip card:]
+
+"And here's why this matters for YOUR work: asymmetrical balance is
+used in roughly 85% of professional digital illustrations. Perfect
+symmetry can feel static and stiff. A little imbalance, carefully
+held, is what makes an image feel like it's breathing."
+
+✋ [Ask students]: "Symmetrical or asymmetrical — which feels more
+   exciting to you, and which feels more peaceful? There's no wrong
+   answer — the point is they DO different emotional jobs."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 12 — CONTRAST
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the contrast cards and the HIGH/low contrast comparison
+boxes. Have students physically squint at the two boxes.]
+
+"Contrast is the DIFFERENCE between two elements. High contrast is
+easy to see and grabs attention. Low contrast is subtle and calm.
+Three kinds matter most: VALUE contrast — light versus dark, the most
+powerful of all. COLOUR contrast — opposite colours like blue and
+orange, which vibrate against each other. And SIZE contrast — a tiny
+object beside a huge one instantly tells the viewer what's important."
+
+[Point to the HIGH-contrast vs low-contrast boxes:]
+
+"Look at these two boxes. White text on black — instantly readable.
+Pale gray text on slightly-paler gray — your eye strains. Which is
+easier to read? Now SQUINT at both. The high-contrast one survives
+the squint. The low-contrast one disappears."
+
+💡 [DEEP INSIGHT — the squint test]:
+"That squint you just did is a professional technique. When you squint,
+you blur away color and detail and see only VALUE — the pattern of
+light and dark. Squinting at your own artwork reveals whether your
+focal point actually stands out, or whether everything is mushing
+into the same gray middle.
+
+Here is the master rule that ties contrast to everything else today:
+the human eye is hard-wired to look at the point of HIGHEST contrast
+first. So contrast is not just decoration — it is your steering wheel.
+Put your highest contrast exactly where you want the eye to land, and
+reduce contrast in the background to push it quietly back. High
+contrast at the focal point, low contrast in the distance. Master
+that one sentence and you control the entire viewer's journey."
+
+✋ [Point to the Remember card]: "So the strategy is: maximum contrast
+   at your focal point, reduced contrast in your background layers.
+   Say it back to me — where does your highest contrast go?"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 13 — RULE OF THIRDS
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Rule of Thirds grid overlaid on the portrait. Point to
+each of the four intersection "power points" with your finger.]
+
+"Here is the single most useful composition tool you'll learn today.
+Divide your canvas into nine equal parts — two lines across, two lines
+down, like a tic-tac-toe board. Now look at the four points where
+those lines CROSS. Those are your POWER POINTS. Place your most
+important element on or near one of them."
+
+"The DOs and AVOIDs are on screen. DO place your subject along a line
+or at an intersection. AVOID dead-center placement — it feels static
+and lifeless. TIP: align your horizon line with the top third OR the
+bottom third line, never straight across the middle."
+
+💡 [DEEP EXPLANATION — why thirds, and a caution]:
+"Why does off-center feel more alive than centered? A dead-center
+subject is perfectly resolved — there's nowhere for the eye to travel,
+no tension, nothing unresolved. An off-center subject creates a little
+gap of open space, and that gap creates implied movement and breathing
+room. The eye has somewhere to go. Tension, not resolution, is what
+holds attention.
+
+Now, intellectual honesty: the Rule of Thirds is a simplification of a
+deeper idea. Some artists use the Golden Ratio — about 1 to 1.618 —
+which places focal points slightly differently. And the Rule of Thirds
+is a guideline, not a law. Symmetry can be breathtaking when used on
+purpose — think of a perfectly centered cathedral reflected in still
+water. The rule is your training wheels: follow it until you
+understand WHY it works, and then you've earned the right to break it
+deliberately."
+
+✋ [Ask students]: "Look at the portrait with the grid. Is the
+   subject's eye sitting near a power point? Most great portraits put
+   the EYES on the upper third line. Why the eyes specifically?"
+   [Expected: eyes are where human attention naturally goes — so we
+   place them where the composition naturally pulls the gaze.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 14 — VIDEO 3: RULE OF THIRDS IN DIGITAL ART
+[Duration: ~3 minutes (clip + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Play a short segment of the Aaron Rutten video applying the Rule of
+Thirds to real digital artwork.]
+
+"Aaron Rutten shows the Rule of Thirds applied in actual digital
+art — placing subjects, horizons, and focal points to build dynamic
+compositions. Watch where he puts the main subject."
+
+✋ [Watch & notice, on slide]: "Where does Aaron place his main
+   subject? Does the composition feel more or less interesting than
+   if he'd centered it? Why?"
+
+[Take 60 seconds of responses.]
+
+💡 "The takeaway: the Rule of Thirds is the bridge between knowing a
+principle and APPLYING it with a click. In a moment, you'll open Canva
+or Photopea, and both can show a grid overlay. When you drag your
+focal element, you'll snap it to a power point on purpose — turning
+this theory into a single, deliberate decision."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 15 — DEMO: LAYERS IN PHOTOPEA
+[Duration: ~5 minutes (clip + live walkthrough)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Photopea demo slide. Play a short segment of the Tutor
+Tube tutorial, then ideally do a 60-second live demo at photopea.com
+yourself if you have a screen.]
+
+"Photopea is a free, browser-based Photoshop alternative at
+photopea.com — no install, no account needed. Watch how the Layers
+panel works, then we'll all try it."
+
+✋ [What to look for, on slide]: "Four things to spot — where is the
+   LAYERS panel on screen? How do you add a NEW layer? How do you
+   REORDER layers? And what happens when you click the EYE icon?"
+
+💡 [CONCEPTUAL DEPTH — stacking order]:
+"The most important idea in any layers panel is STACKING ORDER. The
+layer at the TOP of the panel sits in FRONT in the image. The layer
+at the BOTTOM of the panel is the furthest BACK. So your panel is
+literally a side-view of your scene's depth: background at the bottom
+of the list, foreground at the top.
+
+This means reordering layers — just dragging them up or down — instantly
+changes what's in front of what. A bird painted on a layer below the
+mountain is hidden; drag that layer above, and the bird flies in front.
+You are not redrawing anything. You are reshuffling depth. That is the
+superpower flat images can never have."
+
+[Point to the "Try it yourself" card:]
+
+"Try it now if you can: at photopea.com, create a new 800×600 document,
+add three layers, name them, draw a simple shape on each, then
+reorder them and watch the front-to-back relationship flip."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 16 — DEMO: LAYERS IN CANVA
+[Duration: ~4 minutes (clip + walkthrough)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Canva demo slide. Play a short segment of the Canva
+tutorial. If you have a screen, demo the Position → Layers tab live.]
+
+"Canva is the easier on-ramp — drag and drop, no painting skills
+required. Its layer system lives in a slightly different place. Watch
+the steps on screen: open Canva, click any element, click POSITION,
+then choose the LAYERS tab. Drag layers up or down to reorder, and
+click the eye icon to show or hide."
+
+💡 [TRANSFER INSIGHT]:
+"Here's why I'm showing you two completely different tools for the
+same idea. In Photopea, layers are front and center — it's built for
+artists. In Canva, layers are tucked behind the 'Position' button —
+it's built for everyone. The interfaces look nothing alike. But the
+CONCEPT is identical: stacked sheets, reorderable, each with a
+visibility toggle.
+
+This is the most valuable thing you'll learn today. Tools change every
+year — new apps, new buttons, new menus. But the underlying concepts —
+layers, stacking order, composition — never change. Learn the concept
+and you can sit down in front of Photoshop, Procreate, Figma, or
+software that doesn't exist yet, and find the layers panel in thirty
+seconds. Concepts are permanent. Buttons are temporary. Invest in
+concepts."
+
+✋ [Point to the question bubble]: "How is Canva's Layers panel
+   DIFFERENT from Photopea's? And what's the SAME?" [The same:
+   stacking order, eye icon, drag-to-reorder. Different: Canva hides
+   it under Position; Photopea shows a full panel with blend modes
+   and opacity. Same idea, different doorway.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 17 — VIDEO 4: COMPOSITION FOR BEGINNERS
+[Duration: ~2 minutes (quick clip)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Play a brief segment of the Reese Artworks "Composition for Artists"
+video. Keep it short — studio time is next.]
+
+"One quick overview before you build. This walkthrough ties together
+balance, focal point, the golden ratio, Rule of Thirds, and rhythm
+and repetition — everything we covered, in one artist's voice."
+
+✋ [On slide]: "After watching — which ONE technique do you most want
+   to try in your own illustration today, and why?" [Take 2–3 fast
+   answers. Their choice becomes their personal goal for the studio.]
+
+💡 "That technique you just named — that's your mission for the next
+twenty minutes. Don't try to use everything. Pick one or two
+principles and use them DELIBERATELY. One intentional choice beats
+ten accidental ones."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 18 — STUDIO: CREATE YOUR ILLUSTRATION
+[Duration: ~20 minutes — THE HEART OF THE LESSON]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the activity slide. Students open Canva (1080×1080) or
+Photopea. This is the longest block — protect it fiercely. Stop
+teaching and start coaching.]
+
+"This is it — twenty minutes to build YOUR digital landscape. Here are
+your requirements, on screen: at least THREE layers — foreground,
+middle ground, background. Use the RULE OF THIRDS — put your focal
+point off-center. Show BALANCE — symmetrical or asymmetrical, your
+choice. And use CONTRAST to make your focal element stand out."
+
+"Scene ideas if you're stuck: a park with a person in the foreground,
+an underwater scene with coral and fish, a city skyline at night, or
+a fantasy forest with creatures. Pick fast — the scene matters less
+than the principles."
+
+💡 [WORKFLOW COACHING — say this before they start]:
+"One professional habit before you click anything: BUILD BACK TO
+FRONT. Start with your background layer — the sky. Then the middle
+ground — distant hills. Then the foreground — your big, sharp focal
+element on top. This matches the stacking order in your panel and
+stops elements from hiding each other.
+
+And NAME YOUR LAYERS as you go: 'Background,' 'Mid,' 'FG.' I know it's
+tempting to skip — but an unnamed file with ten layers called 'Layer
+1, Layer 2, Layer 3' is a file you'll get lost in. Naming is a
+two-second habit that saves you ten minutes later. This is how
+professionals work, and you're a professional now."
+
+[Point to the Stretch Challenge card for fast finishers:]
+
+"Stretch challenge if you finish early: add a FOURTH layer for special
+effects, use OPACITY to make your background lighter and push it back,
+add BLUR to distant elements for atmospheric perspective — remember
+da Vinci — or work in five composition techniques instead of four."
+
+✋ [CIRCULATE for the full 20 minutes. Coaching prompts to use:]
+   - "Squint at your screen. Does your focal point survive the squint?"
+   - "Is your subject on a power point, or did it drift to center?"
+   - "Show me your layers panel — are they named? Background at the
+      bottom?"
+   - "Your background is competing with your foreground. Lower its
+      contrast or opacity to push it back."
+   [Coach principles, not taste. Ask questions; don't take their mouse.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 19 — GOOD vs POOR COMPOSITION
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the side-by-side mockups — Strong vs Weak composition. Use
+this as a mid-studio reset, or right after, to sharpen their eyes.]
+
+"Quick pause — eyes up. Two versions of the same scene. On the left,
+STRONG: subject at a Rule of Thirds intersection, clear foreground/
+mid/background layers, asymmetrical balance, high contrast on the
+focal element. On the right, WEAK: everything dead-center, no depth
+zones — it's flat, no size variation, and no contrast, so the eye has
+nowhere to land."
+
+💡 "Notice the weak version isn't bad because of bad DRAWING. The
+shapes are identical. It's bad because of bad DECISIONS — centered,
+flat, even, low-contrast. This is the most encouraging idea in the
+whole lesson: you don't need to draw better to make better art today.
+You need to DECIDE better. Composition is decision-making, and
+decisions are free."
+
+✋ [Point to the question bubble]: "What is the ONE change that would
+   most improve the weak composition? If you could only fix one
+   thing?" [Expected: move the subject off-center to a power point —
+   it fixes balance, focal clarity, and energy all at once. Now look
+   at YOUR own piece — does it need that same fix?]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 20 — ASSESSMENT CRITERIA
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the assessment bar chart. Walk through what success looks
+like so students can self-check before sharing.]
+
+"Here's how your illustration is evaluated — and these are the same
+things to self-check right now. Layer use across three layers. Focal
+point clarity. Rule of Thirds use. Balance and contrast. And depth
+through foreground/middle ground/background."
+
+[Point to the "Success looks like" card:]
+
+"Success looks like: three NAMED layers, an OFF-CENTER focal point,
+clear depth zones, and visible contrast where you want the eye to
+land. And be ready to NAME your layers out loud and EXPLAIN one
+composition choice you made on purpose."
+
+💡 "Notice what's NOT on this list: 'beautiful drawing' or 'artistic
+talent.' Every criterion is a DECISION you control, not a gift you're
+born with. That's deliberate. This lesson is graded on thinking, not
+on talent — because thinking is what you can actually learn and
+improve. Talent is a myth; deliberate practice is real."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 21 — GALLERY SHARE
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Gallery Share slide. Have students display their screens
+or project a few. Keep it warm and fast.]
+
+"Time to share. Three quick jobs when it's your turn. PRESENT: show
+your illustration, point out your layers in the panel, tell us your
+scene. EXPLAIN ONE CHOICE: name a deliberate composition decision you
+made and why. GIVE FEEDBACK: for a classmate, name one thing that
+works and suggest one improvement — using our vocabulary words."
+
+💡 [On giving good feedback]:
+"Here's the rule for feedback that actually helps: be SPECIFIC and use
+the VOCABULARY. Don't say 'I like it' — that teaches nothing. Say 'Your
+focal point sits right on the upper-right power point, so my eye went
+straight there,' or 'Your background contrast is competing with your
+foreground — try lowering its opacity.' Specific, vocabulary-rich
+feedback is a gift. Vague praise is just noise. Learning to critique
+with precision makes you a better artist than any tutorial."
+
+✋ [Call on 3–4 students to present. Model one specific critique
+   yourself first, then let students give the rest.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 22 — EXIT TICKET
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Exit Ticket. Students write in their notebooks — this is
+the metacognitive close.]
+
+"Before you go — three sentences in your notebook. ONE: one new thing
+you learned about layers or composition, using a vocabulary word. TWO:
+HOW you used it — a specific example from YOUR artwork today. THREE:
+one question you still have — something you'd explore next time."
+
+[Pause — let them write for 90 seconds.]
+
+💡 "Now go back to the warm-up observation you wrote at the very start
+of class — the one about the artwork on the board. Read it again. I
+guarantee it looks different now. At the start, you SAW the image. Now
+you can EXPLAIN it — you have the words for the focal point, the
+layers, the balance you noticed by instinct. That gap, between
+instinct and understanding, is exactly what learning feels like from
+the inside."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 23 — OUT-OF-CLASSROOM EXTENSION / HOMEWORK
+[Duration: ~1 minute]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the homework slide with the two challenge cards and
+recommended channels.]
+
+"Two ways to keep learning at home — pick what excites you."
+
+"PHOTOGRAPHY CHALLENGE: take five photos with your phone. For each,
+identify the foreground, middle ground, and background — and ask, does
+the subject land on a Rule of Thirds intersection? Your phone camera
+can show a thirds grid in settings — turn it on."
+
+"RESEARCH & ANALYSE: find one famous painting online — Van Gogh's
+'Starry Night,' for instance. Mentally draw the Rule of Thirds grid
+over it. Does the main element sit at a power point? Write three
+sentences about its composition."
+
+💡 "And the recommended channels on screen — Draw with Jazza, CtrlPaint,
+The Virtual Art Desk — are how artists keep growing. The single best
+thing you can do is start SEEING composition everywhere: in movie
+posters, in your favorite game, in album covers. Once you have these
+words, you can't turn the seeing off. That's the gift of this lesson."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 24 — WRAP-UP & CLOSE
+[Duration: ~1 minute]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the "Lesson 2 Complete!" slide with the three summary cards.
+Deliver with genuine warmth — this is an arrival.]
+
+"Look at what you did today. You learned that LAYERS let you stack and
+separate elements for total control. You learned the RULE OF THIRDS for
+dynamic, off-center compositions. And you learned to use BALANCE and
+CONTRAST to guide the viewer's eye with intention. Then you didn't just
+learn it — you BUILT it, in a real tool, with real decisions."
+
+"Here's what I want you to carry out the door: you started this hour
+SEEING art. You're leaving able to MAKE it on purpose. Every choice —
+which layer goes where, where the focal point lands, how much contrast
+to push — is now a decision you can reason about, because you
+understand what it's doing and why."
+
+[Pause before the final line.]
+
+"You don't need talent to make strong art. You need good decisions.
+And as of today, you can make them. Bring your illustration and your
+exit ticket next time — Lesson 3 builds straight from here. Beautiful
+work today."
+
+[Display next-class preview. Let students pack up knowing they made
+something real.]
+
+
+================================================================================
+APPENDIX A — COMMON PITFALLS & HOW TO HANDLE THEM
+================================================================================
+
+PITFALL: Student merges all layers early and then can't move anything.
+  Handle: "That's the lesson, painfully. Merging is a one-way door —
+          it flattens your separated decisions back into one
+          un-editable sheet. Undo it now if you can (Ctrl+Z). Going
+          forward, only merge at the very end, when you're 100% sure.
+          Until then, keep everything separate. Separation is freedom."
+
+PITFALL: Student's focal point keeps drifting to dead center.
+  Handle: "Turn on the grid overlay — Canva and Photopea both have
+          one. Now physically drag your subject onto a power point and
+          feel the difference. Center is the default the eye finds
+          boring; off-center is a choice the eye finds interesting.
+          Make the choice on purpose."
+
+PITFALL: Student says 'I can't draw, so my art is bad.'
+  Handle: "Look at the assessment criteria — not one of them is
+          'drawing skill.' Your shapes can be simple rectangles and
+          circles. What we grade is layer use, focal clarity, thirds,
+          balance, contrast — all DECISIONS, not drawing. A circle in
+          the right place with the right contrast beats a beautiful
+          drawing dead-center. Composition is the great equalizer."
+
+PITFALL: Student's background overpowers the foreground.
+  Handle: "Squint at it. See how the busy background fights your
+          subject? Drop the background layer's opacity, or lower its
+          contrast and detail. Remember atmospheric perspective —
+          distant things should be soft and pale. Push it back so the
+          foreground can win."
+
+PITFALL: Student confuses 'layer' with 'foreground.'
+  Handle: "A layer is the STRUCTURE — a sheet in your file. The
+          foreground is a ZONE — the near part of the scene. You put
+          your foreground ON a foreground layer, but you could also
+          put it on three layers, or put two zones on one layer. The
+          layer is the container; the zone is the content. Keep them
+          separate in your head."
+
+PITFALL: Student can't find the Layers panel in Canva.
+  Handle: "Canva hides it. Click any element first, then click
+          'Position' in the top toolbar, then the 'Layers' tab. It's
+          buried because Canva is built for non-artists — but the
+          concept is identical to Photopea. Find the doorway once and
+          you'll never lose it."
+
+
+================================================================================
+APPENDIX B — EXTENSION QUESTIONS FOR ADVANCED STUDENTS
+================================================================================
+
+1. ATMOSPHERIC PERSPECTIVE: Da Vinci observed that distant objects lose
+   contrast and shift blue. Recreate this digitally using only opacity
+   and a blue overlay layer. At what opacity does a hill start reading
+   as 'far away'? Is the effect linear or does it accelerate?
+
+2. VISUAL WEIGHT AS PHYSICS: If a large pale shape balances a small
+   intense-red shape, can you express balance as a formula — weight =
+   size × intensity? Test it: make a composition that's mathematically
+   balanced but FEELS off. What variable did the formula miss?
+
+3. THE GOLDEN RATIO vs THIRDS: The Rule of Thirds puts power points at
+   1/3 and 2/3. The Golden Ratio puts them at roughly 0.382 and 0.618.
+   Overlay both grids on the same image. How far apart are the power
+   points? Can the human eye even tell the difference?
+
+4. GAZE PREDICTION: Composition controls where the eye goes first.
+   Show three classmates your piece for two seconds each, then ask what
+   they saw first. Did your intended focal point win? If not, where did
+   your contrast actually peak?
+
+5. ETHICS OF ATTENTION: Composition is the science of directing human
+   attention. Advertising and social media use these exact tools to
+   capture your eye. Where is the line between guiding a viewer and
+   manipulating one? Should artists think about that responsibility?
+
+
+================================================================================
+APPENDIX C — QUICK REFERENCE: KEY PRINCIPLES
+================================================================================
+
+Layer Stacking Order:
+  TOP of panel    = FRONT of image (foreground)
+  BOTTOM of panel = BACK of image (background)
+  Build back-to-front; name every layer.
+
+Three Depth Zones:
+  Foreground  → largest, sharpest, highest contrast, bottom of canvas
+  Middle ground → medium size, medium detail, the connector
+  Background  → smallest, softest, palest (atmospheric perspective)
+
+Rule of Thirds:
+  Divide canvas into 3 × 3 grid.
+  4 power points = the 4 line intersections.
+  Place focal point ON a power point; horizon ON a third-line.
+
+Balance:
+  Symmetrical   → calm, formal, ordered (mirror images)
+  Asymmetrical  → dynamic, alive (visual weights traded; ~85% of pro work)
+  Visual weight = size × value × saturation × detail
+
+Contrast (your steering wheel):
+  Value (light/dark) > Colour (opposites) > Size.
+  HIGH contrast at the focal point. LOW contrast in the background.
+  The eye looks at highest contrast first. Use the squint test.
+
+The One-Sentence Master Rule:
+  Separate your elements onto layers, place your focal point on a
+  power point, and put your highest contrast there — and the viewer's
+  eye will go exactly where you want it.
+
+================================================================================
+END OF SCRIPT — Lesson 2 · Understanding Layers & Simple Composition
+================================================================================
