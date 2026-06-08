@@ -1,0 +1,666 @@
+Lesson 3 · Algebra I · Regents Prep
+"The Secret Life of Lines" — Graphing Linear Functions & Their Properties
+Expert Teaching Script (Regents-Aligned Explanations, Beginner-Friendly Delivery)
+Instructor: Mr. "Hue" Weng
+Total Time: ~60 minutes
+================================================================================
+
+HOW TO USE THIS SCRIPT
+─────────────────────────────────────────────────────────────────────
+- Text in [BRACKETS] = instructor stage directions or timing cues
+- "Quoted text" = suggested exact words to say aloud
+- → means a natural transition or follow-up thought
+- 💡 = deep conceptual explanation (say or adapt as needed)
+- ✋ = student interaction moment — pause and wait for responses
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 1 — TITLE SLIDE & WELCOME
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[As students settle in, display the title slide: "Lesson 3 · Graphing
+Linear Functions." Begin with energy and a sense of intrigue. Stand
+near the screen.]
+
+"Good morning / afternoon, everyone! Let me start with a question that
+sounds simple but is secretly powerful. Ready? Here it is: if I told you
+ONE number for where a line starts, and ONE number for how it moves —
+just two numbers — could you draw the entire line, stretching forever in
+both directions? Every point on it, perfectly?"
+
+[Pause. Let students react — some will say no, some will hesitate.]
+
+"The answer is yes. Two numbers. That's it. By the end of today you will
+look at an equation like y = 2x + 1 and SEE the line in your head before
+your pencil ever touches paper. That's a kind of superpower, and it shows
+up on the Regents exam more than almost any other skill."
+
+"Today we're studying the single most important shape in all of algebra:
+the straight line. We'll decode what makes a function 'linear,' we'll
+master slope and y-intercept, we'll graph any line using y = mx + b, and
+we'll use a real NYC taxi ride to prove this isn't abstract — it's the
+math behind the price of everything you buy by the unit. Let's get into
+it."
+
+💡 [DEEP CONTEXT — deliver this slowly and deliberately]:
+"Here's the big picture. A linear function is the math of constant change.
+Not change that speeds up, not change that slows down — change that
+happens at exactly the same rate, every single step. That's rarer and
+more beautiful than it sounds. When your phone plan charges the same per
+gigabyte, when a candle burns the same per hour, when a taxi charges the
+same per mile — that steady, predictable rate is what draws a straight
+line. So when you learn to read a line, you're really learning to read
+any steady relationship in the world."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 2 — TODAY'S PLAN: 60-MINUTE ROADMAP 🗺️
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four roadmap cards. Point to each block as you preview it.
+Keep this brisk — it's a map, not the journey.]
+
+"Here's our hour, in four moves. First, 0 to 12 minutes — a Do Now to
+wake up what you already know, plus our vocabulary wall. Second, 12 to
+28 minutes — a deep dive into slope: the four 'personalities' a line can
+have. Third, 28 to 44 minutes — Graph It! We turn equations into pictures
+and explore live in Desmos. Fourth, 44 to 60 minutes — the real world:
+taxi economics, differentiated practice, and your exit ticket."
+
+✋ [Read the Socratic prompt on the slide and genuinely pause:]
+"Before we start — think about the last time you rode in a taxi or a
+rideshare. As the distance got longer, how did the price change? Talk to
+a neighbor for 30 seconds. Hold that thought; we'll build the exact
+equation for it later today."
+
+→ "Let's wake up the part of your brain that already knows some of this."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — DO NOW & KEY VOCABULARY 🔑
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Do Now problem and the vocabulary cards side by side. Give
+students real silent work time on the Do Now FIRST, then debrief.]
+
+"Do Now — in your notebook, solve this for y:  2x + 3y = 6. One rule:
+you must get y all alone on one side. Take 90 seconds. Go."
+
+[Give a genuine 90 seconds. Circulate. Look for who subtracts first and
+who tries to divide first.]
+
+✋ [Debrief by building it live on the board, narrating every move:]
+"Let's walk it. We start with 2x + 3y = 6. Step one — subtract 2x from
+both sides to get the y-term alone: 3y = -2x + 6. Step two — divide
+EVERY term by 3: y = (-2/3)x + 2. Done. Notice I divided all three
+pieces by 3, not just one. That's the most common place people slip."
+
+💡 "Look at what just happened — that's not just 'solving.' We
+transformed the equation into a special outfit called slope-intercept
+form. The same line, the same truth, but now dressed so we can read its
+two secret numbers instantly. Hold that — we'll name those numbers in
+ten seconds."
+
+[Now point to the three vocabulary cards. Have students say each term
+aloud after you.]
+
+"Three words to own before we go further. Say each one after me."
+
+"WORD 1: LINEAR FUNCTION 📈
+A relationship where the rate of change is CONSTANT — the same every
+step. Its graph is always a perfectly straight line, never a curve.
+Constant rate is the whole secret. That's the test for 'linear.'"
+
+"WORD 2: SLOPE (m) ⛰️
+How steep the line is, calculated as RISE over RUN — the change in y
+divided by the change in x. Slope is the line's rate of change. It is
+the single most important number in this entire unit."
+
+"WORD 3: Y-INTERCEPT (b) 🎯
+Where the line crosses the y-axis. It's the starting value — the value
+of y when x = 0. Think of it as the line's home base, where everything
+begins before any movement happens."
+
+[Point to the formula box.]
+"And here's the equation that ties them together: y = mx + b. The m is
+the slope. The b is the y-intercept. That's the whole code."
+
+✋ [Quick check — fire these fast at random students:]
+"In our Do Now answer, y = (-2/3)x + 2 — what's the slope? What's the
+y-intercept? Where on the graph would you put your pencil FIRST?"
+   [Expected: slope = -2/3, y-intercept = 2, start at the point (0, 2).
+   Affirm warmly, correct gently.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — WHAT IS SLOPE? RISE OVER RUN 📐
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the graph showing two points with the rise and run marked.
+Point physically to the rise, then the run, as you speak.]
+
+✋ [Open with the Socratic prompt on the slide:]
+"Look at this line. Imagine you're walking along it from LEFT to RIGHT.
+Are you walking uphill or downhill? And how steep is it compared to a
+staircase in your home? Tell me."
+   [Take a few answers. Affirm "uphill" — this line rises.]
+
+"Slope answers a precise question: for every 1 unit you move RIGHT along
+the x-axis, how many units do you move UP or DOWN? On this graph, we rise
+60 and run 90, so the slope is 60 over 90, which simplifies to 2/3."
+
+[Point to the formula box: m = rise/run = (y₂ - y₁)/(x₂ - x₁).]
+
+💡 [DEEP CONCEPT — deliver deliberately]:
+"Here's why slope deserves to be called the 'personality' of a line.
+Slope alone tells you everything about how a line behaves — its
+direction, its steepness, whether it's climbing gently or shooting up
+fast. Two lines can start at totally different places, but if they have
+the same slope, they move identically forever. Slope is the line's
+character. The y-intercept is just where it happens to start."
+
+[Point to the Memory Trick card.]
+"Memory trick to lock in forever: RISE is vertical — up and down. RUN is
+horizontal — left and right. And rise comes BEFORE run, just like y
+comes before x in the coordinate pair. Rise over run. Say it three times
+in your head."
+
+✋ "On paper, find the slope between the points (1, 2) and (4, 8). Thirty
+   seconds."
+   [Reveal: rise = 8 - 2 = 6, run = 4 - 1 = 3, slope = 6/3 = 2. Affirm
+   the SUBTRACTION step — that's where errors hide.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — THE FOUR SLOPE PERSONALITIES ⛰️📉➖🧱
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four-quadrant slope diagram: positive, negative, zero,
+undefined. Give each its own dramatic beat and a hand gesture.]
+
+"A line can have exactly four kinds of slope — four personalities. Let's
+meet them, and I want you to make the shape with your arm as we go."
+
+"PERSONALITY 1 — POSITIVE (m > 0): RISING left to right. Tilt your arm
+uphill. Real life: a price increasing, a temperature climbing."
+
+"PERSONALITY 2 — NEGATIVE (m < 0): FALLING left to right. Tilt your arm
+downhill. Real life: a cost decreasing, time running out, a candle
+burning down."
+
+"PERSONALITY 3 — ZERO (m = 0): FLAT. Arm straight out, horizontal. No
+change at all — a constant value. The line is perfectly level, like a
+calm sea."
+
+"PERSONALITY 4 — UNDEFINED: VERTICAL. Arm straight up. The x-value never
+changes, the equation is just x = c, and the slope can't even be
+computed."
+
+💡 [Explain WHY undefined exists — this is the conceptual key]:
+"Why is a vertical line's slope 'undefined' rather than just 'really
+big'? Because slope is rise OVER run — and for a vertical line, the run
+is ZERO. You'd be dividing by zero, which math forbids. It's not a huge
+number; it's a question with no answer. That's the difference between
+zero slope and undefined slope."
+
+✋ [Use the Socratic prompt on the slide:]
+"I'll describe a scene; you call out the slope type. A ski slope going
+straight down a mountain face? [negative] A flat road across a salt
+flat? [zero] A vertical cliff? [undefined] A wheelchair ramp rising
+gently? [positive]."
+
+⚠️ [REGENTS TRAP — say this with emphasis, it appears on every exam]:
+"Write this down in capital letters. ZERO slope is NOT the same as NO
+slope. ZERO slope means the line is HORIZONTAL — flat. NO slope, or
+UNDEFINED slope, means the line is VERTICAL. They are complete opposites,
+and the Regents loves to test exactly this confusion. Horizontal = zero.
+Vertical = undefined."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — VIDEO 1: SLOPE TYPES EXPLAINED 🎬
+[Duration: ~6 minutes — video + brief discussion]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Two short clips are linked on this slide. Play the 2-minute clip
+("Slope: Positive, Negative, Zero, or Undefined?") — and, if time
+allows, the 4-minute clip. Prime students with what to watch for FIRST.]
+
+"Before we graph, let's watch a quick explainer to lock in those four
+personalities. As you watch, hunt for two specific things — write them
+in your notebook:"
+
+"1. How can you tell, just by LOOKING at a line, whether the slope is
+    positive or negative?
+ 2. WHY can't we divide by zero for a vertical line?"
+
+[Play the video — approximately 2 minutes. If using both clips, ~6 min
+total.]
+
+[After the video — give 3 seconds of silence before talking.]
+
+"Say ONE word out loud that captures what you saw. Any word."
+
+✋ [Listen for: "uphill," "downhill," "steepness," "vertical," "flat."
+   Affirm each and connect it back: 'Uphill — yes, that's positive.
+   We'll graph one of those in two minutes.']
+
+💡 [Use the Socratic prompt on the slide to deepen it:]
+"Here's a sharper question from the video. If a ramp rises 4 feet over a
+horizontal distance of 8 feet, what's its slope? [4/8 = 1/2.] Now — is
+that steeper or shallower than a 1-to-1 slope? [Shallower — a 1/2 slope
+climbs less for the same run.] Slope isn't just up or down; it's HOW
+MUCH. The bigger the number, the steeper the climb."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — DECODING y = mx + b 🔓
+[Duration: ~7 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the graph of y = 2x + 1 with slope and y-intercept marked.
+This is the heart of the lesson. Build the graph live, step by step, and
+do NOT rush.]
+
+✋ [Open with the Socratic prompt:]
+"Look at the equation y = 2x + 1. Before we graph ANYTHING — predict.
+Will this line go uphill or downhill? Where will it cross the y-axis?
+Tell your neighbor your prediction."
+   [Expected: uphill because slope 2 is positive; crosses y-axis at 1.]
+
+"Beautiful. Now let's prove your prediction with a recipe. Think of
+y = mx + b like a cooking recipe with two ingredients:
+   b tells you where to START.
+   m tells you how to MOVE from there."
+
+[Now build the graph on the board or point to the diagram, narrating.]
+"Step 1 — plot the y-intercept. Here b = 1, so I put my first dot at the
+point (0, 1). That's home base.
+
+Step 2 — use the slope to find the next point. Here m = 2, which I read
+as the fraction 2 over 1: rise 2, run 1. So from (0, 1), I go UP 2 and
+RIGHT 1, landing on (1, 3). Plot it.
+
+Step 3 — draw a straight line through both points, and ALWAYS add arrows
+on both ends to show it continues forever."
+
+[Point to the formula box: "Start at b, move by m."]
+
+💡 [DEEP CONCEPT — the most important idea on this slide]:
+"Here's the elegance. Every linear equation in the world can be rewritten
+into this one form, y = mx + b, and the moment it's in this form, the
+graph is basically free — you just read b for where to start and m for
+how to move. This is why we forced the Do Now into this form earlier.
+Slope-intercept form isn't just one way to write a line; it's the form
+that makes a line GRAPHABLE on sight."
+
+⚠️ [Quick trap to flag:]
+"When the slope is a whole number like 2, students forget it's secretly
+the fraction 2/1. And when slope is negative, like -3/4, the negative
+means you go DOWN 3 and right 4. The negative belongs to the rise. Keep
+the run positive and let the sign live on top."
+
+✋ "Quick one: for y = -1/2 x + 4, where's your first dot, and which way
+   do you move? Fifteen seconds."
+   [Reveal: start at (0, 4); from there go DOWN 1, RIGHT 2.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 8 — VIDEO 2: GRAPHING y = mx + b STEP BY STEP 🎬
+[Duration: ~5 minutes — video + pair discussion]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Two clips linked: a 3-minute and a 4-minute walkthrough. Play one.
+Prime students with a single focus question first.]
+
+"Let's watch someone graph a line from scratch using the exact recipe we
+just learned. Watch for ONE thing: notice the EXACT order they do it —
+do they plot the y-intercept first, or use the slope first? Order
+matters."
+
+[Play the video — approximately 3 minutes.]
+
+[After the video]
+
+"Turn to a neighbor and finish this sentence in your own words, 60
+seconds: 'To graph any line, I first ___, and then I ___.'"
+
+✋ [Circulate. Expected: 'first plot the y-intercept (0, b), then use the
+   slope rise-over-run to step to the next point.' Affirm variations.]
+
+💡 [Use the Socratic prompt on the slide — this is a subtle, rich idea]:
+"Here's a thinker. A slope of 3/4 can also be written as 6/8. If you
+graph using 3/4 versus 6/8, do you get the same line? [Yes — exactly the
+same line.] Why? Because equivalent fractions describe the same RATE of
+change. Going up 3 and right 4 lands you on the same line as going up 6
+and right 8 — you just took a bigger step. The slope is the relationship,
+not the specific numbers. That's a deep idea worth holding onto."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 9 — REAL WORLD: THE NYC TAXI RIDE 🚕
+[Duration: ~7 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the scenario card, the equation, and the cost-vs-miles graph.
+This is the payoff slide — connect everything back to the taxi question
+from the roadmap.]
+
+"Remember that taxi question from the start of class? Here's the real
+math. A NYC taxi charges a $3.00 base fare, plus $2.50 for every mile
+you ride. Let's turn that English sentence into algebra."
+
+✋ [Use the Socratic prompt BEFORE giving the equation:]
+"Before we write anything — what does the $3.00 represent on a graph?
+What does the $2.50 represent? Which one is the slope, and which is the
+y-intercept? Discuss for 30 seconds."
+   [Expected: $3.00 = y-intercept (the cost before you move an inch);
+   $2.50 = slope (the rate, cost per mile).]
+
+"Exactly. Let's build it:
+   y = total cost,  x = miles traveled
+   slope m = 2.50  (the per-mile rate — this is rate of change)
+   y-intercept b = 3.00  (the base fare, what you pay when x = 0)
+So the equation is:  y = 2.50x + 3.00."
+
+[Point to the graph. Show the y-intercept at $3 and the 5-mile point at
+$15.50.]
+"On the graph, the line doesn't start at zero — it starts at $3, because
+the meter charges you the moment you get in. That $3 is b. Then it climbs
+$2.50 for every mile — that steady climb is m."
+
+✋ [Have students use the work-box on the slide:]
+"Your turn. Compute the cost of a 5-mile ride and a 10-mile ride. Show
+your work. 90 seconds."
+   [Reveal: 5 miles → 2.50(5) + 3 = $15.50. 10 miles → 2.50(10) + 3 =
+   $28.00. Confirm the 5-mile point matches the dot on the graph.]
+
+💡 [DEEP CONCEPT]:
+"Notice what 'slope' MEANS here — it's not just steepness anymore, it's
+literally the price per mile. And the y-intercept isn't just 'where it
+crosses' — it's the flat fee you pay before anything happens. This is the
+whole reason linear functions matter: m is always a RATE, and b is always
+a STARTING AMOUNT. Once you see that, you can model phone bills, gym
+memberships, savings accounts — anything with a flat fee plus a steady
+rate."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 10 — DESMOS EXPLORATION 💻
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[A short Desmos how-to video is linked. Then students explore live. Make
+sure devices are open to desmos.com/calculator.]
+
+"Now you get to play with a line and watch it move in real time. Go to
+desmos.com/calculator and type exactly:  y = mx + b. Desmos will ask to
+'add sliders' for m and b — click yes. Now you can drag m and b and watch
+the line respond instantly."
+
+[Give 2 minutes of free exploration. Circulate.]
+
+✋ [Use the Socratic prompts on the slide as you circulate:]
+"As you drag m from 1 up to 5 — what changes about the line? [It gets
+steeper.] Now hold m still and drag b from 0 to 3 — what changes? [The
+line slides up; its steepness stays the same.] So m controls steepness,
+b controls position. Confirm it with your own eyes."
+
+[Display the prediction questions.]
+"Predict before you test:
+  - What happens when m = 0? [The line goes flat — horizontal.]
+  - Can m be a decimal like 0.5? [Yes — a gentle half-step slope.]
+  - What do two parallel lines have in common? [Same slope, different b.]"
+
+💡 [KEY INSIGHT — point to the card]:
+"Here's a Regents gem you just discovered by dragging sliders. PARALLEL
+lines have the SAME slope but different y-intercepts — they climb
+identically and never meet. PERPENDICULAR lines have slopes that multiply
+to -1 — they're negative reciprocals, like 2 and -1/2. You'll need both
+of these facts on the exam, and now you've SEEN why they're true, not
+just memorized them."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 11 — VIDEO 3: WORD PROBLEMS IN CONTEXT 🎬
+[Duration: ~5 minutes — video + pair discussion]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[A 4-minute word-problems clip is linked. Prime students to listen for
+the keyword-to-math translation.]
+
+"Word problems scare people, but they follow a code. Watch this clip and
+listen for the SIGNAL WORDS — the words that tell you whether a number is
+the slope or the y-intercept."
+
+[Play the video — approximately 4 minutes.]
+
+[After the video — display the Slope/Rate Translator card and walk it.]
+
+"Here's the decoder ring. The word 'per' almost always signals the SLOPE
+— a rate:
+   $2.50 PER mile → m = 2.50
+   $40 PER month → m = 40
+   5 inches PER year → m = 5
+And words like 'initial,' 'base fare,' 'flat fee,' or 'startup cost'
+signal the Y-INTERCEPT — a starting value:
+   $3 base fare → b = 3
+   10-gallon tank to start → b = 10."
+
+✋ [Use the Socratic prompt on the slide — have them build it fully:]
+"Try one together. A candle is 12 inches tall and burns 1.5 inches per
+hour. Write the equation. What does x represent? And what does y = 0
+mean in this story?"
+   [Reveal: 'burns per hour' is a rate, but it's SHRINKING, so slope is
+   negative: m = -1.5. It starts at 12 inches: b = 12. Equation:
+   y = -1.5x + 12. Here x = hours, y = candle height, and y = 0 means
+   the candle has completely burned out. Celebrate the negative slope
+   catch — that's the trap.]
+
+💡 "Notice: 'per' didn't tell us the SIGN. The CONTEXT did — the candle
+is getting shorter, so the rate is negative. Always ask: is the quantity
+growing or shrinking? Growing means positive slope; shrinking means
+negative slope."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 12 — LINEAR FUNCTIONS CHEAT CARD 🗂️
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four-formula cheat card plus the two trap cards. This is a
+consolidation moment — read it like a pilot's pre-flight checklist.]
+
+"Before practice, here's everything from today on one card. Four
+must-knows:"
+
+"1. SLOPE FORMULA:  m = (y₂ - y₁)/(x₂ - x₁) — rise over run.
+ 2. SLOPE-INTERCEPT FORM:  y = mx + b — m is slope, b is y-intercept.
+ 3. GRAPH STEPS:  Plot (0, b), apply rise/run to get a second point,
+    draw the line — always with arrows.
+ 4. REAL-WORLD KEY:  'per' = slope (rate); 'start/initial/base' =
+    y-intercept."
+
+⚠️ [Point to both trap cards — say these with weight:]
+"Two traps that show up on EVERY Regents exam:
+  - SLOPE TYPE SHORTCUT: up = positive, down = negative, flat = zero,
+    vertical = undefined.
+  - THE BIG ONE: Zero slope ≠ undefined slope. Horizontal lines have
+    ZERO slope. Vertical lines have UNDEFINED slope. Do not mix them up."
+
+✋ [Use the Socratic prompt on the slide:]
+"Cover the card with your hand. Can you say all four formulas AND give me
+one real-world example of a slope and one of a y-intercept — out loud, in
+30 seconds? Try it with a partner. Go."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 13 — EXIT TICKET: 4 THINGS TO KNOW COLD ✅
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four summary cards and the exit-ticket question. First,
+quick-fire the four cards; then give silent writing time on the prompt.]
+
+"Four things you must now know cold — call them out with me:
+   Slope = rise/run = rate of change.
+   Y-intercept = where the line crosses the y-axis, the value when x = 0.
+   Graph steps = plot (0, b), apply slope, draw the line with arrows.
+   Real world = slope is a rate, y-intercept is a starting value."
+
+[Now display the exit-ticket question and go silent.]
+"Here's your exit ticket — answer in the work-box in 2 to 3 complete
+sentences, using a real-world example: 'What does the slope of a line
+tell you about the relationship between two variables in a real-world
+scenario?' You have 3 minutes. This is how I'll know you're Regents-ready."
+
+[Give a real 3 minutes. Collect or have students submit digitally.]
+
+✋ [Use the closing Socratic prompt for a verbal exit:]
+"Before you leave — say ONE real-world situation where a NEGATIVE slope
+makes perfect sense. What's decreasing, and what is it decreasing with
+respect to?"
+   [Listen for: a draining battery per hour, a candle burning down, a
+   bank balance dropping per purchase, ice melting over time. Affirm
+   every correct 'decreasing-over-time' answer.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 14 — CLOSING & LOOK AHEAD 🎉
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the closing slide: "Slopes mastered. Lines tamed." Deliver with
+genuine warmth and pride.]
+
+"Let's name what you did today. You started not knowing if two numbers
+could draw a whole line — and now you know they can. You can take any
+linear equation, fold it into y = mx + b, read its slope and its
+y-intercept, and graph it on sight. You learned the four slope
+personalities and the trap that fools everyone — zero versus undefined.
+And you proved it's real by pricing a taxi ride and decoding word
+problems. That's a complete, Regents-ready skill set. Give yourselves a
+round of applause — seriously."
+
+💡 "Here's the through-line of the whole hour: slope is rate, intercept is
+start, and y = mx + b is the recipe that turns any steady relationship in
+the world into a picture. You now read lines the way you read sentences."
+
+"Where we go next — Lesson 4: Systems of Linear Equations. Once you can
+graph ONE line, the natural question is: what happens when TWO lines
+meet? That meeting point — the solution to a system — is where everything
+you built today pays off. Come ready to make lines collide."
+
+"And tonight, keep the momentum: head to ixl.com/math/algebra-1, filter
+for Slope-Intercept Form, and run a few problems. Five minutes of
+practice tonight beats an hour of cramming later."
+
+"The next time you see a price 'per' something, or a flat fee plus a
+rate — pause and think: that's a line. m is the rate, b is the start. You
+now know how to read it. See you next time."
+
+[Let students leave feeling they genuinely gained a real, usable skill.]
+
+
+================================================================================
+APPENDIX A — COMMON PITFALLS & HOW TO HANDLE THEM
+================================================================================
+
+PITFALL: Student divides only one term by the coefficient when solving for y.
+  Handle: "Watch the Do Now move — from 3y = -2x + 6, you must divide
+          EVERY term by 3, not just the y-term. That gives y = (-2/3)x + 2.
+          A common slip is writing y = -2x + 2. Divide all three pieces or
+          the equation is no longer true."
+
+PITFALL: Student confuses rise and run (uses run over rise).
+  Handle: "Rise comes BEFORE run, just like y comes before x in (x, y)...
+          wait — that's the catch. In the slope FRACTION, rise (the change
+          in y) goes on TOP, run (the change in x) on the bottom. m =
+          Δy/Δx. Vertical change over horizontal change. Always."
+
+PITFALL: Student says a vertical line has 'zero' slope.
+  Handle: "This is THE Regents trap. A vertical line has a run of zero, so
+          you'd divide by zero — that's UNDEFINED, not zero. ZERO slope is
+          a flat, HORIZONTAL line. Horizontal = zero. Vertical = undefined.
+          Opposites."
+
+PITFALL: Student forgets the negative sign belongs to the rise.
+  Handle: "For a slope of -3/4, keep the run positive and put the negative
+          on the rise: go DOWN 3, RIGHT 4. Don't go down 3 AND left 4 —
+          that double-counts the negative and gives you the wrong line."
+
+PITFALL: Student plots the slope before the y-intercept.
+  Handle: "Order matters. ALWAYS plant your first dot at the y-intercept
+          (0, b) — that's your anchor. THEN use rise-over-run to step to
+          the next point. If you start stepping before you've anchored,
+          you've got nothing to step FROM."
+
+PITFALL: Student treats a whole-number slope as if it has no run.
+  Handle: "A slope of 2 is secretly 2/1. Rise 2, run 1. Every whole-number
+          slope has an invisible denominator of 1. Write it as a fraction
+          and the rise/run steps become obvious."
+
+PITFALL: Student picks the wrong sign for slope in a word problem.
+  Handle: "The word 'per' tells you it's a rate, but the CONTEXT tells you
+          the sign. If the quantity is GROWING, slope is positive. If it's
+          SHRINKING — a candle burning, a battery draining — slope is
+          negative. Always ask: growing or shrinking?"
+
+
+================================================================================
+APPENDIX B — EXTENSION QUESTIONS FOR CURIOUS MINDS
+================================================================================
+
+1. Why does slope-intercept form make graphing so easy compared to
+   standard form (Ax + By = C)?
+   Answer: Because y = mx + b puts the two things you need to draw a line
+   — a starting point and a direction — right out in the open. The b is a
+   ready-to-plot point, (0, b), and m is a ready-to-use instruction,
+   rise/run. Standard form hides both; you have to do algebra first to
+   reveal them. Same line, but slope-intercept form is the line wearing a
+   name tag.
+
+2. Why do perpendicular lines have slopes that multiply to -1?
+   Answer: When you rotate a line 90 degrees, its rise and run swap places
+   AND one of them flips sign. A slope of 2 (rise 2, run 1) becomes
+   -1/2 (rise -1, run 2) when turned a right angle. Multiply them: 2 ×
+   (-1/2) = -1. That product of -1 is the algebraic fingerprint of a
+   perfect right angle, which is why the Regents uses it to test
+   perpendicularity.
+
+3. How can two different equations describe the exact same line?
+   Answer: Because you can multiply or rearrange an equation without
+   changing its solutions. y = 2x + 1, 2y = 4x + 2, and -2x + y = 1 all
+   graph identically. The line is the set of points that make the
+   statement true, and scaling both sides equally never changes which
+   points qualify. This also explains why slope 3/4 and slope 6/8 draw the
+   same line — equivalent forms, identical truth.
+
+4. Is every straight line a 'function'?
+   Answer: Almost — but not the vertical one. A function requires that
+   each x-value have exactly ONE y-value. A vertical line, x = c, has
+   infinitely many y-values stacked on a single x, so it fails the
+   vertical-line test and is NOT a function. That's a second reason
+   vertical lines are the 'odd one out': undefined slope AND not a
+   function. Every other line you graph today is a genuine linear
+   function.
+
+5. What does the y-intercept mean when x = 0 is impossible in real life?
+   Answer: Sometimes b is a real starting value (the $3 base fare you pay
+   before driving), and sometimes it's a mathematical anchor that the real
+   situation never actually reaches. For a candle, x = 0 means "zero
+   hours," which is real. But for, say, a person's height versus age,
+   x = 0 (age zero) might give a b that's biologically meaningless. The
+   intercept always pins the line to the y-axis mathematically — but
+   whether it has a real-world meaning depends on whether x = 0 makes
+   sense in the story.
+
+================================================================================
+END OF SCRIPT — Lesson 3 · Graphing Linear Functions · "The Secret Life of Lines"
+================================================================================
