@@ -1,1 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5 Activity Worksheet — Polynomials</title>
 
+  <!-- Homework.html fonts (Fredoka + Nunito) for header/sheet chrome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══════════════════════════════════════════════
+       ROOT TOKENS — homework.html color palette
+       (used for header, badges, sheet chrome, sections)
+    ══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img, svg, table, input, textarea { max-width: 100%; }
+    :root {
+      --blue:      #2563EB;
+      --blue-lt:   #EFF6FF;
+      --blue-md:   #BFDBFE;
+      --coral:     #F97066;
+      --coral-lt:  #FFF1F0;
+      --sand:      #D4A574;
+      --sand-lt:   #FDF3E7;
+      --green:     #16a34a;
+      --green-lt:  #DCFCE7;
+      --purple:    #7c3aed;
+      --purple-lt: #EDE9FE;
+      --ink:       #0f172a;
+      --slate:     #334155;
+      --muted:     #64748b;
+      --border:    #CBD5E1;
+      --bg:        #F8FAFF;
+      --white:     #FFFFFF;
+      --ff-head:   'Fredoka', sans-serif;
+      --ff-body:   'Nunito', sans-serif;
+      /* Lesson deck fonts — used for diagrams & formula elements only */
+      --ff-lesson-display: 'Outfit', sans-serif;
+      --ff-lesson-body:    'DM Sans', sans-serif;
+      /* Lesson deck grays — used for problem cards, diagrams, formula-boxes */
+      --lesson-ink:   #111827;
+      --lesson-slate: #374151;
+      --lesson-mid:   #4b5563;
+      --lesson-muted: #64748b;
+      --lesson-light: #9ca3af;
+      --lesson-border: rgba(0,0,0,0.09);
+      --lesson-bg:    #F0F7FF;
+    }
+
+    html { background: #e2e8f0; }
+    body {
+      font-family: var(--ff-body);
+      color: var(--ink);
+      background: var(--bg);
+      max-width: 860px;
+      margin: 0 auto;
+      overflow-x: hidden;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── Print ── */
+    @media print {
+      input, textarea { border-color: #cbd5e1 !important; background: white !important; }
+      html { background: white; }
+      body { max-width: 100%; padding: 0; }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+      .sheet { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; padding: 1.2cm 1.2cm !important; }
+      * { overflow-wrap: break-word; word-break: break-word; }
+      .prob-grid { gap: 0.5rem !important; }
+      .prob-card { padding: 0.5rem 0.6rem !important; }
+    }
+
+    /* ══════════════════════════════════════════════
+       SHEET CONTAINER — homework.html style
+    ══════════════════════════════════════════════ */
+    .sheet {
+      background: var(--white);
+      margin: 2rem auto;
+      padding: 2rem 2rem;
+      box-shadow: 0 4px 24px rgba(37,99,235,0.10);
+      border-radius: 16px;
+    }
+
+    /* ── HEADER — homework.html style ── */
+    .hw-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid var(--blue);
+      margin-bottom: 1.3rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+    .hw-header-left h1 {
+      font-family: var(--ff-head);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1.1;
+    }
+    .hw-header-left .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hw-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      min-width: min(230px, 100%);
+    }
+    .hw-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--slate);
+      font-weight: 600;
+    }
+    .hw-meta-row .label {
+      background: var(--blue-lt);
+      color: var(--blue);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      min-width: 65px;
+      text-align: center;
+    }
+
+    /* ── Section header — homework.html style ── */
+    .section-hd {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin: 1.5rem 0 0.75rem;
+    }
+    .section-hd .icon { font-size: 1.2rem; }
+    .section-hd h2 {
+      font-family: var(--ff-head);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .section-hd .badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-left: auto;
+    }
+    .badge-blue   { background: var(--blue-lt);   color: var(--blue);    border: 1px solid var(--blue-md); }
+    .badge-coral  { background: var(--coral-lt);  color: #c2410c;        border: 1px solid #fca5a5; }
+    .badge-green  { background: var(--green-lt);  color: var(--green);   border: 1px solid #86efac; }
+    .badge-purple { background: var(--purple-lt); color: var(--purple);  border: 1px solid #c4b5fd; }
+    .badge-sand   { background: var(--sand-lt);   color: #92400e;        border: 1px solid #fcd34d; }
+
+    /* ── Instruction strip — homework.html style ── */
+    .instr {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.85rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--blue-lt);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── Divider ── */
+    hr.divider {
+      border: none;
+      border-top: 2px dashed var(--border);
+      margin: 1.5rem 0;
+    }
+
+    /* ── Score banner — homework.html style ── */
+    .score-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      color: white;
+      border-radius: 10px;
+      padding: 0.65rem 1rem;
+      margin-bottom: 1.3rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      overflow: hidden;
+    }
+    .score-banner .title { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+    .score-banner .sub   { font-size: 0.78rem; opacity: 0.85; }
+    .score-cells { display: flex; gap: 0.5rem; flex-wrap: wrap; max-width: 100%; }
+    .score-cell {
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 0.3rem 0.75rem;
+      text-align: center;
+      min-width: 80px;
+    }
+    .score-cell .sc-val { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+    .score-cell .sc-lbl { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    /* ── Formula strip — homework.html style ── */
+    .formula-strip {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      overflow: hidden;
+      background: var(--blue-lt);
+      border: 1.5px solid var(--blue-md);
+      border-radius: 10px;
+      padding: 0.6rem 0.9rem;
+      margin-bottom: 0.9rem;
+      align-items: center;
+    }
+    .formula-strip .fs-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 0.3rem;
+      font-family: var(--ff-head);
+    }
+    .fml {
+      background: white;
+      border: 1.5px solid var(--blue-md);
+      border-radius: 7px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      font-family: var(--ff-lesson-display);
+      white-space: nowrap;
+    }
+
+    /* ── Work area (textarea) — homework.html style ── */
+    .work-area {
+      width: 100%;
+      resize: vertical;
+      min-height: 56px;
+      border: 1.5px dashed var(--border);
+      border-radius: 6px;
+      background: white;
+      padding: 0.35rem 0.55rem;
+      font-family: var(--ff-body);
+      font-size: 0.78rem;
+      color: var(--ink);
+      outline: none;
+      margin-top: 0.4rem;
+      display: block;
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+    .work-area::placeholder { color: var(--muted); font-style: italic; }
+    .answer-box {
+      margin-top: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--slate);
+    }
+    .answer-line {
+      border-bottom: 1.5px solid var(--border);
+      flex: 1;
+      min-height: 1.2rem;
+    }
+
+    /* ── Print button — homework.html style ── */
+    .print-btn {
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.3rem;
+      font-family: var(--ff-head);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .print-btn:hover { background: #1d4ed8; }
+
+    /* ── MC options — homework.html style ── */
+    .mc-opts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 0.5rem;
+      margin-top: 0.4rem;
+      min-width: 0;
+    }
+    .mc-opt {
+      font-size: 0.79rem;
+      color: var(--slate);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.3rem;
+      line-height: 1.45;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      border-radius: 5px;
+      border: 1.5px solid transparent;
+      transition: background 0.15s;
+    }
+    .mc-opt:hover { background: #f0f0f0; }
+    .mc-opt input[type=radio] { display: none; }
+    .mc-opt.selected { background: #e5e7eb; border-color: #374151; font-weight: 700; }
+    .mc-opt .bubble {
+      width: 14px; height: 14px; min-width: 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; font-weight: 800; flex-shrink: 0;
+    }
+    .mc-opt.selected .bubble { background: #374151; border-color: #374151; color: white; }
+
+    /* ══════════════════════════════════════════════
+       LESSON DECK STYLES — used ONLY on problem
+       cards, diagrams, and formula elements
+    ══════════════════════════════════════════════ */
+
+    /* Problem grid — homework layout but lesson card styling */
+    .prob-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+    .prob-grid > * { min-width: 0; overflow: hidden; }
+    .prob-grid.single { grid-template-columns: 1fr; }
+    .prob-grid.three  { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* prob-card — EXACTLY from lesson deck (white card, gray border) */
+    .prob-card {
+      background: white;
+      border: 1.5px solid rgba(0,0,0,0.09);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      word-break: break-word;
+    }
+    .prob-num {
+      font-family: var(--ff-head);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+    .prob-q {
+      font-size: 0.84rem;
+      color: var(--ink);
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 0.4rem;
+      font-family: var(--ff-body);
+    }
+    .prob-q strong { color: var(--lesson-slate); }
+
+    /* formula-box — EXACTLY from lesson deck (gray outlined box, Outfit font) */
+    .formula-box {
+      background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02));
+      border: 2px solid rgba(0,0,0,0.18);
+      border-radius: 10px;
+      padding: 0.35rem 0.8rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--lesson-ink);
+      font-family: var(--ff-lesson-display);
+      letter-spacing: 0.02em;
+      display: inline-block;
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+    .formula-box.block {
+      display: block;
+      text-align: center;
+      margin: 0.3rem 0;
+    }
+
+    /* section-badge — EXACTLY from lesson deck (dark gradient pill) */
+    .lesson-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #374151, #1f2937);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-family: var(--ff-lesson-body);
+      margin-bottom: 0.45rem;
+    }
+
+    /* socratic-q — EXACTLY from lesson deck */
+    .socratic-q {
+      background: rgba(0,0,0,0.04);
+      border-left: 3px solid #6b7280;
+      border-radius: 0 8px 8px 0;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.78rem;
+      font-style: italic;
+      color: #374151;
+      font-weight: 600;
+      font-family: var(--ff-lesson-body);
+      margin-top: 0.4rem;
+    }
+
+    /* trap-card — EXACTLY from lesson deck */
+    .trap-card {
+      border-left: 4px solid #4b5563;
+      background: #f9fafb;
+      border-radius: 0 9px 9px 0;
+      padding: 0.5rem 0.8rem;
+      box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+      margin-bottom: 0.35rem;
+    }
+
+    /* diagram-wrap — EXACTLY from lesson deck */
+    .diagram-wrap {
+      background: white;
+      border: 1.5px solid rgba(0,0,0,0.09);
+      border-radius: 14px;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      margin: 0.4rem 0;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    svg { max-width: 100%; height: auto; overflow: visible; }
+    .diagram-wrap svg text {
+      font-family: var(--ff-lesson-body);
+    }
+
+    /* lvl badge — EXACTLY from lesson deck (grayscale) */
+    .lvl {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+    .lvl-1 { background: #f0f0f0; color: #374151; }
+    .lvl-2 { background: #d9d9d9; color: #1f2937; }
+    .lvl-3 { background: #bdbdbd; color: #111827; }
+    .lvl-4 { background: #6b7280; color: #ffffff; }
+    .lvl-r  { background: #111827; color: #ffffff; }
+    .lvl-rr { background: linear-gradient(135deg,#111827,#374151); color: #ffffff; letter-spacing:0.04em; }
+
+    /* color-coded like-term highlights — from lesson deck */
+    .lt-blue   { background: #dbeafe; padding: 1px 4px; border-radius: 3px; font-family: var(--ff-lesson-display); font-weight: 700; }
+    .lt-green  { background: #dcfce7; padding: 1px 4px; border-radius: 3px; font-family: var(--ff-lesson-display); font-weight: 700; }
+    .lt-yellow { background: #fef9c3; padding: 1px 4px; border-radius: 3px; font-family: var(--ff-lesson-display); font-weight: 700; }
+
+    /* fig wrapper */
+    .fig { display: flex; justify-content: center; margin: 0.3rem 0 0.4rem; }
+
+    /* Error log — homework.html style */
+    .error-log {
+      border: 2px solid var(--coral);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      background: var(--coral-lt);
+      margin-top: 0.5rem;
+    }
+    .error-log h3 {
+      font-family: var(--ff-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #c2410c;
+      margin-bottom: 0.5rem;
+    }
+    .error-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; table-layout: fixed; overflow: hidden; }
+    .error-table th {
+      background: var(--coral);
+      color: white;
+      font-family: var(--ff-head);
+      font-weight: 600;
+      padding: 0.35rem 0.6rem;
+      text-align: left;
+      font-size: 0.75rem;
+    }
+    .error-table th:first-child { border-radius: 6px 0 0 0; }
+    .error-table th:last-child  { border-radius: 0 6px 0 0; }
+    .error-table td {
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid #fca5a5;
+      color: var(--slate);
+      background: white;
+    }
+    .error-table td:first-child { font-weight: 700; color: var(--ink); width: 5%; text-align: center; }
+    .error-table tr:last-child td { border-bottom: none; }
+
+    /* Reflect box — homework.html style */
+    .reflect-box {
+      background: var(--green-lt);
+      border: 1.5px solid #86efac;
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      margin-top: 1rem;
+    }
+    .reflect-box h3 {
+      font-family: var(--ff-head);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .reflect-lines { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.25rem; }
+    .reflect-line {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--slate);
+      font-weight: 600;
+    }
+    .reflect-line input[type=text] {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      border-bottom: 1.5px solid var(--border);
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      color: var(--ink);
+      background: transparent;
+      outline: none;
+      padding: 1px 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="no-print" style="display:flex;gap:0.8rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;">
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <button class="print-btn" onclick="clearAll()" style="background:#64748b;">🗑️ Clear All</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAGE 1
+══════════════════════════════════════════════ -->
+<div class="sheet">
+
+  <!-- HEADER — homework.html style, lesson content -->
+  <div class="hw-header">
+    <div class="hw-header-left">
+      <h1>🧮 Lesson 5 Activity Worksheet</h1>
+      <div class="subtitle">Algebra I Regents Prep &nbsp;·&nbsp; Polynomials: Addition, Subtraction &amp; Multiplication</div>
+    </div>
+    <div class="hw-meta">
+      <div class="hw-meta-row"><span class="label">Name</span><input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.82rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder=""></div>
+      <div class="hw-meta-row"><span class="label">Date</span><input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.82rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder=""></div>
+      <div class="hw-meta-row"><span class="label">Period</span><input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.82rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder=""></div>
+    </div>
+  </div>
+
+  <!-- SCORE BANNER — homework.html style -->
+  <div class="score-banner">
+    <div>
+      <div class="title">Activity Tracker</div>
+      <div class="sub">Complete each section — check your work as you go!</div>
+    </div>
+    <div class="score-cells">
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="10" style="width:2.2rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 10</div>
+        <div class="sc-lbl">Vocabulary</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="16" style="width:2.2rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 16</div>
+        <div class="sc-lbl">Add &amp; Subtract</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="16" style="width:2.2rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 16</div>
+        <div class="sc-lbl">Multiply</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="20" style="width:2.2rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 20</div>
+        <div class="sc-lbl">Advanced</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="62" style="width:2.4rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 62</div>
+        <div class="sc-lbl">Total</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PART A — VOCABULARY & ANATOMY
+  ════════════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">📖</span>
+    <h2>Part A — Vocabulary &amp; Polynomial Anatomy</h2>
+    <span class="badge badge-blue">10 pts · ~8 min</span>
+  </div>
+  <p class="instr">Label each polynomial, identify its parts, and fill in the vocabulary chart below.</p>
+
+  <!-- A1: Anatomy diagram labeling -->
+  <div class="lesson-badge">A1 · Label the Polynomial</div>
+  <div class="diagram-wrap" style="margin-bottom:0.6rem;">
+    <svg viewBox="0 0 560 120" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+      <!-- Expression -->
+      <text x="30" y="68" font-size="30" font-weight="800" fill="#111827">5x³</text>
+      <text x="108" y="68" font-size="30" font-weight="700" fill="#374151">−</text>
+      <text x="132" y="68" font-size="30" font-weight="800" fill="#111827">3x²</text>
+      <text x="218" y="68" font-size="30" font-weight="700" fill="#374151">+</text>
+      <text x="238" y="68" font-size="30" font-weight="800" fill="#111827">8x</text>
+      <text x="288" y="68" font-size="30" font-weight="700" fill="#374151">−</text>
+      <text x="310" y="68" font-size="30" font-weight="800" fill="#111827">2</text>
+      <!-- Arrow lines pointing up to blank label boxes -->
+      <line x1="50" y1="55" x2="50" y2="28" stroke="#374151" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <rect x="10" y="8" width="80" height="20" rx="4" fill="#f0f7ff" stroke="#374151" stroke-width="1.2"/>
+      <text x="50" y="22" text-anchor="middle" font-size="9" fill="#64748b" font-style="italic">degree = ___</text>
+
+      <line x1="165" y1="55" x2="165" y2="28" stroke="#374151" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <rect x="120" y="8" width="90" height="20" rx="4" fill="#f0f7ff" stroke="#374151" stroke-width="1.2"/>
+      <text x="165" y="22" text-anchor="middle" font-size="9" fill="#64748b" font-style="italic">coefficient = ___</text>
+
+      <line x1="256" y1="55" x2="256" y2="28" stroke="#374151" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <rect x="210" y="8" width="90" height="20" rx="4" fill="#f0f7ff" stroke="#374151" stroke-width="1.2"/>
+      <text x="256" y="22" text-anchor="middle" font-size="9" fill="#64748b" font-style="italic">term = ___</text>
+
+      <line x1="320" y1="55" x2="320" y2="28" stroke="#374151" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <rect x="278" y="8" width="85" height="20" rx="4" fill="#f0f7ff" stroke="#374151" stroke-width="1.2"/>
+      <text x="320" y="22" text-anchor="middle" font-size="9" fill="#64748b" font-style="italic">constant = ___</text>
+
+      <!-- Bottom labels -->
+      <text x="50" y="93" text-anchor="middle" font-size="9" fill="#374151" font-weight="800">Leading term</text>
+      <text x="50" y="104" text-anchor="middle" font-size="9" fill="#64748b">coeff: ___</text>
+      <text x="165" y="93" text-anchor="middle" font-size="9" fill="#374151" font-weight="800">2nd term</text>
+      <text x="165" y="104" text-anchor="middle" font-size="9" fill="#64748b">degree: ___</text>
+      <text x="256" y="93" text-anchor="middle" font-size="9" fill="#374151" font-weight="800">3rd term</text>
+      <text x="256" y="104" text-anchor="middle" font-size="9" fill="#64748b">coeff: ___</text>
+      <text x="320" y="93" text-anchor="middle" font-size="9" fill="#374151" font-weight="800">4th term</text>
+      <text x="320" y="104" text-anchor="middle" font-size="9" fill="#64748b">type: ___</text>
+
+      <!-- Right summary -->
+      <rect x="415" y="40" width="130" height="68" rx="8" fill="white" stroke="rgba(0,0,0,0.09)" stroke-width="1.5"/>
+      <text x="480" y="56" text-anchor="middle" font-size="9" font-weight="800" fill="#374151">Polynomial Info</text>
+      <text x="425" y="70" font-size="9" fill="#64748b">Degree of polynomial: ___</text>
+      <text x="425" y="83" font-size="9" fill="#64748b">Number of terms: ___</text>
+      <text x="425" y="96" font-size="9" fill="#64748b">Name (mono/bi/tri/poly): ___</text>
+      <text x="425" y="109" font-size="9" fill="#64748b">Standard form? (Y/N): ___</text>
+    </svg>
+  </div>
+
+  <!-- A2: Vocabulary match -->
+  <div class="lesson-badge" style="margin-top:0.5rem;">A2 · Vocabulary Match &amp; Fill-In</div>
+  <div class="prob-grid" style="margin-bottom:0;">
+    <div class="prob-card">
+      <div class="prob-num">Match each term to its definition</div>
+      <div style="display:flex;flex-direction:column;gap:0.3rem;font-size:0.8rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;">Degree</span>
+          <span style="color:#64748b;">→</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="definition…">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;">Coefficient</span>
+          <span style="color:#64748b;">→</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="definition…">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;">Binomial</span>
+          <span style="color:#64748b;">→</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="definition…">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;">Standard Form</span>
+          <span style="color:#64748b;">→</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="definition…">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;">Like Terms</span>
+          <span style="color:#64748b;">→</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="definition…">
+        </div>
+      </div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Classify each — write Monomial, Binomial, or Trinomial + its degree</div>
+      <div style="display:flex;flex-direction:column;gap:0.32rem;font-size:0.8rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.8rem;padding:2px 8px;min-width:80px;text-align:center;">9x⁴</span>
+          <span style="color:#64748b;">Type:</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="___">
+          <span style="color:#64748b;">Degree:</span>
+          <input type="text" style="width:2rem;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="__">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.78rem;padding:2px 8px;min-width:80px;text-align:center;">4x − 7</span>
+          <span style="color:#64748b;">Type:</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="___">
+          <span style="color:#64748b;">Degree:</span>
+          <input type="text" style="width:2rem;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="__">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;min-width:80px;text-align:center;">2x²+x−5</span>
+          <span style="color:#64748b;">Type:</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="___">
+          <span style="color:#64748b;">Degree:</span>
+          <input type="text" style="width:2rem;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="__">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;min-width:80px;text-align:center;">x³−2x²+x−4</span>
+          <span style="color:#64748b;">Type:</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="___">
+          <span style="color:#64748b;">Degree:</span>
+          <input type="text" style="width:2rem;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="__">
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <span class="formula-box" style="font-size:0.75rem;padding:2px 8px;min-width:80px;text-align:center;">−6</span>
+          <span style="color:#64748b;">Type:</span>
+          <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="___">
+          <span style="color:#64748b;">Degree:</span>
+          <input type="text" style="width:2rem;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="__">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       PART B — ADDING POLYNOMIALS
+  ════════════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">➕</span>
+    <h2>Part B — Adding Polynomials</h2>
+    <span class="badge badge-green">16 pts · ~15 min</span>
+  </div>
+  <p class="instr">Combine like terms only. Write your answer in standard form (highest degree first).</p>
+
+  <!-- Like-terms color guide -->
+  <div class="lesson-badge">Color-Code the Like Terms First!</div>
+  <div class="diagram-wrap" style="margin-bottom:0.7rem;padding:0.6rem 1rem;">
+    <svg viewBox="0 0 480 48" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+      <text x="10" y="20" font-size="11" font-weight="700" fill="#374151">Like-term reminder:</text>
+      <rect x="10" y="28" width="60" height="16" rx="3" fill="#dbeafe" stroke="none"/>
+      <text x="40" y="40" text-anchor="middle" font-size="10" font-weight="800" fill="#1e40af">x² terms</text>
+      <text x="80" y="40" font-size="10" fill="#374151">add with</text>
+      <rect x="120" y="28" width="60" height="16" rx="3" fill="#dbeafe" stroke="none"/>
+      <text x="150" y="40" text-anchor="middle" font-size="10" font-weight="800" fill="#1e40af">x² terms</text>
+      <text x="190" y="40" font-size="10" fill="#374151">  ·  </text>
+      <rect x="200" y="28" width="55" height="16" rx="3" fill="#dcfce7" stroke="none"/>
+      <text x="227" y="40" text-anchor="middle" font-size="10" font-weight="800" fill="#166534">x terms</text>
+      <text x="262" y="40" font-size="10" fill="#374151">add with</text>
+      <rect x="305" y="28" width="55" height="16" rx="3" fill="#dcfce7" stroke="none"/>
+      <text x="332" y="40" text-anchor="middle" font-size="10" font-weight="800" fill="#166534">x terms</text>
+      <text x="365" y="40" font-size="10" fill="#374151">  ·  </text>
+      <rect x="375" y="28" width="60" height="16" rx="3" fill="#fef9c3" stroke="none"/>
+      <text x="405" y="40" text-anchor="middle" font-size="10" font-weight="800" fill="#854d0e">constants</text>
+    </svg>
+  </div>
+
+  <div class="prob-grid">
+    <div class="prob-card">
+      <div class="prob-num">Problem B1 <span class="lvl lvl-1">Starter</span></div>
+      <div class="prob-q">Add: <span class="formula-box" style="font-size:0.85rem;">(3x + 4) + (5x − 2)</span></div>
+      <textarea class="work-area" rows="3" placeholder="Group like terms: ( ) + ( ) = …"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem B2 <span class="lvl lvl-1">Starter</span></div>
+      <div class="prob-q">Add: <span class="formula-box" style="font-size:0.85rem;">(x² + 2x) + (3x² − x + 5)</span></div>
+      <textarea class="work-area" rows="3" placeholder="Identify like terms first…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem B3 <span class="lvl lvl-2">On-Level</span></div>
+      <div class="prob-q">Add: <span class="formula-box" style="font-size:0.82rem;">(2x² − 5x + 1) + (−x² + 3x − 6)</span></div>
+      <textarea class="work-area" rows="3" placeholder="Show each like-term group…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem B4 <span class="lvl lvl-2">On-Level</span></div>
+      <div class="prob-q">Add: <span class="formula-box" style="font-size:0.82rem;">(4x³ − x + 7) + (−2x³ + x² + x − 3)</span></div>
+      <textarea class="work-area" rows="3" placeholder="Watch: one polynomial is missing an x² term…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+  </div>
+
+  <!-- The column method diagram -->
+  <div class="lesson-badge" style="margin-top:0.8rem;">Column Method — Line Up by Degree</div>
+  <div class="diagram-wrap" style="margin-bottom:0.7rem;padding:0.7rem 1.2rem;">
+    <svg viewBox="0 0 420 80" width="100%" style="max-width:100%;font-family:'Outfit',sans-serif;">
+      <text x="10" y="18" font-size="11" font-weight="700" fill="#374151">Example: (3x² + 0x − 4) + (x² − 2x + 7)</text>
+      <!-- Column layout -->
+      <text x="60" y="38" text-anchor="end" font-size="13" font-weight="800" fill="#111827">3x²</text>
+      <text x="80" y="38" font-size="13" font-weight="700" fill="#374151">+</text>
+      <text x="110" y="38" text-anchor="end" font-size="13" font-weight="800" fill="#9ca3af">0x</text>
+      <text x="118" y="38" font-size="13" font-weight="700" fill="#374151">−</text>
+      <text x="145" y="38" text-anchor="end" font-size="13" font-weight="800" fill="#111827">4</text>
+      <text x="60" y="55" text-anchor="end" font-size="13" font-weight="800" fill="#111827">x²</text>
+      <text x="80" y="55" font-size="13" font-weight="700" fill="#374151">−</text>
+      <text x="110" y="55" text-anchor="end" font-size="13" font-weight="800" fill="#111827">2x</text>
+      <text x="118" y="55" font-size="13" font-weight="700" fill="#374151">+</text>
+      <text x="145" y="55" text-anchor="end" font-size="13" font-weight="800" fill="#111827">7</text>
+      <line x1="50" y1="60" x2="155" y2="60" stroke="#374151" stroke-width="1.5"/>
+      <text x="60" y="74" text-anchor="end" font-size="13" font-weight="800" fill="#111827">4x²</text>
+      <text x="80" y="74" font-size="13" font-weight="700" fill="#374151">−</text>
+      <text x="110" y="74" text-anchor="end" font-size="13" font-weight="800" fill="#111827">2x</text>
+      <text x="118" y="74" font-size="13" font-weight="700" fill="#374151">+</text>
+      <text x="145" y="74" text-anchor="end" font-size="13" font-weight="800" fill="#111827">3</text>
+      <!-- Arrow + note -->
+      <text x="170" y="38" font-size="9" fill="#64748b" font-weight="600">← place a 0x as a</text>
+      <text x="170" y="49" font-size="9" fill="#64748b" font-weight="600">   placeholder when</text>
+      <text x="170" y="60" font-size="9" fill="#64748b" font-weight="600">   a degree is missing!</text>
+      <!-- Color-coded columns -->
+      <rect x="45" y="26" width="22" height="46" rx="3" fill="#dbeafe" opacity="0.4"/>
+      <rect x="88" y="26" width="28" height="46" rx="3" fill="#dcfce7" opacity="0.4"/>
+      <rect x="130" y="26" width="20" height="46" rx="3" fill="#fef9c3" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="prob-grid">
+    <div class="prob-card" style="grid-column:1/-1;">
+      <div class="prob-num">Problem B5 <span class="lvl lvl-3">Advanced</span> — Use the column method</div>
+      <div class="prob-q">Add using columns: <span class="formula-box" style="font-size:0.82rem;">(3x³ + x − 4) + (−x³ + 2x² + x − 1) + (x² − 3)</span></div>
+      <textarea class="work-area" rows="4" placeholder="Line up by degree — use 0 as a placeholder if a degree is missing…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card" style="grid-column:1/-1;">
+      <div class="prob-num">Problem B6 <span class="lvl lvl-4">⭐ Regents Style</span></div>
+      <div class="prob-q">If <strong>P(x) = 3x² + x − 2</strong> and <strong>Q(x) = x² − 4x + 5</strong>, find <strong>P(x) + Q(x)</strong> and then evaluate the result when <strong>x = 3</strong>.</div>
+      <textarea class="work-area" rows="4" placeholder="Step 1: Add the polynomials. Step 2: Substitute x = 3 into your simplified answer."></textarea>
+      <div class="answer-box">P(x)+Q(x) = <div class="answer-line"></div> &nbsp; Value at x=3: <div class="answer-line" style="max-width:5rem;"></div></div>
+    </div>
+  </div>
+
+</div><!-- end sheet page 1 -->
+
+<!-- ══════════════════════════════════════════════
+     PAGE 2
+══════════════════════════════════════════════ -->
+<div class="sheet page-break">
+
+  <!-- HEADER repeated (compact) -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:0.75rem;border-bottom:3px solid var(--blue);margin-bottom:1.2rem;">
+    <div>
+      <span style="font-family:var(--ff-head);font-size:1.1rem;font-weight:700;color:var(--blue);">🧮 Lesson 5 — Polynomials</span>
+      <span style="font-size:0.78rem;color:var(--muted);font-weight:600;margin-left:0.6rem;">Page 2 of 3</span>
+    </div>
+    <div style="font-size:0.78rem;color:var(--slate);font-weight:600;">Name: <input type="text" style="width:140px;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PART C — SUBTRACTING POLYNOMIALS
+  ════════════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">➖</span>
+    <h2>Part C — Subtracting Polynomials</h2>
+    <span class="badge badge-coral">16 pts · ~15 min</span>
+  </div>
+  <p class="instr">Distribute the negative sign to ALL terms in the second polynomial before combining like terms.</p>
+
+  <!-- Sign-flip diagram -->
+  <div class="lesson-badge">The Sign Trap — Flip ALL Signs!</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:0.7rem;min-width:0;overflow:hidden;">
+    <div class="trap-card" style="border-left-color:#dc2626;">
+      <div style="font-weight:800;font-size:0.8rem;color:#dc2626;margin-bottom:0.2rem;">❌ Wrong</div>
+      <div style="font-size:0.8rem;font-family:'Outfit',sans-serif;font-weight:700;color:#374151;">(5x + 3) − (2x − 1)</div>
+      <div style="font-size:0.78rem;color:#dc2626;margin-top:0.15rem;">= 5x + 3 − 2x − 1 &nbsp;← only first sign changed!</div>
+      <div style="font-size:0.78rem;color:#dc2626;font-weight:800;">= 3x + 2 &nbsp;✗</div>
+    </div>
+    <div class="diagram-wrap" style="padding:0.6rem 0.8rem;">
+      <svg viewBox="0 0 240 68" width="100%" style="max-width:100%;font-family:'Outfit',sans-serif;">
+        <text x="10" y="14" font-size="10" font-weight="700" fill="#16a34a">✅ Correct</text>
+        <text x="10" y="30" font-size="12" font-weight="800" fill="#111827">(5x + 3) −</text>
+        <rect x="108" y="18" width="110" height="18" rx="4" fill="#fef9c3" stroke="#374151" stroke-width="1.2"/>
+        <text x="112" y="31" font-size="12" font-weight="800" fill="#111827">(2x − 1)</text>
+        <text x="10" y="47" font-size="10" font-weight="700" fill="#374151">Distribute −1:</text>
+        <text x="10" y="62" font-size="12" font-weight="800" fill="#111827">5x + 3 </text>
+        <text x="82" y="62" font-size="12" font-weight="800" fill="#dc2626">− 2x</text>
+        <text x="112" y="62" font-size="12" font-weight="800" fill="#dc2626"> + 1</text>
+        <text x="140" y="62" font-size="12" font-weight="800" fill="#374151"> = 3x + 4</text>
+        <!-- Flip arrows -->
+        <path d="M 120 36 C 118 44 100 48 95 54" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+        <path d="M 148 36 C 146 44 130 48 125 54" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="82" y="48" font-size="8" fill="#dc2626" font-weight="700">flip!</text>
+        <text x="118" y="48" font-size="8" fill="#dc2626" font-weight="700">flip!</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="prob-grid">
+    <div class="prob-card">
+      <div class="prob-num">Problem C1 <span class="lvl lvl-1">Starter</span></div>
+      <div class="prob-q">Subtract: <span class="formula-box" style="font-size:0.85rem;">(7x + 5) − (3x + 2)</span></div>
+      <div style="font-size:0.75rem;color:#64748b;margin-bottom:0.3rem;font-style:italic;">Step 1: Rewrite distributing the negative →</div>
+      <div style="border: 1.5px dashed var(--border); border-radius:6px; padding:0.3rem 0.5rem; font-family:'Outfit',sans-serif; font-size:0.85rem; font-weight:700; color:#111827; min-height:1.8rem; background:white;">7x + 5 <span style="color:#dc2626;">___</span> <span style="color:#dc2626;">___</span></div>
+      <textarea class="work-area" rows="2" placeholder="Combine like terms…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem C2 <span class="lvl lvl-1">Starter</span></div>
+      <div class="prob-q">Subtract: <span class="formula-box" style="font-size:0.82rem;">(4x² + 3x) − (x² + 2x − 1)</span></div>
+      <textarea class="work-area" rows="3" placeholder="Distribute negative first: 4x² + 3x − ___ − ___ + ___"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem C3 <span class="lvl lvl-2">On-Level</span></div>
+      <div class="prob-q">Subtract: <span class="formula-box" style="font-size:0.82rem;">(5x² − 2x + 6) − (3x² + x − 4)</span></div>
+      <textarea class="work-area" rows="3" placeholder="All 3 signs in the second polynomial flip…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem C4 <span class="lvl lvl-2">On-Level</span></div>
+      <div class="prob-q">Subtract: <span class="formula-box" style="font-size:0.82rem;">(2x³ − 4x + 1) − (−x³ + 3x² + x + 2)</span></div>
+      <div style="font-size:0.72rem;color:#64748b;font-style:italic;margin-bottom:0.2rem;">Careful: subtracting a negative = adding!</div>
+      <textarea class="work-area" rows="3" placeholder="Show your sign-flip step…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card" style="grid-column:1/-1;">
+      <div class="prob-num">Problem C5 <span class="lvl lvl-3">Advanced</span> — Spot the Error</div>
+      <div class="prob-q">A student subtracted <strong>(6x² − x + 3) − (2x² + 4x − 1)</strong> and got <strong>4x² − 5x + 2</strong>. Is this correct? If not, find the error and give the right answer.</div>
+      <textarea class="work-area" rows="3" placeholder="Check each term of the student's work…"></textarea>
+      <div class="answer-box">Correct answer: <div class="answer-line"></div> &nbsp; Error was in: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card" style="grid-column:1/-1;">
+      <div class="prob-num">Problem C6 <span class="lvl lvl-4">⭐ Regents Style</span></div>
+      <div class="prob-q">If <strong>P(x) = 4x² + 3x − 1</strong> and <strong>Q(x) = x² − x + 4</strong>, find <strong>P(x) − Q(x)</strong>. Then evaluate when <strong>x = −2</strong>.</div>
+      <textarea class="work-area" rows="4" placeholder="Step 1: Subtract. Step 2: Substitute x = −2. Remember: (−2)² = 4, not −4!"></textarea>
+      <div class="answer-box">P(x)−Q(x) = <div class="answer-line"></div> &nbsp; Value at x=−2: <div class="answer-line" style="max-width:5rem;"></div></div>
+    </div>
+  </div>
+
+</div><!-- end sheet page 2 -->
+
+<!-- ══════════════════════════════════════════════
+     PAGE 3
+══════════════════════════════════════════════ -->
+<div class="sheet page-break">
+
+  <!-- HEADER repeated (compact) -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:0.75rem;border-bottom:3px solid var(--blue);margin-bottom:1.2rem;">
+    <div>
+      <span style="font-family:var(--ff-head);font-size:1.1rem;font-weight:700;color:var(--blue);">🧮 Lesson 5 — Polynomials</span>
+      <span style="font-size:0.78rem;color:var(--muted);font-weight:600;margin-left:0.6rem;">Page 3 of 3</span>
+    </div>
+    <div style="font-size:0.78rem;color:var(--slate);font-weight:600;">Name: <input type="text" style="width:140px;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PART D — MULTIPLYING POLYNOMIALS
+  ════════════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">✖️</span>
+    <h2>Part D — Multiplying Polynomials (FOIL)</h2>
+    <span class="badge badge-purple">16 pts · ~18 min</span>
+  </div>
+  <p class="instr">Use the distributive property / FOIL. Show every step — F, O, I, L — before combining.</p>
+
+  <!-- Formula reference strip -->
+  <div class="formula-strip">
+    <span class="fs-label">Key Rules</span>
+    <span class="fml">xᵃ · xᵇ = xᵃ⁺ᵇ</span>
+    <span class="fml">FOIL: F+O+I+L</span>
+    <span class="fml">(a+b)² = a²+2ab+b²</span>
+    <span class="fml">(a+b)(a−b) = a²−b²</span>
+  </div>
+
+  <!-- FOIL diagram reference -->
+  <div class="lesson-badge">FOIL Method — Complete the Box</div>
+  <div class="diagram-wrap" style="margin-bottom:0.7rem;padding:0.7rem 1.2rem;">
+    <svg viewBox="0 0 480 78" width="100%" style="max-width:100%;font-family:'Outfit',sans-serif;">
+      <!-- Expression -->
+      <text x="10" y="24" font-size="16" font-weight="800" fill="#111827">(x</text>
+      <text x="27" y="24" font-size="16" font-weight="700" fill="#374151"> + </text>
+      <text x="46" y="24" font-size="16" font-weight="800" fill="#111827">a)(x</text>
+      <text x="82" y="24" font-size="16" font-weight="700" fill="#374151"> + </text>
+      <text x="100" y="24" font-size="16" font-weight="800" fill="#111827">b)</text>
+      <!-- Arc labels -->
+      <text x="10" y="50" font-size="10" fill="#1d4ed8" font-weight="800">F = x · x =</text>
+      <rect x="88" y="40" width="40" height="16" rx="3" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1"/>
+      <text x="108" y="52" text-anchor="middle" font-size="9" fill="#64748b">x²</text>
+      <text x="140" y="50" font-size="10" fill="#dc2626" font-weight="800">O = x · b =</text>
+      <rect x="218" y="40" width="40" height="16" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+      <text x="238" y="52" text-anchor="middle" font-size="9" fill="#64748b">bx</text>
+      <text x="270" y="50" font-size="10" fill="#16a34a" font-weight="800">I = a · x =</text>
+      <rect x="348" y="40" width="40" height="16" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/>
+      <text x="368" y="52" text-anchor="middle" font-size="9" fill="#64748b">ax</text>
+      <text x="398" y="50" font-size="10" fill="#9333ea" font-weight="800">L = a · b =</text>
+      <rect x="448" y="40" width="25" height="16" rx="3" fill="#ede9fe" stroke="#9333ea" stroke-width="1"/>
+      <text x="460" y="52" text-anchor="middle" font-size="9" fill="#64748b">ab</text>
+      <!-- Result -->
+      <text x="10" y="72" font-size="11" font-weight="800" fill="#374151">Answer = </text>
+      <rect x="70" y="62" width="40" height="14" rx="3" fill="#dbeafe" stroke="none"/>
+      <text x="90" y="73" text-anchor="middle" font-size="10" font-weight="800" fill="#1d4ed8">x²</text>
+      <text x="116" y="72" font-size="11" fill="#374151">+</text>
+      <rect x="124" y="62" width="80" height="14" rx="3" fill="#fef9c3" stroke="none"/>
+      <text x="164" y="73" text-anchor="middle" font-size="10" font-weight="800" fill="#854d0e">(a+b)x</text>
+      <text x="208" y="72" font-size="11" fill="#374151">+</text>
+      <rect x="218" y="62" width="30" height="14" rx="3" fill="#ede9fe" stroke="none"/>
+      <text x="233" y="73" text-anchor="middle" font-size="10" font-weight="800" fill="#9333ea">ab</text>
+    </svg>
+  </div>
+
+  <div class="prob-grid">
+    <div class="prob-card">
+      <div class="prob-num">Problem D1 <span class="lvl lvl-1">Starter</span></div>
+      <div class="prob-q">Monomial × Polynomial: <span class="formula-box" style="font-size:0.85rem;">4x(2x + 3)</span></div>
+      <div style="font-size:0.75rem;color:#64748b;font-style:italic;margin-bottom:0.3rem;">Distribute 4x to each term</div>
+      <textarea class="work-area" rows="2" placeholder="4x · 2x = ___ and 4x · 3 = ___"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem D2 <span class="lvl lvl-1">Starter</span></div>
+      <div class="prob-q">Monomial × Polynomial: <span class="formula-box" style="font-size:0.85rem;">−2x(x² − 3x + 5)</span></div>
+      <textarea class="work-area" rows="2" placeholder="Watch the negative sign!"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem D3 <span class="lvl lvl-2">FOIL</span></div>
+      <div class="prob-q">Multiply: <span class="formula-box" style="font-size:0.85rem;">(x + 5)(x + 3)</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;margin-bottom:0.3rem;font-size:0.75rem;font-family:'DM Sans',sans-serif;min-width:0;">
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#1d4ed8;font-weight:800;">F:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#dc2626;font-weight:800;">O:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#16a34a;font-weight:800;">I:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#9333ea;font-weight:800;">L:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+      </div>
+      <div class="answer-box">Combine: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem D4 <span class="lvl lvl-2">FOIL</span></div>
+      <div class="prob-q">Multiply: <span class="formula-box" style="font-size:0.85rem;">(x − 4)(x + 2)</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;margin-bottom:0.3rem;font-size:0.75rem;font-family:'DM Sans',sans-serif;min-width:0;">
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#1d4ed8;font-weight:800;">F:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#dc2626;font-weight:800;">O:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#16a34a;font-weight:800;">I:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+        <div style="display:flex;align-items:center;gap:0.3rem;"><span style="color:#9333ea;font-weight:800;">L:</span> <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--ink);background:transparent;outline:none;padding:1px 3px;"></div>
+      </div>
+      <div class="answer-box">Combine: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem D5 <span class="lvl lvl-3">Advanced</span></div>
+      <div class="prob-q">Multiply: <span class="formula-box" style="font-size:0.82rem;">(2x − 3)(3x + 4)</span></div>
+      <textarea class="work-area" rows="3" placeholder="F = O = I = L = → Combine…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem D6 <span class="lvl lvl-3">Special Product</span></div>
+      <div class="prob-q">Identify the pattern and multiply: <span class="formula-box" style="font-size:0.82rem;">(x + 7)(x − 7)</span></div>
+      <div style="font-size:0.75rem;color:#64748b;font-style:italic;margin-bottom:0.3rem;">Hint: Is this a special pattern you saw in the lesson?</div>
+      <textarea class="work-area" rows="2" placeholder="Pattern name: ___  →  Answer:"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem D7 <span class="lvl lvl-3">Perfect Square</span></div>
+      <div class="prob-q">Expand: <span class="formula-box" style="font-size:0.82rem;">(x + 4)²</span></div>
+      <div style="font-size:0.75rem;color:#64748b;font-style:italic;margin-bottom:0.3rem;">Remember: (a+b)² ≠ a² + b². Use FOIL or the formula!</div>
+      <textarea class="work-area" rows="2" placeholder="= (x+4)(x+4) = …"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">Problem D8 <span class="lvl lvl-4">⭐ Regents Style</span></div>
+      <div class="prob-q">Simplify: <span class="formula-box" style="font-size:0.8rem;">(x + 3)² − (x − 2)(x + 2)</span></div>
+      <textarea class="work-area" rows="3" placeholder="Expand each part first, then subtract…"></textarea>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+  </div>
+
+  <!-- Real-world problem -->
+  <div class="lesson-badge" style="margin-top:0.8rem;">Application — Garden Area Problem</div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:0.7rem;margin-bottom:0.7rem;min-width:0;overflow:hidden;">
+    <div class="prob-card" style="border-left:4px solid #374151;">
+      <div class="prob-num">Problem D9 <span class="lvl lvl-3">Real World</span></div>
+      <div class="prob-q">A rectangular garden has length <strong>(x + 6)</strong> ft and width <strong>(x + 2)</strong> ft.
+        <br><strong>(a)</strong> Write a polynomial for the area.
+        <br><strong>(b)</strong> Find the area when x = 5.
+        <br><strong>(c)</strong> If a fence runs around the entire perimeter, write a simplified expression for the perimeter.
+      </div>
+      <textarea class="work-area" rows="4" placeholder="(a) Area = l × w = …&#10;(b) Substitute x = 5…&#10;(c) P = 2l + 2w = …"></textarea>
+      <div style="display:flex;flex-direction:column;gap:0.25rem;margin-top:0.35rem;">
+        <div class="answer-box">(a) Area = <div class="answer-line"></div></div>
+        <div class="answer-box">(b) At x=5: <div class="answer-line"></div></div>
+        <div class="answer-box">(c) Perimeter = <div class="answer-line"></div></div>
+      </div>
+    </div>
+    <div class="diagram-wrap" style="padding:0.8rem;">
+      <svg viewBox="0 0 190 130" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+        <rect x="20" y="18" width="140" height="85" fill="#dcfce7" stroke="#374151" stroke-width="2" rx="4"/>
+        <text x="90" y="12" text-anchor="middle" font-size="11" font-weight="800" fill="#374151">(x + 6) ft</text>
+        <text x="172" y="63" text-anchor="middle" font-size="11" font-weight="800" fill="#374151" transform="rotate(90,172,63)">(x + 2) ft</text>
+        <!-- Grid lines -->
+        <line x1="20" y1="60" x2="160" y2="60" stroke="#374151" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+        <line x1="90" y1="18" x2="90" y2="103" stroke="#374151" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+        <!-- Section labels -->
+        <text x="55" y="42" text-anchor="middle" font-size="10" font-weight="800" fill="#166534">x²</text>
+        <text x="130" y="42" text-anchor="middle" font-size="10" font-weight="800" fill="#166534">6x</text>
+        <text x="55" y="82" text-anchor="middle" font-size="10" font-weight="800" fill="#166534">2x</text>
+        <text x="130" y="82" text-anchor="middle" font-size="10" font-weight="800" fill="#166534">12</text>
+        <text x="90" y="120" text-anchor="middle" font-size="9" fill="#374151" font-weight="700">Area = x² + 8x + 12 sq ft</text>
+      </svg>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       PART F — ADVANCED REGENTS PROBLEMS
+  ════════════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">🏆</span>
+    <h2>Part F — Advanced Regents Problems</h2>
+    <span class="badge badge-purple">20 pts · ~15 min</span>
+  </div>
+  <p class="inst">These problems mirror authentic NYS Algebra I Regents questions. Show <strong>all work</strong> for full credit. Each is worth 2 points; multi-part problems award partial credit.</p>
+
+  <!-- ── F1 & F2 ── -->
+  <div class="prob-grid">
+
+    <!-- F1 ★★ MC: Subtract with function notation -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★ Regents</span>
+      <div class="prob-num">F1</div>
+      <p class="prob-stmt">Which expression is equivalent to
+        <span class="formula-box" style="font-size:0.82rem;padding:0.15rem 0.5rem;">(x² + 3x − 4) − (2x² − 5x + 1)</span>?
+      </p>
+      <div class="mc-opts" style="margin-top:0.45rem;">
+        <label class="mc-option"><input type="radio" name="f1"><span class="opt-letter">A</span> −x² − 2x − 3</label>
+        <label class="mc-option"><input type="radio" name="f1"><span class="opt-letter">B</span> −x² + 8x − 5</label>
+        <label class="mc-option"><input type="radio" name="f1"><span class="opt-letter">C</span> 3x² − 2x − 5</label>
+        <label class="mc-option"><input type="radio" name="f1"><span class="opt-letter">D</span> −x² + 8x + 5</label>
+      </div>
+      <div class="work-area-wrap" style="margin-top:0.4rem;">
+        <textarea class="work-area" rows="3" placeholder="Distribute the negative, then combine like terms…"></textarea>
+      </div>
+    </div>
+
+    <!-- F2 ★★ Perimeter of a triangle -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★ Regents</span>
+      <div class="prob-num">F2</div>
+      <p class="prob-stmt">A triangle has side lengths <strong>(2x + 3)</strong>, <strong>(x² − x)</strong>, and <strong>(4x − 7)</strong>. Write a simplified polynomial expression for the <em>perimeter</em>.</p>
+      <div class="diagram-wrap" style="padding:0.55rem; margin:0.4rem 0;">
+        <svg viewBox="0 0 300 90" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+          <polygon points="150,10 275,82 25,82" fill="#eff6ff" stroke="#374151" stroke-width="2"/>
+          <text x="150" y="8"  text-anchor="middle" font-size="9.5" fill="#374151" font-weight="700">x² − x</text>
+          <text x="228" y="54" text-anchor="middle" font-size="9.5" fill="#374151" font-weight="700">4x − 7</text>
+          <text x="68"  y="54" text-anchor="middle" font-size="9.5" fill="#374151" font-weight="700">2x + 3</text>
+          <text x="150" y="92" text-anchor="middle" font-size="8"   fill="#6b7280">P = sum of all three sides</text>
+        </svg>
+      </div>
+      <div class="work-area-wrap">
+        <textarea class="work-area" rows="3" placeholder="Add all three sides, combine like terms…"></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem;">
+        <span style="font-size:0.78rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">P =</span>
+        <input type="text" style="flex:1;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-family:'DM Sans',sans-serif;font-size:0.82rem;outline:none;padding:2px 5px;">
+      </div>
+    </div>
+
+  </div><!-- end F1-F2 -->
+
+  <!-- ── F3 & F4 ── -->
+  <div class="prob-grid" style="margin-top:0.7rem;">
+
+    <!-- F3 ★★★ Monomial × trinomial with exponent laws -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★★ Extended</span>
+      <div class="prob-num">F3</div>
+      <p class="prob-stmt">Expand and write in standard form:</p>
+      <div class="formula-box" style="display:block;margin:0.4rem 0;text-align:center;">−3x²(2x³ − 4x + 7)</div>
+      <div class="diagram-wrap" style="padding:0.5rem; margin:0.35rem 0;">
+        <svg viewBox="0 0 310 52" width="100%" style="max-width:100%;font-family:'Outfit',sans-serif;">
+          <rect x="1" y="1" width="308" height="50" rx="7" fill="#f8f8f8" stroke="#e5e7eb" stroke-width="1"/>
+          <text x="12"  y="20" font-size="8.5" fill="#374151" font-weight="700">−3x² × 2x³</text>
+          <text x="12"  y="35" font-size="9"   fill="#111827" font-weight="800">=  −6x⁵</text>
+          <text x="112" y="20" font-size="8.5" fill="#374151" font-weight="700">−3x² × (−4x)</text>
+          <text x="112" y="35" font-size="9"   fill="#111827" font-weight="800">=  +12x³</text>
+          <text x="228" y="20" font-size="8.5" fill="#374151" font-weight="700">−3x² × 7</text>
+          <text x="228" y="35" font-size="9"   fill="#111827" font-weight="800">=  −21x²</text>
+          <text x="155" y="48" text-anchor="middle" font-size="7.5" fill="#6b7280">Add exponents when multiplying same base · multiply coefficients</text>
+        </svg>
+      </div>
+      <div class="work-area-wrap">
+        <textarea class="work-area" rows="3" placeholder="Write all three products, then order from highest degree first…"></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem;">
+        <span style="font-size:0.78rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">Answer:</span>
+        <input type="text" style="flex:1;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-family:'DM Sans',sans-serif;font-size:0.82rem;outline:none;padding:2px 5px;">
+      </div>
+    </div>
+
+    <!-- F4 ★★★ Two-method: expand then evaluate -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★★ Extended</span>
+      <div class="prob-num">F4</div>
+      <p class="prob-stmt">Let <strong>f(x) = (x + 5)(x − 2)</strong>. Find <strong>f(3)</strong> two ways — expand first, then substitute directly — and confirm they match.</p>
+      <div class="diagram-wrap" style="padding:0.5rem; margin:0.35rem 0;">
+        <svg viewBox="0 0 318 46" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+          <rect x="1"   y="1" width="155" height="44" rx="7" fill="#fef9c3" stroke="#d97706" stroke-width="1.2"/>
+          <rect x="162" y="1" width="155" height="44" rx="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+          <text x="79"  y="16" text-anchor="middle" font-size="8.5" fill="#92400e" font-weight="700">Method A: Expand</text>
+          <text x="79"  y="29" text-anchor="middle" font-size="8"   fill="#92400e">FOIL → trinomial → plug x = 3</text>
+          <text x="240" y="16" text-anchor="middle" font-size="8.5" fill="#166534" font-weight="700">Method B: Direct</text>
+          <text x="240" y="29" text-anchor="middle" font-size="8"   fill="#166534">f(3) = (3+5)(3−2) = 8×1</text>
+          <text x="240" y="40" text-anchor="middle" font-size="8"   fill="#166534">= ?</text>
+        </svg>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;margin:0.35rem 0;min-width:0;">
+        <textarea class="work-area" rows="3" placeholder="Method A: FOIL, then substitute x=3…"></textarea>
+        <textarea class="work-area" rows="3" placeholder="Method B: direct substitution…"></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;margin-top:0.2rem;">
+        <span style="font-size:0.78rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">f(3) =</span>
+        <input type="text" style="flex:1;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-family:'DM Sans',sans-serif;font-size:0.82rem;outline:none;padding:2px 5px;">
+      </div>
+    </div>
+
+  </div><!-- end F3-F4 -->
+
+  <!-- ── F5 & F6 ── -->
+  <div class="prob-grid" style="margin-top:0.7rem;">
+
+    <!-- F5 ★★★ Binomial × trinomial area table -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★★ Extended</span>
+      <div class="prob-num">F5</div>
+      <p class="prob-stmt">Multiply using the distributive property:</p>
+      <div class="formula-box" style="display:block;margin:0.4rem 0;text-align:center;">(x + 3)(x² − 2x + 5)</div>
+      <p class="prob-hint">💡 Distribute x to all 3 terms, then 3 to all 3 terms. You'll get 6 partial products — combine like terms.</p>
+      <div class="diagram-wrap" style="padding:0.5rem; margin:0.35rem 0;">
+        <svg viewBox="0 0 315 68" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+          <!-- header row -->
+          <rect x="5"   y="4"  width="48" height="22" rx="3" fill="#374151"/>
+          <text x="29"  y="19" text-anchor="middle" font-size="9" fill="white" font-weight="800">×</text>
+          <rect x="57"  y="4"  width="78" height="22" rx="3" fill="#dbeafe"/>
+          <text x="96"  y="19" text-anchor="middle" font-size="9" fill="#1e40af" font-weight="800">x²</text>
+          <rect x="139" y="4"  width="78" height="22" rx="3" fill="#dcfce7"/>
+          <text x="178" y="19" text-anchor="middle" font-size="9" fill="#166534" font-weight="800">−2x</text>
+          <rect x="221" y="4"  width="78" height="22" rx="3" fill="#fef9c3"/>
+          <text x="260" y="19" text-anchor="middle" font-size="9" fill="#854d0e" font-weight="800">+5</text>
+          <!-- row x -->
+          <rect x="5"   y="28" width="48" height="22" rx="3" fill="#dbeafe"/>
+          <text x="29"  y="43" text-anchor="middle" font-size="9" fill="#1e40af" font-weight="800">x</text>
+          <rect x="57"  y="28" width="78" height="22" rx="3" fill="#f0f9ff"/>
+          <text x="96"  y="43" text-anchor="middle" font-size="9" fill="#374151" font-weight="700">x³</text>
+          <rect x="139" y="28" width="78" height="22" rx="3" fill="#f0f9ff"/>
+          <text x="178" y="43" text-anchor="middle" font-size="9" fill="#374151" font-weight="700">−2x²</text>
+          <rect x="221" y="28" width="78" height="22" rx="3" fill="#f0f9ff"/>
+          <text x="260" y="43" text-anchor="middle" font-size="9" fill="#374151" font-weight="700">5x</text>
+          <!-- row +3 (blank for student) -->
+          <rect x="5"   y="52" width="48" height="14" rx="3" fill="#fef9c3"/>
+          <text x="29"  y="62" text-anchor="middle" font-size="8" fill="#854d0e" font-weight="800">+3</text>
+          <rect x="57"  y="52" width="78" height="14" rx="3" fill="#fffbeb" stroke="#d97706" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="139" y="52" width="78" height="14" rx="3" fill="#fffbeb" stroke="#d97706" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="221" y="52" width="78" height="14" rx="3" fill="#fffbeb" stroke="#d97706" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="96"  y="62" text-anchor="middle" font-size="7.5" fill="#92400e">fill in ↑</text>
+          <text x="178" y="62" text-anchor="middle" font-size="7.5" fill="#92400e">fill in ↑</text>
+          <text x="260" y="62" text-anchor="middle" font-size="7.5" fill="#92400e">fill in ↑</text>
+        </svg>
+      </div>
+      <div class="work-area-wrap">
+        <textarea class="work-area" rows="3" placeholder="Fill in the +3 row, list all 6 products, then combine like terms…"></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem;">
+        <span style="font-size:0.78rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">Answer:</span>
+        <input type="text" style="flex:1;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-family:'DM Sans',sans-serif;font-size:0.82rem;outline:none;padding:2px 5px;">
+      </div>
+    </div>
+
+    <!-- F6 ★★★ Area minus cut-out -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★★ Extended</span>
+      <div class="prob-num">F6</div>
+      <p class="prob-stmt">A large rectangle has dimensions <strong>(x + 6) by (x + 4)</strong>. A small rectangle measuring <strong>2x by 3</strong> is removed. Write a simplified polynomial for the <em>remaining area</em>.</p>
+      <div class="diagram-wrap" style="padding:0.5rem; margin:0.35rem 0;">
+        <svg viewBox="0 0 300 96" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+          <rect x="8"   y="8"  width="192" height="78" fill="#eff6ff" stroke="#374151" stroke-width="2" rx="4"/>
+          <rect x="150" y="10" width="48"  height="30" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,2" rx="2"/>
+          <text x="104" y="5"  text-anchor="middle" font-size="9" fill="#374151" font-weight="700">x + 6</text>
+          <text x="3"   y="50" text-anchor="middle" font-size="9" fill="#374151" font-weight="700" writing-mode="tb">x+4</text>
+          <text x="174" y="22" text-anchor="middle" font-size="8" fill="#dc2626" font-weight="700">2x</text>
+          <text x="202" y="28" text-anchor="middle" font-size="8" fill="#dc2626" font-weight="700">3</text>
+          <text x="174" y="36" text-anchor="middle" font-size="7.5" fill="#dc2626">(removed)</text>
+          <text x="104" y="90" text-anchor="middle" font-size="8.5" fill="#374151" font-weight="600">Remaining = Large Area − Cut-Out Area</text>
+        </svg>
+      </div>
+      <div class="work-area-wrap">
+        <textarea class="work-area" rows="4" placeholder="Large: FOIL (x+6)(x+4)&#10;Cut-out: 2x · 3&#10;Remaining = Large − Cut-out…"></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem;">
+        <span style="font-size:0.78rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">Remaining Area =</span>
+        <input type="text" style="flex:1;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-family:'DM Sans',sans-serif;font-size:0.82rem;outline:none;padding:2px 5px;">
+      </div>
+    </div>
+
+  </div><!-- end F5-F6 -->
+
+  <!-- ── F7 & F8 ── -->
+  <div class="prob-grid" style="margin-top:0.7rem;">
+
+    <!-- F7 ★★★ Reverse engineer: find missing polynomial -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★★ Extended</span>
+      <div class="prob-num">F7</div>
+      <p class="prob-stmt">The sum of two polynomials is <strong>5x³ − 2x + 9</strong>. One polynomial is <strong>3x³ + 4x² − x + 2</strong>. Find the <em>other</em> polynomial.</p>
+      <div class="diagram-wrap" style="padding:0.5rem 0.9rem; margin:0.4rem 0;">
+        <svg viewBox="0 0 305 44" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+          <rect x="1" y="1" width="303" height="42" rx="7" fill="#faf5ff" stroke="#a855f7" stroke-width="1.2"/>
+          <text x="152" y="16" text-anchor="middle" font-size="8.5" fill="#6b21a8" font-weight="700">Known + Unknown = Total</text>
+          <text x="152" y="29" text-anchor="middle" font-size="8.5" fill="#374151">(3x³ + 4x² − x + 2) + P(x) = 5x³ − 2x + 9</text>
+          <text x="152" y="40" text-anchor="middle" font-size="8"   fill="#6b7280">Rearrange: P(x) = Total − Known</text>
+        </svg>
+      </div>
+      <div class="work-area-wrap">
+        <textarea class="work-area" rows="4" placeholder="Subtract the known polynomial from the total — align by degree…"></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem;">
+        <span style="font-size:0.78rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">P(x) =</span>
+        <input type="text" style="flex:1;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-family:'DM Sans',sans-serif;font-size:0.82rem;outline:none;padding:2px 5px;">
+      </div>
+    </div>
+
+    <!-- F8 ★★★ Compare two products at x=2 -->
+    <div class="prob-card" style="border-top:3px solid #374151;">
+      <span class="lvl-badge lvl-r">★★★ Extended</span>
+      <div class="prob-num">F8</div>
+      <p class="prob-stmt">Expand both expressions. Then find which is greater when <strong>x = 2</strong>, and by how much.</p>
+      <div style="display:flex;flex-direction:column;gap:0.25rem;margin:0.35rem 0;">
+        <div class="formula-box" style="display:block;text-align:center;">A(x) = (x + 4)(x − 1)</div>
+        <div class="formula-box" style="display:block;text-align:center;">B(x) = (x − 2)²</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;margin:0.35rem 0;min-width:0;">
+        <div style="background:#f9fafb;border:1px dashed #d1d5db;border-radius:6px;padding:0.35rem 0.5rem;">
+          <div style="font-size:0.68rem;font-weight:700;color:#6b7280;font-family:'DM Sans',sans-serif;margin-bottom:0.15rem;">Expand A(x)</div>
+          <textarea class="work-area" rows="3" placeholder="FOIL…"></textarea>
+        </div>
+        <div style="background:#f9fafb;border:1px dashed #d1d5db;border-radius:6px;padding:0.35rem 0.5rem;">
+          <div style="font-size:0.68rem;font-weight:700;color:#6b7280;font-family:'DM Sans',sans-serif;margin-bottom:0.15rem;">Expand B(x)</div>
+          <textarea class="work-area" rows="3" placeholder="Perfect square…"></textarea>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;margin-top:0.2rem;">
+        <span style="font-size:0.76rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">At x=2:</span>
+        <span style="font-size:0.76rem;color:#374151;font-family:'DM Sans',sans-serif;">A =</span>
+        <input type="text" style="width:46px;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-size:0.82rem;outline:none;padding:2px 3px;">
+        <span style="font-size:0.76rem;color:#374151;font-family:'DM Sans',sans-serif;">B =</span>
+        <input type="text" style="width:46px;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-size:0.82rem;outline:none;padding:2px 3px;">
+        <span style="font-size:0.76rem;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif;">Difference =</span>
+        <input type="text" style="width:46px;min-width:0;border:none;border-bottom:1.5px solid #d1d5db;font-size:0.82rem;outline:none;padding:2px 3px;">
+      </div>
+    </div>
+
+  </div><!-- end F7-F8 -->
+
+  <!-- ── F9 & F10: Regents Constructed-Response ── -->
+  <div class="prob-grid" style="margin-top:0.7rem;">
+
+    <!-- F9 ★★★★ Written justification: spot Jake's error -->
+    <div class="prob-card" style="border-top:4px solid #111827;">
+      <span class="lvl-badge lvl-rr">★★★★ Constructed Response</span>
+      <div class="prob-num">F9</div>
+      <p class="prob-stmt">Jake claims: <em>"(x + 3)² = x² + 9."</em></p>
+      <p style="font-size:0.76rem;color:#374151;margin:0.2rem 0 0.3rem;font-family:'DM Sans',sans-serif;">Is Jake correct? Show the <strong>correct algebraic expansion</strong> AND write a complete sentence explaining his error.</p>
+      <div class="trap-card" style="margin:0.35rem 0;">
+        <div style="font-size:0.76rem;font-weight:700;color:#dc2626;margin-bottom:0.2rem;">⚠ Spot the Error</div>
+        <div style="font-size:0.75rem;color:#374151;font-family:'Outfit',sans-serif;">(x + 3)² ≠ x² + 3²   ← the middle term <strong>2·x·3 = 6x</strong> is missing</div>
+      </div>
+      <div class="work-area-wrap">
+        <textarea class="work-area" rows="3" placeholder="Correct work: (x+3)(x+3) = FOIL…"></textarea>
+      </div>
+      <div class="work-area-wrap" style="margin-top:0.3rem;">
+        <textarea class="work-area" rows="2" placeholder="Sentence: Jake's error was… because…"></textarea>
+      </div>
+    </div>
+
+    <!-- F10 ★★★★ Multi-step: length from words → area → perimeter → evaluate -->
+    <div class="prob-card" style="border-top:4px solid #111827;">
+      <span class="lvl-badge lvl-rr">★★★★ Constructed Response</span>
+      <div class="prob-num">F10</div>
+      <p class="prob-stmt">A rectangle has width <strong>(x + 2)</strong>. Its length is <strong>3 more than twice the width</strong>.</p>
+      <div style="font-size:0.75rem;color:#374151;margin:0.25rem 0 0.35rem;font-family:'DM Sans',sans-serif;line-height:1.55;">
+        <strong>a)</strong> Write an expression for the length in terms of x.<br>
+        <strong>b)</strong> Write a polynomial for the area. Expand fully.<br>
+        <strong>c)</strong> Write a simplified polynomial for the perimeter.<br>
+        <strong>d)</strong> Find the area and perimeter when x = 5.
+      </div>
+      <div class="diagram-wrap" style="padding:0.5rem; margin:0.3rem 0;">
+        <svg viewBox="0 0 295 80" width="100%" style="max-width:100%;font-family:'DM Sans',sans-serif;">
+          <rect x="28" y="10" width="230" height="55" fill="#f0fdf4" stroke="#374151" stroke-width="2" rx="5"/>
+          <text x="143" y="7"   text-anchor="middle" font-size="9"   fill="#374151" font-weight="700">length = 2(x+2)+3 = ?</text>
+          <text x="16"  y="40"  text-anchor="middle" font-size="9"   fill="#374151" font-weight="700" transform="rotate(-90,14,40)">x + 2</text>
+          <text x="143" y="42"  text-anchor="middle" font-size="10"  fill="#6b7280" font-weight="600">A = l × w</text>
+          <text x="143" y="76"  text-anchor="middle" font-size="8.5" fill="#374151" font-weight="600">P = 2(l + w)</text>
+        </svg>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;margin:0.3rem 0;min-width:0;">
+        <textarea class="work-area" rows="3" placeholder="a) Length = &#10;b) Area = (FOIL)…"></textarea>
+        <textarea class="work-area" rows="3" placeholder="c) Perimeter = &#10;d) At x=5: A=   P="></textarea>
+      </div>
+    </div>
+
+  </div><!-- end F9-F10 -->
+
+
+
+  <!-- ════════════════════════════════════════
+       PART E — ERROR ANALYSIS & REFLECTION
+  ════════════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">🔍</span>
+    <h2>Part E — Error Analysis &amp; Reflection</h2>
+    <span class="badge badge-sand">Wrap-up · ~5 min</span>
+  </div>
+
+  <div class="error-log">
+    <h3>🛑 Error Log — For problems you got wrong</h3>
+    <table class="error-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Problem</th>
+          <th>What I did wrong</th>
+          <th>Error Type (sign / like-terms / exponent / FOIL step)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td></tr>
+        <tr><td>2</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td></tr>
+        <tr><td>3</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td></tr>
+        <tr><td>4</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.75rem;color:var(--ink);outline:none;background:transparent;" placeholder=""></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="reflect-box">
+    <h3>🌱 Reflection</h3>
+    <div class="reflect-lines">
+      <div class="reflect-line">The concept I understood best today was <input type="text" placeholder="…"></div>
+      <div class="reflect-line">The step I still need to practice is <input type="text" placeholder="…"></div>
+      <div class="reflect-line">One thing I will do differently next time is <input type="text" placeholder="…"></div>
+      <div class="reflect-line">I rate my confidence with FOIL: <input type="text" placeholder="😕 / 🙂 / 😎"></div>
+    </div>
+  </div>
+
+</div><!-- end sheet page 3 -->
+
+<script>
+  // MC option selection
+  document.querySelectorAll('.mc-opt').forEach(opt => {
+    opt.addEventListener('click', function() {
+      const name = this.querySelector('input')?.name;
+      if (name) {
+        document.querySelectorAll(`input[name="${name}"]`).forEach(i => i.closest('.mc-opt')?.classList.remove('selected'));
+        this.classList.add('selected');
+        this.querySelector('input').checked = true;
+      }
+    });
+  });
+
+  function clearAll() {
+    if (!confirm('Clear all your work?')) return;
+    document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(el => el.value = '');
+    document.querySelectorAll('.mc-opt.selected').forEach(el => el.classList.remove('selected'));
+  }
+</script>
+</body>
+</html>
