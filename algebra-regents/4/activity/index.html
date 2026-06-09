@@ -1,1 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 4 Activity Worksheet — Systems of Equations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ─────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    /* ── Homework.html header palette ── */
+    --blue:      #2563EB;
+    --blue-lt:   #EFF6FF;
+    --blue-md:   #BFDBFE;
+    --coral:     #F97066;
+    --coral-lt:  #FFF1F0;
+    --green:     #16a34a;
+    --green-lt:  #DCFCE7;
+    --purple:    #7c3aed;
+    --purple-lt: #EDE9FE;
+    --sand-lt:   #FDF3E7;
+    --ink:       #0f172a;
+    --slate:     #334155;
+    --muted:     #64748b;
+    --border:    #CBD5E1;
+    --bg:        #F8FAFF;
+    --white:     #FFFFFF;
+    --ff-head:   'Fredoka', sans-serif;
+    --ff-body:   'Nunito', sans-serif;
 
+    /* ── Lesson diagram/problem palette (index.html grayscale) ── */
+    --accent-1:  #374151;
+    --accent-2:  #4b5563;
+    --accent-3:  #9ca3af;
+    --ff-diag:   'DM Sans', sans-serif;
+    --ff-math:   'Outfit', sans-serif;
+  }
+
+  html { background: #e2e8f0; }
+  body {
+    font-family: var(--ff-body);
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Print ───────────────────────────────────── */
+  @media print {
+    input, textarea { border-color: #cbd5e1 !important; background: white !important; }
+    textarea { resize: none !important; }
+    html { background: white; }
+    body { max-width: 100%; padding: 0; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    .sheet { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; padding: 1.2cm 1.5cm !important; }
+  }
+
+  /* ── Sheet Container ─────────────────────────── */
+  .sheet {
+    background: var(--white);
+    margin: 2rem auto;
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 4px 24px rgba(37,99,235,0.10);
+    border-radius: 16px;
+  }
+
+  /* ── Header (homework.html style) ──────────────── */
+  .hw-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--blue);
+    margin-bottom: 1.4rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hw-header-left h1 {
+    font-family: var(--ff-head);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.1;
+  }
+  .hw-header-left .subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hw-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 220px;
+  }
+  .hw-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--slate);
+    font-weight: 600;
+  }
+  .hw-meta-row .label {
+    background: var(--blue-lt);
+    color: var(--blue);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    min-width: 65px;
+    text-align: center;
+  }
+
+  /* ── Score banner (homework.html style) ──────────── */
+  .score-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--blue), #1d4ed8);
+    color: white;
+    border-radius: 10px;
+    padding: 0.7rem 1.2rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .score-banner .title { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+  .score-banner .sub   { font-size: 0.78rem; opacity: 0.85; }
+  .score-cells { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .score-cell {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 0.3rem 0.75rem;
+    text-align: center;
+    min-width: 80px;
+  }
+  .score-cell .sc-val { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+  .score-cell .sc-lbl { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* ── Section Header (homework.html style) ──────── */
+  .section-hd {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 1.5rem 0 0.8rem;
+  }
+  .section-hd .icon { font-size: 1.25rem; }
+  .section-hd h2 {
+    font-family: var(--ff-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-hd .badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+  .badge-blue   { background: var(--blue-lt);   color: var(--blue);   border: 1px solid var(--blue-md); }
+  .badge-coral  { background: var(--coral-lt);  color: #c2410c;       border: 1px solid #fca5a5; }
+  .badge-green  { background: var(--green-lt);  color: var(--green);  border: 1px solid #86efac; }
+  .badge-purple { background: var(--purple-lt); color: var(--purple); border: 1px solid #c4b5fd; }
+  .badge-sand   { background: var(--sand-lt);   color: #92400e;       border: 1px solid #fcd34d; }
+
+  /* ── Instruction strip (homework.html style) ────── */
+  .instr {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.9rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--blue-lt);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ── Level pill (lesson deck grayscale) ─────────── */
+  .lvl {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1px 8px;
+    border-radius: 20px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+    font-family: var(--ff-diag);
+  }
+  .lvl-1 { background: #f0f0f0; color: #374151; }
+  .lvl-2 { background: #d9d9d9; color: #1f2937; }
+  .lvl-3 { background: #bdbdbd; color: #111827; }
+  .lvl-4 { background: #6b7280; color: #ffffff; }
+
+  /* ── Problem card (homework.html style) ─────────── */
+  .prob-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+  }
+  .prob-grid.single { grid-template-columns: 1fr; }
+  .prob-grid.thirds { grid-template-columns: 1fr 1fr 1fr; }
+  .prob {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 0.9rem;
+    position: relative;
+  }
+  .prob-num {
+    font-family: var(--ff-head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+  .prob-q {
+    font-size: 0.84rem;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+  .prob-q strong { color: #374151; }
+  .answer-box {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--slate);
+  }
+  .answer-line {
+    border-bottom: 1.5px solid var(--border);
+    flex: 1;
+    min-height: 1.2rem;
+  }
+  .work-area {
+    width: 100%;
+    resize: vertical;
+    min-height: 62px;
+    border: 1.5px dashed var(--border);
+    border-radius: 6px;
+    background: white;
+    padding: 0.35rem 0.55rem;
+    font-family: var(--ff-body);
+    font-size: 0.78rem;
+    color: var(--ink);
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 0.4rem;
+  }
+  .work-area::placeholder { color: var(--muted); font-style: italic; }
+  .work-area.tall { min-height: 90px; }
+
+  /* ── Diagram wrap (lesson deck style) ───────────── */
+  .diagram-wrap {
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.09);
+    border-radius: 14px;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 0.5rem;
+  }
+  .diagram-wrap svg text { font-family: var(--ff-diag); }
+
+  /* ── Formula box (lesson deck style) ────────────── */
+  .formula-box {
+    background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02));
+    border: 2px solid rgba(0,0,0,0.18);
+    border-radius: 10px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #111827;
+    font-family: var(--ff-math);
+    letter-spacing: 0.02em;
+    text-align: center;
+    margin: 0.4rem 0;
+  }
+
+  /* ── Trap card (lesson deck style) ──────────────── */
+  .trap-card {
+    border-left: 4px solid var(--accent-2);
+    background: #f9fafb;
+    border-radius: 0 9px 9px 0;
+    padding: 0.55rem 0.85rem;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+  }
+  .trap-card .trap-title {
+    font-weight: 800;
+    font-size: 0.82rem;
+    color: #1f2937;
+    margin-bottom: 0.2rem;
+    font-family: var(--ff-diag);
+  }
+
+  /* ── MC question (homework.html style) ──────────── */
+  .mc-q {
+    margin-bottom: 0.85rem;
+    padding: 0.7rem 0.85rem;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+  }
+  .mc-q-text {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  .mc-q-text .qnum { font-family: var(--ff-head); color: var(--blue); margin-right: 0.3rem; }
+  .mc-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1rem; }
+  .mc-opt {
+    font-size: 0.79rem;
+    color: var(--slate);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.3rem;
+    line-height: 1.45;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    border: 1.5px solid transparent;
+  }
+  .mc-opt:hover { background: #f0f0f0; }
+  .mc-opt input[type=radio] { display: none; }
+  .mc-opt.selected { background: #e5e7eb; border-color: #374151; font-weight: 700; }
+  .mc-opt .bubble {
+    width: 14px; height: 14px; min-width: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; font-weight: 800;
+  }
+  .mc-opt.selected .bubble { background: #374151; border-color: #374151; color: white; }
+
+  /* ── Error log (homework.html style) ────────────── */
+  .error-log {
+    border: 2px solid var(--coral);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    background: var(--coral-lt);
+    margin-top: 0.5rem;
+  }
+  .error-log h3 {
+    font-family: var(--ff-head);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c2410c;
+    margin-bottom: 0.55rem;
+  }
+  .error-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  .error-table th {
+    background: var(--coral); color: white;
+    font-family: var(--ff-head); font-weight: 600;
+    padding: 0.35rem 0.6rem; text-align: left; font-size: 0.75rem;
+  }
+  .error-table th:first-child { border-radius: 6px 0 0 0; }
+  .error-table th:last-child  { border-radius: 0 6px 0 0; }
+  .error-table td {
+    padding: 0.45rem 0.6rem; border-bottom: 1px solid #fca5a5;
+    color: var(--slate); background: white; font-weight: 500;
+  }
+  .error-table td:first-child { font-weight: 700; color: var(--ink); width: 5%; text-align: center; }
+  .error-table tr:last-child td { border-bottom: none; }
+  .error-type-pills { display: flex; gap: 0.4rem; flex-wrap: wrap; font-size: 0.73rem; margin-top: 0.55rem; }
+  .pill { padding: 2px 10px; border-radius: 20px; font-weight: 700; border: 1.5px solid; }
+  .pill-cg { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+  .pill-ce { background: #fef9c3; color: #92400e; border-color: #fde68a; }
+  .pill-ru { background: var(--purple-lt); color: var(--purple); border-color: #c4b5fd; }
+
+  /* ── Reflect box (homework.html style) ──────────── */
+  .reflect-box {
+    background: var(--green-lt); border: 1.5px solid #86efac;
+    border-radius: 10px; padding: 0.8rem 1rem; margin-top: 1rem;
+  }
+  .reflect-box h3 { font-family: var(--ff-head); font-size: 0.9rem; font-weight: 700; color: var(--green); margin-bottom: 0.45rem; }
+  .reflect-lines { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.3rem; }
+  .reflect-line { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--slate); font-weight: 600; }
+  .reflect-line input[type=text] {
+    flex: 1; border: none; border-bottom: 1.5px solid var(--border);
+    font-family: var(--ff-body); font-size: 0.8rem; color: var(--ink);
+    background: transparent; outline: none; padding: 1px 6px;
+  }
+
+  /* ── Divider ─────────────────────────────────── */
+  hr.divider { border: none; border-top: 2px dashed var(--border); margin: 1.6rem 0; }
+
+  /* ── SVG fig ─────────────────────────────────── */
+  .fig { display: flex; justify-content: center; margin: 0.35rem 0 0.45rem; }
+  .fig svg { overflow: visible; }
+
+  /* ── Print button ────────────────────────────── */
+  .print-btn {
+    display: block; width: fit-content;
+    margin: 0 auto 1rem;
+    background: var(--blue); color: white;
+    font-family: var(--ff-head); font-size: 1rem; font-weight: 600;
+    padding: 0.55rem 1.6rem; border: none; border-radius: 30px;
+    cursor: pointer; box-shadow: 0 3px 10px rgba(37,99,235,0.3);
+    transition: background 0.2s;
+  }
+  .print-btn:hover { background: #1d4ed8; }
+
+  /* ── Two-col layout helpers ──────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; align-items: start; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; align-items: start; }
+
+  /* ── Word problem card ───────────────────────── */
+  .wp-card {
+    background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 0.75rem 0.9rem;
+  }
+  .wp-card .scenario {
+    font-size: 0.82rem; color: var(--slate); line-height: 1.65;
+    margin-bottom: 0.5rem;
+  }
+  .wp-card .scenario strong { color: var(--accent-1); }
+
+  /* ── Classify table ──────────────────────────── */
+  .classify-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 0.4rem; }
+  .classify-table th {
+    background: var(--accent-1); color: white;
+    font-family: var(--ff-diag); font-size: 0.75rem; font-weight: 700;
+    padding: 0.35rem 0.6rem; text-align: left;
+  }
+  .classify-table th:first-child { border-radius: 6px 0 0 0; }
+  .classify-table th:last-child  { border-radius: 0 6px 0 0; }
+  .classify-table td {
+    padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border);
+    color: var(--slate); font-weight: 500; background: white;
+  }
+  .classify-table td:first-child { font-weight: 700; color: var(--ink); font-family: var(--ff-math); font-size: 0.78rem; }
+  .classify-table tr:last-child td { border-bottom: none; }
+  .classify-table input[type=text] {
+    width: 100%; border: none; border-bottom: 1.5px solid var(--border);
+    font-family: var(--ff-body); font-size: 0.78rem; color: var(--ink);
+    background: transparent; outline: none; padding: 1px 4px;
+  }
+
+  /* ── Step-by-step box ────────────────────────── */
+  .steps-box {
+    background: white; border: 1.5px solid rgba(0,0,0,0.09);
+    border-radius: 10px; padding: 0.65rem 0.9rem;
+  }
+  .step-row { display: flex; gap: 0.55rem; align-items: baseline; margin-bottom: 0.5rem; font-size: 0.81rem; }
+  .step-row:last-child { margin-bottom: 0; }
+  .step-num {
+    min-width: 20px; height: 20px;
+    background: var(--accent-1); color: white;
+    border-radius: 50%; font-size: 0.68rem; font-weight: 800;
+    font-family: var(--ff-diag);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-text { flex: 1; color: var(--slate); font-weight: 600; line-height: 1.45; }
+  .step-line { border-bottom: 1.5px dashed var(--border); flex: 1; min-height: 1.1rem; }
+</style>
+<script>
+  document.addEventListener('click', e => {
+    const opt = e.target.closest('.mc-opt');
+    if (!opt) return;
+    opt.closest('.mc-opts').querySelectorAll('.mc-opt').forEach(o => {
+      o.classList.remove('selected');
+      o.querySelector('.bubble').textContent = '';
+    });
+    opt.classList.add('selected');
+    opt.querySelector('.bubble').textContent = '✓';
+  });
+</script>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨 Print / Save PDF</button>
+
+<div class="sheet">
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <div class="hw-header">
+    <div class="hw-header-left">
+      <h1>⚖️ Lesson 4 Activity</h1>
+      <div class="subtitle">Systems of Equations &nbsp;·&nbsp; Algebra I Regents Prep</div>
+    </div>
+    <div class="hw-meta">
+      <div class="hw-meta-row">
+        <span class="label">Name</span>
+        <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.82rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="">
+      </div>
+      <div class="hw-meta-row">
+        <span class="label">Date</span>
+        <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.82rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="">
+      </div>
+      <div class="hw-meta-row">
+        <span class="label">Period</span>
+        <input type="text" style="flex:1;border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.82rem;color:var(--ink);background:transparent;outline:none;padding:1px 4px;" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SCORE BANNER ═══════════════ -->
+  <div class="score-banner">
+    <div>
+      <div class="title">Self-Score After Completing</div>
+      <div class="sub">Check each section and bring to class!</div>
+    </div>
+    <div class="score-cells">
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="6" style="width:2rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 6</div>
+        <div class="sc-lbl">Vocab &amp; Classify</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="8" style="width:2rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 8</div>
+        <div class="sc-lbl">Solve Problems</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="6" style="width:2rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 6</div>
+        <div class="sc-lbl">Word Problems</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="20" style="width:2.4rem;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.6);color:white;font-family:var(--ff-head);font-size:1.1rem;font-weight:700;text-align:center;outline:none;" placeholder="__"> / 20</div>
+        <div class="sc-lbl">Total</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PART 1: VOCAB & CONCEPTS ═══════════════ -->
+  <div class="section-hd">
+    <span class="icon">📖</span>
+    <h2>Part 1 — Vocabulary &amp; Concepts</h2>
+    <span class="badge badge-blue">6 pts</span>
+  </div>
+  <p class="instr">Match, classify, and identify. No solving needed — just your understanding of what systems ARE.</p>
+
+  <!-- 1A: Match vocab -->
+  <div style="margin-bottom:1rem;">
+    <div class="prob-num">1A &nbsp;·&nbsp; Vocabulary Match</div>
+    <div class="two-col">
+      <div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--ink);margin-bottom:0.45rem;">Terms</div>
+        <div style="display:flex;flex-direction:column;gap:0.3rem;font-size:0.82rem;font-weight:600;color:var(--slate);">
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;">① System of Equations</div>
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;">② Solution of a System</div>
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;">③ Consistent</div>
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;">④ Inconsistent</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--ink);margin-bottom:0.45rem;">Definitions &nbsp;<span style="font-weight:500;color:var(--muted);font-size:0.78rem;">(write the number)</span></div>
+        <div style="display:flex;flex-direction:column;gap:0.3rem;font-size:0.8rem;color:var(--slate);">
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;display:flex;gap:0.5rem;align-items:center;">
+            <input type="text" style="width:1.5rem;border:none;border-bottom:1.5px solid var(--border);text-align:center;font-family:var(--ff-head);font-size:0.85rem;font-weight:700;color:var(--blue);outline:none;background:transparent;" placeholder="__">
+            The ordered pair <em>(x, y)</em> that makes all equations true — the intersection point.
+          </div>
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;display:flex;gap:0.5rem;align-items:center;">
+            <input type="text" style="width:1.5rem;border:none;border-bottom:1.5px solid var(--border);text-align:center;font-family:var(--ff-head);font-size:0.85rem;font-weight:700;color:var(--blue);outline:none;background:transparent;" placeholder="__">
+            Two or more equations sharing the same variables.
+          </div>
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;display:flex;gap:0.5rem;align-items:center;">
+            <input type="text" style="width:1.5rem;border:none;border-bottom:1.5px solid var(--border);text-align:center;font-family:var(--ff-head);font-size:0.85rem;font-weight:700;color:var(--blue);outline:none;background:transparent;" placeholder="__">
+            A system with <strong>no solution</strong> — parallel lines that never meet.
+          </div>
+          <div style="padding:0.3rem 0.6rem;background:white;border:1.5px solid var(--border);border-radius:7px;display:flex;gap:0.5rem;align-items:center;">
+            <input type="text" style="width:1.5rem;border:none;border-bottom:1.5px solid var(--border);text-align:center;font-family:var(--ff-head);font-size:0.85rem;font-weight:700;color:var(--blue);outline:none;background:transparent;" placeholder="__">
+            A system that <strong>has at least one solution</strong> — lines cross or overlap.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1B: Classify from graph -->
+  <div style="margin-bottom:1rem;">
+    <div class="prob-num">1B &nbsp;·&nbsp; Identify the System Type from Each Graph</div>
+    <div class="three-col">
+      <!-- Graph A: intersecting -->
+      <div>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 120 110" width="100%" height="100" role="img" aria-label="Two intersecting lines">
+            <line x1="15" y1="10" x2="15" y2="100" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="10" y1="80" x2="115" y2="80" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="15" y1="10" x2="15" y2="100" stroke="#374151" stroke-width="2"/>
+            <line x1="10" y1="80" x2="115" y2="80" stroke="#374151" stroke-width="2"/>
+            <polygon points="15,8 12,16 18,16" fill="#374151"/>
+            <polygon points="115,80 106,77 106,83" fill="#374151"/>
+            <!-- Line 1: slope up-right -->
+            <line x1="10" y1="95" x2="100" y2="20" stroke="#374151" stroke-width="2.5"/>
+            <!-- Line 2: slope down-right -->
+            <line x1="10" y1="25" x2="105" y2="90" stroke="#4b5563" stroke-width="2.5" stroke-dasharray="6,3"/>
+            <!-- Intersection ~(55,55) -->
+            <circle cx="56" cy="56" r="5" fill="#374151" stroke="white" stroke-width="2"/>
+            <text x="60" y="50" font-size="8" font-weight="800" fill="#374151">1 pt!</text>
+          </svg>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--muted);text-align:center;margin-bottom:0.3rem;">Graph A</div>
+        <div class="answer-box"><span>Type:</span><div class="answer-line"></div></div>
+        <div class="answer-box" style="margin-top:0.25rem;"><span>Solutions:</span><div class="answer-line"></div></div>
+      </div>
+      <!-- Graph B: parallel -->
+      <div>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 120 110" width="100%" height="100" role="img" aria-label="Two parallel lines">
+            <line x1="15" y1="10" x2="15" y2="100" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="10" y1="80" x2="115" y2="80" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="15" y1="10" x2="15" y2="100" stroke="#374151" stroke-width="2"/>
+            <line x1="10" y1="80" x2="115" y2="80" stroke="#374151" stroke-width="2"/>
+            <polygon points="15,8 12,16 18,16" fill="#374151"/>
+            <polygon points="115,80 106,77 106,83" fill="#374151"/>
+            <!-- Line 1 -->
+            <line x1="10" y1="85" x2="100" y2="30" stroke="#374151" stroke-width="2.5"/>
+            <!-- Line 2: parallel, shifted up -->
+            <line x1="10" y1="68" x2="100" y2="13" stroke="#4b5563" stroke-width="2.5" stroke-dasharray="6,3"/>
+            <text x="55" y="58" font-size="14" fill="#9ca3af" text-anchor="middle">∥</text>
+          </svg>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--muted);text-align:center;margin-bottom:0.3rem;">Graph B</div>
+        <div class="answer-box"><span>Type:</span><div class="answer-line"></div></div>
+        <div class="answer-box" style="margin-top:0.25rem;"><span>Solutions:</span><div class="answer-line"></div></div>
+      </div>
+      <!-- Graph C: same line -->
+      <div>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 120 110" width="100%" height="100" role="img" aria-label="Two lines on top of each other — same line">
+            <line x1="15" y1="10" x2="15" y2="100" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="10" y1="80" x2="115" y2="80" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="15" y1="10" x2="15" y2="100" stroke="#374151" stroke-width="2"/>
+            <line x1="10" y1="80" x2="115" y2="80" stroke="#374151" stroke-width="2"/>
+            <polygon points="15,8 12,16 18,16" fill="#374151"/>
+            <polygon points="115,80 106,77 106,83" fill="#374151"/>
+            <!-- Same line drawn twice (solid + dashed on top) -->
+            <line x1="10" y1="90" x2="105" y2="25" stroke="#374151" stroke-width="5"/>
+            <line x1="10" y1="90" x2="105" y2="25" stroke="#4b5563" stroke-width="2" stroke-dasharray="8,4"/>
+            <text x="68" y="73" font-size="9" font-weight="800" fill="#374151">∞ pts!</text>
+          </svg>
+        </div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--muted);text-align:center;margin-bottom:0.3rem;">Graph C</div>
+        <div class="answer-box"><span>Type:</span><div class="answer-line"></div></div>
+        <div class="answer-box" style="margin-top:0.25rem;"><span>Solutions:</span><div class="answer-line"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1C: Classify without solving -->
+  <div style="margin-bottom:0.5rem;">
+    <div class="prob-num">1C &nbsp;·&nbsp; Classify Without Solving — Compare Slopes &amp; y-intercepts</div>
+    <table class="classify-table">
+      <thead>
+        <tr>
+          <th>System</th>
+          <th>Slope of Eq. 1</th>
+          <th>Slope of Eq. 2</th>
+          <th>y-int Same?</th>
+          <th>Type (Independent / Inconsistent / Dependent)</th>
+          <th># Solutions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>y = 3x + 1<br>y = 3x + 5</td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder="Y/N"></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+        </tr>
+        <tr>
+          <td>y = 2x − 4<br>y = −x + 1</td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder="Y/N"></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+        </tr>
+        <tr>
+          <td>2y = 6x + 8<br>y = 3x + 4</td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder="Y/N"></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+        </tr>
+        <tr>
+          <td>y = −2x + 5<br>y = 4x − 1</td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder="Y/N"></td>
+          <td><input type="text" placeholder=""></td>
+          <td><input type="text" placeholder=""></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="trap-card" style="margin-top:0.6rem;">
+      <div class="trap-title">⚠️ Regents Reminder</div>
+      For row 3, simplify 2y = 6x + 8 first! Divide both sides by 2 before comparing. Hidden same-line problems appear on the Regents regularly.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════ PART 2: GRAPHING METHOD ═══════════════ -->
+  <div class="section-hd">
+    <span class="icon">📈</span>
+    <h2>Part 2 — Graphing Method</h2>
+    <span class="badge badge-coral">3 pts</span>
+  </div>
+  <p class="instr">Plot both lines using slope-intercept form. Mark the intersection point clearly and verify in both equations.</p>
+
+  <div class="two-col" style="margin-bottom:1rem;">
+    <!-- 2A: Worked reference diagram -->
+    <div>
+      <div class="prob-num" style="margin-bottom:0.4rem;">Reference — System from Lesson (already solved)</div>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 290 255" width="100%" height="225" role="img" aria-label="System solved by graphing - two lines intersecting at (2,3)">
+          <line x1="40" y1="10" x2="40" y2="240" stroke="#e5e7eb" stroke-width="1"/>
+          <line x1="10" y1="200" x2="280" y2="200" stroke="#e5e7eb" stroke-width="1"/>
+          <line x1="90" y1="10" x2="90" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="140" y1="10" x2="140" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="190" y1="10" x2="190" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="240" y1="10" x2="240" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="10" y1="150" x2="280" y2="150" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="10" y1="100" x2="280" y2="100" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="40" y1="10" x2="40" y2="240" stroke="#374151" stroke-width="2.5"/>
+          <line x1="10" y1="200" x2="280" y2="200" stroke="#374151" stroke-width="2.5"/>
+          <polygon points="40,8 36,18 44,18" fill="#374151"/>
+          <polygon points="281,200 271,196 271,204" fill="#374151"/>
+          <text x="270" y="215" font-size="12" font-weight="700" fill="#374151">x</text>
+          <text x="44" y="15" font-size="12" font-weight="700" fill="#374151">y</text>
+          <line x1="65" y1="200" x2="215" y2="80" stroke="#374151" stroke-width="3"/>
+          <circle cx="40" cy="220" r="4" fill="#374151"/>
+          <text x="46" y="218" font-size="10" font-weight="700" fill="#374151">b=−1</text>
+          <line x1="40" y1="100" x2="280" y2="200" stroke="#4b5563" stroke-width="3" stroke-dasharray="8,4"/>
+          <circle cx="40" cy="100" r="4" fill="#4b5563"/>
+          <text x="46" y="98" font-size="10" font-weight="700" fill="#4b5563">b=5</text>
+          <circle cx="140" cy="140" r="8" fill="#374151" stroke="white" stroke-width="2.5"/>
+          <text x="148" y="132" font-size="12" font-weight="800" fill="#374151">(2, 3)</text>
+          <text x="148" y="144" font-size="10" fill="#6b7280">answer!</text>
+          <text x="170" y="80" font-size="11" font-weight="800" fill="#374151">y=2x−1</text>
+          <text x="190" y="188" font-size="11" font-weight="800" fill="#4b5563">y=−x+5</text>
+          <text x="30" y="204" font-size="9" fill="#9ca3af">0</text>
+          <text x="87" y="214" font-size="9" fill="#9ca3af">1</text>
+          <text x="137" y="214" font-size="9" fill="#9ca3af">2</text>
+          <text x="187" y="214" font-size="9" fill="#9ca3af">3</text>
+        </svg>
+      </div>
+      <div class="formula-box" style="font-size:0.78rem;text-align:left;padding:0.4rem 0.75rem;margin-top:0.3rem;">
+        Solid: y = 2x − 1 &nbsp;|&nbsp; Dashed: y = −x + 5<br>
+        Intersection → <strong>(2, 3)</strong>
+      </div>
+    </div>
+    <!-- 2B: Student graphs their own system -->
+    <div>
+      <div class="prob-num" style="margin-bottom:0.4rem;">2A &nbsp;·&nbsp; Graph and Solve <span class="lvl lvl-2">Level 2</span></div>
+      <div style="background:white;border:1.5px solid rgba(0,0,0,0.09);border-radius:14px;padding:0.5rem;box-shadow:0 2px 10px rgba(0,0,0,0.07);">
+        <svg viewBox="0 0 290 230" width="100%" height="210" role="img" aria-label="Blank coordinate grid for student graphing">
+          <!-- Light grid -->
+          <line x1="40" y1="10" x2="40" y2="215" stroke="#e5e7eb" stroke-width="1"/>
+          <line x1="10" y1="175" x2="280" y2="175" stroke="#e5e7eb" stroke-width="1"/>
+          <line x1="90" y1="10" x2="90" y2="215" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="140" y1="10" x2="140" y2="215" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="190" y1="10" x2="190" y2="215" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="240" y1="10" x2="240" y2="215" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="10" y1="125" x2="280" y2="125" stroke="#f0f0f0" stroke-width="1"/>
+          <line x1="10" y1="75" x2="280" y2="75" stroke="#f0f0f0" stroke-width="1"/>
+          <!-- Axes -->
+          <line x1="40" y1="10" x2="40" y2="215" stroke="#374151" stroke-width="2.5"/>
+          <line x1="10" y1="175" x2="280" y2="175" stroke="#374151" stroke-width="2.5"/>
+          <polygon points="40,8 36,18 44,18" fill="#374151"/>
+          <polygon points="281,175 271,171 271,179" fill="#374151"/>
+          <text x="270" y="190" font-size="11" font-weight="700" fill="#374151">x</text>
+          <text x="44" y="15" font-size="11" font-weight="700" fill="#374151">y</text>
+          <!-- Tick marks and labels -->
+          <text x="30" y="179" font-size="9" fill="#9ca3af">0</text>
+          <text x="87" y="189" font-size="9" fill="#9ca3af">1</text>
+          <text x="137" y="189" font-size="9" fill="#9ca3af">2</text>
+          <text x="187" y="189" font-size="9" fill="#9ca3af">3</text>
+          <text x="237" y="189" font-size="9" fill="#9ca3af">4</text>
+          <text x="29" y="129" font-size="9" fill="#9ca3af">1</text>
+          <text x="29" y="79" font-size="9" fill="#9ca3af">2</text>
+          <text x="29" y="29" font-size="9" fill="#9ca3af">3</text>
+          <!-- Dashed reference lines at y=1,2,3 for easy reading -->
+          <line x1="40" y1="125" x2="280" y2="125" stroke="#f0f0f0" stroke-width="1" stroke-dasharray="3,4"/>
+          <line x1="40" y1="75" x2="280" y2="75" stroke="#f0f0f0" stroke-width="1" stroke-dasharray="3,4"/>
+        </svg>
+      </div>
+      <div style="background:var(--blue-lt);border:1.5px solid var(--blue-md);border-radius:8px;padding:0.45rem 0.75rem;margin-top:0.4rem;font-size:0.82rem;font-weight:700;color:#1e3a8a;font-family:var(--ff-math);">
+        y = x + 1 &nbsp;&nbsp; and &nbsp;&nbsp; y = −2x + 7
+      </div>
+      <div style="margin-top:0.4rem;display:flex;flex-direction:column;gap:0.3rem;">
+        <div class="answer-box"><span>Intersection:</span><div class="answer-line"></div></div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">Verify in Eq. 1: ______ &nbsp;&nbsp; Verify in Eq. 2: ______</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2B: Graphing MC -->
+  <div class="prob-num" style="margin-bottom:0.5rem;">2B &nbsp;·&nbsp; Graphing — Multiple Choice <span class="lvl lvl-1">Level 1</span></div>
+  <div class="prob-grid">
+    <div class="mc-q">
+      <div class="mc-q-text"><span class="qnum">1.</span> A system has two lines with slopes 3 and −2. Without graphing, how many solutions does it have?</div>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="g1"><span class="bubble"></span>0 — they are parallel</label>
+        <label class="mc-opt"><input type="radio" name="g1"><span class="bubble"></span>1 — they intersect once</label>
+        <label class="mc-opt"><input type="radio" name="g1"><span class="bubble"></span>2 — they cross twice</label>
+        <label class="mc-opt"><input type="radio" name="g1"><span class="bubble"></span>∞ — they are the same line</label>
+      </div>
+    </div>
+    <div class="mc-q">
+      <div class="mc-q-text"><span class="qnum">2.</span> Which ordered pair is the solution to the system y = x + 3 and y = −x + 7?</div>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="g2"><span class="bubble"></span>(1, 4)</label>
+        <label class="mc-opt"><input type="radio" name="g2"><span class="bubble"></span>(2, 5)</label>
+        <label class="mc-opt"><input type="radio" name="g2"><span class="bubble"></span>(3, 4)</label>
+        <label class="mc-opt"><input type="radio" name="g2"><span class="bubble"></span>(4, 3)</label>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════ PART 3: SUBSTITUTION ═══════════════ -->
+  <div class="section-hd">
+    <span class="icon">🔄</span>
+    <h2>Part 3 — Substitution Method</h2>
+    <span class="badge badge-purple">4 pts</span>
+  </div>
+  <p class="instr">Isolate → Substitute → Solve → Back-substitute → Check BOTH equations. Show every step.</p>
+
+  <div class="prob-grid" style="margin-bottom:0.9rem;">
+    <div class="prob">
+      <div class="prob-num">3A &nbsp;<span class="lvl lvl-1">Level 1</span></div>
+      <div class="prob-q"><strong>y = x + 4</strong> &nbsp; and &nbsp; <strong>y = 3x</strong></div>
+      <div style="font-size:0.76rem;color:var(--muted);margin-bottom:0.4rem;font-style:italic;">Hint: Both equal y — set them equal!</div>
+      <textarea class="work-area tall" placeholder="Step 1: Both equal y, so...&#10;Step 2: Solve for x...&#10;Step 3: Back-sub for y...&#10;Step 4: Check: Eq.1__ Eq.2__"></textarea>
+      <div class="answer-box" style="margin-top:0.35rem;"><span>Solution:</span><div class="answer-line"></div></div>
+    </div>
+    <div class="prob">
+      <div class="prob-num">3B &nbsp;<span class="lvl lvl-2">Level 2</span></div>
+      <div class="prob-q"><strong>2x + y = 10</strong> &nbsp; and &nbsp; <strong>y = x + 1</strong></div>
+      <div style="font-size:0.76rem;color:var(--muted);margin-bottom:0.4rem;font-style:italic;">Hint: y is already isolated in Eq. 2.</div>
+      <textarea class="work-area tall" placeholder="Step 1: Substitute y = x+1 into...&#10;Step 2: Solve...&#10;Step 3: Back-sub...&#10;Step 4: Check: Eq.1__ Eq.2__"></textarea>
+      <div class="answer-box" style="margin-top:0.35rem;"><span>Solution:</span><div class="answer-line"></div></div>
+    </div>
+  </div>
+  <div class="prob-grid single">
+    <div class="prob">
+      <div class="prob-num">3C &nbsp;<span class="lvl lvl-3">Level 3</span></div>
+      <div class="prob-q"><strong>3x + 2y = 16</strong> &nbsp; and &nbsp; <strong>x = y + 2</strong></div>
+      <div style="font-size:0.76rem;color:var(--muted);margin-bottom:0.4rem;font-style:italic;">Hint: x is isolated in Eq. 2 — swap it into Eq. 1.</div>
+      <textarea class="work-area" placeholder="Show all steps here..."></textarea>
+      <div class="answer-box" style="margin-top:0.35rem;"><span>Solution:</span><div class="answer-line"></div></div>
+    </div>
+  </div>
+
+  <div class="trap-card" style="margin-top:0.5rem;">
+    <div class="trap-title">⚠️ Substitution Trap — Don't Do This</div>
+    After finding x, always substitute back into the <em>original</em> equation — not a rearranged version you wrote during your work. Rearranged expressions are where arithmetic errors hide.
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════ PART 4: ELIMINATION ═══════════════ -->
+  <div class="section-hd">
+    <span class="icon">➕</span>
+    <h2>Part 4 — Elimination Method</h2>
+    <span class="badge badge-sand">4 pts</span>
+  </div>
+  <p class="instr">Line up vertically. Manufacture opposites if needed. ADD the equations. Solve. Back-substitute. Check both.</p>
+
+  <div class="prob-grid" style="margin-bottom:0.9rem;">
+    <div class="prob">
+      <div class="prob-num">4A &nbsp;<span class="lvl lvl-1">Level 1 — Coefficients already cancel</span></div>
+      <div class="prob-q"><strong>3x + 2y = 12</strong><br><strong>3x − 2y = &nbsp;0</strong></div>
+      <div style="font-size:0.76rem;color:var(--muted);margin-bottom:0.4rem;font-style:italic;">Which variable disappears when you add? No multiplication needed.</div>
+      <textarea class="work-area tall" placeholder="Add the equations:&#10;  3x + 2y = 12&#10;+ 3x − 2y =  0&#10;─────────────&#10;...solve..."></textarea>
+      <div class="answer-box" style="margin-top:0.35rem;"><span>Solution:</span><div class="answer-line"></div></div>
+    </div>
+    <div class="prob">
+      <div class="prob-num">4B &nbsp;<span class="lvl lvl-2">Level 2 — Multiply first</span></div>
+      <div class="prob-q"><strong>4x + 3y = 24</strong><br><strong>2x − 3y = &nbsp;6</strong></div>
+      <div style="font-size:0.76rem;color:var(--muted);margin-bottom:0.4rem;font-style:italic;">Do the y-terms cancel when you add as-is? Why or why not?</div>
+      <textarea class="work-area tall" placeholder="Check the y-coefficients: +3y and −3y...&#10;Add:&#10;...solve..."></textarea>
+      <div class="answer-box" style="margin-top:0.35rem;"><span>Solution:</span><div class="answer-line"></div></div>
+    </div>
+  </div>
+  <div class="prob-grid single">
+    <div class="prob">
+      <div class="prob-num">4C &nbsp;<span class="lvl lvl-3">Level 3 — Multiply both equations</span></div>
+      <div class="prob-q"><strong>2x + 3y = 11</strong> &nbsp; and &nbsp; <strong>3x + 2y = 9</strong></div>
+      <div style="font-size:0.76rem;color:var(--muted);margin-bottom:0.4rem;font-style:italic;">Neither variable cancels straight away. What do you multiply each equation by to cancel the y-terms?</div>
+      <div class="two-col" style="gap:0.6rem;margin-bottom:0.4rem;">
+        <div style="font-size:0.79rem;color:var(--slate);">Multiply Eq. 1 by <input type="text" style="width:2rem;border:none;border-bottom:1.5px solid var(--border);text-align:center;font-family:var(--ff-math);font-size:0.85rem;font-weight:700;color:var(--accent-1);outline:none;background:transparent;" placeholder="?"> to get:</div>
+        <div style="font-size:0.79rem;color:var(--slate);">Multiply Eq. 2 by <input type="text" style="width:2rem;border:none;border-bottom:1.5px solid var(--border);text-align:center;font-family:var(--ff-math);font-size:0.85rem;font-weight:700;color:var(--accent-2);outline:none;background:transparent;" placeholder="?"> to get:</div>
+      </div>
+      <textarea class="work-area" placeholder="Show new equations, add, solve..."></textarea>
+      <div class="answer-box" style="margin-top:0.35rem;"><span>Solution:</span><div class="answer-line"></div></div>
+    </div>
+  </div>
+
+  <div class="trap-card">
+    <div class="trap-title">⚠️ The #1 Regents Elimination Error</div>
+    When multiplying an equation by a number, multiply <strong>every term</strong> — including the constant on the right side. If you scale "2x + 3y = 11" by 2, the 11 must become 22.
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════ PART 5: REAL WORLD ═══════════════ -->
+  <div class="section-hd">
+    <span class="icon">🌍</span>
+    <h2>Part 5 — Real-World Applications</h2>
+    <span class="badge badge-green">6 pts</span>
+  </div>
+  <p class="instr">Read carefully. Define variables. Write the system. Solve using the best method. Answer the question in a complete sentence.</p>
+
+  <!-- 5A: Phone plans (with diagram) -->
+  <div style="margin-bottom:1rem;">
+    <div class="prob-num">5A &nbsp;·&nbsp; Cell Phone Plans — NYC Real Life</div>
+    <div class="two-col" style="align-items:start;">
+      <div>
+        <div class="wp-card">
+          <div class="prob-q" style="margin-bottom:0.5rem;">
+            <strong>Plan A:</strong> $20/month + $0.10 per text<br>
+            <strong>Plan B:</strong> $35/month flat (unlimited)
+          </div>
+          <div style="font-size:0.8rem;color:var(--slate);margin-bottom:0.6rem;line-height:1.6;">
+            At how many texts per month do both plans cost the <strong>same amount</strong>? And which plan is cheaper if you send <strong>200 texts/month</strong>?
+          </div>
+          <div class="steps-box">
+            <div class="step-row"><span class="step-num">1</span><div class="step-text">Let x = &nbsp;<input type="text" style="border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;width:120px;" placeholder="(define x)"></div></div>
+            <div class="step-row"><span class="step-num">2</span><div class="step-text">Let y = &nbsp;<input type="text" style="border:none;border-bottom:1.5px solid var(--border);font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;width:120px;" placeholder="(define y)"></div></div>
+            <div class="step-row"><span class="step-num">3</span><div class="step-text">Plan A: y = &nbsp;<div class="answer-line" style="min-width:120px;display:inline-block;"></div></div></div>
+            <div class="step-row"><span class="step-num">4</span><div class="step-text">Plan B: y = &nbsp;<div class="answer-line" style="min-width:120px;display:inline-block;"></div></div></div>
+            <div class="step-row"><span class="step-num">5</span><div class="step-text">Best method: &nbsp;<div class="answer-line" style="min-width:80px;display:inline-block;"></div> &nbsp; Why? &nbsp;<div class="answer-line" style="min-width:100px;display:inline-block;"></div></div></div>
+          </div>
+          <textarea class="work-area" style="margin-top:0.4rem;" placeholder="Solve here..."></textarea>
+          <div class="answer-box" style="margin-top:0.4rem;"><span>Break-even:</span><div class="answer-line"></div></div>
+          <div class="answer-box" style="margin-top:0.3rem;"><span>At 200 texts, cheaper plan:</span><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <!-- Phone plan graph for reference -->
+      <div>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 270 200" width="100%" height="185" role="img" aria-label="Graph of two phone plans intersecting at 150 texts">
+            <line x1="40" y1="10" x2="40" y2="185" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="10" y1="170" x2="260" y2="170" stroke="#e5e7eb" stroke-width="1"/>
+            <line x1="90" y1="10" x2="90" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+            <line x1="140" y1="10" x2="140" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+            <line x1="190" y1="10" x2="190" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+            <line x1="240" y1="10" x2="240" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+            <line x1="10" y1="120" x2="260" y2="120" stroke="#f0f0f0" stroke-width="1"/>
+            <line x1="10" y1="70" x2="260" y2="70" stroke="#f0f0f0" stroke-width="1"/>
+            <line x1="40" y1="10" x2="40" y2="185" stroke="#374151" stroke-width="2"/>
+            <line x1="10" y1="170" x2="260" y2="170" stroke="#374151" stroke-width="2"/>
+            <polygon points="40,8 36,18 44,18" fill="#374151"/>
+            <polygon points="261,170 251,166 251,174" fill="#374151"/>
+            <text x="250" y="183" font-size="9" fill="#374151">texts</text>
+            <text x="44" y="14" font-size="9" fill="#374151">$</text>
+            <line x1="40" y1="120" x2="220" y2="70" stroke="#374151" stroke-width="2.5"/>
+            <line x1="40" y1="83" x2="255" y2="83" stroke="#4b5563" stroke-width="2.5" stroke-dasharray="7,4"/>
+            <circle cx="175" cy="83" r="7" fill="#374151" stroke="white" stroke-width="2"/>
+            <text x="180" y="75" font-size="11" font-weight="800" fill="#374151">(150, $35)</text>
+            <text x="225" y="65" font-size="10" font-weight="800" fill="#374151">Plan A</text>
+            <text x="50" y="76" font-size="10" font-weight="800" fill="#4b5563">Plan B</text>
+            <text x="28" y="123" font-size="8" fill="#9ca3af">$20</text>
+            <text x="28" y="85" font-size="8" fill="#9ca3af">$35</text>
+            <text x="87" y="181" font-size="8" fill="#9ca3af">50</text>
+            <text x="137" y="181" font-size="8" fill="#9ca3af">100</text>
+            <text x="170" y="181" font-size="8" fill="#9ca3af">150</text>
+            <text x="212" y="181" font-size="8" fill="#9ca3af">200</text>
+          </svg>
+        </div>
+        <div style="font-size:0.74rem;color:var(--muted);text-align:center;margin-top:0.3rem;font-style:italic;">Use this graph to check your answer or draw your own solution point.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5B: Ticket sales -->
+  <div style="margin-bottom:1rem;">
+    <div class="prob-num">5B &nbsp;·&nbsp; Ticket Sales <span class="lvl lvl-3">Level 3</span></div>
+    <div class="wp-card">
+      <div class="scenario">
+        A school sells <strong>adult tickets for $8</strong> and <strong>student tickets for $5</strong>.
+        A total of <strong>200 tickets</strong> were sold and <strong>$1,300 was collected</strong>.
+        How many adult and student tickets were sold?
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="steps-box" style="margin-bottom:0.4rem;">
+            <div class="step-row"><span class="step-num">1</span><div class="step-text">Let a = &nbsp;<div class="answer-line" style="display:inline-block;min-width:110px;"></div></div></div>
+            <div class="step-row"><span class="step-num">2</span><div class="step-text">Let s = &nbsp;<div class="answer-line" style="display:inline-block;min-width:110px;"></div></div></div>
+            <div class="step-row"><span class="step-num">3</span><div class="step-text">Quantity eq: &nbsp;<div class="answer-line" style="display:inline-block;min-width:90px;"></div></div></div>
+            <div class="step-row"><span class="step-num">4</span><div class="step-text">Money eq: &nbsp;<div class="answer-line" style="display:inline-block;min-width:100px;"></div></div></div>
+            <div class="step-row"><span class="step-num">5</span><div class="step-text">Best method: &nbsp;<div class="answer-line" style="display:inline-block;min-width:80px;"></div></div></div>
+          </div>
+        </div>
+        <div>
+          <textarea class="work-area tall" placeholder="Solve here..."></textarea>
+          <div class="answer-box" style="margin-top:0.35rem;"><span>Adult tickets:</span><div class="answer-line"></div></div>
+          <div class="answer-box" style="margin-top:0.3rem;"><span>Student tickets:</span><div class="answer-line"></div></div>
+        </div>
+      </div>
+      <div class="answer-box" style="margin-top:0.4rem;font-size:0.8rem;"><span>In a sentence:</span><div class="answer-line"></div></div>
+    </div>
+  </div>
+
+  <!-- 5C: Coin problem (challenge) -->
+  <div>
+    <div class="prob-num">5C &nbsp;·&nbsp; Coin Problem <span class="lvl lvl-4">Challenge</span></div>
+    <div class="wp-card">
+      <div class="scenario">
+        A jar contains <strong>nickels and dimes</strong> — <strong>40 coins</strong> worth <strong>$3.05 total</strong>.
+        How many nickels and how many dimes are in the jar?
+      </div>
+      <div class="two-col">
+        <div>
+          <textarea class="work-area tall" placeholder="Define variables, write the system, solve..."></textarea>
+        </div>
+        <div>
+          <div class="steps-box" style="font-size:0.78rem;">
+            <div style="font-weight:700;color:var(--ink);margin-bottom:0.45rem;font-family:var(--ff-diag);">Translator Key</div>
+            <div style="color:var(--slate);line-height:1.8;">
+              "40 coins total" → add the variables<br>
+              "$3.05 total value" → value equation<br>
+              Nickel = $0.05 &nbsp;|&nbsp; Dime = $0.10
+            </div>
+          </div>
+          <div class="answer-box" style="margin-top:0.5rem;"><span>Nickels:</span><div class="answer-line"></div></div>
+          <div class="answer-box" style="margin-top:0.3rem;"><span>Dimes:</span><div class="answer-line"></div></div>
+          <div class="answer-box" style="margin-top:0.3rem;font-size:0.8rem;"><span>Check (total value): $</span><div class="answer-line"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════ PART 6: REGENTS STYLE MC ═══════════════ -->
+  <div class="section-hd">
+    <span class="icon">📝</span>
+    <h2>Part 6 — Regents-Style Multiple Choice</h2>
+    <span class="badge badge-blue">5 pts</span>
+  </div>
+  <p class="instr">One correct answer per question. Read every choice before selecting. Watch for Regents traps.</p>
+
+  <div style="display:flex;flex-direction:column;gap:0.75rem;">
+    <div class="mc-q">
+      <div class="mc-q-text"><span class="qnum">1.</span> Which point is the solution to the system y = 2x − 3 and y = −x + 6?</div>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="r1"><span class="bubble"></span>(2, 1)</label>
+        <label class="mc-opt"><input type="radio" name="r1"><span class="bubble"></span>(3, 3)</label>
+        <label class="mc-opt"><input type="radio" name="r1"><span class="bubble"></span>(4, 5)</label>
+        <label class="mc-opt"><input type="radio" name="r1"><span class="bubble"></span>(1, −1)</label>
+      </div>
+    </div>
+    <div class="mc-q">
+      <div class="mc-q-text"><span class="qnum">2.</span> A system of two linear equations has the same slope and the same y-intercept. How many solutions does it have?</div>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="r2"><span class="bubble"></span>Exactly one</label>
+        <label class="mc-opt"><input type="radio" name="r2"><span class="bubble"></span>Exactly two</label>
+        <label class="mc-opt"><input type="radio" name="r2"><span class="bubble"></span>No solution</label>
+        <label class="mc-opt"><input type="radio" name="r2"><span class="bubble"></span>Infinitely many</label>
+      </div>
+    </div>
+    <div class="mc-q">
+      <div class="mc-q-text"><span class="qnum">3.</span> Solving 3x + y = 7 and y = 2x − 3 by substitution, what is the correct first step?</div>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="r3"><span class="bubble"></span>Subtract the two equations</label>
+        <label class="mc-opt"><input type="radio" name="r3"><span class="bubble"></span>Replace y in Eq. 1 with (2x − 3)</label>
+        <label class="mc-opt"><input type="radio" name="r3"><span class="bubble"></span>Multiply Eq. 1 by 2</label>
+        <label class="mc-opt"><input type="radio" name="r3"><span class="bubble"></span>Set both equations equal to x</label>
+      </div>
+    </div>
+    <div class="mc-q">
+      <div class="mc-q-text"><span class="qnum">4.</span> To eliminate the y-variable from 2x + 5y = 14 and 6x − 5y = 10, what do you do?</div>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="r4"><span class="bubble"></span>Multiply the first by 3</label>
+        <label class="mc-opt"><input type="radio" name="r4"><span class="bubble"></span>Add the two equations as-is</label>
+        <label class="mc-opt"><input type="radio" name="r4"><span class="bubble"></span>Subtract the second from the first</label>
+        <label class="mc-opt"><input type="radio" name="r4"><span class="bubble"></span>Multiply both by 5</label>
+      </div>
+    </div>
+    <div class="mc-q">
+      <div class="mc-q-text"><span class="qnum">5.</span> Two lines are described by y = 4x − 1 and 8x − 2y = 2. Which best describes this system?</div>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="r5"><span class="bubble"></span>Inconsistent — no solution</label>
+        <label class="mc-opt"><input type="radio" name="r5"><span class="bubble"></span>Consistent independent — one solution</label>
+        <label class="mc-opt"><input type="radio" name="r5"><span class="bubble"></span>Consistent dependent — infinite solutions</label>
+        <label class="mc-opt"><input type="radio" name="r5"><span class="bubble"></span>Cannot be determined without graphing</label>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════ ERROR LOG ═══════════════ -->
+  <div class="error-log">
+    <h3>🔍 Error Analysis Log</h3>
+    <p style="font-size:0.79rem;color:#7f1d1d;margin-bottom:0.65rem;">For every problem you got wrong, fill in a row — honesty here helps us target the right fixes!</p>
+    <table class="error-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Problem</th>
+          <th>What I Did Wrong</th>
+          <th>Error Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td></tr>
+        <tr><td>2</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td></tr>
+        <tr><td>3</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td></tr>
+        <tr><td>4</td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td><td><input type="text" style="width:100%;border:none;font-family:var(--ff-body);font-size:0.78rem;outline:none;background:transparent;"></td></tr>
+      </tbody>
+    </table>
+    <div class="error-type-pills" style="margin-top:0.6rem;">
+      <span style="font-size:0.74rem;font-weight:700;color:#7f1d1d;">Error types:</span>
+      <span class="pill pill-cg">Calculation Error</span>
+      <span class="pill pill-ce">Concept Error</span>
+      <span class="pill pill-ru">Rule / Setup Error</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ REFLECTION ═══════════════ -->
+  <div class="reflect-box">
+    <h3>🌱 Reflection</h3>
+    <div class="reflect-lines">
+      <div class="reflect-line">The method I feel <strong>most confident</strong> with is <input type="text" placeholder="graphing / substitution / elimination..."></div>
+      <div class="reflect-line">The method I find <strong>most challenging</strong> is <input type="text" placeholder=""></div>
+      <div class="reflect-line">One thing I want to review before the Regents is <input type="text" placeholder=""></div>
+      <div class="reflect-line">The real-world problem that surprised me most was <input type="text" placeholder=""></div>
+    </div>
+  </div>
+
+</div><!-- /sheet -->
+
+</body>
+</html>
