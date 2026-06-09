@@ -1,1 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="slides-format" content="viewport">
+    <title>Lesson 4: Systems of Equations – Solving & Applications</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-bg: #F0F7FF;
+            --color-bg-deep: #E0EEFF;
+            --color-surface: #FFFFFF;
+            --color-text: #0f172a;
+            --color-text-secondary: #334155;
+            --color-text-muted: #64748b;
+            --color-accent-1: #374151;
+            --color-accent-2: #4b5563;
+            --color-accent-3: #9ca3af;
+            --color-glass-bg: rgba(255,255,255,0.88);
+            --color-glass-border: rgba(0,0,0,0.07);
+            --color-vignette: rgba(0,0,0,0.04);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+    </style>
+
+    <style>
+        :root { --color-bg: #F0F7FF; --color-text: #0f172a; --glow-color-rgb: 37,99,235; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { background: var(--color-bg); margin: 0; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
+        .deck { width: 100vw; height: 100vh; position: relative; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; overflow: hidden; }
+        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1080px; padding: clamp(1rem, 3vw, 3rem); }
+        .nav-controls { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); padding: 8px 22px; border-radius: 40px; border: 1px solid rgba(0,0,0,0.09); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .nav-btn { width: 36px; height: 36px; border: none; background: rgba(0,0,0,0.05); color: #111827; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .nav-btn:hover { background: rgba(37,99,235,0.18); }
+        .slide-dots { display: flex; gap: 7px; }
+        .slide-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.12); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+        .slide-dots .dot.active { background: #374151; transform: scale(1.35); }
+        .slide-counter { font-size: 0.75rem; color: #64748b; min-width: 36px; text-align: center; font-weight: 700; }
+        .reveal { opacity: 0; transform: translateY(16px); }
+
+        @keyframes float-slow {
+            0% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(40px,-35px) scale(1.16); }
+            66% { transform: translate(-30px,30px) scale(0.92); }
+            100% { transform: translate(0,0) scale(1); }
+        }
+        @keyframes float-drift {
+            0% { transform: translate(0,0) scale(1) rotate(0deg); }
+            33% { transform: translate(-40px,-45px) scale(1.12) rotate(2deg); }
+            66% { transform: translate(35px,25px) scale(0.9) rotate(-2deg); }
+            100% { transform: translate(0,0) scale(1) rotate(0deg); }
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(70px); animation: float-slow 12s ease-in-out infinite; }
+        .blob:nth-child(2) { animation: float-drift 16s ease-in-out infinite; }
+        .blob:nth-child(3) { animation: float-slow 20s ease-in-out infinite reverse; }
+        .slide::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, var(--color-vignette) 100%); }
+
+        .section-badge { display: inline-block; background: linear-gradient(135deg, #374151, #1f2937); color: white; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.6rem; font-family: 'DM Sans', sans-serif; }
+        .prob-card { background: white; border: 1.5px solid rgba(0,0,0,0.09); border-radius: 12px; padding: 0.7rem 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .formula-box { background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02)); border: 2px solid rgba(0,0,0,0.18); border-radius: 10px; padding: 0.45rem 0.9rem; font-size: 1rem; font-weight: 800; color: #111827; font-family: 'Outfit', sans-serif; letter-spacing: 0.02em; }
+        .socratic-q { background: rgba(0,0,0,0.04); border-left: 3px solid #6b7280; border-radius: 0 8px 8px 0; padding: 0.45rem 0.75rem; font-size: 0.82rem; font-style: italic; color: #374151; font-weight: 600; font-family: 'DM Sans', sans-serif; }
+        .trap-card { border-left: 4px solid #4b5563; background: #f9fafb; border-radius: 0 9px 9px 0; padding: 0.55rem 0.85rem; box-shadow: 0 2px 7px rgba(0,0,0,0.10); }
+        .diagram-wrap { background: white; border: 1.5px solid rgba(0,0,0,0.09); border-radius: 14px; padding: 0.6rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+        .diagram-wrap svg text { font-family: 'DM Sans', sans-serif; }
+        .lvl-badge { display: inline-block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 9px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+        .lvl-1 { background: #f0f0f0; color: #374151; }
+        .lvl-2 { background: #d9d9d9; color: #1f2937; }
+        .lvl-3 { background: #bdbdbd; color: #111827; }
+        .lvl-4 { background: #6b7280; color: #ffffff; }
+        .work-box { border: 1.5px dashed rgba(0,0,0,0.25); border-radius: 8px; padding: 0; background: rgba(0,0,0,0.02); min-height: 2.8rem; font-size: 0.82rem; color: #374151; overflow: hidden; }
+        .work-box textarea { width: 100%; min-height: 3.5rem; border: none; background: transparent; resize: vertical; padding: 0.5rem 0.75rem; font-size: 0.82rem; color: #374151; font-family: 'DM Sans', sans-serif; line-height: 1.5; outline: none; box-sizing: border-box; }
+        .work-box textarea::placeholder { color: #9ca3af; font-style: italic; }
+        .work-box textarea:focus { background: rgba(0,0,0,0.03); }
+        .mc-options { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.35rem; }
+        .mc-option { display: flex; align-items: flex-start; gap: 0.45rem; padding: 0.3rem 0.5rem; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.10); background: #fafafa; cursor: pointer; font-size: 0.78rem; color: #374151; transition: background 0.15s, border-color 0.15s; user-select: none; }
+        .mc-option:hover { background: #f0f0f0; border-color: rgba(0,0,0,0.20); }
+        .mc-option input[type=radio] { display: none; }
+        .mc-option.selected { background: #e5e7eb; border-color: #374151; font-weight: 700; }
+        .mc-option .opt-letter { font-weight: 800; min-width: 1rem; color: #6b7280; }
+        .diagram-wrap svg text { paint-order: stroke fill; stroke: white; stroke-width: 3.5px; stroke-linejoin: round; }
+
+        /* Video embed styles */
+        .video-thumb { position: relative; cursor: pointer; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 14px rgba(0,0,0,0.15); display: block; text-decoration: none; }
+        .video-thumb img { width: 100%; display: block; }
+        .video-thumb .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.72); border-radius: 50%; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; }
+        .video-thumb:hover .play-btn { background: rgba(255,0,0,0.85); transform: translate(-50%,-50%) scale(1.12); }
+        .video-thumb .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
+        .video-source { font-size: 0.7rem; color: #6b7280; margin-top: 0.25rem; text-align: center; }
+        .video-source a { color: #2563eb; text-decoration: underline; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
+
+<div class="deck">
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide active" data-slide="1">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:480px;height:480px;top:-120px;right:-100px;background:#374151;opacity:0.13;"></div>
+        <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#4b5563;opacity:0.09;"></div>
+        <div class="blob" style="width:220px;height:220px;top:38%;left:12%;background:#9ca3af;opacity:0.09;"></div>
+    </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+    <div class="content" style="text-align:center;">
+        <div style="font-size:4.5rem;animation:float 3s ease-in-out infinite;margin-bottom:0.4rem;" class="reveal">⚖️</div>
+        <div class="section-badge reveal" style="margin-bottom:0.5rem;">Algebra I · Regents Prep · 60-Minute Session</div>
+        <h1 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5.5vw,3.8rem);font-weight:700;background:linear-gradient(135deg,#111827,#374151,#4b5563);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 0.4rem;">Lesson 4: Systems of Equations</h1>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.7rem);font-weight:600;color:#374151;margin:0 0 0.5rem;">Solving & Real-World Applications</h2>
+        <p class="reveal" style="font-size:0.95rem;color:#64748b;letter-spacing:0.12em;text-transform:uppercase;">Graphing · Substitution · Elimination · Applications</p>
+        <div class="reveal" style="display:inline-flex;gap:0.75rem;margin-top:0.8rem;flex-wrap:wrap;justify-content:center;">
+            <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">2 Equations</span>
+            <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">2 Unknowns</span>
+            <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">1 Solution</span>
+            <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Real-World</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: ROADMAP -->
+<div class="slide" data-slide="2">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:340px;height:340px;top:-80px;right:-80px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Today's Plan</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;margin:0 0 1rem;">60-Minute Session Roadmap</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" class="reveal">
+            <div class="prob-card" style="border-left:4px solid #374151;">
+                <div style="font-size:1.5rem;margin-bottom:0.3rem;">📋</div>
+                <div style="font-weight:800;font-size:0.95rem;color:#111827;">0–12 min · Do Now + Vocab</div>
+                <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">Review linear equations. Vocabulary: system, solution, consistent, inconsistent. <em>What do two lines have in common?</em></div>
+            </div>
+            <div class="prob-card" style="border-left:4px solid #6b7280;">
+                <div style="font-size:1.5rem;margin-bottom:0.3rem;">📐</div>
+                <div style="font-weight:800;font-size:0.95rem;color:#374151;">12–30 min · Graphing Method</div>
+                <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">Plot both lines. Find intersection = solution. Desmos exploration. Types of systems.</div>
+            </div>
+            <div class="prob-card" style="border-left:4px solid #374151;">
+                <div style="font-size:1.5rem;margin-bottom:0.3rem;">🔄</div>
+                <div style="font-weight:800;font-size:0.95rem;color:#374151;">30–44 min · Substitution &amp; Elimination</div>
+                <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">Algebraic methods. Substitute one equation into the other. Add/subtract to eliminate a variable.</div>
+            </div>
+            <div class="prob-card" style="border-left:4px solid #4b5563;">
+                <div style="font-size:1.5rem;margin-bottom:0.3rem;">🌍</div>
+                <div style="font-weight:800;font-size:0.95rem;color:#374151;">44–60 min · Real World + Exit</div>
+                <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">Phone plans, ticket sales, mixing problems. Differentiated practice. Exit ticket reflection.</div>
+            </div>
+        </div>
+        <div class="socratic-q reveal" style="margin-top:0.7rem;">Think about this: Two friends start texting each other at the same time. One sends 3 texts per minute, the other 1 per minute — but has already sent 10. When will they have sent the same number? What kind of math describes that?</div>
+    </div>
+</div>
+
+<!-- SLIDE 3: DO NOW + VOCAB -->
+<div class="slide" data-slide="3">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 1 · Do Now</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Activate Prior Knowledge</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.6rem;">
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.4rem;">Do Now Problem</div>
+                    <div style="font-size:0.85rem;color:#334155;">Is <strong>(2, 3)</strong> a solution to both equations below?<br><strong>y = x + 1</strong> &nbsp; and &nbsp; <strong>y = 2x − 1</strong></div>
+                    <div class="work-box" style="margin-top:0.5rem;"><textarea placeholder="Test the point in both equations — show your work!" spellcheck="false"></textarea></div>
+                    <div style="font-size:0.78rem;color:#64748b;margin-top:0.4rem;"><em>Hint: Substitute x = 2, y = 3 into each equation!</em></div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">✓ Answer</div>
+                    <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">Eq. 1: 3 = 2+1 ✓ &nbsp; Eq. 2: 3 = 4−1 ✓ &nbsp; Yes, (2,3) is the solution — it satisfies <em>both</em> equations!</div>
+                </div>
+                <div class="socratic-q">What does it mean geometrically for a point to satisfy two equations at once? Where would you find that point on a graph?</div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.2rem;">🔑 Key Vocabulary</div>
+                <div class="prob-card">
+                    <div style="font-weight:700;font-size:0.85rem;color:#374151;">System of Equations</div>
+                    <div style="font-size:0.79rem;color:#334155;margin-top:0.15rem;">Two or more equations with the <strong>same variables</strong>. A solution must satisfy ALL equations simultaneously.</div>
+                </div>
+                <div class="prob-card">
+                    <div style="font-weight:700;font-size:0.85rem;color:#374151;">Solution of a System</div>
+                    <div style="font-size:0.79rem;color:#334155;margin-top:0.15rem;">The ordered pair (x, y) that makes <strong>every equation true</strong> at the same time — the intersection point.</div>
+                </div>
+                <div class="prob-card">
+                    <div style="font-weight:700;font-size:0.85rem;color:#374151;">Consistent vs. Inconsistent</div>
+                    <div style="font-size:0.79rem;color:#334155;margin-top:0.15rem;"><strong>Consistent:</strong> has at least one solution (lines cross or overlap). <strong>Inconsistent:</strong> no solution (parallel lines).</div>
+                </div>
+                <div class="formula-box" style="text-align:center;">{ y = 2x + 1 &nbsp;|&nbsp; y = −x + 7 }</div>
+                <div style="font-size:0.75rem;color:#6b7280;text-align:center;"><strong>System</strong> of 2 linear equations → find (x, y) that works for both</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: WHAT IS A SYSTEM? DIAGRAM -->
+<div class="slide" data-slide="4">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#9ca3af;opacity:0.07;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 1 · Systems Defined</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">What Is a System of Equations?</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="diagram-wrap reveal" style="min-height:230px;">
+                <svg viewBox="0 0 300 260" width="100%" height="240" role="img" aria-label="Two intersecting lines representing a system of equations">
+                    <!-- Grid lines -->
+                    <line x1="40" y1="10" x2="40" y2="240" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="10" y1="200" x2="290" y2="200" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="90" y1="10" x2="90" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="140" y1="10" x2="140" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="190" y1="10" x2="190" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="240" y1="10" x2="240" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="10" y1="150" x2="290" y2="150" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="10" y1="100" x2="290" y2="100" stroke="#f0f0f0" stroke-width="1"/>
+                    <!-- Axes -->
+                    <line x1="40" y1="10" x2="40" y2="240" stroke="#374151" stroke-width="2.5"/>
+                    <line x1="10" y1="200" x2="290" y2="200" stroke="#374151" stroke-width="2.5"/>
+                    <polygon points="40,8 36,18 44,18" fill="#374151"/>
+                    <polygon points="291,200 281,196 281,204" fill="#374151"/>
+                    <text x="280" y="215" font-size="12" font-weight="700" fill="#374151">x</text>
+                    <text x="44" y="15" font-size="12" font-weight="700" fill="#374151">y</text>
+                    <!-- Line 1: y = x + 1 (slope 1, y-int 1), at x=0 y=1 -> (40,190), at x=4 y=5 -> (240,110) -->
+                    <line x1="15" y1="216" x2="270" y2="91" stroke="#374151" stroke-width="3"/>
+                    <!-- Line 2: y = -x + 7 (slope -1, y-int 7) -> at x=2 y=5 -> (140,110), at x=5 y=2 -> (290,150) -->
+                    <line x1="15" y1="126" x2="285" y2="186" stroke="#4b5563" stroke-width="3" stroke-dasharray="8,4"/>
+                    <!-- Intersection at x=3, y=4 -> (190, 130) -->
+                    <circle cx="190" cy="130" r="7" fill="#374151" stroke="white" stroke-width="2"/>
+                    <text x="198" y="122" font-size="12" font-weight="800" fill="#374151">(3, 4)</text>
+                    <text x="198" y="134" font-size="10" font-weight="600" fill="#6b7280">solution!</text>
+                    <!-- Labels -->
+                    <text x="60" y="100" font-size="11" font-weight="800" fill="#374151">y = x + 1</text>
+                    <text x="190" y="178" font-size="11" font-weight="800" fill="#4b5563">y = −x + 7</text>
+                    <!-- Tick marks -->
+                    <text x="30" y="204" font-size="9" fill="#9ca3af">0</text>
+                    <text x="87" y="214" font-size="9" fill="#9ca3af">1</text>
+                    <text x="137" y="214" font-size="9" fill="#9ca3af">2</text>
+                    <text x="187" y="214" font-size="9" fill="#9ca3af">3</text>
+                    <text x="237" y="214" font-size="9" fill="#9ca3af">4</text>
+                </svg>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="socratic-q">Look at this graph. Both lines pass through the point (3, 4). What's special about that point? Why can't we just call any other point on Line 1 a "solution to the system"?</div>
+                <div class="prob-card" style="font-size:0.83rem;color:#334155;">
+                    Think of a system as a <strong>competition between two rules</strong>. Each equation is a constraint. The solution is the one (x, y) that <em>obeys both rules at the same time</em>.<br><br>
+                    Like two GPS paths meeting at the same street corner — that intersection is the answer!
+                </div>
+                <div class="formula-box" style="text-align:center;">Solution = Intersection Point</div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Regents Trap</div>
+                    <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">A solution must satisfy <em>both</em> equations. Always check by substituting back into BOTH equations, not just one!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: VIDEO - INTRO TO SYSTEMS (4 min) -->
+<div class="slide" data-slide="5">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 1 · Video Overview</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">▶ Systems of Equations in 4 Minutes</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                <a class="video-thumb" href="https://www.youtube.com/watch?v=xb1OGlH2fZc" target="_blank" title="SYSTEMS OF EQUATIONS EXPLAINED IN 4 MIN | Algebra 1">
+                    <img src="https://img.youtube.com/vi/xb1OGlH2fZc/hqdefault.jpg" alt="Systems of Equations Explained in 4 Min" onerror="this.src='https://img.youtube.com/vi/xb1OGlH2fZc/mqdefault.jpg'">
+                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </a>
+                <div class="video-source">4 min · <a href="https://www.youtube.com/watch?v=xb1OGlH2fZc" target="_blank">Systems of Equations Explained — YouTube</a></div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="prob-card" style="font-size:0.79rem;color:#334155;">
+                    <strong>While watching, write down:</strong>
+                    <ul style="margin:0.3rem 0 0 0;padding-left:1rem;line-height:1.8;">
+                        <li>What are the 3 methods for solving systems?</li>
+                        <li>In the graphing method, where exactly is the answer?</li>
+                        <li>In substitution, why do we replace one variable?</li>
+                        <li>In elimination, what does "eliminate" mean here?</li>
+                    </ul>
+                </div>
+                <div class="socratic-q">After watching: All 3 methods gave the same answer (2, 2). Does that surprise you? Why should different methods always give the same solution?</div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">🔑 Big Picture</div>
+                    <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">Graphing = visual, Substitution = algebraic, Elimination = also algebraic. Same answer, different paths. Choose the method that fits the problem!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: GRAPHING METHOD -->
+<div class="slide" data-slide="6">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+    <div class="content">
+        <div class="section-badge reveal">Part 2 · Method 1</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Graphing Method 📐</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="socratic-q">Before graphing anything: if one line has slope 2 and starts at (0,1), and another has slope −1 and starts at (0,7), can you guess WHERE they'll intersect just from those numbers?</div>
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.3rem;">Example System</div>
+                    <div style="font-size:0.85rem;color:#334155;line-height:1.6;">
+                        <strong>y = 2x − 1</strong><br>
+                        <strong>y = −x + 5</strong>
+                    </div>
+                </div>
+                <div class="formula-box" style="text-align:center;font-size:0.82rem;line-height:1.9;">
+                    Step 1: Rewrite in y = mx + b<br>
+                    Step 2: Plot y-intercept (0, b)<br>
+                    Step 3: Use slope rise/run<br>
+                    Step 4: Find intersection!
+                </div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Graphing Limitation</div>
+                    <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">Graphing is great for visual insight but can be <em>imprecise</em> for non-integer solutions. Use algebra methods when you need exact values!</div>
+                </div>
+            </div>
+            <div class="diagram-wrap reveal" style="min-height:230px;">
+                <svg viewBox="0 0 290 255" width="100%" height="235" role="img" aria-label="System solved by graphing - two lines intersecting at (2,3)">
+                    <!-- Grid -->
+                    <line x1="40" y1="10" x2="40" y2="240" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="10" y1="200" x2="280" y2="200" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="90" y1="10" x2="90" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="140" y1="10" x2="140" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="190" y1="10" x2="190" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="240" y1="10" x2="240" y2="240" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="10" y1="150" x2="280" y2="150" stroke="#f0f0f0" stroke-width="1"/>
+                    <line x1="10" y1="100" x2="280" y2="100" stroke="#f0f0f0" stroke-width="1"/>
+                    <!-- Axes -->
+                    <line x1="40" y1="10" x2="40" y2="240" stroke="#374151" stroke-width="2.5"/>
+                    <line x1="10" y1="200" x2="280" y2="200" stroke="#374151" stroke-width="2.5"/>
+                    <polygon points="40,8 36,18 44,18" fill="#374151"/>
+                    <polygon points="281,200 271,196 271,204" fill="#374151"/>
+                    <text x="270" y="215" font-size="12" font-weight="700" fill="#374151">x</text>
+                    <text x="44" y="15" font-size="12" font-weight="700" fill="#374151">y</text>
+                    <!-- Line 1: y=2x-1. At x=0.5 y=0 -> (65,200). At x=3 y=5 -> (190,100) -->
+                    <line x1="65" y1="200" x2="215" y2="80" stroke="#374151" stroke-width="3"/>
+                    <!-- y-intercept (0,-1) -> at x=0 y=-1 -> (40,220) -->
+                    <circle cx="40" cy="220" r="4" fill="#374151"/>
+                    <text x="46" y="218" font-size="10" font-weight="700" fill="#374151">b=−1</text>
+                    <!-- Line 2: y=-x+5. At x=0 y=5 -> (40,100). At x=5 y=0 -> (290,200) -->
+                    <line x1="40" y1="100" x2="280" y2="200" stroke="#4b5563" stroke-width="3" stroke-dasharray="8,4"/>
+                    <circle cx="40" cy="100" r="4" fill="#4b5563"/>
+                    <text x="46" y="98" font-size="10" font-weight="700" fill="#4b5563">b=5</text>
+                    <!-- Intersection at x=2, y=3 -> (140,140) -->
+                    <circle cx="140" cy="140" r="8" fill="#374151" stroke="white" stroke-width="2.5"/>
+                    <text x="148" y="132" font-size="12" font-weight="800" fill="#374151">(2, 3)</text>
+                    <text x="148" y="144" font-size="10" fill="#6b7280">answer!</text>
+                    <!-- Labels -->
+                    <text x="170" y="80" font-size="11" font-weight="800" fill="#374151">y=2x−1</text>
+                    <text x="190" y="188" font-size="11" font-weight="800" fill="#4b5563">y=−x+5</text>
+                    <!-- Ticks -->
+                    <text x="30" y="204" font-size="9" fill="#9ca3af">0</text>
+                    <text x="87" y="214" font-size="9" fill="#9ca3af">1</text>
+                    <text x="137" y="214" font-size="9" fill="#9ca3af">2</text>
+                    <text x="187" y="214" font-size="9" fill="#9ca3af">3</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: TYPES OF SYSTEMS -->
+<div class="slide" data-slide="7">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#9ca3af;opacity:0.07;"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+    <div class="content">
+        <div class="section-badge reveal">Part 2 · System Types</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Three Personalities of Systems 🎭</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="diagram-wrap reveal" style="min-height:220px;">
+                <svg viewBox="0 0 310 270" width="100%" height="240" role="img" aria-label="Three types of systems: consistent independent, inconsistent, consistent dependent">
+                    <!-- Dividers -->
+                    <line x1="105" y1="10" x2="105" y2="265" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="5,4"/>
+                    <line x1="210" y1="10" x2="210" y2="265" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="5,4"/>
+                    <!-- CONSISTENT INDEPENDENT (left) -->
+                    <text x="52" y="22" font-size="10" font-weight="800" fill="#111827" text-anchor="middle">CONSISTENT</text>
+                    <text x="52" y="34" font-size="9" fill="#64748b" text-anchor="middle">INDEPENDENT</text>
+                    <line x1="15" y1="100" x2="100" y2="40" stroke="#374151" stroke-width="2.5"/>
+                    <line x1="15" y1="60" x2="100" y2="100" stroke="#4b5563" stroke-width="2.5" stroke-dasharray="6,3"/>
+                    <circle cx="56" cy="74" r="6" fill="#374151" stroke="white" stroke-width="2"/>
+                    <text x="52" y="125" font-size="9" font-weight="700" fill="#374151" text-anchor="middle">1 solution</text>
+                    <text x="52" y="137" font-size="9" fill="#6b7280" text-anchor="middle">Lines intersect</text>
+                    <!-- INCONSISTENT (middle) -->
+                    <text x="158" y="22" font-size="10" font-weight="800" fill="#1f2937" text-anchor="middle">INCONSISTENT</text>
+                    <line x1="115" y1="85" x2="205" y2="45" stroke="#374151" stroke-width="2.5"/>
+                    <line x1="115" y1="105" x2="205" y2="65" stroke="#4b5563" stroke-width="2.5" stroke-dasharray="6,3"/>
+                    <!-- Parallel indicator -->
+                    <text x="158" y="125" font-size="9" font-weight="700" fill="#374151" text-anchor="middle">0 solutions</text>
+                    <text x="158" y="137" font-size="9" fill="#6b7280" text-anchor="middle">Parallel lines</text>
+                    <!-- no solution X mark -->
+                    <text x="158" y="78" font-size="18" fill="#9ca3af" text-anchor="middle">∥</text>
+                    <!-- CONSISTENT DEPENDENT (right) -->
+                    <text x="258" y="22" font-size="10" font-weight="800" fill="#1f2937" text-anchor="middle">CONSISTENT</text>
+                    <text x="258" y="34" font-size="9" fill="#64748b" text-anchor="middle">DEPENDENT</text>
+                    <line x1="215" y1="95" x2="305" y2="45" stroke="#374151" stroke-width="4"/>
+                    <line x1="215" y1="95" x2="305" y2="45" stroke="#4b5563" stroke-width="2" stroke-dasharray="8,4"/>
+                    <text x="258" y="125" font-size="9" font-weight="700" fill="#374151" text-anchor="middle">∞ solutions</text>
+                    <text x="258" y="137" font-size="9" fill="#6b7280" text-anchor="middle">Same line</text>
+                    <!-- Divider line -->
+                    <line x1="10" y1="148" x2="300" y2="148" stroke="#e5e7eb" stroke-width="1"/>
+                    <!-- Equations examples -->
+                    <text x="52" y="165" font-size="9" fill="#374151" text-anchor="middle">y = x + 2</text>
+                    <text x="52" y="178" font-size="9" fill="#4b5563" text-anchor="middle">y = 2x − 1</text>
+                    <text x="52" y="195" font-size="10" font-weight="700" fill="#374151" text-anchor="middle">Ans: (3,5)</text>
+                    <text x="158" y="165" font-size="9" fill="#374151" text-anchor="middle">y = x + 2</text>
+                    <text x="158" y="178" font-size="9" fill="#4b5563" text-anchor="middle">y = x − 3</text>
+                    <text x="158" y="195" font-size="10" font-weight="700" fill="#374151" text-anchor="middle">Ans: None</text>
+                    <text x="258" y="165" font-size="9" fill="#374151" text-anchor="middle">y = x + 2</text>
+                    <text x="258" y="178" font-size="9" fill="#4b5563" text-anchor="middle">2y = 2x + 4</text>
+                    <text x="258" y="195" font-size="10" font-weight="700" fill="#374151" text-anchor="middle">Ans: Infinite</text>
+                </svg>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="socratic-q">I'll describe a real-world scenario — tell me which type of system it represents: <em>"Two cell phone plans that always cost the same amount no matter how many minutes you use."</em> What about two plans that can never cost the same?</div>
+                <div class="prob-card" style="font-size:0.82rem;color:#334155;">
+                    <strong>Quick Classifier — Compare slopes and y-intercepts:</strong>
+                    <ul style="margin:0.35rem 0 0 0;padding-left:1rem;line-height:1.9;">
+                        <li><strong>Different slopes →</strong> 1 solution (intersecting)</li>
+                        <li><strong>Same slope, diff. y-int →</strong> 0 solutions (parallel)</li>
+                        <li><strong>Same slope, same y-int →</strong> ∞ solutions (same line)</li>
+                    </ul>
+                </div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Regents Trap</div>
+                    <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">An inconsistent system does NOT have "no solution to either equation" — each line is a valid equation. It's the <em>system</em> with no solution because they never share a point!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 8: VIDEO - CONSISTENT/INCONSISTENT/DEPENDENT (2 min) -->
+<div class="slide" data-slide="8">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 2 · Video</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">▶ Consistent, Inconsistent &amp; Dependent Explained</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                <a class="video-thumb" href="https://www.youtube.com/watch?v=apF4QPlKEP0" target="_blank" title="Consistent Independent, Inconsistent, Dependent Systems">
+                    <img src="https://img.youtube.com/vi/apF4QPlKEP0/hqdefault.jpg" alt="Consistent Independent, Inconsistent, Dependent Systems" onerror="this.src='https://img.youtube.com/vi/apF4QPlKEP0/mqdefault.jpg'">
+                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </a>
+                <div class="video-source">2 min · <a href="https://www.youtube.com/watch?v=apF4QPlKEP0" target="_blank">Consistent/Inconsistent/Dependent — YouTube</a></div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="prob-card" style="font-size:0.79rem;color:#334155;">
+                    <strong>Classify each without solving:</strong>
+                    <div style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.35rem;">
+                        <div style="background:#f9fafb;padding:0.4rem 0.6rem;border-radius:6px;"><strong>A.</strong> y = 3x + 1 and y = 3x − 5</div>
+                        <div style="background:#f9fafb;padding:0.4rem 0.6rem;border-radius:6px;"><strong>B.</strong> y = 2x + 4 and y = −x + 1</div>
+                        <div style="background:#f9fafb;padding:0.4rem 0.6rem;border-radius:6px;"><strong>C.</strong> 2y = 6x + 8 and y = 3x + 4</div>
+                    </div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">✓ Answers</div>
+                    <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">A. Inconsistent (same slope, diff. y-int) &nbsp; B. Consistent independent (diff. slopes) &nbsp; C. Consistent dependent (same line — divide C by 2!)</div>
+                </div>
+                <div class="socratic-q">For problem C: how does dividing both sides of 2y = 6x + 8 by 2 reveal the relationship? What does it tell you?</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 9: SUBSTITUTION METHOD -->
+<div class="slide" data-slide="9">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 3 · Method 2</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Substitution Method 🔄</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="socratic-q">Imagine you know that x = y + 3. If you see "x" somewhere else, what would happen if you replaced it with "y + 3"? Why would that be helpful?</div>
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.35rem;">Example System</div>
+                    <div style="font-size:0.85rem;color:#334155;line-height:1.6;">
+                        <strong>Eq. 1: x = 2y − 1</strong><br>
+                        <strong>Eq. 2: 3x + y = 12</strong>
+                    </div>
+                </div>
+                <div class="prob-card" style="font-size:0.83rem;color:#334155;background:linear-gradient(135deg,rgba(55,65,81,0.04),rgba(75,85,99,0.02));">
+                    Think of substitution as a <strong>sneaky swap</strong>: if you know what x equals (in terms of y), you're allowed to secretly swap x with that expression anywhere else in the problem. Suddenly you have just <em>one</em> variable — and that's easy!
+                </div>
+                <div class="formula-box" style="font-size:0.8rem;line-height:1.9;text-align:left;padding:0.5rem 0.9rem;">
+                    Step 1: Isolate one variable<br>
+                    Step 2: Substitute into OTHER equation<br>
+                    Step 3: Solve for remaining variable<br>
+                    Step 4: Back-substitute to find the other<br>
+                    Step 5: CHECK in both original equations!
+                </div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                <div class="prob-card" style="background:#f9fafb;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.4rem;">Step-by-Step Solution</div>
+                    <div style="font-size:0.82rem;color:#334155;line-height:2.0;">
+                        x = 2y − 1 &nbsp;(already isolated!)<br>
+                        Sub into Eq. 2: 3<strong>(2y−1)</strong> + y = 12<br>
+                        Distribute: 6y − 3 + y = 12<br>
+                        Combine: 7y − 3 = 12<br>
+                        7y = 15 → <strong>y = 15/7</strong>... wait—<br>
+                        <span style="color:#6b7280;font-size:0.78rem;"><em>Let's use a cleaner example:</em></span>
+                    </div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #374151;background:#f0f7ff;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.3rem;">Cleaner Example:</div>
+                    <div style="font-size:0.82rem;color:#334155;line-height:2.0;">
+                        y = 3x − 1 &nbsp; and &nbsp; 2x + y = 9<br>
+                        Sub: 2x + <strong>(3x−1)</strong> = 9<br>
+                        5x − 1 = 9 → 5x = 10 → <strong>x = 2</strong><br>
+                        y = 3(2) − 1 = <strong>y = 5</strong><br>
+                        Check: 2(2)+5=9 ✓ &nbsp; 5=3(2)−1 ✓
+                    </div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Common Mistake</div>
+                    <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">After solving for x, substitute back into the <em>original</em> equation — not your rearranged one. And always check both!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 10: VIDEO - SUBSTITUTION METHOD (4 min) -->
+<div class="slide" data-slide="10">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 3 · Video</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">▶ Substitution Method — Step by Step</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                <a class="video-thumb" href="https://www.youtube.com/watch?v=livec_C9sVM" target="_blank" title="Substitution Method to Solve a System of Equations - Mario's Math Tutoring">
+                    <img src="https://img.youtube.com/vi/livec_C9sVM/hqdefault.jpg" alt="Substitution Method - Mario's Math Tutoring" onerror="this.src='https://img.youtube.com/vi/livec_C9sVM/mqdefault.jpg'">
+                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </a>
+                <div class="video-source">~4 min · <a href="https://www.youtube.com/watch?v=livec_C9sVM" target="_blank">Substitution Method — Mario's Math Tutoring</a></div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="prob-card" style="font-size:0.79rem;color:#334155;">
+                    <strong>Differentiated Practice — Try your level:</strong>
+                    <div style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.35rem;">
+                        <div>
+                            <span class="lvl-badge lvl-1">Level 1</span> Solve using substitution:<br>
+                            <strong>y = x + 4</strong> and <strong>y = 3x</strong>
+                        </div>
+                        <div style="margin-top:0.3rem;">
+                            <span class="lvl-badge lvl-2">Level 2</span><br>
+                            <strong>2x + y = 10</strong> and <strong>y = x − 1</strong>
+                        </div>
+                        <div style="margin-top:0.3rem;">
+                            <span class="lvl-badge lvl-3">Level 3</span><br>
+                            <strong>3x + 2y = 16</strong> and <strong>x − y = 2</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-box"><textarea placeholder="Show your substitution work here..." spellcheck="false"></textarea></div>
+                <div class="socratic-q">For Level 1: once you know y = x + 4, where did "x + 4" go in the second equation? What were you really saying when you wrote that substitution?</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 11: ELIMINATION METHOD -->
+<div class="slide" data-slide="11">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 3 · Method 3</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Elimination Method ❌</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="socratic-q">If I add 5 apples to a bag, and then remove 5 apples from the same bag, what do I get? How does that idea apply to equations?</div>
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.35rem;">Example System</div>
+                    <div style="font-size:0.85rem;color:#334155;line-height:1.7;">
+                        <strong>Eq. 1: 3x + 2y = 12</strong><br>
+                        <strong>Eq. 2: 3x − 2y = 0</strong>
+                    </div>
+                </div>
+                <div class="prob-card" style="font-size:0.83rem;color:#334155;background:linear-gradient(135deg,rgba(55,65,81,0.04),rgba(75,85,99,0.02));">
+                    Think of elimination as a <strong>magic eraser</strong>: if you add two equations and one variable completely cancels out (0y!), you're left with just x. Two unknowns become one in a single move!
+                </div>
+                <div class="formula-box" style="font-size:0.8rem;line-height:1.9;text-align:left;padding:0.5rem 0.9rem;">
+                    Step 1: Line up equations vertically<br>
+                    Step 2: Make one variable's coefficients cancel<br>
+                    Step 3: ADD the equations (variable eliminated!)<br>
+                    Step 4: Solve the one-variable equation<br>
+                    Step 5: Back-sub and CHECK both!
+                </div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                <div class="prob-card" style="background:#f9fafb;font-size:0.85rem;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.4rem;">Adding the equations:</div>
+                    <div style="font-family:'Outfit',monospace;font-size:0.9rem;line-height:2.1;color:#334155;">
+                        &nbsp; 3x + 2y = 12<br>
+                        + 3x − 2y = &nbsp;0<br>
+                        <div style="border-top:2px solid #374151;padding-top:0.25rem;font-weight:800;">= 6x + 0y = 12</div>
+                        → x = 2
+                    </div>
+                    <div style="margin-top:0.5rem;font-size:0.82rem;color:#334155;">
+                        Sub back: 3(2) + 2y = 12 → 2y = 6 → <strong>y = 3</strong><br>
+                        Answer: <strong>(2, 3)</strong> ✓ Check: 6+6=12 ✓ 6−6=0 ✓
+                    </div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #4b5563;background:#f0f7ff;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.3rem;">When coefficients DON'T cancel:</div>
+                    <div style="font-size:0.82rem;color:#334155;line-height:1.8;">
+                        2x + 3y = 11 &nbsp; and &nbsp; 4x − y = 5<br>
+                        Multiply Eq.2 by 3: <strong>12x − 3y = 15</strong><br>
+                        Now add: 14x = 26 → x = 13/7...
+                    </div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Multiplication Trap</div>
+                    <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">When multiplying an equation to match coefficients, multiply EVERY term (both sides). Forgetting the constant is the #1 Regents error on elimination!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 12: METHOD CHOOSER GUIDE -->
+<div class="slide" data-slide="12">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#9ca3af;opacity:0.07;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 3 · Strategy</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Which Method Should You Choose? 🤔</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;" class="reveal">
+            <div class="prob-card" style="border-top:3px solid #374151;text-align:center;">
+                <div style="font-size:2rem;margin-bottom:0.35rem;">📐</div>
+                <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.3rem;">Graphing</div>
+                <div style="font-size:0.78rem;color:#334155;line-height:1.7;">
+                    ✅ Both equations already in y = mx + b<br>
+                    ✅ You want a visual picture<br>
+                    ✅ Using Desmos/calculator<br>
+                    ❌ Non-integer solutions needed
+                </div>
+                <div class="formula-box" style="font-size:0.75rem;margin-top:0.5rem;padding:0.3rem 0.5rem;">y = 2x + 1</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #4b5563;text-align:center;">
+                <div style="font-size:2rem;margin-bottom:0.35rem;">🔄</div>
+                <div style="font-weight:800;font-size:0.85rem;color:#374151;margin-bottom:0.3rem;">Substitution</div>
+                <div style="font-size:0.78rem;color:#334155;line-height:1.7;">
+                    ✅ One variable is already isolated<br>
+                    ✅ One variable has coefficient of 1<br>
+                    ✅ Word problems (define one var)<br>
+                    ❌ Both equations have big coefficients
+                </div>
+                <div class="formula-box" style="font-size:0.75rem;margin-top:0.5rem;padding:0.3rem 0.5rem;">x = y − 3</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #6b7280;text-align:center;">
+                <div style="font-size:2rem;margin-bottom:0.35rem;">❌</div>
+                <div style="font-weight:800;font-size:0.85rem;color:#374151;margin-bottom:0.3rem;">Elimination</div>
+                <div style="font-size:0.78rem;color:#334155;line-height:1.7;">
+                    ✅ Coefficients can cancel easily<br>
+                    ✅ Both equations in standard form<br>
+                    ✅ Faster when set up nicely<br>
+                    ❌ Messy fractions appear
+                </div>
+                <div class="formula-box" style="font-size:0.75rem;margin-top:0.5rem;padding:0.3rem 0.5rem;">3x + 2y = 10</div>
+            </div>
+        </div>
+        <div class="socratic-q reveal" style="margin-top:0.7rem;">Given the system: y = 5 and 3x + 2y = 19 — which method would you choose and why? What about 4x + 3y = 11 and 4x − 3y = 5?</div>
+    </div>
+</div>
+
+<!-- SLIDE 13: REAL WORLD - PHONE PLANS -->
+<div class="slide" data-slide="13">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 4 · Real World</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">📱 Cell Phone Plans — NYC Real Life</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.6rem;">
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.4rem;">The Scenario 📱</div>
+                    <div style="font-size:0.84rem;color:#334155;line-height:1.7;">
+                        <strong>Plan A:</strong> $20/month + $0.10 per text<br>
+                        <strong>Plan B:</strong> $35/month + $0 per text (unlimited)
+                    </div>
+                </div>
+                <div class="socratic-q">Before writing any equation: at what number of texts do you think both plans cost the same? Is there a number of texts where Plan A costs more? What does that "break-even" point mean in this context?</div>
+                <div class="prob-card">
+                    <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.3rem;">Build the System</div>
+                    <div style="font-size:0.83rem;color:#334155;line-height:1.9;">
+                        Let x = number of texts per month<br>
+                        Let y = total monthly cost<br>
+                        <strong>Plan A: y = 0.10x + 20</strong><br>
+                        <strong>Plan B: y = 35</strong>
+                    </div>
+                </div>
+                <div class="formula-box" style="text-align:center;">0.10x + 20 = 35 → x = 150 texts</div>
+                <div style="font-size:0.78rem;color:#6b7280;text-align:center;">At 150 texts/month, both plans cost $35</div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="diagram-wrap" style="min-height:195px;">
+                    <svg viewBox="0 0 270 200" width="100%" height="185" role="img" aria-label="Graph of two phone plans intersecting at 150 texts">
+                        <!-- Grid -->
+                        <line x1="40" y1="10" x2="40" y2="185" stroke="#e5e7eb" stroke-width="1"/>
+                        <line x1="10" y1="170" x2="260" y2="170" stroke="#e5e7eb" stroke-width="1"/>
+                        <line x1="90" y1="10" x2="90" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+                        <line x1="140" y1="10" x2="140" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+                        <line x1="190" y1="10" x2="190" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+                        <line x1="240" y1="10" x2="240" y2="185" stroke="#f0f0f0" stroke-width="1"/>
+                        <line x1="10" y1="120" x2="260" y2="120" stroke="#f0f0f0" stroke-width="1"/>
+                        <line x1="10" y1="70" x2="260" y2="70" stroke="#f0f0f0" stroke-width="1"/>
+                        <!-- Axes -->
+                        <line x1="40" y1="10" x2="40" y2="185" stroke="#374151" stroke-width="2"/>
+                        <line x1="10" y1="170" x2="260" y2="170" stroke="#374151" stroke-width="2"/>
+                        <polygon points="40,8 36,18 44,18" fill="#374151"/>
+                        <polygon points="261,170 251,166 251,174" fill="#374151"/>
+                        <text x="250" y="183" font-size="9" fill="#374151">texts</text>
+                        <text x="44" y="14" font-size="9" fill="#374151">$</text>
+                        <!-- Scale: x=100 texts → 50px, origin at (40,170). y=$5 → 5px, $20 → 25px offset -->
+                        <!-- Plan A: y=0.1x+20. At x=0 y=$20: (40,120). At x=200 y=$40: (140,70) approx wait let me recalc -->
+                        <!-- Let scale: 50px = 100 texts; 25px = $5. Origin (40,170) -->
+                        <!-- Plan A: At x=0, y=20 → (40, 170-4*25=170-100=70). At x=200, y=40 → (140, 170-8*25=170-200<0) too steep -->
+                        <!-- Let's use: 1 px = 1 text on x-axis (too wide), instead scale differently -->
+                        <!-- x: 1 text = 0.9px, so 150 texts = 135px from origin = x=175 -->
+                        <!-- y: $1 = 2.5px. $35 = 87.5px from bottom. Origin y at 170 -->
+                        <!-- Plan A at x=0: y=20 → plot at (40, 170-50=120). At x=150: y=35 → (175, 82.5≈83). At x=200: y=40 → (220, 70) -->
+                        <line x1="40" y1="120" x2="220" y2="70" stroke="#374151" stroke-width="2.5"/>
+                        <!-- Plan B: y=35 flat line. y=35 → (40, 83) to (255, 83) -->
+                        <line x1="40" y1="83" x2="255" y2="83" stroke="#4b5563" stroke-width="2.5" stroke-dasharray="7,4"/>
+                        <!-- Intersection at (150 texts, $35) → (175, 83) -->
+                        <circle cx="175" cy="83" r="7" fill="#374151" stroke="white" stroke-width="2"/>
+                        <text x="180" y="75" font-size="11" font-weight="800" fill="#374151">(150, $35)</text>
+                        <!-- Labels -->
+                        <text x="225" y="65" font-size="10" font-weight="800" fill="#374151">Plan A</text>
+                        <text x="50" y="76" font-size="10" font-weight="800" fill="#4b5563">Plan B</text>
+                        <!-- Axis ticks -->
+                        <text x="28" y="123" font-size="8" fill="#9ca3af">$20</text>
+                        <text x="28" y="85" font-size="8" fill="#9ca3af">$35</text>
+                        <text x="87" y="181" font-size="8" fill="#9ca3af">50</text>
+                        <text x="137" y="181" font-size="8" fill="#9ca3af">100</text>
+                        <text x="170" y="181" font-size="8" fill="#9ca3af">150</text>
+                        <text x="212" y="181" font-size="8" fill="#9ca3af">200</text>
+                    </svg>
+                </div>
+                <div class="prob-card" style="font-size:0.79rem;color:#334155;">
+                    <strong>Now you decide:</strong> If you send 200 texts/month, which plan is cheaper? If you send 50 texts, which plan wins?
+                </div>
+                <div class="work-box"><textarea placeholder="Calculate both plan costs at 50 and 200 texts. Which plan do you prefer?" spellcheck="false"></textarea></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 14: VIDEO - REAL WORLD WORD PROBLEMS (4 min) -->
+<div class="slide" data-slide="14">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Part 4 · Real World Video</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">▶ Solving Word Problems with Systems</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                <a class="video-thumb" href="https://www.youtube.com/watch?v=lXWxnWh7pz4" target="_blank" title="Solve a System of Equations From a Word Problem Compilation">
+                    <img src="https://img.youtube.com/vi/lXWxnWh7pz4/hqdefault.jpg" alt="Systems of Equations Word Problems" onerror="this.src='https://img.youtube.com/vi/lXWxnWh7pz4/mqdefault.jpg'">
+                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </a>
+                <div class="video-source">~4 min · <a href="https://www.youtube.com/watch?v=lXWxnWh7pz4" target="_blank">Systems Word Problems — YouTube</a></div>
+            </div>
+            <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.3rem;">Word Problem Translator</div>
+                    <div style="font-size:0.81rem;color:#334155;line-height:1.9;">
+                        <strong>"Total" or "combined" →</strong> add variables together<br>
+                        <strong>"Difference" →</strong> subtract<br>
+                        <strong>"Each" or "per" →</strong> coefficient on variable<br>
+                        <strong>"How many" →</strong> that's your unknown!
+                    </div>
+                </div>
+                <div class="prob-card" style="font-size:0.82rem;color:#334155;">
+                    <strong>Ticket Sales Problem:</strong> Adult tickets cost $8, student tickets $5. Total 200 tickets sold, $1,300 collected. How many of each?<br>
+                    <span style="color:#374151;font-style:italic;font-size:0.78rem;">Set up the system yourself first!</span>
+                </div>
+                <div class="work-box"><textarea placeholder="Let a = adult tickets, s = student tickets&#10;Equation 1: (quantity)&#10;Equation 2: (money)&#10;Solve..." spellcheck="false"></textarea></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 15: DIFFERENTIATED PRACTICE -->
+<div class="slide" data-slide="15">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+    <div class="content">
+        <div class="section-badge reveal">Differentiated Practice</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Choose Your Challenge Level 🎯</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;" class="reveal">
+            <div class="prob-card" style="border-top:3px solid #9ca3af;">
+                <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.4rem;">
+                    <span class="lvl-badge lvl-1">Starter</span>
+                    <span style="font-weight:800;font-size:0.85rem;color:#111827;">Graphing</span>
+                </div>
+                <div style="font-size:0.82rem;color:#334155;line-height:1.7;">
+                    y = x + 3 &nbsp; and &nbsp; y = 2x + 1<br>
+                    <em>Graph both lines. What is the solution?</em>
+                </div>
+                <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Solution: (___, ___)" spellcheck="false" style="min-height:2.5rem;"></textarea></div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #6b7280;">
+                <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.4rem;">
+                    <span class="lvl-badge lvl-2">Building</span>
+                    <span style="font-weight:800;font-size:0.85rem;color:#374151;">Substitution</span>
+                </div>
+                <div style="font-size:0.82rem;color:#334155;line-height:1.7;">
+                    y = 2x − 5 &nbsp; and &nbsp; 3x + y = 10<br>
+                    <em>Use substitution. Check your answer!</em>
+                </div>
+                <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Step 1: Sub y=2x-5 into..." spellcheck="false" style="min-height:2.5rem;"></textarea></div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #4b5563;">
+                <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.4rem;">
+                    <span class="lvl-badge lvl-3">Advanced</span>
+                    <span style="font-weight:800;font-size:0.85rem;color:#374151;">Elimination</span>
+                </div>
+                <div style="font-size:0.82rem;color:#334155;line-height:1.7;">
+                    4x + 3y = 24 &nbsp; and &nbsp; 2x − 3y = 6<br>
+                    <em>Use elimination. Which variable disappears?</em>
+                </div>
+                <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Add the equations..." spellcheck="false" style="min-height:2.5rem;"></textarea></div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #374151;">
+                <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.4rem;">
+                    <span class="lvl-badge lvl-4">Regents</span>
+                    <span style="font-weight:800;font-size:0.85rem;color:#111827;">Word Problem</span>
+                </div>
+                <div style="font-size:0.82rem;color:#334155;line-height:1.7;">
+                    A jar has nickels and dimes. There are 40 coins worth $3.05 total. How many of each coin?<br>
+                    <em>Write and solve the system.</em>
+                </div>
+                <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Let n = nickels, d = dimes&#10;n + d = ?" spellcheck="false" style="min-height:2.5rem;"></textarea></div>
+            </div>
+        </div>
+        <div class="socratic-q reveal" style="margin-top:0.6rem;">Look at the Regents problem. What two real-world constraints give you two equations? Without counting coins, how would you even know you needed two equations?</div>
+    </div>
+</div>
+
+<!-- SLIDE 16: CHEAT CARD REFERENCE -->
+<div class="slide" data-slide="16">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+        <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Reference</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Systems of Equations Cheat Card 📋</h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;" class="reveal">
+            <div class="prob-card" style="border-top:3px solid #374151;text-align:center;">
+                <div style="font-size:1.4rem;margin-bottom:0.25rem;">📐</div>
+                <div style="font-weight:800;font-size:0.78rem;color:#111827;margin-bottom:0.3rem;">Graphing</div>
+                <div class="formula-box" style="font-size:0.72rem;padding:0.3rem 0.4rem;">y = mx + b<br>both equations</div>
+                <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">Find intersection</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #4b5563;text-align:center;">
+                <div style="font-size:1.4rem;margin-bottom:0.25rem;">🔄</div>
+                <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.3rem;">Substitution</div>
+                <div class="formula-box" style="font-size:0.72rem;padding:0.3rem 0.4rem;border-color:rgba(75,85,99,0.4);">isolate → swap<br>→ solve → back-sub</div>
+                <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">Best when y = ...</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #6b7280;text-align:center;">
+                <div style="font-size:1.4rem;margin-bottom:0.25rem;">❌</div>
+                <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.3rem;">Elimination</div>
+                <div class="formula-box" style="font-size:0.72rem;padding:0.3rem 0.4rem;border-color:rgba(107,114,128,0.4);">match coeff.<br>→ add → solve</div>
+                <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">Best when ax + by</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #374151;text-align:center;">
+                <div style="font-size:1.4rem;margin-bottom:0.25rem;">✅</div>
+                <div style="font-weight:800;font-size:0.78rem;color:#1f2937;margin-bottom:0.3rem;">Always Check!</div>
+                <div class="formula-box" style="font-size:0.72rem;padding:0.3rem 0.4rem;border-color:rgba(55,65,81,0.35);">Sub (x,y) into<br>BOTH equations</div>
+                <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">Both must = ✓</div>
+            </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;margin-top:0.65rem;" class="reveal">
+            <div class="trap-card">
+                <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">System Types Quick Guide</div>
+                <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">Diff. slopes → 1 solution (intersect) &nbsp; Same slope, diff. y-int → 0 solutions (parallel) &nbsp; Same slope, same y-int → ∞ solutions (same line)</div>
+            </div>
+            <div class="trap-card">
+                <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Regents Trap #1</div>
+                <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">When you multiply an equation in elimination, multiply ALL terms including the constant on the right side. This is the single most common error on the Algebra I Regents!</div>
+            </div>
+        </div>
+        <div class="socratic-q reveal" style="margin-top:0.6rem;">Cover this card. Can you explain all three methods in your own words AND give the #1 reason to choose each method — in under 45 seconds?</div>
+    </div>
+</div>
+
+<!-- SLIDE 17: EXIT TICKET -->
+<div class="slide" data-slide="17">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.09;"></div>
+        <div class="blob" style="width:220px;height:220px;bottom:-50px;left:-50px;background:#4b5563;opacity:0.07;"></div>
+    </div>
+    <div class="content">
+        <div class="section-badge reveal">Exit Ticket</div>
+        <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">4 Things to Know Cold ❄️</h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;" class="reveal">
+            <div class="prob-card" style="border-top:3px solid #374151;text-align:center;padding:0.85rem;">
+                <div style="font-size:1.8rem;margin-bottom:0.3rem;">📐</div>
+                <div style="font-weight:800;font-size:0.82rem;color:#111827;">Graphing</div>
+                <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">Both in y=mx+b<br>Plot → intersect<br>Visual method</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #6b7280;text-align:center;padding:0.85rem;">
+                <div style="font-size:1.8rem;margin-bottom:0.3rem;">🔄</div>
+                <div style="font-weight:800;font-size:0.82rem;color:#374151;">Substitution</div>
+                <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">Isolate one var<br>Replace in other eq.<br>Solve → back-sub</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #374151;text-align:center;padding:0.85rem;">
+                <div style="font-size:1.8rem;margin-bottom:0.3rem;">❌</div>
+                <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">Elimination</div>
+                <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">Match coefficients<br>Add equations<br>Variable disappears!</div>
+            </div>
+            <div class="prob-card" style="border-top:3px solid #4b5563;text-align:center;padding:0.85rem;">
+                <div style="font-size:1.8rem;margin-bottom:0.3rem;">⚖️</div>
+                <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">Real World</div>
+                <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">2 unknowns<br>2 conditions<br>→ write 2 equations</div>
+            </div>
+        </div>
+        <div style="margin-top:0.75rem;" class="reveal">
+            <div class="prob-card" style="border-left:4px solid #374151;">
+                <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.35rem;">Exit Ticket Question 🎟️</div>
+                <div style="font-size:0.83rem;color:#334155;margin-bottom:0.4rem;"><em>Solve using your preferred method, then explain in 1–2 sentences WHY you chose that method:</em><br><strong>2x + y = 8</strong> &nbsp; and &nbsp; <strong>y = x − 1</strong></div>
+                <div class="work-box"><textarea placeholder="Solution: (__, __). I chose this method because..." spellcheck="false"></textarea></div>
+            </div>
+        </div>
+        <div class="socratic-q reveal" style="margin-top:0.5rem;">Before you leave: describe one real-world situation you've experienced where you were implicitly solving a system of equations — even if you didn't call it that.</div>
+    </div>
+</div>
+
+<!-- SLIDE 18: CLOSING -->
+<div class="slide" data-slide="18">
+    <div class="gradient-mesh">
+        <div class="blob" style="width:480px;height:480px;top:-120px;right:-100px;background:#374151;opacity:0.14;"></div>
+        <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#4b5563;opacity:0.10;"></div>
+        <div class="blob" style="width:220px;height:220px;top:38%;left:12%;background:#4b5563;opacity:0.09;"></div>
+    </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+    <div class="content" style="text-align:center;">
+        <div style="font-size:4rem;animation:float 3s ease-in-out infinite;margin-bottom:0.5rem;" class="reveal">⚖️</div>
+        <h1 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;background:linear-gradient(135deg,#111827,#374151,#4b5563);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 0.4rem;">Systems mastered. Balance achieved.</h1>
+        <p class="reveal" style="font-size:1rem;color:#334155;margin:0 0 0.35rem;">You can now solve systems using graphing, substitution, and elimination — and apply them to real-world scenarios.</p>
+        <p class="reveal" style="font-size:0.9rem;color:#64748b;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 0.7rem;">Next Lesson: Linear Inequalities &amp; Systems</p>
+        <div class="reveal" style="display:inline-flex;gap:0.9rem;justify-content:center;flex-wrap:wrap;">
+            <span style="background:#f0f0f0;color:#111827;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">Graphing ✓</span>
+            <span style="background:#ebebeb;color:#374151;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">Substitution ✓</span>
+            <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">Elimination ✓</span>
+            <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">Regents Ready ✓</span>
+        </div>
+        <div class="reveal" style="margin-top:0.8rem;">
+            <div class="prob-card" style="display:inline-block;text-align:left;max-width:480px;border-left:4px solid #374151;">
+                <div style="font-size:0.82rem;color:#334155;"><strong>Khan Academy Extension:</strong> Practice at <a href="https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:systems-of-equations" target="_blank" style="color:#2563eb;text-decoration:underline;">khanacademy.org — Systems of Equations</a>. Filter for "Solving with Substitution" and "Elimination" to continue tonight!</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div><!-- end .deck -->
+
+<!-- NAVIGATION -->
+<div class="nav-controls">
+    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+    <div class="slide-dots" id="dots"></div>
+    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+    <span class="slide-counter" id="counter">1 / 18</span>
+</div>
+
+<script>
+    let current = 1;
+    const total = document.querySelectorAll('.slide').length;
+    const dotsContainer = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    for (let i = 1; i <= total; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 1 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+    function goToSlide(n) {
+        const prev = document.querySelector('.slide.active');
+        const next = document.querySelector(`.slide[data-slide="${n}"]`);
+        if (prev) prev.classList.remove('active');
+        if (next) { next.classList.add('active'); animateSlide(next); }
+        current = n; updateNav();
+    }
+    function changeSlide(dir) { let next = current + dir; if (next < 1) next = total; if (next > total) next = 1; goToSlide(next); }
+    function updateNav() {
+        document.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i + 1 === current); });
+        counter.textContent = current + ' / ' + total;
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); } });
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+
+    function animateSlide(slide) {
+        slide.querySelectorAll('.reveal').forEach((el, i) => {
+            el.style.transition = 'none';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.offsetHeight;
+            const delay = i * 0.07;
+            el.style.transition = `opacity 0.32s ease ${delay}s, transform 0.32s ease ${delay}s`;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0px)';
+        });
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        const s = document.querySelector('.mouse-spotlight');
+        if (s) s.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(37,99,235,0.06), transparent 40%)`;
+    });
+
+    window.initParticles = function(canvas, opts) {
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+        const interactive = opts.interactive !== false;
+        const count = opts.count || (interactive ? 45 : 16);
+        let mx = -1000, my = -1000;
+        const particles = Array.from({ length: count }, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+            size: Math.random() * 2 + 0.7, alpha: Math.random() * 0.3 + 0.08
+        }));
+        if (interactive) {
+            canvas.addEventListener('mousemove', (e) => { const r = canvas.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+            canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
+        }
+        (function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                if (interactive) { const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx*dx+dy*dy); if (dist < 120) { const f = (120-dist)/120*2; p.vx += (dx/dist)*f*0.1; p.vy += (dy/dist)*f*0.1; } }
+                p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(37,99,235,${p.alpha})`; ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        })();
+    };
+    document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, { interactive: true, count: 45 }));
+    document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, { interactive: false, count: 16 }));
+
+    function selectMC(label) {
+        const group = label.closest('.mc-options');
+        group.querySelectorAll('.mc-option').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        label.querySelector('input[type=radio]').checked = true;
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.work-box textarea').forEach(ta => {
+            ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; });
+        });
+    });
+    try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn(e); }
+</script>
+</body>
+</html>
