@@ -1,0 +1,813 @@
+Lesson 5 · Exploring Polynomials — Addition, Subtraction & Multiplication
+Expert Teaching Script (Regents-Mastery Explanations, Beginner-Friendly Delivery)
+Instructor: Mr. Hsiao "Hue" Weng
+Total Time: ~60 minutes
+================================================================================
+
+HOW TO USE THIS SCRIPT
+─────────────────────────────────────────────────────────────────────
+- Text in [BRACKETS] = instructor stage directions or timing cues
+- "Quoted text" = suggested exact words to say aloud
+- → means a natural transition or follow-up thought
+- 💡 = deep conceptual explanation (say or adapt as needed)
+- ✋ = student interaction moment — pause and wait for responses
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 1 — TITLE SLIDE & WELCOME
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the title slide as students settle. Write "Lesson 5 ·
+Exploring Polynomials" prominently on the board. Open with calm,
+confident energy — today is about a topic that shows up on EVERY
+Regents exam, and students are going to walk out owning it.]
+
+"Good morning, algebra mathematicians! Welcome to Lesson 5. Today we
+master one of the most tested, most reliable, most point-rich topics
+on the entire Algebra I Regents: polynomials. Adding them. Subtracting
+them. And multiplying them with a method called FOIL."
+
+"Here is my promise to you. By the end of this hour, you will look at
+an expression like (x + 5)(x + 3) and you will not feel a flicker of
+fear. You will know exactly what to do, why it works, and where the
+test is trying to trick you."
+
+💡 [DEEP CONTEXT — deliver this slowly, with weight]:
+"Here is the idea that anchors everything today. A polynomial is just
+a controlled way of bundling numbers and variables together using
+addition, subtraction, and multiplication. That's it. Every formula
+you'll ever meet — the area of a garden, the path of a thrown ball,
+the profit of a business — can be written as a polynomial. When you
+learn to add, subtract, and multiply these expressions, you are
+learning the grammar of mathematics itself. Numbers are the words.
+Polynomials are the sentences."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 2 — ROADMAP: TODAY'S 60-MINUTE PLAN
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four-block roadmap. Point to each block as you name it
+so students have a mental map of the hour.]
+
+"Here's our path today. Four stops."
+
+"0–12 minutes: Do Now and vocabulary. We name the parts — polynomial,
+term, coefficient, degree. 12–28 minutes: adding polynomials by
+combining like terms. 28–43 minutes: subtracting — and the single
+most common Regents mistake in this entire unit, the sign trap.
+43–60 minutes: multiplying, FOIL, a real garden problem, and your
+exit ticket."
+
+[Point to the Socratic question at the bottom of the slide:]
+
+✋ "Before we begin, sit with this: a rectangle has sides (x + 3) and
+   (x + 2). Can you guess what expression describes its area? Don't
+   solve it — just guess. Hold that guess in your head. We will return
+   to it at the very end of class, and I want you to see how far you've
+   traveled."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — DO NOW: WHAT DO YOU ALREADY KNOW?
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Do Now slide with the three identification problems on
+the left and the key vocabulary cards on the right.]
+
+"Open your notebook. Three quick warm-up tasks. No talking yet — I
+want your honest first instinct."
+
+"PROBLEM 1: I show you 7x. How many terms does it have? What kind of
+polynomial is that?"
+
+"PROBLEM 2: I show you 3x + 5. How many terms? And what is its degree?"
+
+"PROBLEM 3: x² + 4x + 1. Name every coefficient you can find."
+
+[Give students 3 minutes. Then walk through the vocabulary cards.]
+
+💡 [DEEP EXPLANATION — the four words that unlock everything]:
+"Let me lock in four words, because the Regents uses them constantly
+and assumes you know them cold.
+
+A POLYNOMIAL is a sum of monomials — variables raised to whole-number
+exponents, with coefficients. The whole-number part matters: x² is a
+polynomial, but x raised to one-half, a square root, is not.
+
+A COEFFICIENT is the number multiplying the variable. In 3x, the
+coefficient is 3.
+
+The DEGREE is the highest exponent in the polynomial. In x³ + 4x + 1,
+the degree is 3 — we'd call that a cubic.
+
+STANDARD FORM means terms written from highest degree down to lowest.
+This is how the Regents wants every answer written. Make it a reflex."
+
+✋ [Point to the Socratic question:] "In 5x² + 2x + 8, which number
+   tells you the degree, and how can you tell at a glance?"
+   [Expected: the exponent 2 on the leading term — degree 2, a
+   quadratic. Affirm that the degree lives in the EXPONENT, never the
+   coefficient.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — VISUAL ANATOMY OF A POLYNOMIAL
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the anatomy diagram showing 4x³ + 2x² + 7x + 3 with labeled
+parts. Point to each piece of the dissected expression as you speak.]
+
+"Look at the slide. We've taken the polynomial 4x³ + 2x² + 7x + 3 and
+dissected it like a biology specimen. Every part has a name."
+
+"The leading term is 4x³. Its coefficient is 4. Its degree is 3 — it's
+the cubic term. Then 2x², then 7x, then the lonely 3 at the end —
+that's the CONSTANT, the term with no variable attached. Four terms
+total, so this is a four-term polynomial of degree 3."
+
+[Point to the monomial / binomial / trinomial cards below the diagram.]
+
+💡 [WHY THE NAMES MATTER]:
+"We classify polynomials by how many terms they have. One term: a
+MONOMIAL, like 5x. Two terms: a BINOMIAL, like 3x + 7. Three terms:
+a TRINOMIAL, like x² + x + 1. These aren't just fancy words — 'binomial'
+is exactly what FOIL is built for later in this lesson. The vocabulary
+is a preview of the technique."
+
+✋ [Point to the Socratic question:] "Look at 4x³ + 2x² + 7x + 3. What
+   is the degree? And what is the coefficient of the x-term?"
+   [Expected: degree 3; coefficient of x is 7. Watch for students who
+   say the coefficient is 7x — gently correct: the coefficient is just
+   the number, 7.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — VIDEO 1: WHAT ARE POLYNOMIALS?
+[Duration: ~7 minutes (5-min video + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Let's lock in the vocabulary with a quick video — five minutes,
+Professor Dave. As you watch, don't just absorb. Hunt. I'm giving you
+three things to listen for."
+
+[Play the embedded video: "Introduction to Polynomials" — Professor
+Dave Explains — approximately 5 minutes. Allow the full duration.]
+
+[After the video, display the three watch questions:]
+
+✋ [Discuss in pairs — 90 seconds, then whole-class:]
+"Question 1: How does he DEFINE degree? Say it back in your own words.
+ Question 2: What makes something NOT a polynomial? Give me a specific
+ example.
+ Question 3: What's the difference between quadratic, cubic, and
+ quartic?"
+
+💡 [SYNTHESIS — after student responses]:
+"Here's the most important thing he said. A polynomial requires
+whole-number exponents — no negatives, no fractions, no variables in
+a denominator, no variables under a square root. The moment you see
+x to the negative one, or the square root of x, you've left the world
+of polynomials. That single rule is what keeps polynomials so
+beautifully predictable — and predictability is exactly what lets us
+add, subtract, and multiply them with clean, reliable rules."
+
+✋ [Slide's after-watching prompt:] "Write your own example of a
+   degree-3 polynomial in standard form." [Call on two students.
+   Check: highest-degree term first, whole-number exponents.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — ADDING POLYNOMIALS: THE GOLDEN RULE
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the adding slide with the three-step worked example on the
+left and the "like terms" fruit analogy on the right.]
+
+"Now we add. And there is exactly ONE golden rule, written at the top
+of the slide: you can only combine LIKE TERMS. Let me show you, then
+tell you why."
+
+[Walk through the worked example: (3x² + 2x + 1) + (x² + 5x + 4).]
+
+"Step 1: Drop the parentheses. Because this is addition, nothing
+changes signs — every term keeps its sign. We now have
+3x² + 2x + 1 + x² + 5x + 4.
+
+Step 2: Group like terms by degree. The slide color-codes them. The
+x²-terms together: 3x² and x². The x-terms together: 2x and 5x. The
+constants together: 1 and 4.
+
+Step 3: Combine. 3x² + x² is 4x². 2x + 5x is 7x. 1 + 4 is 5. The
+answer, in standard form: 4x² + 7x + 5."
+
+💡 [WHY LIKE TERMS — the fruit analogy made rigorous]:
+"Why can't we combine 3x² with 2x? The slide says think of them like
+fruit — x²-terms are apples, x-terms are oranges. You can add three
+apples to one apple and get four apples. But three apples plus two
+oranges? That's just three apples and two oranges. There is no single
+word for it.
+
+Here's the real reason underneath the metaphor: x² and x are genuinely
+different quantities. If x is 10, then x² is 100 — a hundred times
+larger than the x-term's contribution per unit. Combining them would
+be like adding a length to an area. They live in different dimensions.
+That's why x + x² stays x + x² — two different degrees, forever
+separate."
+
+[Point to the Regents Tip card:] "Always write your final answer in
+STANDARD FORM — highest degree first. The Regents may mark you down
+for a correct-but-disordered answer."
+
+✋ [Socratic question:] "What happens if NONE of the terms are alike?
+   Can you still 'add' the polynomials?" [Expected: yes — you just
+   drop parentheses and rewrite; nothing combines. The sum is simply
+   all the terms listed in standard form. 'Adding' doesn't require
+   combining.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — VIDEO 2: ADDING & SUBTRACTING POLYNOMIALS
+[Duration: ~6 minutes (4-min video + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Quick four-minute video before we tackle subtraction — because
+subtraction is where most students lose points. Watch for one
+technique especially: the column method."
+
+[Play the embedded video: "Adding and Subtracting Polynomials" —
+Prof. Dave Explains — approximately 4 minutes.]
+
+[After the video, display the four key-idea cards:]
+
+✋ [Discuss:]
+"One: the COLUMN METHOD — lining up like terms vertically, like
+ stacking numbers to add them. Two: leaving a BLANK when a degree is
+ missing. Three — and circle this — subtracting a negative becomes a
+ positive. Four: how does he CHECK his work?"
+
+💡 [SYNTHESIS]:
+"Notice he showed two methods: horizontal — left to right with
+parentheses — and vertical — stacked in columns by degree. Neither is
+'more correct.' The horizontal method is fast for simple problems. The
+column method is your insurance policy on a messy four-term Regents
+problem, because it physically forces like terms into the same column
+so you can't accidentally combine an x² with an x. Pick the one that
+keeps YOU from making errors. Knowing both is a Regents superpower."
+
+✋ [Socratic prompt:] "Could you solve the same problem a different way?
+   What are the trade-offs?" [Let students articulate: speed vs.
+   accuracy, horizontal vs. vertical.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 8 — SUBTRACTING POLYNOMIALS: THE SIGN TRAP
+[Duration: ~7 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the subtraction slide. The "Common Mistake" trap card is on
+the left, the "Correct Method" beside it, the "Flip Every Sign" trick
+on the right. Slow WAY down here — this is the highest-value slide in
+the entire lesson.]
+
+"This slide is the most important five minutes of today. The single
+most common mistake on the polynomial section of the Regents lives
+right here. I'm going to show you the wrong way first — on purpose —
+because I want you to feel the trap before you fall into it."
+
+[Point to the Common Mistake card: (5x² + 3x) − (2x² + x − 4).]
+
+"Here's what almost everyone does the first time. They see the minus
+sign, change ONLY the first term of the second group, and write
+3x² + 3x − ... and then they freeze, or they leave the x and the
+negative four untouched. That gives a WRONG answer, because the minus
+sign in front of the parentheses doesn't belong to just the first
+term — it belongs to the ENTIRE group."
+
+💡 [THE DEEP WHY — distribute the negative one]:
+"Here is the rule underneath the rule. A minus sign in front of a
+parenthesis is secretly a negative one being multiplied through the
+whole group. Watch:
+
+  −(2x² + x − 4)  is really  −1 · (2x² + x − 4)
+
+When you distribute that −1 to every single term, every sign flips.
+The 2x² becomes −2x². The +x becomes −x. And here's the one everybody
+misses — the −4 becomes POSITIVE 4. A negative times a negative is a
+positive. That's where the +4 comes from."
+
+[Walk through the Correct Method:]
+"Step 1: Distribute the negative to ALL terms:
+  5x² + 3x − 2x² − x + 4
+Step 2: Combine like terms:
+  5x² − 2x² = 3x², and 3x − x = 2x, and the +4 stands alone.
+The correct answer: 3x² + 2x + 4."
+
+[Point to the Memory Hook:] "Say this out loud, every single time you
+subtract: 'Minus a group — flip the whole group.' I want to hear the
+whole class say it. Ready — 'Minus a group, flip the whole group.'"
+
+✋ [Socratic question — the conceptual capstone:] "Why does subtracting
+   a negative become addition? Where does that rule come from?"
+   [Expected insight: subtracting means 'removing,' and removing a debt
+   is the same as gaining money — a number-line / opposite-of-opposite
+   argument. Tie it back to the distributed −1.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 9 — DIFFERENTIATED PRACTICE: ADD & SUBTRACT
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four-level practice slide. Students pick their level.
+Circulate constantly during this block.]
+
+"Now you try. Four levels on the slide — choose the one that
+challenges you without breaking you. Start wherever you're honest
+about being."
+
+"LEVEL 1, Starter — multiple choice: (2x + 5) + (3x + 1). How many
+ x-terms total? [Answer: 5x + 6, choice A.]
+ LEVEL 2, On-Level: (4x² + x − 3) − (x² + 2x − 1). Remember — flip
+ all signs in the second group first. [Answer: 3x² − x − 2.]
+ LEVEL 3, Advanced: a three-polynomial mix — do ONE operation at a
+ time, left to right.
+ LEVEL 4, Regents: if P(x) = 2x² + 3x − 1 and Q(x) = x² − x + 4, find
+ P(x) − Q(x). The Regents LOVES function notation, so get comfortable
+ with it now. [Answer: x² + 4x − 5.]"
+
+[Give 4 minutes. Circulate. Watch specifically for sign errors on
+Levels 2 and 4 — that's the trap from Slide 8 in the wild.]
+
+✋ [Socratic close:] "Compare with a partner. If you got different
+   answers, find the EXACT step where you diverged. In subtraction
+   problems, I'll bet money it's the sign flip. That's not a
+   coincidence — it's the trap doing its job."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 10 — MULTIPLYING: MONOMIAL × POLYNOMIAL
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the distribution slide with the area-model boxes and the
+worked example. Point to the colored boxes as you explain.]
+
+"Now we multiply — and we build up in difficulty. We start with the
+easiest case: one term times many. A monomial times a polynomial. The
+tool is the distributive property you've used since seventh grade —
+just dressed up."
+
+[Walk through 3x(x² + 2x + 3):]
+"The 3x out front has to multiply EVERY term inside. Look at the
+area-model boxes — three boxes, because three terms inside, and the
+3x stretches across all of them.
+  3x · x² = 3x³
+  3x · 2x = 6x²
+  3x · 3 = 9x
+The answer: 3x³ + 6x² + 9x."
+
+💡 [THE EXPONENT RULE — and why it's ADD, not multiply]:
+"When you multiplied 3x by x², where did the x³ come from? Here's the
+rule on the slide: when you multiply powers of the same base, you ADD
+the exponents. x¹ · x² = x³. Not x². ADD them.
+
+Why add? Because exponents are shorthand for repeated multiplication.
+x¹ means one x. x² means x · x. Put them together: x · (x · x) — that's
+three x's multiplied, which is x³. You're counting how many x's are
+multiplied in total, and counting means adding. This is Regents Trap
+number three, and it catches people every year: x² · x³ is x⁵, never
+x⁶."
+
+[Point to the coefficient card:] "And don't forget — multiply the
+COEFFICIENTS the normal way. 3x · 4x = 12x²: three times four is
+twelve, x times x adds to x². Numbers multiply; exponents add."
+
+✋ [Socratic question:] "Why do we ADD exponents when multiplying? What
+   does x² · x³ really mean in fully expanded form?" [Expected:
+   (x·x)·(x·x·x) = x⁵. Have a student write out all five x's on the
+   board.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 11 — THE FOIL METHOD: BINOMIAL × BINOMIAL
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the FOIL slide with the colored arc diagram. Trace each arc
+with your finger as you name it — First, Outer, Inner, Last.]
+
+"Now the star of the lesson: FOIL. This is the technique for
+multiplying two binomials, and it appears on every single Regents
+exam. FOIL is an acronym — First, Outer, Inner, Last — and it's just
+a way to make sure every term meets every other term exactly once."
+
+[Walk through (x + 3)(x + 2), tracing the colored arcs:]
+"FIRST — the first term in each: x · x = x².
+ OUTER — the two outermost: x · 2 = 2x.
+ INNER — the two innermost: 3 · x = 3x.
+ LAST — the last term in each: 3 · 2 = 6.
+Now string them together: x² + 2x + 3x + 6. And here's the step
+beginners forget — COMBINE the middle terms: 2x + 3x = 5x. Final
+answer: x² + 5x + 6."
+
+💡 [WHAT FOIL ACTUALLY IS — distribution in disguise]:
+"Here's the secret the slide reveals: FOIL is not a new rule. It's the
+distributive property, organized. Each term in the first binomial has
+to multiply EVERY term in the second. The x in (x + 3) multiplies both
+the x and the 2 — that's your First and Outer. The 3 multiplies both
+the x and the 2 — that's your Inner and Last. FOIL is just a checklist
+so you never miss one of the four products.
+
+And that's WHY the middle terms almost always combine: the Outer and
+Inner products are both x-terms, born from the same level of the
+expression. 2x and 3x are like terms, so they merge into 5x. Every
+time you FOIL two simple binomials, expect a three-term trinomial out
+the other side."
+
+[Point to the practice card:] "Now try (x − 4)(x + 1) on your own.
+Watch the negative sign on that 4 — it travels with the term."
+[Answer: x² − 3x − 4. Give 60 seconds.]
+
+✋ [Socratic question:] "Is FOIL only for binomials? What would you do
+   with (x + 1)(x² + x + 2)?" [Expected: FOIL is specifically for
+   two-by-two; for bigger products you distribute each term — every
+   term in the first meets every term in the second. FOIL is the
+   special case, distribution is the general rule.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 12 — VIDEO 3: FOIL IN ACTION
+[Duration: ~5 minutes (2-min video + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"A super-quick two-minute video to see FOIL performed live. Watch one
+thing especially: how he handles a NEGATIVE sign inside a binomial."
+
+[Play the embedded video: "The FOIL Method" — 2 Minute Classroom —
+approximately 2 minutes.]
+
+[After the video, display the watch questions:]
+
+✋ [Discuss:]
+"How did he handle the negative sign? How does the distributive
+ property extend to polynomials? And when he showed a multi-term
+ example — could you predict each step BEFORE he did it?"
+
+💡 [SYNTHESIS — predicting is mastery]:
+"That last question is the real test. When you can predict the next
+line of a worked example before the teacher writes it, you don't just
+recognize the method — you OWN it. Engineers call this 'desk-checking':
+reasoning through a procedure in your head before executing it. Try it
+on every FOIL problem from now on. Predict First, Outer, Inner, Last
+out loud before you write a single symbol. The goal is for the answer
+to feel inevitable."
+
+✋ [Socratic prompt:] "Write your own polynomial multiplication story
+   problem inspired by the video — something with a real length and
+   width." [Preview the garden problem coming on Slide 15.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 13 — SPECIAL PRODUCTS: PATTERNS WORTH MEMORIZING
+[Duration: ~4 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the three special-product cards: perfect-square trinomial,
+difference of squares, and the area-model table.]
+
+"Before we practice, let me hand you two shortcuts that save real time
+on test day. These are FOIL results that follow such clean patterns
+you can write the answer instantly — no four-step work needed."
+
+"PATTERN 1 — Perfect Square: (a + b)² = a² + 2ab + b². For example,
+(x + 3)² = x² + 6x + 9. Notice the middle term is exactly 2ab — two
+times the product of the two pieces. The number-one mistake here:
+students write (x + 3)² as x² + 9 and forget the middle term entirely.
+A square of a binomial is NEVER just the two squares."
+
+"PATTERN 2 — Difference of Squares: (a + b)(a − b) = a² − b². For
+example, (x + 5)(x − 5) = x² − 25. The middle terms — the Outer and
+Inner — are equal and opposite, so they cancel completely. +5x and
+−5x annihilate each other. Two terms in, two terms out, nothing in
+the middle."
+
+💡 [WHY THESE MATTER]:
+"These two patterns appear on EVERY Regents exam, and recognizing them
+is pure speed. But here's the bigger payoff: these patterns run in
+reverse for FACTORING — our very next unit. If you see x² − 25 next
+week and instantly think 'difference of squares, (x + 5)(x − 5),'
+you'll factor it in two seconds while your classmates grind. Learning
+the forward pattern today is an investment in next week."
+
+✋ [Socratic question:] "What happens to (a − b)²? Is it a² − b²?"
+   [Expected — a productive 'no': (a − b)² = a² − 2ab + b². The
+   middle term is negative, but the b² is still positive. This is a
+   classic trap; make the class verify with (x − 4)².]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 14 — DIFFERENTIATED PRACTICE: MULTIPLY
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four-level multiplication practice. Students choose
+their level. Circulate.]
+
+"Same structure as before — four levels, choose your challenge."
+
+"LEVEL 1, Starter — multiple choice: 3x(2x + 5). Distribute 3x to each
+ term. [Answer: 6x² + 15x, choice A.]
+ LEVEL 2, On-Level: (x + 4)(x + 2). Full FOIL, step by step.
+ [Answer: x² + 6x + 8.]
+ LEVEL 3, Advanced: (2x + 3)(3x + 1). Watch every product's
+ coefficient. [Answer: 6x² + 11x + 3.]
+ LEVEL 4, Regents: (x + 3)(x − 1)(x + 1). Expand two factors first,
+ then multiply the result by the third — and look for that difference
+ of squares hiding inside. [Answer: x³ + 3x² − x − 3.]"
+
+[Give 4 minutes. For Level 4, nudge students to spot (x − 1)(x + 1) =
+x² − 1 first — Slide 13 pays off immediately.]
+
+✋ [Socratic close:] "Looking back across today — which was harder for
+   you, adding-and-subtracting or multiplying? What specifically made
+   it harder?" [Use answers to gauge where to spend reteach time
+   tomorrow.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 15 — REAL-WORLD APPLICATION: THE GARDEN PLOT
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the garden problem with the rectangle diagram. This is where
+abstract FOIL becomes something students can SEE.]
+
+"Here's why any of this matters. A real rectangular garden. Its length
+is (x + 5) feet. Its width is (x + 3) feet. Find a polynomial for the
+area — and then find the actual area when x = 4."
+
+[Walk through the solution steps shown on the slide:]
+"Area equals length times width. So Area = (x + 5)(x + 3). FOIL it:
+ First: x · x = x²
+ Outer: x · 3 = 3x
+ Inner: 5 · x = 5x
+ Last: 5 · 3 = 15
+Combine the middle: 3x + 5x = 8x. Area = x² + 8x + 15 square feet."
+
+"Now evaluate at x = 4: substitute 4 for every x.
+  4² + 8(4) + 15 = 16 + 32 + 15 = 63 square feet."
+
+💡 [WHY POLYNOMIALS ARE EVERYWHERE]:
+"Sit with what just happened. A polynomial isn't an abstract puzzle —
+it's a MACHINE for computing area at any size. One expression,
+x² + 8x + 15, instantly gives the garden's area for any value of x.
+Want a bigger garden? Plug in a bigger x. This is exactly why engineers,
+architects, and physicists live inside polynomials: one formula
+captures infinitely many specific cases. You didn't just multiply two
+binomials — you built a model of a real object."
+
+[Point to the Extension card:] "Extension for the curious: if the
+garden needs a one-foot-wide path all the way around it, both
+dimensions grow by 2. Write a polynomial for the total area including
+the path. [That's (x + 7)(x + 5).]"
+
+✋ [Socratic question:] "Does the formula x² + 8x + 15 still work for
+   x = 10? For x = 0? What would x = 0 even MEAN for this garden?"
+   [Expected: x = 0 gives a 5-by-3 garden, area 15 — the 'base case.'
+   Negative x would be meaningless physically. Great moment to discuss
+   domain in context.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 16 — VIDEO 4: MULTIPLYING VIA DISTRIBUTION
+[Duration: ~5 minutes (3-min video + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"One last video — three minutes — that shows multiplication through
+the broader distributive lens, beyond just FOIL. Before you watch, a
+prediction challenge on the slide."
+
+✋ [Before watching:] "Predict the answer to (x + 5)(x − 5). What do
+   you notice about the middle?" [Expected: x² − 25 — difference of
+   squares, middle cancels. Connect to Slide 13.]
+
+[Play the embedded video: "Multiplying Polynomials – Distributive
+Property" — Algebra 1 Tutorial — approximately 3 minutes.]
+
+[After the video, display the guided questions:]
+
+✋ [Discuss:]
+"What happens when you SQUARE a binomial, like (3x + 4)²? Why do the
+ Outer and Inner terms always combine? And could you predict the
+ answer before he finished?"
+
+💡 [SYNTHESIS — distribution is the master rule]:
+"Here's the unifying idea behind everything we did today. FOIL,
+monomial-times-polynomial, the special products — they are ALL the
+same rule wearing different costumes: every term in one factor must
+multiply every term in the other. FOIL is that rule for the two-by-two
+case. The area model is that rule drawn as boxes. Once you see that
+distribution is the one master rule, you never have to memorize a
+separate procedure again — you just make sure everything meets
+everything."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 17 — TOP 5 REGENTS TRAPS
+[Duration: ~3 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the five trap cards. Read each with the energy of a coach
+reviewing game film — these are the exact mistakes that cost points.]
+
+"Before your exit ticket, here are the five traps the Regents sets,
+year after year. Know these and you'll dodge them on instinct."
+
+"TRAP 1 — Forgetting to flip ALL signs when subtracting. The whole
+ group flips, not just the first term. This is the big one.
+ TRAP 2 — Adding unlike terms. 3x² + 2x is NOT 5x³ or 5x — they
+ simply don't combine.
+ TRAP 3 — Multiplying exponents instead of adding. x² · x³ is x⁵,
+ never x⁶.
+ TRAP 4 — Skipping the Outer or Inner step in FOIL. (x + 3)(x + 2) is
+ NOT x² + 6 — you'd lose the entire middle term.
+ TRAP 5 — Not writing in standard form. Highest degree first, always."
+
+💡 "Notice these aren't random. Each trap maps to one concept we built
+today: Trap 1 is the distributed negative. Trap 2 is the definition of
+like terms. Trap 3 is the exponent rule. Trap 4 is complete
+distribution. Trap 5 is standard form. If you understand the WHY behind
+each, the trap stops being a trap and becomes obvious."
+
+✋ [Socratic question:] "Be honest — which of these five have YOU
+   already done today? How will you catch yourself next time?"
+   [Let students name their own error. Naming it is the first step to
+   never repeating it.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 18 — EXIT TICKET
+[Duration: ~5 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the exit ticket. This is silent, independent, individual work
+— no partners. Collect before students leave.]
+
+"Time to show me what you own. Silent and solo — this tells me what to
+reteach tomorrow, so be honest with yourself."
+
+"PART A — Add the polynomials: (2x² + 3x + 1) + (x² + 5x + 4).
+ [Answer: 3x² + 8x + 5.]
+ PART B — Multiply using FOIL: (x + 2)(x + 5). Write F, O, I, L, then
+ combine. [Answer: x² + 7x + 10.]"
+
+[Give 4 minutes. As students finish, point to the confidence
+self-rating if your slide includes one — 'Still confused / Getting it /
+Got it.']
+
+💡 [As you collect:] "Every problem you got right is a skill you now
+carry into the next unit. Every problem you struggled with is the
+single most valuable thing to ask me about tomorrow — it's where your
+growth is waiting."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 19 — CLOSING & NEXT STEPS
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the closing slide: "You Can Work With Polynomials!" with the
+three summary cards. Deliver with genuine warmth — this should feel
+like an arrival.]
+
+"Look at what you did in one hour. You can now ADD and SUBTRACT
+polynomials by combining like terms — and you know to flip every sign
+when you subtract. You can MULTIPLY using FOIL and the distributive
+property. And you applied it to a real garden to find a real area."
+
+[Pause. Then return to the opening question from Slide 2.]
+
+"Remember the very first question I asked you today? A rectangle with
+sides (x + 3) and (x + 2) — what's its area? Back then it was a guess.
+Now? You FOIL it in your head: x² + 5x + 6 square feet. That distance
+— from a shrug at the start to an instant answer at the end — THAT is
+what learning looks like from the inside."
+
+"Tonight, two things. One: finish any practice levels you didn't reach.
+Two: try the special-products patterns on your own, because next class
+we run them in reverse — that's FACTORING, and it's the other half of
+everything you learned today."
+
+[Display the next-lesson preview and resource links — Khan Academy,
+Purplemath. Let students pack up knowing they earned real ground today.]
+
+"Bring your work tomorrow. We start from here. Great class, everyone."
+
+================================================================================
+APPENDIX A — COMMON PITFALLS & HOW TO HANDLE THEM
+================================================================================
+
+PITFALL: Student writes (x + 3)² = x² + 9.
+  Handle: "Square means the thing times ITSELF — (x + 3)(x + 3). FOIL
+          it and you get the middle term: x² + 6x + 9. The exponent
+          doesn't distribute across a sum. Prove it to yourself with
+          numbers: (2 + 3)² is 25, but 2² + 3² is only 13. They're
+          not equal — so the middle term must exist."
+
+PITFALL: Student combines 3x² + 2x into 5x² or 5x.
+  Handle: "Different degrees can't combine — they're different
+          quantities. If x = 10, then 3x² is 300 and 2x is 20. Their
+          sum is 320, which is neither 5x² (500) nor 5x (50). They
+          stay separate forever."
+
+PITFALL: On subtraction, student flips only the first sign.
+  Handle: "The minus sign is a hidden −1 multiplying the WHOLE group.
+          Rewrite the problem literally as −1·(...) and distribute.
+          Say the hook: 'Minus a group, flip the whole group.' Make
+          it a verbal ritual until it's automatic."
+
+PITFALL: Student multiplies exponents: x² · x³ = x⁶.
+  Handle: "Write them out: (x·x)·(x·x·x). Count the x's — there are
+          five. That's x⁵. Multiplying powers means COUNTING how many
+          factors you have, and counting is adding. Multiply the
+          coefficients, ADD the exponents."
+
+PITFALL: Student leaves answer out of standard form.
+  Handle: "Standard form is the Regents' expected format — highest
+          degree first, descending. It's not optional politeness;
+          it's how the scoring key is written. Make reordering the
+          last step of every problem, every time."
+
+PITFALL: Student forgets to combine the middle terms after FOIL.
+  Handle: "After FOIL you have FOUR terms. The Outer and Inner are
+          almost always like terms — same degree. Combining them is
+          step five, and it's not optional. x² + 2x + 3x + 6 is only
+          half-finished; x² + 5x + 6 is the answer."
+
+================================================================================
+APPENDIX B — EXTENSION QUESTIONS FOR ADVANCED STUDENTS
+================================================================================
+
+1. GENERALIZING FOIL: FOIL handles two-by-two. Write the full
+   expansion of a binomial times a trinomial, (x + a)(x² + bx + c).
+   How many products appear before combining? What's the pattern for
+   (m terms)·(n terms)?
+
+2. PASCAL'S TRIANGLE: Expand (x + 1)², (x + 1)³, and (x + 1)⁴. Look at
+   the coefficients: 1-2-1, then 1-3-3-1, then 1-4-6-4-1. Where have
+   you seen these numbers before? This is the Binomial Theorem in
+   disguise.
+
+3. DEGREE PREDICTION: When you multiply a degree-m polynomial by a
+   degree-n polynomial, what's the degree of the product? Prove your
+   rule. What about when you ADD them — is the degree predictable?
+
+4. AREA & PERIMETER: A garden's area is x² + 8x + 15. Working
+   backward, what could its length and width be? (This is factoring —
+   a sneak peek at next unit.) Is the answer unique?
+
+5. SPECIAL-PRODUCT PROOF: Prove algebraically that
+   (a + b)(a − b) = a² − b² always, for ANY a and b, by full
+   distribution. Then explain geometrically using a square with a
+   smaller square cut from its corner.
+
+================================================================================
+APPENDIX C — QUICK REFERENCE: KEY RULES & DEFINITIONS
+================================================================================
+
+Like Terms:
+  Combine ONLY terms with the same variable AND same exponent.
+  3x² + 5x² = 8x²   ✓     3x² + 2x = 3x² + 2x   (cannot combine)
+
+Adding Polynomials:
+  Drop parentheses (signs unchanged) → group like terms → combine →
+  write in standard form.
+
+Subtracting Polynomials:
+  Distribute the −1 to EVERY term of the second group (flip all
+  signs) → then add. "Minus a group, flip the whole group."
+
+Exponent Rule (multiplication, same base):
+  xᵃ · xᵇ = xᵃ⁺ᵇ   (ADD exponents; MULTIPLY coefficients)
+
+FOIL (binomial × binomial):
+  (a + b)(c + d) = ac + ad + bc + bd
+  First · Outer · Inner · Last → then combine like (middle) terms.
+
+Special Products:
+  (a + b)² = a² + 2ab + b²
+  (a − b)² = a² − 2ab + b²
+  (a + b)(a − b) = a² − b²   (difference of squares)
+
+Standard Form:
+  Terms ordered from highest degree to lowest. Always the final step.
+
+================================================================================
+END OF SCRIPT — Lesson 5 · Exploring Polynomials
