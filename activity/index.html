@@ -1,1 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="slides-format" content="viewport">
+<title>Lesson 9 · Activity Sheet · Build Your Anime Idea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+@theme {
+  --color-bg: #f4fbff;
+  --color-bg-deep: #e6f4ff;
+  --color-surface: #ffffff;
+  --color-text: #1a2a3a;
+  --color-text-secondary: #2d4a6b;
+  --color-text-muted: #5a7a9a;
+  --color-accent-1: #0b63ce;
+  --color-accent-2: #10b981;
+  --color-accent-3: #f59e0b;
+  --color-glass-bg: rgba(255,255,255,0.88);
+  --color-glass-border: rgba(11,99,206,0.12);
+  --color-vignette: rgba(0,0,0,0.04);
+  --font-display: "Fredoka", sans-serif;
+  --font-body: "Nunito", sans-serif;
+}
+</style>
+<style>
+:root { --color-bg:#f4fbff; --color-text:#1a2a3a; --glow-color-rgb:11,99,206; }
+*,*::before,*::after{box-sizing:border-box;}
+html,body{background:var(--color-bg);margin:0;}
+body{font-family:"Nunito",sans-serif;color:var(--color-text);overflow:hidden;height:100vh;width:100vw;}
+.deck{width:100vw;height:calc(100vh - 72px);position:relative;}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(0.96);transition:opacity 0.6s ease,transform 0.6s ease;pointer-events:none;overflow:hidden;}
+.slide.active{opacity:1;transform:scale(1);pointer-events:all;}
+.slide>.content{position:relative;z-index:2;width:100%;max-width:1100px;padding:clamp(1rem,3vw,3rem);}
+.nav-controls{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:14px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);padding:10px 24px;border-radius:0;border-top:1.5px solid rgba(11,99,206,0.15);box-shadow:0 -4px 24px rgba(11,99,206,0.09);height:72px;}
+.nav-btn{width:40px;height:40px;border:none;background:rgba(11,99,206,0.08);color:#0b63ce;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.nav-btn:hover{background:rgba(11,99,206,0.18);}
+.slide-dots{display:flex;gap:6px;flex-wrap:wrap;max-width:500px;justify-content:center;}
+.slide-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(11,99,206,0.2);cursor:pointer;transition:background 0.3s,transform 0.3s;}
+.slide-dots .dot.active{background:#0b63ce;transform:scale(1.4);}
+.slide-counter{font-size:0.75rem;color:#5a7a9a;min-width:36px;text-align:center;font-family:"Nunito",sans-serif;}
+.reveal{opacity:0;transform:translateY(18px);}
+@keyframes float-slow{0%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-35px) scale(1.1);}66%{transform:translate(-30px,30px) scale(0.92);}100%{transform:translate(0,0) scale(1);}}
+@keyframes float-drift{0%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(-40px,-50px) scale(1.12) rotate(2deg);}100%{transform:translate(0,0) scale(1) rotate(0deg);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);animation:float-slow 12s ease-in-out infinite;}
+.blob:nth-child(2){animation:float-drift 16s ease-in-out infinite;}
+.blob:nth-child(3){animation:float-slow 20s ease-in-out infinite reverse;}
+.slide::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,var(--color-vignette) 100%);}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important;}}
+/* Cards & inputs */
+.card{background:rgba(255,255,255,0.92);border:1px solid rgba(11,99,206,0.12);border-radius:16px;box-shadow:0 4px 18px rgba(11,99,206,0.08);transition:transform 0.2s,box-shadow 0.2s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(11,99,206,0.14);}
+.fill-input{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:7px 12px;font-family:"Nunito",sans-serif;font-size:0.9rem;color:#1a2a3a;outline:none;transition:border-color 0.2s,background 0.2s;}
+.fill-input:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
+.fill-textarea{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:8px 12px;font-family:"Nunito",sans-serif;font-size:0.88rem;color:#1a2a3a;outline:none;resize:none;transition:border-color 0.2s;}
+.fill-textarea:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
+.accent-bar{width:52px;height:5px;border-radius:3px;background:linear-gradient(90deg,#0b63ce,#10b981);margin-bottom:12px;}
+.section-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:4px 14px;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;}
+.section-badge.green{background:rgba(16,185,129,0.12);color:#059669;}
+.section-badge.amber{background:rgba(245,158,11,0.12);color:#d97706;}
+.section-badge.purple{background:rgba(139,92,246,0.12);color:#7c3aed;}
+.section-badge.pink{background:rgba(236,72,153,0.12);color:#db2777;}
+.discussion-q{background:rgba(11,99,206,0.06);border-left:4px solid #0b63ce;border-radius:0 12px 12px 0;padding:10px 16px;font-size:0.88rem;color:#1a2a3a;font-style:italic;font-family:"Nunito",sans-serif;}
+/* Radio & checkbox */
+.cb-group{display:flex;flex-wrap:wrap;gap:7px;margin-top:5px;}
+.cb-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:700;cursor:pointer;background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);border-radius:8px;padding:5px 10px;transition:background 0.15s,border-color 0.2s;font-family:'Nunito',sans-serif;}
+.cb-item:hover{background:rgba(11,99,206,0.1);}
+.cb-item input[type=checkbox]{width:15px;height:15px;accent-color:#0b63ce;cursor:pointer;flex-shrink:0;}
+.radio-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:5px;}
+.radio-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:700;cursor:pointer;background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);border-radius:8px;padding:5px 10px;transition:background 0.15s;font-family:'Nunito',sans-serif;}
+.radio-item:hover{background:rgba(11,99,206,0.1);}
+.radio-item input[type=radio]{width:15px;height:15px;accent-color:#8b5cf6;cursor:pointer;flex-shrink:0;}
+/* Step badge */
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#0b63ce;color:#fff;font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;flex-shrink:0;}
+/* Drawing canvas */
+.tool-btn{padding:6px 14px;border-radius:20px;border:1.5px solid rgba(11,99,206,0.2);background:rgba(11,99,206,0.06);color:#0b63ce;font-family:"Nunito",sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
+.tool-btn:hover,.tool-btn.active-tool{background:#0b63ce;color:#fff;border-color:#0b63ce;}
+.brush-btn{width:28px;height:28px;border-radius:50%;border:2.5px solid rgba(11,99,206,0.2);cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;flex-shrink:0;}
+.brush-btn:hover,.brush-btn.active-brush{transform:scale(1.2);box-shadow:0 0 0 3px rgba(11,99,206,0.3);}
+#drawing-canvas{display:block;border-radius:12px;background:#fff;border:2px solid rgba(11,99,206,0.18);cursor:crosshair;touch-action:none;box-shadow:0 4px 18px rgba(11,99,206,0.1);height:clamp(220px,46vh,400px);}
+/* Particle canvas */
+canvas.particle-canvas,canvas.particle-canvas-ambient{pointer-events:none;}
+/* Range slider */
+.slider-input{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:rgba(11,99,206,0.15);outline:none;}
+.slider-input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#0b63ce;cursor:pointer;}
+/* Star rating */
+.star-rating{display:flex;gap:6px;margin-top:4px;}
+.star{font-size:1.3rem;cursor:pointer;filter:grayscale(1);transition:filter 0.15s,transform 0.15s;}
+.star:hover,.star.lit{filter:none;transform:scale(1.15);}
+</style>
+</head>
+<body>
 
+<div class="deck">
+
+<!-- ═══ SLIDE 1: COVER ═══ -->
+<div class="slide slide-1 active" data-slide="1">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.1;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.09;"></div>
+    <div class="blob" style="width:220px;height:220px;top:40%;left:10%;background:#f59e0b;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content" style="text-align:center;">
+    <div class="reveal" style="font-size:5rem;margin-bottom:0.5rem;animation:float 3s ease-in-out infinite;">🎌</div>
+    <div class="section-badge reveal" style="margin:0 auto 12px;">📋 Lesson 9 · Activity Sheet</div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:700;color:#0b63ce;line-height:1.15;margin-bottom:0.5rem;">Build Your Anime Idea</h1>
+    <p class="reveal" style="font-size:1rem;color:#5a7a9a;max-width:520px;margin:0 auto 1.2rem;line-height:1.6;">Design your original anime series from the ground up — concept, characters, world, conflict, and style. This is YOUR story.</p>
+    <div class="reveal" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <div class="card" style="padding:8px 18px;display:inline-flex;align-items:center;gap:8px;">
+        <span>✍️</span>
+        <span style="font-size:0.82rem;font-weight:700;color:#2d4a6b;">Name:</span>
+        <input class="fill-input" style="width:180px;font-size:0.85rem;" type="text" placeholder="Your name here">
+      </div>
+      <div class="card" style="padding:8px 18px;display:inline-flex;align-items:center;gap:8px;">
+        <span>📅</span>
+        <span style="font-size:0.82rem;font-weight:700;color:#2d4a6b;">Date:</span>
+        <input class="fill-input" style="width:130px;font-size:0.85rem;" type="text" placeholder="Today's date">
+      </div>
+    </div>
+    <p class="reveal" style="font-size:0.75rem;color:#5a7a9a;margin-top:14px;">Use ← → arrows or swipe to move between sections · 8 sections total</p>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 2: YOUR ANIME CONCEPT ═══ -->
+<div class="slide slide-2" data-slide="2">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#0b63ce;opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge reveal">💡 Section 1 of 7 · Your Anime Concept</div>
+    <div class="accent-bar reveal"></div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:1rem;">What Is Your Anime About?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <!-- Title -->
+        <div class="card reveal" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">🎬 Anime Title</p>
+          <input class="fill-input" type="text" placeholder="Give your anime a name…">
+        </div>
+        <!-- Genre -->
+        <div class="card reveal" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">🎭 Genre(s) — check all that apply</p>
+          <div class="cb-group">
+            <label class="cb-item"><input type="checkbox"> ⚔️ Shonen</label>
+            <label class="cb-item"><input type="checkbox"> 🧠 Psychological</label>
+            <label class="cb-item"><input type="checkbox"> 🌿 Slice of Life</label>
+            <label class="cb-item"><input type="checkbox"> 🚀 Sci-Fi</label>
+            <label class="cb-item"><input type="checkbox"> 🏆 Sports</label>
+            <label class="cb-item"><input type="checkbox"> 🔮 Fantasy</label>
+            <label class="cb-item"><input type="checkbox"> 💖 Romance</label>
+            <label class="cb-item"><input type="checkbox"> 👻 Horror</label>
+            <label class="cb-item"><input type="checkbox"> ✨ Other:</label>
+            <input class="fill-input" style="width:100px;font-size:0.78rem;" type="text" placeholder="describe">
+          </div>
+        </div>
+        <!-- Target audience -->
+        <div class="card reveal" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">👥 Target Audience</p>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="audience"> 🧒 Kids</label>
+            <label class="radio-item"><input type="radio" name="audience"> 🧑 Teens</label>
+            <label class="radio-item"><input type="radio" name="audience"> 🧑‍💼 Adults</label>
+            <label class="radio-item"><input type="radio" name="audience"> 🌍 All ages</label>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <!-- Logline -->
+        <div class="card reveal" style="padding:14px 16px;border-top:4px solid #0b63ce;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">📝 One-Line Pitch (Logline)</p>
+          <p style="font-size:0.76rem;color:#5a7a9a;margin-bottom:6px;">Complete the sentence: <em>"A story about a [character] who must [challenge] in a world where [setting/twist]."</em></p>
+          <textarea class="fill-textarea" rows="3" placeholder="My anime is about a [character] who must [challenge] in a world where [setting/twist]…"></textarea>
+        </div>
+        <!-- Inspired by -->
+        <div class="card reveal" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:6px;">⭐ Inspired By</p>
+          <p style="font-size:0.76rem;color:#5a7a9a;margin-bottom:6px;">Which anime(s) from this course inspired your idea? What did you borrow or flip?</p>
+          <input class="fill-input" style="margin-bottom:6px;" type="text" placeholder="Anime(s) that inspired me: e.g. Naruto, Spirited Away…">
+          <textarea class="fill-textarea" rows="2" placeholder="I borrowed… but I changed it by…"></textarea>
+        </div>
+        <!-- Episode count -->
+        <div class="card reveal" style="padding:12px 14px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:6px;">📺 Format</p>
+          <div class="radio-group" style="margin-bottom:6px;">
+            <label class="radio-item"><input type="radio" name="format"> 🎬 Film (1–2 hrs)</label>
+            <label class="radio-item"><input type="radio" name="format"> 📺 Short series (≤13 eps)</label>
+            <label class="radio-item"><input type="radio" name="format"> 📺 Long series (26+ eps)</label>
+          </div>
+          <input class="fill-input" type="text" placeholder="Number of episodes / seasons I'm imagining: ___">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 3: WORLD BUILDING ═══ -->
+<div class="slide slide-3" data-slide="3">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge green reveal">🌍 Section 2 of 7 · World Building</div>
+    <div class="accent-bar reveal"></div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:1rem;">Where Does Your Story Take Place?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <!-- Setting -->
+        <div class="card reveal" style="padding:14px 16px;border-top:4px solid #10b981;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">🗺️ Setting / World</p>
+          <p style="font-size:0.76rem;color:#5a7a9a;margin-bottom:6px;">Describe your world in 2–3 sentences. Is it real, fantasy, futuristic, historical?</p>
+          <textarea class="fill-textarea" rows="3" placeholder="My story is set in a world where…"></textarea>
+        </div>
+        <!-- Time period -->
+        <div class="card reveal" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">⏳ Time Period</p>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="time"> 🏯 Historical past</label>
+            <label class="radio-item"><input type="radio" name="time"> 🏙️ Present day</label>
+            <label class="radio-item"><input type="radio" name="time"> 🚀 Future</label>
+            <label class="radio-item"><input type="radio" name="time"> 🔮 Timeless / Fantasy</label>
+          </div>
+        </div>
+        <!-- Cultural roots -->
+        <div class="card reveal" style="padding:14px 16px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">🇯🇵 Cultural Roots</p>
+          <p style="font-size:0.76rem;color:#5a7a9a;margin-bottom:5px;">Does your world draw from Japanese culture? Another culture? A mix?</p>
+          <textarea class="fill-textarea" rows="2" placeholder="My world is inspired by the culture of…"></textarea>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <!-- World rules -->
+        <div class="card reveal" style="padding:14px 16px;border-top:4px solid #7c3aed;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:6px;">⚡ World Rules / Powers</p>
+          <p style="font-size:0.76rem;color:#5a7a9a;margin-bottom:6px;">Does your world have magic, special powers, tech, or unique laws? List up to 3:</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:6px;"><span class="step-num">1</span><input class="fill-input" type="text" placeholder="Rule / power / ability…"></div>
+            <div style="display:flex;align-items:center;gap:6px;"><span class="step-num">2</span><input class="fill-input" type="text" placeholder="Rule / power / ability…"></div>
+            <div style="display:flex;align-items:center;gap:6px;"><span class="step-num">3</span><input class="fill-input" type="text" placeholder="Rule / power / ability…"></div>
+          </div>
+        </div>
+        <!-- Mood & aesthetic -->
+        <div class="card reveal" style="padding:14px 16px;border-top:4px solid #f59e0b;">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:6px;">🎨 Mood & Visual Aesthetic</p>
+          <p style="font-size:0.76rem;color:#5a7a9a;margin-bottom:6px;">Which Studio Ghibli / anime style does your world look like? Pick the closest:</p>
+          <div class="radio-group" style="margin-bottom:7px;">
+            <label class="radio-item"><input type="radio" name="aesthetic"> 🌿 Ghibli (lush, natural)</label>
+            <label class="radio-item"><input type="radio" name="aesthetic"> ⚡ Shonen (bold, dynamic)</label>
+            <label class="radio-item"><input type="radio" name="aesthetic"> 🌙 Dark / moody</label>
+            <label class="radio-item"><input type="radio" name="aesthetic"> 🌸 Soft / pastel</label>
+            <label class="radio-item"><input type="radio" name="aesthetic"> 🤖 Sci-fi sleek</label>
+            <label class="radio-item"><input type="radio" name="aesthetic"> ✨ My own mix</label>
+          </div>
+          <input class="fill-input" type="text" placeholder="In my own words, my world FEELS like…">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 4: CHARACTER DESIGN ═══ -->
+<div class="slide slide-4" data-slide="4">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#8b5cf6;opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#f59e0b;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge purple reveal">🧑‍🎤 Section 3 of 7 · Character Design</div>
+    <div class="accent-bar reveal"></div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Design Your Main Character</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <!-- Left: character basics -->
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #8b5cf6;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:7px;">🧑 Character Basics</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:7px;"><span style="font-size:0.8rem;font-weight:700;color:#5a7a9a;width:55px;">Name:</span><input class="fill-input" type="text" placeholder="Character's name…"></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="font-size:0.8rem;font-weight:700;color:#5a7a9a;width:55px;">Age:</span><input class="fill-input" type="text" placeholder="Age / grade / level…"></div>
+            <div style="display:flex;align-items:center;gap:7px;"><span style="font-size:0.8rem;font-weight:700;color:#5a7a9a;width:55px;">Role:</span>
+              <div class="radio-group" style="margin-top:0;gap:5px;flex-wrap:wrap;">
+                <label class="radio-item" style="padding:3px 8px;"><input type="radio" name="role"> 🌟 Hero</label>
+                <label class="radio-item" style="padding:3px 8px;"><input type="radio" name="role"> 😈 Villain</label>
+                <label class="radio-item" style="padding:3px 8px;"><input type="radio" name="role"> 🤝 Sidekick</label>
+                <label class="radio-item" style="padding:3px 8px;"><input type="radio" name="role"> ⚖️ Antihero</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">💪 Strengths & Weaknesses</p>
+          <div style="display:flex;gap:8px;">
+            <div style="flex:1;">
+              <p style="font-size:0.75rem;color:#059669;font-weight:700;margin-bottom:4px;">✅ Strengths</p>
+              <textarea class="fill-textarea" rows="2" placeholder="What makes them powerful / special?"></textarea>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:0.75rem;color:#dc2626;font-weight:700;margin-bottom:4px;">⚠️ Weaknesses</p>
+              <textarea class="fill-textarea" rows="2" placeholder="What holds them back?"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:6px;">🎯 Goal / Dream</p>
+          <textarea class="fill-textarea" rows="2" placeholder="What does your character desperately want or need?"></textarea>
+        </div>
+      </div>
+      <!-- Right: personality + appearance + arc -->
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #f59e0b;">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:6px;">🎭 Personality Traits — pick 3</p>
+          <div class="cb-group">
+            <label class="cb-item"><input type="checkbox"> 😄 Cheerful</label>
+            <label class="cb-item"><input type="checkbox"> 🧠 Clever</label>
+            <label class="cb-item"><input type="checkbox"> 🔥 Hotheaded</label>
+            <label class="cb-item"><input type="checkbox"> 🤫 Quiet/stoic</label>
+            <label class="cb-item"><input type="checkbox"> 💪 Determined</label>
+            <label class="cb-item"><input type="checkbox"> 🫂 Loyal</label>
+            <label class="cb-item"><input type="checkbox"> 😰 Anxious</label>
+            <label class="cb-item"><input type="checkbox"> 🃏 Playful</label>
+            <label class="cb-item"><input type="checkbox"> 😤 Stubborn</label>
+            <label class="cb-item"><input type="checkbox"> 🌙 Mysterious</label>
+          </div>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:6px;">👗 Appearance Notes</p>
+          <textarea class="fill-textarea" rows="2" placeholder="Describe their look — hair, outfit, signature feature, color palette…"></textarea>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;background:rgba(139,92,246,0.05);border:1.5px solid rgba(139,92,246,0.15);">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:5px;">📈 Character Arc — How Do They Change?</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Think about characters from this course (Deku, Naruto, Chihiro). What is YOUR character's journey?</p>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div style="flex:1;text-align:center;"><p style="font-size:0.7rem;color:#5a7a9a;margin-bottom:3px;">Episode 1</p><input class="fill-input" style="font-size:0.78rem;text-align:center;" type="text" placeholder="Who they start as"></div>
+            <span style="font-size:1.2rem;color:#0b63ce;">→</span>
+            <div style="flex:1;text-align:center;"><p style="font-size:0.7rem;color:#5a7a9a;margin-bottom:3px;">Series End</p><input class="fill-input" style="font-size:0.78rem;text-align:center;" type="text" placeholder="Who they become"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 5: CONFLICT & STORYTELLING ═══ -->
+<div class="slide slide-5" data-slide="5">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#dc2626;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge" style="background:rgba(220,38,38,0.1);color:#dc2626;" class="reveal">⚔️ Section 4 of 7 · Conflict & Storytelling</div>
+    <div class="accent-bar reveal" style="background:linear-gradient(90deg,#dc2626,#f59e0b);"></div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">What's the Story's Engine?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <!-- Conflict type -->
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #dc2626;">
+          <p style="font-weight:800;font-size:0.85rem;color:#dc2626;margin-bottom:6px;">⚡ Main Conflict Type</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Choose the core conflict — the engine that drives every episode:</p>
+          <div class="radio-group" style="flex-direction:column;gap:5px;">
+            <label class="radio-item"><input type="radio" name="conflict"> 🧠 Man vs. Self (inner struggle)</label>
+            <label class="radio-item"><input type="radio" name="conflict"> ⚔️ Man vs. Man (rival / villain)</label>
+            <label class="radio-item"><input type="radio" name="conflict"> 🌍 Man vs. Society (system / injustice)</label>
+            <label class="radio-item"><input type="radio" name="conflict"> 🌊 Man vs. Nature / Supernatural</label>
+            <label class="radio-item"><input type="radio" name="conflict"> 🤖 Man vs. Technology / Fate</label>
+          </div>
+        </div>
+        <!-- Main conflict description -->
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">📝 Describe the Central Conflict</p>
+          <textarea class="fill-textarea" rows="3" placeholder="The main conflict in my story is… It matters because…"></textarea>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <!-- 3-act structure -->
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #10b981;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:7px;">🎬 Your 3-Act Story Structure</p>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span class="step-num" style="background:#0b63ce;">1</span><span style="font-size:0.78rem;font-weight:700;color:#0b63ce;">Act 1 — Setup</span></div>
+              <input class="fill-input" type="text" placeholder="How does the story begin? What triggers everything?">
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span class="step-num" style="background:#d97706;">2</span><span style="font-size:0.78rem;font-weight:700;color:#d97706;">Act 2 — Confrontation</span></div>
+              <input class="fill-input" type="text" placeholder="What is the biggest obstacle / dark moment?">
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span class="step-num" style="background:#059669;">3</span><span style="font-size:0.78rem;font-weight:700;color:#059669;">Act 3 — Resolution</span></div>
+              <input class="fill-input" type="text" placeholder="How does your character resolve the conflict?">
+            </div>
+          </div>
+        </div>
+        <!-- Theme -->
+        <div class="card reveal" style="padding:13px 15px;background:rgba(245,158,11,0.06);border:1.5px solid rgba(245,158,11,0.2);">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:5px;">💬 Central Theme / Message</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Think: Naruto = "never give up." Spirited Away = "find courage." What does YOUR anime say?</p>
+          <input class="fill-input" type="text" placeholder="My anime is really about… The message I want viewers to feel is…">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 6: VISUAL STYLE ═══ -->
+<div class="slide slide-6" data-slide="6">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#ec4899;opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#8b5cf6;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge pink reveal">🎨 Section 5 of 7 · Visual Style & Sketch</div>
+    <div class="accent-bar reveal" style="background:linear-gradient(90deg,#ec4899,#8b5cf6);"></div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">How Does Your Anime Look?</h2>
+    <div style="display:flex;flex-direction:column;gap:10px;" class="reveal">
+      <!-- Drawing canvas -->
+      <div>
+        <p style="font-size:0.78rem;font-weight:800;color:#db2777;margin-bottom:5px;">✏️ Sketch your main character or a key scene below:</p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:7px;">
+          <button class="tool-btn active-tool" id="btn-draw" onclick="setTool('draw')">✏️ Draw</button>
+          <button class="tool-btn" id="btn-erase" onclick="setTool('erase')">🧹 Erase</button>
+          <button class="tool-btn" id="btn-clear" onclick="clearCanvas()">🗑️ Clear</button>
+          <span style="font-size:0.78rem;color:#5a7a9a;">Size:</span>
+          <input class="slider-input" id="brush-size" type="range" min="2" max="30" value="6" style="width:80px;">
+          <span style="font-size:0.78rem;color:#5a7a9a;">Color:</span>
+          <input type="color" id="brush-color" value="#0b63ce" style="width:28px;height:28px;border:none;border-radius:50%;cursor:pointer;padding:0;background:none;">
+        </div>
+        <!-- Brush presets -->
+        <div style="display:flex;gap:6px;margin-bottom:8px;">
+          <button class="brush-btn active-brush" style="background:#0b63ce;" onclick="setColor('#0b63ce')"></button>
+          <button class="brush-btn" style="background:#dc2626;" onclick="setColor('#dc2626')"></button>
+          <button class="brush-btn" style="background:#10b981;" onclick="setColor('#10b981')"></button>
+          <button class="brush-btn" style="background:#f59e0b;" onclick="setColor('#f59e0b')"></button>
+          <button class="brush-btn" style="background:#8b5cf6;" onclick="setColor('#8b5cf6')"></button>
+          <button class="brush-btn" style="background:#ec4899;" onclick="setColor('#ec4899')"></button>
+          <button class="brush-btn" style="background:#1a2a3a;" onclick="setColor('#1a2a3a')"></button>
+          <button class="brush-btn" style="background:#ffffff;border:2px solid #ccc;" onclick="setColor('#ffffff')"></button>
+        </div>
+        <canvas id="drawing-canvas" width="1000" height="480" style="width:100%;"></canvas>
+      </div>
+      <!-- Visual style questions -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div class="card" style="padding:12px 14px;">
+          <p style="font-weight:800;font-size:0.82rem;color:#db2777;margin-bottom:5px;">🎨 Color Palette</p>
+          <p style="font-size:0.74rem;color:#5a7a9a;margin-bottom:5px;">Name 2–3 colors that define YOUR anime's look and mood:</p>
+          <input class="fill-input" type="text" placeholder="e.g. deep navy, gold, soft white — feels mysterious + heroic">
+        </div>
+        <div class="card" style="padding:12px 14px;">
+          <p style="font-weight:800;font-size:0.82rem;color:#7c3aed;margin-bottom:5px;">⚡ Animation Style</p>
+          <div class="radio-group" style="flex-direction:column;gap:4px;">
+            <label class="radio-item"><input type="radio" name="animstyle"> 🌿 Soft/fluid (Ghibli)</label>
+            <label class="radio-item"><input type="radio" name="animstyle"> ⚡ Explosive/fast (Shonen)</label>
+            <label class="radio-item"><input type="radio" name="animstyle"> 🎭 Expressive/emotional (Slice of Life)</label>
+            <label class="radio-item"><input type="radio" name="animstyle"> 🤖 Clean/sharp (Ufotable)</label>
+            <label class="radio-item"><input type="radio" name="animstyle"> ✨ My own blend</label>
+          </div>
+        </div>
+        <div class="card" style="padding:12px 14px;background:rgba(236,72,153,0.05);border:1.5px solid rgba(236,72,153,0.15);">
+          <p style="font-weight:800;font-size:0.82rem;color:#db2777;margin-bottom:5px;">🎵 What Music / Tone?</p>
+          <input class="fill-input" style="margin-bottom:5px;" type="text" placeholder="Opening theme sounds like… (hype, emotional, mysterious…)">
+          <input class="fill-input" type="text" placeholder="Soundtrack inspiration: e.g. 'K-On! vibes + Naruto drums'">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 7: LITERARY DEVICES ═══ -->
+<div class="slide slide-7" data-slide="7">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#0b63ce;opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="section-badge amber reveal">📚 Section 6 of 7 · Literary Devices</div>
+    <div class="accent-bar reveal" style="background:linear-gradient(90deg,#f59e0b,#10b981);"></div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Use the Devices You've Learned</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #f59e0b;">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:6px;">🔁 Foreshadowing</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Describe an early hint in episode 1 that sets up a big reveal later:</p>
+          <textarea class="fill-textarea" rows="2" placeholder="In episode 1, the audience sees/hears ___. This hints at ___ which happens later…"></textarea>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">🪞 Symbolism</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Name one symbol in your anime and what it represents:</p>
+          <div style="display:flex;gap:8px;">
+            <input class="fill-input" type="text" placeholder="Symbol (object, color, animal…)">
+            <input class="fill-input" type="text" placeholder="It represents…">
+          </div>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">🔄 Flashback / Backstory</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Describe one key flashback that explains WHY your character is the way they are:</p>
+          <textarea class="fill-textarea" rows="2" placeholder="In a flashback, we learn that my character once ___, which is why they now…"></textarea>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #7c3aed;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:6px;">👥 Foil Character</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Describe a character who is the OPPOSITE of your hero — and what this contrast reveals:</p>
+          <textarea class="fill-textarea" rows="2" placeholder="My foil character is ___, who is different because ___. This contrast shows the audience…"></textarea>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#dc2626;margin-bottom:6px;">😂 Comic Relief / Tone Shift</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Every great anime has a lighter moment that gives the audience a break. Describe yours:</p>
+          <textarea class="fill-textarea" rows="2" placeholder="My comic relief character/moment is ___, and it works because…"></textarea>
+        </div>
+        <div class="card reveal" style="padding:13px 15px;background:rgba(245,158,11,0.05);border:1.5px dashed rgba(245,158,11,0.3);">
+          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:5px;">⭐ Your Strongest Device</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:5px;">Which literary device from the whole course are you MOST proud of using?</p>
+          <input class="fill-input" style="margin-bottom:5px;" type="text" placeholder="The device I'm most proud of is…">
+          <textarea class="fill-textarea" rows="1" placeholder="Because it shows the audience…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 8: PITCH & REFLECTION ═══ -->
+<div class="slide slide-8" data-slide="8">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#10b981;opacity:0.09;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+  <div class="content">
+    <div class="section-badge green reveal">🎤 Section 7 of 7 · Pitch & Reflection</div>
+    <div class="accent-bar reveal"></div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Present Your Idea & Reflect</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <!-- 60-second pitch -->
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #10b981;">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:5px;">🎬 Your 60-Second Pitch</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:6px;">Write what you'll SAY when you stand up to present. Keep it to 5 sentences max:</p>
+          <textarea class="fill-textarea" rows="5" placeholder="My anime is called ___, and it's a [genre] story about [character] who [conflict]. The world is [setting]. The theme is [message]. It would appeal to [audience] because [reason]. The one thing that makes it different is [unique element]…"></textarea>
+        </div>
+        <!-- Self-rate -->
+        <div class="card reveal" style="padding:13px 15px;">
+          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">⭐ Rate Your Idea (before presenting)</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.78rem;font-weight:700;color:#2d4a6b;">Originality</span>
+              <div class="star-rating" data-category="originality">
+                <span class="star" data-val="1">⭐</span><span class="star" data-val="2">⭐</span><span class="star" data-val="3">⭐</span><span class="star" data-val="4">⭐</span><span class="star" data-val="5">⭐</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.78rem;font-weight:700;color:#2d4a6b;">Character Depth</span>
+              <div class="star-rating" data-category="character">
+                <span class="star" data-val="1">⭐</span><span class="star" data-val="2">⭐</span><span class="star" data-val="3">⭐</span><span class="star" data-val="4">⭐</span><span class="star" data-val="5">⭐</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.78rem;font-weight:700;color:#2d4a6b;">Theme / Message</span>
+              <div class="star-rating" data-category="theme">
+                <span class="star" data-val="1">⭐</span><span class="star" data-val="2">⭐</span><span class="star" data-val="3">⭐</span><span class="star" data-val="4">⭐</span><span class="star" data-val="5">⭐</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.78rem;font-weight:700;color:#2d4a6b;">Use of Literary Devices</span>
+              <div class="star-rating" data-category="literary">
+                <span class="star" data-val="1">⭐</span><span class="star" data-val="2">⭐</span><span class="star" data-val="3">⭐</span><span class="star" data-val="4">⭐</span><span class="star" data-val="5">⭐</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <!-- Peer feedback -->
+        <div class="card reveal" style="padding:13px 15px;border-top:4px solid #8b5cf6;">
+          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:5px;">🤝 Peer Feedback (to fill in AFTER listening to a classmate)</p>
+          <p style="font-size:0.74rem;color:#5a7a9a;margin-bottom:5px;">Classmate's anime title: <input class="fill-input" style="display:inline;width:140px;font-size:0.78rem;" type="text" placeholder="Title…"></p>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <p style="font-size:0.75rem;font-weight:700;color:#059669;margin-bottom:2px;">✅ Something strong I noticed:</p>
+            <textarea class="fill-textarea" rows="2" placeholder="The most compelling part of their idea was…"></textarea>
+            <p style="font-size:0.75rem;font-weight:700;color:#d97706;margin-bottom:2px;">💡 A question or suggestion:</p>
+            <textarea class="fill-textarea" rows="2" placeholder="I wonder if they could add/change… because it might make their story even stronger by…"></textarea>
+          </div>
+        </div>
+        <!-- Exit ticket -->
+        <div class="card reveal" style="padding:13px 15px;background:rgba(16,185,129,0.05);border:1.5px solid rgba(16,185,129,0.2);">
+          <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:5px;">🎟️ Exit Ticket</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div>
+              <p style="font-size:0.75rem;font-weight:700;color:#0b63ce;margin-bottom:3px;">📚 One new insight I gained from a classmate's presentation:</p>
+              <textarea class="fill-textarea" rows="1" placeholder="I learned that an anime idea can…"></textarea>
+            </div>
+            <div>
+              <p style="font-size:0.75rem;font-weight:700;color:#7c3aed;margin-bottom:3px;">🔄 One thing I'd change in MY anime after hearing others present:</p>
+              <textarea class="fill-textarea" rows="1" placeholder="After hearing other presentations, I want to change… because…"></textarea>
+            </div>
+            <div>
+              <p style="font-size:0.75rem;font-weight:700;color:#d97706;margin-bottom:3px;">🏠 Out-of-class challenge:</p>
+              <div class="discussion-q" style="font-style:normal;font-size:0.78rem;">Watch a NEW anime series or film and apply the analysis techniques from this course. Notice its conflict type, character arc, and key literary devices. Share your findings with a friend or family member — be their teacher!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .deck -->
+
+<!-- ═══ NAVIGATION ═══ -->
+<div class="nav-controls">
+  <button onclick="saveAll()" style="display:flex;align-items:center;gap:5px;padding:7px 16px;border-radius:20px;border:none;background:#0b63ce;color:#fff;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#0950b0'" onmouseout="this.style.background='#0b63ce'">💾 Save</button>
+  <button onclick="clearAll()" style="display:flex;align-items:center;gap:5px;padding:7px 16px;border-radius:20px;border:1.5px solid rgba(220,38,38,0.3);background:rgba(220,38,38,0.07);color:#dc2626;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='rgba(220,38,38,0.15)'" onmouseout="this.style.background='rgba(220,38,38,0.07)'">🗑️ Clear</button>
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 8</span>
+</div>
+
+<script>
+/* ═══ DECK NAVIGATION ═══ */
+let current=1;
+const total=document.querySelectorAll('.slide').length;
+const dotsContainer=document.getElementById('dots');
+const counter=document.getElementById('counter');
+for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot);}
+function goToSlide(n){
+  const prev=document.querySelector('.slide.active');
+  const next=document.querySelector('.slide[data-slide="'+n+'"]');
+  if(prev)prev.classList.remove('active');
+  if(next){next.classList.add('active');animateSlide(next);}
+  current=n;updateNav();
+}
+function changeSlide(dir){let n=current+dir;if(n<1)n=total;if(n>total)n=1;goToSlide(n);}
+function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i+1===current);});counter.textContent=current+' / '+total;}
+document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1);}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1);}});
+let touchStartX=0;
+document.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0].clientX;});
+document.addEventListener('touchend',(e)=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1);});
+
+/* ═══ REVEAL ANIMATIONS ═══ */
+function animateSlide(slide){
+  slide.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transition='none';el.style.opacity='0';el.style.transform='translateY(18px)';
+    el.offsetHeight;
+    const delay=i*0.07;
+    el.style.transition=`opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
+    el.style.opacity='1';el.style.transform='translateY(0)';
+  });
+}
+
+/* ═══ DRAWING CANVAS ═══ */
+const canvas=document.getElementById('drawing-canvas');
+const ctx=canvas.getContext('2d');
+let drawing=false,currentTool='draw',currentColor='#0b63ce',brushSize=6;
+function setTool(t){
+  currentTool=t;
+  document.getElementById('btn-draw').classList.toggle('active-tool',t==='draw');
+  document.getElementById('btn-erase').classList.toggle('active-tool',t==='erase');
+  canvas.style.cursor=t==='erase'?'cell':'crosshair';
+}
+function setColor(c){
+  currentColor=c;
+  document.getElementById('brush-color').value=c;
+  document.querySelectorAll('.brush-btn').forEach(b=>{b.classList.toggle('active-brush',b.style.background===c||b.style.backgroundColor===c);});
+}
+function clearCanvas(){ctx.clearRect(0,0,canvas.width,canvas.height);}
+document.getElementById('brush-color').addEventListener('input',(e)=>{currentColor=e.target.value;});
+document.getElementById('brush-size').addEventListener('input',(e)=>{brushSize=parseInt(e.target.value);});
+function getPos(e){
+  const r=canvas.getBoundingClientRect(),scaleX=canvas.width/r.width,scaleY=canvas.height/r.height;
+  const src=e.touches?e.touches[0]:e;
+  return{x:(src.clientX-r.left)*scaleX,y:(src.clientY-r.top)*scaleY};
+}
+function startDraw(e){e.preventDefault();drawing=true;const p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);}
+function draw(e){
+  e.preventDefault();if(!drawing)return;
+  const p=getPos(e);
+  if(currentTool==='erase'){ctx.clearRect(p.x-brushSize,p.y-brushSize,brushSize*2,brushSize*2);}
+  else{ctx.globalCompositeOperation='source-over';ctx.strokeStyle=currentColor;ctx.lineWidth=brushSize;ctx.lineCap='round';ctx.lineTo(p.x,p.y);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,p.y);}
+}
+function stopDraw(){drawing=false;ctx.beginPath();}
+canvas.addEventListener('mousedown',startDraw);canvas.addEventListener('mousemove',draw);
+canvas.addEventListener('mouseup',stopDraw);canvas.addEventListener('mouseleave',stopDraw);
+canvas.addEventListener('touchstart',startDraw,{passive:false});canvas.addEventListener('touchmove',draw,{passive:false});
+canvas.addEventListener('touchend',stopDraw);
+
+/* ═══ STAR RATINGS ═══ */
+document.querySelectorAll('.star-rating').forEach(group=>{
+  const stars=group.querySelectorAll('.star');
+  stars.forEach((star,i)=>{
+    star.addEventListener('click',()=>{
+      stars.forEach((s,j)=>s.classList.toggle('lit',j<=i));
+    });
+    star.addEventListener('mouseenter',()=>{stars.forEach((s,j)=>s.style.transform=j<=i?'scale(1.2)':'scale(1)');});
+    star.addEventListener('mouseleave',()=>{stars.forEach(s=>s.style.transform='scale(1)');});
+  });
+});
+
+/* ═══ MOUSE SPOTLIGHT ═══ */
+const spotlight=document.createElement('div');
+spotlight.style.cssText='position:fixed;inset:0;z-index:99;pointer-events:none;';
+document.body.prepend(spotlight);
+document.addEventListener('mousemove',(e)=>{spotlight.style.background=`radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.05), transparent 40%)`;});
+
+/* ═══ PARTICLES ═══ */
+window.initParticles=function(canvas,opts){
+  if(!canvas)return;
+  const ctx2=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+  const count=opts.count||18;
+  const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.25,vy:(Math.random()-0.5)*0.25,size:Math.random()*2+0.8,alpha:Math.random()*0.25+0.08}));
+  (function animate(){
+    ctx2.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.vx*=0.99;p.vy*=0.99;p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+      ctx2.beginPath();ctx2.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx2.fillStyle=`rgba(11,99,206,${p.alpha})`;ctx2.fill();
+    });
+    requestAnimationFrame(animate);
+  })();
+};
+document.querySelectorAll('.particle-canvas').forEach(c=>window.initParticles(c,{count:40}));
+document.querySelectorAll('.particle-canvas-ambient').forEach(c=>window.initParticles(c,{count:18}));
+
+
+/* ═══ AUTOSAVE TO LOCALSTORAGE ═══ */
+const SAVE_KEY = 'lesson9_activity';
+
+function saveAll() {
+  const data = {};
+  // text inputs & textareas
+  document.querySelectorAll('input[type=text], input[type=date], textarea').forEach((el, i) => {
+    const key = el.id || el.name || el.placeholder || ('field_' + i);
+    data['input_' + i + '_' + key.slice(0,20)] = el.value;
+  });
+  // checkboxes
+  document.querySelectorAll('input[type=checkbox]').forEach((el, i) => {
+    data['cb_' + i] = el.checked;
+  });
+  // radios
+  document.querySelectorAll('input[type=radio]').forEach((el, i) => {
+    data['radio_' + i] = el.checked;
+  });
+  // color input
+  const colorEl = document.getElementById('brush-color');
+  if (colorEl) data['brush_color'] = colorEl.value;
+  // canvas drawing
+  const cv = document.getElementById('drawing-canvas');
+  if (cv) data['canvas_drawing'] = cv.toDataURL();
+
+  localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+  showSaveToast();
+}
+
+function loadAll() {
+  const raw = localStorage.getItem(SAVE_KEY);
+  if (!raw) return;
+  const data = JSON.parse(raw);
+  const inputs = document.querySelectorAll('input[type=text], input[type=date], textarea');
+  const cbs = document.querySelectorAll('input[type=checkbox]');
+  const radios = document.querySelectorAll('input[type=radio]');
+  inputs.forEach((el, i) => {
+    const key = el.id || el.name || el.placeholder || ('field_' + i);
+    const v = data['input_' + i + '_' + key.slice(0,20)];
+    if (v !== undefined) el.value = v;
+  });
+  cbs.forEach((el, i) => { if (data['cb_' + i] !== undefined) el.checked = data['cb_' + i]; });
+  radios.forEach((el, i) => { if (data['radio_' + i] !== undefined) el.checked = data['radio_' + i]; });
+  if (data['brush_color']) {
+    const colorEl = document.getElementById('brush-color');
+    if (colorEl) colorEl.value = data['brush_color'];
+  }
+  if (data['canvas_drawing']) {
+    const cv = document.getElementById('drawing-canvas');
+    if (cv) {
+      const img = new Image();
+      img.onload = () => { const c = cv.getContext('2d'); c.clearRect(0,0,cv.width,cv.height); c.drawImage(img,0,0); };
+      img.src = data['canvas_drawing'];
+    }
+  }
+}
+
+function clearAll() {
+  if (!confirm('Clear all saved responses? This cannot be undone.')) return;
+  localStorage.removeItem(SAVE_KEY);
+  document.querySelectorAll('input[type=text], input[type=date], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type=checkbox], input[type=radio]').forEach(el => el.checked = false);
+  document.querySelectorAll('.star').forEach(s => s.classList.remove('lit'));
+  clearCanvas();
+  showSaveToast('Cleared!', '#dc2626');
+}
+
+function showSaveToast(msg, color) {
+  msg = msg || '✅ Saved!';
+  color = color || '#059669';
+  let toast = document.getElementById('save-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'save-toast';
+    toast.style.cssText = 'position:fixed;top:18px;right:22px;z-index:9999;padding:9px 20px;border-radius:20px;font-family:Nunito,sans-serif;font-size:0.85rem;font-weight:700;color:#fff;box-shadow:0 4px 18px rgba(0,0,0,0.18);transition:opacity 0.4s,transform 0.4s;opacity:0;transform:translateY(-8px);pointer-events:none;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.background = color;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => { toast.style.opacity='0'; toast.style.transform='translateY(-8px)'; }, 2000);
+}
+
+// Autosave on any input change
+document.addEventListener('change', saveAll);
+document.addEventListener('input', saveAll);
+
+// Load on startup
+window.addEventListener('load', loadAll);
+
+/* First slide animation */
+try{animateSlide(document.querySelector('.slide.active'));}catch(e){}
+</script>
+</body>
+</html>
