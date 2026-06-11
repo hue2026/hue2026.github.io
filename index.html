@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="slides-format" content="viewport">
-<title>Lesson 7: Anime's Impact on Global Pop Culture</title>
+<title>Lesson 9: Final Project Presentation — Anime Appreciation &amp; Analysis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -40,7 +39,7 @@ body{font-family:"Nunito",sans-serif;color:var(--color-text);overflow:hidden;hei
 .nav-controls{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:14px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);padding:10px 24px;border-radius:0;border-top:1.5px solid rgba(11,99,206,0.15);box-shadow:0 -4px 24px rgba(11,99,206,0.09);height:72px;}
 .nav-btn{width:40px;height:40px;border:none;background:rgba(11,99,206,0.08);color:#0b63ce;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
 .nav-btn:hover{background:rgba(11,99,206,0.18);}
-.slide-dots{display:flex;gap:6px;flex-wrap:wrap;max-width:500px;justify-content:center;}
+.slide-dots{display:flex;gap:6px;flex-wrap:wrap;max-width:600px;justify-content:center;}
 .slide-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(11,99,206,0.2);cursor:pointer;transition:background 0.3s,transform 0.3s;}
 .slide-dots .dot.active{background:#0b63ce;transform:scale(1.4);}
 .slide-counter{font-size:0.75rem;color:#5a7a9a;min-width:36px;text-align:center;font-family:"Nunito",sans-serif;}
@@ -54,1469 +53,1048 @@ body{font-family:"Nunito",sans-serif;color:var(--color-text);overflow:hidden;hei
 .blob:nth-child(3){animation:float-slow 20s ease-in-out infinite reverse;}
 .slide::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,var(--color-vignette) 100%);}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important;}}
-/* ─── cards & inputs ─── */
+/* cards & inputs matching index.html */
 .card{background:rgba(255,255,255,0.92);border:1px solid rgba(11,99,206,0.12);border-radius:16px;box-shadow:0 4px 18px rgba(11,99,206,0.08);transition:transform 0.2s,box-shadow 0.2s;}
 .card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(11,99,206,0.14);}
-.pill{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+.accent-bar{width:52px;height:5px;border-radius:3px;background:linear-gradient(90deg,#0b63ce,#10b981);margin-bottom:12px;}
+.section-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:4px 14px;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;}
+.section-badge.green{background:rgba(16,185,129,0.12);color:#059669;}
+.section-badge.amber{background:rgba(245,158,11,0.12);color:#b45309;}
+/* Video thumbnail system */
+.vid-wrap{position:relative;width:100%;}
+.vid-thumb-wrap{position:relative;cursor:pointer;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);background:#0b1929;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
+.vid-thumb-wrap img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;display:block;}
+.vid-thumb-bg{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);z-index:1;}
+.vid-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:rgba(255,30,30,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;z-index:3;box-shadow:0 4px 16px rgba(0,0,0,0.3);}
+.vid-thumb-wrap:hover .vid-play-btn{transform:translate(-50%,-50%) scale(1.12);background:rgb(220,0,0);}
+.vid-play-btn svg{width:22px;height:22px;fill:white;margin-left:4px;}
+.vid-title-overlay{position:absolute;bottom:8px;left:10px;right:10px;z-index:2;font-family:"Nunito",sans-serif;font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.9);text-shadow:0 1px 4px rgba(0,0,0,0.8);pointer-events:none;}
+.vid-iframe-wrap{display:none;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);aspect-ratio:16/9;}
+.vid-iframe-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.vid-source-link{font-size:0.72rem;color:#0b63ce;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:6px;opacity:0.8;font-family:"Nunito",sans-serif;font-weight:700;}
+.vid-source-link:hover{opacity:1;text-decoration:underline;}
+/* Discussion / prompt boxes */
+.discussion-q{background:rgba(11,99,206,0.06);border-left:4px solid #0b63ce;border-radius:0 12px 12px 0;padding:10px 16px;font-size:0.88rem;color:#1a2a3a;font-style:italic;font-family:"Nunito",sans-serif;margin-bottom:8px;}
+.tip-box{background:rgba(16,185,129,0.07);border-left:4px solid #10b981;border-radius:0 10px 10px 0;padding:8px 14px;font-size:0.82rem;font-weight:700;color:#065f46;}
 .fill-input{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:7px 12px;font-family:"Nunito",sans-serif;font-size:0.9rem;color:#1a2a3a;outline:none;transition:border-color 0.2s,background 0.2s;}
 .fill-input:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
 .fill-textarea{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:8px 12px;font-family:"Nunito",sans-serif;font-size:0.88rem;color:#1a2a3a;outline:none;resize:none;transition:border-color 0.2s;}
 .fill-textarea:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
-.accent-bar{width:52px;height:5px;border-radius:3px;background:linear-gradient(90deg,#0b63ce,#10b981);margin-bottom:12px;}
-.section-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:4px 14px;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;}
-.section-badge.activity{background:rgba(16,185,129,0.12);color:#059669;}
-.vid-thumb-wrap{position:relative;cursor:pointer;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);background:#0b1929;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
-.vid-thumb-wrap img{width:100%;height:100%;display:block;object-fit:cover;background:#0b1929;position:absolute;top:0;left:0;}
-.vid-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:rgba(255,60,60,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;z-index:3;}
-.vid-thumb-wrap:hover .vid-play-btn{transform:translate(-50%,-50%) scale(1.12);background:rgb(255,0,0);}
-.vid-play-btn svg{width:22px;height:22px;fill:white;margin-left:3px;}
-.vid-iframe-wrap{display:none;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);position:relative;width:100%;}
-.vid-source-link{font-size:0.72rem;color:#0b63ce;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:5px;opacity:0.8;font-family:"Nunito",sans-serif;}
-.vid-thumb-wrap .vid-fallback-label{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.7);padding:0 8px;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,0.8);z-index:2;}
-.vid-source-link:hover{opacity:1;text-decoration:underline;}
-.discussion-q{background:rgba(11,99,206,0.06);border-left:4px solid #0b63ce;border-radius:0 12px 12px 0;padding:10px 16px;font-size:0.88rem;color:#1a2a3a;font-style:italic;font-family:"Nunito",sans-serif;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#0b63ce;color:white;font-size:0.7rem;font-weight:800;flex-shrink:0;font-family:"Nunito",sans-serif;}
+.q-num.green{background:#10b981;}.q-num.amber{background:#f59e0b;}
 .stat-big{font-family:"Fredoka",sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#0b63ce;line-height:1;}
 .stat-label{font-size:0.75rem;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.06em;font-weight:700;font-family:"Nunito",sans-serif;}
-/* ─── Activity extras ─── */
-.tool-btn{padding:6px 14px;border-radius:20px;border:1.5px solid rgba(11,99,206,0.2);background:rgba(11,99,206,0.06);color:#0b63ce;font-family:"Nunito",sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
-.tool-btn:hover,.tool-btn.active-tool{background:#0b63ce;color:#fff;border-color:#0b63ce;}
-.brush-btn{width:30px;height:30px;border-radius:50%;border:2.5px solid rgba(11,99,206,0.2);cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;flex-shrink:0;}
-.brush-btn:hover,.brush-btn.active-brush{transform:scale(1.2);box-shadow:0 0 0 3px rgba(11,99,206,0.3);}
-#drawing-canvas{display:block;border-radius:12px;background:#fff;border:2px solid rgba(11,99,206,0.18);cursor:crosshair;touch-action:none;box-shadow:0 4px 18px rgba(11,99,206,0.1);}
-/* ─── Activity types from index.html ─── */
-.cb-group{display:flex;flex-wrap:wrap;gap:7px;margin-top:5px;}
-.cb-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:700;cursor:pointer;background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);border-radius:8px;padding:5px 10px;transition:background 0.15s,border-color 0.2s;font-family:'Nunito',sans-serif;}
+.cb-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:700;cursor:pointer;background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);border-radius:8px;padding:5px 10px;transition:background 0.15s;font-family:"Nunito",sans-serif;}
 .cb-item:hover{background:rgba(11,99,206,0.1);}
-.cb-item input[type=checkbox]{width:15px;height:15px;accent-color:#0b63ce;cursor:pointer;flex-shrink:0;}
-.radio-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:5px;}
-.radio-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:700;cursor:pointer;background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);border-radius:8px;padding:5px 10px;transition:background 0.15s;font-family:'Nunito',sans-serif;}
-.radio-item:hover{background:rgba(11,99,206,0.1);}
-.radio-item input[type=radio]{width:15px;height:15px;accent-color:#8b5cf6;cursor:pointer;flex-shrink:0;}
-.compare-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
-.compare-table thead tr{background:#0b63ce;}
-.compare-table thead th{padding:7px 10px;font-family:'Fredoka',sans-serif;font-weight:600;text-align:left;font-size:0.8rem;color:#fff;}
-.compare-table tbody tr:nth-child(even){background:rgba(11,99,206,0.04);}
-.compare-table tbody td{padding:6px 8px;border-bottom:1px solid rgba(11,99,206,0.1);vertical-align:middle;}
-.compare-table tbody td:first-child{font-family:'Fredoka',sans-serif;font-size:0.85rem;color:#0b63ce;font-weight:700;white-space:nowrap;}
-.compare-table input{width:100%;background:transparent;border:none;border-bottom:1.5px solid rgba(11,99,206,0.22);outline:none;padding:3px 4px;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;color:#1a2a3a;transition:border-color 0.2s;}
-.compare-table input:focus{border-bottom-color:#0b63ce;background:rgba(11,99,206,0.04);border-radius:3px 3px 0 0;}
-.vocab-def-card{background:rgba(255,255,255,0.92);border:1.5px solid rgba(11,99,206,0.12);border-radius:12px;padding:10px 13px;}
-.vocab-def-card .term{font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#0b63ce;margin-bottom:4px;}
-.field-lbl{font-size:0.67rem;font-weight:800;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;margin-top:6px;display:block;}
-.tip-box-green{background:rgba(16,185,129,0.07);border-left:4px solid #10b981;border-radius:0 10px 10px 0;padding:7px 13px;font-size:0.78rem;font-weight:700;color:#065f46;margin-bottom:8px;}
-.q-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#0b63ce;color:white;font-size:0.7rem;font-weight:800;flex-shrink:0;}
-.q-num.green{background:#10b981;}.q-num.amber{background:#f59e0b;}.q-num.purple{background:#8b5cf6;}
-.match-row{display:flex;align-items:center;gap:8px;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.1);border-radius:10px;padding:6px 10px;}
-
+.cb-item input{width:15px;height:15px;accent-color:#0b63ce;cursor:pointer;flex-shrink:0;}
+/* Rubric table */
+.rubric-table{width:100%;border-collapse:collapse;font-size:0.75rem;font-family:"Nunito",sans-serif;}
+.rubric-table thead tr{background:#0b63ce;}
+.rubric-table thead th{padding:7px 10px;font-family:"Fredoka",sans-serif;font-weight:600;text-align:left;font-size:0.8rem;color:#fff;}
+.rubric-table tbody tr:nth-child(even){background:rgba(11,99,206,0.04);}
+.rubric-table tbody td{padding:6px 9px;border-bottom:1px solid rgba(11,99,206,0.1);vertical-align:top;color:#1a2a3a;}
+.rubric-table tbody td:first-child{font-family:"Fredoka",sans-serif;font-size:0.82rem;color:#0b63ce;font-weight:700;white-space:nowrap;}
+/* Anime image card */
+.anime-img-card{border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(11,99,206,0.14);position:relative;}
+.anime-img-card img{width:100%;height:100%;object-fit:cover;display:block;}
+.anime-img-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(11,25,41,0.88),transparent);padding:8px 12px;font-family:"Fredoka",sans-serif;font-size:0.88rem;font-weight:600;color:#fff;}
+/* Deco shape for parallax */
+.deco-shape{position:absolute;border-radius:50%;pointer-events:none;will-change:transform;}
 </style>
 </head>
 <body>
 <div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
+
 <div class="deck">
 
-<!-- ═══════════ SLIDE 1: TITLE ═══════════ -->
-<div class="slide slide-1 active" data-slide="1">
+<!-- ═══════════════════════════════════════
+     SLIDE 1 — TITLE
+═══════════════════════════════════════ -->
+<div class="slide active" data-slide="1">
   <div class="gradient-mesh">
-    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.08;"></div>
+    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.09;"></div>
     <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:220px;height:220px;top:45%;left:20%;background:#f59e0b;opacity:0.06;"></div>
+    <div class="blob" style="width:220px;height:220px;top:40%;left:15%;background:#f59e0b;opacity:0.06;"></div>
   </div>
-  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
-  <div class="content text-center" style="display:flex;flex-direction:column;align-items:center;">
-    <div style="font-size:clamp(4rem,9vw,6.5rem);animation:float 3s ease-in-out infinite;margin-bottom:0.4rem;" class="reveal">🌍</div>
-    <div class="accent-bar mx-auto reveal"></div>
-    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5vw,3.9rem);font-weight:700;color:#0b63ce;letter-spacing:-0.01em;margin-bottom:0.4rem;line-height:1.1;">Anime's Impact on<br>Global Pop Culture</h1>
-    <p class="reveal" style="font-size:clamp(0.85rem,1.5vw,1.1rem);color:#5a7a9a;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;margin-bottom:1.2rem;">Lesson 7 · Anime Studies</p>
-    <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <span class="pill" style="background:rgba(11,99,206,0.1);color:#0b63ce;">🎌 Cultural Exchange</span>
-      <span class="pill" style="background:rgba(16,185,129,0.1);color:#059669;">🎵 Music & Fashion</span>
-      <span class="pill" style="background:rgba(245,158,11,0.1);color:#d97706;">🎬 Film & Media</span>
-      <span class="pill" style="background:rgba(139,92,246,0.1);color:#7c3aed;">🌐 Globalization</span>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+  <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+    <div class="reveal" style="font-size:clamp(3.5rem,9vw,7rem);margin-bottom:0.3rem;animation:float 3s ease-in-out infinite;">🎌</div>
+    <div class="accent-bar reveal" style="margin:0 auto 14px;"></div>
+    <div class="section-badge reveal" style="margin-bottom:12px;">Lesson 9 · Anime Studies</div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5.5vw,4rem);font-weight:700;color:#0b63ce;line-height:1.1;margin:0 0 10px;">Final Project Presentation</h1>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:500;color:#10b981;margin:0 0 14px;">Anime Appreciation &amp; Analysis</h2>
+    <p class="reveal" style="font-family:'Nunito',sans-serif;font-size:clamp(0.85rem,1.4vw,1rem);color:#5a7a9a;max-width:520px;line-height:1.6;">Today we celebrate everything you've learned — share your voice, analyze your favorite stories, and hear from each other.</p>
+    <div class="reveal" style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;justify-content:center;">
+      <span style="background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;">⏱ 60 minutes</span>
+      <span style="background:rgba(16,185,129,0.1);color:#059669;border-radius:20px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;">🎤 Student Presentations</span>
+      <span style="background:rgba(245,158,11,0.1);color:#b45309;border-radius:20px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;">🤝 Peer Feedback</span>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SLIDE 2: DO NOW – VIDEO ═══════════ -->
-<div class="slide slide-2" data-slide="2">
+<!-- ═══════════════════════════════════════
+     SLIDE 2 — DO NOW
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="2">
   <div class="gradient-mesh">
-    <div class="blob" style="width:350px;height:350px;top:-80px;right:-60px;background:#0b63ce;opacity:0.06;"></div>
-    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:#10b981;opacity:0.05;"></div>
+    <div class="blob" style="width:360px;height:360px;top:-80px;left:-80px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="deco-shape" data-speed="0.03" style="width:180px;height:180px;top:10%;right:8%;background:radial-gradient(circle,rgba(11,99,206,0.06),transparent 70%);"></div>
+  <div class="content">
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge reveal">Do Now · 5 Minutes</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;color:#1a2a3a;margin:0 0 18px;">✏️ Warm-Up Reflection</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="card reveal" style="padding:16px 18px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span class="q-num">1</span>
+          <span style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#0b63ce;">Your Favorite Moment</span>
+        </div>
+        <p style="font-size:0.82rem;color:#2d4a6b;margin:0 0 8px;line-height:1.5;">Think back across all 9 lessons. What anime moment stood out most to you?</p>
+        <textarea class="fill-textarea" rows="3" placeholder="Write your answer here…"></textarea>
+      </div>
+      <div class="card reveal" style="padding:16px 18px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span class="q-num green">2</span>
+          <span style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#059669;">Why It Stood Out</span>
+        </div>
+        <p style="font-size:0.82rem;color:#2d4a6b;margin:0 0 8px;line-height:1.5;">What made it memorable? Was it the story, a character, animation, theme, or emotion?</p>
+        <textarea class="fill-textarea" rows="3" placeholder="What made this moment special…"></textarea>
+      </div>
+      <div class="card reveal" style="padding:16px 18px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span class="q-num amber">3</span>
+          <span style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#b45309;">Connect to Your Project</span>
+        </div>
+        <p style="font-size:0.82rem;color:#2d4a6b;margin:0 0 8px;line-height:1.5;">How does that moment connect to the anime you'll present today?</p>
+        <textarea class="fill-textarea" rows="3" placeholder="The connection is…"></textarea>
+      </div>
+      <div class="card reveal" style="padding:16px 18px;background:rgba(11,99,206,0.04);">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#0b63ce;margin:0 0 8px;">📌 Today's Driving Question</p>
+        <p class="discussion-q" style="font-size:0.88rem;margin:0;">"What makes an anime truly great — story, character, culture, or something deeper?"</p>
+        <p style="font-size:0.76rem;color:#5a7a9a;margin:8px 0 0;font-style:italic;">Keep this in mind all day — return to it at the end!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 3 — AGENDA
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="3">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:400px;height:400px;top:-100px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-50px;background:#f59e0b;opacity:0.06;"></div>
   </div>
   <div class="content">
-    <div class="section-badge reveal">🎬 Do Now — 5 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.5rem;">Watch & Notice</h2>
-    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:start;" class="reveal">
-      <div>
-        <div class="vid-thumb-wrap" id="vid-donow-wrap" onclick="playVid('donow')" style="width:100%;">
-          <img src="https://i.ytimg.com/vi/qZ7UI3lzkCQ/hqdefault.jpg" alt="How Anime FOREVER CHANGED Western Media thumbnail" loading="eager" onerror="this.style.display='none'">
-          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge reveal">Today's Plan · 60 Minutes</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:#1a2a3a;margin:0 0 16px;">🗓️ Agenda: Our Journey Today</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.1);border-radius:12px;padding:10px 14px;">
+        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#0b63ce;min-width:42px;">5 min</span>
+        <div>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Do Now + Warm-Up</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Reflect on your favorite moment</p>
         </div>
-        <div id="vid-donow-iframe" class="vid-iframe-wrap" style="aspect-ratio:16/9;"></div>
-        <a class="vid-source-link" href="https://www.youtube.com/watch?v=qZ7UI3lzkCQ" target="_blank" rel="noopener">▶ youtube.com/watch?v=qZ7UI3lzkCQ</a>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div class="card" style="padding:14px 16px;">
-          <p style="font-size:0.8rem;font-weight:700;color:#0b63ce;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">Notice & Wonder</p>
-          <p style="font-size:0.8rem;color:#5a7a9a;margin-bottom:5px;">While watching, jot down what you observe:</p>
-          <input class="fill-input" style="margin-top:4px;" placeholder="I notice…" type="text">
-          <input class="fill-input" style="margin-top:6px;" placeholder="I wonder…" type="text">
+      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.1);border-radius:12px;padding:10px 14px;">
+        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#10b981;min-width:42px;">10 min</span>
+        <div>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Review Anime as Art</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">4 pillars of analysis + vocab</p>
         </div>
-        <div class="card" style="padding:12px 16px;background:rgba(16,185,129,0.05);border:1.5px solid rgba(16,185,129,0.18);">
-          <p style="font-size:0.8rem;font-weight:700;color:#059669;margin-bottom:5px;">Today's Driving Question:</p>
-          <p style="font-size:0.82rem;color:#2d4a6b;font-style:italic;">"If anime was made in Japan, why does the whole world feel like it belongs to them?"</p>
+      </div>
+      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.1);border-radius:12px;padding:10px 14px;">
+        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#f59e0b;min-width:42px;">5 min</span>
+        <div>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Presentation Setup</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Get stations ready, grab rubric</p>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(11,99,206,0.08);border:1.5px solid rgba(11,99,206,0.2);border-radius:12px;padding:10px 14px;">
+        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#0b63ce;min-width:42px;">25 min</span>
+        <div>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#0b63ce;margin:0;">🌟 Student Presentations</p>
+          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Share your anime analysis!</p>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:10px 14px;">
+        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#10b981;min-width:42px;">10 min</span>
+        <div>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Peer Feedback Session</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Constructive conversations</p>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:10px 14px;">
+        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#f59e0b;min-width:42px;">5 min</span>
+        <div>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Exit Ticket + Wrap-Up</p>
+          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Write one new insight gained</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SLIDE 3: VOCABULARY ═══════════ -->
-<div class="slide slide-3" data-slide="3">
+<!-- ═══════════════════════════════════════
+     SLIDE 4 — VOCABULARY
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="4">
   <div class="gradient-mesh">
-    <div class="blob" style="width:340px;height:340px;top:-70px;left:-50px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-40px;background:#f59e0b;opacity:0.06;"></div>
+    <div class="blob" style="width:350px;height:350px;top:-90px;left:-70px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-50px;background:#10b981;opacity:0.06;"></div>
   </div>
   <div class="content">
-    <div class="section-badge reveal">📖 Vocabulary</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:#1a2a3a;margin-bottom:0.9rem;">Key Terms for Today</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" class="reveal">
-      <div class="card" style="padding:12px 14px;border-top:3px solid #0b63ce;">
-        <p style="font-weight:800;font-size:0.9rem;color:#0b63ce;margin-bottom:3px;">Globalization</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">The process by which cultures, economies, and media spread worldwide</p>
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge reveal">Key Terms</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 16px;">📖 Today's Vocabulary — In Your Own Words</h2>
+    <p class="reveal" style="font-size:0.82rem;color:#5a7a9a;font-style:italic;margin:0 0 14px;">Don't copy! Write each definition as if explaining to a friend who has never watched anime.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      <div class="card reveal" style="padding:14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#0b63ce;margin:0 0 4px;">🎤 Presentation</p>
+        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Sharing your work and ideas with an audience in a structured, clear way</p>
+        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
       </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #10b981;">
-        <p style="font-weight:800;font-size:0.9rem;color:#059669;margin-bottom:3px;">Cultural Exchange</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">When ideas, art, or customs cross between different communities</p>
+      <div class="card reveal" style="padding:14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#10b981;margin:0 0 4px;">🔍 Analysis</p>
+        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Breaking down a work to understand how its parts create meaning and feeling</p>
+        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
       </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #f59e0b;">
-        <p style="font-weight:800;font-size:0.9rem;color:#d97706;margin-bottom:3px;">Pop Culture</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Entertainment and trends widely consumed by the general public</p>
+      <div class="card reveal" style="padding:14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#f59e0b;margin:0 0 4px;">💬 Critique</p>
+        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Thoughtful judgment of both strengths and areas to improve in a work</p>
+        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
       </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #8b5cf6;">
-        <p style="font-weight:800;font-size:0.9rem;color:#7c3aed;margin-bottom:3px;">Cross-media Influence</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">When one art form (anime) shapes another (film, fashion, games)</p>
-      </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #ef4444;">
-        <p style="font-weight:800;font-size:0.9rem;color:#dc2626;margin-bottom:3px;">Iconography</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Recognizable visual symbols tied to a particular culture or genre</p>
-      </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #0b63ce;">
-        <p style="font-weight:800;font-size:0.9rem;color:#0b63ce;margin-bottom:3px;">Soft Power</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">A nation's cultural influence over others through media and art — not force</p>
+      <div class="card reveal" style="padding:14px;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#8b5cf6;margin:0 0 4px;">⚖️ Evaluation</p>
+        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Judging quality using clear, fair criteria and evidence</p>
+        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
       </div>
     </div>
-    <div class="reveal" style="margin-top:10px;">
-      <input class="fill-input" placeholder="Pick one term and write your own example from an anime you know…" type="text">
+    <div class="reveal" style="margin-top:12px;" class="discussion-q">
+      <div class="discussion-q">What does it mean to truly <em>appreciate</em> an anime — not just enjoy it, but understand it? How is appreciation different from just liking something?</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SLIDE 4: ACTIVITY — VOCAB DEEP DIVE ═══════════ -->
-<div class="slide slide-4" data-slide="4">
+<!-- ═══════════════════════════════════════
+     SLIDE 5 — WHAT MAKES A GREAT PRESENTATION? + VIDEO
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="5">
   <div class="gradient-mesh">
-    <div class="blob" style="width:300px;height:300px;top:-50px;right:-40px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">✏️ Activity — 6 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Vocab in the Wild — Define It Your Way</h2>
-    <p class="reveal" style="font-size:0.82rem;color:#5a7a9a;margin-bottom:8px;">Don't copy the slide. Write each definition as if explaining to a friend who's never watched anime.</p>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;" class="reveal">
-      <div class="vocab-def-card">
-        <div class="term">🌐 Globalization</div>
-        <span class="field-lbl">My definition</span>
-        <textarea class="fill-textarea" rows="1" placeholder="Globalization means…"></textarea>
-        <span class="field-lbl">Anime example</span>
-        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. Pokémon being sold in 80 countries…" type="text">
-      </div>
-      <div class="vocab-def-card">
-        <div class="term">🔄 Cultural Exchange</div>
-        <span class="field-lbl">My definition</span>
-        <textarea class="fill-textarea" rows="1" placeholder="Cultural exchange means…"></textarea>
-        <span class="field-lbl">Real-world example</span>
-        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. Hip-hop artists sampling anime visuals…" type="text">
-      </div>
-      <div class="vocab-def-card">
-        <div class="term">🎭 Iconography</div>
-        <span class="field-lbl">My definition</span>
-        <textarea class="fill-textarea" rows="1" placeholder="Iconography means…"></textarea>
-        <span class="field-lbl">Visual symbol from anime</span>
-        <input class="fill-input" style="font-size:0.78rem;" placeholder="e.g. big eyes, Naruto headband…" type="text">
-      </div>
-      <div class="vocab-def-card">
-        <div class="term">💪 Soft Power</div>
-        <span class="field-lbl">My definition</span>
-        <textarea class="fill-textarea" rows="1" placeholder="Soft power means…"></textarea>
-        <span class="field-lbl">How Japan uses it</span>
-        <input class="fill-input" style="font-size:0.78rem;" placeholder="Japan uses anime to…" type="text">
-      </div>
-    </div>
-    <div class="reveal" style="margin-top:8px;">
-      <div class="card" style="padding:10px 14px;">
-        <p style="font-size:0.8rem;font-weight:800;color:#0b63ce;margin-bottom:5px;">Which term best explains why anime went global? <em>(pick one)</em></p>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="best-term"> Globalization</label>
-          <label class="radio-item"><input type="radio" name="best-term"> Cultural Exchange</label>
-          <label class="radio-item"><input type="radio" name="best-term"> Iconography</label>
-          <label class="radio-item"><input type="radio" name="best-term"> Soft Power</label>
-        </div>
-        <input class="fill-input" style="font-size:0.8rem;margin-top:6px;" placeholder="I chose this because…" type="text">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 5: STATS ═══════════ -->
-<div class="slide slide-5" data-slide="5">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-50px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">📊 The Numbers</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:1rem;">How Big Has Anime Become?</h2>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;" class="reveal">
-      <div class="card" style="padding:14px 12px;text-align:center;border-top:4px solid #0b63ce;">
-        <div class="stat-big">$33B</div>
-        <div class="stat-label" style="margin-top:4px;">Global Market 2023</div>
-        <p style="font-size:0.72rem;color:#5a7a9a;margin-top:4px;">↑ from $25B in 2020</p>
-      </div>
-      <div class="card" style="padding:14px 12px;text-align:center;border-top:4px solid #10b981;">
-        <div class="stat-big">150M+</div>
-        <div class="stat-label" style="margin-top:4px;">Netflix Households</div>
-        <p style="font-size:0.72rem;color:#5a7a9a;margin-top:4px;">Watching anime globally</p>
-      </div>
-      <div class="card" style="padding:14px 12px;text-align:center;border-top:4px solid #f59e0b;">
-        <div class="stat-big">80%</div>
-        <div class="stat-label" style="margin-top:4px;">YouTube Views</div>
-        <p style="font-size:0.72rem;color:#5a7a9a;margin-top:4px;">Outside Japan</p>
-      </div>
-      <div class="card" style="padding:14px 12px;text-align:center;border-top:4px solid #8b5cf6;">
-        <div class="stat-big">190+</div>
-        <div class="stat-label" style="margin-top:4px;">Countries Reached</div>
-        <p style="font-size:0.72rem;color:#5a7a9a;margin-top:4px;">Via streaming platforms</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div class="card" style="padding:10px 14px;border-left:4px solid #0b63ce;">
-        <p style="font-size:0.8rem;font-weight:700;color:#0b63ce;margin-bottom:4px;">🚀 Fastest Growing Markets</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Southeast Asia +42%, Latin America +38%, Middle East +29% (2020–2023)</p>
-      </div>
-      <div class="card" style="padding:10px 14px;border-left:4px solid #10b981;">
-        <p style="font-size:0.8rem;font-weight:700;color:#059669;margin-bottom:4px;">🏆 Most Watched Series Globally</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Attack on Titan · Demon Slayer · One Piece · Naruto · My Hero Academia</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 6: ACTIVITY — STATS ANALYSIS ═══════════ -->
-<div class="slide slide-6" data-slide="6">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:300px;height:300px;top:-60px;left:-40px;background:#f59e0b;opacity:0.07;"></div>
-    <div class="blob" style="width:240px;height:240px;bottom:-50px;right:-30px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">📊 Activity — 7 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.5rem;">Read the Data — Decode It</h2>
-    <p class="reveal" style="font-size:0.82rem;color:#5a7a9a;margin-bottom:8px;">Use the stats from the last slide. Fill in the table — then answer the bottom questions.</p>
-    <div class="reveal" style="margin-bottom:10px;">
-      <table class="compare-table">
-        <thead><tr><th>Stat</th><th>What it means in plain English</th><th>Why it's surprising</th><th>One question it raises</th></tr></thead>
-        <tbody>
-          <tr><td>$33B market</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="I'm surprised because…"></td><td><input type="text" placeholder="I wonder…"></td></tr>
-          <tr><td>150M Netflix HH</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="I'm surprised because…"></td><td><input type="text" placeholder="I wonder…"></td></tr>
-          <tr><td>80% views outside Japan</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="I'm surprised because…"></td><td><input type="text" placeholder="I wonder…"></td></tr>
-          <tr><td>190 countries on Netflix</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="I'm surprised because…"></td><td><input type="text" placeholder="I wonder…"></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div class="card" style="padding:10px 14px;border-left:4px solid #0b63ce;">
-        <p style="font-size:0.8rem;font-weight:800;color:#0b63ce;margin-bottom:4px;">Which region surprises you most?</p>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="region"> Latin America</label>
-          <label class="radio-item"><input type="radio" name="region"> USA</label>
-          <label class="radio-item"><input type="radio" name="region"> Middle East</label>
-          <label class="radio-item"><input type="radio" name="region"> Africa</label>
-        </div>
-      </div>
-      <div class="card" style="padding:10px 14px;border-left:4px solid #f59e0b;">
-        <p style="font-size:0.8rem;font-weight:800;color:#d97706;margin-bottom:4px;">What drives anime's growth? Check all that apply:</p>
-        <div class="cb-group">
-          <label class="cb-item"><input type="checkbox"> Streaming platforms</label>
-          <label class="cb-item"><input type="checkbox"> Universal themes</label>
-          <label class="cb-item"><input type="checkbox"> Social media</label>
-          <label class="cb-item"><input type="checkbox"> Gaming crossover</label>
-          <label class="cb-item"><input type="checkbox"> Music collabs</label>
-          <label class="cb-item"><input type="checkbox"> Fashion/merch</label>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 7: WESTERN ANIMATION ═══════════ -->
-<div class="slide slide-7" data-slide="7">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:360px;height:360px;top:-80px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#f59e0b;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">🎬 Film & TV</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">How Has Anime Shaped Western Animation?</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
-          <p style="font-weight:800;font-size:0.88rem;color:#0b63ce;margin-bottom:4px;">🌊 Avatar: The Last Airbender</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Explicitly anime-inspired; creators cited Dragon Ball Z, FLCL, and Miyazaki. Fluid bending animation, moral grey characters — it changed what US cartoons could be.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;border-left:4px solid #10b981;">
-          <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:4px;">🕷 Spider-Man: Into the Spider-Verse</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Deliberately used manga-style Ben-Day dots, speed lines, and 12fps "anime smears." Won the Oscar for Best Animated Film (2019).</p>
-        </div>
-        <div class="card" style="padding:12px 14px;border-left:4px solid #f59e0b;">
-          <p style="font-weight:800;font-size:0.88rem;color:#d97706;margin-bottom:4px;">🥊 Creed III (2023)</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Director Michael B. Jordan cited Hajime no Ippo and Baki. Fight scenes used anime camera angles and visual metaphors — first mainstream Hollywood film to do this openly.</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-left:4px solid #8b5cf6;">
-          <p style="font-weight:800;font-size:0.88rem;color:#7c3aed;margin-bottom:4px;">💊 The Matrix (1999)</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Wachowskis storyboarded scenes using Ghost in the Shell. The "bullet time" effect was borrowed from anime. They screened GitS for WB executives to pitch the concept.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);">
-          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">🤔 Think About It</p>
-          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:6px;">Without anime, would these films look the way they do?</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="I think the biggest anime influence on Western media is…" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 8: VIDEO CLIP ═══════════ -->
-<div class="slide slide-8" data-slide="8">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:340px;height:340px;top:-70px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.05;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">🎬 Video Clip</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.5rem;">Anime's Impact on Hollywood & Animation</h2>
-    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px;align-items:start;" class="reveal">
-      <div>
-        <div class="vid-thumb-wrap" id="vid-western-wrap" onclick="playVid('western')" style="width:100%;">
-          <img src="https://i.ytimg.com/vi/7kS1WgLnDsE/hqdefault.jpg" alt="How Anime Impacted Western Animation thumbnail" loading="eager" onerror="this.style.display='none'">
-          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div id="vid-western-iframe" class="vid-iframe-wrap" style="aspect-ratio:16/9;"></div>
-        <a class="vid-source-link" href="https://www.youtube.com/watch?v=7kS1WgLnDsE" target="_blank" rel="noopener">▶ youtube.com/watch?v=7kS1WgLnDsE</a>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="discussion-q">While watching — what visual technique or storytelling choice do you spot that came from anime?</div>
-        <div class="card" style="padding:12px 14px;">
-          <p style="font-size:0.8rem;font-weight:700;color:#0b63ce;margin-bottom:5px;">Note one thing you see:</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="I spotted…" type="text">
-        </div>
-        <div class="card" style="padding:10px 14px;background:rgba(16,185,129,0.05);">
-          <p style="font-size:0.78rem;color:#2d4a6b;"><strong>After watching:</strong> Does knowing about anime's influence change how you see Western films? Why or why not?</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 9: ACTIVITY — COMPARISON TABLE ═══════════ -->
-<div class="slide slide-9" data-slide="9">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:300px;height:300px;top:-60px;left:-40px;background:#8b5cf6;opacity:0.07;"></div>
-    <div class="blob" style="width:240px;height:240px;bottom:-50px;right:-30px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">🎬 Activity — 7 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.5rem;">Anime vs. Western Animation — Style Comparison</h2>
-    <p class="reveal" style="font-size:0.82rem;color:#5a7a9a;margin-bottom:8px;">Fill in the table using examples from today. The last column is for <em>your opinion</em>.</p>
-    <div class="reveal" style="margin-bottom:10px;">
-      <table class="compare-table">
-        <thead><tr><th>Element</th><th>🎌 Anime Style</th><th>🎬 Western Animation</th><th>Which do you prefer & why?</th></tr></thead>
-        <tbody>
-          <tr><td>Art style</td><td><input type="text" placeholder="e.g. big eyes, speed lines…"></td><td><input type="text" placeholder="e.g. exaggerated, rounded…"></td><td><input type="text" placeholder="I prefer… because…"></td></tr>
-          <tr><td>Storytelling</td><td><input type="text" placeholder="e.g. long arcs, emotional depth…"></td><td><input type="text" placeholder="e.g. episodic, lighter tone…"></td><td><input type="text" placeholder="I prefer… because…"></td></tr>
-          <tr><td>Characters</td><td><input type="text" placeholder="e.g. flawed heroes, growth…"></td><td><input type="text" placeholder="e.g. comedic, simple goals…"></td><td><input type="text" placeholder="I prefer… because…"></td></tr>
-          <tr><td>Cultural roots</td><td><input type="text" placeholder="e.g. Japanese society, Shinto…"></td><td><input type="text" placeholder="e.g. American values, humor…"></td><td><input type="text" placeholder="I prefer… because…"></td></tr>
-          <tr><td>Famous example</td><td><input type="text" placeholder="e.g. Demon Slayer, MHA…"></td><td><input type="text" placeholder="e.g. Avatar, Spider-Verse…"></td><td><input type="text" placeholder="I prefer… because…"></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div class="card" style="padding:10px 14px;border-left:4px solid #10b981;">
-        <p style="font-size:0.8rem;font-weight:800;color:#059669;margin-bottom:4px;">What do both have in common?</p>
-        <input class="fill-input" style="font-size:0.8rem;" placeholder="Both anime and Western animation…" type="text">
-      </div>
-      <div class="card" style="padding:10px 14px;border-left:4px solid #f59e0b;">
-        <p style="font-size:0.8rem;font-weight:800;color:#d97706;margin-bottom:4px;">Spider-Verse borrowed from anime. Was that…</p>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="borrow"> 👍 Appreciation</label>
-          <label class="radio-item"><input type="radio" name="borrow"> 👎 Appropriation</label>
-          <label class="radio-item"><input type="radio" name="borrow"> 🤷 Both</label>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 10: STUDIO GHIBLI ═══════════ -->
-<div class="slide slide-10" data-slide="10">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:360px;height:360px;top:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:270px;height:270px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">🏰 Studio Ghibli</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Spirited Away — A Story the Whole World Claimed</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-top:4px solid #10b981;">
-          <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:5px;">📈 By the Numbers</p>
-          <ul style="font-size:0.8rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-            <li>$395M worldwide box office (2001)</li>
-            <li>1st non-English film to earn $100M in the US (2003)</li>
-            <li>Academy Award for Best Animated Feature (2003)</li>
-            <li>Still #1 highest-grossing Japanese film of all time</li>
-          </ul>
-        </div>
-        <div class="card" style="padding:12px 14px;border-top:4px solid #0b63ce;">
-          <p style="font-weight:800;font-size:0.88rem;color:#0b63ce;margin-bottom:5px;">🎬 Why It Crossed Over</p>
-          <ul style="font-size:0.8rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-            <li>Universal themes: identity, labor, growing up</li>
-            <li>Pixar's John Lasseter championed its US release</li>
-            <li>No dialogue-heavy exposition — visual storytelling</li>
-          </ul>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(11,99,206,0.14);aspect-ratio:4/3;">
-          <img src="https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png" alt="Spirited Away official poster" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.parentElement.style.background='rgba(11,99,206,0.08)';this.style.display='none';">
-        </div>
-        <div class="card" style="padding:10px 14px;background:rgba(16,185,129,0.05);">
-          <p style="font-size:0.78rem;color:#2d4a6b;font-style:italic;">"Miyazaki films exist outside the usual anime box. They're cinema." — Roger Ebert, 2003</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 11: ACTIVITY — GHIBLI COLOR & THEME ANALYSIS ═══════════ -->
-<div class="slide slide-11" data-slide="11">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:300px;height:300px;top:-50px;right:-40px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-30px;background:#f59e0b;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">🏰 Activity — 7 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Spirited Away — Decode the Story</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:11px 14px;">
-          <p style="font-size:0.8rem;font-weight:800;color:#059669;margin-bottom:5px;">🌍 What universal themes appear? <em>(check all you see)</em></p>
-          <div class="cb-group">
-            <label class="cb-item"><input type="checkbox"> Identity / Growing up</label>
-            <label class="cb-item"><input type="checkbox"> Greed / Capitalism</label>
-            <label class="cb-item"><input type="checkbox"> Family &amp; belonging</label>
-            <label class="cb-item"><input type="checkbox"> Environmental damage</label>
-            <label class="cb-item"><input type="checkbox"> Hard work &amp; earning respect</label>
-            <label class="cb-item"><input type="checkbox"> Fear of the unknown</label>
-          </div>
-          <input class="fill-input" style="font-size:0.78rem;margin-top:6px;" placeholder="The theme I connect with most is… because in my life…" type="text">
-        </div>
-        <div class="card" style="padding:11px 14px;border-left:4px solid #0b63ce;">
-          <p style="font-size:0.8rem;font-weight:800;color:#0b63ce;margin-bottom:4px;">🎌 Name one specifically Japanese element</p>
-          <input class="fill-input" style="font-size:0.8rem;" placeholder="e.g. Shinto bathhouse spirits, onigiri…" type="text">
-          <p style="font-size:0.78rem;color:#5a7a9a;margin-top:5px;margin-bottom:4px;">Would removing it weaken the film?</p>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="remove"> Yes, deeply</label>
-            <label class="radio-item"><input type="radio" name="remove"> Slightly</label>
-            <label class="radio-item"><input type="radio" name="remove"> Not really</label>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:11px 14px;">
-          <p style="font-size:0.8rem;font-weight:800;color:#d97706;margin-bottom:5px;">🎨 Spirited Away Color Analysis — choose a scene</p>
-          <input class="fill-input" style="font-size:0.78rem;margin-bottom:6px;" placeholder="Scene I'm analyzing: e.g. bathhouse arrival…" type="text">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div style="background:rgba(239,68,68,0.06);border:1.5px solid rgba(239,68,68,0.2);border-radius:8px;padding:7px 9px;">
-              <p style="font-size:0.72rem;font-weight:800;color:#dc2626;margin-bottom:3px;">🔴 Warm tones</p>
-              <input class="fill-input" style="font-size:0.72rem;" placeholder="Where + what feeling?" type="text">
-            </div>
-            <div style="background:rgba(11,99,206,0.06);border:1.5px solid rgba(11,99,206,0.2);border-radius:8px;padding:7px 9px;">
-              <p style="font-size:0.72rem;font-weight:800;color:#0b63ce;margin-bottom:3px;">🔵 Cool tones</p>
-              <input class="fill-input" style="font-size:0.72rem;" placeholder="Where + what feeling?" type="text">
-            </div>
-          </div>
-          <input class="fill-input" style="font-size:0.78rem;margin-top:6px;" placeholder="Before anyone speaks, the colors tell me…" type="text">
-        </div>
-        <div class="card" style="padding:11px 14px;border-left:4px solid #8b5cf6;">
-          <p style="font-size:0.8rem;font-weight:800;color:#7c3aed;margin-bottom:4px;">💪 Soft Power question</p>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:4px;">When a Japanese film wins a Hollywood Oscar, who benefits more?</p>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="oscar"> Japan</label>
-            <label class="radio-item"><input type="radio" name="oscar"> Hollywood</label>
-            <label class="radio-item"><input type="radio" name="oscar"> Both equally</label>
-          </div>
-          <input class="fill-input" style="font-size:0.78rem;margin-top:5px;" placeholder="Because…" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 12: HIP-HOP & MUSIC ═══════════ -->
-<div class="slide slide-12" data-slide="12">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:350px;height:350px;top:-70px;right:-50px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:400px;height:400px;top:-80px;right:-80px;background:#10b981;opacity:0.07;"></div>
     <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
   </div>
   <div class="content">
-    <div class="section-badge reveal">🎵 Music</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Anime & Hip-Hop: A Deep Connection</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-left:4px solid #f59e0b;">
-          <p style="font-weight:800;font-size:0.88rem;color:#d97706;margin-bottom:4px;">🎤 Kanye West × Akira (2010)</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">"Stronger" MV used Akira footage directly. Akira's cyberpunk aesthetic influenced his entire Graduation visual language.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;border-left:4px solid #10b981;">
-          <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:4px;">🎤 Megan Thee Stallion</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Called herself a "Houston hottie Naruto runner." Has released anime-themed merch collabing with My Hero Academia and Demon Slayer — 2M units sold in 48 hours.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;border-left:4px solid #8b5cf6;">
-          <p style="font-weight:800;font-size:0.88rem;color:#7c3aed;margin-bottom:4px;">🎤 Michael Jackson</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Hired Katsuhiro Otomo (Akira director) for the "HIStory" tour visuals. Was in talks to produce an anime film at the time of his death.</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
-          <p style="font-weight:800;font-size:0.88rem;color:#0b63ce;margin-bottom:4px;">🎵 Cowboy Bebop's Legacy</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Yoko Kanno's jazz-fusion soundtrack made anime playlists staples. Spotify reports 200M+ streams. Anime OSTs now chart on Billboard.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;background:rgba(245,158,11,0.07);border:1.5px solid rgba(245,158,11,0.2);">
-          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:5px;">🤔 Think About This</p>
-          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:6px;">Both hip-hop and anime were once seen as "niche" or "underground." What do they have in common?</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="Both hip-hop and anime share…" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 13: ACTIVITY — MUSIC × ANIME CONNECTION ═══════════ -->
-<div class="slide slide-13" data-slide="13">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#f59e0b;opacity:0.07;"></div>
-    <div class="blob" style="width:230px;height:230px;bottom:-50px;left:-30px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">🎵 Activity — 7 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.5rem;">Music &amp; Anime — Chart the Connection</h2>
-    <div class="reveal" style="margin-bottom:8px;">
-      <table class="compare-table">
-        <thead><tr><th>Artist / Song</th><th>Anime Reference</th><th>Type of connection</th><th>Cultural exchange or appropriation?</th></tr></thead>
-        <tbody>
-          <tr><td>Kanye – Stronger</td><td><input type="text" placeholder="Which anime?"></td><td><input type="text" placeholder="e.g. visuals, samples, theme…"></td><td><input type="text" placeholder="Exchange / Appropriation / Both"></td></tr>
-          <tr><td>Michael Jackson – Scream</td><td><input type="text" placeholder="Which anime?"></td><td><input type="text" placeholder="e.g. clips in MV…"></td><td><input type="text" placeholder="Exchange / Appropriation / Both"></td></tr>
-          <tr><td>My pick</td><td><input type="text" placeholder="Artist + Song…"></td><td><input type="text" placeholder="How it connects to anime…"></td><td><input type="text" placeholder="Your judgment…"></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div class="card" style="padding:11px 14px;">
-        <p style="font-size:0.8rem;font-weight:800;color:#d97706;margin-bottom:4px;">Why do hip-hop &amp; anime connect? Check all that apply:</p>
-        <div class="cb-group">
-          <label class="cb-item"><input type="checkbox"> Both came from marginalized communities</label>
-          <label class="cb-item"><input type="checkbox"> Both use visuals to tell emotional stories</label>
-          <label class="cb-item"><input type="checkbox"> Both challenge mainstream culture</label>
-          <label class="cb-item"><input type="checkbox"> Both celebrate the underdog</label>
-          <label class="cb-item"><input type="checkbox"> Shared fanbase (youth, urban)</label>
-        </div>
-      </div>
-      <div class="card" style="padding:11px 14px;border-left:4px solid #8b5cf6;">
-        <p style="font-size:0.8rem;font-weight:800;color:#7c3aed;margin-bottom:4px;">"Anime is just entertainment — not real cultural exchange." Do you…</p>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="exchange"> Agree</label>
-          <label class="radio-item"><input type="radio" name="exchange"> Disagree</label>
-          <label class="radio-item"><input type="radio" name="exchange"> It depends</label>
-        </div>
-        <textarea class="fill-textarea" rows="2" style="margin-top:6px;" placeholder="My evidence…"></textarea>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 14: FASHION ═══════════ -->
-<div class="slide slide-14" data-slide="14">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:340px;height:340px;top:-70px;right:-50px;background:#ec4899;opacity:0.07;"></div>
-    <div class="blob" style="width:270px;height:270px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">👗 Fashion</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Anime on the Runway & the Streets</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-top:4px solid #ec4899;">
-          <p style="font-weight:800;font-size:0.88rem;color:#db2777;margin-bottom:4px;">👟 Streetwear & Collabs</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Nike × Dragon Ball Z, Uniqlo UT x Evangelion, Supreme × Akira, Louis Vuitton × Murakami (whose art was anime-influenced). Merch now a $15B+ industry.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;border-top:4px solid #f59e0b;">
-          <p style="font-weight:800;font-size:0.88rem;color:#d97706;margin-bottom:4px;">🎭 Cosplay Economy</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Global cosplay market valued at $6.7B (2023). Over 40M active cosplayers worldwide. Anime characters make up 60% of convention costumes.</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-top:4px solid #10b981;">
-          <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:4px;">🗼 Harajuku → Global</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Tokyo's Harajuku district was the origin point for Lolita, Fairy Kei, and Visual Kei — all anime-influenced street styles now worn from São Paulo to Seoul.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;background:rgba(236,72,153,0.06);border:1.5px solid rgba(236,72,153,0.2);">
-          <p style="font-weight:800;font-size:0.85rem;color:#db2777;margin-bottom:5px;">🤔 Fashion Question</p>
-          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:5px;">Have you ever worn clothing inspired by anime? What did it mean to you?</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="My experience with anime-inspired style…" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 15: ACTIVITY — FASHION FOOTPRINT ═══════════ -->
-<div class="slide slide-15" data-slide="15">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:290px;height:290px;top:-50px;left:-40px;background:#ec4899;opacity:0.07;"></div>
-    <div class="blob" style="width:240px;height:240px;bottom:-50px;right:-30px;background:#f59e0b;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">👗 Activity — 7 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Map Anime's Fashion Footprint</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:11px 14px;">
-          <p style="font-size:0.8rem;font-weight:800;color:#db2777;margin-bottom:4px;">👟 Where have you seen anime in fashion? <em>(check all)</em></p>
-          <div class="cb-group">
-            <label class="cb-item"><input type="checkbox"> T-shirts / hoodies</label>
-            <label class="cb-item"><input type="checkbox"> Sneaker collabs</label>
-            <label class="cb-item"><input type="checkbox"> Cosplay at cons</label>
-            <label class="cb-item"><input type="checkbox"> High fashion runways</label>
-            <label class="cb-item"><input type="checkbox"> Social media influencers</label>
-            <label class="cb-item"><input type="checkbox"> School hallways</label>
-            <label class="cb-item"><input type="checkbox"> Phone cases / accessories</label>
-          </div>
-          <input class="fill-input" style="font-size:0.78rem;margin-top:6px;" placeholder="Most memorable anime fashion moment I've seen…" type="text">
-        </div>
-        <div class="card" style="padding:11px 14px;border-left:4px solid #f59e0b;">
-          <p style="font-size:0.8rem;font-weight:800;color:#d97706;margin-bottom:4px;">🎭 Cosplay / Merch moment</p>
-          <input class="fill-input" style="font-size:0.8rem;margin-bottom:4px;" placeholder="Character or item:" type="text">
-          <input class="fill-input" style="font-size:0.8rem;" placeholder="What it communicated to others…" type="text">
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:11px 14px;">
-          <p style="font-size:0.8rem;font-weight:800;color:#0b63ce;margin-bottom:4px;">🛍 Design Challenge — your ideal anime fashion item</p>
-          <span class="field-lbl">Item type (shirt, bag, sneaker…)</span>
-          <input class="fill-input" style="font-size:0.8rem;" placeholder="I would design a…" type="text">
-          <span class="field-lbl">Anime &amp; design concept</span>
-          <input class="fill-input" style="font-size:0.8rem;" placeholder="Based on… with these visual elements…" type="text">
-          <span class="field-lbl">Target audience</span>
-          <input class="fill-input" style="font-size:0.8rem;" placeholder="I'd market this to…" type="text">
-        </div>
-        <div class="card" style="padding:11px 14px;border-left:4px solid #10b981;">
-          <p style="font-size:0.8rem;font-weight:800;color:#059669;margin-bottom:4px;">Wearing anime merch is…</p>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="merch"> Cultural appreciation</label>
-            <label class="radio-item"><input type="radio" name="merch"> Cultural appropriation</label>
-            <label class="radio-item"><input type="radio" name="merch"> Depends on context</label>
-          </div>
-          <textarea class="fill-textarea" rows="2" style="margin-top:5px;" placeholder="The key difference is… it becomes problematic when…"></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 16: NARUTO ═══════════ -->
-<div class="slide slide-16" data-slide="16">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:360px;height:360px;top:-80px;right:-60px;background:#f59e0b;opacity:0.08;"></div>
-    <div class="blob" style="width:270px;height:270px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">🍥 Course Anime: Naruto</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.5rem;">Why Did Naruto Become a Global Icon?</h2>
-    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:start;" class="reveal">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
       <div>
-        <div class="vid-thumb-wrap" id="vid-naruto-wrap" onclick="playVid('naruto')" style="width:100%;">
-          <img src="https://i.ytimg.com/vi/q1aq9GEHR8Q/hqdefault.jpg" alt="Naruto OP1 ROCKS thumbnail" loading="eager" onerror="this.style.display='none'">
-          <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="accent-bar reveal"></div>
+        <div class="section-badge reveal">Discussion · 5 min</div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🎯 What Makes a Presentation Engaging?</h2>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <label class="cb-item reveal"><input type="checkbox"> Clear, focused main idea</label>
+          <label class="cb-item reveal"><input type="checkbox"> Specific examples &amp; evidence</label>
+          <label class="cb-item reveal"><input type="checkbox"> Passion for the topic</label>
+          <label class="cb-item reveal"><input type="checkbox"> Connection to audience's experience</label>
+          <label class="cb-item reveal"><input type="checkbox"> Visuals or clips that support the point</label>
+          <label class="cb-item reveal"><input type="checkbox"> Storytelling structure (beginning, middle, end)</label>
         </div>
-        <div id="vid-naruto-iframe" class="vid-iframe-wrap" style="aspect-ratio:16/9;"></div>
-        <a class="vid-source-link" href="https://www.youtube.com/watch?v=q1aq9GEHR8Q" target="_blank" rel="noopener">▶ youtube.com/watch?v=q1aq9GEHR8Q</a>
+        <div class="discussion-q reveal" style="margin-top:10px;">How can you effectively convey your appreciation for an anime series or film to someone who's never seen it?</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-left:4px solid #f59e0b;">
-          <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:5px;">🌍 The Outsider Story</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Naruto = the kid nobody believed in. This resonated across Latin America, Africa, Southeast Asia. Every culture has a version of this story.</p>
-        </div>
-        <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
-          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:5px;">🎤 Naruto in Hip-Hop</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Lil Uzi Vert, 21 Savage, Offset have cited Naruto. The "Naruto run" entered global vernacular. 720K people RSVP'd to "Storm Area 51" doing the Naruto run.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 17: ACTIVITY — NARUTO VIDEO NOTES + ANALYSIS ═══════════ -->
-<div class="slide slide-17" data-slide="17">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:290px;height:290px;top:-50px;left:-40px;background:#f59e0b;opacity:0.08;"></div>
-    <div class="blob" style="width:240px;height:240px;bottom:-50px;right:-30px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">🍥 Activity — 8 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Naruto OP — Watch, Analyze, Connect</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="tip-box-green">Video Notes — answer while watching the opening.</div>
-        <div class="card" style="padding:11px 14px;">
-          <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num">1</span><p style="font-size:0.8rem;font-weight:700;color:#1a2a3a;margin:0;">What emotion does the opening create in the first 10 seconds?</p></div>
-          <textarea class="fill-textarea" rows="2" placeholder="Emotion: … Caused by (music/visual): …"></textarea>
-        </div>
-        <div class="card" style="padding:11px 14px;">
-          <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num amber">2</span><p style="font-size:0.8rem;font-weight:700;color:#1a2a3a;margin:0;">What specific visual or sound choice hits hardest? Why?</p></div>
-          <textarea class="fill-textarea" rows="2" placeholder="The moment that hits is… because…"></textarea>
-        </div>
-        <div class="card" style="padding:11px 14px;">
-          <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num green">3</span><p style="font-size:0.8rem;font-weight:700;color:#1a2a3a;margin:0;">What does the animation style tell you about Naruto <em>before</em> you know the story?</p></div>
-          <textarea class="fill-textarea" rows="2" placeholder="The style suggests this is a story about…"></textarea>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:11px 14px;border-left:4px solid #f59e0b;">
-          <p style="font-size:0.8rem;font-weight:800;color:#d97706;margin-bottom:5px;">The Outsider Feeling — connect to your life</p>
-          <textarea class="fill-textarea" rows="2" placeholder="A time I felt like an outsider… and what helped me push through…"></textarea>
-        </div>
-        <div class="card" style="padding:11px 14px;border-left:4px solid #8b5cf6;">
-          <p style="font-size:0.8rem;font-weight:800;color:#7c3aed;margin-bottom:4px;">Naruto's exclusion is about something he was born with. This represents…</p>
-          <div class="cb-group">
-            <label class="cb-item"><input type="checkbox"> Racial discrimination</label>
-            <label class="cb-item"><input type="checkbox"> Disability stigma</label>
-            <label class="cb-item"><input type="checkbox"> Socioeconomic class</label>
-            <label class="cb-item"><input type="checkbox"> Being an immigrant</label>
-            <label class="cb-item"><input type="checkbox"> Mental health stigma</label>
+      <div class="reveal">
+        <div class="section-badge green" style="margin-bottom:8px;">📹 Watch &amp; Notice</div>
+        <div class="vid-wrap">
+          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/RRWOSpTta6s?autoplay=1')">
+            <img src="https://img.youtube.com/vi/RRWOSpTta6s/hqdefault.jpg" alt="How To Present Work and Receive Feedback" onerror="this.src='https://img.youtube.com/vi/RRWOSpTta6s/mqdefault.jpg'">
+            <div class="vid-thumb-bg"></div>
+            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="vid-title-overlay">Give Feedback on an Oral Presentation (~4 min)</div>
           </div>
-          <textarea class="fill-textarea" rows="2" style="margin-top:6px;" placeholder="Naruto went global because it made people feel seen by showing…"></textarea>
+          <div class="vid-iframe-wrap"></div>
+          <a class="vid-source-link" href="https://www.youtube.com/watch?v=RRWOSpTta6s" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+        <div class="tip-box" style="margin-top:10px;">
+          <strong>After watching:</strong> Which tip do you already do well? Which will you work on today?
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SLIDE 18: MY HERO ACADEMIA ═══════════ -->
-<div class="slide slide-18" data-slide="18">
+<!-- ═══════════════════════════════════════
+     SLIDE 6 — ANIME AS AN ART FORM
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="6">
   <div class="gradient-mesh">
-    <div class="blob" style="width:350px;height:350px;top:-70px;left:-50px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:270px;height:270px;bottom:-60px;right:-40px;background:#f59e0b;opacity:0.06;"></div>
+    <div class="blob" style="width:420px;height:420px;top:-100px;right:-80px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-60px;background:#0b63ce;opacity:0.07;"></div>
   </div>
+  <div class="deco-shape" data-speed="0.025" style="width:160px;height:160px;bottom:15%;right:6%;background:radial-gradient(circle,rgba(16,185,129,0.07),transparent 70%);"></div>
   <div class="content">
-    <div class="section-badge reveal">🦸 Course Anime: MHA</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">My Hero Academia — What Makes a Hero Universal?</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-left:4px solid #10b981;">
-          <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:4px;">📈 Scale of Impact</p>
-          <ul style="font-size:0.78rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-            <li>90M+ manga copies sold worldwide</li>
-            <li>$1.8B franchise value (2023)</li>
-            <li>#1 trending anime on Twitter 12x in 2023</li>
-            <li>Featured in ESPN, New York Times, Times Magazine</li>
-          </ul>
-        </div>
-        <div class="card" style="padding:12px 14px;border-left:4px solid #0b63ce;">
-          <p style="font-weight:800;font-size:0.88rem;color:#0b63ce;margin-bottom:4px;">⚡ Quirk Inequality</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Deku born without power in a world where 80% have abilities = a mirror for disability, class inequality, privilege. Western fans read it as commentary on systemic barriers.</p>
-        </div>
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge reveal">Core Framework</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🎨 Anime as Art Form &amp; Cultural Phenomenon</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+      <div class="card reveal" style="padding:14px;text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">📖</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#0b63ce;margin:0 0 4px;">Storytelling</p>
+        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Plot structure, conflict, resolution, pacing</p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(11,99,206,0.12);">
-          <img src="https://upload.wikimedia.org/wikipedia/en/8/8c/My_Hero_Academia_volume_1.png" alt="My Hero Academia Volume 1 Cover" style="width:100%;height:180px;object-fit:cover;display:block;" loading="lazy" onerror="this.parentElement.style.background='rgba(16,185,129,0.08)';this.style.display='none';">
-        </div>
-        <div class="card" style="padding:10px 14px;background:rgba(16,185,129,0.06);">
-          <p style="font-size:0.8rem;font-weight:700;color:#059669;margin-bottom:4px;">🤔 Social Justice Mirror</p>
-          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:5px;">What real-world inequality does Deku's story remind you of?</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="Deku's story parallels… because…" type="text">
-        </div>
+      <div class="card reveal" style="padding:14px;text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">🧑‍🎨</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#10b981;margin:0 0 4px;">Character Dev.</p>
+        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Growth arcs, motivation, relationships</p>
+      </div>
+      <div class="card reveal" style="padding:14px;text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">✏️</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#f59e0b;margin:0 0 4px;">Animation Style</p>
+        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Color, linework, movement, visual metaphor</p>
+      </div>
+      <div class="card reveal" style="padding:14px;text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">🌍</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#8b5cf6;margin:0 0 4px;">Thematic Depth</p>
+        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Cultural roots, social ideas, universal themes</p>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 19: ACTIVITY — PEER INTERVIEW ═══════════ -->
-<div class="slide slide-19" data-slide="19">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:300px;height:300px;top:-60px;right:-40px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:250px;height:250px;bottom:-60px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">🤝 Activity — 7 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.5rem;">Peer Interview: Naruto vs. My Hero Academia</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:10px 14px;">
-          <p style="font-size:0.72rem;font-weight:800;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Partner's Name</p>
-          <input class="fill-input" style="font-size:0.88rem;font-weight:700;" placeholder="My partner is…" type="text">
-        </div>
-        <div class="card" style="padding:11px 14px;border-left:4px solid #f59e0b;">
-          <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:4px;"><span class="q-num amber">1</span><p style="font-size:0.8rem;font-weight:700;color:#1a2a3a;margin:0;">Which outsider story hits harder — Naruto or Deku? Why?</p></div>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:4px;">Partner's pick:</p>
-          <div class="radio-group">
-            <label class="radio-item"><input type="radio" name="p1pick"> Naruto</label>
-            <label class="radio-item"><input type="radio" name="p1pick"> Deku (MHA)</label>
-            <label class="radio-item"><input type="radio" name="p1pick"> Equal</label>
-          </div>
-          <textarea class="fill-textarea" rows="2" style="margin-top:5px;" placeholder="Partner's reason…"></textarea>
-        </div>
-        <div class="card" style="padding:11px 14px;border-left:4px solid #059669;">
-          <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:4px;"><span class="q-num green">2</span><p style="font-size:0.8rem;font-weight:700;color:#1a2a3a;margin:0;">What real-world issue does their favorite anime secretly explore?</p></div>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin-bottom:4px;">Their anime: <input class="fill-input" style="font-size:0.78rem;display:inline;width:auto;" placeholder="Series name…" type="text"></p>
-          <div class="cb-group">
-            <label class="cb-item"><input type="checkbox"> Class inequality</label>
-            <label class="cb-item"><input type="checkbox"> Racism / prejudice</label>
-            <label class="cb-item"><input type="checkbox"> Mental health</label>
-            <label class="cb-item"><input type="checkbox"> War &amp; trauma</label>
-            <label class="cb-item"><input type="checkbox"> Gender / identity</label>
-            <label class="cb-item"><input type="checkbox"> Government power</label>
-          </div>
-        </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="reveal">
+        <div class="discussion-q">Your presentation should touch all 4 pillars. Which one do you feel most confident analyzing? Which one challenges you most?</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:11px 14px;border-top:4px solid #8b5cf6;">
-          <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:6px;">Your Reflection</p>
-          <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num purple">3</span><p style="font-size:0.8rem;font-weight:700;color:#1a2a3a;margin:0;">How did your partner's perspective challenge yours?</p></div>
-          <textarea class="fill-textarea" rows="2" placeholder="I was surprised by… / We agreed that…"></textarea>
-        </div>
-        <div class="card" style="padding:11px 14px;border-top:4px solid #0b63ce;">
-          <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:5px;">Class Question Generator</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;margin-bottom:4px;">Write one question for the whole class based on your conversation:</p>
-          <textarea class="fill-textarea" rows="2" placeholder="Our class question: If anime heroes all start as underdogs…"></textarea>
-        </div>
-        <div class="card" style="padding:10px 14px;background:rgba(16,185,129,0.05);">
-          <p style="font-size:0.78rem;color:#059669;font-weight:700;">How does anime's hero formula differ from Marvel or DC?</p>
-          <input class="fill-input" style="font-size:0.78rem;margin-top:5px;" placeholder="The biggest difference is…" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 20: VIDEO GAMES & TECH ═══════════ -->
-<div class="slide slide-20" data-slide="20">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:350px;height:350px;top:-70px;right:-50px;background:#8b5cf6;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">🎮 Video Games & Tech</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Anime's Fingerprints on Gaming & Technology</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" class="reveal">
-      <div class="card" style="padding:12px 14px;border-top:3px solid #8b5cf6;">
-        <p style="font-size:1.2rem;margin-bottom:4px;">🎮</p>
-        <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:3px;">JRPGs</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Final Fantasy, Dragon Quest, Persona — all built on anime visual language. JRPG genre = $8B market.</p>
-      </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #f59e0b;">
-        <p style="font-size:1.2rem;margin-bottom:4px;">⚡</p>
-        <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:3px;">Pokémon</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">$150B franchise — most valuable media IP on Earth. Directly descended from anime aesthetics. 440M+ games sold.</p>
-      </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #0b63ce;">
-        <p style="font-size:1.2rem;margin-bottom:4px;">🤖</p>
-        <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:3px;">Mecha → Real Robots</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Gundam influenced Boston Dynamics robot design. Japanese engineers cite Evangelion as inspiration for bipedal locomotion research.</p>
-      </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #10b981;">
-        <p style="font-size:1.2rem;margin-bottom:4px;">🌐</p>
-        <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:3px;">Virtual YouTubers</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Hololive's VTubers use anime avatars — 70M subscribers combined. A new entertainment category born from anime culture.</p>
-      </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #ef4444;">
-        <p style="font-size:1.2rem;margin-bottom:4px;">🎨</p>
-        <p style="font-weight:800;font-size:0.85rem;color:#dc2626;margin-bottom:3px;">AI Art & Anime</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Most image-generation AI models trained on anime datasets. "Anime-style" is the #1 most-requested prompt style on Midjourney and Stable Diffusion.</p>
-      </div>
-      <div class="card" style="padding:12px 14px;border-top:3px solid #f59e0b;">
-        <p style="font-size:1.2rem;margin-bottom:4px;">🕹️</p>
-        <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:3px;">Genshin Impact</p>
-        <p style="font-size:0.78rem;color:#2d4a6b;">Chinese anime-style game earned $4.4B in first year. Proves anime aesthetics can be adopted globally — not just Japan's.</p>
-      </div>
-    </div>
-    <div class="reveal" style="margin-top:8px;">
-      <input class="fill-input" placeholder="Which gaming or tech example surprises you most? What does it tell us about anime's reach?" type="text">
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 21: ACTIVITY — GAMES ANALYSIS TABLE ═══════════ -->
-<div class="slide slide-21" data-slide="21">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:290px;height:290px;top:-50px;right:-40px;background:#8b5cf6;opacity:0.07;"></div>
-    <div class="blob" style="width:230px;height:230px;bottom:-50px;left:-30px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">🎮 Activity — 7 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Anime's Tech Influence — Fact, So What, Proof</h2>
-    <p class="reveal" style="font-size:0.82rem;color:#5a7a9a;margin-bottom:8px;">Take each fact and push further. Fill the table, then answer the reflection below.</p>
-    <div class="reveal" style="margin-bottom:10px;">
-      <table class="compare-table">
-        <thead><tr><th>Anime / Tech Fact</th><th>What it means in plain English</th><th>So what? (Why does this matter?)</th><th>What it proves about anime's power</th></tr></thead>
-        <tbody>
-          <tr><td>⚡ Pokémon = $150B franchise</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="So what…"></td><td><input type="text" placeholder="This proves…"></td></tr>
-          <tr><td>🤖 Mecha → real robotics</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="So what…"></td><td><input type="text" placeholder="This proves…"></td></tr>
-          <tr><td>🎨 #1 AI art style = anime</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="So what…"></td><td><input type="text" placeholder="This proves…"></td></tr>
-          <tr><td>🏰 Ghibli → Minecraft islands</td><td><input type="text" placeholder="This means…"></td><td><input type="text" placeholder="So what…"></td><td><input type="text" placeholder="This proves…"></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div class="card" style="padding:10px 14px;border-left:4px solid #059669;">
-        <p style="font-size:0.8rem;font-weight:800;color:#059669;margin-bottom:4px;">Anime's influence on tech is…</p>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="tech"> Accidental</label>
-          <label class="radio-item"><input type="radio" name="tech"> Intentional</label>
-          <label class="radio-item"><input type="radio" name="tech"> A bit of both</label>
-        </div>
-        <input class="fill-input" style="font-size:0.78rem;margin-top:6px;" placeholder="My argument: I say this because…" type="text">
-      </div>
-      <div class="card" style="padding:10px 14px;border-left:4px solid #8b5cf6;">
-        <p style="font-size:0.8rem;font-weight:800;color:#7c3aed;margin-bottom:4px;">When someone says "anime is just cartoons," you'd now say…</p>
-        <textarea class="fill-textarea" rows="3" placeholder="Actually, anime has influenced… which shows that…"></textarea>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 22: BIG QUESTION ═══════════ -->
-<div class="slide slide-22" data-slide="22">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-50px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge reveal">🌐 Big Question</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">As Anime Goes Global — Does It Stay Japanese?</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
-      <div class="card" style="padding:14px 18px;border-top:4px solid #0b63ce;">
-        <p style="font-size:1.3rem;margin-bottom:6px;">✅</p>
-        <p style="font-weight:800;font-size:0.92rem;color:#0b63ce;margin-bottom:6px;">YES — It Stays Japanese</p>
-        <ul style="font-size:0.8rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-          <li>Shinto values persist in Ghibli's spirits and nature</li>
-          <li>Japanese concepts like "nakama" (chosen family) remain untranslatable</li>
-          <li>Production studios, creators, and funding remain in Japan</li>
-          <li>Cultural specificity (food, school life, social codes) is preserved</li>
-        </ul>
-      </div>
-      <div class="card" style="padding:14px 18px;border-top:4px solid #10b981;">
-        <p style="font-size:1.3rem;margin-bottom:6px;">🌍</p>
-        <p style="font-weight:800;font-size:0.92rem;color:#059669;margin-bottom:6px;">NO — It's Becoming Global</p>
-        <ul style="font-size:0.8rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-          <li>Genshin Impact: Chinese studio using anime aesthetics globally</li>
-          <li>Scott Pilgrim (Canadian) animated in Japanese anime style</li>
-          <li>Netflix co-productions alter content for Western audiences</li>
-          <li>Western fans now define what "feels like anime"</li>
+      <div class="card reveal" style="padding:12px 16px;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 6px;">📌 Remember to include:</p>
+        <ul style="font-size:0.78rem;color:#2d4a6b;margin:0;padding-left:16px;line-height:1.7;">
+          <li>History of your anime and its origins</li>
+          <li>Impact on global pop culture</li>
+          <li>Connections to Japanese culture &amp; traditions</li>
+          <li>What makes <em>you</em> appreciate it</li>
         </ul>
       </div>
     </div>
-    <div class="reveal" style="margin-top:10px;">
-      <div class="card" style="padding:12px 16px;border-left:4px solid #f59e0b;">
-        <p style="font-size:0.85rem;color:#2d4a6b;font-weight:700;margin-bottom:5px;">Where do you stand?</p>
-        <input class="fill-input" placeholder="I think anime IS / ISN'T losing its Japanese identity because…" type="text">
-      </div>
-    </div>
   </div>
 </div>
 
-<!-- ═══════════ SLIDE 23: ACTIVITY — ARGUMENT BUILDER ═══════════ -->
-<div class="slide slide-23" data-slide="23">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:320px;height:320px;top:-60px;left:-40px;background:#ef4444;opacity:0.06;"></div>
-    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">⚖️ Activity — 8 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.4rem;">Argument Builder: Does Anime Stay Japanese?</h2>
-    <div class="reveal" style="margin-bottom:8px;">
-      <div class="card" style="padding:10px 14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-        <p style="font-size:0.82rem;font-weight:800;color:#0b63ce;margin:0;">First, pick your stance:</p>
-        <div class="radio-group" style="margin-top:0;">
-          <label class="radio-item"><input type="radio" name="stance"> ✅ Yes — it preserves Japanese culture</label>
-          <label class="radio-item"><input type="radio" name="stance"> ❌ No — it changes to survive globally</label>
-          <label class="radio-item"><input type="radio" name="stance"> 🤔 Both can be true</label>
-        </div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
-      <div class="card" style="padding:11px 14px;border-left:4px solid #0b63ce;">
-        <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num">①</span><p style="font-size:0.8rem;font-weight:800;color:#1a2a3a;margin:0;">CLAIM — state your position clearly</p></div>
-        <textarea class="fill-textarea" rows="2" placeholder="As anime goes global, it [does/doesn't] stay Japanese because…"></textarea>
-      </div>
-      <div class="card" style="padding:11px 14px;border-left:4px solid #10b981;">
-        <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num green">②</span><p style="font-size:0.8rem;font-weight:800;color:#1a2a3a;margin:0;">EVIDENCE — 1–2 specific facts from today</p></div>
-        <textarea class="fill-textarea" rows="2" placeholder="For example… / The data shows… / One case is…"></textarea>
-      </div>
-      <div class="card" style="padding:11px 14px;border-left:4px solid #f59e0b;">
-        <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num amber">③</span><p style="font-size:0.8rem;font-weight:800;color:#1a2a3a;margin:0;">REASONING — why does the evidence support your claim?</p></div>
-        <textarea class="fill-textarea" rows="2" placeholder="This shows that… which means anime's cultural identity…"></textarea>
-      </div>
-      <div class="card" style="padding:11px 14px;border-left:4px solid #ef4444;">
-        <div style="display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;"><span class="q-num" style="background:#ef4444;">④</span><p style="font-size:0.8rem;font-weight:800;color:#1a2a3a;margin:0;">COUNTER-ARGUMENT — what would the other side say?</p></div>
-        <textarea class="fill-textarea" rows="2" placeholder="Someone who disagrees might argue…"></textarea>
-      </div>
-    </div>
-    <div class="reveal" style="margin-top:8px;">
-      <input class="fill-input" placeholder="One-sentence rebuttal to the counter-argument…" type="text">
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 24: MIND MAP ACTIVITY ═══════════ -->
-<div class="slide slide-24" data-slide="24">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:360px;height:360px;top:-70px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-50px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">✏️ Activity — 12 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.6rem;">Mind Map: Anime Influences in YOUR Life</h2>
-    <div style="display:grid;grid-template-columns:1fr 2fr;gap:16px;align-items:start;" class="reveal">
-      <div class="card" style="padding:14px 16px;border-left:4px solid #0b63ce;">
-        <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:8px;">Instructions:</p>
-        <ol style="font-size:0.82rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-          <li>Write YOUR name in the center</li>
-          <li>Fill each spoke with a real example from your life</li>
-          <li>Add a second layer: how did anime change that area?</li>
-          <li>Circle your strongest connection</li>
-          <li>Share with a partner — do your maps overlap?</li>
-        </ol>
-        <div style="margin-top:10px;padding:8px 10px;background:rgba(16,185,129,0.07);border-radius:8px;">
-          <p style="font-size:0.78rem;color:#059669;font-weight:700;">💡 Think beyond the obvious — sports, memes, language, school, friendships, career dreams</p>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-        <div class="card" style="padding:10px 12px;border-top:3px solid #0b63ce;text-align:center;">
-          <p style="font-size:1.2rem;margin-bottom:3px;">🎬</p>
-          <p style="font-weight:800;font-size:0.8rem;color:#0b63ce;margin-bottom:4px;">Film & TV</p>
-          <input class="fill-input" style="font-size:0.75rem;" placeholder="Anime that changed how I watch movies…" type="text">
-        </div>
-        <div class="card" style="padding:10px 12px;border-top:3px solid #ec4899;text-align:center;">
-          <p style="font-size:1.2rem;margin-bottom:3px;">👗</p>
-          <p style="font-weight:800;font-size:0.8rem;color:#db2777;margin-bottom:4px;">Fashion</p>
-          <input class="fill-input" style="font-size:0.75rem;" placeholder="How anime affects what I wear…" type="text">
-        </div>
-        <div class="card" style="padding:10px 12px;border-top:3px solid #f59e0b;text-align:center;">
-          <p style="font-size:1.2rem;margin-bottom:3px;">🎵</p>
-          <p style="font-weight:800;font-size:0.8rem;color:#d97706;margin-bottom:4px;">Music</p>
-          <input class="fill-input" style="font-size:0.75rem;" placeholder="Anime music I actually listen to…" type="text">
-        </div>
-        <div class="card" style="padding:10px 12px;border-top:3px solid #8b5cf6;text-align:center;">
-          <p style="font-size:1.2rem;margin-bottom:3px;">🎮</p>
-          <p style="font-weight:800;font-size:0.8rem;color:#7c3aed;margin-bottom:4px;">Games</p>
-          <input class="fill-input" style="font-size:0.75rem;" placeholder="Game that has anime influence…" type="text">
-        </div>
-        <div class="card" style="padding:10px 12px;border-top:3px solid #10b981;text-align:center;">
-          <p style="font-size:1.2rem;margin-bottom:3px;">💬</p>
-          <p style="font-weight:800;font-size:0.8rem;color:#059669;margin-bottom:4px;">Language</p>
-          <input class="fill-input" style="font-size:0.75rem;" placeholder="Anime word/phrase I use IRL…" type="text">
-        </div>
-        <div class="card" style="padding:10px 12px;border-top:3px solid #ef4444;text-align:center;">
-          <p style="font-size:1.2rem;margin-bottom:3px;">🛍</p>
-          <p style="font-weight:800;font-size:0.8rem;color:#dc2626;margin-bottom:4px;">Merch</p>
-          <input class="fill-input" style="font-size:0.75rem;" placeholder="Anime thing I own or want…" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 25: DRAWING CANVAS ═══════════ -->
-<div class="slide slide-25" data-slide="25">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:300px;height:300px;top:-50px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
-    <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-30px;background:#10b981;opacity:0.05;"></div>
-    <div class="blob" style="width:180px;height:180px;top:40%;right:10%;background:#f59e0b;opacity:0.05;"></div>
-  </div>
-  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
-  <div class="content" style="display:flex;flex-direction:column;align-items:stretch;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;" class="reveal">
-      <div>
-        <div class="section-badge activity" style="margin-bottom:4px;">🎨 Drawing Activity — 8 min</div>
-        <h2 style="font-family:'Fredoka',sans-serif;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:600;color:#1a2a3a;margin:0;">Sketch: Anime's Footprint on Global Pop Culture</h2>
-        <p style="font-size:0.75rem;color:#5a7a9a;margin:2px 0 0;">Draw a scene, symbol, or character that represents how anime changed the world.</p>
-      </div>
-      <div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap;">
-        <div style="display:flex;gap:4px;align-items:center;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.15);border-radius:12px;padding:5px 8px;">
-          <button class="brush-btn active-brush" id="color-black" onclick="setColor('#1a2a3a')" style="background:#1a2a3a;" title="Dark"></button>
-          <button class="brush-btn" id="color-blue" onclick="setColor('#0b63ce')" style="background:#0b63ce;" title="Blue"></button>
-          <button class="brush-btn" id="color-green" onclick="setColor('#10b981')" style="background:#10b981;" title="Green"></button>
-          <button class="brush-btn" id="color-orange" onclick="setColor('#f59e0b')" style="background:#f59e0b;" title="Orange"></button>
-          <button class="brush-btn" id="color-red" onclick="setColor('#ef4444')" style="background:#ef4444;" title="Red"></button>
-          <button class="brush-btn" id="color-purple" onclick="setColor('#8b5cf6')" style="background:#8b5cf6;" title="Purple"></button>
-          <button class="brush-btn" id="color-pink" onclick="setColor('#ec4899')" style="background:#ec4899;" title="Pink"></button>
-          <button class="brush-btn" id="color-white" onclick="setColor('#ffffff')" style="background:#ffffff;border:2px solid #ccc;" title="White"></button>
-        </div>
-        <div style="display:flex;gap:4px;align-items:center;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.15);border-radius:12px;padding:5px 8px;">
-          <button onclick="setBrush(2,'thin')" id="brush-thin" class="tool-btn active-tool" style="font-size:0.68rem;">Thin</button>
-          <button onclick="setBrush(5,'med')" id="brush-med" class="tool-btn" style="font-size:0.68rem;">Med</button>
-          <button onclick="setBrush(12,'thick')" id="brush-thick" class="tool-btn" style="font-size:0.68rem;">Thick</button>
-          <button onclick="setBrush(28,'fill')" id="brush-fill" class="tool-btn" style="font-size:0.68rem;">Fill</button>
-        </div>
-        <div style="display:flex;gap:4px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.15);border-radius:12px;padding:5px 8px;">
-          <button onclick="setMode('draw')" id="mode-draw" class="tool-btn active-tool" style="font-size:0.68rem;">✏️ Draw</button>
-          <button onclick="setMode('erase')" id="mode-erase" class="tool-btn" style="font-size:0.68rem;">🧹 Erase</button>
-          <button onclick="clearCanvas()" class="tool-btn" style="font-size:0.68rem;background:rgba(239,68,68,0.1);color:#dc2626;border-color:rgba(239,68,68,0.3);">🗑 Clear</button>
-          <button onclick="downloadDrawing()" class="tool-btn" style="font-size:0.68rem;background:rgba(16,185,129,0.1);color:#059669;border-color:rgba(16,185,129,0.3);">💾 Save</button>
-        </div>
-      </div>
-    </div>
-    <canvas id="drawing-canvas" class="reveal" style="width:100%;max-height:calc(100vh - 340px);"></canvas>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 26: POSTER ACTIVITY ═══════════ -->
-<div class="slide slide-26" data-slide="26">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:340px;height:340px;top:-70px;right:-50px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#f59e0b;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="section-badge activity reveal">🖌️ Creative Activity — 15 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.6rem;">Design Your Impact Poster</h2>
-    <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:16px;" class="reveal">
-      <div class="card" style="padding:14px 16px;border-left:4px solid #10b981;">
-        <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:8px;">Your Poster Must Show:</p>
-        <ol style="font-size:0.82rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-          <li><strong>Anime + Industry:</strong> Which anime influenced which industry?</li>
-          <li><strong>Before/After:</strong> What changed because of anime?</li>
-          <li><strong>Scale:</strong> Include at least one real number</li>
-          <li><strong>Your Argument:</strong> Was this cultural exchange or cultural takeover?</li>
-          <li><strong>Your Voice:</strong> What does this mean to you personally?</li>
-          <li><strong>Visual Hook:</strong> A sketch, symbol, or title that grabs attention</li>
-        </ol>
-        <div style="margin-top:8px;padding:8px 10px;background:rgba(16,185,129,0.07);border-radius:8px;">
-          <p style="font-size:0.78rem;color:#059669;">💬 Be ready to pitch in 60 seconds!</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <p style="font-size:0.78rem;font-weight:700;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.05em;">Draft Your Poster Here:</p>
-        <input class="fill-input" placeholder="Headline / Title (make it punchy)" type="text">
-        <input class="fill-input" placeholder="Anime + Industry you're covering" type="text">
-        <input class="fill-input" placeholder="What changed BEFORE anime's influence?" type="text">
-        <input class="fill-input" placeholder="What changed AFTER? Include a statistic." type="text">
-        <textarea class="fill-textarea" rows="2" placeholder="Your argument: Was this cultural exchange or cultural takeover? Why?"></textarea>
-        <div class="card" style="padding:10px 14px;background:rgba(11,99,206,0.05);">
-          <p style="font-size:0.78rem;color:#5a7a9a;">✍️ <strong>Your hook:</strong> Write a one-liner that would make someone stop and look at your poster:</p>
-          <input class="fill-input" style="font-size:0.8rem;margin-top:5px;" placeholder="'Without anime, there would be no…'" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 27: DISCUSSION ═══════════ -->
-<div class="slide slide-27" data-slide="27">
+<!-- ═══════════════════════════════════════
+     SLIDE 7 — STORYTELLING DEEP DIVE — SPIRITED AWAY
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="7">
   <div class="gradient-mesh">
     <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-40px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
-  <div class="content">
-    <div class="section-badge reveal">💬 Class Discussion</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.8rem;">Poster Share + Three Big Questions</h2>
-    <p class="reveal" style="font-size:0.85rem;color:#5a7a9a;margin-bottom:12px;">Each presenter gets <strong>60 seconds</strong>: What anime, which industry, one key stat, your argument.</p>
-    <div style="display:flex;flex-direction:column;gap:10px;" class="reveal">
-      <div class="card" style="padding:14px 18px;display:flex;gap:14px;align-items:flex-start;">
-        <span style="font-size:1.5rem;flex-shrink:0;">🤔</span>
-        <div style="flex:1;">
-          <p style="font-weight:800;color:#0b63ce;margin-bottom:5px;font-size:0.92rem;">Question 1 — Global Reach</p>
-          <p style="font-size:0.88rem;color:#2d4a6b;margin-bottom:6px;">If anime stopped being made in Japan tomorrow — but kept being made globally — would it still be anime?</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="Yes / No / It depends — because…" type="text">
-        </div>
-      </div>
-      <div class="card" style="padding:14px 18px;display:flex;gap:14px;align-items:flex-start;">
-        <span style="font-size:1.5rem;flex-shrink:0;">⚖️</span>
-        <div style="flex:1;">
-          <p style="font-weight:800;color:#059669;margin-bottom:5px;font-size:0.92rem;">Question 2 — Cultural Exchange</p>
-          <p style="font-size:0.88rem;color:#2d4a6b;margin-bottom:6px;">As global pop culture adopts anime aesthetics, does Japan gain or lose cultural power?</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="Japan gains / loses because…" type="text">
-        </div>
-      </div>
-      <div class="card" style="padding:14px 18px;display:flex;gap:14px;align-items:flex-start;">
-        <span style="font-size:1.5rem;flex-shrink:0;">✍️</span>
-        <div style="flex:1;">
-          <p style="font-weight:800;color:#d97706;margin-bottom:5px;font-size:0.92rem;">Question 3 — Your Anime</p>
-          <p style="font-size:0.88rem;color:#2d4a6b;margin-bottom:6px;">Based on today, what global topic would YOU put at the center of your own anime story?</p>
-          <input class="fill-input" style="font-size:0.82rem;" placeholder="My anime would explore… because the world needs to understand…" type="text">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 28: K-ON! ═══════════ -->
-<div class="slide slide-28" data-slide="28">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:340px;height:340px;top:-70px;right:-50px;background:#ec4899;opacity:0.07;"></div>
     <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.06;"></div>
   </div>
   <div class="content">
-    <div class="section-badge reveal">🎸 Course Anime: K-On!</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">K-On! — How a School Band Went Global</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-top:4px solid #ec4899;">
-          <p style="font-weight:800;font-size:0.88rem;color:#db2777;margin-bottom:5px;">🎸 The Guitar Effect</p>
-          <ul style="font-size:0.78rem;color:#2d4a6b;line-height:1.9;margin:0;padding-left:16px;">
-            <li>Gibson and Fender reported 30%+ sales spikes in Japan after K-On! (2009)</li>
-            <li>Effect spread globally — UK & US music shops tracked "K-On! inquiries"</li>
-            <li>Created the "moe music anime" subgenre — now over 40 shows</li>
-          </ul>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <div class="accent-bar reveal"></div>
+        <div class="section-badge reveal">Storytelling Analysis</div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🌊 Storytelling: Studio Ghibli</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #0b63ce;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">What drives the story?</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Chihiro's desire to rescue her parents — Man vs Supernatural. What internal conflict does she face?</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #10b981;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">Universal Themes</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Identity, courage, environmentalism, transition to adulthood — themes felt worldwide, not only in Japan</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #f59e0b;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#b45309;margin:0 0 3px;">Cultural Roots</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Shinto spirits (kami), Japanese bathhouse traditions, forest gods — deeply Japanese yet globally resonant</p>
+          </div>
         </div>
-        <div class="card" style="padding:12px 14px;border-top:4px solid #10b981;">
-          <p style="font-weight:800;font-size:0.88rem;color:#059669;margin-bottom:5px;">🌍 Global Fan Clubs</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">Active K-On! tribute bands in Brazil, Indonesia, Germany, USA. Members learned Japanese to understand lyrics. Language learning as cultural bridge.</p>
-        </div>
+        <div class="discussion-q reveal" style="margin-top:10px;">In your own anime, what is the <em>driving conflict</em> and what theme does it explore? How does the story show — not just tell — this theme?</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="card" style="padding:12px 14px;border-top:4px solid #0b63ce;">
-          <p style="font-weight:800;font-size:0.88rem;color:#0b63ce;margin-bottom:5px;">🎵 The Soft Power Formula</p>
-          <p style="font-size:0.78rem;color:#2d4a6b;">K-On! turned: <strong>Music → Language Learning → Tourism → Cultural Ambassador.</strong> Japanese tourism to K-On! filming locations grew 400% after the film.</p>
+      <div class="reveal">
+        <div class="section-badge green" style="margin-bottom:8px;">📹 Spirited Away Trailer</div>
+        <div class="vid-wrap">
+          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/ByXuk9QqQkk?autoplay=1')">
+            <img src="https://img.youtube.com/vi/ByXuk9QqQkk/hqdefault.jpg" alt="Spirited Away Official English Trailer" onerror="this.src='https://img.youtube.com/vi/ByXuk9QqQkk/mqdefault.jpg'">
+            <div class="vid-thumb-bg"></div>
+            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="vid-title-overlay">Spirited Away — Official Trailer (~2 min)</div>
+          </div>
+          <div class="vid-iframe-wrap"></div>
+          <a class="vid-source-link" href="https://www.youtube.com/watch?v=ByXuk9QqQkk" target="_blank" rel="noopener">▶ Watch on YouTube</a>
         </div>
-        <div class="card" style="padding:12px 14px;background:rgba(236,72,153,0.06);border:1.5px solid rgba(236,72,153,0.15);">
-          <p style="font-weight:800;font-size:0.85rem;color:#db2777;margin-bottom:5px;">🤔 Your Connection</p>
-          <p style="font-size:0.8rem;color:#2d4a6b;margin-bottom:5px;">Has an anime ever made you want to learn something new — an instrument, a language, a skill, a recipe?</p>
-          <textarea class="fill-textarea" rows="2" placeholder="An anime made me want to learn/try…"></textarea>
+        <div style="margin-top:10px;background:rgba(11,99,206,0.05);border-radius:10px;padding:10px 13px;">
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;color:#0b63ce;margin:0 0 5px;">🎬 Notice &amp; Wonder</p>
+          <p style="font-size:0.77rem;color:#2d4a6b;margin:0 0 4px;">• What visual storytelling techniques do you see?</p>
+          <p style="font-size:0.77rem;color:#2d4a6b;margin:0;">• Roger Ebert called it "cinema" — not just anime. What does that mean?</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ SLIDE 29: EXIT TICKET ═══════════ -->
-<div class="slide slide-29" data-slide="29">
+<!-- ═══════════════════════════════════════
+     SLIDE 8 — CHARACTER DEVELOPMENT — MY HERO ACADEMIA
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="8">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-90px;left:-70px;background:#8b5cf6;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-40px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div class="reveal">
+        <div class="section-badge" style="background:rgba(139,92,246,0.1);color:#7c3aed;margin-bottom:8px;">📹 My Hero Academia</div>
+        <div class="vid-wrap">
+          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/htJv0uFThPk?autoplay=1')">
+            <img src="https://img.youtube.com/vi/htJv0uFThPk/hqdefault.jpg" alt="My Hero Academia - Class 1-A vs All For One" onerror="this.src='https://img.youtube.com/vi/htJv0uFThPk/mqdefault.jpg'">
+            <div class="vid-thumb-bg"></div>
+            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="vid-title-overlay">"I Am Here" | My Hero Academia — Crunchyroll (~3 min)</div>
+          </div>
+          <div class="vid-iframe-wrap"></div>
+          <a class="vid-source-link" href="https://www.youtube.com/watch?v=htJv0uFThPk" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="text-align:center;background:rgba(139,92,246,0.07);border-radius:10px;padding:8px;">
+            <div class="stat-big" style="color:#7c3aed;font-size:1.6rem;">80%</div>
+            <div class="stat-label">population has Quirks</div>
+          </div>
+          <div style="text-align:center;background:rgba(11,99,206,0.06);border-radius:10px;padding:8px;">
+            <div class="stat-big" style="font-size:1.6rem;">100M+</div>
+            <div class="stat-label">copies in circulation</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="accent-bar reveal"></div>
+        <div class="section-badge reveal">Character Development</div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">⚡ Character Growth &amp; Morality</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card reveal" style="padding:10px 14px;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#7c3aed;margin:0 0 3px;">🔑 What makes Deku compelling?</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Born without powers in a world where 80% have them — a mirror for real-world systemic inequality and privilege</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">📈 Character Arc Elements</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Desire → Obstacle → Growth → New Identity. Which stage is your character in? How do we see their growth?</p>
+          </div>
+        </div>
+        <div class="discussion-q reveal" style="margin-top:10px;">In your chosen anime, what does the main character <em>want</em>? What do they truly <em>need</em>? How does the gap between want and need drive their growth?</div>
+        <div class="tip-box reveal" style="margin-top:8px;">The best characters change — but their core values remain the same. Can you show this in your analysis?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 9 — CULTURAL CONNECTION — NARUTO
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="9">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:400px;height:400px;top:-90px;right:-70px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <div class="accent-bar reveal"></div>
+        <div class="section-badge amber reveal">Cultural Connection</div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🍃 Naruto: The Outsider Story Goes Global</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #f59e0b;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#b45309;margin:0 0 3px;">🌍 Universal Resonance</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Naruto = the kid nobody believed in. Resonated across Latin America, Africa, Southeast Asia. Every culture has this story.</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #0b63ce;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">🎌 Japanese Cultural Roots</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Ninjutsu history, village loyalty (nakama), perseverance (ganbaru), and the idea that effort &gt; talent</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #10b981;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">📈 Impact: 500M+ manga copies worldwide</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">3rd best-selling manga of all time; the "Naruto run" entered global pop culture; cited by Lil Uzi Vert, 21 Savage</p>
+          </div>
+        </div>
+        <div class="discussion-q reveal" style="margin-top:10px;">What specifically Japanese element exists in your anime? Would removing it weaken the story? Why does it still connect to people worldwide?</div>
+      </div>
+      <div class="reveal">
+        <div class="section-badge amber" style="margin-bottom:8px;">📹 Naruto 20th Anniversary</div>
+        <div class="vid-wrap">
+          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/QczGoCmX-pI?autoplay=1')">
+            <img src="https://img.youtube.com/vi/QczGoCmX-pI/hqdefault.jpg" alt="Naruto Official 20th Anniversary Trailer" onerror="this.src='https://img.youtube.com/vi/QczGoCmX-pI/mqdefault.jpg'">
+            <div class="vid-thumb-bg"></div>
+            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="vid-title-overlay">Road of Naruto | 20th Anniversary — VIZ (~3 min)</div>
+          </div>
+          <div class="vid-iframe-wrap"></div>
+          <a class="vid-source-link" href="https://www.youtube.com/watch?v=QczGoCmX-pI" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+        <div style="margin-top:10px;background:rgba(245,158,11,0.07);border-radius:10px;padding:10px 13px;">
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;color:#b45309;margin:0 0 5px;">🤔 Connect to Your Anime</p>
+          <p style="font-size:0.77rem;color:#2d4a6b;margin:0;">Does your anime have an outsider or underdog theme? How does the Japanese cultural origin shape its message?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 10 — TEAMWORK & RESILIENCE — HAIKYUU
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="10">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div class="reveal">
+        <div class="section-badge green" style="margin-bottom:8px;">📹 Haikyuu!!</div>
+        <div class="vid-wrap">
+          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/kTzDYjOJWVs?autoplay=1')">
+            <img src="https://img.youtube.com/vi/kTzDYjOJWVs/hqdefault.jpg" alt="Haikyuu Breaking Point clip" onerror="this.src='https://img.youtube.com/vi/kTzDYjOJWVs/mqdefault.jpg'">
+            <div class="vid-thumb-bg"></div>
+            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="vid-title-overlay">Commoner Set | Haikyuu!! — Crunchyroll (~3 min)</div>
+          </div>
+          <div class="vid-iframe-wrap"></div>
+          <a class="vid-source-link" href="https://www.youtube.com/watch?v=kTzDYjOJWVs" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="text-align:center;background:rgba(16,185,129,0.07);border-radius:10px;padding:8px;">
+            <div class="stat-big" style="color:#059669;font-size:1.6rem;">35M+</div>
+            <div class="stat-label">manga copies sold</div>
+          </div>
+          <div style="text-align:center;background:rgba(11,99,206,0.06);border-radius:10px;padding:8px;">
+            <div class="stat-big" style="font-size:1.6rem;">400%</div>
+            <div class="stat-label">rise in volleyball sign-ups (Japan, 2014)</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="accent-bar reveal"></div>
+        <div class="section-badge green reveal">Teamwork &amp; Resilience</div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🏐 Haikyuu!! — Effort, Teamwork, Resilience</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card reveal" style="padding:10px 14px;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">Why sports anime works</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Every rally = compressed story arc. Win or lose, growth is always visible. The sport is the metaphor.</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">Real-world lessons</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Leadership under pressure, vulnerability, trusting teammates, bouncing back from failure — all universal</p>
+          </div>
+        </div>
+        <div class="discussion-q reveal" style="margin-top:10px;">Think of a time you had to rely on a team. Does your anime explore teamwork or resilience? What does it say about how we grow <em>together</em>?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 11 — FRIENDSHIP & CREATIVITY — K-ON!
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="11">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div>
+        <div class="accent-bar reveal"></div>
+        <div class="section-badge amber reveal">Friendship &amp; Creativity</div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🎸 K-On! — The Power of Friendship</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #f59e0b;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#b45309;margin:0 0 3px;">🎵 The Soft Power Formula</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">K-On! turned music → language learning → tourism → cultural ambassadors. Japanese tourism to filming locations grew 400% after the film.</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #10b981;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">🌍 Global Fan Clubs</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Active tribute bands in Brazil, Indonesia, Germany, USA. Members learned Japanese to understand lyrics — language learning as cultural bridge</p>
+          </div>
+          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #0b63ce;">
+            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">🤔 Your Connection</p>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Has an anime ever made you want to learn something new — an instrument, language, recipe, skill?</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-badge amber" style="margin-bottom:8px;">📹 K-On! Opening Theme</div>
+        <div class="vid-wrap">
+          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/jXv1a7I5t44?autoplay=1')">
+            <img src="https://img.youtube.com/vi/jXv1a7I5t44/hqdefault.jpg" alt="K-ON! Opening Full Cagayake Girls" onerror="this.src='https://img.youtube.com/vi/jXv1a7I5t44/mqdefault.jpg'">
+            <div class="vid-thumb-bg"></div>
+            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="vid-title-overlay">K-ON! Full Opening "Cagayake! GIRLS" — Ho-kago Tea Time</div>
+          </div>
+          <div class="vid-iframe-wrap"></div>
+          <a class="vid-source-link" href="https://www.youtube.com/watch?v=jXv1a7I5t44" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+        </div>
+        <div style="margin-top:10px;background:rgba(245,158,11,0.07);border-radius:10px;padding:10px 13px;">
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;color:#b45309;margin:0 0 5px;">🎤 After Watching</p>
+          <p style="font-size:0.77rem;color:#2d4a6b;margin:0;">What emotion does the opening create? How does animation style reinforce the theme of friendship and joy? Does your anime use a similar technique?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 12 — PRESENTATION SETUP
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="12">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:420px;height:420px;top:-100px;right:-70px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-50px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+  <div class="content">
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge reveal">Get Ready · 5 Minutes</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:#1a2a3a;margin:0 0 16px;">🚀 Presentation Setup — Let's Go!</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div class="card reveal" style="padding:16px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">📋</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#0b63ce;margin:0 0 5px;">1. Grab Your Materials</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;line-height:1.5;">Collect poster boards, digital slides, art supplies, or any visuals you prepared</p>
+      </div>
+      <div class="card reveal" style="padding:16px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">⏱</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#10b981;margin:0 0 5px;">2. Know Your 4 Pillars</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;line-height:1.5;">Storytelling · Character Dev · Animation Style · Thematic Depth — cover all four!</p>
+      </div>
+      <div class="card reveal" style="padding:16px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">🎤</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#f59e0b;margin:0 0 5px;">3. Practice Your Hook</p>
+        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;line-height:1.5;">You have 60 seconds to open. Start with: what anime, why you chose it, one key claim</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+      <div class="tip-box reveal">
+        <strong>Your opening line should make everyone lean in.</strong> Try: "Before I explain why [anime] changed the way I think about [theme], I need you to see this…"
+      </div>
+      <div class="card reveal" style="padding:13px 16px;">
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 6px;">✍️ Draft Your Opening Hook</p>
+        <input class="fill-input" placeholder="My opening line: …" style="margin-bottom:6px;">
+        <input class="fill-input" placeholder="My key claim about this anime: …">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 13 — PEER EVALUATION GUIDE
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="13">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:360px;height:360px;top:-80px;left:-70px;background:#10b981;opacity:0.07;"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge green reveal">Peer Evaluation</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;color:#1a2a3a;margin:0 0 12px;">🤝 Peer Feedback Guide &amp; Rubric</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;">
+      <div>
+        <p class="reveal" style="font-size:0.8rem;color:#5a7a9a;margin:0 0 8px;font-weight:700;">FEEDBACK CRITERIA</p>
+        <table class="rubric-table reveal">
+          <thead>
+            <tr>
+              <th>Criterion</th>
+              <th>⭐⭐⭐ Strong</th>
+              <th>⭐⭐ Growing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Storytelling</td>
+              <td style="font-size:0.72rem;">Clearly explains plot structure &amp; conflict</td>
+              <td style="font-size:0.72rem;">Describes plot but needs more depth</td>
+            </tr>
+            <tr>
+              <td>Character</td>
+              <td style="font-size:0.72rem;">Shows character arc with specific evidence</td>
+              <td style="font-size:0.72rem;">Names characters but doesn't show growth</td>
+            </tr>
+            <tr>
+              <td>Culture</td>
+              <td style="font-size:0.72rem;">Connects to Japanese culture &amp; global impact</td>
+              <td style="font-size:0.72rem;">Mentions culture but stays surface-level</td>
+            </tr>
+            <tr>
+              <td>Creativity</td>
+              <td style="font-size:0.72rem;">Uses visuals/clips effectively; engaging delivery</td>
+              <td style="font-size:0.72rem;">Presentation is clear but less dynamic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p class="reveal" style="font-size:0.8rem;color:#5a7a9a;margin:0 0 8px;font-weight:700;">NOTES WHILE WATCHING</p>
+        <div class="card reveal" style="padding:12px;">
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#059669;margin:0 0 5px;">Presenter's name: <input class="fill-input" style="display:inline;width:120px;font-size:0.8rem;padding:3px 8px;" placeholder="Name…"></p>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#0b63ce;margin:4px 0 5px;">🌟 One strength I noticed:</p>
+          <textarea class="fill-textarea" rows="2" placeholder="I noticed that…" style="font-size:0.8rem;"></textarea>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#f59e0b;margin:6px 0 5px;">💡 One question this raised:</p>
+          <textarea class="fill-textarea" rows="2" placeholder="I'm wondering why / how…" style="font-size:0.8rem;"></textarea>
+        </div>
+        <div class="discussion-q reveal" style="margin-top:8px;">Feedback is a gift. How can you phrase a suggestion so the presenter feels supported, not criticized?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 14 — PRESENTATION TIME
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="14">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:#0b63ce;opacity:0.09;"></div>
+    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#f59e0b;opacity:0.07;"></div>
+    <div class="blob" style="width:200px;height:200px;top:30%;left:5%;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+  <div class="content" style="text-align:center;">
+    <div class="reveal" style="font-size:clamp(3rem,8vw,6rem);margin-bottom:10px;animation:float 3s ease-in-out infinite;">🎤</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 10px;">Presentation Time!</h2>
+    <p class="reveal" style="font-family:'Nunito',sans-serif;font-size:clamp(0.9rem,1.5vw,1.1rem);color:#2d4a6b;max-width:600px;margin:0 auto 18px;line-height:1.6;">Each presenter gets time to share their anime analysis — storytelling, character, culture, and personal appreciation. Everyone else: take notes on your feedback form.</p>
+    <div class="reveal" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
+      <div class="card" style="padding:12px 20px;min-width:140px;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">📖</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0;">Storytelling</p>
+      </div>
+      <div class="card" style="padding:12px 20px;min-width:140px;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">🧑‍🎨</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#10b981;margin:0;">Characters</p>
+      </div>
+      <div class="card" style="padding:12px 20px;min-width:140px;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">🎌</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#f59e0b;margin:0;">Culture</p>
+      </div>
+      <div class="card" style="padding:12px 20px;min-width:140px;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">💛</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#8b5cf6;margin:0;">Personal Voice</p>
+      </div>
+    </div>
+    <div class="tip-box reveal" style="display:inline-block;max-width:580px;text-align:left;">
+      <strong>Audience rule:</strong> One presenter at a time. Write your strongest observation AND one genuine question. No interrupting — save questions for feedback time.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 15 — FEEDBACK SESSION
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="15">
   <div class="gradient-mesh">
     <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.06;"></div>
   </div>
-  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
   <div class="content">
-    <div class="section-badge reveal">🎟️ Exit Ticket — 5 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:#1a2a3a;margin-bottom:0.7rem;">Lesson 7 Reflection</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
-      <div class="card" style="padding:14px 16px;border-top:4px solid #0b63ce;">
-        <p style="font-weight:800;font-size:0.85rem;color:#0b63ce;margin-bottom:6px;">📚 I learned…</p>
-        <textarea class="fill-textarea" rows="2" placeholder="One new thing about anime's global impact that surprised me…"></textarea>
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge green reveal">Feedback Session · 10 min</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">💬 Constructive Conversations</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div>
+        <p class="reveal" style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#059669;margin:0 0 8px;">✅ Giving Feedback That Helps</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #10b981;">
+            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Start with a strength:</strong> "I really appreciated how you explained…"</p>
+          </div>
+          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #0b63ce;">
+            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Ask a question:</strong> "I'm curious — what made you choose this anime over others?"</p>
+          </div>
+          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #f59e0b;">
+            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Offer a suggestion gently:</strong> "One thing that might strengthen it — could you add…?"</p>
+          </div>
+          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #8b5cf6;">
+            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Be specific:</strong> Not "it was good" — but "the clip you chose for [scene] was powerful because…"</p>
+          </div>
+        </div>
       </div>
-      <div class="card" style="padding:14px 16px;border-top:4px solid #10b981;">
-        <p style="font-weight:800;font-size:0.85rem;color:#059669;margin-bottom:6px;">🔗 This connects to MY anime…</p>
-        <textarea class="fill-textarea" rows="2" placeholder="Something from today that I see in an anime I already watch…"></textarea>
-      </div>
-      <div class="card" style="padding:14px 16px;border-top:4px solid #f59e0b;">
-        <p style="font-weight:800;font-size:0.85rem;color:#d97706;margin-bottom:6px;">❓ I'm still wondering…</p>
-        <textarea class="fill-textarea" rows="2" placeholder="A question I still have about how anime shapes culture…"></textarea>
-      </div>
-      <div class="card" style="padding:14px 16px;border-top:4px solid #8b5cf6;">
-        <p style="font-weight:800;font-size:0.85rem;color:#7c3aed;margin-bottom:6px;">✏️ For MY own anime story…</p>
-        <textarea class="fill-textarea" rows="2" placeholder="One global pop culture element I want to explore in my own anime…"></textarea>
+      <div>
+        <p class="reveal" style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#0b63ce;margin:0 0 8px;">📝 Write Your Feedback</p>
+        <div class="card reveal" style="padding:13px;">
+          <p style="font-size:0.78rem;color:#2d4a6b;font-weight:700;margin:0 0 5px;">To: <input class="fill-input" style="display:inline;width:140px;font-size:0.78rem;padding:3px 8px;" placeholder="Presenter name…"></p>
+          <textarea class="fill-textarea" rows="3" placeholder="One thing that stood out in your presentation was…" style="margin-bottom:6px;"></textarea>
+          <textarea class="fill-textarea" rows="3" placeholder="Something that could make it even stronger…" style="margin-bottom:6px;"></textarea>
+          <textarea class="fill-textarea" rows="2" placeholder="A question I still have after your presentation…"></textarea>
+        </div>
+        <div class="discussion-q reveal" style="margin-top:8px;">How does hearing others' perspectives on anime change or expand your own understanding of what you watched?</div>
       </div>
     </div>
-    <div class="reveal" style="margin-top:10px;">
-      <div class="card" style="padding:10px 16px;background:rgba(245,158,11,0.06);border:1.5px dashed rgba(245,158,11,0.3);text-align:center;">
-        <p style="font-size:0.82rem;color:#d97706;font-weight:700;">🏠 Extension: Pick one industry anime influenced. Research it deeper — find 3 more facts not covered today. Bring your most surprising discovery to next class.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 16 — REFLECTIVE DISCUSSION
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="16">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:400px;height:400px;top:-90px;right:-70px;background:#8b5cf6;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-50px;background:#10b981;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div class="accent-bar reveal"></div>
+    <div class="section-badge reveal" style="background:rgba(139,92,246,0.1);color:#7c3aed;">Reflection · Class Discussion</div>
+    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🌟 Insights Gained Throughout the Course</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;">
+      <div class="card reveal" style="padding:13px;">
+        <p style="font-size:1.4rem;text-align:center;margin:0 0 4px;">🎌</p>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;text-align:center;margin:0 0 5px;">Question 1</p>
+        <p class="discussion-q" style="font-size:0.78rem;margin:0;">If anime stopped being made in Japan — but kept being made globally — would it still be anime?</p>
+        <textarea class="fill-textarea" rows="2" placeholder="My answer…" style="font-size:0.75rem;margin-top:6px;"></textarea>
+      </div>
+      <div class="card reveal" style="padding:13px;">
+        <p style="font-size:1.4rem;text-align:center;margin:0 0 4px;">🌍</p>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#10b981;text-align:center;margin:0 0 5px;">Question 2</p>
+        <p class="discussion-q" style="font-size:0.78rem;margin:0;">As global pop culture adopts anime aesthetics, does Japan gain or lose cultural power?</p>
+        <textarea class="fill-textarea" rows="2" placeholder="My answer…" style="font-size:0.75rem;margin-top:6px;"></textarea>
+      </div>
+      <div class="card reveal" style="padding:13px;">
+        <p style="font-size:1.4rem;text-align:center;margin:0 0 4px;">✨</p>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#7c3aed;text-align:center;margin:0 0 5px;">Question 3</p>
+        <p class="discussion-q" style="font-size:0.78rem;margin:0;">What global topic would YOU put at the center of your own anime story? Why that theme?</p>
+        <textarea class="fill-textarea" rows="2" placeholder="My anime would be about…" style="font-size:0.75rem;margin-top:6px;"></textarea>
       </div>
     </div>
+    <div class="tip-box reveal">
+      <strong>Return to today's driving question:</strong> "What makes an anime truly great — story, character, culture, or something deeper?" Has your answer changed after hearing everyone's presentations?
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 17 — EXIT TICKET
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="17">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;left:-60px;background:#0b63ce;opacity:0.07;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-50px;background:#f59e0b;opacity:0.06;"></div>
+  </div>
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;">
+      <div>
+        <div class="accent-bar reveal"></div>
+        <div class="section-badge reveal">Exit Ticket</div>
+        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🎟️ Exit Ticket — Before You Go</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="card reveal" style="padding:13px;">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+              <span class="q-num">1</span>
+              <span style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;">One New Insight</span>
+            </div>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0 0 6px;">Write down one new insight you gained from a peer's presentation today</p>
+            <textarea class="fill-textarea" rows="2" placeholder="I learned that… / I never thought about…"></textarea>
+          </div>
+          <div class="card reveal" style="padding:13px;">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
+              <span class="q-num green">2</span>
+              <span style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;">How It Changed You</span>
+            </div>
+            <p style="font-size:0.78rem;color:#2d4a6b;margin:0 0 6px;">How did this insight change or expand your understanding of anime?</p>
+            <textarea class="fill-textarea" rows="2" placeholder="It changed the way I think about…"></textarea>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-badge amber reveal" style="margin-bottom:10px;">🏠 Extension Challenge</div>
+        <div class="card reveal" style="padding:16px;margin-bottom:10px;">
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#b45309;margin:0 0 8px;">Out-of-Classroom Learning</p>
+          <p style="font-size:0.8rem;color:#2d4a6b;margin:0 0 10px;line-height:1.5;">Explore a <strong>new</strong> anime series or film outside of class and apply the 4-pillar analysis framework you've used all term.</p>
+          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#0b63ce;margin:0 0 5px;">Your challenge:</p>
+          <ul style="font-size:0.78rem;color:#2d4a6b;margin:0;padding-left:16px;line-height:1.8;">
+            <li>Watch at least 2 episodes of a new anime</li>
+            <li>Analyze using storytelling, character, animation, theme</li>
+            <li>Share your findings with a friend or family member</li>
+            <li>Bring your most surprising discovery to next class</li>
+          </ul>
+        </div>
+        <div class="tip-box reveal">
+          <strong>Already have a favorite?</strong> Try analyzing it more deeply — what have you missed? Challenge yourself to find a theme you never noticed before.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SLIDE 18 — CLOSING / THANK YOU
+═══════════════════════════════════════ -->
+<div class="slide" data-slide="18">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:#0b63ce;opacity:0.09;"></div>
+    <div class="blob" style="width:350px;height:350px;bottom:-90px;left:-70px;background:#10b981;opacity:0.08;"></div>
+    <div class="blob" style="width:220px;height:220px;top:40%;left:20%;background:#f59e0b;opacity:0.07;"></div>
+  </div>
+  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+  <div class="content" style="text-align:center;">
+    <div class="reveal" style="font-size:clamp(3rem,8vw,6rem);margin-bottom:8px;animation:float 3s ease-in-out infinite;">🌸</div>
+    <div class="accent-bar reveal" style="margin:0 auto 14px;"></div>
+    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5.5vw,4rem);font-weight:700;background:linear-gradient(135deg,#0b63ce,#10b981,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 8px;">Congratulations, Anime Scholars!</h1>
+    <p class="reveal" style="font-family:'Nunito',sans-serif;font-size:clamp(0.9rem,1.5vw,1.1rem);color:#2d4a6b;max-width:580px;margin:0 auto 18px;line-height:1.7;">You've explored conflict, character, culture, storytelling, globalization, and the literary devices that make anime one of the world's most powerful art forms. Now go share that knowledge!</p>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:680px;margin:0 auto 16px;">
+      <div style="background:rgba(11,99,206,0.08);border-radius:12px;padding:10px;text-align:center;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">✍️</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#0b63ce;margin:0;">Create Your Own Anime Character &amp; Story</p>
+      </div>
+      <div style="background:rgba(16,185,129,0.08);border-radius:12px;padding:10px;text-align:center;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">🔍</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#059669;margin:0;">Identify Literary Devices in New Series</p>
+      </div>
+      <div style="background:rgba(245,158,11,0.08);border-radius:12px;padding:10px;text-align:center;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">🌍</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#b45309;margin:0;">Analyze Cross-Cultural Media Connections</p>
+      </div>
+      <div style="background:rgba(139,92,246,0.08);border-radius:12px;padding:10px;text-align:center;">
+        <div style="font-size:1.5rem;margin-bottom:4px;">🤝</div>
+        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#7c3aed;margin:0;">Give &amp; Receive Constructive Feedback</p>
+      </div>
+    </div>
+    <p class="reveal" style="font-family:'Fredoka',sans-serif;font-size:1rem;color:#5a7a9a;font-weight:500;">Anime is not just entertainment — it is a window into humanity. 🎌</p>
   </div>
 </div>
 
 </div><!-- end .deck -->
 
-<!-- ═══ NAVIGATION ═══ -->
+<!-- NAV CONTROLS -->
 <div class="nav-controls">
   <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
   <div class="slide-dots" id="dots"></div>
   <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
-  <span class="slide-counter" id="counter">1 / 29</span>
+  <span class="slide-counter" id="counter">1 / 18</span>
 </div>
 
 <script>
 /* ═══ DECK NAVIGATION ═══ */
-let current=1;
-const total=document.querySelectorAll('.slide').length;
-const dotsContainer=document.getElementById('dots');
-const counter=document.getElementById('counter');
-for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot);}
-function goToSlide(n){
-  const prev=document.querySelector('.slide.active');
-  const next=document.querySelector('.slide[data-slide="'+n+'"]');
-  if(prev)prev.classList.remove('active');
-  if(next){next.classList.add('active');animateSlide(next);}
-  current=n;updateNav();
+let current = 1;
+const total = document.querySelectorAll('.slide').length;
+const dotsContainer = document.getElementById('dots');
+const counter = document.getElementById('counter');
+for (let i = 1; i <= total; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 1 ? ' active' : '');
+  dot.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(dot);
 }
-function changeSlide(dir){let n=current+dir;if(n<1)n=total;if(n>total)n=1;goToSlide(n);}
-function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i+1===current);});counter.textContent=current+' / '+total;}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1);}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1);}});
-let touchStartX=0;
-document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;});
-document.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1);});
-
-/* ═══ REVEAL ANIMATIONS ═══ */
-function animateSlide(slide){
-  slide.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.style.transition='none';
-    el.style.opacity='0';
-    el.style.transform='translateY(18px)';
-    el.offsetHeight;
-    const delay=i*0.07;
-    el.style.transition='opacity 0.35s ease '+delay+'s, transform 0.35s ease '+delay+'s';
-    el.style.opacity='1';
-    el.style.transform='translateY(0px)';
-  });
-  if(slide.dataset.slide==='25') setTimeout(initDrawingCanvas, 100);
+function goToSlide(n) {
+  const prev = document.querySelector('.slide.active');
+  const next = document.querySelector(`.slide[data-slide="${n}"]`);
+  if (prev) prev.classList.remove('active');
+  if (next) { next.classList.add('active'); animateSlide(next); }
+  current = n; updateNav();
 }
-
-/* ═══ VIDEO THUMBNAIL → PLAYER ═══ */
-const vidMap={
-  donow:{yt:'qZ7UI3lzkCQ'},
-  western:{yt:'7kS1WgLnDsE'},
-  naruto:{yt:'q1aq9GEHR8Q'}
-};
-function playVid(id){
-  const wrap=document.getElementById('vid-'+id+'-wrap');
-  const iframeWrap=document.getElementById('vid-'+id+'-iframe');
-  if(!wrap||!iframeWrap)return;
-  const ytId=vidMap[id].yt;
-  iframeWrap.innerHTML='<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/'+ytId+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:14px;width:100%;height:100%;display:block;"></iframe>';
-  wrap.style.display='none';
-  iframeWrap.style.display='block';
+function changeSlide(dir) { let n = current + dir; if (n < 1) n = total; if (n > total) n = 1; goToSlide(n); }
+function updateNav() {
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i+1 === current));
+  counter.textContent = current + ' / ' + total;
 }
-
-/* ═══ VIDEO FALLBACK LABELS ═══ */
-const vidTitles={
-  donow:'How Anime FOREVER CHANGED Western Media',
-  western:'How Anime Impacted Western Animation (2024)',
-  naruto:'Naruto OP1 "R★O★C★K★S" (Official)'
-};
-Object.keys(vidTitles).forEach(id=>{
-  const wrap=document.getElementById('vid-'+id+'-wrap');
-  if(!wrap)return;
-  const lbl=document.createElement('div');
-  lbl.className='vid-fallback-label';
-  lbl.textContent=vidTitles[id];
-  wrap.appendChild(lbl);
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
 });
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
 
-/* ═══ ACTIVITY TAG TOGGLES ═══ */
-function toggleTag(btn){btn.classList.toggle('active-tool');}
+/* ═══ REVEAL ANIMATION ═══ */
+function animateSlide(slide) {
+  slide.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transition = 'none';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.offsetHeight;
+    const delay = i * 0.07;
+    el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0px)';
+  });
+  /* init particles on newly-active slides */
+  slide.querySelectorAll('.particle-canvas:not(.pc-init)').forEach(c => {
+    c.classList.add('pc-init');
+    c.width = c.offsetWidth || window.innerWidth;
+    c.height = c.offsetHeight || (window.innerHeight - 72);
+    window.initParticles(c, { interactive: true, count: 45 });
+  });
+  slide.querySelectorAll('.particle-canvas-ambient:not(.pca-init)').forEach(c => {
+    c.classList.add('pca-init');
+    c.width = c.offsetWidth || window.innerWidth;
+    c.height = c.offsetHeight || (window.innerHeight - 72);
+    window.initParticles(c, { interactive: false, count: 16 });
+  });
+}
+
+/* ═══ VIDEO PLAYER ═══ */
+function playVid(thumbWrap, embedUrl) {
+  const iframeWrap = thumbWrap.nextElementSibling;
+  if (!iframeWrap || !iframeWrap.classList.contains('vid-iframe-wrap')) return;
+  thumbWrap.style.display = 'none';
+  iframeWrap.style.display = 'block';
+  iframeWrap.style.aspectRatio = '16/9';
+  const iframe = document.createElement('iframe');
+  iframe.src = embedUrl;
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;border-radius:14px;';
+  iframeWrap.appendChild(iframe);
+}
 
 /* ═══ MOUSE SPOTLIGHT ═══ */
-document.addEventListener('mousemove',e=>{const s=document.querySelector('.mouse-spotlight');if(s)s.style.background='radial-gradient(600px circle at '+e.clientX+'px '+e.clientY+'px, rgba(11,99,206,0.05), transparent 40%)';});
+document.addEventListener('mousemove', e => {
+  const s = document.querySelector('.mouse-spotlight');
+  if (s) s.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.05), transparent 40%)`;
+});
 
-/* ═══ PARTICLES ═══ */
-window.initParticles=function(canvas,opts){
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
-  const interactive=opts.interactive!==false;
-  const count=opts.count||(interactive?55:18);
-  let mx=-1000,my=-1000;
-  const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,size:Math.random()*2.5+0.8,alpha:Math.random()*0.3+0.08}));
-  if(interactive){canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});canvas.addEventListener('mouseleave',()=>{mx=-1000;my=-1000;});}
-  (function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{if(interactive){const dx=p.x-mx,dy=p.y-my,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){const f=(120-dist)/120*2;p.vx+=(dx/dist)*f*0.1;p.vy+=(dy/dist)*f*0.1;}}p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle='rgba(11,99,206,'+p.alpha+')';ctx.fill();});requestAnimationFrame(animate);})();
+/* ═══ PARALLAX DECO SHAPES ═══ */
+(function() {
+  let mx = window.innerWidth/2, my = window.innerHeight/2;
+  const cx = window.innerWidth/2, cy = window.innerHeight/2;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function tick() {
+    const ox = (mx - cx) / cx, oy = (my - cy) / cy;
+    document.querySelectorAll('.deco-shape').forEach(s => {
+      const sp = parseFloat(s.dataset.speed) || 0.03;
+      s.style.transform = `translate(${ox*sp*100}px, ${oy*sp*100}px)`;
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* ═══ PARTICLE CANVAS ═══ */
+window.initParticles = function(canvas, options) {
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const interactive = options.interactive !== false;
+  const count = options.count || (interactive ? 45 : 16);
+  let mx = -1000, my = -1000;
+  const r = 11, g = 99, b = 206;
+  const particles = Array.from({length: count}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    size: Math.random() * 2.2 + 0.7,
+    alpha: Math.random() * 0.3 + 0.08
+  }));
+  if (interactive) {
+    canvas.addEventListener('mousemove', e => { const rc = canvas.getBoundingClientRect(); mx = e.clientX - rc.left; my = e.clientY - rc.top; });
+    canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
+  }
+  (function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      if (interactive) {
+        const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 120) { const force = (120 - dist) / 120 * 1.5; p.vx += (dx/dist)*force*0.08; p.vy += (dy/dist)*force*0.08; }
+      }
+      p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r},${g},${b},${p.alpha})`; ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  })();
 };
-document.querySelectorAll('.particle-canvas').forEach(c=>window.initParticles(c,{interactive:true,count:55}));
-document.querySelectorAll('.particle-canvas-ambient').forEach(c=>window.initParticles(c,{interactive:false,count:18}));
 
-/* ═══════════════════════════════════
-   DRAWING CANVAS — Slide 25
-   ═══════════════════════════════════ */
-let drawCtx, drawCanvas, isDrawing=false, currentColor='#1a2a3a', currentSize=2, drawMode='draw';
-let lastX=0, lastY=0;
-
-function initDrawingCanvas(){
-  drawCanvas=document.getElementById('drawing-canvas');
-  if(!drawCanvas)return;
-  const availW=Math.min(1100,window.innerWidth)-80;
-  const availH=window.innerHeight*0.58;
-  drawCanvas.width=Math.max(400,availW);
-  drawCanvas.height=Math.max(240,availH);
-  drawCtx=drawCanvas.getContext('2d');
-  drawCtx.fillStyle='#ffffff';
-  drawCtx.fillRect(0,0,drawCanvas.width,drawCanvas.height);
-  drawCtx.strokeStyle='rgba(11,99,206,0.05)';
-  drawCtx.lineWidth=1;
-  for(let x=0;x<drawCanvas.width;x+=40){drawCtx.beginPath();drawCtx.moveTo(x,0);drawCtx.lineTo(x,drawCanvas.height);drawCtx.stroke();}
-  for(let y=0;y<drawCanvas.height;y+=40){drawCtx.beginPath();drawCtx.moveTo(0,y);drawCtx.lineTo(drawCanvas.width,y);drawCtx.stroke();}
-  drawCtx.font='bold 13px Nunito,sans-serif';
-  drawCtx.fillStyle='rgba(11,99,206,0.1)';
-  drawCtx.textAlign='center';
-  drawCtx.fillText('Draw anime\'s impact on global pop culture ✏️', drawCanvas.width/2, drawCanvas.height/2);
-  drawCtx.textAlign='left';
-  drawCanvas.onmousedown=startDraw;
-  drawCanvas.onmousemove=draw;
-  drawCanvas.onmouseup=stopDraw;
-  drawCanvas.onmouseleave=stopDraw;
-  drawCanvas.ontouchstart=e=>{e.preventDefault();const t=e.touches[0];const r=drawCanvas.getBoundingClientRect();lastX=t.clientX-r.left;lastY=t.clientY-r.top;isDrawing=true;};
-  drawCanvas.ontouchmove=e=>{e.preventDefault();if(!isDrawing)return;const t=e.touches[0];const r=drawCanvas.getBoundingClientRect();const x=t.clientX-r.left,y=t.clientY-r.top;doStroke(lastX,lastY,x,y);lastX=x;lastY=y;};
-  drawCanvas.ontouchend=e=>{e.preventDefault();isDrawing=false;};
-}
-function startDraw(e){isDrawing=true;const r=drawCanvas.getBoundingClientRect();lastX=e.clientX-r.left;lastY=e.clientY-r.top;}
-function draw(e){if(!isDrawing)return;const r=drawCanvas.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;doStroke(lastX,lastY,x,y);lastX=x;lastY=y;}
-function stopDraw(){isDrawing=false;}
-function doStroke(x1,y1,x2,y2){
-  drawCtx.beginPath();drawCtx.moveTo(x1,y1);drawCtx.lineTo(x2,y2);
-  if(drawMode==='erase'){drawCtx.strokeStyle='#ffffff';drawCtx.lineWidth=currentSize*4;}
-  else{drawCtx.strokeStyle=currentColor;drawCtx.lineWidth=currentSize;}
-  drawCtx.lineCap='round';drawCtx.lineJoin='round';drawCtx.stroke();
-}
-function setColor(c){
-  currentColor=c;
-  document.querySelectorAll('.brush-btn').forEach(b=>b.classList.remove('active-brush'));
-  const map={'#1a2a3a':'color-black','#0b63ce':'color-blue','#10b981':'color-green','#f59e0b':'color-orange','#ef4444':'color-red','#8b5cf6':'color-purple','#ec4899':'color-pink','#ffffff':'color-white'};
-  if(map[c]){const el=document.getElementById(map[c]);if(el)el.classList.add('active-brush');}
-  if(drawMode==='erase')setMode('draw');
-}
-function setBrush(size,id){
-  currentSize=size;
-  ['thin','med','thick','fill'].forEach(n=>{const el=document.getElementById('brush-'+n);if(el)el.classList.remove('active-tool');});
-  const el=document.getElementById('brush-'+id);if(el)el.classList.add('active-tool');
-}
-function setMode(mode){
-  drawMode=mode;
-  ['draw','erase'].forEach(n=>{const el=document.getElementById('mode-'+n);if(el)el.classList.remove('active-tool');});
-  const el=document.getElementById('mode-'+mode);if(el)el.classList.add('active-tool');
-}
-function clearCanvas(){
-  if(!drawCtx||!drawCanvas)return;
-  drawCtx.fillStyle='#ffffff';
-  drawCtx.fillRect(0,0,drawCanvas.width,drawCanvas.height);
-}
-function downloadDrawing(){
-  if(!drawCanvas)return;
-  const link=document.createElement('a');
-  link.download='anime-global-impact.png';
-  link.href=drawCanvas.toDataURL('image/png');
-  link.click();
-}
-
-/* ═══ INIT FIRST SLIDE ═══ */
-try{animateSlide(document.querySelector('.slide.active'));}catch(e){console.warn('Init animation error:',e);}
+/* Init first slide */
+try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn(e); }
 </script>
 </body>
 </html>
