@@ -1,1 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 6 Activity Worksheet — Factoring &amp; Solving Quadratics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ─────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    /* Homework.html header palette */
+    --blue:       #2563EB;
+    --blue-lt:    #EFF6FF;
+    --blue-md:    #BFDBFE;
+    --coral:      #F97066;
+    --coral-lt:   #FFF1F0;
+    --sand:       #D4A574;
+    --sand-lt:    #FDF3E7;
+    --green:      #16a34a;
+    --green-lt:   #DCFCE7;
+    --purple:     #7c3aed;
+    --purple-lt:  #EDE9FE;
+    --ink:        #0f172a;
+    --slate:      #334155;
+    --muted:      #64748b;
+    --border:     #CBD5E1;
+    --bg:         #F8FAFF;
+    --white:      #FFFFFF;
+    --ff-head:    'Fredoka', sans-serif;
+    --ff-body:    'Nunito', sans-serif;
 
+    /* Lesson (index.html) problem/diagram palette — grays only */
+    --lsn-accent-1:  #374151;
+    --lsn-accent-2:  #4b5563;
+    --lsn-accent-3:  #9ca3af;
+    --lsn-surface:   #f3f4f6;
+    --lsn-surface-2: #e5e7eb;
+    --lsn-card-bg:   #ffffff;
+    --lsn-text:      #0f172a;
+    --lsn-text-2:    #334155;
+    --lsn-text-muted:#64748b;
+    --ff-lesson-display: 'Outfit', sans-serif;
+    --ff-lesson-body:    'DM Sans', sans-serif;
+  }
+
+  html { background: #e2e8f0; }
+  body {
+    font-family: var(--ff-body);
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Print ───────────────────────────────────── */
+  @media print {
+    input, textarea { border-color: #cbd5e1 !important; background: white !important; }
+    html { background: white; }
+    body { max-width: 100%; padding: 0; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    .sheet { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; padding: 1.2cm 1.5cm !important; }
+  }
+
+  /* ── Sheet Container ─────────────────────────── */
+  .sheet {
+    background: var(--white);
+    margin: 2rem auto;
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 4px 24px rgba(37,99,235,0.10);
+    border-radius: 16px;
+  }
+
+  /* ── Header (homework.html style) ───────────── */
+  .hw-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--blue);
+    margin-bottom: 1.4rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hw-header-left h1 {
+    font-family: var(--ff-head);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.1;
+  }
+  .hw-header-left .subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hw-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 220px;
+  }
+  .hw-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--slate);
+    font-weight: 600;
+  }
+  .hw-meta-row .label {
+    background: var(--blue-lt);
+    color: var(--blue);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    min-width: 65px;
+    text-align: center;
+  }
+  .hw-meta-row input[type="text"] {
+    flex: 1;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    font-family: var(--ff-body);
+    font-size: 0.82rem;
+    color: var(--ink);
+    background: transparent;
+    outline: none;
+    padding: 1px 4px;
+  }
+
+  /* ── Score banner (homework.html style) ──────── */
+  .score-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--blue), #1d4ed8);
+    color: white;
+    border-radius: 10px;
+    padding: 0.7rem 1.2rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .score-banner .title { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+  .score-banner .sub   { font-size: 0.78rem; opacity: 0.85; }
+  .score-cells { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .score-cell {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 0.3rem 0.75rem;
+    text-align: center;
+    min-width: 80px;
+  }
+  .score-cell .sc-val { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+  .score-cell .sc-lbl { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.04em; }
+  .score-cell input {
+    width: 2.4rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255,255,255,0.6);
+    color: white;
+    font-family: var(--ff-head);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+  }
+
+  /* ── Section Header (homework.html style) ────── */
+  .section-hd {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 1.5rem 0 0.8rem;
+  }
+  .section-hd .icon { font-size: 1.25rem; }
+  .section-hd h2 {
+    font-family: var(--ff-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-hd .badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+  .badge-blue   { background: var(--blue-lt);   color: var(--blue);   border: 1px solid var(--blue-md); }
+  .badge-coral  { background: var(--coral-lt);  color: #c2410c;       border: 1px solid #fca5a5; }
+  .badge-green  { background: var(--green-lt);  color: var(--green);  border: 1px solid #86efac; }
+  .badge-purple { background: var(--purple-lt); color: var(--purple); border: 1px solid #c4b5fd; }
+  .badge-sand   { background: var(--sand-lt);   color: #92400e;       border: 1px solid #fcd34d; }
+
+  /* ── Instruction strip (homework.html style) ─── */
+  .instr {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.9rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--blue-lt);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ── Formula strip (homework.html style) ─────── */
+  .formula-strip {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    background: var(--blue-lt);
+    border: 1.5px solid var(--blue-md);
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 0.9rem;
+    align-items: center;
+  }
+  .formula-strip .fs-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.3rem;
+  }
+  .fml {
+    background: white;
+    border: 1.5px solid var(--blue-md);
+    border-radius: 7px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-family: var(--ff-head);
+  }
+
+  /* ── Divider (homework.html style) ──────────── */
+  hr.divider { border: none; border-top: 2px dashed var(--border); margin: 1.6rem 0; }
+
+  /* ── Level pills (lesson deck grayscale) ─────── */
+  .lvl {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1px 8px;
+    border-radius: 20px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+    font-family: var(--ff-lesson-body);
+  }
+  .lvl-1 { background: #f0f0f0; color: #374151; }
+  .lvl-2 { background: #d9d9d9; color: #1f2937; }
+  .lvl-3 { background: #bdbdbd; color: #111827; }
+  .lvl-4 { background: #6b7280; color: #ffffff; }
+
+  /* ── PROBLEM CARDS (lesson deck style) ──────── */
+  /* All problem content uses the lesson's gray palette */
+  .prob-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+  }
+  .prob-grid.single { grid-template-columns: 1fr; }
+  .prob-grid.wide   { grid-template-columns: 1fr; }
+
+  .prob {
+    background: var(--lsn-card-bg);
+    border: 1.5px solid rgba(0,0,0,0.09);
+    border-radius: 12px;
+    padding: 0.75rem 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: relative;
+    font-family: var(--ff-lesson-body);
+  }
+  .prob-num {
+    font-family: var(--ff-lesson-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--lsn-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.3rem;
+  }
+  .prob-q {
+    font-size: 0.84rem;
+    color: var(--lsn-text);
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+    font-family: var(--ff-lesson-body);
+  }
+  .prob-q strong { color: #374151; }
+
+  /* Lesson-style work area */
+  .work-box {
+    border: 1.5px dashed rgba(0,0,0,0.22);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.02);
+    margin-top: 0.5rem;
+    overflow: hidden;
+  }
+  .work-box textarea {
+    width: 100%;
+    min-height: 56px;
+    border: none;
+    background: transparent;
+    resize: vertical;
+    padding: 0.45rem 0.65rem;
+    font-family: var(--ff-lesson-body);
+    font-size: 0.78rem;
+    color: #374151;
+    line-height: 1.5;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .work-box textarea::placeholder { color: #9ca3af; font-style: italic; }
+  .work-box textarea:focus { background: rgba(0,0,0,0.03); }
+
+  /* Answer line */
+  .answer-box {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--slate);
+    margin-top: 0.5rem;
+    font-family: var(--ff-lesson-body);
+  }
+  .answer-line { border-bottom: 1.5px solid var(--border); flex: 1; min-height: 1.2rem; }
+
+  /* ── Lesson-style diagram wrap ───────────────── */
+  .diagram-wrap {
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.09);
+    border-radius: 14px;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin: 0.45rem 0;
+  }
+  .diagram-wrap svg text {
+    font-family: 'DM Sans', sans-serif;
+    paint-order: stroke fill;
+    stroke: white;
+    stroke-width: 3.5px;
+    stroke-linejoin: round;
+  }
+
+  /* ── Lesson-style special cards ─────────────── */
+  .trap-card {
+    border-left: 4px solid #4b5563;
+    background: #f9fafb;
+    border-radius: 0 9px 9px 0;
+    padding: 0.55rem 0.85rem;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.10);
+    font-family: var(--ff-lesson-body);
+    font-size: 0.82rem;
+    color: #334155;
+    margin-top: 0.5rem;
+  }
+  .trap-card strong { color: #111827; }
+
+  .prob-card-lesson {
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.09);
+    border-radius: 12px;
+    padding: 0.7rem 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    font-family: var(--ff-lesson-body);
+    font-size: 0.83rem;
+    color: #334155;
+    line-height: 1.6;
+  }
+  .prob-card-lesson strong { color: #111827; }
+
+  .formula-box-lesson {
+    background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02));
+    border: 2px solid rgba(0,0,0,0.18);
+    border-radius: 10px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #111827;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.02em;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  .socratic-note {
+    background: rgba(0,0,0,0.04);
+    border-left: 3px solid #6b7280;
+    border-radius: 0 8px 8px 0;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.79rem;
+    font-style: italic;
+    color: #374151;
+    font-weight: 600;
+    font-family: var(--ff-lesson-body);
+    margin-top: 0.5rem;
+  }
+
+  /* ── Section badge (lesson-style, inside prob) ── */
+  .section-badge-sm {
+    display: inline-block;
+    background: linear-gradient(135deg, #374151, #1f2937);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.4rem;
+    font-family: var(--ff-lesson-display);
+  }
+
+  /* ── Error log (homework.html style) ──────────── */
+  .error-log {
+    border: 2px solid var(--coral);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    background: var(--coral-lt);
+    margin-top: 0.5rem;
+  }
+  .error-log h3 {
+    font-family: var(--ff-head);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c2410c;
+    margin-bottom: 0.55rem;
+  }
+  .error-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  .error-table th {
+    background: var(--coral);
+    color: white;
+    font-family: var(--ff-head);
+    font-weight: 600;
+    padding: 0.35rem 0.6rem;
+    text-align: left;
+    font-size: 0.75rem;
+  }
+  .error-table th:first-child { border-radius: 6px 0 0 0; }
+  .error-table th:last-child  { border-radius: 0 6px 0 0; }
+  .error-table td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid #fca5a5;
+    color: var(--slate);
+    background: white;
+    font-weight: 500;
+  }
+  .error-table td:first-child { font-weight: 700; color: var(--ink); width: 5%; text-align: center; }
+  .error-table tr:last-child td { border-bottom: none; }
+
+  /* ── Reflect box (homework.html style) ───────── */
+  .reflect-box {
+    background: var(--green-lt);
+    border: 1.5px solid #86efac;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    margin-top: 1rem;
+  }
+  .reflect-box h3 {
+    font-family: var(--ff-head);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.45rem;
+  }
+  .reflect-lines { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.3rem; }
+  .reflect-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+    font-weight: 600;
+  }
+  .reflect-line input[type=text] {
+    flex: 1;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    font-family: var(--ff-body);
+    font-size: 0.8rem;
+    color: var(--ink);
+    background: transparent;
+    outline: none;
+    padding: 1px 6px;
+  }
+
+  /* ── Print button ─────────────────────────────── */
+  .print-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 1rem;
+    background: var(--blue);
+    color: white;
+    font-family: var(--ff-head);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.55rem 1.6rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(37,99,235,0.3);
+    transition: background 0.2s;
+  }
+  .print-btn:hover { background: #1d4ed8; }
+
+  /* ── Two-column layout for diagram+text ──────── */
+  .diag-text-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    align-items: start;
+  }
+  .diag-text-grid.thirds {
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  /* ── MC options (lesson style) ───────────────── */
+  .mc-options { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.35rem; }
+  .mc-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    border: 1.5px solid rgba(0,0,0,0.10);
+    background: #fafafa;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: #374151;
+    transition: background 0.15s, border-color 0.15s;
+    user-select: none;
+    font-family: var(--ff-lesson-body);
+  }
+  .mc-option:hover { background: #f0f0f0; border-color: rgba(0,0,0,0.20); }
+  .mc-option input[type=radio] { display: none; }
+  .mc-option.selected { background: #e5e7eb; border-color: #374151; font-weight: 700; }
+  .mc-option .opt-letter { font-weight: 800; min-width: 1rem; color: #6b7280; }
+</style>
+</head>
+<body>
+
+<div class="no-print" style="display:flex;gap:0.8rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;">
+  <button class="print-btn" onclick="window.print()" style="margin:0;">🖨️ Print / Save as PDF</button>
+  <button class="print-btn" onclick="clearAll()" style="margin:0;background:#64748b;">🗑️ Clear All</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAGE 1
+══════════════════════════════════════════════ -->
+<div class="sheet">
+
+  <!-- HEADER -->
+  <div class="hw-header">
+    <div class="hw-header-left">
+      <h1>🧩 Lesson 6 Activity</h1>
+      <div class="subtitle">Factoring Polynomials &amp; Solving Quadratic Equations &nbsp;·&nbsp; Algebra I Regents</div>
+    </div>
+    <div class="hw-meta">
+      <div class="hw-meta-row"><span class="label">Name</span><input type="text" placeholder=""></div>
+      <div class="hw-meta-row"><span class="label">Date</span><input type="text" placeholder=""></div>
+      <div class="hw-meta-row"><span class="label">Period</span><input type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <!-- SCORE BANNER -->
+  <div class="score-banner">
+    <div>
+      <div class="title">Self-Score</div>
+      <div class="sub">Check your own work after the lesson — bring to session!</div>
+    </div>
+    <div class="score-cells">
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="5" placeholder="__"> / 5</div>
+        <div class="sc-lbl">Part A · GCF</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="6" placeholder="__"> / 6</div>
+        <div class="sc-lbl">Part B · Factor</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="5" placeholder="__"> / 5</div>
+        <div class="sc-lbl">Part C · Solve</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="4" placeholder="__"> / 4</div>
+        <div class="sc-lbl">Part D · World</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════
+       PART A — GCF FACTORING
+  ═══════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">🔧</span>
+    <h2>Part A — GCF: Un-Distributing</h2>
+    <span class="badge badge-blue">5 Problems · ~10 min</span>
+  </div>
+  <p class="instr">Factor out the Greatest Common Factor from each expression. Check your work by distributing back! Circle your GCF.</p>
+
+  <div class="formula-strip">
+    <span class="fs-label">Method</span>
+    <span class="fml">Find shared number</span>
+    <span class="fml">Find shared variable(s)</span>
+    <span class="fml">GCF = both combined</span>
+    <span class="fml">Check: distribute back ✓</span>
+  </div>
+
+  <!-- Diagram + explanation panel -->
+  <div class="diag-text-grid" style="margin-bottom:0.9rem;">
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 200" width="100%" height="190" role="img" aria-label="Area model showing 6x squared plus 9x factored as 3x times the quantity 2x plus 3">
+        <text x="150" y="20" font-size="13" font-weight="800" fill="#374151" text-anchor="middle">6x² + 9x  =  3x(2x + 3)</text>
+        <!-- column labels -->
+        <text x="150" y="56" font-size="12" font-weight="700" fill="#6b7280" text-anchor="middle">width: 2x</text>
+        <text x="262" y="56" font-size="12" font-weight="700" fill="#6b7280" text-anchor="middle">+ 3</text>
+        <!-- row label -->
+        <text x="44" y="120" font-size="12" font-weight="700" fill="#6b7280" text-anchor="middle">3x</text>
+        <!-- boxes -->
+        <rect x="62" y="64" width="168" height="98" fill="#f3f4f6" stroke="#374151" stroke-width="2.5"/>
+        <rect x="230" y="64" width="54" height="98" fill="#e5e7eb" stroke="#374151" stroke-width="2.5"/>
+        <!-- box labels -->
+        <text x="146" y="118" font-size="17" font-weight="800" fill="#111827" text-anchor="middle">6x²</text>
+        <text x="257" y="118" font-size="17" font-weight="800" fill="#111827" text-anchor="middle">9x</text>
+        <!-- annotation -->
+        <text x="150" y="178" font-size="11" font-weight="700" fill="#4b5563" text-anchor="middle">3x is the Greatest Common Factor</text>
+        <text x="150" y="193" font-size="11" font-weight="600" fill="#6b7280" text-anchor="middle">shared by BOTH boxes →  GCF FIRST, always!</text>
+      </svg>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.5rem;">
+      <div class="section-badge-sm">How To Factor GCF</div>
+      <div class="prob-card-lesson">
+        <strong>Step 1</strong> — What number divides into ALL coefficients?<br>
+        <strong>Step 2</strong> — What's the lowest power of each shared variable?<br>
+        <strong>Step 3</strong> — Multiply those together = your GCF.<br>
+        <strong>Step 4</strong> — Divide every term by the GCF; write what's left in ( ).
+      </div>
+      <div class="trap-card">
+        <strong>⚠ Trap:</strong> Don't grab only the number or only the variable — take <em>both</em>. In 6x² + 9x the GCF is <strong>3x</strong>, not just 3 and not just x.
+      </div>
+    </div>
+  </div>
+
+  <div class="prob-grid">
+
+    <!-- A1 -->
+    <div class="prob">
+      <div class="prob-num">Problem A1 <span class="lvl lvl-1">Starter</span></div>
+      <p class="prob-q">Factor: <strong>4x + 12</strong></p>
+      <div class="work-box"><textarea rows="2" placeholder="GCF = ___   →  ___( ___ + ___ )"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- A2 -->
+    <div class="prob">
+      <div class="prob-num">Problem A2 <span class="lvl lvl-1">Starter</span></div>
+      <p class="prob-q">Factor: <strong>5x + 20</strong></p>
+      <div class="work-box"><textarea rows="2" placeholder="GCF = ___   →  ___( ___ + ___ )"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- A3 -->
+    <div class="prob">
+      <div class="prob-num">Problem A3 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">Factor: <strong>6x² + 9x</strong><br><small style="color:#6b7280;">Use the diagram above as a guide.</small></p>
+      <div class="work-box"><textarea rows="2" placeholder="Number GCF: ___   Variable GCF: ___   Total GCF: ___"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- A4 -->
+    <div class="prob">
+      <div class="prob-num">Problem A4 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">Factor: <strong>8x³ + 12x²</strong></p>
+      <div class="work-box"><textarea rows="2" placeholder="GCF = ___   →  ___( ___ + ___ )"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- A5 -->
+    <div class="prob" style="grid-column: 1 / -1;">
+      <div class="prob-num">Problem A5 <span class="lvl lvl-3">Challenge</span></div>
+      <p class="prob-q">Factor completely: <strong>12x³ + 8x² − 4x</strong><br><small style="color:#6b7280;">Three terms — find what ALL three share.</small></p>
+      <div class="work-box"><textarea rows="2" placeholder="Shared number ___  Shared variable ___  GCF = ___  Result: ___( ___ + ___ − ___ )"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+  </div><!-- /prob-grid Part A -->
+
+  <hr class="divider">
+
+  <!-- ══════════════════════════════════
+       PART B — FACTORING TRINOMIALS
+  ═══════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">🕵️</span>
+    <h2>Part B — Trinomial Factoring: The Two-Number Detective</h2>
+    <span class="badge badge-sand">6 Problems · ~14 min</span>
+  </div>
+  <p class="instr">Find the detective pair — two numbers that MULTIPLY to c and ADD to b — then write the factored form.</p>
+
+  <div class="formula-strip">
+    <span class="fs-label">Formula</span>
+    <span class="fml">x² + bx + c = (x + m)(x + n)</span>
+    <span class="fml">m · n = c</span>
+    <span class="fml">m + n = b</span>
+    <span class="fml">c > 0: signs match b &nbsp;|&nbsp; c &lt; 0: signs differ</span>
+  </div>
+
+  <!-- X-Diamond diagram + sign rules -->
+  <div class="diag-text-grid" style="margin-bottom:0.9rem;">
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220" width="100%" height="210" role="img" aria-label="X-diamond diagram for factoring x squared plus 7x plus 10">
+        <text x="150" y="22" font-size="13" font-weight="800" fill="#111827" text-anchor="middle">x² + 7x + 10</text>
+        <!-- X lines -->
+        <line x1="90" y1="65" x2="210" y2="165" stroke="#374151" stroke-width="2.5"/>
+        <line x1="210" y1="65" x2="90" y2="165" stroke="#374151" stroke-width="2.5"/>
+        <!-- top label -->
+        <text x="150" y="58" font-size="11" font-weight="800" fill="#4b5563" text-anchor="middle">MULTIPLY to c = 10</text>
+        <!-- bottom label -->
+        <text x="150" y="188" font-size="11" font-weight="800" fill="#9ca3af" text-anchor="middle">ADD to b = 7</text>
+        <!-- circles for 2 and 5 -->
+        <circle cx="78" cy="115" r="20" fill="#f3f4f6" stroke="#374151" stroke-width="2.5"/>
+        <text x="78" y="121" font-size="16" font-weight="800" fill="#111827" text-anchor="middle">2</text>
+        <circle cx="222" cy="115" r="20" fill="#f3f4f6" stroke="#374151" stroke-width="2.5"/>
+        <text x="222" y="121" font-size="16" font-weight="800" fill="#111827" text-anchor="middle">5</text>
+        <!-- result -->
+        <text x="150" y="207" font-size="13" font-weight="800" fill="#374151" text-anchor="middle">= (x + 2)(x + 5)</text>
+      </svg>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.5rem;">
+      <div class="section-badge-sm">Sign Detective Rules</div>
+      <div class="prob-card-lesson">
+        <strong>c is POSITIVE</strong> → both signs match b<br>
+        <span style="color:#6b7280;font-size:0.8rem;">x² + 7x + 10 → both +, since b > 0</span><br>
+        <span style="color:#6b7280;font-size:0.8rem;">x² − 7x + 10 → both −, since b &lt; 0</span>
+      </div>
+      <div class="prob-card-lesson">
+        <strong>c is NEGATIVE</strong> → signs differ<br>
+        <span style="color:#6b7280;font-size:0.8rem;">Bigger number takes the sign of b</span><br>
+        <span style="color:#6b7280;font-size:0.8rem;">x² + 3x − 10 → (x + 5)(x − 2)</span>
+      </div>
+      <div class="socratic-note">💭 List factor pairs of c first — then scan each pair's <em>sum</em> for b.</div>
+    </div>
+  </div>
+
+  <div class="prob-grid">
+
+    <!-- B1 -->
+    <div class="prob">
+      <div class="prob-num">Problem B1 <span class="lvl lvl-1">Starter</span></div>
+      <p class="prob-q">Factor: <strong>x² + 5x + 6</strong></p>
+      <div class="work-box"><textarea rows="2" placeholder="Factor pairs of 6: (1,6) (2,3) — which adds to 5?"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- B2 -->
+    <div class="prob">
+      <div class="prob-num">Problem B2 <span class="lvl lvl-1">Starter</span></div>
+      <p class="prob-q">Factor: <strong>x² + 7x + 12</strong></p>
+      <div class="work-box"><textarea rows="2" placeholder="Factor pairs of 12: (1,12)(2,6)(3,4) — which adds to 7?"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- B3 -->
+    <div class="prob">
+      <div class="prob-num">Problem B3 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">Factor: <strong>x² − 5x + 6</strong><br><small style="color:#6b7280;">c is positive — what does that tell you about the signs?</small></p>
+      <div class="work-box"><textarea rows="2" placeholder="c > 0 so signs ___. b is negative so both signs are ___."></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- B4 -->
+    <div class="prob">
+      <div class="prob-num">Problem B4 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">Factor: <strong>x² + 3x − 10</strong><br><small style="color:#6b7280;">c is negative — signs differ. Which number takes +?</small></p>
+      <div class="work-box"><textarea rows="2" placeholder="c < 0 so signs differ. Bigger number takes sign of b, which is ___."></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- B5 -->
+    <div class="prob">
+      <div class="prob-num">Problem B5 <span class="lvl lvl-3">Challenge</span></div>
+      <p class="prob-q">Factor: <strong>x² − 2x − 15</strong></p>
+      <div class="work-box"><textarea rows="2" placeholder="Factor pairs of −15 with different signs... which pair adds to −2?"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- B6 -->
+    <div class="prob">
+      <div class="prob-num">Problem B6 <span class="lvl lvl-3">Challenge</span></div>
+      <p class="prob-q">Factor completely: <strong>2x² + 16x + 24</strong><br><small style="color:#6b7280;">GCF first — then factor the trinomial inside!</small></p>
+      <div class="work-box"><textarea rows="2" placeholder="Step 1 GCF: ___(x² + ___x + ___). Step 2 factor inside: ___"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+  </div><!-- /prob-grid Part B -->
+
+</div><!-- /sheet page 1 -->
+
+<!-- ══════════════════════════════════════════════
+     PAGE 2
+══════════════════════════════════════════════ -->
+<div class="sheet">
+
+  <!-- HEADER PAGE 2 -->
+  <div class="hw-header">
+    <div class="hw-header-left">
+      <h1>🧩 Lesson 6 Activity <span style="font-size:1rem;color:var(--muted);font-weight:500;">— continued</span></h1>
+      <div class="subtitle">Zero Product Property · Real-World · Exit Ticket</div>
+    </div>
+    <div class="hw-meta">
+      <div class="hw-meta-row"><span class="label">Name</span><input type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PART C — ZERO PRODUCT PROPERTY
+  ═══════════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">⚡</span>
+    <h2>Part C — Solving with the Zero Product Property</h2>
+    <span class="badge badge-coral">5 Problems · ~12 min</span>
+  </div>
+  <p class="instr">Solve each quadratic equation. Always set equal to 0 FIRST, then factor, then split.</p>
+
+  <div class="formula-strip">
+    <span class="fs-label">5-Step Rule</span>
+    <span class="fml">① Set = 0</span>
+    <span class="fml">② GCF out</span>
+    <span class="fml">③ Factor trinomial</span>
+    <span class="fml">④ Each factor = 0</span>
+    <span class="fml">⑤ Solve &amp; CHECK</span>
+  </div>
+
+  <!-- ZPP explainer + parabola diagram -->
+  <div class="diag-text-grid" style="margin-bottom:0.9rem;">
+    <div style="display:flex;flex-direction:column;gap:0.5rem;">
+      <div class="section-badge-sm">Why Zero Is Special</div>
+      <div class="formula-box-lesson">If  A · B = 0,  then  A = 0  or  B = 0</div>
+      <div class="prob-card-lesson">
+        Zero is the <strong>only</strong> number you can't sneak up on by multiplying. If a product is zero, one factor MUST be zero — that certainty turns one hard equation into two easy ones.
+      </div>
+      <div class="trap-card">
+        <strong>⚠ #1 Trap:</strong> (x + 2)(x − 5) = 4 does <em>not</em> mean x + 2 = 4.<br>
+        Zero Product Property only fires when the product equals <strong>ZERO</strong>. Move everything to one side first!
+      </div>
+    </div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220" width="100%" height="210" role="img" aria-label="Parabola y equals x squared minus 2x minus 15 with roots at x = negative 3 and x = 5">
+        <!-- axes -->
+        <line x1="131" y1="10" x2="131" y2="210" stroke="#374151" stroke-width="2"/>
+        <line x1="10" y1="131" x2="290" y2="131" stroke="#374151" stroke-width="2"/>
+        <polygon points="131,8 127,18 135,18" fill="#374151"/>
+        <polygon points="291,131 281,127 281,135" fill="#374151"/>
+        <text x="283" y="146" font-size="11" font-weight="700" fill="#374151">x</text>
+        <text x="137" y="16" font-size="11" font-weight="700" fill="#374151">y</text>
+        <!-- parabola -->
+        <path d="M 39 42 Q 150 340 261 42" fill="none" stroke="#4b5563" stroke-width="3"/>
+        <!-- roots -->
+        <circle cx="76" cy="131" r="6" fill="#374151"/>
+        <circle cx="224" cy="131" r="6" fill="#374151"/>
+        <text x="55" y="118" font-size="11" font-weight="800" fill="#111827">x = −3</text>
+        <text x="205" y="118" font-size="11" font-weight="800" fill="#111827">x = 5</text>
+        <!-- vertex -->
+        <circle cx="150" cy="195" r="4" fill="#9ca3af"/>
+        <text x="150" y="213" font-size="10" font-weight="700" fill="#6b7280" text-anchor="middle">vertex (1, −16)</text>
+        <!-- label -->
+        <text x="62" y="66" font-size="11" font-weight="800" fill="#374151">y = x² − 2x − 15</text>
+        <text x="62" y="80" font-size="10" font-weight="700" fill="#6b7280">= (x − 5)(x + 3)</text>
+        <!-- x-axis label -->
+        <text x="150" y="147" font-size="10" font-weight="600" fill="#6b7280" text-anchor="middle">roots = x-intercepts = solutions</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="prob-grid">
+
+    <!-- C1 -->
+    <div class="prob">
+      <div class="prob-num">Problem C1 <span class="lvl lvl-1">Starter</span></div>
+      <p class="prob-q">Solve: <strong>(x + 3)(x − 2) = 0</strong><br><small style="color:#6b7280;">Already factored — split and solve directly.</small></p>
+      <div class="work-box"><textarea rows="2" placeholder="x + 3 = 0  →  x = ___     x − 2 = 0  →  x = ___"></textarea></div>
+      <div class="answer-box">x = <div class="answer-line"></div> or x = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- C2 -->
+    <div class="prob">
+      <div class="prob-num">Problem C2 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">Solve: <strong>x² + 9x + 20 = 0</strong></p>
+      <div class="work-box"><textarea rows="3" placeholder="Detective pair: multiply to 20, add to 9 → ___ and ___&#10;Factor: ( )( ) = 0&#10;Solutions: x = ___ or x = ___"></textarea></div>
+      <div class="answer-box">x = <div class="answer-line"></div> or x = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- C3 -->
+    <div class="prob">
+      <div class="prob-num">Problem C3 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">Solve: <strong>x² − x − 12 = 0</strong><br><small style="color:#6b7280;">Watch the signs! c is negative.</small></p>
+      <div class="work-box"><textarea rows="3" placeholder="c < 0, signs differ. Pair: ___ and ___&#10;Factor: ( )( ) = 0&#10;x = ___ or x = ___"></textarea></div>
+      <div class="answer-box">x = <div class="answer-line"></div> or x = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- C4 -->
+    <div class="prob">
+      <div class="prob-num">Problem C4 <span class="lvl lvl-3">Challenge</span></div>
+      <p class="prob-q">Solve: <strong>3x² + 12x = 0</strong><br><small style="color:#6b7280;">GCF first! Don't lose the x = 0 solution.</small></p>
+      <div class="work-box"><textarea rows="3" placeholder="Step 1 GCF: ___( ___ ) = 0&#10;Split: ___ = 0 OR ___ = 0&#10;x = ___ or x = ___"></textarea></div>
+      <div class="answer-box">x = <div class="answer-line"></div> or x = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- C5 — must move to zero first -->
+    <div class="prob" style="grid-column: 1 / -1;">
+      <div class="prob-num">Problem C5 <span class="lvl lvl-4">Regents 🔥</span></div>
+      <p class="prob-q">Solve: <strong>x² + 6x = −8</strong><br><small style="color:#6b7280;">Not set to zero yet — that's your first move.</small></p>
+      <div class="work-box"><textarea rows="3" placeholder="Step 1 move to one side: x² + 6x + ___ = 0&#10;Step 2 detective pair: ___ and ___&#10;Step 3 factor & solve: x = ___ or x = ___"></textarea></div>
+      <div class="answer-box">x = <div class="answer-line"></div> or x = <div class="answer-line"></div></div>
+    </div>
+
+  </div><!-- /prob-grid Part C -->
+
+  <hr class="divider">
+
+  <!-- ══════════════════════════════════
+       PART D — REAL-WORLD APPLICATION
+  ═══════════════════════════════════ -->
+  <div class="section-hd">
+    <span class="icon">🌿</span>
+    <h2>Part D — Real-World: The Garden Plot</h2>
+    <span class="badge badge-green">4 Problems · ~10 min</span>
+  </div>
+  <p class="instr">Read carefully — underline what you're looking for. Build an equation, solve it, and REJECT any impossible root.</p>
+
+  <!-- Garden diagram + worked example setup -->
+  <div class="diag-text-grid thirds" style="margin-bottom:0.9rem;">
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 220" width="100%" height="210" role="img" aria-label="Rectangular garden with width w, length w plus 3, and area 54 square feet">
+        <rect x="55" y="48" width="200" height="130" fill="#f3f4f6" stroke="#374151" stroke-width="3" rx="6"/>
+        <!-- garden decor -->
+        <text x="85" y="83" font-size="14">🌷</text>
+        <text x="145" y="83" font-size="14">🌽</text>
+        <text x="205" y="83" font-size="14">🌷</text>
+        <text x="115" y="118" font-size="14">🥕</text>
+        <text x="175" y="118" font-size="14">🌷</text>
+        <text x="85" y="153" font-size="14">🌽</text>
+        <text x="145" y="153" font-size="14">🌷</text>
+        <text x="205" y="153" font-size="14">🥕</text>
+        <!-- area label -->
+        <text x="155" y="123" font-size="16" font-weight="800" fill="#111827" text-anchor="middle">A = 54 ft²</text>
+        <!-- dimension lines -->
+        <line x1="55" y1="198" x2="255" y2="198" stroke="#6b7280" stroke-width="2"/>
+        <line x1="55" y1="192" x2="55" y2="204" stroke="#6b7280" stroke-width="2"/>
+        <line x1="255" y1="192" x2="255" y2="204" stroke="#6b7280" stroke-width="2"/>
+        <text x="155" y="215" font-size="12" font-weight="800" fill="#374151" text-anchor="middle">length = w + 3</text>
+        <line x1="30" y1="48" x2="30" y2="178" stroke="#6b7280" stroke-width="2"/>
+        <line x1="24" y1="48" x2="36" y2="48" stroke="#6b7280" stroke-width="2"/>
+        <line x1="24" y1="178" x2="36" y2="178" stroke="#6b7280" stroke-width="2"/>
+        <text x="18" y="113" font-size="12" font-weight="800" fill="#374151" text-anchor="middle" transform="rotate(-90 18 113)">width = w</text>
+        <!-- equation label -->
+        <text x="155" y="22" font-size="12" font-weight="800" fill="#374151" text-anchor="middle">w(w + 3) = 54</text>
+      </svg>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.5rem;">
+      <div class="section-badge-sm">Worked Strategy</div>
+      <div class="prob-card-lesson">
+        <strong>1.</strong> Let the unknown = w<br>
+        <strong>2.</strong> Write expression for other dimension<br>
+        <strong>3.</strong> Set up equation (Area = l × w)<br>
+        <strong>4.</strong> Expand, move all to one side → = 0<br>
+        <strong>5.</strong> GCF → Factor → ZPP → Solve<br>
+        <strong>6.</strong> <em>Reject impossible roots!</em>
+      </div>
+      <div class="trap-card">
+        <strong>⚠ Real-World Rule:</strong> Algebra gives every root. You must check: can a garden be −9 ft wide? No — REJECT negative dimensions.
+      </div>
+    </div>
+  </div>
+
+  <div class="prob-grid">
+
+    <!-- D1 -->
+    <div class="prob">
+      <div class="prob-num">Problem D1 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">A rectangular garden has an <strong>area of 54 ft²</strong>. Its length is <strong>3 ft more than its width</strong>. Find the dimensions.</p>
+      <div class="work-box"><textarea rows="4" placeholder="Let width = w. Length = ___&#10;Equation: w(___)= 54&#10;Standard form: w² + ___w − ___ = 0&#10;Factor: ( )( ) = 0 → w = ___ or ___"></textarea></div>
+      <div class="answer-box">Width = <div class="answer-line"></div> &nbsp; Length = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- D2 -->
+    <div class="prob">
+      <div class="prob-num">Problem D2 <span class="lvl lvl-2">Medium</span></div>
+      <p class="prob-q">A rectangle's <strong>length is 5 ft more than its width</strong>. Its <strong>area is 84 ft²</strong>. Find the dimensions.</p>
+      <div class="work-box"><textarea rows="4" placeholder="Let width = w. Length = ___&#10;Equation: ___&#10;Standard form: ___&#10;Factor & solve: ___"></textarea></div>
+      <div class="answer-box">Width = <div class="answer-line"></div> &nbsp; Length = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- D3 -->
+    <div class="prob">
+      <div class="prob-num">Problem D3 <span class="lvl lvl-3">Challenge</span></div>
+      <p class="prob-q">A square photo has side length s. A new frame <strong>adds 2 inches to each side</strong>, making the framed area <strong>64 in²</strong>. Find the original side length s.</p>
+      <div class="work-box"><textarea rows="4" placeholder="Framed dimensions: (s + ___) × (s + ___)&#10;Equation: ___ = 64&#10;Standard form: ___&#10;Factor & solve: ___   Reject: ___"></textarea></div>
+      <div class="answer-box">Original side s = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- D4 Regents -->
+    <div class="prob">
+      <div class="prob-num">Problem D4 <span class="lvl lvl-4">Regents 🔥</span></div>
+      <p class="prob-q">The polynomial x² + 8x + 15 represents the area of a garden (from lesson!). <strong>Write the factored form</strong>, then <strong>state the dimensions</strong> when x = 3 ft.</p>
+      <div class="work-box"><textarea rows="4" placeholder="Factored form: ___&#10;When x = 3: length = ___ ft, width = ___ ft&#10;Check: area = ___ × ___ = ___ ft²&#10;Also plug in: 3² + 8(3) + 15 = ___"></textarea></div>
+      <div class="answer-box">Factored: <div class="answer-line"></div> &nbsp; Area at x=3: <div class="answer-line"></div> ft²</div>
+    </div>
+
+  </div><!-- /prob-grid Part D -->
+
+</div><!-- /sheet page 2 -->
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 3 — EXIT TICKET + REFLECTION
+══════════════════════════════════════════════ -->
+<div class="sheet">
+
+  <!-- HEADER PAGE 3 -->
+  <div class="hw-header">
+    <div class="hw-header-left">
+      <h1>🎯 Exit Ticket</h1>
+      <div class="subtitle">Lesson 6 — Show What You Own &nbsp;·&nbsp; Silent &amp; Solo</div>
+    </div>
+    <div class="hw-meta">
+      <div class="hw-meta-row"><span class="label">Name</span><input type="text" placeholder=""></div>
+      <div class="hw-meta-row"><span class="label">Confidence</span>
+        <span style="display:flex;gap:0.4rem;font-size:0.78rem;font-weight:700;color:var(--slate);">
+          <label style="cursor:pointer;"><input type="radio" name="conf" value="1"> 😕 Still confused</label>
+          <label style="cursor:pointer;"><input type="radio" name="conf" value="2"> 🙂 Getting it</label>
+          <label style="cursor:pointer;"><input type="radio" name="conf" value="3"> 😄 Got it!</label>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 Things to Know Cold (matching lesson Slide 14) -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;margin-bottom:1rem;">
+    <div class="prob-card-lesson" style="text-align:center;border-top:3px solid #374151;padding:0.85rem;">
+      <div style="font-size:1.6rem;margin-bottom:0.3rem;">🔧</div>
+      <div style="font-weight:800;font-size:0.82rem;color:#111827;">Factoring</div>
+      <div style="font-size:0.75rem;color:#334155;margin-top:0.3rem;line-height:1.6;">rewriting a sum<br>as a product<br>un-distributing</div>
+    </div>
+    <div class="prob-card-lesson" style="text-align:center;border-top:3px solid #6b7280;padding:0.85rem;">
+      <div style="font-size:1.6rem;margin-bottom:0.3rem;">🕵️</div>
+      <div style="font-weight:800;font-size:0.82rem;color:#374151;">Detective Pair</div>
+      <div style="font-size:0.75rem;color:#334155;margin-top:0.3rem;line-height:1.6;">multiply to c<br>add to b<br>mind the signs!</div>
+    </div>
+    <div class="prob-card-lesson" style="text-align:center;border-top:3px solid #374151;padding:0.85rem;">
+      <div style="font-size:1.6rem;margin-bottom:0.3rem;">⚡</div>
+      <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">Zero Product</div>
+      <div style="font-size:0.75rem;color:#334155;margin-top:0.3rem;line-height:1.6;">set = 0 first<br>split the factors<br>solve each</div>
+    </div>
+    <div class="prob-card-lesson" style="text-align:center;border-top:3px solid #374151;padding:0.85rem;">
+      <div style="font-size:1.6rem;margin-bottom:0.3rem;">📈</div>
+      <div style="font-weight:800;font-size:0.82rem;color:#111827;">Graph Link</div>
+      <div style="font-size:0.75rem;color:#334155;margin-top:0.3rem;line-height:1.6;">roots = x-intercepts<br>= zeros<br>= solutions</div>
+    </div>
+  </div>
+
+  <!-- Main exit ticket problems -->
+  <div class="section-hd">
+    <span class="icon">✏️</span>
+    <h2>Exit Ticket — Silent, Solo, No Notes</h2>
+    <span class="badge badge-blue">4 min</span>
+  </div>
+  <p class="instr">Show EVERY step. This tells Mr. Weng what to reteach tomorrow — be honest with yourself!</p>
+
+  <div class="prob-grid">
+
+    <!-- ET1 -->
+    <div class="prob">
+      <div class="prob-num">Exit Ticket 1</div>
+      <p class="prob-q">Factor: <strong>x² + 5x + 6</strong><br><small style="color:#6b7280;">Show the detective pair work.</small></p>
+      <div class="work-box"><textarea rows="3" placeholder="Pair: ___ × ___ = 6 and ___ + ___ = 5&#10;Factored form: ___"></textarea></div>
+      <div class="answer-box">Answer: <div class="answer-line"></div></div>
+    </div>
+
+    <!-- ET2 -->
+    <div class="prob">
+      <div class="prob-num">Exit Ticket 2</div>
+      <p class="prob-q">Solve: <strong>x² + 5x + 6 = 0</strong><br><small style="color:#6b7280;">Use your answer from ET1!</small></p>
+      <div class="work-box"><textarea rows="3" placeholder="From ET1: ( )( ) = 0&#10;x + ___ = 0  →  x = ___&#10;x + ___ = 0  →  x = ___"></textarea></div>
+      <div class="answer-box">x = <div class="answer-line"></div> or x = <div class="answer-line"></div></div>
+    </div>
+
+    <!-- ET3 -->
+    <div class="prob">
+      <div class="prob-num">Exit Ticket 3</div>
+      <p class="prob-q"><strong>Predict the signs:</strong> In x² + 5x + 6 = 0, both roots came out negative. Explain WHY — using only the signs of b and c.</p>
+      <div class="work-box"><textarea rows="3" placeholder="c is positive, so signs ___. b is positive, so both signs inside are ___, which means both roots are ___..."></textarea></div>
+    </div>
+
+    <!-- ET4 -->
+    <div class="prob">
+      <div class="prob-num">Exit Ticket 4 <span class="lvl lvl-4">Bonus 🔥</span></div>
+      <p class="prob-q">A parabola has roots at <strong>x = −2 and x = −3</strong>. Write a quadratic equation that has exactly these solutions.</p>
+      <div class="work-box"><textarea rows="3" placeholder="If x = −2 is a root, then the factor is (x + 2). If x = −3...&#10;Equation: ( )( ) = 0 → expand → ___"></textarea></div>
+      <div class="answer-box">Equation: <div class="answer-line"></div></div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- ERROR LOG -->
+  <div class="error-log">
+    <h3>🔎 Error Log — What Went Wrong?</h3>
+    <p style="font-size:0.79rem;color:#9a3412;margin-bottom:0.65rem;">For every problem you missed, fill in a row. Be honest — this is how we fix it before the Regents!</p>
+    <table class="error-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Problem</th>
+          <th>What I Did Wrong</th>
+          <th>Which Trap? (circle)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);" placeholder="e.g. B4"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);" placeholder="Forgot to flip sign of c…"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);" placeholder="Sign / GCF / ZPP / Other"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+          <td><input type="text" style="width:100%;border:none;font-size:0.77rem;color:#334155;background:transparent;outline:none;font-family:var(--ff-body);"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="reflect-box">
+    <h3>💬 Reflection — 3 Sentences Before You Leave</h3>
+    <div class="reflect-lines">
+      <div class="reflect-line">The step I'm most confident with now is <input type="text" placeholder="…"></div>
+      <div class="reflect-line">The trap I need to watch for is <input type="text" placeholder="e.g. forgetting to set = 0 before using ZPP…"></div>
+      <div class="reflect-line">One question I still have for Mr. Weng is <input type="text" placeholder="…"></div>
+    </div>
+  </div>
+
+</div><!-- /sheet page 3 -->
+
+<script>
+  // Radio MC selection highlight
+  document.querySelectorAll('.mc-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const grp = opt.closest('.mc-options');
+      if (grp) grp.querySelectorAll('.mc-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      const r = opt.querySelector('input[type=radio]');
+      if (r) r.checked = true;
+    });
+  });
+
+  // Clear all
+  function clearAll() {
+    if (!confirm('Clear all answers?')) return;
+    document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(el => { el.value = ''; });
+    document.querySelectorAll('input[type=radio]').forEach(el => { el.checked = false; });
+    document.querySelectorAll('.mc-option').forEach(el => el.classList.remove('selected'));
+  }
+</script>
+</body>
+</html>
