@@ -1,1 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="slides-format" content="viewport">
+    <title>Lesson 6: Factoring Polynomials and Solving Quadratic Equations</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-bg: #F0F7FF;
+            --color-bg-deep: #E0EEFF;
+            --color-surface: #FFFFFF;
+            --color-text: #0f172a;
+            --color-text-secondary: #334155;
+            --color-text-muted: #64748b;
+            --color-accent-1: #374151;
+            --color-accent-2: #4b5563;
+            --color-accent-3: #9ca3af;
+            --color-glass-bg: rgba(255,255,255,0.88);
+            --color-glass-border: rgba(0,0,0,0.07);
+            --color-vignette: rgba(0,0,0,0.04);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+    </style>
+
+    <style>
+        :root {
+            --color-bg: #F0F7FF;
+            --color-text: #0f172a;
+            --glow-color-rgb: 37,99,235;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { background: var(--color-bg); margin: 0; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
+        .deck { width: 100vw; height: 100vh; position: relative; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; overflow: hidden; }
+        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1080px; padding: clamp(1rem, 3vw, 3rem); }
+        .nav-controls { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); padding: 8px 22px; border-radius: 40px; border: 1px solid rgba(0,0,0,0.09); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .nav-btn { width: 36px; height: 36px; border: none; background: rgba(0,0,0,0.05); color: #111827; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .nav-btn:hover { background: rgba(37,99,235,0.18); }
+        .slide-dots { display: flex; gap: 7px; }
+        .slide-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.12); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+        .slide-dots .dot.active { background: #374151; transform: scale(1.35); }
+        .slide-counter { font-size: 0.75rem; color: #64748b; min-width: 36px; text-align: center; font-weight: 700; }
+        .reveal { opacity: 0; transform: translateY(16px); }
+
+        /* Gradient mesh */
+        @keyframes float-slow { 0% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-35px) scale(1.16); } 66% { transform: translate(-30px,30px) scale(0.92); } 100% { transform: translate(0,0) scale(1); } }
+        @keyframes float-drift { 0% { transform: translate(0,0) scale(1) rotate(0deg); } 33% { transform: translate(-40px,-45px) scale(1.12) rotate(2deg); } 66% { transform: translate(35px,25px) scale(0.9) rotate(-2deg); } 100% { transform: translate(0,0) scale(1) rotate(0deg); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(70px); animation: float-slow 12s ease-in-out infinite; }
+        .blob:nth-child(2) { animation: float-drift 16s ease-in-out infinite; }
+        .blob:nth-child(3) { animation: float-slow 20s ease-in-out infinite reverse; }
+
+        .slide::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, var(--color-vignette) 100%); }
+
+        /* Section badge */
+        .section-badge { display: inline-block; background: linear-gradient(135deg, #374151, #1f2937); color: white; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.6rem; }
+
+        /* Prob card */
+        .prob-card { background: white; border: 1.5px solid rgba(0,0,0,0.09); border-radius: 12px; padding: 0.7rem 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .formula-box { background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02)); border: 2px solid rgba(0,0,0,0.18); border-radius: 10px; padding: 0.45rem 0.9rem; font-size: 1rem; font-weight: 800; color: #111827; font-family: 'Outfit', sans-serif; letter-spacing: 0.02em; }
+        .socratic-q { background: rgba(0,0,0,0.04); border-left: 3px solid #6b7280; border-radius: 0 8px 8px 0; padding: 0.45rem 0.75rem; font-size: 0.82rem; font-style: italic; color: #374151; font-weight: 600; }
+        .trap-card { border-left: 4px solid #4b5563; background: #f9fafb; border-radius: 0 9px 9px 0; padding: 0.55rem 0.85rem; box-shadow: 0 2px 7px rgba(0,0,0,0.10); }
+        .diagram-wrap { background: white; border: 1.5px solid rgba(0,0,0,0.09); border-radius: 14px; padding: 0.6rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+        .diagram-wrap svg text { font-family: 'DM Sans', sans-serif; }
+        .lvl-badge { display: inline-block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 9px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+        .lvl-1 { background: #f0f0f0; color: #374151; }
+        .lvl-2 { background: #d9d9d9; color: #1f2937; }
+        .lvl-3 { background: #bdbdbd; color: #111827; }
+        .lvl-4 { background: #6b7280; color: #ffffff; }
+        .work-box { border: 1.5px dashed rgba(0,0,0,0.25); border-radius: 8px; padding: 0; background: rgba(0,0,0,0.02); min-height: 2.8rem; font-size: 0.82rem; color: #374151; overflow: hidden; }
+        .work-box textarea { width: 100%; min-height: 3.5rem; border: none; background: transparent; resize: vertical; padding: 0.5rem 0.75rem; font-size: 0.82rem; color: #374151; font-family: 'DM Sans', sans-serif; line-height: 1.5; outline: none; box-sizing: border-box; }
+        .work-box textarea::placeholder { color: #9ca3af; font-style: italic; }
+        .work-box textarea:focus { background: rgba(0,0,0,0.03); }
+        .mc-options { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.35rem; }
+        .mc-option { display: flex; align-items: flex-start; gap: 0.45rem; padding: 0.3rem 0.5rem; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.10); background: #fafafa; cursor: pointer; font-size: 0.78rem; color: #374151; transition: background 0.15s, border-color 0.15s; user-select: none; }
+        .mc-option:hover { background: #f0f0f0; border-color: rgba(0,0,0,0.20); }
+        .mc-option input[type=radio] { display: none; }
+        .mc-option.selected { background: #e5e7eb; border-color: #374151; font-weight: 700; }
+        .mc-option .opt-letter { font-weight: 800; min-width: 1rem; color: #6b7280; }
+        .diagram-wrap svg text { paint-order: stroke fill; stroke: white; stroke-width: 3.5px; stroke-linejoin: round; }
+
+        /* Video embed */
+        .video-thumb { position: relative; cursor: pointer; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 14px rgba(0,0,0,0.15); display: block; }
+        .video-thumb img { width: 100%; display: block; }
+        .video-thumb .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.72); border-radius: 50%; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; }
+        .video-thumb:hover .play-btn { background: rgba(255,0,0,0.85); transform: translate(-50%,-50%) scale(1.12); }
+        .video-thumb .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
+        .video-source { font-size: 0.7rem; color: #6b7280; margin-top: 0.25rem; text-align: center; }
+        .video-source a { color: #2563eb; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
+
+<div class="deck">
+
+    <!-- SLIDE 1: TITLE -->
+    <div class="slide active" data-slide="1">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:480px;height:480px;top:-120px;right:-100px;background:#374151;opacity:0.13;"></div>
+            <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#4b5563;opacity:0.09;"></div>
+            <div class="blob" style="width:220px;height:220px;top:38%;left:12%;background:#9ca3af;opacity:0.09;"></div>
+        </div>
+        <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content" style="text-align:center;">
+            <div style="font-size:4.5rem;animation:float 3s ease-in-out infinite;margin-bottom:0.4rem;" class="reveal">🧩</div>
+            <div class="section-badge reveal" style="margin-bottom:0.5rem;">Algebra I · Regents Prep · 60-Minute Session</div>
+            <h1 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5.5vw,3.6rem);font-weight:700;background:linear-gradient(135deg,#111827,#374151,#4b5563);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 0.4rem;">Lesson 6: Factoring Polynomials</h1>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.7rem);font-weight:600;color:#374151;margin:0 0 0.5rem;">&amp; Solving Quadratic Equations</h2>
+            <p class="reveal" style="font-size:0.95rem;color:#64748b;letter-spacing:0.12em;text-transform:uppercase;">GCF · Trinomials · Zero Product Property · Real-World Context</p>
+            <div class="reveal" style="display:inline-flex;gap:0.75rem;margin-top:0.8rem;flex-wrap:wrap;justify-content:center;">
+                <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">x² + bx + c</span>
+                <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">(x + m)(x + n) = 0</span>
+                <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Desmos</span>
+                <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Real-World</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: ROADMAP -->
+    <div class="slide" data-slide="2">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:340px;height:340px;top:-80px;right:-80px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Today's Plan</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;margin:0 0 1rem;">60-Minute Session Roadmap</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" class="reveal">
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-size:1.5rem;margin-bottom:0.3rem;">🔢</div>
+                    <div style="font-weight:800;font-size:0.95rem;color:#111827;">0–10 min · Do Now + Vocab</div>
+                    <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">Factor pairs of 36. Vocabulary wall: polynomial, binomial, trinomial, factor. <em>What patterns do you notice?</em></div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #6b7280;">
+                    <div style="font-size:1.5rem;margin-bottom:0.3rem;">🧩</div>
+                    <div style="font-weight:800;font-size:0.95rem;color:#374151;">10–27 min · Factoring Toolkit</div>
+                    <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">GCF first, always. Then trinomials: two numbers that multiply to c and add to b.</div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-size:1.5rem;margin-bottom:0.3rem;">🎯</div>
+                    <div style="font-weight:800;font-size:0.95rem;color:#374151;">27–44 min · Solve It!</div>
+                    <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">Zero Product Property. Set each factor to zero. Check roots on Desmos — see where the parabola lands.</div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #4b5563;">
+                    <div style="font-size:1.5rem;margin-bottom:0.3rem;">🌎</div>
+                    <div style="font-weight:800;font-size:0.95rem;color:#374151;">44–60 min · Real World + Exit</div>
+                    <div style="font-size:0.82rem;color:#374151;margin-top:0.25rem;">Garden plot dimensions. Differentiated practice problems. Exit ticket: x² − 5x + 6 = 0.</div>
+                </div>
+            </div>
+            <div class="socratic-q reveal" style="margin-top:0.7rem;">Before we start — you already know how to multiply (x + 2)(x + 3) into a trinomial. If multiplying is "building," what would the reverse process be? Why might "un-building" an expression ever be useful?</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: DO NOW + VOCABULARY -->
+    <div class="slide" data-slide="3">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 1 · Do Now</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Activate Prior Knowledge</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.6rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.4rem;">Do Now Problem</div>
+                        <div style="font-size:0.85rem;color:#334155;">List <strong>every factor pair</strong> of <strong>36</strong>. Race the clock — 90 seconds!</div>
+                        <div class="work-box" style="margin-top:0.5rem;"><textarea placeholder="1 × 36, 2 × 18, …" spellcheck="false"></textarea></div>
+                        <div style="font-size:0.78rem;color:#64748b;margin-top:0.4rem;"><em>Hint: work in order — 1, 2, 3, 4… When do you know you can stop?</em></div>
+                    </div>
+                    <div class="trap-card">
+                        <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">✅ Answer</div>
+                        <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">1×36, 2×18, 3×12, 4×9, 6×6. You can stop at 6 — after that the pairs just repeat in reverse!</div>
+                    </div>
+                    <div class="socratic-q">Which pair of factors of 36 has a <strong>sum of 13</strong>? Which pair has a sum of 12? Keep that skill in your pocket — it's the secret engine of today's lesson.</div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.2rem;">🔑 Key Vocabulary</div>
+                    <div class="prob-card">
+                        <div style="font-weight:700;font-size:0.85rem;color:#374151;">Polynomial · Binomial · Trinomial</div>
+                        <div style="font-size:0.79rem;color:#334155;margin-top:0.15rem;">Expressions made of terms. <strong>Bi</strong> = 2 terms (x + 5), <strong>tri</strong> = 3 terms (x² + 5x + 6) — like bicycle and tricycle!</div>
+                    </div>
+                    <div class="prob-card">
+                        <div style="font-weight:700;font-size:0.85rem;color:#374151;">Factor</div>
+                        <div style="font-size:0.79rem;color:#334155;margin-top:0.15rem;">A quantity that <strong>multiplies</strong> to build an expression. Factoring = rewriting a sum as a <strong>product</strong>.</div>
+                    </div>
+                    <div class="prob-card">
+                        <div style="font-weight:700;font-size:0.85rem;color:#374151;">Quadratic Equation · Zero Product Property</div>
+                        <div style="font-size:0.79rem;color:#334155;margin-top:0.15rem;">An equation with an x² term, set equal to 0. If a product equals zero, <strong>one of its factors must be zero</strong>.</div>
+                    </div>
+                    <div class="formula-box" style="text-align:center;">ax² + bx + c = 0</div>
+                    <div style="font-size:0.75rem;color:#6b7280;text-align:center;"><strong>standard form</strong> of a quadratic equation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: GCF FACTORING -->
+    <div class="slide" data-slide="4">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#9ca3af;opacity:0.07;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 2 · GCF</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Factoring = Un-Distributing 🔄</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="diagram-wrap reveal" style="min-height:230px;">
+                    <svg viewBox="0 0 300 250" width="100%" height="230" role="img" aria-label="Area model showing 6x squared plus 9x factored as 3x times the quantity 2x plus 3">
+                        <!-- Distribute arrow (top) -->
+                        <text x="150" y="22" font-size="13" font-weight="800" fill="#374151" text-anchor="middle">6x² + 9x  =  3x(2x + 3)</text>
+                        <!-- Area model -->
+                        <!-- outer labels -->
+                        <text x="150" y="78" font-size="12" font-weight="700" fill="#6b7280" text-anchor="middle">width: 2x</text>
+                        <text x="246" y="78" font-size="12" font-weight="700" fill="#6b7280" text-anchor="middle">+ 3</text>
+                        <text x="48" y="150" font-size="12" font-weight="700" fill="#6b7280" text-anchor="middle">3x</text>
+                        <!-- boxes -->
+                        <rect x="70" y="90" width="160" height="110" fill="#f3f4f6" stroke="#374151" stroke-width="2.5"/>
+                        <rect x="230" y="90" width="50" height="110" fill="#e5e7eb" stroke="#374151" stroke-width="2.5"/>
+                        <text x="150" y="150" font-size="17" font-weight="800" fill="#111827" text-anchor="middle">6x²</text>
+                        <text x="255" y="150" font-size="17" font-weight="800" fill="#111827" text-anchor="middle">9x</text>
+                        <!-- bottom annotation -->
+                        <text x="150" y="226" font-size="12" font-weight="700" fill="#4b5563" text-anchor="middle">height 3x is shared by BOTH boxes →</text>
+                        <text x="150" y="242" font-size="12" font-weight="800" fill="#374151" text-anchor="middle">3x is the Greatest Common Factor</text>
+                    </svg>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="socratic-q">Look at 6x² + 9x. What number divides into both 6 and 9? How many x's do both terms "own"? What is the biggest thing you could pull out of both terms at once?</div>
+                    <div class="prob-card" style="font-size:0.83rem;color:#334155;">
+                        <strong>Clever way to think about it:</strong> the GCF is the "club membership fee" — it's what <em>every term paid in</em>. Factoring just collects the fee back out front and shows what each member has left.<br><br>
+                        6x² + 9x → both terms paid <strong>3x</strong> → 3x(2x + 3)
+                    </div>
+                    <div class="formula-box" style="text-align:center;">Factor out the GCF FIRST — always!</div>
+                    <div class="trap-card">
+                        <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">🔍 Check Your Work</div>
+                        <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">Distribute it back: 3x(2x + 3) = 6x² + 9x ✓ Factoring and distributing are inverse operations — your eraser-proof safety net.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: VIDEO - FACTORING ESSENTIALS -->
+    <div class="slide" data-slide="5">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 2 · Video</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">🎬 Watch: The Factoring Toolkit</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=FvS7v6KM1ig" target="_blank" title="GCF to Factor a Polynomial — Khan Academy">
+                        <img src="https://img.youtube.com/vi/FvS7v6KM1ig/hqdefault.jpg" alt="GCF to Factor a Polynomial - Khan Academy" onerror="this.src='https://img.youtube.com/vi/FvS7v6KM1ig/mqdefault.jpg'"/>
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </a>
+                    <div class="video-source">⏱ 4:44 · <a href="https://www.youtube.com/watch?v=FvS7v6KM1ig" target="_blank">GCF to Factor a Polynomial — Khan Academy (YouTube)</a></div>
+                    <div class="prob-card" style="font-size:0.79rem;color:#334155;">
+                        <strong>While watching, write down:</strong>
+                        <ul style="margin:0.3rem 0 0 0;padding-left:1rem;line-height:1.8;">
+                            <li>How do you find the GCF of the <em>variable</em> parts?</li>
+                            <li>What's left inside the parentheses after you factor?</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=Mso0lciztHk" target="_blank" title="Factoring a quadratic with leading coefficient 1 — Timely Math Tutor">
+                        <img src="https://img.youtube.com/vi/Mso0lciztHk/hqdefault.jpg" alt="Factoring a quadratic with leading coefficient 1 - Timely Math Tutor" onerror="this.src='https://img.youtube.com/vi/Mso0lciztHk/mqdefault.jpg'"/>
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </a>
+                    <div class="video-source">⏱ 3:49 · <a href="https://www.youtube.com/watch?v=Mso0lciztHk" target="_blank">Factoring a Quadratic with Leading Coefficient 1 (YouTube)</a></div>
+                    <div class="socratic-q">After watching: both videos hunt for something "shared." In the GCF video it's a shared factor; in the trinomial video it's a shared pattern. What exactly are the two numbers in the trinomial method required to do?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: FACTORING TRINOMIALS -->
+    <div class="slide" data-slide="6">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content">
+            <div class="section-badge reveal">Part 2 · Trinomials</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">The Two-Number Detective 🕵️</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="diagram-wrap reveal" style="min-height:230px;">
+                    <svg viewBox="0 0 300 250" width="100%" height="230" role="img" aria-label="X-diamond diagram for factoring x squared plus 7x plus 10">
+                        <text x="150" y="24" font-size="14" font-weight="800" fill="#111827" text-anchor="middle">x² + 7x + 10</text>
+                        <!-- X diamond -->
+                        <line x1="90" y1="70" x2="210" y2="180" stroke="#374151" stroke-width="2.5"/>
+                        <line x1="210" y1="70" x2="90" y2="180" stroke="#374151" stroke-width="2.5"/>
+                        <!-- top: product -->
+                        <text x="150" y="62" font-size="12" font-weight="800" fill="#4b5563" text-anchor="middle">MULTIPLY to c = 10</text>
+                        <!-- bottom: sum -->
+                        <text x="150" y="200" font-size="12" font-weight="800" fill="#9ca3af" text-anchor="middle">ADD to b = 7</text>
+                        <!-- left & right numbers -->
+                        <circle cx="78" cy="125" r="20" fill="#f3f4f6" stroke="#374151" stroke-width="2.5"/>
+                        <text x="78" y="131" font-size="16" font-weight="800" fill="#111827" text-anchor="middle">2</text>
+                        <circle cx="222" cy="125" r="20" fill="#f3f4f6" stroke="#374151" stroke-width="2.5"/>
+                        <text x="222" y="131" font-size="16" font-weight="800" fill="#111827" text-anchor="middle">5</text>
+                        <!-- result -->
+                        <text x="150" y="232" font-size="14" font-weight="800" fill="#374151" text-anchor="middle">= (x + 2)(x + 5)</text>
+                    </svg>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="socratic-q">For x² + 7x + 10, list the factor pairs of 10. Which pair also adds to 7? What if the problem were x² + 11x + 10 — would your pair change?</div>
+                    <div class="prob-card" style="font-size:0.83rem;color:#334155;">
+                        <strong>The detective's method:</strong> the criminal pair must satisfy <em>two alibis at once</em> — multiply to <strong>c</strong>, add to <strong>b</strong>. List the factor pairs of c (your suspects), then scan for the one whose sum is b. Case closed: drop them into (x + __)(x + __).
+                    </div>
+                    <div class="formula-box" style="text-align:center;">x² + bx + c = (x + m)(x + n)<br><span style="font-size:0.78rem;font-weight:700;">where m·n = c and m + n = b</span></div>
+                    <div class="trap-card">
+                        <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Sign Detective Rules</div>
+                        <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">c positive → both signs <strong>match b</strong> (x² − 7x + 10 → (x−2)(x−5)). c negative → signs <strong>differ</strong>, bigger number takes b's sign (x² − 3x − 10 → (x−5)(x+2)).</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: ZERO PRODUCT PROPERTY -->
+    <div class="slide" data-slide="7">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Zero Product Property</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.5rem;">The Power of Zero 🎯</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="socratic-q">I'm thinking of two numbers. Their product is exactly 0. What can you tell me — with absolute certainty — about at least one of my numbers? Could BOTH be nonzero? Why not?</div>
+                    <div class="prob-card" style="font-size:0.83rem;color:#334155;">
+                        <strong>Why zero is special:</strong> zero is the only number you can't "sneak up on" by multiplying. 0.0001 × 0.0001 is tiny, but it's still not zero. The <em>only</em> way a product is 0 is if a factor IS 0 — that certainty turns one hard equation into two easy ones!
+                    </div>
+                    <div class="formula-box" style="text-align:center;">If A · B = 0, then A = 0 or B = 0</div>
+                    <div class="trap-card">
+                        <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Regents Trap</div>
+                        <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">The property ONLY works for zero! If (x−2)(x−5) = 4, you may NOT write x−2 = 4. First move everything to one side so the product equals 0.</div>
+                    </div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.4rem;">Worked Example: x² − 2x − 15 = 0</div>
+                        <div style="font-size:0.83rem;color:#334155;line-height:1.85;">
+                            <strong>1.</strong> Already equals 0? ✓ Standard form ✓<br>
+                            <strong>2.</strong> Detective pair for c = −15, b = −2: <strong>−5 and +3</strong><br>
+                            <strong>3.</strong> Factor: (x − 5)(x + 3) = 0<br>
+                            <strong>4.</strong> Split: x − 5 = 0 &nbsp;or&nbsp; x + 3 = 0<br>
+                            <strong>5.</strong> Solve: <strong>x = 5</strong> or <strong>x = −3</strong>
+                        </div>
+                    </div>
+                    <div class="prob-card" style="font-size:0.8rem;color:#334155;">
+                        <strong>✅ Check both!</strong> 5² − 2(5) − 15 = 25 − 10 − 15 = 0 ✓ &nbsp; (−3)² − 2(−3) − 15 = 9 + 6 − 15 = 0 ✓
+                    </div>
+                    <div class="socratic-q">Why did ONE equation give us TWO answers? What does that suggest about the shape of the graph of y = x² − 2x − 15?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: VIDEO - ZPP + SOLVING -->
+    <div class="slide" data-slide="8">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Video</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">🎬 Watch: Zero Product Property in Action</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=HpWQh3MSpKk" target="_blank" title="Solve using the zero product property — Brian McLogan">
+                        <img src="https://img.youtube.com/vi/HpWQh3MSpKk/hqdefault.jpg" alt="Solve using the zero product property - Brian McLogan" onerror="this.src='https://img.youtube.com/vi/HpWQh3MSpKk/mqdefault.jpg'"/>
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </a>
+                    <div class="video-source">⏱ 2:06 · <a href="https://www.youtube.com/watch?v=HpWQh3MSpKk" target="_blank">Solve Using the Zero Product Property — Brian McLogan (YouTube)</a></div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=aUKaxKwOUvU" target="_blank" title="Quadratic Equations | Solve by factoring — Brian McLogan">
+                        <img src="https://img.youtube.com/vi/aUKaxKwOUvU/hqdefault.jpg" alt="Quadratic Equations - Solve by factoring - Brian McLogan" onerror="this.src='https://img.youtube.com/vi/aUKaxKwOUvU/mqdefault.jpg'"/>
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </a>
+                    <div class="video-source">⏱ 2:43 · <a href="https://www.youtube.com/watch?v=aUKaxKwOUvU" target="_blank">Quadratic Equations: Solve by Factoring — Brian McLogan (YouTube)</a></div>
+                </div>
+            </div>
+            <div class="reveal" style="margin-top:0.75rem;">
+                <div class="socratic-q">After watching: the second video starts with an equation that is NOT set equal to zero. What was the very first move — and why is that move non-negotiable before factoring can help you solve?</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: SEE IT ON THE GRAPH / DESMOS -->
+    <div class="slide" data-slide="9">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#9ca3af;opacity:0.07;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Desmos</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Roots You Can SEE 🖥️</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="diagram-wrap reveal" style="min-height:230px;">
+                    <svg viewBox="0 0 300 250" width="100%" height="230" role="img" aria-label="Parabola y equals x squared minus 2x minus 15 crossing the x-axis at x equals negative 3 and x equals 5">
+                        <!-- axes -->
+                        <line x1="131" y1="10" x2="131" y2="240" stroke="#374151" stroke-width="2"/>
+                        <line x1="10" y1="131" x2="290" y2="131" stroke="#374151" stroke-width="2"/>
+                        <polygon points="131,8 127,18 135,18" fill="#374151"/>
+                        <polygon points="291,131 281,127 281,135" fill="#374151"/>
+                        <text x="283" y="146" font-size="12" font-weight="700" fill="#374151">x</text>
+                        <text x="137" y="16" font-size="12" font-weight="700" fill="#374151">y</text>
+                        <!-- parabola y = x^2-2x-15 mapped: px=20+(x+6)*18.57, py=220-(y+20)*4.444 -->
+                        <path d="M 39 42 Q 150 362 261 42" fill="none" stroke="#4b5563" stroke-width="3"/>
+                        <!-- roots -->
+                        <circle cx="76" cy="131" r="6" fill="#374151"/>
+                        <circle cx="224" cy="131" r="6" fill="#374151"/>
+                        <text x="68" y="118" font-size="12" font-weight="800" fill="#111827">x = −3</text>
+                        <text x="205" y="118" font-size="12" font-weight="800" fill="#111827">x = 5</text>
+                        <!-- vertex -->
+                        <circle cx="150" cy="202" r="4" fill="#9ca3af"/>
+                        <text x="150" y="220" font-size="11" font-weight="700" fill="#6b7280" text-anchor="middle">vertex (1, −16)</text>
+                        <!-- label -->
+                        <text x="60" y="70" font-size="12" font-weight="800" fill="#374151">y = x² − 2x − 15</text>
+                        <text x="60" y="86" font-size="11" font-weight="700" fill="#6b7280">= (x − 5)(x + 3)</text>
+                    </svg>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.3rem;">Desmos Investigation</div>
+                        <div style="font-size:0.82rem;color:#334155;line-height:1.6;">
+                            Go to <strong>desmos.com/calculator</strong> and type: <strong>y = x² − 2x − 15</strong><br>
+                            Click the gray points where the curve crosses the x-axis.
+                        </div>
+                    </div>
+                    <div class="socratic-q">The points you clicked are (−3, 0) and (5, 0) — the exact answers we found by factoring! Why must y be 0 at a solution? What does y = 0 mean on a graph?</div>
+                    <div class="prob-card" style="font-size:0.82rem;color:#334155;">
+                        <strong>Prediction questions:</strong>
+                        <ul style="margin:0.25rem 0 0 0;padding-left:1rem;line-height:1.8;">
+                            <li>Where will y = (x − 1)(x − 6) cross the x-axis?</li>
+                            <li>What equation has roots at x = −2 and x = 7?</li>
+                            <li>Can a parabola cross the x-axis only once? Never?</li>
+                        </ul>
+                    </div>
+                    <div class="trap-card">
+                        <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">💡 Key Insight</div>
+                        <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">Solutions = roots = zeros = x-intercepts. Four names, one idea: the x-values where the parabola touches the x-axis.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: REAL WORLD — GARDEN PLOT -->
+    <div class="slide" data-slide="10">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 4 · Real World</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">🌱 The Garden Plot Problem</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.4rem;">🗺️ The Scenario</div>
+                        <div style="font-size:0.83rem;color:#334155;line-height:1.6;">A rectangular garden has an area of <strong>54 ft²</strong>. Its length is <strong>3 ft longer</strong> than its width. What are the dimensions?</div>
+                    </div>
+                    <div class="socratic-q">Before any algebra — if the width were 5, what would the length be? Does 5 × 8 = 54 work? How could an equation search every possibility at once?</div>
+                    <div class="prob-card">
+                        <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.3rem;">Build the Equation:</div>
+                        <div style="font-size:0.83rem;color:#334155;">
+                            • width = w &nbsp;&nbsp; length = w + 3<br>
+                            • Area: w(w + 3) = 54<br>
+                            • Standard form: w² + 3w − 54 = 0<br>
+                            • Factor: (w + 9)(w − 6) = 0 → w = −9 or w = 6
+                        </div>
+                        <div class="formula-box" style="text-align:center;margin-top:0.5rem;">width = 6 ft, length = 9 ft</div>
+                    </div>
+                    <div class="trap-card">
+                        <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">⚠️ Reject Impossible Roots</div>
+                        <div style="font-size:0.8rem;color:#374151;margin-top:0.2rem;">Algebra found w = −9 too, but a garden can't be −9 ft wide! In real-world problems, always ask: <em>does this answer make sense?</em></div>
+                    </div>
+                </div>
+                <div class="diagram-wrap reveal" style="min-height:230px;">
+                    <svg viewBox="0 0 300 250" width="100%" height="230" role="img" aria-label="Rectangular garden with width w, length w plus 3, and area 54 square feet">
+                        <!-- garden rectangle -->
+                        <rect x="55" y="60" width="200" height="135" fill="#f3f4f6" stroke="#374151" stroke-width="3" rx="6"/>
+                        <!-- plants pattern -->
+                        <text x="85" y="95" font-size="14">🌷</text>
+                        <text x="145" y="95" font-size="14">🌽</text>
+                        <text x="205" y="95" font-size="14">🌷</text>
+                        <text x="115" y="130" font-size="14">🥕</text>
+                        <text x="175" y="130" font-size="14">🌷</text>
+                        <text x="85" y="165" font-size="14">🌽</text>
+                        <text x="145" y="165" font-size="14">🌷</text>
+                        <text x="205" y="165" font-size="14">🥕</text>
+                        <!-- area label -->
+                        <text x="155" y="135" font-size="18" font-weight="800" fill="#111827" text-anchor="middle">A = 54 ft²</text>
+                        <!-- dimension labels -->
+                        <line x1="55" y1="215" x2="255" y2="215" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="55" y1="209" x2="55" y2="221" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="255" y1="209" x2="255" y2="221" stroke="#6b7280" stroke-width="2"/>
+                        <text x="155" y="236" font-size="13" font-weight="800" fill="#374151" text-anchor="middle">length = w + 3</text>
+                        <line x1="35" y1="60" x2="35" y2="195" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="29" y1="60" x2="41" y2="60" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="29" y1="195" x2="41" y2="195" stroke="#6b7280" stroke-width="2"/>
+                        <text x="22" y="132" font-size="13" font-weight="800" fill="#374151" text-anchor="middle" transform="rotate(-90 22 132)">width = w</text>
+                        <!-- title -->
+                        <text x="150" y="30" font-size="13" font-weight="800" fill="#374151" text-anchor="middle">w(w + 3) = 54</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: DIFFERENTIATED PRACTICE -->
+    <div class="slide" data-slide="11">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 4 · Practice</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Choose Your Challenge 🌶️</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;" class="reveal">
+                <div class="prob-card" style="border-top:3px solid #9ca3af;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Warm-Up <span class="lvl-badge lvl-1">Level 1 · Mild</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">a) Factor: 5x + 20 &nbsp;&nbsp; b) Factor: x² + 6x + 8</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Find the GCF… then the detective pair…" spellcheck="false"></textarea></div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #6b7280;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Stepping Up <span class="lvl-badge lvl-2">Level 2 · Medium</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">Solve: x² + 9x + 20 = 0</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Factor first, then set each factor to 0…" spellcheck="false"></textarea></div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #4b5563;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Heating Up <span class="lvl-badge lvl-3">Level 3 · Spicy</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">a) Solve: x² − x − 12 = 0 &nbsp;&nbsp; b) Solve: 3x² − 12x = 0</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Careful with the signs… and don't lose the GCF root!" spellcheck="false"></textarea></div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #374151;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Regents Boss <span class="lvl-badge lvl-4">Level 4 · Fire</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">A rectangle's length is 5 more than its width. Its area is 84. Find the dimensions.</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="Define w… build the equation… reject impossible roots!" spellcheck="false"></textarea></div>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-top:0.6rem;" class="reveal">
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.8rem;color:#1f2937;">✅ Answers (no peeking until you try!)</div>
+                    <div style="font-size:0.76rem;color:#374151;margin-top:0.2rem;">L1: 5(x+4); (x+2)(x+4) · L2: x = −4, −5 · L3: x = 4, −3; x = 0, 4 · L4: 7 by 12</div>
+                </div>
+                <div class="socratic-q">Stuck on Level 3b? Ask yourself: both terms share what factor? After 3x(x − 4) = 0, how many solutions are hiding there — and why is x = 0 one of them?</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: LEVEL UP VIDEO — a > 1 -->
+    <div class="slide" data-slide="12">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Level Up · Video</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">🎬 Watch: When a &gt; 1 — The Next Boss Level</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=MnGfA2uO6C8" target="_blank" title="Factoring Trinomials — Mr H Tutoring">
+                        <img src="https://img.youtube.com/vi/MnGfA2uO6C8/hqdefault.jpg" alt="Factoring Trinomials - Mr H Tutoring" onerror="this.src='https://img.youtube.com/vi/MnGfA2uO6C8/mqdefault.jpg'"/>
+                        <div class="play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </a>
+                    <div class="video-source">⏱ 4:17 · <a href="https://www.youtube.com/watch?v=MnGfA2uO6C8" target="_blank">Factoring Trinomials (a &gt; 1) — Mr H Tutoring (YouTube)</a></div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.3rem;">Try It: 2x² + 7x + 3 = 0</div>
+                        <div style="font-size:0.82rem;color:#334155;line-height:1.8;">
+                            Multiply a·c = 2 · 3 = <strong>6</strong>. Find the pair: multiply to 6, add to 7 → <strong>6 and 1</strong>.<br>
+                            Split the middle: 2x² + 6x + x + 3 = 0<br>
+                            Group: 2x(x + 3) + 1(x + 3) = 0 → (2x + 1)(x + 3) = 0<br>
+                            <strong>x = −½ or x = −3</strong>
+                        </div>
+                    </div>
+                    <div class="socratic-q">In the x² + bx + c puzzles, the pair multiplied to c. Now it multiplies to a·c. What changed about the problem that forces this upgrade? Test your theory: would a·c work on x² + 7x + 10 too?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: CHEAT CARD -->
+    <div class="slide" data-slide="13">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Reference</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Factoring Cheat Card 📋</h2>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;" class="reveal">
+                <div class="prob-card" style="border-top:3px solid #374151;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">🔄</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#111827;margin-bottom:0.3rem;">GCF First</div>
+                    <div class="formula-box" style="font-size:0.78rem;padding:0.3rem 0.4rem;">6x² + 9x = 3x(2x + 3)</div>
+                    <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">un-distribute the shared part</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #4b5563;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">🕵️</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.3rem;">Trinomial Pair</div>
+                    <div class="formula-box" style="font-size:0.78rem;padding:0.3rem 0.4rem;border-color:rgba(75,85,99,0.4);">multiply to c, add to b</div>
+                    <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">(x + m)(x + n)</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #6b7280;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">🎯</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.3rem;">Zero Product</div>
+                    <div class="formula-box" style="font-size:0.72rem;padding:0.3rem 0.4rem;border-color:rgba(107,114,128,0.4);">A·B = 0 → A = 0 or B = 0</div>
+                    <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">must equal 0 first!</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #374151;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">📈</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#1f2937;margin-bottom:0.3rem;">Graph Link</div>
+                    <div class="formula-box" style="font-size:0.72rem;padding:0.3rem 0.4rem;border-color:rgba(55,65,81,0.35);">roots = x-intercepts</div>
+                    <div style="font-size:0.72rem;color:#64748b;margin-top:0.3rem;">where parabola hits y = 0</div>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;margin-top:0.65rem;" class="reveal">
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">Solving Checklist</div>
+                    <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">1. Set = 0 &nbsp;|&nbsp; 2. Factor out GCF &nbsp;|&nbsp; 3. Factor trinomial &nbsp;|&nbsp; 4. Each factor = 0 &nbsp;|&nbsp; 5. Solve &amp; CHECK</div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">Regents Trap</div>
+                    <div style="font-size:0.79rem;color:#374151;margin-top:0.2rem;">(x−2)(x−5) = 4 does NOT mean x−2 = 4! The Zero Product Property only fires when the product equals ZERO.</div>
+                </div>
+            </div>
+            <div class="socratic-q reveal" style="margin-top:0.6rem;">Cover this card. Can you recite the 5-step solving checklist AND explain why "set = 0" must come before factoring — out loud, in 30 seconds?</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: EXIT TICKET -->
+    <div class="slide" data-slide="14">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.09;"></div>
+            <div class="blob" style="width:220px;height:220px;bottom:-50px;left:-50px;background:#4b5563;opacity:0.07;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Exit Ticket</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">4 Things to Know Cold ❄️</h2>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;" class="reveal">
+                <div class="prob-card" style="border-top:3px solid #374151;text-align:center;padding:0.85rem;">
+                    <div style="font-size:1.8rem;margin-bottom:0.3rem;">🔄</div>
+                    <div style="font-weight:800;font-size:0.82rem;color:#111827;">Factoring</div>
+                    <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">rewriting a sum<br>as a product<br>= un-distributing</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #6b7280;text-align:center;padding:0.85rem;">
+                    <div style="font-size:1.8rem;margin-bottom:0.3rem;">🕵️</div>
+                    <div style="font-weight:800;font-size:0.82rem;color:#374151;">Detective Pair</div>
+                    <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">multiply to c<br>add to b<br>mind the signs!</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #374151;text-align:center;padding:0.85rem;">
+                    <div style="font-size:1.8rem;margin-bottom:0.3rem;">🎯</div>
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">Zero Product</div>
+                    <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">set = 0 first<br>split the factors<br>solve each one</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #4b5563;text-align:center;padding:0.85rem;">
+                    <div style="font-size:1.8rem;margin-bottom:0.3rem;">🌍</div>
+                    <div style="font-weight:800;font-size:0.82rem;color:#1f2937;">Real World</div>
+                    <div style="font-size:0.76rem;color:#334155;margin-top:0.3rem;line-height:1.6;">area problems<br>check your roots<br>reject impossible</div>
+                </div>
+            </div>
+            <div style="margin-top:0.75rem;" class="reveal">
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.88rem;color:#111827;margin-bottom:0.35rem;">📝 Exit Ticket Question</div>
+                    <div style="font-size:0.83rem;color:#334155;margin-bottom:0.4rem;"><em>Solve x² − 5x + 6 = 0 by factoring. Write down EVERY step of your process and the final solutions.</em></div>
+                    <div class="work-box"><textarea placeholder="Step 1: Find the pair that multiplies to 6 and adds to −5… show every step!" spellcheck="false"></textarea></div>
+                </div>
+            </div>
+            <div class="socratic-q reveal" style="margin-top:0.5rem;">Before you leave: your two answers should both be positive. How could you have predicted that from the SIGNS of −5 and +6 alone, before factoring anything?</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: CLOSING -->
+    <div class="slide" data-slide="15">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:480px;height:480px;top:-120px;right:-100px;background:#374151;opacity:0.14;"></div>
+            <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#4b5563;opacity:0.10;"></div>
+            <div class="blob" style="width:220px;height:220px;top:38%;left:12%;background:#4b5563;opacity:0.09;"></div>
+        </div>
+        <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content" style="text-align:center;">
+            <div style="font-size:4rem;animation:float 3s ease-in-out infinite;margin-bottom:0.5rem;" class="reveal">🏆</div>
+            <h1 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;background:linear-gradient(135deg,#111827,#374151,#4b5563);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 0.4rem;">Factored. Solved. Conquered.</h1>
+            <p class="reveal" style="font-size:1rem;color:#334155;margin:0 0 0.35rem;">You can now break any factorable quadratic into pieces and use zero's superpower to solve it.</p>
+            <p class="reveal" style="font-size:0.9rem;color:#64748b;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 0.7rem;">Next Lesson: The Quadratic Formula &amp; Completing the Square</p>
+            <div class="reveal" style="display:inline-flex;gap:0.9rem;justify-content:center;flex-wrap:wrap;">
+                <span style="background:#f0f0f0;color:#111827;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">GCF ✓</span>
+                <span style="background:#ebebeb;color:#374151;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">Trinomials ✓</span>
+                <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">Zero Product ✓</span>
+                <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:6px 16px;font-weight:700;font-size:0.83rem;">Regents Ready ✓</span>
+            </div>
+            <div class="reveal" style="margin-top:0.8rem;">
+                <div class="prob-card" style="display:inline-block;text-align:left;max-width:520px;border-left:4px solid #374151;">
+                    <div style="font-size:0.82rem;color:#334155;"><strong>Khan Academy Extension:</strong> Keep practicing tonight at <a href="https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratic-functions-equations" target="_blank" style="color:#2563eb;text-decoration:underline;">khanacademy.org — Quadratic functions &amp; equations</a>. Then try factoring a real garden-plot problem of your own design!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- end .deck -->
+
+<!-- NAVIGATION -->
+<div class="nav-controls">
+    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+    <div class="slide-dots" id="dots"></div>
+    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+    <span class="slide-counter" id="counter">1 / 15</span>
+</div>
+
+<script>
+    let current = 1;
+    const total = document.querySelectorAll('.slide').length;
+    const dotsContainer = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    for (let i = 1; i <= total; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 1 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+    function goToSlide(n) {
+        const prev = document.querySelector('.slide.active');
+        const next = document.querySelector(`.slide[data-slide="${n}"]`);
+        if (prev) prev.classList.remove('active');
+        if (next) { next.classList.add('active'); animateSlide(next); }
+        current = n; updateNav();
+    }
+    function changeSlide(dir) { let next = current + dir; if (next < 1) next = total; if (next > total) next = 1; goToSlide(next); }
+    function updateNav() {
+        document.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i + 1 === current); });
+        counter.textContent = current + ' / ' + total;
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+    });
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+
+    function animateSlide(slide) {
+        slide.querySelectorAll('.reveal').forEach((el, i) => {
+            el.style.transition = 'none';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.offsetHeight;
+            const delay = i * 0.07;
+            el.style.transition = `opacity 0.32s ease ${delay}s, transform 0.32s ease ${delay}s`;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0px)';
+        });
+    }
+
+    /* Mouse spotlight */
+    document.addEventListener('mousemove', (e) => {
+        const s = document.querySelector('.mouse-spotlight');
+        if (s) s.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(37,99,235,0.06), transparent 40%)`;
+    });
+
+    /* Particle canvas */
+    window.initParticles = function(canvas, opts) {
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+        const interactive = opts.interactive !== false;
+        const count = opts.count || (interactive ? 45 : 16);
+        let mx = -1000, my = -1000;
+        const particles = Array.from({ length: count }, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+            size: Math.random() * 2 + 0.7, alpha: Math.random() * 0.3 + 0.08
+        }));
+        if (interactive) {
+            canvas.addEventListener('mousemove', (e) => { const r = canvas.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+            canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
+        }
+        (function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                if (interactive) { const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx*dx+dy*dy); if (dist < 120) { const f = (120-dist)/120*2; p.vx += (dx/dist)*f*0.1; p.vy += (dy/dist)*f*0.1; } }
+                p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(37,99,235,${p.alpha})`; ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        })();
+    };
+    document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, { interactive: true, count: 45 }));
+    document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, { interactive: false, count: 16 }));
+
+    try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn(e); }
+
+    /* MC selection */
+    function selectMC(label) {
+        const group = label.closest('.mc-options');
+        group.querySelectorAll('.mc-option').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        label.querySelector('input[type=radio]').checked = true;
+    }
+
+    /* Auto-expand textareas */
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.work-box textarea').forEach(ta => {
+            ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; });
+        });
+    });
+</script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
