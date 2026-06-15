@@ -1,1 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="slides-format" content="viewport">
+    <title>Lesson 7: Graphing Quadratic Functions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-bg: #F0F7FF;
+            --color-bg-deep: #E0EEFF;
+            --color-surface: #FFFFFF;
+            --color-text: #0f172a;
+            --color-text-secondary: #334155;
+            --color-text-muted: #64748b;
+            --color-accent-1: #374151;
+            --color-accent-2: #4b5563;
+            --color-accent-3: #9ca3af;
+            --color-glass-bg: rgba(255,255,255,0.88);
+            --color-glass-border: rgba(0,0,0,0.07);
+            --color-vignette: rgba(0,0,0,0.04);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+    </style>
+    <style>
+        :root { --color-bg: #F0F7FF; --color-text: #0f172a; --glow-color-rgb: 37,99,235; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { background: var(--color-bg); margin: 0; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
+        .deck { width: 100vw; height: 100vh; position: relative; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; overflow: hidden; }
+        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1080px; padding: clamp(1rem, 3vw, 3rem); }
+        .nav-controls { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); padding: 8px 22px; border-radius: 40px; border: 1px solid rgba(0,0,0,0.09); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .nav-btn { width: 36px; height: 36px; border: none; background: rgba(0,0,0,0.05); color: #111827; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .nav-btn:hover { background: rgba(37,99,235,0.18); }
+        .slide-dots { display: flex; gap: 7px; }
+        .slide-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.12); cursor: pointer; transition: background 0.3s, transform 0.3s; }
+        .slide-dots .dot.active { background: #374151; transform: scale(1.35); }
+        .slide-counter { font-size: 0.75rem; color: #64748b; min-width: 36px; text-align: center; font-weight: 700; }
+        .reveal { opacity: 0; transform: translateY(16px); }
 
+        @keyframes float-slow { 0% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-35px) scale(1.16); } 66% { transform: translate(-30px,30px) scale(0.92); } 100% { transform: translate(0,0) scale(1); } }
+        @keyframes float-drift { 0% { transform: translate(0,0) scale(1) rotate(0deg); } 33% { transform: translate(-40px,-45px) scale(1.12) rotate(2deg); } 66% { transform: translate(35px,25px) scale(0.9) rotate(-2deg); } 100% { transform: translate(0,0) scale(1) rotate(0deg); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .gradient-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(70px); animation: float-slow 12s ease-in-out infinite; }
+        .blob:nth-child(2) { animation: float-drift 16s ease-in-out infinite; }
+        .blob:nth-child(3) { animation: float-slow 20s ease-in-out infinite reverse; }
+        .slide::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, var(--color-vignette) 100%); }
+
+        .section-badge { display: inline-block; background: linear-gradient(135deg, #374151, #1f2937); color: white; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.6rem; }
+        .prob-card { background: white; border: 1.5px solid rgba(0,0,0,0.09); border-radius: 12px; padding: 0.7rem 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .formula-box { background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02)); border: 2px solid rgba(0,0,0,0.18); border-radius: 10px; padding: 0.45rem 0.9rem; font-size: 1rem; font-weight: 800; color: #111827; font-family: 'Outfit', sans-serif; letter-spacing: 0.02em; }
+        .socratic-q { background: rgba(0,0,0,0.04); border-left: 3px solid #6b7280; border-radius: 0 8px 8px 0; padding: 0.45rem 0.75rem; font-size: 0.82rem; font-style: italic; color: #374151; font-weight: 600; }
+        .trap-card { border-left: 4px solid #4b5563; background: #f9fafb; border-radius: 0 9px 9px 0; padding: 0.55rem 0.85rem; box-shadow: 0 2px 7px rgba(0,0,0,0.10); }
+        .diagram-wrap { background: white; border: 1.5px solid rgba(0,0,0,0.09); border-radius: 14px; padding: 0.6rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+        .diagram-wrap svg text { font-family: 'DM Sans', sans-serif; paint-order: stroke fill; stroke: white; stroke-width: 3.5px; stroke-linejoin: round; }
+        .lvl-badge { display: inline-block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 9px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+        .lvl-1 { background: #f0f0f0; color: #374151; }
+        .lvl-2 { background: #d9d9d9; color: #1f2937; }
+        .lvl-3 { background: #bdbdbd; color: #111827; }
+        .lvl-4 { background: #6b7280; color: #ffffff; }
+        .work-box { border: 1.5px dashed rgba(0,0,0,0.25); border-radius: 8px; padding: 0; background: rgba(0,0,0,0.02); min-height: 2.8rem; font-size: 0.82rem; color: #374151; overflow: hidden; }
+        .work-box textarea { width: 100%; min-height: 3.5rem; border: none; background: transparent; resize: vertical; padding: 0.5rem 0.75rem; font-size: 0.82rem; color: #374151; font-family: 'DM Sans', sans-serif; line-height: 1.5; outline: none; box-sizing: border-box; }
+        .work-box textarea::placeholder { color: #9ca3af; font-style: italic; }
+        .mc-options { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.35rem; }
+        .mc-option { display: flex; align-items: flex-start; gap: 0.45rem; padding: 0.3rem 0.5rem; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.10); background: #fafafa; cursor: pointer; font-size: 0.78rem; color: #374151; transition: background 0.15s, border-color 0.15s; user-select: none; }
+        .mc-option:hover { background: #f0f0f0; border-color: rgba(0,0,0,0.20); }
+        .mc-option input[type=radio] { display: none; }
+        .mc-option.selected { background: #e5e7eb; border-color: #374151; font-weight: 700; }
+        .mc-option .opt-letter { font-weight: 800; min-width: 1rem; color: #6b7280; }
+
+        /* Video embed */
+        .video-thumb { position: relative; cursor: pointer; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 14px rgba(0,0,0,0.15); display: block; text-decoration: none; }
+        .video-thumb img { width: 100%; display: block; }
+        .video-thumb .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.72); border-radius: 50%; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; }
+        .video-thumb:hover .play-btn { background: rgba(255,0,0,0.85); transform: translate(-50%,-50%) scale(1.12); }
+        .video-thumb .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
+        .video-source { font-size: 0.7rem; color: #6b7280; margin-top: 0.25rem; text-align: center; }
+        .video-source a { color: #2563eb; text-decoration: underline; }
+
+        /* Mouse spotlight */
+        .mouse-spotlight { position: fixed; inset: 0; z-index: 99; pointer-events: none; }
+    </style>
+</head>
+<body>
+<div class="mouse-spotlight"></div>
+<div class="deck">
+
+    <!-- SLIDE 1: TITLE -->
+    <div class="slide slide-1 active" data-slide="1">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:480px;height:480px;top:-120px;right:-100px;background:#374151;opacity:0.13;"></div>
+            <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#4b5563;opacity:0.09;"></div>
+            <div class="blob" style="width:220px;height:220px;top:38%;left:12%;background:#9ca3af;opacity:0.09;"></div>
+        </div>
+        <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content" style="text-align:center;">
+            <div style="font-size:4.5rem;animation:float 3s ease-in-out infinite;margin-bottom:0.4rem;" class="reveal">📈</div>
+            <div class="section-badge reveal" style="margin-bottom:0.5rem;">Algebra I · Regents Prep · 60-Minute Session</div>
+            <h1 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5.5vw,3.6rem);font-weight:700;background:linear-gradient(135deg,#111827,#374151,#4b5563);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 0.4rem;">Lesson 7: Graphing Quadratic Functions</h1>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.7rem);font-weight:600;color:#374151;margin:0 0 0.5rem;">&amp; Understanding Their Properties</h2>
+            <p class="reveal" style="font-size:0.95rem;color:#64748b;letter-spacing:0.12em;text-transform:uppercase;">Vertex · Axis of Symmetry · Intercepts · Transformations · Domain &amp; Range</p>
+            <div class="reveal" style="display:inline-flex;gap:0.75rem;margin-top:0.8rem;flex-wrap:wrap;justify-content:center;">
+                <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">f(x) = ax² + bx + c</span>
+                <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Vertex Form</span>
+                <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Parabolas</span>
+                <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Real-World</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: ROADMAP -->
+    <div class="slide slide-2" data-slide="2">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:320px;height:320px;top:-80px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:220px;height:220px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Session Map</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.8rem;">60-Minute Session Roadmap</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;" class="reveal">
+                <div class="prob-card" style="border-left:4px solid #374151;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;display:flex;align-items:center;gap:0.4rem;"><span style="background:#374151;color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">1</span> Do Now <span style="color:#64748b;font-weight:400;font-size:0.78rem;">(5 min)</span></div>
+                    <div style="font-size:0.8rem;color:#334155;margin-top:0.2rem;">Recall parabola from Lesson 6 — what shape do solutions live on?</div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #4b5563;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;display:flex;align-items:center;gap:0.4rem;"><span style="background:#4b5563;color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">2</span> Core Concepts <span style="color:#64748b;font-weight:400;font-size:0.78rem;">(20 min)</span></div>
+                    <div style="font-size:0.8rem;color:#334155;margin-top:0.2rem;">Anatomy of a parabola: vertex, axis of symmetry, intercepts, opens up/down</div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #6b7280;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;display:flex;align-items:center;gap:0.4rem;"><span style="background:#6b7280;color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">3</span> Graphing Steps <span style="color:#64748b;font-weight:400;font-size:0.78rem;">(15 min)</span></div>
+                    <div style="font-size:0.8rem;color:#334155;margin-top:0.2rem;">Step-by-step graphing from standard form + vertex form exploration</div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #9ca3af;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;display:flex;align-items:center;gap:0.4rem;"><span style="background:#9ca3af;color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">4</span> Differentiated Practice <span style="color:#64748b;font-weight:400;font-size:0.78rem;">(15 min)</span></div>
+                    <div style="font-size:0.8rem;color:#334155;margin-top:0.2rem;">Leveled problems: Mild → Medium → Spicy → Regents Stretch</div>
+                </div>
+                <div class="prob-card" style="border-left:4px solid #374151;grid-column:span 2;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;display:flex;align-items:center;gap:0.4rem;"><span style="background:#374151;color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">5</span> Exit Ticket + Real World 🌍 <span style="color:#64748b;font-weight:400;font-size:0.78rem;">(5 min)</span></div>
+                    <div style="font-size:0.8rem;color:#334155;margin-top:0.2rem;">Projectile motion problem — where does the ball land? + Quick reference cheat card</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: DO NOW -->
+    <div class="slide slide-3" data-slide="3">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 1 · Do Now</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Activate Prior Knowledge</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.6rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.4rem;">Do Now Problem</div>
+                        <div style="font-size:0.85rem;color:#334155;">From Lesson 6, you know that <strong>x² − 5x + 6 = 0</strong> factors as <strong>(x−2)(x−3) = 0</strong>. So x = 2 and x = 3 are the solutions. Now: if you plotted the function <em>y = x² − 5x + 6</em>, what would x = 2 and x = 3 represent on the graph?</div>
+                        <div class="work-box" style="margin-top:0.5rem;"><textarea placeholder="Write your prediction — where do those x values show up on a graph?" spellcheck="false"></textarea></div>
+                    </div>
+                    <div class="socratic-q">If solutions are the "roots," and roots grow underground where y = 0… where on the graph might they appear?</div>
+                </div>
+                <div class="diagram-wrap reveal" style="min-height:230px;">
+                    <svg viewBox="0 0 280 240" width="100%" height="230" role="img" aria-label="Parabola y equals x squared minus 5x plus 6 crossing x axis at 2 and 3">
+                        <defs>
+                            <linearGradient id="paraGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#374151;stop-opacity:0.15"/>
+                                <stop offset="100%" style="stop-color:#374151;stop-opacity:0.03"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- axes -->
+                        <line x1="20" y1="120" x2="265" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="140" y1="15" x2="140" y2="230" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- axis labels -->
+                        <text x="258" y="117" font-size="11" fill="#64748b">x</text>
+                        <text x="143" y="18" font-size="11" fill="#64748b">y</text>
+                        <!-- tick marks x -->
+                        <text x="88" y="133" font-size="10" fill="#6b7280" text-anchor="middle">1</text>
+                        <text x="112" y="133" font-size="10" fill="#6b7280" text-anchor="middle">2</text>
+                        <text x="137" y="133" font-size="10" fill="#6b7280" text-anchor="middle">3</text>
+                        <text x="160" y="133" font-size="10" fill="#6b7280" text-anchor="middle">4</text>
+                        <!-- Parabola y=x²-5x+6, vertex at (2.5, -0.25), x-intercepts at 2, 3 -->
+                        <!-- Scaled: x range 0 to 5, y range -1 to 6; map x→ 20+x*48, y→120-y*38 -->
+                        <path d="M 20 195 Q 68 -10 116 120 Q 140 162 164 120 Q 212 -10 260 195" fill="url(#paraGrad)" stroke="none"/>
+                        <path d="M 20 195 Q 68 -10 116 120 Q 140 162 164 120 Q 212 -10 260 195" fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- x-intercepts -->
+                        <circle cx="116" cy="120" r="5" fill="#374151"/>
+                        <text x="116" y="112" font-size="10" fill="#374151" font-weight="800" text-anchor="middle">x=2</text>
+                        <circle cx="164" cy="120" r="5" fill="#374151"/>
+                        <text x="164" y="112" font-size="10" fill="#374151" font-weight="800" text-anchor="middle">x=3</text>
+                        <!-- vertex -->
+                        <circle cx="140" cy="130" r="4" fill="#6b7280"/>
+                        <text x="155" y="148" font-size="10" fill="#6b7280" font-weight="700">vertex</text>
+                        <!-- label -->
+                        <text x="70" y="65" font-size="11" fill="#374151" font-weight="700">y = x² − 5x + 6</text>
+                        <!-- annotation arrows -->
+                        <line x1="116" y1="120" x2="100" y2="108" stroke="#4b5563" stroke-width="1" stroke-dasharray="3,2"/>
+                        <line x1="164" y1="120" x2="178" y2="108" stroke="#4b5563" stroke-width="1" stroke-dasharray="3,2"/>
+                        <text x="57" y="106" font-size="9" fill="#4b5563" font-weight="600">x-intercepts</text>
+                        <text x="170" y="106" font-size="9" fill="#4b5563" font-weight="600">(roots!)</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: ANATOMY OF A PARABOLA -->
+    <div class="slide slide-4" data-slide="4">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#9ca3af;opacity:0.07;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 2 · Core Concepts</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Anatomy of a Parabola 🦋</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="diagram-wrap reveal" style="min-height:250px;">
+                    <svg viewBox="0 0 290 255" width="100%" height="248" role="img" aria-label="Labeled parabola showing vertex, axis of symmetry, y-intercept, x-intercepts, and direction of opening">
+                        <defs>
+                            <linearGradient id="pGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+                                <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+                            </linearGradient>
+                            <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#374151"/>
+                            </marker>
+                        </defs>
+                        <!-- Axes -->
+                        <line x1="20" y1="130" x2="275" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="145" y1="10" x2="145" y2="250" stroke="#94a3b8" stroke-width="1.5"/>
+                        <text x="268" y="127" font-size="11" fill="#64748b">x</text>
+                        <text x="148" y="15" font-size="11" fill="#64748b">y</text>
+                        <!-- Axis of symmetry dashed line -->
+                        <line x1="145" y1="10" x2="145" y2="250" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,4"/>
+                        <text x="150" y="245" font-size="9.5" fill="#6b7280" font-weight="700">axis of symmetry</text>
+                        <text x="155" y="256" font-size="9" fill="#6b7280">x = −b/2a</text>
+                        <!-- Parabola y=x²-4 (vertex at 0,-4); map: x→145+x*38, y→130-y*20 -->
+                        <path d="M 35 188 Q 95 -30 145 210 Q 195 -30 255 188" fill="url(#pGrad2)" stroke="none"/>
+                        <path d="M 35 188 Q 95 -30 145 210 Q 195 -30 255 188" fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Vertex -->
+                        <circle cx="145" cy="210" r="5" fill="#374151"/>
+                        <line x1="145" y1="210" x2="185" y2="222" stroke="#374151" stroke-width="1" marker-end="url(#arr)"/>
+                        <text x="188" y="220" font-size="10" fill="#111827" font-weight="800">Vertex (h, k)</text>
+                        <text x="188" y="231" font-size="9" fill="#64748b">min or max value</text>
+                        <!-- y-intercept -->
+                        <circle cx="145" cy="130" r="4" fill="#4b5563"/>
+                        <line x1="145" y1="130" x2="105" y2="108" stroke="#4b5563" stroke-width="1" marker-end="url(#arr)"/>
+                        <text x="35" y="107" font-size="9.5" fill="#374151" font-weight="700">y-intercept</text>
+                        <text x="40" y="118" font-size="9" fill="#64748b">(0, c)</text>
+                        <!-- x-intercepts -->
+                        <circle cx="82" cy="130" r="4" fill="#6b7280"/>
+                        <circle cx="208" cy="130" r="4" fill="#6b7280"/>
+                        <text x="68" y="148" font-size="9" fill="#6b7280" font-weight="700">x-intercept</text>
+                        <text x="194" y="148" font-size="9" fill="#6b7280" font-weight="700">x-intercept</text>
+                        <!-- Symmetry arrows -->
+                        <line x1="82" y1="138" x2="132" y2="138" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+                        <line x1="158" y1="138" x2="208" y2="138" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+                        <!-- Opens up label -->
+                        <text x="38" y="50" font-size="10" fill="#374151" font-weight="700">opens up ↑</text>
+                        <text x="38" y="62" font-size="9" fill="#64748b">when a > 0</text>
+                    </svg>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="prob-card" style="border-top:3px solid #374151;">
+                        <div style="font-weight:800;font-size:0.82rem;color:#111827;">🎯 Vertex</div>
+                        <div style="font-size:0.78rem;color:#334155;margin-top:0.2rem;">The turning point — highest or lowest y-value. The parabola "bounces" here. Find x: <strong>x = −b/2a</strong>, then plug in for y.</div>
+                    </div>
+                    <div class="prob-card" style="border-top:3px solid #4b5563;">
+                        <div style="font-weight:800;font-size:0.82rem;color:#111827;">📐 Axis of Symmetry</div>
+                        <div style="font-size:0.78rem;color:#334155;margin-top:0.2rem;">A vertical mirror line through the vertex. The left and right sides of the parabola are mirror images. Equation: <strong>x = −b/2a</strong></div>
+                    </div>
+                    <div class="prob-card" style="border-top:3px solid #6b7280;">
+                        <div style="font-weight:800;font-size:0.82rem;color:#111827;">📍 Intercepts</div>
+                        <div style="font-size:0.78rem;color:#334155;margin-top:0.2rem;"><strong>y-intercept:</strong> set x = 0 → y = c. <strong>x-intercepts (roots):</strong> set y = 0, then factor or use quadratic formula. A parabola can have 0, 1, or 2 x-intercepts.</div>
+                    </div>
+                    <div class="socratic-q">A parabola is a perfect mirror — if you know one x-intercept is 3 units left of the axis, where must the other one be?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: VIDEO - INTRO TO GRAPHING -->
+    <div class="slide slide-5" data-slide="5">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 2 · Video</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">🎬 Watch: Key Features of a Parabola</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=ptEJefRAXz8" target="_blank" title="Graphing Quadratic Functions — Algebra 1 Lesson">
+                        <img src="https://img.youtube.com/vi/ptEJefRAXz8/hqdefault.jpg" alt="Graphing Quadratic Functions – Algebra 1 Lesson" loading="lazy" onerror="this.src='https://img.youtube.com/vi/ptEJefRAXz8/mqdefault.jpg'"/>
+                        <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </a>
+                    <div class="video-source">⏱ ~4 min · <a href="https://www.youtube.com/watch?v=ptEJefRAXz8" target="_blank">Graphing Quadratic Functions — Algebra 1 Lesson (YouTube)</a></div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.3rem;">👁️ Watch For…</div>
+                        <ul style="font-size:0.8rem;color:#334155;margin:0;padding-left:1.1rem;line-height:1.7;">
+                            <li>How does the sign of <strong>a</strong> tell you which way the parabola opens?</li>
+                            <li>What formula finds the axis of symmetry?</li>
+                            <li>How is the vertex different from the y-intercept?</li>
+                        </ul>
+                    </div>
+                    <div class="socratic-q">Before watching: sketch what you think y = x² looks like vs y = −x². What's the same? What changes?</div>
+                    <div class="prob-card" style="border-left:4px solid #6b7280;">
+                        <div style="font-weight:700;font-size:0.78rem;color:#374151;">After watching:</div>
+                        <div style="font-size:0.78rem;color:#334155;margin-top:0.2rem;">In y = 2x² − 8x + 3, which letter is a? b? c? What does each control?</div>
+                        <div class="work-box" style="margin-top:0.3rem;"><textarea placeholder="a = ___, b = ___, c = ___; a > 0 so the parabola opens ___" spellcheck="false"></textarea></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: STEP-BY-STEP GRAPHING -->
+    <div class="slide slide-6" data-slide="6">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Graphing Steps</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">The 5-Step Graphing Blueprint 🗺️</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.45rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="display:flex;align-items:baseline;gap:0.5rem;"><span style="font-size:1.1rem;font-weight:800;color:#374151;">①</span><div><strong style="font-size:0.85rem;">Find a, b, c</strong><div style="font-size:0.78rem;color:#334155;margin-top:0.15rem;">Identify coefficients from y = ax² + bx + c. Check sign of a → opens up or down?</div></div></div>
+                    </div>
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="display:flex;align-items:baseline;gap:0.5rem;"><span style="font-size:1.1rem;font-weight:800;color:#374151;">②</span><div><strong style="font-size:0.85rem;">Axis of Symmetry</strong><div style="font-size:0.78rem;color:#334155;margin-top:0.15rem;"><span class="formula-box" style="font-size:0.78rem;padding:2px 8px;">x = −b/2a</span> &nbsp;Draw a dashed vertical line</div></div></div>
+                    </div>
+                    <div class="prob-card" style="border-left:4px solid #4b5563;">
+                        <div style="display:flex;align-items:baseline;gap:0.5rem;"><span style="font-size:1.1rem;font-weight:800;color:#4b5563;">③</span><div><strong style="font-size:0.85rem;">Vertex</strong><div style="font-size:0.78rem;color:#334155;margin-top:0.15rem;">Plug x from step ② into f(x) to get y. Plot (x, y) — the turning point!</div></div></div>
+                    </div>
+                    <div class="prob-card" style="border-left:4px solid #6b7280;">
+                        <div style="display:flex;align-items:baseline;gap:0.5rem;"><span style="font-size:1.1rem;font-weight:800;color:#6b7280;">④</span><div><strong style="font-size:0.85rem;">y-intercept</strong><div style="font-size:0.78rem;color:#334155;margin-top:0.15rem;">Set x = 0 → y = c. Plot (0, c). Reflect across the axis of symmetry for a free bonus point!</div></div></div>
+                    </div>
+                    <div class="prob-card" style="border-left:4px solid #9ca3af;">
+                        <div style="display:flex;align-items:baseline;gap:0.5rem;"><span style="font-size:1.1rem;font-weight:800;color:#9ca3af;">⑤</span><div><strong style="font-size:0.85rem;">Connect &amp; Sketch</strong><div style="font-size:0.78rem;color:#334155;margin-top:0.15rem;">Draw a smooth U-shaped curve through all plotted points. Never pointy at the vertex!</div></div></div>
+                    </div>
+                </div>
+                <div class="diagram-wrap reveal" style="min-height:260px;">
+                    <svg viewBox="0 0 280 265" width="100%" height="258" role="img" aria-label="Step-by-step graphing of y equals x squared minus 4x plus 3 showing all 5 steps">
+                        <defs>
+                            <linearGradient id="pGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+                                <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Header -->
+                        <text x="140" y="16" font-size="11" fill="#374151" font-weight="800" text-anchor="middle">y = x² − 4x + 3</text>
+                        <!-- Axes -->
+                        <line x1="20" y1="140" x2="265" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="100" y1="15" x2="100" y2="262" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- Tick labels -->
+                        <text x="70" y="152" font-size="9" fill="#6b7280" text-anchor="middle">−1</text>
+                        <text x="100" y="152" font-size="9" fill="#6b7280" text-anchor="middle">0</text>
+                        <text x="130" y="152" font-size="9" fill="#6b7280" text-anchor="middle">1</text>
+                        <text x="160" y="152" font-size="9" fill="#6b7280" text-anchor="middle">2</text>
+                        <text x="190" y="152" font-size="9" fill="#6b7280" text-anchor="middle">3</text>
+                        <text x="220" y="152" font-size="9" fill="#6b7280" text-anchor="middle">4</text>
+                        <!-- Axis of symmetry x=2 (x→100+x*30) -->
+                        <line x1="160" y1="15" x2="160" y2="262" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="5,4"/>
+                        <text x="163" y="25" font-size="9" fill="#4b5563" font-weight="700">② x=2</text>
+                        <!-- Parabola y=x²-4x+3; vertex (2,-1); x-ints at 1,3 -->
+                        <!-- Map: x→100+x*30, y→140-y*30 -->
+                        <path d="M 10 242 Q 45 100 100 140 Q 130 165 160 170 Q 190 165 220 140 Q 255 100 285 242" fill="url(#pGrad3)" stroke="none"/>
+                        <path d="M 10 242 Q 45 100 100 140 Q 130 165 160 170 Q 190 165 220 140 Q 255 100 285 242" fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Vertex (2,-1) → x=160, y=170 -->
+                        <circle cx="160" cy="170" r="5" fill="#374151"/>
+                        <text x="166" y="183" font-size="9" fill="#111827" font-weight="800">③ V(2,−1)</text>
+                        <!-- y-intercept (0,3) → x=100, y=140-90=50 → actually y=140-3*30=50 -->
+                        <circle cx="100" cy="50" r="4" fill="#4b5563"/>
+                        <text x="60" y="47" font-size="9" fill="#374151" font-weight="700">④ y-int (0,3)</text>
+                        <!-- reflected y-int at (4,3) → x=220 -->
+                        <circle cx="220" cy="50" r="4" fill="#9ca3af" stroke-dasharray="2,2"/>
+                        <text x="224" y="47" font-size="9" fill="#9ca3af" font-style="italic">mirror</text>
+                        <!-- x-intercepts at (1,0) and (3,0) -->
+                        <circle cx="130" cy="140" r="4" fill="#6b7280"/>
+                        <circle cx="190" cy="140" r="4" fill="#6b7280"/>
+                        <text x="124" y="157" font-size="8.5" fill="#6b7280">(1,0)</text>
+                        <text x="184" y="157" font-size="8.5" fill="#6b7280">(3,0)</text>
+                        <!-- a>0 label -->
+                        <text x="22" y="95" font-size="9" fill="#374151" font-weight="700">a=1>0</text>
+                        <text x="22" y="106" font-size="9" fill="#64748b">opens up ↑</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: VIDEO - GRAPHING STEP BY STEP -->
+    <div class="slide slide-7" data-slide="7">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Video</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">🎬 Watch: Graph a Quadratic Start to Finish</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=gGf7kFBzC48" target="_blank" title="How to Graph a Quadratic and Find Intercepts, Vertex and Axis of Symmetry">
+                        <img src="https://img.youtube.com/vi/gGf7kFBzC48/hqdefault.jpg" alt="How to Graph a Quadratic – Intercepts, Vertex, Axis of Symmetry" loading="lazy" onerror="this.src='https://img.youtube.com/vi/gGf7kFBzC48/mqdefault.jpg'"/>
+                        <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </a>
+                    <div class="video-source">⏱ ~4 min · <a href="https://www.youtube.com/watch?v=gGf7kFBzC48" target="_blank">How to Graph a Quadratic — MashUp Math (YouTube)</a></div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.3rem;">👁️ Active Viewing Guide</div>
+                        <ul style="font-size:0.8rem;color:#334155;margin:0;padding-left:1.1rem;line-height:1.7;">
+                            <li>Which step do they do first — vertex or intercepts?</li>
+                            <li>How do they use the axis of symmetry to "reflect" a point?</li>
+                            <li>What happens when they connect the dots — straight lines or a curve?</li>
+                        </ul>
+                    </div>
+                    <div class="socratic-q">The video shows plugging in x = 0, then x = 1, then x = 2… Why not just connect any random points?</div>
+                    <div class="prob-card">
+                        <div style="font-weight:700;font-size:0.78rem;color:#374151;">Try it: For y = x² − 2x − 3</div>
+                        <div style="font-size:0.78rem;color:#334155;">Find the axis of symmetry and vertex before watching the full solution.</div>
+                        <div class="work-box" style="margin-top:0.3rem;"><textarea placeholder="x = −b/2a = ___; y = ___; vertex = ( , )" spellcheck="false"></textarea></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: VERTEX FORM -->
+    <div class="slide slide-8" data-slide="8">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Vertex Form</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Vertex Form: The Power Form 💎</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="prob-card" style="border-top:3px solid #374151;text-align:center;">
+                        <div style="font-size:0.75rem;color:#64748b;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">Vertex Form</div>
+                        <div class="formula-box" style="font-size:1.05rem;display:inline-block;">y = a(x − h)² + k</div>
+                        <div style="font-size:0.78rem;color:#64748b;margin-top:0.3rem;">Vertex is instantly visible: <strong>(h, k)</strong></div>
+                    </div>
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.82rem;color:#111827;">What each letter controls:</div>
+                        <table style="width:100%;font-size:0.78rem;margin-top:0.3rem;border-collapse:collapse;">
+                            <tr><td style="padding:2px 4px;font-weight:700;color:#374151;">a</td><td style="padding:2px 4px;color:#334155;">Width &amp; direction: |a|>1 narrower, 0&lt;|a|&lt;1 wider; a&lt;0 flips upside down</td></tr>
+                            <tr style="background:rgba(0,0,0,0.03);"><td style="padding:2px 4px;font-weight:700;color:#374151;">h</td><td style="padding:2px 4px;color:#334155;">Shifts left/right: y=(x−3)² moves RIGHT 3 units (watch the sign!)</td></tr>
+                            <tr><td style="padding:2px 4px;font-weight:700;color:#374151;">k</td><td style="padding:2px 4px;color:#334155;">Shifts up/down: +k moves UP, −k moves DOWN</td></tr>
+                        </table>
+                    </div>
+                    <div class="socratic-q">In y = −2(x+1)² + 5, what is the vertex? Which way does it open? Is it narrower or wider than y = x²?</div>
+                    <div class="trap-card">
+                        <div style="font-weight:800;font-size:0.8rem;color:#374151;">⚠️ Sign Trap!</div>
+                        <div style="font-size:0.78rem;color:#334155;margin-top:0.15rem;">y = (x − 3)² has vertex x = <strong>+3</strong>. y = (x + 3)² has vertex x = <strong>−3</strong>. The sign inside the parentheses is the opposite of h!</div>
+                    </div>
+                </div>
+                <div class="diagram-wrap reveal" style="min-height:250px;">
+                    <svg viewBox="0 0 280 255" width="100%" height="248" role="img" aria-label="Three parabolas showing transformations of y=x squared to y=2x squared minus 3 to y=negative x squared plus 4">
+                        <!-- Axes -->
+                        <line x1="20" y1="130" x2="265" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="140" y1="12" x2="140" y2="252" stroke="#94a3b8" stroke-width="1.5"/>
+                        <text x="258" y="127" font-size="11" fill="#64748b">x</text>
+                        <text x="143" y="17" font-size="11" fill="#64748b">y</text>
+                        <!-- Parent: y=x², vertex (0,0), scale 28px/unit -->
+                        <path d="M 30 242 Q 85 -20 140 130 Q 195 -20 250 242" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5,3"/>
+                        <text x="248" y="238" font-size="9" fill="#9ca3af">y=x²</text>
+                        <!-- y=2x²-3: vertex (0,-3), narrower; y→130-y*28; -3→130+84=214 -->
+                        <path d="M 65 242 Q 104 40 140 214 Q 176 40 215 242" fill="none" stroke="#374151" stroke-width="2.5"/>
+                        <circle cx="140" cy="214" r="5" fill="#374151"/>
+                        <text x="146" y="228" font-size="9" fill="#374151" font-weight="800">y=2x²−3</text>
+                        <text x="146" y="239" font-size="9" fill="#374151">V=(0,−3), narrower</text>
+                        <!-- y=-(x-2)²+4: vertex (2,4); x→140+x*28=196; y→130-4*28=18 -->
+                        <path d="M 18 68 Q 90 -30 196 18 Q 270 68 265 160" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+                        <circle cx="196" cy="18" r="5" fill="#4b5563"/>
+                        <text x="200" y="15" font-size="9" fill="#4b5563" font-weight="800">y=−(x−2)²+4</text>
+                        <text x="200" y="26" font-size="9" fill="#4b5563">V=(2,4), opens down</text>
+                        <!-- Legend label for parent -->
+                        <text x="25" y="180" font-size="9" fill="#9ca3af" font-style="italic">parent</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: VIDEO - TRANSFORMATIONS -->
+    <div class="slide slide-9" data-slide="9">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:280px;height:280px;top:-60px;right:-60px;background:#374151;opacity:0.07;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-40px;left:-40px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Video</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;margin:0 0 0.7rem;">🎬 Watch: Transformations of Quadratic Functions</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <a class="video-thumb" href="https://www.youtube.com/watch?v=bKgj4WeCokk" target="_blank" title="Transformations of Quadratic Functions Lesson">
+                        <img src="https://img.youtube.com/vi/bKgj4WeCokk/hqdefault.jpg" alt="Transformations of Quadratic Functions Lesson" loading="lazy" onerror="this.src='https://img.youtube.com/vi/bKgj4WeCokk/mqdefault.jpg'"/>
+                        <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    </a>
+                    <div class="video-source">⏱ ~4 min · <a href="https://www.youtube.com/watch?v=bKgj4WeCokk" target="_blank">Transformations of Quadratic Functions — YouTube</a></div>
+                </div>
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.5rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.85rem;color:#111827;margin-bottom:0.3rem;">👁️ Watch For…</div>
+                        <ul style="font-size:0.8rem;color:#334155;margin:0;padding-left:1.1rem;line-height:1.7;">
+                            <li>What does <strong>k</strong> do to the position of the graph?</li>
+                            <li>Which direction does h shift the graph — and why is the sign tricky?</li>
+                            <li>How does a negative <strong>a</strong> transform the shape?</li>
+                        </ul>
+                    </div>
+                    <div class="socratic-q">Imagine sliding a U-shape left and right, then flipping it upside down. Which parts of the equation give you that control?</div>
+                    <div class="prob-card">
+                        <div style="font-weight:700;font-size:0.78rem;color:#374151;">Describe each transformation:</div>
+                        <div style="font-size:0.77rem;color:#334155;margin-top:0.2rem;">
+                            y = (x − 4)² + 1 &rarr; ___<br>
+                            y = −3(x + 2)² &rarr; ___<br>
+                            y = ½(x)² − 6 &rarr; ___
+                        </div>
+                        <div class="work-box" style="margin-top:0.3rem;"><textarea placeholder="Shift right 4, up 1; Flip + narrow + shift left 2; Wider + shift down 6" spellcheck="false"></textarea></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: DOMAIN & RANGE -->
+    <div class="slide slide-10" data-slide="10">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 3 · Domain &amp; Range</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Domain &amp; Range: The Boundaries 🔲</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="prob-card" style="border-top:3px solid #374151;">
+                        <div style="font-weight:800;font-size:0.85rem;color:#111827;">📏 Domain</div>
+                        <div style="font-size:0.8rem;color:#334155;margin-top:0.2rem;">All valid <strong>x-values</strong>. For every quadratic function, the parabola extends forever left and right — so the domain is ALWAYS:<div class="formula-box" style="font-size:0.82rem;margin-top:0.3rem;display:inline-block;">All real numbers (−∞, ∞)</div></div>
+                    </div>
+                    <div class="prob-card" style="border-top:3px solid #4b5563;">
+                        <div style="font-weight:800;font-size:0.85rem;color:#111827;">📏 Range</div>
+                        <div style="font-size:0.8rem;color:#334155;margin-top:0.2rem;">All valid <strong>y-values</strong>. The parabola stops at the vertex (min or max), then extends in one direction forever:
+                            <div style="margin-top:0.3rem;display:flex;flex-direction:column;gap:0.2rem;">
+                                <div class="formula-box" style="font-size:0.78rem;display:inline-block;">Opens up (a>0): y ≥ k</div>
+                                <div class="formula-box" style="font-size:0.78rem;display:inline-block;border-color:rgba(75,85,99,0.4);">Opens down (a&lt;0): y ≤ k</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="socratic-q">A ball thrown upward reaches a height of 15 m at its peak. What is the range of the height function? Can the ball ever be at 20 m?</div>
+                    <div class="prob-card">
+                        <div style="font-weight:700;font-size:0.78rem;color:#374151;">For y = −(x+3)² + 7:</div>
+                        <div style="font-size:0.78rem;color:#334155;">What is the vertex? Domain? Range?</div>
+                        <div class="work-box" style="margin-top:0.3rem;"><textarea placeholder="Vertex = (−3, 7); Domain = all reals; Range = y ≤ 7" spellcheck="false"></textarea></div>
+                    </div>
+                </div>
+                <div class="diagram-wrap reveal" style="min-height:250px;">
+                    <svg viewBox="0 0 280 260" width="100%" height="255" role="img" aria-label="Two parabolas showing domain equals all reals and range depending on vertex and direction">
+                        <!-- Axes -->
+                        <line x1="20" y1="130" x2="265" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="140" y1="12" x2="140" y2="255" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- UPWARD parabola, vertex (0,−2) → y→130-y*30 → 130+60=190 -->
+                        <path d="M 50 40 Q 100 220 140 190 Q 180 220 230 40" fill="none" stroke="#374151" stroke-width="2.5"/>
+                        <circle cx="140" cy="190" r="5" fill="#374151"/>
+                        <text x="145" y="205" font-size="9" fill="#374151" font-weight="800">V=(0,−2)</text>
+                        <!-- Range bracket for upward -->
+                        <line x1="20" y1="190" x2="140" y2="190" stroke="#374151" stroke-width="1" stroke-dasharray="4,3"/>
+                        <text x="22" y="185" font-size="9" fill="#374151" font-weight="700">y ≥ −2</text>
+                        <text x="22" y="196" font-size="9" fill="#374151">(range)</text>
+                        <!-- DOWNWARD parabola, vertex (0,+3), opens down; y→130-3*30=40 -->
+                        <path d="M 50 255 Q 100 10 140 40 Q 180 10 230 255" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+                        <circle cx="140" cy="40" r="5" fill="#4b5563"/>
+                        <text x="145" y="38" font-size="9" fill="#4b5563" font-weight="800">V=(0,3)</text>
+                        <!-- Range bracket for downward -->
+                        <line x1="255" y1="40" x2="255" y2="130" stroke="#4b5563" stroke-width="1" stroke-dasharray="4,3"/>
+                        <text x="222" y="60" font-size="9" fill="#4b5563" font-weight="700">y ≤ 3</text>
+                        <text x="218" y="71" font-size="9" fill="#4b5563">(range)</text>
+                        <!-- Domain arrow spans entire x-axis -->
+                        <line x1="22" y1="245" x2="262" y2="245" stroke="#6b7280" stroke-width="1.5" marker-start="url(#dstart)" marker-end="url(#dend)"/>
+                        <text x="100" y="257" font-size="9" fill="#6b7280" font-weight="700">Domain: all real numbers ↔</text>
+                        <defs>
+                            <marker id="dstart" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M0,0 L6,3 L0,6 Z" fill="#6b7280"/></marker>
+                            <marker id="dend" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6b7280"/></marker>
+                        </defs>
+                        <text x="24" y="140" font-size="9" fill="#374151">opens up ↑</text>
+                        <text x="24" y="110" font-size="9" fill="#4b5563">opens down ↓</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: REAL WORLD - PROJECTILE -->
+    <div class="slide slide-11" data-slide="11">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 4 · Real World</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">🏈 The Touchdown Problem</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+                <div class="reveal" style="display:flex;flex-direction:column;gap:0.55rem;">
+                    <div class="prob-card" style="border-left:4px solid #374151;">
+                        <div style="font-weight:800;font-size:0.92rem;color:#111827;margin-bottom:0.4rem;">🏟️ The Scenario</div>
+                        <div style="font-size:0.83rem;color:#334155;line-height:1.6;">A football is kicked and its height (in feet) is modeled by:<br><strong>h(t) = −16t² + 48t + 0</strong><br>where t is time in seconds.</div>
+                    </div>
+                    <div class="socratic-q">Before any math — when the ball just launched, what is its height? When it lands, what will h(t) equal? Can you estimate the peak time?</div>
+                    <div class="prob-card">
+                        <div style="font-weight:800;font-size:0.82rem;color:#111827;margin-bottom:0.3rem;">Solve step by step:</div>
+                        <div style="font-size:0.78rem;color:#334155;line-height:1.7;">
+                            <strong>a)</strong> What is a? b? c? Opens up or down?<br>
+                            <strong>b)</strong> At what time does the ball reach max height?<br>
+                            &nbsp;&nbsp;&nbsp;(Hint: t = −b/2a)<br>
+                            <strong>c)</strong> What is the maximum height?<br>
+                            <strong>d)</strong> When does the ball hit the ground?
+                        </div>
+                        <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="a = −16, b = 48, c = 0; t = −48/(2·−16) = 1.5 sec; h(1.5) = 36 ft; lands at t = 3 sec" spellcheck="false"></textarea></div>
+                    </div>
+                </div>
+                <div class="diagram-wrap reveal" style="min-height:250px;">
+                    <svg viewBox="0 0 280 260" width="100%" height="255" role="img" aria-label="Parabola showing football trajectory peaking at 1.5 seconds and 36 feet then landing at 3 seconds">
+                        <defs>
+                            <linearGradient id="pGrad4" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#374151;stop-opacity:0.1"/>
+                                <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Axes -->
+                        <line x1="30" y1="220" x2="265" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="30" y1="15" x2="30" y2="225" stroke="#94a3b8" stroke-width="1.5"/>
+                        <text x="258" y="217" font-size="9.5" fill="#64748b">t (sec)</text>
+                        <text x="33" y="17" font-size="9.5" fill="#64748b">h (ft)</text>
+                        <!-- tick marks -->
+                        <text x="30" y="232" font-size="9" fill="#6b7280" text-anchor="middle">0</text>
+                        <text x="108" y="232" font-size="9" fill="#6b7280" text-anchor="middle">1</text>
+                        <text x="186" y="232" font-size="9" fill="#6b7280" text-anchor="middle">2</text>
+                        <text x="252" y="232" font-size="9" fill="#6b7280" text-anchor="middle">3</text>
+                        <text x="22" y="222" font-size="8" fill="#6b7280" text-anchor="end">0</text>
+                        <text x="22" y="186" font-size="8" fill="#6b7280" text-anchor="end">9</text>
+                        <text x="22" y="150" font-size="8" fill="#6b7280" text-anchor="end">18</text>
+                        <text x="22" y="114" font-size="8" fill="#6b7280" text-anchor="end">27</text>
+                        <text x="22" y="78" font-size="8" fill="#6b7280" text-anchor="end">36</text>
+                        <!-- h(t) = -16t²+48t; scale: t→30+t*74, h→220-h*4 -->
+                        <!-- t=0:h=0→(30,220); t=0.5:h=20→(67,140); t=1:h=32→(104,92); t=1.5:h=36→(141,76) -->
+                        <!-- t=2:h=32→(178,92); t=2.5:h=20→(215,140); t=3:h=0→(252,220) -->
+                        <path d="M 30 220 C 70 110 104 76 141 56 C 178 76 216 140 252 220" fill="url(#pGrad4)" stroke="none"/>
+                        <path d="M 30 220 C 70 110 104 76 141 56 C 178 76 216 140 252 220" fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Peak at t=1.5, h=36 → (141, 56) (220-36*4.56=56) -->
+                        <circle cx="141" cy="56" r="5" fill="#374151"/>
+                        <line x1="141" y1="56" x2="141" y2="220" stroke="#374151" stroke-width="1" stroke-dasharray="4,3"/>
+                        <text x="148" y="52" font-size="9" fill="#111827" font-weight="800">Max: 36 ft</text>
+                        <text x="148" y="63" font-size="9" fill="#374151">t = 1.5 sec</text>
+                        <!-- Launch point -->
+                        <circle cx="30" cy="220" r="4" fill="#4b5563"/>
+                        <text x="33" y="213" font-size="8.5" fill="#4b5563" font-weight="700">launch</text>
+                        <!-- Landing -->
+                        <circle cx="252" cy="220" r="4" fill="#4b5563"/>
+                        <text x="230" y="213" font-size="8.5" fill="#4b5563" font-weight="700">lands: t=3</text>
+                        <!-- axis of sym -->
+                        <text x="135" y="242" font-size="8" fill="#6b7280">axis: t=1.5</text>
+                        <!-- ball emoji approx -->
+                        <text x="130" y="42" font-size="14">🏈</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: DIFFERENTIATED PRACTICE -->
+    <div class="slide slide-12" data-slide="12">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Part 4 · Practice</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Choose Your Challenge 🌶️</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;" class="reveal">
+                <div class="prob-card" style="border-top:3px solid #9ca3af;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Warm-Up <span class="lvl-badge lvl-1">Level 1 · Mild</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">For <strong>y = x² + 2x − 8</strong>:<br>a) Find the axis of symmetry<br>b) Find the vertex<br>c) What is the y-intercept?</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="x = −b/2a = −2/2 = −1; Vertex: plug in x=−1; y-int = (0, −8)" spellcheck="false"></textarea></div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #6b7280;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Stepping Up <span class="lvl-badge lvl-2">Level 2 · Medium</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">Graph <strong>y = −x² + 4x</strong> completely:<br>a) Find vertex &amp; axis of sym<br>b) Find both x-intercepts<br>c) Sketch the graph</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="a=−1, opens down; x=−4/(2·−1)=2; vertex (2,4); x-ints: 0 and 4" spellcheck="false"></textarea></div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #4b5563;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Getting Spicy 🌶️ <span class="lvl-badge lvl-3">Level 3 · Spicy</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">Given vertex <strong>(3, −4)</strong> and y-intercept <strong>(0, 5)</strong>: Write the equation in vertex form. Identify domain &amp; range.</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="y=a(x−3)²−4; plug in (0,5): 5=9a−4; a=1; y=(x−3)²−4; D: all reals; R: y≥−4" spellcheck="false"></textarea></div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #374151;">
+                    <div style="font-weight:800;font-size:0.85rem;color:#111827;">Regents Stretch 🏆 <span class="lvl-badge lvl-4">Level 4 · Boss</span></div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.3rem;">A ball is thrown from a height of 6 ft: <strong>h(t) = −16t² + 32t + 6</strong>. Find: max height, time to reach it, and when it hits the ground (to nearest tenth).</div>
+                    <div class="work-box" style="margin-top:0.4rem;"><textarea placeholder="t = −32/(2·−16) = 1 sec; max h = 22 ft; solve −16t²+32t+6=0 → t ≈ 2.2 sec" spellcheck="false"></textarea></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: CHEAT CARD -->
+    <div class="slide slide-13" data-slide="13">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <div class="content">
+            <div class="section-badge reveal">Reference</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">Quadratic Graphing Cheat Card 📋</h2>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.65rem;" class="reveal">
+                <div class="prob-card" style="border-top:3px solid #374151;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">🎯</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#111827;margin-bottom:0.3rem;">Vertex Formula</div>
+                    <div class="formula-box" style="font-size:0.75rem;padding:0.3rem 0.4rem;">x = −b / 2a</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:0.3rem;">then plug x into f(x) to get y</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #4b5563;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">📐</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.3rem;">Axis of Sym.</div>
+                    <div class="formula-box" style="font-size:0.75rem;padding:0.3rem 0.4rem;border-color:rgba(75,85,99,0.4);">x = −b / 2a</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:0.3rem;">Same formula as vertex x!</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #6b7280;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">🔓</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.3rem;">Opens Up/Down</div>
+                    <div class="formula-box" style="font-size:0.72rem;padding:0.3rem 0.4rem;border-color:rgba(107,114,128,0.4);">a > 0 ↑ · a &lt; 0 ↓</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:0.3rem;">|a| big = narrow, small = wide</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #9ca3af;text-align:center;">
+                    <div style="font-size:1.4rem;margin-bottom:0.25rem;">📊</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.3rem;">Domain &amp; Range</div>
+                    <div style="font-size:0.7rem;color:#334155;margin-top:0.2rem;">D: always all reals<br>R: y ≥ k (up) or y ≤ k (down)</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #374151;text-align:center;grid-column:span 2;">
+                    <div style="font-size:1.2rem;margin-bottom:0.2rem;">💎</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#111827;margin-bottom:0.2rem;">Vertex Form</div>
+                    <div class="formula-box" style="font-size:0.82rem;padding:0.3rem 0.6rem;display:inline-block;">y = a(x − h)² + k</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:0.25rem;">Vertex = (h, k) — watch sign of h! <strong>y=(x−3)²</strong> → vertex x=+3</div>
+                </div>
+                <div class="prob-card" style="border-top:3px solid #4b5563;text-align:center;grid-column:span 2;">
+                    <div style="font-size:1.2rem;margin-bottom:0.2rem;">📍</div>
+                    <div style="font-weight:800;font-size:0.78rem;color:#374151;margin-bottom:0.2rem;">y-intercept &amp; Symmetry</div>
+                    <div class="formula-box" style="font-size:0.78rem;padding:0.3rem 0.5rem;display:inline-block;border-color:rgba(75,85,99,0.4);">y-int = (0, c) · Reflect across axis</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:0.25rem;">One free point: reflect y-intercept across axis for a bonus plotted point!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: 4 THINGS TO KNOW -->
+    <div class="slide slide-14" data-slide="14">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:300px;height:300px;top:-70px;right:-60px;background:#374151;opacity:0.08;"></div>
+            <div class="blob" style="width:200px;height:200px;bottom:-50px;left:-30px;background:#4b5563;opacity:0.06;"></div>
+        </div>
+        <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content">
+            <div class="section-badge reveal">Regents Focus</div>
+            <h2 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:0 0 0.7rem;">4 Things to Know Cold ❄️</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" class="reveal">
+                <div class="trap-card">
+                    <div style="font-size:1.3rem;">❄️</div>
+                    <div style="font-weight:800;font-size:0.9rem;color:#111827;margin-top:0.2rem;">Axis of Sym. Formula</div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.15rem;">x = −b/2a. Period. They will give you standard form and ask for it every test.</div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-size:1.3rem;">⚠️</div>
+                    <div style="font-weight:800;font-size:0.9rem;color:#111827;margin-top:0.2rem;">Vertex Form Sign Flip</div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.15rem;">y=(x−h)²+k → vertex is (h, k) NOT (−h, k). Students lose 1 in 3 points here.</div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-size:1.3rem;">🔲</div>
+                    <div style="font-weight:800;font-size:0.9rem;color:#111827;margin-top:0.2rem;">Domain vs Range</div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.15rem;">Domain is ALWAYS all reals. Range starts at vertex k and goes ≥k or ≤k based on direction of opening.</div>
+                </div>
+                <div class="trap-card">
+                    <div style="font-size:1.3rem;">📈</div>
+                    <div style="font-weight:800;font-size:0.9rem;color:#111827;margin-top:0.2rem;">a &gt; 0 vs a &lt; 0</div>
+                    <div style="font-size:0.82rem;color:#334155;margin-top:0.15rem;">Positive a → minimum at vertex. Negative a → maximum at vertex. Real-world problems will ask "what is the max height?" — that is always the vertex y-value when a &lt; 0.</div>
+                </div>
+            </div>
+            <div class="socratic-q reveal" style="margin-top:0.6rem;">Which of these 4 have you mixed up before? What memory trick could lock it in for Regents day?</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: CLOSING -->
+    <div class="slide slide-15" data-slide="15">
+        <div class="gradient-mesh">
+            <div class="blob" style="width:480px;height:480px;top:-120px;right:-100px;background:#374151;opacity:0.13;"></div>
+            <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#4b5563;opacity:0.09;"></div>
+            <div class="blob" style="width:220px;height:220px;top:38%;left:12%;background:#9ca3af;opacity:0.09;"></div>
+        </div>
+        <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;"></canvas>
+        <div class="content" style="text-align:center;">
+            <div style="font-size:4rem;animation:float 3s ease-in-out infinite;margin-bottom:0.3rem;" class="reveal">🎓</div>
+            <div class="section-badge reveal" style="margin-bottom:0.5rem;">Lesson 7 Complete</div>
+            <h1 class="reveal" style="font-family:'Outfit',sans-serif;font-size:clamp(1.9rem,5vw,3.2rem);font-weight:700;background:linear-gradient(135deg,#111827,#374151,#4b5563);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 0.4rem;">You Can Now Graph Any Parabola.</h1>
+            <p class="reveal" style="font-size:0.9rem;color:#64748b;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;">Vertex · Axis · Intercepts · Domain &amp; Range · Transformations</p>
+            <div class="reveal" style="display:inline-flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;">
+                <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">x = −b/2a ✓</span>
+                <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Vertex Form ✓</span>
+                <span style="background:#f0f0f0;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">a controls direction ✓</span>
+                <span style="background:#e8e8e8;color:#374151;border-radius:20px;padding:5px 14px;font-size:0.8rem;font-weight:700;">Domain = all reals ✓</span>
+            </div>
+            <p class="reveal" style="font-size:0.85rem;color:#374151;margin-top:0.9rem;font-weight:600;">Next Lesson: The Quadratic Formula &amp; Completing the Square 📐</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-controls">
+    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+    <div class="slide-dots" id="dots"></div>
+    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+    <span class="slide-counter" id="counter">1 / 15</span>
+</div>
+
+<script>
+    let current = 1;
+    const total = document.querySelectorAll('.slide').length;
+    const dotsContainer = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    for (let i = 1; i <= total; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 1 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+    function goToSlide(n) {
+        const prev = document.querySelector('.slide.active');
+        const next = document.querySelector(`.slide[data-slide="${n}"]`);
+        if (prev) prev.classList.remove('active');
+        if (next) { next.classList.add('active'); animateSlide(next); }
+        current = n; updateNav();
+    }
+    function changeSlide(dir) { let next = current + dir; if (next < 1) next = total; if (next > total) next = 1; goToSlide(next); }
+    function updateNav() {
+        document.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i + 1 === current); });
+        counter.textContent = current + ' / ' + total;
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+    });
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+
+    function animateSlide(slide) {
+        slide.querySelectorAll('.reveal').forEach((el, i) => {
+            el.style.transition = 'none';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.offsetHeight;
+            const delay = i * 0.07;
+            el.style.transition = `opacity 0.32s ease ${delay}s, transform 0.32s ease ${delay}s`;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0px)';
+        });
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        const s = document.querySelector('.mouse-spotlight');
+        if (s) s.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(37,99,235,0.06), transparent 40%)`;
+    });
+
+    window.initParticles = function(canvas, opts) {
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+        const interactive = opts.interactive !== false;
+        const count = opts.count || (interactive ? 45 : 16);
+        let mx = -1000, my = -1000;
+        const particles = Array.from({ length: count }, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+            size: Math.random() * 2 + 0.7, alpha: Math.random() * 0.3 + 0.08
+        }));
+        if (interactive) {
+            canvas.addEventListener('mousemove', (e) => { const r = canvas.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+            canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
+        }
+        (function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                if (interactive) { const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx*dx+dy*dy); if (dist < 120) { const f = (120-dist)/120*2; p.vx += (dx/dist)*f*0.1; p.vy += (dy/dist)*f*0.1; } }
+                p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(37,99,235,${p.alpha})`; ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        })();
+    };
+    document.querySelectorAll('.particle-canvas').forEach(c => window.initParticles(c, { interactive: true, count: 45 }));
+    document.querySelectorAll('.particle-canvas-ambient').forEach(c => window.initParticles(c, { interactive: false, count: 16 }));
+
+    try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn(e); }
+
+    function selectMC(label) {
+        const group = label.closest('.mc-options');
+        group.querySelectorAll('.mc-option').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        label.querySelector('input[type=radio]').checked = true;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.work-box textarea').forEach(ta => {
+            ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; });
+        });
+    });
+</script>
+</body>
+</html>
