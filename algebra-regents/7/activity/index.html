@@ -1,1 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 7 Activity Worksheet — Graphing Quadratic Functions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ─────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue:   #2563EB;
+    --blue-lt:#EFF6FF;
+    --blue-md:#BFDBFE;
+    --coral:  #F97066;
+    --coral-lt:#FFF1F0;
+    --sand:   #D4A574;
+    --sand-lt:#FDF3E7;
+    --green:  #16a34a;
+    --green-lt:#DCFCE7;
+    --purple: #7c3aed;
+    --purple-lt:#EDE9FE;
+    --ink:    #0f172a;
+    --slate:  #334155;
+    --muted:  #64748b;
+    --border: #CBD5E1;
+    --bg:     #F8FAFF;
+    --white:  #FFFFFF;
+    --ff-head: 'Fredoka', sans-serif;
+    --ff-body: 'Nunito', sans-serif;
+  }
+  html { background: #e2e8f0; }
+  body {
+    font-family: var(--ff-body);
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    overflow-x: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 
+  /* ── Print ───────────────────────────────────── */
+  @media print {
+    input, textarea { border-color: #cbd5e1 !important; background: white !important; }
+    input[type="radio"] { accent-color: #000 !important; }
+    textarea { resize: none !important; }
+    [contenteditable] { border-bottom: 1px solid #cbd5e1; }
+    html { background: white; }
+    body { max-width: 100%; padding: 0; overflow: visible; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; break-before: page; }
+    .sheet { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; padding: 1.2cm 1.5cm !important; overflow: visible !important; }
+    .prob-grid { page-break-inside: avoid; break-inside: avoid; }
+    .prob { page-break-inside: avoid; break-inside: avoid; overflow: visible !important; }
+    .fig svg { max-width: 100%; }
+    .error-log { overflow: visible !important; }
+  }
+
+  /* ── Sheet Container ─────────────────────────── */
+  .sheet {
+    background: var(--white);
+    margin: 2rem auto;
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 4px 24px rgba(37,99,235,0.10);
+    border-radius: 16px;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  /* ── Header (BLUE — homework style) ──────────── */
+  .hw-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--blue);
+    margin-bottom: 1.4rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .hw-header-left h1 {
+    font-family: var(--ff-head);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1.1;
+  }
+  .hw-header-left .subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hw-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 180px;
+    flex-shrink: 1;
+  }
+  .hw-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--slate);
+    font-weight: 600;
+  }
+  .hw-meta-row .label {
+    background: var(--blue-lt);
+    color: var(--blue);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    min-width: 65px;
+    text-align: center;
+  }
+  .hw-meta-row input {
+    flex: 1;
+    min-width: 40px;
+    max-width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    font-family: var(--ff-body);
+    font-size: 0.82rem;
+    color: var(--ink);
+    background: transparent;
+    outline: none;
+    padding: 1px 4px;
+  }
+
+  /* ── Section Header (BLUE accent — homework) ── */
+  .section-hd {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 1.5rem 0 0.8rem;
+  }
+  .section-hd .icon { font-size: 1.25rem; }
+  .section-hd h2 {
+    font-family: var(--ff-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .section-hd .badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+  .badge-blue   { background: var(--blue-lt);   color: var(--blue);    border: 1px solid var(--blue-md); }
+  .badge-coral  { background: var(--coral-lt);  color: #c2410c;        border: 1px solid #fca5a5; }
+  .badge-green  { background: var(--green-lt);  color: var(--green);   border: 1px solid #86efac; }
+  .badge-purple { background: var(--purple-lt); color: var(--purple);  border: 1px solid #c4b5fd; }
+  .badge-sand   { background: var(--sand-lt);   color: #92400e;        border: 1px solid #fcd34d; }
+
+  /* ── Instruction strip (BLUE — homework) ──────── */
+  .instr {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.9rem;
+    padding: 0.35rem 0.75rem;
+    background: var(--blue-lt);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ── Level pill (GRAYSCALE — lesson) ─────────── */
+  .lvl {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1px 8px;
+    border-radius: 20px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+  }
+  .lvl-1 { background: #f0f0f0; color: #374151; }
+  .lvl-2 { background: #d9d9d9; color: #1f2937; }
+  .lvl-3 { background: #bdbdbd; color: #111827; }
+  .lvl-4 { background: #6b7280; color: #ffffff; }
+
+  /* ── Problem card (GRAYSCALE — lesson palette) ─ */
+  .prob-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+  }
+  .prob-grid.single { grid-template-columns: 1fr; }
+  .prob {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 0.9rem;
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .prob-num {
+    font-family: var(--ff-head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+  .prob-q {
+    font-size: 0.84rem;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .prob-q strong { color: #374151; }
+  .answer-box {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--slate);
+    flex-wrap: wrap;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .answer-box input[type="text"] {
+    flex: 1;
+    min-width: 40px;
+    max-width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    font-family: var(--ff-body);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+    background: transparent;
+    outline: none;
+    padding: 1px 6px;
+  }
+  .work-area {
+    width: 100%;
+    resize: vertical;
+    min-height: 56px;
+    border: 1.5px dashed var(--border);
+    border-radius: 6px;
+    background: white;
+    padding: 0.35rem 0.55rem;
+    font-family: var(--ff-body);
+    font-size: 0.78rem;
+    color: var(--ink);
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 0.4rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .work-area::placeholder { color: var(--muted); font-style: italic; }
+
+  /* ── SVG diagrams (GRAYSCALE — lesson) ───────── */
+  .fig { display: flex; justify-content: center; margin: 0.35rem 0 0.45rem; overflow: hidden; }
+  .fig svg { overflow: visible; max-width: 100%; height: auto; }
+  .fig svg text { font-family: 'Nunito', sans-serif; paint-order: stroke fill; stroke: white; stroke-width: 2.5px; stroke-linejoin: round; }
+
+  /* ── Divider ─────────────────────────────────── */
+  hr.divider {
+    border: none;
+    border-top: 2px dashed var(--border);
+    margin: 1.6rem 0;
+  }
+
+  /* ── Formula strip (BLUE — homework) ─────────── */
+  .formula-strip {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    background: var(--blue-lt);
+    border: 1.5px solid var(--blue-md);
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 0.9rem;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+  }
+  .formula-strip .fs-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.3rem;
+  }
+  .fml {
+    background: white;
+    border: 1.5px solid var(--blue-md);
+    border-radius: 7px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-family: var(--ff-head);
+  }
+
+  /* ── Score banner (BLUE — homework) ──────────── */
+  .score-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--blue), #1d4ed8);
+    color: white;
+    border-radius: 10px;
+    padding: 0.7rem 1.2rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+  }
+  .score-banner .title { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+  .score-banner .sub   { font-size: 0.78rem; opacity: 0.85; }
+  .score-cells { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .score-cell {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 0.3rem 0.75rem;
+    text-align: center;
+    min-width: 80px;
+  }
+  .score-cell .sc-val { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; }
+  .score-cell .sc-lbl { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.04em; }
+  .score-cell input {
+    width: 2.4rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255,255,255,0.6);
+    color: white;
+    font-family: var(--ff-head);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+  }
+
+  /* ── MC question (grayscale answers — lesson) ── */
+  .mc-q {
+    margin-bottom: 1rem;
+    padding: 0.7rem 0.85rem;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+  }
+  .mc-q-text {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  .mc-q-text .qnum {
+    font-family: var(--ff-head);
+    color: #374151;
+    margin-right: 0.3rem;
+  }
+  .mc-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem 1rem;
+    overflow: hidden;
+  }
+  .mc-opt {
+    font-size: 0.79rem;
+    color: var(--slate);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.3rem;
+    line-height: 1.45;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    border: 1.5px solid transparent;
+    transition: background 0.15s;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
+  }
+  .mc-opt:hover { background: #f0f0f0; }
+  .mc-opt input[type=radio] { display: none; }
+  .mc-opt.selected { background: #e5e7eb; border-color: #374151; font-weight: 700; }
+  .mc-opt .bubble {
+    width: 14px; height: 14px; min-width: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; font-weight: 800;
+  }
+  .mc-opt.selected .bubble { background: #374151; border-color: #374151; color: white; }
+
+  /* ── Socratic question (GRAYSCALE — lesson) ──── */
+  .socratic-q {
+    background: rgba(0,0,0,0.04);
+    border-left: 3px solid #6b7280;
+    border-radius: 0 8px 8px 0;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #374151;
+    font-weight: 600;
+    margin: 0.5rem 0;
+  }
+
+  /* ── Trap card (GRAYSCALE — lesson) ──────────── */
+  .trap-card {
+    border-left: 4px solid #4b5563;
+    background: #f9fafb;
+    border-radius: 0 9px 9px 0;
+    padding: 0.55rem 0.85rem;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.10);
+    margin: 0.5rem 0;
+  }
+
+  /* ── Error log (CORAL — homework) ────────────── */
+  .error-log {
+    border: 2px solid var(--coral);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    background: var(--coral-lt);
+    margin-top: 0.5rem;
+    overflow-x: auto;
+  }
+  .error-log h3 {
+    font-family: var(--ff-head);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #c2410c;
+    margin-bottom: 0.55rem;
+  }
+  .error-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    table-layout: fixed;
+    word-break: break-word;
+  }
+  .error-table th {
+    background: var(--coral);
+    color: white;
+    font-family: var(--ff-head);
+    font-weight: 600;
+    padding: 0.35rem 0.6rem;
+    text-align: left;
+    font-size: 0.75rem;
+  }
+  .error-table th:first-child { border-radius: 6px 0 0 0; }
+  .error-table th:last-child  { border-radius: 0 6px 0 0; }
+  .error-table td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid #fca5a5;
+    color: var(--slate);
+    background: white;
+    font-weight: 500;
+  }
+  .error-table td:first-child { font-weight: 700; color: var(--ink); width: 5%; text-align: center; }
+  .error-table tr:last-child td { border-bottom: none; }
+  .error-type-pills {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    font-size: 0.73rem;
+    margin-top: 0.55rem;
+  }
+  .pill { padding: 2px 10px; border-radius: 20px; font-weight: 700; border: 1.5px solid; }
+  .pill-cg { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+  .pill-ce { background: #fef9c3; color: #92400e; border-color: #fde68a; }
+  .pill-ru { background: var(--purple-lt); color: var(--purple); border-color: #c4b5fd; }
+
+  /* ── Reflection box (GREEN — homework) ───────── */
+  .reflect-box {
+    background: var(--green-lt);
+    border: 1.5px solid #86efac;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    margin-top: 1rem;
+  }
+  .reflect-box h3 {
+    font-family: var(--ff-head);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.45rem;
+  }
+  .reflect-lines { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.3rem; }
+  .reflect-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+    font-weight: 600;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .reflect-line input[type=text] {
+    flex: 1;
+    min-width: 40px;
+    max-width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    font-family: var(--ff-body);
+    font-size: 0.8rem;
+    color: var(--ink);
+    background: transparent;
+    outline: none;
+    padding: 1px 6px;
+  }
+
+  /* ── Print button (BLUE — homework) ──────────── */
+  .print-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 1rem;
+    background: var(--blue);
+    color: white;
+    font-family: var(--ff-head);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.55rem 1.6rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(37,99,235,0.3);
+    transition: background 0.2s;
+  }
+  .print-btn:hover { background: #1d4ed8; }
+
+  /* ── Responsive ─────────────────────────────── */
+  @media (max-width: 600px) {
+    .sheet { padding: 1.2rem 1rem; }
+    .prob-grid { grid-template-columns: 1fr; }
+    .mc-opts { grid-template-columns: 1fr; }
+    .hw-header { flex-direction: column; }
+    .hw-meta { min-width: unset; width: 100%; }
+    .score-cells { flex-direction: column; }
+    .score-cell { min-width: unset; }
+    .formula-strip { gap: 0.35rem; }
+  }
+  @media (max-width: 760px) {
+    body { padding: 0 0.5rem; }
+    .sheet { padding: 1.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print" style="display:flex;gap:0.8rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;">
+  <button class="print-btn" onclick="window.print()" style="margin:0;">🖨️ Print / Save as PDF</button>
+  <button class="print-btn" onclick="clearAll()" style="margin:0;background:#64748b;">🗑️ Clear All</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAGE 1
+══════════════════════════════════════════════ -->
+<div class="sheet">
+
+  <!-- HEADER -->
+  <div class="hw-header">
+    <div class="hw-header-left">
+      <h1>📈 Lesson 7 Activity Worksheet</h1>
+      <div class="subtitle">Graphing Quadratic Functions &nbsp;·&nbsp; Algebra I · Regents Prep</div>
+    </div>
+    <div class="hw-meta">
+      <div class="hw-meta-row"><span class="label">Name</span><input type="text" placeholder=""></div>
+      <div class="hw-meta-row"><span class="label">Date</span><input type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <!-- SCORE BANNER -->
+  <div class="score-banner">
+    <div>
+      <div class="title">Self-Score After Completing</div>
+      <div class="sub">Tally your correct problems by section — bring to next class!</div>
+    </div>
+    <div class="score-cells">
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="6" placeholder="__"> / 6</div>
+        <div class="sc-lbl">Warm-Up</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="6" placeholder="__"> / 6</div>
+        <div class="sc-lbl">Graphing</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val"><input type="number" min="0" max="4" placeholder="__"> / 4</div>
+        <div class="sc-lbl">Vertex Form</div>
+      </div>
+      <div class="score-cell">
+        <div class="sc-val" style="font-size:1.1rem;"><input type="number" min="0" max="16" placeholder="__" style="width:2.4rem;"> / 16</div>
+        <div class="sc-lbl">Total</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PART A: WARM-UP ── -->
+  <div class="section-hd">
+    <span class="icon">🔥</span>
+    <h2>Part A — Warm-Up: Identify the Pieces</h2>
+    <span class="badge badge-blue">6 Problems · ~10 min</span>
+  </div>
+  <p class="instr">For each function in <strong>standard form y = ax² + bx + c</strong>, identify a, b, c and the direction the parabola opens. Show all work in the work box.</p>
+
+  <!-- Formula strip -->
+  <div class="formula-strip">
+    <span class="fs-label">Formulas</span>
+    <span class="fml">y = ax² + bx + c</span>
+    <span class="fml">Axis: x = −b/2a</span>
+    <span class="fml">Vertex: plug x into f(x)</span>
+    <span class="fml">y-int = (0, c)</span>
+    <span class="fml">a > 0 ↑ &nbsp; a < 0 ↓</span>
+  </div>
+
+  <div class="prob-grid">
+
+    <!-- P1 -->
+    <div class="prob">
+      <div class="prob-num">Problem 1 <span class="lvl lvl-1">L1 · Mild</span></div>
+      <p class="prob-q">For <strong>y = x² − 6x + 5</strong>, identify:<br>(a) a, b, c &nbsp; (b) opens up or down? &nbsp; (c) y-intercept</p>
+      <textarea class="work-area" placeholder="a = ___, b = ___, c = ___;  a > 0 so opens ___;  y-int = (0, ___)"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.3rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(a) a, b, c: <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(b) Opens: <input type="text"> &nbsp; (c) y-int: <input type="text"></div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="prob">
+      <div class="prob-num">Problem 2 <span class="lvl lvl-1">L1 · Mild</span></div>
+      <p class="prob-q">For <strong>y = −2x² + 8x − 3</strong>, identify:<br>(a) a, b, c &nbsp; (b) opens up or down? &nbsp; (c) y-intercept</p>
+      <textarea class="work-area" placeholder="a = ___, b = ___, c = ___;  a < 0 so opens ___;  y-int = (0, ___)"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.3rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(a) a, b, c: <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(b) Opens: <input type="text"> &nbsp; (c) y-int: <input type="text"></div>
+      </div>
+    </div>
+
+    <!-- P3: Match diagram -->
+    <div class="prob">
+      <div class="prob-num">Problem 3 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">The parabola below shows <strong>y = x² − 4x + 3</strong>. Use the graph to label: <strong>(a)</strong> the vertex <strong>(b)</strong> both x-intercepts <strong>(c)</strong> the y-intercept.</p>
+      <div class="fig">
+        <svg width="240" height="200" viewBox="0 0 280 220">
+          <defs>
+            <linearGradient id="pg1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+              <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+            </linearGradient>
+          </defs>
+          <!-- Axes -->
+          <line x1="20" y1="120" x2="265" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="100" y1="15" x2="100" y2="215" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="258" y="117" font-size="10" fill="#64748b">x</text>
+          <text x="103" y="18" font-size="10" fill="#64748b">y</text>
+          <!-- Tick labels -->
+          <text x="70" y="133" font-size="9" fill="#6b7280" text-anchor="middle">−1</text>
+          <text x="130" y="133" font-size="9" fill="#6b7280" text-anchor="middle">1</text>
+          <text x="160" y="133" font-size="9" fill="#6b7280" text-anchor="middle">2</text>
+          <text x="190" y="133" font-size="9" fill="#6b7280" text-anchor="middle">3</text>
+          <text x="220" y="133" font-size="9" fill="#6b7280" text-anchor="middle">4</text>
+          <!-- Parabola y=x²-4x+3; vertex (2,-1); x-ints at 1,3 -->
+          <path d="M 91.0 25.6 L 94.5 37.3 L 98.1 48.3 L 101.6 58.7 L 105.2 68.5 L 108.7 77.7 L 112.2 86.2 L 115.8 94.2 L 119.3 101.5 L 122.8 108.3 L 126.4 114.4 L 129.9 119.9 L 133.5 124.8 L 137.0 129.1 L 140.5 132.7 L 144.1 135.8 L 147.6 138.3 L 151.2 140.1 L 154.7 141.3 L 158.2 141.9 L 161.8 141.9 L 165.3 141.3 L 168.8 140.1 L 172.4 138.3 L 175.9 135.8 L 179.5 132.7 L 183.0 129.1 L 186.5 124.8 L 190.1 119.9 L 193.6 114.4 L 197.2 108.3 L 200.7 101.5 L 204.2 94.2 L 207.8 86.2 L 211.3 77.7 L 214.8 68.5 L 218.4 58.7 L 221.9 48.3 L 225.5 37.3 L 229.0 25.6 L 229.0 220 L 91.0 220 Z" fill="url(#pg1)" stroke="none"/>
+          <path d="M 91.0 25.6 L 94.5 37.3 L 98.1 48.3 L 101.6 58.7 L 105.2 68.5 L 108.7 77.7 L 112.2 86.2 L 115.8 94.2 L 119.3 101.5 L 122.8 108.3 L 126.4 114.4 L 129.9 119.9 L 133.5 124.8 L 137.0 129.1 L 140.5 132.7 L 144.1 135.8 L 147.6 138.3 L 151.2 140.1 L 154.7 141.3 L 158.2 141.9 L 161.8 141.9 L 165.3 141.3 L 168.8 140.1 L 172.4 138.3 L 175.9 135.8 L 179.5 132.7 L 183.0 129.1 L 186.5 124.8 L 190.1 119.9 L 193.6 114.4 L 197.2 108.3 L 200.7 101.5 L 204.2 94.2 L 207.8 86.2 L 211.3 77.7 L 214.8 68.5 L 218.4 58.7 L 221.9 48.3 L 225.5 37.3 L 229.0 25.6" fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Plot dots without labels (student labels them) -->
+          <circle cx="160" cy="142" r="4.5" fill="#374151"/>
+          <circle cx="100" cy="54" r="4" fill="#4b5563"/>
+          <circle cx="130" cy="120" r="4" fill="#6b7280"/>
+          <circle cx="190" cy="120" r="4" fill="#6b7280"/>
+          <!-- Labels A,B,C,D for student to identify -->
+          <text x="168" y="154" font-size="11" fill="#111827" font-weight="800">A</text>
+          <text x="108" y="56" font-size="11" fill="#111827" font-weight="800">B</text>
+          <text x="122" y="113" font-size="11" fill="#111827" font-weight="800">C</text>
+          <text x="195" y="113" font-size="11" fill="#111827" font-weight="800">D</text>
+        </svg>
+      </div>
+      <textarea class="work-area" placeholder="A = ___, B = ___, C = ___, D = ___"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">A (vertex): <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">B (y-int): <input type="text"> &nbsp; C, D (x-ints): <input type="text"></div>
+      </div>
+    </div>
+
+    <!-- P4: Axis of symmetry computation -->
+    <div class="prob">
+      <div class="prob-num">Problem 4 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">Find the <strong>axis of symmetry</strong> and the <strong>vertex</strong> of <strong>y = x² + 2x − 8</strong>.</p>
+      <div class="fig">
+        <svg width="220" height="180" viewBox="0 0 260 200">
+          <defs>
+            <linearGradient id="pg2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+              <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+            </linearGradient>
+          </defs>
+          <line x1="15" y1="80" x2="245" y2="80" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="130" y1="10" x2="130" y2="195" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="238" y="77" font-size="10" fill="#64748b">x</text>
+          <text x="133" y="13" font-size="10" fill="#64748b">y</text>
+          <!-- y=x²+2x-8; vertex (-1,-9); x-ints at -4, 2; scale x→130+x*22, y→80-y*8 -->
+          <!-- vertex (-1,-9)→(108,152); x-ints (-4,0)→(42,80), (2,0)→(174,80); y-int (0,-8)→(130,144) -->
+          <path d="M 15.6 10.9 L 20.3 25.0 L 25.1 38.3 L 29.8 51.0 L 34.6 62.8 L 39.3 74.0 L 44.0 84.4 L 48.8 94.0 L 53.5 102.9 L 58.2 111.1 L 63.0 118.5 L 67.7 125.2 L 72.5 131.1 L 77.2 136.3 L 81.9 140.8 L 86.7 144.5 L 91.4 147.5 L 96.2 149.7 L 100.9 151.2 L 105.6 151.9 L 110.4 151.9 L 115.1 151.2 L 119.8 149.7 L 124.6 147.5 L 129.3 144.5 L 134.1 140.8 L 138.8 136.3 L 143.5 131.1 L 148.3 125.2 L 153.0 118.5 L 157.8 111.1 L 162.5 102.9 L 167.2 94.0 L 172.0 84.4 L 176.7 74.0 L 181.4 62.8 L 186.2 51.0 L 190.9 38.3 L 195.7 25.0 L 200.4 10.9 L 200.4 200 L 15.6 200 Z" fill="url(#pg2)" stroke="none"/>
+          <path d="M 15.6 10.9 L 20.3 25.0 L 25.1 38.3 L 29.8 51.0 L 34.6 62.8 L 39.3 74.0 L 44.0 84.4 L 48.8 94.0 L 53.5 102.9 L 58.2 111.1 L 63.0 118.5 L 67.7 125.2 L 72.5 131.1 L 77.2 136.3 L 81.9 140.8 L 86.7 144.5 L 91.4 147.5 L 96.2 149.7 L 100.9 151.2 L 105.6 151.9 L 110.4 151.9 L 115.1 151.2 L 119.8 149.7 L 124.6 147.5 L 129.3 144.5 L 134.1 140.8 L 138.8 136.3 L 143.5 131.1 L 148.3 125.2 L 153.0 118.5 L 157.8 111.1 L 162.5 102.9 L 167.2 94.0 L 172.0 84.4 L 176.7 74.0 L 181.4 62.8 L 186.2 51.0 L 190.9 38.3 L 195.7 25.0 L 200.4 10.9" fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- dashed axis of sym (student fills) -->
+          <line x1="108" y1="10" x2="108" y2="195" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+          <text x="160" y="35" font-size="9" fill="#374151" font-weight="700">y = x² + 2x − 8</text>
+        </svg>
+      </div>
+      <textarea class="work-area" style="min-height:64px;" placeholder="x = −b/2a = −2/(2·1) = ___&#10;y = (___)² + 2(___) − 8 = ___&#10;Vertex = ( ___ , ___ )"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Axis of sym: <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Vertex: <input type="text"></div>
+      </div>
+    </div>
+
+    <!-- P5: Direction & vertex (max/min) -->
+    <div class="prob">
+      <div class="prob-num">Problem 5 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">For <strong>y = −x² + 4x + 5</strong>, find the <strong>vertex</strong>. Is it a <strong>maximum or minimum</strong>? What is the max/min y-value?</p>
+      <textarea class="work-area" style="min-height:64px;" placeholder="a = ___; a < 0 so vertex is a ___&#10;x = −b/2a = ___&#10;y = ___;  Vertex = ( ___ , ___ )"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Vertex: <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Max or Min? <input type="text"> &nbsp; Value: <input type="text"></div>
+      </div>
+    </div>
+
+    <!-- P6: Reflect a point across axis of symmetry -->
+    <div class="prob">
+      <div class="prob-num">Problem 6 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">A parabola has axis of symmetry <strong>x = 4</strong>. One point on the parabola is <strong>(1, 7)</strong>. Find the <strong>reflected point</strong> across the axis (same y-value, mirror x-value).</p>
+      <div class="fig">
+        <svg width="220" height="140" viewBox="0 0 260 160">
+          <line x1="15" y1="120" x2="245" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="40" y1="10" x2="40" y2="150" stroke="#94a3b8" stroke-width="1.5"/>
+          <!-- axis of sym at x=4: scale x→40+x*24 -->
+          <line x1="136" y1="10" x2="136" y2="150" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <text x="140" y="22" font-size="10" fill="#6b7280" font-weight="700">x = 4</text>
+          <!-- given point (1,7): x→64, y→120-7*10=50 -->
+          <circle cx="64" cy="50" r="5" fill="#374151"/>
+          <text x="36" y="46" font-size="10" fill="#374151" font-weight="800">(1, 7)</text>
+          <!-- question mark for reflected point at (7,7): x→40+7*24=208 -->
+          <circle cx="208" cy="50" r="5" fill="none" stroke="#374151" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="200" y="46" font-size="10" fill="#374151" font-weight="800">( ? , ? )</text>
+          <!-- horizontal connector -->
+          <line x1="64" y1="58" x2="208" y2="58" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+        </svg>
+      </div>
+      <textarea class="work-area" placeholder="Distance from (1) to axis (4) = ___. Reflected x = 4 + ___ = ___"></textarea>
+      <div class="answer-box">Reflected point: <input type="text"></div>
+    </div>
+
+  </div><!-- /prob-grid warm-up -->
+
+</div><!-- /sheet 1 -->
+
+<!-- ══════════════════════════════════════════════
+     PAGE 2 — GRAPHING & VERTEX FORM
+══════════════════════════════════════════════ -->
+<div class="sheet page-break">
+
+  <!-- ── PART B: GRAPHING ── -->
+  <div class="section-hd">
+    <span class="icon">📊</span>
+    <h2>Part B — The 5-Step Graphing Blueprint</h2>
+    <span class="badge badge-blue">6 Problems · ~20 min</span>
+  </div>
+  <p class="instr">Follow the 5 steps: ① find a, b, c &nbsp; ② axis of sym &nbsp; ③ vertex &nbsp; ④ y-intercept &nbsp; ⑤ sketch. Plot on the grid.</p>
+
+  <div class="formula-strip">
+    <span class="fs-label">Steps</span>
+    <span class="fml">① a, b, c</span>
+    <span class="fml">② x = −b/2a</span>
+    <span class="fml">③ Vertex (x, f(x))</span>
+    <span class="fml">④ y-int = (0, c)</span>
+    <span class="fml">⑤ Reflect & sketch U</span>
+  </div>
+
+  <div class="prob-grid">
+
+    <!-- P7: Full graphing exercise -->
+    <div class="prob">
+      <div class="prob-num">Problem 7 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">Graph <strong>y = x² − 2x − 3</strong> completely on the grid: vertex, axis of sym, y-int, and x-ints.</p>
+      <div class="fig">
+        <svg width="240" height="220" viewBox="0 0 260 240">
+          <!-- grid -->
+          <defs>
+            <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.8"/>
+            </pattern>
+          </defs>
+          <rect x="20" y="20" width="220" height="200" fill="url(#grid1)"/>
+          <line x1="20" y1="120" x2="240" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="130" y1="20" x2="130" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="232" y="117" font-size="10" fill="#64748b">x</text>
+          <text x="133" y="28" font-size="10" fill="#64748b">y</text>
+          <!-- ticks -->
+          <text x="50" y="133" font-size="8" fill="#6b7280" text-anchor="middle">−4</text>
+          <text x="90" y="133" font-size="8" fill="#6b7280" text-anchor="middle">−2</text>
+          <text x="170" y="133" font-size="8" fill="#6b7280" text-anchor="middle">2</text>
+          <text x="210" y="133" font-size="8" fill="#6b7280" text-anchor="middle">4</text>
+          <text x="125" y="80" font-size="8" fill="#6b7280" text-anchor="end">2</text>
+          <text x="125" y="160" font-size="8" fill="#6b7280" text-anchor="end">−2</text>
+          <text x="125" y="200" font-size="8" fill="#6b7280" text-anchor="end">−4</text>
+        </svg>
+      </div>
+      <textarea class="work-area" style="min-height:80px;" placeholder="① a=___ b=___ c=___&#10;② x = −b/2a = ___&#10;③ Vertex: ( ___ , ___ )&#10;④ y-int: (0, ___ )&#10;⑤ x-ints (factor): (___, 0) and (___, 0)"></textarea>
+    </div>
+
+    <!-- P8: Full graphing -->
+    <div class="prob">
+      <div class="prob-num">Problem 8 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">Graph <strong>y = −x² + 4x</strong> on the grid. Find vertex, axis of sym, and both x-intercepts.</p>
+      <div class="fig">
+        <svg width="240" height="220" viewBox="0 0 260 240">
+          <rect x="20" y="20" width="220" height="200" fill="url(#grid1)"/>
+          <line x1="20" y1="120" x2="240" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="130" y1="20" x2="130" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="232" y="117" font-size="10" fill="#64748b">x</text>
+          <text x="133" y="28" font-size="10" fill="#64748b">y</text>
+          <text x="90" y="133" font-size="8" fill="#6b7280" text-anchor="middle">−2</text>
+          <text x="170" y="133" font-size="8" fill="#6b7280" text-anchor="middle">2</text>
+          <text x="210" y="133" font-size="8" fill="#6b7280" text-anchor="middle">4</text>
+          <text x="125" y="60" font-size="8" fill="#6b7280" text-anchor="end">4</text>
+          <text x="125" y="100" font-size="8" fill="#6b7280" text-anchor="end">2</text>
+          <text x="125" y="180" font-size="8" fill="#6b7280" text-anchor="end">−4</text>
+        </svg>
+      </div>
+      <textarea class="work-area" style="min-height:80px;" placeholder="a=___ (opens ___); x = −b/2a = ___; vertex ( ___, ___ )&#10;x-ints: factor −x(x−4)=0 → x = ___, ___"></textarea>
+    </div>
+
+    <!-- P9: From graph back to equation -->
+    <div class="prob">
+      <div class="prob-num">Problem 9 <span class="lvl lvl-3">L3 · Spicy</span></div>
+      <p class="prob-q">The parabola shown has vertex <strong>(2, −4)</strong> and passes through the point <strong>(0, 0)</strong>. Find the value of <strong>a</strong> in standard form y = a(x − h)² + k.</p>
+      <div class="fig">
+        <svg width="240" height="200" viewBox="0 0 280 220">
+          <defs>
+            <linearGradient id="pg3" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+              <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+            </linearGradient>
+          </defs>
+          <line x1="20" y1="80" x2="260" y2="80" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="60" y1="10" x2="60" y2="215" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="253" y="77" font-size="10" fill="#64748b">x</text>
+          <text x="63" y="13" font-size="10" fill="#64748b">y</text>
+          <!-- vertex (2,-4): x→60+2*30=120, y→80-(-4)*15=140 -->
+          <!-- passes (0,0)→(60,80) -->
+          <path d="M 33.0 13.8 L 37.5 26.5 L 41.9 38.4 L 46.4 49.7 L 50.8 60.3 L 55.3 70.2 L 59.8 79.5 L 64.2 88.2 L 68.7 96.1 L 73.2 103.4 L 77.6 110.1 L 82.1 116.0 L 86.5 121.3 L 91.0 126.0 L 95.5 130.0 L 99.9 133.3 L 104.4 135.9 L 108.8 137.9 L 113.3 139.3 L 117.8 139.9 L 122.2 139.9 L 126.7 139.3 L 131.2 137.9 L 135.6 135.9 L 140.1 133.3 L 144.5 130.0 L 149.0 126.0 L 153.5 121.3 L 157.9 116.0 L 162.4 110.1 L 166.8 103.4 L 171.3 96.1 L 175.8 88.2 L 180.2 79.5 L 184.7 70.2 L 189.2 60.3 L 193.6 49.7 L 198.1 38.4 L 202.5 26.5 L 207.0 13.8 L 207.0 220 L 33.0 220 Z" fill="url(#pg3)" stroke="none"/>
+          <path d="M 33.0 13.8 L 37.5 26.5 L 41.9 38.4 L 46.4 49.7 L 50.8 60.3 L 55.3 70.2 L 59.8 79.5 L 64.2 88.2 L 68.7 96.1 L 73.2 103.4 L 77.6 110.1 L 82.1 116.0 L 86.5 121.3 L 91.0 126.0 L 95.5 130.0 L 99.9 133.3 L 104.4 135.9 L 108.8 137.9 L 113.3 139.3 L 117.8 139.9 L 122.2 139.9 L 126.7 139.3 L 131.2 137.9 L 135.6 135.9 L 140.1 133.3 L 144.5 130.0 L 149.0 126.0 L 153.5 121.3 L 157.9 116.0 L 162.4 110.1 L 166.8 103.4 L 171.3 96.1 L 175.8 88.2 L 180.2 79.5 L 184.7 70.2 L 189.2 60.3 L 193.6 49.7 L 198.1 38.4 L 202.5 26.5 L 207.0 13.8" fill="none" stroke="#374151" stroke-width="2.5"/>
+          <circle cx="120" cy="140" r="5" fill="#374151"/>
+          <text x="126" y="155" font-size="10" fill="#111827" font-weight="800">V(2, −4)</text>
+          <circle cx="60" cy="80" r="4" fill="#4b5563"/>
+          <text x="22" y="76" font-size="10" fill="#4b5563" font-weight="800">(0, 0)</text>
+        </svg>
+      </div>
+      <textarea class="work-area" style="min-height:64px;" placeholder="y = a(x − 2)² + (−4); plug in (0, 0):&#10;0 = a(0 − 2)² − 4&#10;0 = 4a − 4  → a = ___"></textarea>
+      <div class="answer-box">a = <input type="text"> &nbsp; Equation: y = <input type="text"></div>
+    </div>
+
+    <!-- P10: Reflect & build symmetric points -->
+    <div class="prob">
+      <div class="prob-num">Problem 10 <span class="lvl lvl-3">L3 · Spicy</span></div>
+      <p class="prob-q">A parabola has axis of symmetry <strong>x = −1</strong>. If <strong>(2, 5)</strong> is on the parabola, give two MORE points that must lie on the parabola (use a table of values trick).</p>
+      <textarea class="work-area" style="min-height:64px;" placeholder="Distance from x = 2 to axis x = −1 is ___ units. Reflected x = ___. So ( ___ , 5) is on parabola.&#10;Pick another x, find its mirror: …"></textarea>
+      <div class="answer-box">Point 1: <input type="text"> &nbsp; Point 2: <input type="text"></div>
+    </div>
+
+    <!-- P11: Domain & range -->
+    <div class="prob">
+      <div class="prob-num">Problem 11 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">State the <strong>domain</strong> and <strong>range</strong> of <strong>y = −(x + 3)² + 7</strong>.</p>
+      <div class="fig">
+        <svg width="220" height="170" viewBox="0 0 240 180">
+          <line x1="15" y1="120" x2="225" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="120" y1="10" x2="120" y2="170" stroke="#94a3b8" stroke-width="1.5"/>
+          <!-- y=-(x+3)²+7: vertex (-3, 7); opens down; x→120+x*20, y→120-y*12 -->
+          <!-- vertex →(60, 36) -->
+          <path d="M 4.4 128.9 L 7.9 117.3 L 11.5 106.5 L 15.1 96.4 L 18.7 87.1 L 22.3 78.6 L 25.9 70.9 L 29.5 63.9 L 33.1 57.7 L 36.7 52.3 L 40.3 47.7 L 43.8 43.8 L 47.4 40.7 L 51.0 38.4 L 54.6 36.9 L 58.2 36.1 L 61.8 36.1 L 65.4 36.9 L 69.0 38.4 L 72.6 40.7 L 76.2 43.8 L 79.7 47.7 L 83.3 52.3 L 86.9 57.7 L 90.5 63.9 L 94.1 70.9 L 97.7 78.6 L 101.3 87.1 L 104.9 96.4 L 108.5 106.5 L 112.1 117.3 L 115.6 128.9 L 119.2 141.2 L 122.8 154.4 L 126.4 168.3" fill="none" stroke="#4b5563" stroke-width="2.5"/>
+          <circle cx="60" cy="36" r="5" fill="#4b5563"/>
+          <text x="66" y="33" font-size="10" fill="#111827" font-weight="800">V(−3, 7)</text>
+          <!-- range bracket -->
+          <line x1="200" y1="36" x2="200" y2="120" stroke="#4b5563" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="172" y="55" font-size="9" fill="#4b5563" font-weight="700">y ≤ ?</text>
+        </svg>
+      </div>
+      <textarea class="work-area" placeholder="Vertex form y = a(x − h)² + k → vertex ( ___ , ___ ); a ___ 0 so opens ___"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Domain: <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Range: <input type="text"></div>
+      </div>
+    </div>
+
+    <!-- P12: Compare a values -->
+    <div class="prob">
+      <div class="prob-num">Problem 12 <span class="lvl lvl-3">L3 · Spicy</span></div>
+      <p class="prob-q">Rank from <strong>narrowest to widest</strong>: y = 3x², y = x², y = ½x², y = −2x². Which two open downward?</p>
+      <div class="fig">
+        <svg width="220" height="160" viewBox="0 0 240 160">
+          <line x1="15" y1="80" x2="225" y2="80" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="120" y1="5" x2="120" y2="155" stroke="#94a3b8" stroke-width="1.5"/>
+          <!-- y=3x² narrow -->
+          <path d="M 95 155 Q 120 -40 145 155" fill="none" stroke="#374151" stroke-width="2"/>
+          <text x="148" y="148" font-size="8" fill="#374151" font-weight="700">3x²</text>
+          <!-- y=x² medium -->
+          <path d="M 75 155 Q 120 -40 165 155" fill="none" stroke="#4b5563" stroke-width="2"/>
+          <text x="166" y="118" font-size="8" fill="#4b5563" font-weight="700">x²</text>
+          <!-- y=½x² wide -->
+          <path d="M 30 155 Q 120 -40 210 155" fill="none" stroke="#6b7280" stroke-width="2"/>
+          <text x="206" y="105" font-size="8" fill="#6b7280" font-weight="700">½x²</text>
+          <!-- y=-2x² downward, narrow -->
+          <path d="M 95 5 Q 120 175 145 5" fill="none" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4,2"/>
+          <text x="148" y="14" font-size="8" fill="#9ca3af" font-weight="700">−2x²</text>
+        </svg>
+      </div>
+      <textarea class="work-area" placeholder="Narrower ↔ larger |a|. Rank: ___, ___, ___, ___ (narrow → wide).&#10;Opens down: ___"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Narrow → Wide: <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Opens down: <input type="text"></div>
+      </div>
+    </div>
+
+  </div><!-- /prob-grid graphing -->
+
+  <hr class="divider">
+
+  <!-- ── PART C: VERTEX FORM ── -->
+  <div class="section-hd">
+    <span class="icon">💎</span>
+    <h2>Part C — Vertex Form &amp; Transformations</h2>
+    <span class="badge badge-blue">4 Problems · ~12 min</span>
+  </div>
+  <p class="instr">Read off the vertex directly from <strong>y = a(x − h)² + k</strong>. Watch the sign of h carefully!</p>
+
+  <div class="trap-card" style="margin-bottom:1rem;">
+    <div style="font-weight:800;font-size:0.85rem;color:#111827;">⚠️ Sign Trap Reminder</div>
+    <div style="font-size:0.8rem;color:#334155;margin-top:0.15rem;">y = (x − 3)² has vertex x = <strong>+3</strong>. &nbsp; y = (x + 3)² has vertex x = <strong>−3</strong>. The sign inside the parentheses is the OPPOSITE of h.</div>
+  </div>
+
+  <div class="prob-grid">
+
+    <!-- P13 -->
+    <div class="prob">
+      <div class="prob-num">Problem 13 <span class="lvl lvl-1">L1 · Mild</span></div>
+      <p class="prob-q">State the <strong>vertex</strong> and direction (up/down) for each:<br>(a) y = (x − 5)² + 2<br>(b) y = −2(x + 4)² − 1<br>(c) y = ½(x − 0)² + 3</p>
+      <textarea class="work-area" style="min-height:64px;" placeholder="(a) V = ( ___ , ___ ), opens ___&#10;(b) V = ( ___ , ___ ), opens ___&#10;(c) V = ( ___ , ___ ), opens ___"></textarea>
+    </div>
+
+    <!-- P14: describe transformation -->
+    <div class="prob">
+      <div class="prob-num">Problem 14 <span class="lvl lvl-2">L2 · Medium</span></div>
+      <p class="prob-q">Describe each transformation from the <strong>parent y = x²</strong>:<br>(a) y = (x − 4)² + 1<br>(b) y = −3(x + 2)²<br>(c) y = ½x² − 6</p>
+      <textarea class="work-area" style="min-height:64px;" placeholder="(a) Shift right ___, up ___&#10;(b) Flip + narrow + shift left ___&#10;(c) Wider (×½) + down ___"></textarea>
+    </div>
+
+    <!-- P15: build equation from vertex + point -->
+    <div class="prob">
+      <div class="prob-num">Problem 15 <span class="lvl lvl-3">L3 · Spicy</span></div>
+      <p class="prob-q">A parabola has <strong>vertex (3, −4)</strong> and y-intercept <strong>(0, 5)</strong>. Write the equation in <strong>vertex form</strong>, then state domain and range.</p>
+      <div class="fig">
+        <svg width="220" height="180" viewBox="0 0 240 200">
+          <defs>
+            <linearGradient id="pg4" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+              <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+            </linearGradient>
+          </defs>
+          <line x1="15" y1="120" x2="225" y2="120" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="40" y1="10" x2="40" y2="195" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="218" y="117" font-size="10" fill="#64748b">x</text>
+          <text x="43" y="14" font-size="10" fill="#64748b">y</text>
+          <!-- vertex (3, -4): x→40+3*22=106, y→120+4*8=152 -->
+          <!-- y-int (0, 5): x→40, y→120-5*8=80 -->
+          <path d="M 18.0 24.0 L 22.5 36.8 L 27.0 48.9 L 31.5 60.4 L 36.1 71.1 L 40.6 81.2 L 45.1 90.7 L 49.6 99.4 L 54.1 107.5 L 58.6 114.9 L 63.1 121.6 L 67.6 127.7 L 72.2 133.1 L 76.7 137.8 L 81.2 141.8 L 85.7 145.2 L 90.2 147.9 L 94.7 149.9 L 99.2 151.2 L 103.7 151.9 L 108.3 151.9 L 112.8 151.2 L 117.3 149.9 L 121.8 147.9 L 126.3 145.2 L 130.8 141.8 L 135.3 137.8 L 139.8 133.1 L 144.4 127.7 L 148.9 121.6 L 153.4 114.9 L 157.9 107.5 L 162.4 99.4 L 166.9 90.7 L 171.4 81.2 L 175.9 71.1 L 180.5 60.4 L 185.0 48.9 L 189.5 36.8 L 194.0 24.0 L 194.0 200 L 18.0 200 Z" fill="url(#pg4)" stroke="none"/>
+          <path d="M 18.0 24.0 L 22.5 36.8 L 27.0 48.9 L 31.5 60.4 L 36.1 71.1 L 40.6 81.2 L 45.1 90.7 L 49.6 99.4 L 54.1 107.5 L 58.6 114.9 L 63.1 121.6 L 67.6 127.7 L 72.2 133.1 L 76.7 137.8 L 81.2 141.8 L 85.7 145.2 L 90.2 147.9 L 94.7 149.9 L 99.2 151.2 L 103.7 151.9 L 108.3 151.9 L 112.8 151.2 L 117.3 149.9 L 121.8 147.9 L 126.3 145.2 L 130.8 141.8 L 135.3 137.8 L 139.8 133.1 L 144.4 127.7 L 148.9 121.6 L 153.4 114.9 L 157.9 107.5 L 162.4 99.4 L 166.9 90.7 L 171.4 81.2 L 175.9 71.1 L 180.5 60.4 L 185.0 48.9 L 189.5 36.8 L 194.0 24.0" fill="none" stroke="#374151" stroke-width="2.5"/>
+          <circle cx="106" cy="152" r="5" fill="#374151"/>
+          <text x="112" y="167" font-size="10" fill="#111827" font-weight="800">V(3, −4)</text>
+          <circle cx="40" cy="80" r="4" fill="#4b5563"/>
+          <text x="14" y="76" font-size="10" fill="#4b5563" font-weight="800">(0, 5)</text>
+        </svg>
+      </div>
+      <textarea class="work-area" style="min-height:72px;" placeholder="y = a(x − 3)² − 4; plug in (0, 5):&#10;5 = a(0 − 3)² − 4  →  5 = 9a − 4  →  a = ___&#10;Equation: y = ___"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Equation: <input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">Domain: <input type="text"> &nbsp; Range: <input type="text"></div>
+      </div>
+    </div>
+
+    <!-- P16: Convert standard → vertex (informal) -->
+    <div class="prob">
+      <div class="prob-num">Problem 16 <span class="lvl lvl-3">L3 · Spicy</span></div>
+      <p class="prob-q">For <strong>y = x² − 6x + 11</strong>, find the vertex using x = −b/2a, then rewrite in vertex form y = (x − h)² + k.</p>
+      <textarea class="work-area" style="min-height:72px;" placeholder="x = −b/2a = 6/2 = ___&#10;y = (___)² − 6(___) + 11 = ___&#10;Vertex: ( ___ , ___ )&#10;Vertex form: y = (x − ___)² + ___"></textarea>
+      <div class="answer-box">Vertex form: y = <input type="text"></div>
+    </div>
+
+  </div><!-- /prob-grid vertex form -->
+
+</div><!-- /sheet 2 -->
+
+<!-- ══════════════════════════════════════════════
+     PAGE 3 — REAL WORLD + REFLECTION
+══════════════════════════════════════════════ -->
+<div class="sheet page-break">
+
+  <!-- ── PART D: REAL-WORLD ── -->
+  <div class="section-hd">
+    <span class="icon">🏈</span>
+    <h2>Part D — Real-World Projectile Motion</h2>
+    <span class="badge badge-blue">3 Problems · ~12 min</span>
+  </div>
+  <p class="instr">Height-time problems use h(t) = −16t² + bt + c (feet) or h(t) = −4.9t² + bt + c (meters). The vertex tells you peak time &amp; max height.</p>
+
+  <div class="prob-grid single">
+
+    <!-- P17: Touchdown problem variation -->
+    <div class="prob">
+      <div class="prob-num">Problem 17 — The Field Goal <span class="lvl lvl-3">L3 · Spicy</span></div>
+      <p class="prob-q">A football is kicked from ground level. Its height in feet is modeled by <strong>h(t) = −16t² + 64t</strong>, where t is time in seconds.<br>
+      <strong>(a)</strong> Identify a, b, c. &nbsp; <strong>(b)</strong> At what time does the ball reach maximum height? &nbsp; <strong>(c)</strong> What is the maximum height? &nbsp; <strong>(d)</strong> When does the ball hit the ground?</p>
+      <div class="fig">
+        <svg width="320" height="220" viewBox="0 0 320 240">
+          <defs>
+            <linearGradient id="pg5" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+              <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+            </linearGradient>
+          </defs>
+          <!-- Axes -->
+          <line x1="35" y1="200" x2="305" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="35" y1="15" x2="35" y2="210" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="295" y="217" font-size="10" fill="#64748b">t (sec)</text>
+          <text x="38" y="18" font-size="10" fill="#64748b">h (ft)</text>
+          <!-- ticks: scale t→35+t*65 (t=0..4), h→200-h*4 (h=0..64) -->
+          <text x="35" y="214" font-size="9" fill="#6b7280" text-anchor="middle">0</text>
+          <text x="100" y="214" font-size="9" fill="#6b7280" text-anchor="middle">1</text>
+          <text x="165" y="214" font-size="9" fill="#6b7280" text-anchor="middle">2</text>
+          <text x="230" y="214" font-size="9" fill="#6b7280" text-anchor="middle">3</text>
+          <text x="295" y="214" font-size="9" fill="#6b7280" text-anchor="middle">4</text>
+          <text x="28" y="203" font-size="9" fill="#6b7280" text-anchor="end">0</text>
+          <text x="28" y="139" font-size="9" fill="#6b7280" text-anchor="end">16</text>
+          <text x="28" y="75" font-size="9" fill="#6b7280" text-anchor="end">48</text>
+          <text x="28" y="43" font-size="9" fill="#6b7280" text-anchor="end">64</text>
+          <!-- h(t)=-16t²+64t; vertex (2, 64); zeros at 0, 4 -->
+          <!-- (0,0)→(35,200); (1,48)→(100,8); actually with map h→200-h*3 for fit -->
+          <!-- Redo: scale h→200-h*2.9; (1,48)→(100,60.8); (2,64)→(165,14); (3,48)→(230,60.8); (4,0)→(295,200) -->
+          <path d="M 35.0 200.0 L 41.7 181.5 L 48.3 163.9 L 55.0 147.3 L 61.7 131.7 L 68.3 117.0 L 75.0 103.4 L 81.7 90.7 L 88.3 79.0 L 95.0 68.2 L 101.7 58.5 L 108.3 49.7 L 115.0 41.9 L 121.7 35.0 L 128.3 29.2 L 135.0 24.3 L 141.7 20.4 L 148.3 17.5 L 155.0 15.5 L 161.7 14.5 L 168.3 14.5 L 175.0 15.5 L 181.7 17.5 L 188.3 20.4 L 195.0 24.3 L 201.7 29.2 L 208.3 35.0 L 215.0 41.9 L 221.7 49.7 L 228.3 58.5 L 235.0 68.2 L 241.7 79.0 L 248.3 90.7 L 255.0 103.4 L 261.7 117.0 L 268.3 131.7 L 275.0 147.3 L 281.7 163.9 L 288.3 181.5 L 295.0 200.0 Z" fill="url(#pg5)" stroke="none"/>
+          <path d="M 35.0 200.0 L 41.7 181.5 L 48.3 163.9 L 55.0 147.3 L 61.7 131.7 L 68.3 117.0 L 75.0 103.4 L 81.7 90.7 L 88.3 79.0 L 95.0 68.2 L 101.7 58.5 L 108.3 49.7 L 115.0 41.9 L 121.7 35.0 L 128.3 29.2 L 135.0 24.3 L 141.7 20.4 L 148.3 17.5 L 155.0 15.5 L 161.7 14.5 L 168.3 14.5 L 175.0 15.5 L 181.7 17.5 L 188.3 20.4 L 195.0 24.3 L 201.7 29.2 L 208.3 35.0 L 215.0 41.9 L 221.7 49.7 L 228.3 58.5 L 235.0 68.2 L 241.7 79.0 L 248.3 90.7 L 255.0 103.4 L 261.7 117.0 L 268.3 131.7 L 275.0 147.3 L 281.7 163.9 L 288.3 181.5 L 295.0 200.0" fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- vertex (2, 64) -->
+          <circle cx="165" cy="14" r="5" fill="#374151"/>
+          <line x1="165" y1="14" x2="165" y2="200" stroke="#6b7280" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="172" y="14" font-size="10" fill="#111827" font-weight="800">Max</text>
+          <text x="172" y="26" font-size="9" fill="#374151">(t=?, h=?)</text>
+          <!-- launch + land -->
+          <circle cx="35" cy="200" r="4" fill="#4b5563"/>
+          <text x="40" y="194" font-size="9" fill="#4b5563" font-weight="700">launch</text>
+          <circle cx="295" cy="200" r="4" fill="#4b5563"/>
+          <text x="262" y="194" font-size="9" fill="#4b5563" font-weight="700">lands</text>
+          <text x="155" y="234" font-size="9" fill="#6b7280">axis: t = ?</text>
+          <text x="155" y="40" font-size="14">🏈</text>
+        </svg>
+      </div>
+      <textarea class="work-area" style="min-height:88px;" placeholder="(a) a = ___, b = ___, c = ___; opens ___&#10;(b) t = −b/2a = −64/(2·−16) = ___ sec&#10;(c) h(___) = −16(___)² + 64(___) = ___ ft&#10;(d) Solve −16t² + 64t = 0 → t(−16t + 64) = 0 → t = ___ or t = ___"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(b) Peak time: <input type="text"> sec &nbsp; (c) Max height: <input type="text"> ft</div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(d) Lands at t = <input type="text"> sec</div>
+      </div>
+    </div>
+
+    <!-- P18: starting from a platform -->
+    <div class="prob">
+      <div class="prob-num">Problem 18 — Off the Cliff <span class="lvl lvl-4">L4 · Regents Stretch</span></div>
+      <p class="prob-q">A ball is thrown upward from a 6-ft platform. Its height in feet is <strong>h(t) = −16t² + 32t + 6</strong>.<br>
+      <strong>(a)</strong> Find the maximum height. &nbsp; <strong>(b)</strong> When does it reach max? &nbsp; <strong>(c)</strong> When does it hit the ground? (use the quadratic formula; round to the nearest tenth).</p>
+      <div class="fig">
+        <svg width="320" height="200" viewBox="0 0 320 220">
+          <defs>
+            <linearGradient id="pg6" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#374151;stop-opacity:0.12"/>
+              <stop offset="100%" style="stop-color:#374151;stop-opacity:0.02"/>
+            </linearGradient>
+          </defs>
+          <line x1="35" y1="180" x2="305" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="35" y1="15" x2="35" y2="195" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="295" y="197" font-size="10" fill="#64748b">t</text>
+          <text x="38" y="18" font-size="10" fill="#64748b">h (ft)</text>
+          <!-- platform at h=6, ground at h=0 -->
+          <line x1="35" y1="172" x2="55" y2="172" stroke="#6b7280" stroke-width="3"/>
+          <text x="58" y="170" font-size="9" fill="#4b5563" font-weight="700">platform 6 ft</text>
+          <!-- vertex (1, 22): scale t→35+t*100, h→180-h*7 -->
+          <!-- (0,6)→(35,138); (1,22)→(135,26); zero ≈ t=2.17 → (252,180) -->
+          <path d="M 35.0 138.0 L 40.6 125.9 L 46.1 114.5 L 51.7 103.7 L 57.3 93.7 L 62.8 84.4 L 68.4 75.7 L 73.9 67.7 L 79.5 60.5 L 85.1 53.9 L 90.6 48.0 L 96.2 42.9 L 101.8 38.4 L 107.3 34.6 L 112.9 31.5 L 118.5 29.1 L 124.0 27.3 L 129.6 26.3 L 135.2 26.0 L 140.7 26.4 L 146.3 27.4 L 151.8 29.2 L 157.4 31.6 L 163.0 34.8 L 168.5 38.6 L 174.1 43.1 L 179.7 48.3 L 185.2 54.3 L 190.8 60.9 L 196.4 68.2 L 201.9 76.2 L 207.5 84.8 L 213.1 94.2 L 218.6 104.3 L 224.2 115.1 L 229.7 126.5 L 235.3 138.7 L 240.9 151.5 L 246.4 165.1 L 252.0 179.3 L 252.0 180 L 35.0 180 Z" fill="url(#pg6)" stroke="none"/>
+          <path d="M 35.0 138.0 L 40.6 125.9 L 46.1 114.5 L 51.7 103.7 L 57.3 93.7 L 62.8 84.4 L 68.4 75.7 L 73.9 67.7 L 79.5 60.5 L 85.1 53.9 L 90.6 48.0 L 96.2 42.9 L 101.8 38.4 L 107.3 34.6 L 112.9 31.5 L 118.5 29.1 L 124.0 27.3 L 129.6 26.3 L 135.2 26.0 L 140.7 26.4 L 146.3 27.4 L 151.8 29.2 L 157.4 31.6 L 163.0 34.8 L 168.5 38.6 L 174.1 43.1 L 179.7 48.3 L 185.2 54.3 L 190.8 60.9 L 196.4 68.2 L 201.9 76.2 L 207.5 84.8 L 213.1 94.2 L 218.6 104.3 L 224.2 115.1 L 229.7 126.5 L 235.3 138.7 L 240.9 151.5 L 246.4 165.1 L 252.0 179.3" fill="none" stroke="#374151" stroke-width="2.5"/>
+          <circle cx="135" cy="26" r="5" fill="#374151"/>
+          <text x="142" y="26" font-size="10" fill="#111827" font-weight="800">Max</text>
+          <circle cx="35" cy="138" r="4" fill="#4b5563"/>
+          <circle cx="252" cy="180" r="4" fill="#4b5563"/>
+          <text x="225" y="174" font-size="9" fill="#4b5563" font-weight="700">ground</text>
+          <text x="35" y="214" font-size="9" fill="#6b7280">0</text>
+          <text x="135" y="214" font-size="9" fill="#6b7280" text-anchor="middle">1</text>
+          <text x="235" y="214" font-size="9" fill="#6b7280" text-anchor="middle">2</text>
+        </svg>
+      </div>
+      <textarea class="work-area" style="min-height:96px;" placeholder="(a) t = −b/2a = −32/(2·−16) = ___ sec; h(___) = −16 + 32 + 6 = ___ ft&#10;(b) t = ___ sec at max&#10;(c) Quadratic formula: t = (−32 ± √(32² − 4·−16·6)) / (2·−16) = (−32 ± √(1024 + 384)) / −32 = ?&#10;Use the POSITIVE root."></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(a) Max h: <input type="text"> ft &nbsp; (b) at t = <input type="text"> sec</div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(c) Lands at t ≈ <input type="text"> sec</div>
+      </div>
+    </div>
+
+    <!-- P19: revenue / business application -->
+    <div class="prob">
+      <div class="prob-num">Problem 19 — Lemonade Stand <span class="lvl lvl-4">L4 · Regents Stretch</span></div>
+      <p class="prob-q">A lemonade stand's daily revenue is modeled by <strong>R(p) = −20p² + 200p</strong>, where p is the price per cup in dollars.<br>
+      <strong>(a)</strong> What price <em>p</em> gives the maximum revenue? &nbsp; <strong>(b)</strong> What is the max revenue? &nbsp; <strong>(c)</strong> State a reasonable domain for p (think: can price be negative?).</p>
+      <textarea class="work-area" style="min-height:80px;" placeholder="(a) p = −b/2a = −200/(2·−20) = ___ dollars&#10;(b) R(___) = −20(___)² + 200(___) = $___&#10;(c) Domain: 0 ≤ p ≤ ___ (revenue zeros)"></textarea>
+      <div class="answer-box" style="flex-direction:column;align-items:flex-start;gap:0.25rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(a) Best price: $<input type="text"> &nbsp; (b) Max revenue: $<input type="text"></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">(c) Reasonable domain: <input type="text"></div>
+      </div>
+    </div>
+
+  </div><!-- /prob-grid real world -->
+
+  <hr class="divider">
+
+  <!-- ── PART E: EXIT TICKET (MC) ── -->
+  <div class="section-hd">
+    <span class="icon">🎟️</span>
+    <h2>Part E — Exit Ticket (Multiple Choice)</h2>
+    <span class="badge badge-blue">4 Questions · ~5 min</span>
+  </div>
+  <p class="instr">Quick check of the four "things to know cold" — select your answer for each.</p>
+
+  <div class="mc-q">
+    <div class="mc-q-text"><span class="qnum">Q1.</span> What is the axis of symmetry of <strong>y = 2x² − 8x + 1</strong>? <span class="lvl lvl-1">L1</span></div>
+    <div class="mc-opts">
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q1"><span class="bubble"></span><span>A) x = −2</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q1"><span class="bubble"></span><span>B) x = 2</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q1"><span class="bubble"></span><span>C) x = 4</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q1"><span class="bubble"></span><span>D) x = 8</span></label>
+    </div>
+  </div>
+
+  <div class="mc-q">
+    <div class="mc-q-text"><span class="qnum">Q2.</span> The vertex of <strong>y = (x + 5)² − 3</strong> is: <span class="lvl lvl-2">L2</span></div>
+    <div class="mc-opts">
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q2"><span class="bubble"></span><span>A) (5, −3)</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q2"><span class="bubble"></span><span>B) (−5, −3)</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q2"><span class="bubble"></span><span>C) (−5, 3)</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q2"><span class="bubble"></span><span>D) (5, 3)</span></label>
+    </div>
+  </div>
+
+  <div class="mc-q">
+    <div class="mc-q-text"><span class="qnum">Q3.</span> The range of <strong>y = −3(x − 2)² + 8</strong> is: <span class="lvl lvl-2">L2</span></div>
+    <div class="mc-opts">
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q3"><span class="bubble"></span><span>A) y ≥ 8</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q3"><span class="bubble"></span><span>B) y ≤ 8</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q3"><span class="bubble"></span><span>C) y ≥ 2</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q3"><span class="bubble"></span><span>D) all real numbers</span></label>
+    </div>
+  </div>
+
+  <div class="mc-q">
+    <div class="mc-q-text"><span class="qnum">Q4.</span> A ball's height is <strong>h(t) = −16t² + 48t + 4</strong>. The time at max height is best found by: <span class="lvl lvl-3">L3</span></div>
+    <div class="mc-opts">
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q4"><span class="bubble"></span><span>A) Setting h(t) = 0 and solving</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q4"><span class="bubble"></span><span>B) Computing t = −b/2a = −48 / (2·−16)</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q4"><span class="bubble"></span><span>C) Substituting t = 0</span></label>
+      <label class="mc-opt" onclick="selMC(this)"><input type="radio" name="q4"><span class="bubble"></span><span>D) Finding the y-intercept</span></label>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── ERROR LOG ── -->
+  <div class="section-hd">
+    <span class="icon">🔎</span>
+    <h2>Part F — Error Log</h2>
+    <span class="badge badge-coral">Required · Every Missed Problem</span>
+  </div>
+  <p class="instr">For every problem you got wrong, fill in a row. Be honest — this helps target the right fixes in session.</p>
+
+  <div class="error-log">
+    <h3>📋 My Errors This Worksheet</h3>
+    <div class="error-type-pills">
+      <span style="font-size:0.73rem;font-weight:700;color:#92400e;margin-right:0.3rem;">Label each error:</span>
+      <span class="pill pill-cg">🔴 Content Gap — I didn't know how to do this</span>
+      <span class="pill pill-ce">🟡 Careless Error — I knew it but made a mistake</span>
+      <span class="pill pill-ru">🟣 Rushing — I didn't read carefully enough</span>
+    </div>
+    <table class="error-table" style="margin-top:0.7rem;">
+      <thead>
+        <tr>
+          <th>#</th><th>Problem</th><th>What I Did Wrong</th><th style="width:18%;">Error Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td contenteditable="true" style="outline:none;min-width:60px;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td></tr>
+        <tr><td>2</td><td contenteditable="true" style="outline:none;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td></tr>
+        <tr><td>3</td><td contenteditable="true" style="outline:none;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td></tr>
+        <tr><td>4</td><td contenteditable="true" style="outline:none;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td><td contenteditable="true" style="outline:none;">&nbsp;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── REFLECTION ── -->
+  <div class="reflect-box">
+    <h3>✍️ Reflection (2–3 sentences)</h3>
+    <p style="font-size:0.8rem;color:var(--slate);font-weight:600;margin-bottom:0.5rem;">After reviewing your work, complete these sentences:</p>
+    <div class="reflect-lines">
+      <div class="reflect-line">My biggest "aha" from this lesson was <input type="text" placeholder="…"></div>
+      <div class="reflect-line">The step I struggled with most was <input type="text" placeholder="…"></div>
+      <div class="reflect-line">One formula I want to memorize cold: <input type="text" placeholder="…"></div>
+      <div class="reflect-line">A question I want to ask in class: <input type="text" placeholder="…"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="margin-top:1.2rem;text-align:center;font-size:0.72rem;color:var(--muted);font-weight:600;">
+    Lesson 7 · Algebra I Regents Prep &nbsp;·&nbsp; 📈 Graphing Quadratic Functions &amp; Their Properties
+  </div>
+
+</div><!-- /sheet 3 -->
+
+<script>
+function selMC(label) {
+  const group = label.closest('.mc-opts');
+  group.querySelectorAll('.mc-opt').forEach(l => {
+    l.classList.remove('selected');
+    l.querySelector('.bubble').textContent = '';
+  });
+  label.classList.add('selected');
+  label.querySelector('.bubble').textContent = '✓';
+  label.querySelector('input[type=radio]').checked = true;
+}
+function clearAll() {
+  if (!confirm('Clear all answers?')) return;
+  document.querySelectorAll('input[type=text],input[type=number],textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type=radio]').forEach(el => el.checked = false);
+  document.querySelectorAll('.mc-opt').forEach(l => {
+    l.classList.remove('selected');
+    l.querySelector('.bubble').textContent = '';
+  });
+  document.querySelectorAll('[contenteditable]').forEach(el => el.textContent = '\u00a0');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('textarea').forEach(ta => {
+    ta.addEventListener('input', () => {
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    });
+  });
+});
+</script>
+</body>
+</html>
