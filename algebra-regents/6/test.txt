@@ -1,0 +1,483 @@
+Lesson 6 · Factoring Polynomials & Solving Quadratic Equations
+Expert Teaching Script (Regents-Mastery Explanations, Beginner-Friendly Delivery)
+Instructor: Mr. Hsiao "Hue" Weng
+Total Time: ~60 minutes
+================================================================================
+
+HOW TO USE THIS SCRIPT
+─────────────────────────────────────────────────────────────────────
+- Text in [BRACKETS] = instructor stage directions or timing cues
+- "Quoted text" = suggested exact words to say aloud
+- → means a natural transition or follow-up thought
+- 💡 = deep conceptual explanation (say or adapt as needed)
+- ✋ = student interaction moment — pause and wait for responses
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 1 — TITLE SLIDE & WELCOME
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the title slide as students settle. Write "Lesson 6 ·
+Factoring Polynomials & Solving Quadratic Equations" on the board.
+Open with the energy of someone about to reveal a secret — today they
+learn to run the machine of multiplication BACKWARD.]
+
+"Good morning, algebra mathematicians! Welcome to Lesson 6. Last time
+you learned to MULTIPLY — to take (x + 2)(x + 3) and build the
+trinomial x² + 5x + 6. Today we do something that feels almost like
+magic: we run that machine in reverse. We take the trinomial and
+recover the two factors hiding inside it. That skill is called
+FACTORING — and once you have it, you can SOLVE quadratic equations,
+which is one of the most tested skills on the entire Algebra I Regents."
+
+"Here is my promise to you. By the end of this hour, you will look at
+an equation like x² + 5x + 6 = 0 and you will know exactly how to
+break it apart and find the two values of x that make it true. No
+guessing. No fear."
+
+💡 [DEEP CONTEXT — deliver this slowly, with weight]:
+"Here's the big idea that anchors everything today. Multiplying is
+BUILDING — you snap pieces together into one expression. Factoring is
+UN-BUILDING — taking that expression apart back into the pieces that
+made it. Why would anyone want to un-build? Because of a strange and
+beautiful property of the number zero. When something equals zero, its
+factored form practically solves itself. We are going to turn one hard
+equation into two easy ones, using nothing but the special power of
+zero. Hold onto that — it's the engine of the whole lesson."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 2 — ROADMAP: TODAY'S 60-MINUTE PLAN
+[Duration: ~2 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four-block roadmap. Point to each block as you name it
+so students have a mental map of the hour.]
+
+"Here's our path today. Four stops."
+
+"0–10 minutes: Do Now and vocabulary. We warm up by listing factor
+pairs of 36 — and you'll see why that tiny skill is secretly the
+engine of everything. 10–27 minutes: the Factoring Toolkit — GCF
+first, ALWAYS, then trinomials using two-number detective work.
+27–44 minutes: Solve It — the Zero Product Property, and we'll even
+SEE the answers on a Desmos graph. 44–60 minutes: a real garden-plot
+problem, differentiated practice, and your exit ticket."
+
+[Point to the Socratic question at the bottom of the slide:]
+
+✋ "Before we start, sit with this: you already know how to multiply
+   (x + 2)(x + 3) into a trinomial. If multiplying is BUILDING, what
+   would the reverse process be? And why might un-building an
+   expression ever be useful? Don't answer out loud yet — just hold
+   the question. We answer it together by the end of class."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — DO NOW & KEY VOCABULARY
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the Do Now on the left, the vocabulary cards on the right.
+Put 90 seconds on a visible timer — make it a race.]
+
+"Open your notebook. One task. List EVERY factor pair of 36. You have
+90 seconds — go!"
+
+[After 90 seconds, reveal the answer card.]
+
+"Let's check. 1×36, 2×18, 3×12, 4×9, 6×6. And here's a pro move: you
+can STOP at 6. Why? Because after 6, the pairs just repeat in reverse
+— 9×4 is the same as 4×9. The moment your two factors cross over, you
+have them all."
+
+💡 [WHY THIS WARM-UP MATTERS — connect it forward]:
+"This little game is not a warm-up to kill time. Listing factor pairs
+is the EXACT skill that powers trinomial factoring later this hour.
+When you factor x² + 7x + 10, you'll be hunting through the factor
+pairs of 10 looking for the right one. The faster you can rattle off
+factor pairs, the faster you factor. So get good at this now."
+
+[Walk through the four vocabulary cards.]
+
+💡 [THE WORDS THAT UNLOCK TODAY]:
+"Four words the Regents assumes you know cold.
+
+A POLYNOMIAL is an expression built of terms. A BINOMIAL has two terms
+— like x + 5; a TRINOMIAL has three — like x² + 5x + 6. Think bicycle,
+tricycle: 'bi' is two, 'tri' is three.
+
+A FACTOR is a quantity that MULTIPLIES to build an expression. So
+FACTORING means rewriting a sum as a PRODUCT — turning x² + 5x + 6
+into (x + 2)(x + 3).
+
+A QUADRATIC EQUATION has an x² term and is set equal to zero. Its
+standard form is ax² + bx + c = 0.
+
+And the ZERO PRODUCT PROPERTY — the star of the show — says that if a
+product equals zero, one of its factors MUST be zero. We'll prove why
+soon."
+
+✋ [Point to the Socratic question:] "Which pair of factors of 36 has
+   a SUM of 13? Which pair sums to 12?" [Expected: 4 and 9 sum to 13;
+   nothing standard sums to 12 from whole pairs except... let them
+   wrestle — the point is to make them HUNT by sum, not just by
+   product. That hunt is the detective skill of Slide 6.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — GCF FACTORING: UN-DISTRIBUTING
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the area-model diagram showing 6x² + 9x = 3x(2x + 3). Point
+to the boxes as you explain how 3x is shared across both.]
+
+"We start factoring with the simplest, most important move of all:
+pulling out the GREATEST COMMON FACTOR — the GCF. And here's the rule
+you tattoo on your brain: GCF FIRST, ALWAYS. Before you try anything
+fancy, check what every term shares."
+
+[Walk through 6x² + 9x.]
+
+"Look at 6x² + 9x. Two questions. First: what number divides into both
+6 and 9? Three. Second: how many x's do BOTH terms own? The first term
+has two x's, the second has one — so they share ONE x. Put those
+together: the greatest common factor is 3x. We pull it out front and
+write what's left inside: 3x(2x + 3)."
+
+💡 [THE CLEVER WAY TO THINK ABOUT IT — the club membership fee]:
+"Here's a picture that makes GCF click. Think of the GCF as a CLUB
+MEMBERSHIP FEE — it's what every term had to pay to get in. Both 6x²
+and 9x paid 3x to join. Factoring just collects that fee back out
+front and shows you what each member has left after paying. 6x² paid
+3x and has 2x left. 9x paid 3x and has 3 left. So: 3x(2x + 3).
+
+And notice — this is exactly LAST lesson's distribution running
+backward. Distributing 3x INTO (2x + 3) gives 6x² + 9x. Factoring
+pulls it back OUT. They're inverse operations."
+
+[Point to the Check Your Work card.]
+
+💡 [YOUR ERASER-PROOF SAFETY NET]:
+"Because factoring and distributing are inverses, you have a built-in
+check on EVERY factoring problem. Distribute your answer back out. If
+3x(2x + 3) gives you 6x² + 9x — the thing you started with — you're
+correct, guaranteed. No quadratic factoring answer should ever go
+unchecked. Multiply it back."
+
+✋ [Point to the Socratic question:] "In 6x² + 9x, what's the biggest
+   thing you could pull out of BOTH terms at once?" [Expected: 3x.
+   Watch for students who pull only the 3 or only the x — push them to
+   take the GREATEST common factor, both the number AND the variable.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — VIDEO: THE FACTORING TOOLKIT
+[Duration: ~8 minutes (two short videos + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Two short videos to lock this in. First, Khan Academy on using the
+GCF — about four and a half minutes. As you watch, HUNT for two
+things, written on the slide."
+
+✋ [Before video 1:] "Question 1: How do you find the GCF of the
+   VARIABLE parts, not just the numbers? Question 2: What's left
+   inside the parentheses after you factor?"
+
+[Play video 1: "GCF to Factor a Polynomial" — Khan Academy (~4:44).]
+
+"Now a second clip — Timely Math Tutor, about three and a half minutes
+— on factoring a trinomial when the leading coefficient is 1. This
+previews exactly where we go next."
+
+[Play video 2: "Factoring a Quadratic with Leading Coefficient 1"
+(~3:49).]
+
+💡 [SYNTHESIS — find the thread between the two videos]:
+"Here's what I want you to notice across BOTH videos. In the GCF
+video, the trick was a shared FACTOR — something every term has in
+common. In the trinomial video, the trick is a shared PATTERN — two
+numbers that have to do a special job. So watch carefully —"
+
+✋ [Slide's after-watching Socratic question:] "What EXACTLY are the
+   two numbers in the trinomial method required to do?" [Expected:
+   multiply to one number AND add to another. Let students articulate
+   the 'two jobs at once' idea — it sets up Slide 6 perfectly. Don't
+   give the full rule yet; let the next slide deliver it.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — FACTORING TRINOMIALS: THE TWO-NUMBER DETECTIVE
+[Duration: ~7 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the X-diamond diagram for x² + 7x + 10. Point to the top
+"MULTIPLY to c" and bottom "ADD to b" as you build the story.]
+
+"Now the heart of the lesson: factoring trinomials of the form
+x² + bx + c. And we're going to do it like detectives. Every trinomial
+hides a PAIR of numbers, and your job is to catch them."
+
+[Walk through x² + 7x + 10 with the X-diamond.]
+
+"Here's the case. We need two numbers — call them the suspects — that
+satisfy TWO alibis at once. They must MULTIPLY to c, which is 10. And
+they must ADD to b, which is 7. So list the factor pairs of 10: 1 and
+10, 2 and 5. Now scan for the pair that ALSO adds to 7. One plus ten
+is eleven — no. Two plus five is seven — YES. Case closed. Drop them
+into the parentheses: (x + 2)(x + 5)."
+
+💡 [WHY TWO JOBS AT ONCE — the structure underneath]:
+"Why must the pair multiply to c and add to b? Run the FOIL backward
+from last lesson. When you multiply (x + 2)(x + 5), the LAST terms
+multiply to give the constant — 2 times 5 is 10, that's your c. And
+the OUTER plus INNER terms combine to give the middle — 2x plus 5x is
+7x, that's your b. So the two numbers that built the trinomial are
+exactly the pair that multiplies to c and adds to b. Factoring is just
+reverse-engineering the FOIL you already know."
+
+[Point to the Sign Detective Rules card — this is high-value.]
+
+💡 [READING THE SIGNS — the detective's tell]:
+"The signs tell you what kind of pair to hunt for. Two rules:
+
+If c is POSITIVE, both signs MATCH each other — and they match the
+sign of b. So x² + 7x + 10 gives (x + 2)(x + 5): both plus.
+
+If c is NEGATIVE, the signs DIFFER — one plus, one minus — and the
+bigger number takes the sign of b. So x² + 3x − 10 gives (x + 5)(x − 2):
+the 5 is bigger, b is positive, so 5 gets the plus."
+
+✋ [Point to the Socratic question:] "For x² + 7x + 10, you found 2 and
+   5. What if the problem were x² + 11x + 10 — would your pair change?"
+   [Expected: yes — now you need a pair multiplying to 10 that adds to
+   11, which is 1 and 10. Same product, different sum, different
+   factors. Drives home that BOTH jobs matter.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — THE ZERO PRODUCT PROPERTY: THE POWER OF ZERO
+[Duration: ~7 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the slide. Lead with the Socratic riddle on the left, then
+the formula, then the worked example. Slow down — this is the
+conceptual capstone of the lesson.]
+
+"Now we connect factoring to SOLVING. Start with a riddle, on the
+slide: I'm thinking of two numbers. Their product is exactly zero.
+What can you tell me, with absolute certainty, about at least one of
+my numbers?"
+
+✋ [Let them answer.] "Right — at least one of them MUST be zero. Could
+   BOTH be nonzero? No. Try it — name me two nonzero numbers that
+   multiply to zero. You can't. It's impossible."
+
+💡 [WHY ZERO IS SPECIAL — the property nothing else has]:
+"Here's why zero has a superpower no other number has. Take any other
+target — say, 12. There are endless ways to hit it: 3 times 4, 2 times
+6, even 0.5 times 24. Knowing a product is 12 tells you almost nothing
+about the factors. But ZERO is different. Zero is the one number you
+CANNOT sneak up on by multiplying. 0.0001 times 0.0001 is tiny — but
+it's still not zero. The ONLY way a product equals zero is if one of
+the factors actually IS zero. That certainty is what turns one hard
+equation into two easy ones."
+
+[Point to the formula box: If A · B = 0, then A = 0 or B = 0. Then
+walk the worked example x² + 2x − 15 = 0.]
+
+"Watch it work. Solve x² + 2x − 15 = 0.
+ Step 1: Is it set equal to zero? Yes — we're ready.
+ Step 2: Detective pair for c = −15, b = 2. Since c is negative, signs
+         differ. The pair 5 and −3: multiplies to −15, adds to +2. ✓
+ Step 3: Factor: (x + 5)(x − 3) = 0.
+ Step 4: Now zero's superpower fires — split it: x + 5 = 0  OR
+         x − 3 = 0.
+ Step 5: Solve each: x = −5 or x = 3."
+
+[Point to the Check card.]
+"And ALWAYS check both. Plug in −5: (−5)² + 2(−5) − 15 = 25 − 10 − 15
+= 0. ✓ Plug in 3: 9 + 6 − 15 = 0. ✓ Both work."
+
+[Point to the Regents Trap card — circle it, say it twice.]
+💡 [THE #1 ZERO-PRODUCT TRAP]:
+"The single biggest trap the Regents sets here: the property ONLY
+works when the product equals ZERO. If you see (x + 2)(x − 5) = 4, you
+may NOT write x + 2 = 4. That's wrong — 4 doesn't have zero's
+superpower. You must FIRST multiply out, move everything to one side
+so it equals zero, THEN factor and split. Set to zero first, every
+single time."
+
+✋ [Point to the Socratic question:] "Why did ONE equation give us TWO
+   answers? What does that suggest about the SHAPE of the graph of
+   y = x² + 2x − 15?" [Expected: it must cross the x-axis at two
+   points. Tee up the parabola — we'll see it on Slide 9.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 8 — VIDEO: ZERO PRODUCT PROPERTY IN ACTION
+[Duration: ~5 minutes (two short clips + discussion)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Two quick Brian McLogan clips to see the property performed live.
+The first is about two minutes — straight zero-product solving. The
+second, about four minutes, starts with an equation that is NOT set
+equal to zero. Watch the very FIRST move he makes."
+
+[Play video 1: "Solve Using the Zero Product Property" — Brian McLogan
+(~2:06).]
+[Play video 2: "Quadratic Equations — Solve by Factoring" — Brian
+McLogan (~2:43).]
+
+💡 [SYNTHESIS]:
+"Notice the pattern across both. The technique never changes: get one
+side to zero, factor, split, solve. The only thing that varies is how
+much setup the problem needs before you can factor. The harder
+problems just hide more setup."
+
+✋ [Slide's Socratic prompt:] "In the second video the equation was NOT
+   set equal to zero. What was his very first move — and why is that
+   move NON-NEGOTIABLE before factoring can help you solve?" [Expected:
+   move everything to one side so it equals zero; non-negotiable
+   because the Zero Product Property only fires at zero. This is Slide
+   7's trap reinforced by an outside expert.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 9 — SEE IT ON THE GRAPH (DESMOS): ROOTS YOU CAN SEE
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the parabola diagram for y = x² − 2x − 15, crossing the
+x-axis at x = −3 and x = 5. If you have a projector, open Desmos live.]
+
+"Everything we've done so far has been algebra on paper. Now let's SEE
+it. Go to desmos.com/calculator and type y = x² − 2x − 15. A
+parabola — a U-shaped curve — appears. Click the two gray points where
+the curve crosses the x-axis."
+
+"Look at where it crosses: x = −3 and x = 5. Those are the EXACT same
+answers we'd get by factoring (x − 5)(x + 3) = 0. The algebra and the
+picture agree."
+
+💡 [WHY THE CROSSINGS ARE THE ANSWERS — y = 0 is the secret]:
+"Here's the deep link. Solving x² − 2x − 15 = 0 means finding the
+x-values that make y EQUAL ZERO. And on a graph, y = 0 is exactly the
+x-axis — the horizontal line where height is zero. So the solutions of
+the equation are precisely the spots where the parabola TOUCHES the
+x-axis. Factoring finds them with algebra; the graph shows them with a
+picture. Same truth, two languages."
+
+[Point to the Key Insight card.]
+💡 [FOUR NAMES, ONE IDEA]:
+"This is huge for the Regents, because the test uses four different
+words for the same thing: SOLUTIONS, ROOTS, ZEROS, and X-INTERCEPTS.
+They all mean the identical idea — the x-values where the parabola
+hits the x-axis. When a Regents question asks for the 'zeros' or the
+'roots,' it's asking you to factor and solve. Don't let the vocabulary
+fool you."
+
+✋ [Point to the prediction questions:] "Without graphing — where will
+   y = (x + 1)(x − 6) cross the x-axis? What equation has roots at
+   x = 2 and x = −7? And can a parabola cross the x-axis only once?
+   Never?" [Expected: crosses at −1 and 6; an equation like
+   (x − 2)(x + 7) = 0; yes — a parabola can touch once (a double root)
+   or never (no real roots). Great preview of next lesson.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 10 — REAL-WORLD APPLICATION: THE GARDEN PLOT
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the garden problem with the rectangle diagram. This is where
+abstract factoring becomes something students can picture.]
+
+"Here's why any of this matters. A rectangular garden has an area of
+54 square feet. Its length is 3 feet longer than its width. Find the
+dimensions."
+
+✋ [Slide's opening Socratic question:] "Before any algebra — if the
+   width were 5, the length would be 8. Does 5 × 8 = 54? No, it's 40.
+   So 5 is too small. How could a single equation search EVERY
+   possibility at once, instead of us guessing?" [Let them feel the
+   need for algebra.]
+
+[Walk through the Build-the-Equation steps shown on the slide.]
+"Let's let the algebra do the searching.
+ Let width = w. Then length = w + 3.
+ Area = length × width, so w(w + 3) = 54.
+ Multiply out: w² + 3w = 54.
+ Set to zero — remember, ALWAYS — w² + 3w − 54 = 0.
+ Detective pair for c = −54, b = 3: signs differ, bigger takes the
+ plus. The pair is 9 and −6. Factor: (w + 9)(w − 6) = 0.
+ Split: w = −9 or w = 6."
+
+[Point to the Reject Impossible Roots card — this is the Regents
+maturity moment.]
+💡 [WHY WE THROW ONE ANSWER AWAY]:
+"Algebra honestly found TWO roots: w = −9 and w = 6. But stop and
+think about what w MEANS — it's the width of a real garden. Can a
+garden be NEGATIVE nine feet wide? Of course not. So we REJECT w = −9.
+It's a perfectly valid algebraic solution that's physically
+impossible. The width is 6 feet, and the length is 6 + 3 = 9 feet.
+On every real-world Regents problem, after you solve, ask: does this
+answer make sense in context? Lengths, times, and counts can't be
+negative."
+
+✋ [Socratic close:] "Why does the EQUATION produce an answer that
+   reality rejects? What's the difference between a mathematically
+   valid root and a physically meaningful one?" [Let students chew on
+   the idea that the equation doesn't 'know' it's describing a garden.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 11 — DIFFERENTIATED PRACTICE: CHOOSE YOUR CHALLENGE
+[Duration: ~6 minutes]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Display the four-level practice slide. Students pick their level.
+Circulate constantly — and watch the signs.]
+
+"Now you try. Four levels — choose the one that challenges you without
+breaking you. Start where you're honest about being."
+
+"LEVEL 1, Mild — pure practice of today's two basic moves: (a) Factor
+ 5x + 20. (b) Factor x² + 6x + 8. [Answers: 5(x + 4); (x + 2)(x + 4).]
+ LEVEL 2, Medium — full solve: x² + 9x + 20 = 0. Factor first, then
+ set each factor to zero. [Answer: x = −4 or x = −5.]
+ LEVEL 3, Spicy — two with a twist: (a) Solve x² − x − 12 = 0. Mind
+ the signs. (b) Solve 3x² + 12x = 0 — don't lose the GCF root!
+ [Answers: x = 4 or x = −3; and x = 0 or x = −4.]
+ LEVEL 4, Fire (Regents) — a rectangle's length is 5 more than its
+ width; its area is 84. Find the dimensions. [Answer: 7 by 12.]"
+
+[Give about 4 minutes. Circulate. Watch specifically for sign errors
+on Level 3a and for students who drop the x = 0 solution on 3b.]
+
+✋ [Point to the Socratic helper:] "Stuck on Level 3b, 3x² + 12x = 0?
+   Both terms share a factor — what is it? After you factor to
+   3x(x + 4) = 0, how many solutions are hiding, and why is x = 0 one
+   of them?" [Expected: GCF is 3x; setting 3x = 0 gives x = 0, and
+   x + 4 = 0 gives x = −4. The lesson: GCF problems still produce a
+   root, and x = 0 is easy to forget.]
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 12 — LEVEL-UP VIDEO: WHEN a > 1 (THE NEXT BOSS LEVEL)
+[Duration: ~5 minutes (video + worked preview)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"One challenge video — Mr H Tutoring, about four minutes — for when
+the leading coefficient is bigger than 1, like 2x² + 7x + 3. This is a
+preview of harder Regents problems. Watch how the detective method
+gets ONE upgrade."
+
+[Play video: "Factoring Trinomials (a > 1)" — Mr H Tutoring (~4:17).]
+
+[Walk through the Try-It example shown on the slide.]
+"Look at 2x² + 7x + 3 = 0. When a is bigger than 1, the pair no longer
+just multiplies to c — it multiplies 
