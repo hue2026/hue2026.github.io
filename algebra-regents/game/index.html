@@ -66,8 +66,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   background-size:40px 40px;pointer-events:none;}
 
 #app{position:relative;z-index:1;}
-.screen{display:none;min-height:100dvh;}
-.screen.active{display:flex;flex-direction:column;}
+.screen{display:none;min-height:100dvh;flex-direction:column;}
+.screen.active{display:flex;}
 
 /* NAV */
 .game-nav{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--color-border);background:rgba(238,242,255,0.94);backdrop-filter:blur(12px);position:sticky;top:0;z-index:200;}
@@ -98,7 +98,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 #quiz{flex-direction:column;}
 .quiz-progress{height:4px;background:var(--color-surface-offset);}
 .quiz-progress-bar{height:100%;background:linear-gradient(90deg,#1455b5,#3d52d5);transition:width 0.4s ease;border-radius:2px;}
-.quiz-content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--space-8) var(--space-4);gap:var(--space-6);max-width:800px;margin:0 auto;width:100%;}
+.quiz-content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-5);width:100%;}
 .question-card{width:100%;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-lg);}
 .q-category{font-size:var(--text-xs);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-primary);margin-bottom:var(--space-3);}
 .q-text{font-size:var(--text-lg);font-weight:500;line-height:1.5;margin-bottom:var(--space-6);}
@@ -196,7 +196,7 @@ canvas#graphCanvas{display:block;width:100%;height:auto;}
   .graph-area{flex-direction:column;}
   .nav-stats{gap:var(--space-2);}
   .stat-pill .label{display:none;}
-  .quiz-content{padding:var(--space-4) var(--space-3);}
+
   .sb-teams{padding:var(--space-2);}
   .sb-row{min-width:90px;padding:var(--space-2) var(--space-2);}
 }
@@ -334,6 +334,92 @@ canvas#graphCanvas{display:block;width:100%;height:auto;}
 .lb-row.gold .lb-score{color:var(--color-warning);}
 
 .streak-fire{font-size:1.2em;}
+
+/* TEAM COUNT SELECTOR */
+.team-count-btn{
+  width:40px;height:40px;border-radius:var(--radius-md);
+  border:1.5px solid var(--color-border);background:var(--color-surface-offset);
+  font-size:var(--text-sm);font-weight:700;color:var(--color-text-muted);cursor:pointer;
+  transition:all var(--transition-interactive);
+}
+.team-count-btn:hover{border-color:var(--color-primary);color:var(--color-primary);}
+.team-count-btn.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary);}
+
+/* ATTEMPT INDICATORS */
+.attempt-dots{display:flex;gap:var(--space-1);align-items:center;margin-bottom:var(--space-3);}
+.attempt-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--color-border);transition:background 0.2s,border-color 0.2s;}
+.attempt-dot.used{background:var(--color-error);border-color:var(--color-error);}
+.attempt-dot.left{background:var(--color-success);border-color:var(--color-success);}
+.option-btn.try-again{border-color:var(--color-warning);background:var(--color-warning-bg);color:var(--color-warning);}
+.fill-input.try-again{border-color:var(--color-warning);background:var(--color-warning-bg);}
+.feedback-box.try-again{background:var(--color-warning-bg);border:1px solid var(--color-warning);color:var(--color-warning);}
+
+/* CATEGORY SCOREBOARD */
+.cat-scoreboard{
+  width:100%;background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-md);
+}
+.cat-sb-title{font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-2);}
+.cat-sb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-2);}
+.cat-sb-row{
+  display:flex;align-items:center;gap:var(--space-3);
+  padding:var(--space-2) var(--space-3);
+  border-radius:var(--radius-md);background:var(--color-surface-offset);
+  font-size:var(--text-xs);
+}
+.cat-sb-bar-wrap{flex:1;height:6px;background:var(--color-border);border-radius:3px;overflow:hidden;}
+.cat-sb-bar{height:100%;border-radius:3px;transition:width 0.5s ease;}
+.cat-sb-name{min-width:0;flex:2;font-weight:500;color:var(--color-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cat-sb-score{font-family:var(--font-mono);font-weight:700;font-size:var(--text-xs);min-width:32px;text-align:right;}
+.cat-sb-row.perfect .cat-sb-bar{background:var(--color-success);}
+.cat-sb-row.partial .cat-sb-bar{background:var(--color-warning);}
+.cat-sb-row.none .cat-sb-bar{background:var(--color-error);}
+.cat-sb-row.perfect .cat-sb-score{color:var(--color-success);}
+.cat-sb-row.partial .cat-sb-score{color:var(--color-warning);}
+.cat-sb-row.none .cat-sb-score{color:var(--color-error);}
+
+/* TRY-AGAIN state */
+.option-btn.try-again{background:rgba(180,83,9,0.08);border-color:#b45309;color:#b45309;}
+.feedback-box.try-again{background:rgba(180,83,9,0.08);border:1px solid #b45309;color:#7c3d0a;}
+.feedback-box.try-again .feedback-exp{color:var(--color-text);}
+
+/* IN-GAME SCOREBOARD SIDEBAR */
+.quiz-layout{display:flex;gap:var(--space-5);width:100%;max-width:1100px;margin:0 auto;align-items:center;padding:var(--space-6) var(--space-4);justify-content:center;flex:1;}
+.quiz-main{flex:1;min-width:0;max-width:680px;display:flex;flex-direction:column;gap:var(--space-5);justify-content:center;}
+.ingame-sb{
+  width:220px;flex-shrink:0;
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--radius-xl);overflow:hidden;
+  box-shadow:var(--shadow-md);
+  position:sticky;top:140px;
+  align-self:flex-start;
+}
+.ingame-sb-header{
+  padding:var(--space-3) var(--space-4);
+  background:linear-gradient(135deg,#1455b5,#3d52d5);
+  color:#fff;font-size:var(--text-xs);font-weight:700;
+  letter-spacing:0.07em;text-transform:uppercase;
+}
+.ingame-sb-rows{display:flex;flex-direction:column;}
+.ingame-sb-row{
+  display:flex;align-items:center;gap:var(--space-2);
+  padding:var(--space-2) var(--space-4);
+  border-bottom:1px solid var(--color-divider);
+  cursor:pointer;transition:background var(--transition-interactive);
+}
+.ingame-sb-row:last-child{border-bottom:none;}
+.ingame-sb-row:hover{background:var(--color-surface-offset);}
+.ingame-sb-row.leading{background:rgba(180,83,9,0.06);}
+.ingame-rank{font-size:var(--text-xs);width:18px;text-align:center;flex-shrink:0;}
+.ingame-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.ingame-name{flex:1;font-size:var(--text-xs);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--color-text-muted);}
+.ingame-pts{font-family:var(--font-mono);font-size:var(--text-sm);font-weight:700;color:var(--color-primary);}
+.ingame-sb-row.leading .ingame-pts{color:var(--color-warning);}
+.ingame-award-hint{padding:var(--space-2) var(--space-4);font-size:9px;color:var(--color-text-faint);text-align:center;border-top:1px solid var(--color-divider);}
+@media(max-width:700px){
+  .quiz-layout{flex-direction:column;padding:var(--space-3);}
+  .ingame-sb{width:100%;position:static;}
+}
 </style>
 </head>
 <body>
@@ -421,7 +507,17 @@ canvas#graphCanvas{display:block;width:100%;height:auto;}
   <div style="flex:1;display:flex;align-items:flex-start;justify-content:center;padding:var(--space-8) var(--space-4);">
     <div class="setup-card">
       <div class="setup-title">👥 Set Up 6 Teams</div>
-      <div class="setup-sub">Customize team names below. During the game, tap any team card on the scoreboard to award them points when they answer correctly.</div>
+      <div class="setup-sub">Choose how many teams, customize their names, then start playing.</div>
+      <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6);flex-wrap:wrap;">
+        <span style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);">Number of teams:</span>
+        <div style="display:flex;gap:var(--space-2);" id="teamCountBtns">
+          <button class="team-count-btn" onclick="setTeamCount(5)">5</button>
+          <button class="team-count-btn active" onclick="setTeamCount(6)">6</button>
+          <button class="team-count-btn" onclick="setTeamCount(7)">7</button>
+          <button class="team-count-btn" onclick="setTeamCount(8)">8</button>
+          <button class="team-count-btn" onclick="setTeamCount(9)">9</button>
+        </div>
+      </div>
       <div class="team-rows" id="teamRows"></div>
       <div style="display:flex;gap:var(--space-3);margin-top:var(--space-8);justify-content:flex-end;flex-wrap:wrap;">
         <button class="btn btn-outline" onclick="showScreen('home')">Cancel</button>
@@ -452,7 +548,10 @@ canvas#graphCanvas{display:block;width:100%;height:auto;}
   <!-- Scoreboard persists here too -->
   <div id="scoreboard2"></div>
   <div class="quiz-progress"><div class="quiz-progress-bar" id="progressBar" style="width:0%"></div></div>
-  <div class="quiz-content" id="quizContent"></div>
+  <div class="quiz-layout" id="quizLayout">
+    <div class="quiz-main" id="quizContent"></div>
+    <div class="ingame-sb" id="ingameSb" style="display:none;"></div>
+  </div>
 </div>
 
 <!-- ========================================
@@ -568,7 +667,7 @@ const WORD_PROBLEMS = [
 // ======================================================
 // STATE
 // ======================================================
-let state={mode:'mcq',score:0,streak:0,qIndex:0,correct:0,answers:[],topicStats:{}};
+let state={mode:'mcq',score:0,streak:0,qIndex:0,correct:0,answers:[],topicStats:{},attempts:0};
 
 // ======================================================
 // TEAM STATE
@@ -579,9 +678,32 @@ const TEAM_COLORS=[
   {color:'#ffd54f',textColor:'#0d0f14'},
   {color:'#ff6b8a',textColor:'#fff'},
   {color:'#b388ff',textColor:'#0d0f14'},
-  {color:'#80cbc4',textColor:'#0d0f14'}
+  {color:'#80cbc4',textColor:'#0d0f14'},
+  {color:'#ff9800',textColor:'#0d0f14'},
+  {color:'#e91e8c',textColor:'#fff'},
+  {color:'#69f0ae',textColor:'#0d0f14'}
 ];
-const DEFAULT_NAMES=['Team Alpha','Team Beta','Team Gamma','Team Delta','Team Epsilon','Team Zeta'];
+const DEFAULT_NAMES=['Team Alpha','Team Beta','Team Gamma','Team Delta','Team Epsilon','Team Zeta','Team Eta','Team Theta','Team Iota'];
+let activeTeamCount=6;
+
+function setTeamCount(n){
+  activeTeamCount=n;
+  document.querySelectorAll('.team-count-btn').forEach(b=>{
+    b.classList.toggle('active', parseInt(b.textContent)===n);
+  });
+  renderTeamRows();
+}
+
+function renderTeamRows(){
+  const rows=document.getElementById('teamRows');
+  if(!rows) return;
+  rows.innerHTML=TEAM_COLORS.slice(0,activeTeamCount).map((c,i)=>`
+    <div class="team-row">
+      <div class="team-num" style="background:${c.color};color:${c.textColor};">${i+1}</div>
+      <input class="team-name-input" id="tn${i}" type="text" placeholder="Team ${i+1} name…" value="${teams[i]?teams[i].name:DEFAULT_NAMES[i]}" autocomplete="off">
+      <div class="color-swatch" style="background:${c.color};"></div>
+    </div>`).join('');
+}
 let teams=[];
 let teamMode=false;
 let pendingPts=10;
@@ -604,38 +726,82 @@ function updateScoreDisplay(){
 // TEAM SETUP
 // ======================================================
 function showTeamSetup(){
-  const rows=document.getElementById('teamRows');
-  rows.innerHTML=TEAM_COLORS.map((c,i)=>`
-    <div class="team-row">
-      <div class="team-num" style="background:${c.color};color:${c.textColor};">${i+1}</div>
-      <input class="team-name-input" id="tn${i}" type="text" placeholder="Team ${i+1} name…" value="${teams[i]?teams[i].name:DEFAULT_NAMES[i]}" autocomplete="off">
-      <div class="color-swatch" style="background:${c.color};"></div>
-    </div>`).join('');
   showScreen('teamSetup');
+  // sync count buttons to current activeTeamCount
+  setTimeout(()=>{
+    document.querySelectorAll('.team-count-btn').forEach(b=>{
+      b.classList.toggle('active', parseInt(b.textContent)===activeTeamCount);
+    });
+    renderTeamRows();
+  }, 0);
 }
 
 function launchTeamMode(){
-  teams=TEAM_COLORS.map((c,i)=>({
+  teams=TEAM_COLORS.slice(0,activeTeamCount).map((c,i)=>({
     name:(document.getElementById('tn'+i).value.trim()||DEFAULT_NAMES[i]),
     color:c.color, textColor:c.textColor, score:teams[i]?teams[i].score:0
   }));
   teamMode=true;
-  renderScoreboard();
+  renderScoreboard();renderIngameSb();
   document.getElementById('scoreboard').classList.add('visible');
   showScreen('home');
 }
 
 function resetScores(){
-  if(!confirm('Reset all team scores to 0?')) return;
-  teams.forEach(t=>t.score=0);
-  renderScoreboard();
+  // confirm() is blocked in sandboxed iframes — use inline confirmation instead
+  const btn = document.querySelector('.sb-reset-btn');
+  if(btn && btn.dataset.confirming === '1'){
+    teams.forEach(t=>t.score=0);
+    renderScoreboard();
+    renderIngameSb();
+    btn.dataset.confirming = '0';
+    btn.textContent = '↺ Reset';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+  } else if(btn){
+    btn.dataset.confirming = '1';
+    btn.textContent = '✓ Confirm Reset';
+    btn.style.borderColor = 'var(--color-error)';
+    btn.style.color = 'var(--color-error)';
+    setTimeout(()=>{
+      if(btn.dataset.confirming==='1'){
+        btn.dataset.confirming='0';
+        btn.textContent='↺ Reset';
+        btn.style.borderColor='';
+        btn.style.color='';
+      }
+    }, 3000);
+  }
 }
 
 // ======================================================
 // SCOREBOARD RENDER
 // ======================================================
+
+function renderIngameSb(){
+  const sb=document.getElementById('ingameSb');
+  if(!sb) return;
+  if(!teamMode){sb.style.display='none';return;}
+  sb.style.display='block';
+  const maxScore=Math.max(...teams.map(t=>t.score));
+  const sorted=[...teams].map((t,i)=>({...t,orig:i})).sort((a,b)=>b.score-a.score);
+  const rankEmojis=['🥇','🥈','🥉'];
+  sb.innerHTML=`
+    <div class="ingame-sb-header">🏆 Scoreboard</div>
+    <div class="ingame-sb-rows">
+      ${sorted.map((t,i)=>`
+        <div class="ingame-sb-row ${t.score===maxScore&&t.score>0?'leading':''}" onclick="quickAward(${t.orig})" title="Award ${pendingPts}pts to ${t.name}">
+          <span class="ingame-rank">${rankEmojis[i]||((i+1)+'.')}</span>
+          <div class="ingame-dot" style="background:${t.color};"></div>
+          <span class="ingame-name">${t.name}</span>
+          <span class="ingame-pts" id="isbPts${t.orig}">${t.score}</span>
+        </div>`).join('')}
+    </div>
+    <div class="ingame-award-hint">tap row to award ${pendingPts} pts</div>`;
+}
 function renderScoreboard(){
   if(!teamMode) return;
+  renderIngameSb();
   const maxScore=Math.max(...teams.map(t=>t.score));
   document.getElementById('sbTeams').innerHTML=teams.map((t,i)=>`
     <div class="sb-team-card ${t.score===maxScore&&t.score>0?'leading':''}" onclick="quickAward(${i})" title="Tap to award points to ${t.name}">
@@ -712,6 +878,7 @@ function awardTeam(idx, pts){
   if(!teamMode) return;
   teams[idx].score+=pts;
   renderScoreboard();
+  renderIngameSb();
   // Animated burst
   const card=document.querySelectorAll('.sb-team-card')[idx];
   const burst=document.createElement('div');
@@ -735,8 +902,8 @@ function awardTeam(idx, pts){
 // MODE STARTERS
 // ======================================================
 function startMode(mode){
-  state.mode=mode;state.qIndex=0;state.correct=0;state.answers=[];state.topicStats={};
-  showScreen('quiz');
+  state.mode=mode;state.qIndex=0;state.correct=0;state.answers=[];state.topicStats={};state.attempts=0;
+  showScreen('quiz');renderIngameSb();
   if(mode==='mcq') renderMCQ();
   else if(mode==='fillin') renderFillIn();
   else if(mode==='graph') renderGraph();
@@ -757,6 +924,12 @@ function renderMCQ(){
     <div class="question-card fade-in">
       <div class="q-category">${q.category}</div>
       <div class="q-text">${q.q}</div>
+      <div class="attempt-dots" id="attemptDots">
+        <span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-right:var(--space-1);">Attempts:</span>
+        <div class="attempt-dot left" id="dot0" title="1st try: 10 pts"></div>
+        <div class="attempt-dot left" id="dot1" title="2nd try: 5 pts"></div>
+        <span style="font-size:var(--text-xs);color:var(--color-text-faint);margin-left:var(--space-2);">1st try = 10 pts · 2nd try = 5 pts</span>
+      </div>
       <div class="options-grid">
         ${q.options.map((opt,i)=>`<button class="option-btn" onclick="selectMCQ(${i})" id="opt${i}">${opt}</button>`).join('')}
       </div>
@@ -766,31 +939,60 @@ function renderMCQ(){
       <div class="q-counter">Question ${state.qIndex+1} of ${total}</div>
       <button class="btn btn-primary" id="nextBtn" style="display:none" onclick="state.qIndex++;renderMCQ()">Next →</button>
     </div>`;
+  state.attempts=0;
 }
 
 function selectMCQ(chosen){
   const q=MCQ_QUESTIONS[state.qIndex];
-  document.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
-  document.getElementById('opt'+q.answer).classList.add('correct');
+  state.attempts++;
   const isRight=chosen===q.answer;
-  if(!isRight) document.getElementById('opt'+chosen).classList.add('wrong');
-  const fb=document.getElementById('feedbackBox');
-  document.getElementById('feedbackTitle').textContent=isRight?'✓ Correct!':'✗ Incorrect';
-  document.getElementById('feedbackExp').textContent=q.explanation;
-  fb.className='feedback-box show '+(isRight?'correct':'wrong');
-  if(isRight){state.correct++;state.streak++;const pts=10+(state.streak>2?state.streak*2:0);state.score+=pts;if(state.streak>2)showCombo(state.streak);}
-  else state.streak=0;
-  state.answers.push({q:q.category,correct:isRight});
-  if(!state.topicStats[q.category])state.topicStats[q.category]={c:0,t:0};
-  state.topicStats[q.category].t++;
-  if(isRight)state.topicStats[q.category].c++;
-  updateScoreDisplay();
-  const nb=document.getElementById('nextBtn');
-  nb.style.display='inline-flex';nb.classList.add('pulse-once');
-  if(teamMode&&isRight){
-    nb.textContent='Award & Next';
-    nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderMCQ();};};
+  const dot=document.getElementById('dot'+(state.attempts-1));
+  if(dot){dot.classList.remove('left');dot.classList.add('used');}
+
+  if(isRight){
+    // Correct — disable all, highlight
+    document.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
+    document.getElementById('opt'+q.answer).classList.add('correct');
+    const fb=document.getElementById('feedbackBox');
+    const pts=state.attempts===1?(10+(state.streak>2?state.streak*2:0)):5;
+    document.getElementById('feedbackTitle').textContent=state.attempts===1?`✓ Correct! (+${pts} pts)`:`✓ Correct on 2nd try! (+${pts} pts)`;
+    document.getElementById('feedbackExp').textContent=q.explanation;
+    fb.className='feedback-box show correct';
+    state.correct++;state.streak++;state.score+=pts;
+    if(state.streak>2)showCombo(state.streak);
+    state.answers.push({q:q.category,correct:true});
+    if(!state.topicStats[q.category])state.topicStats[q.category]={c:0,t:0};
+    state.topicStats[q.category].t++;state.topicStats[q.category].c++;
+    updateScoreDisplay();
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';nb.classList.add('pulse-once');
+    if(teamMode){nb.textContent='Award & Next';nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderMCQ();};};}
+    else nb.onclick=()=>{state.qIndex++;renderMCQ();};
+  } else if(state.attempts===1){
+    // First wrong — mark it, allow one more try
+    const wrongBtn=document.getElementById('opt'+chosen);
+    wrongBtn.classList.add('try-again');wrongBtn.disabled=true;
+    const fb=document.getElementById('feedbackBox');
+    document.getElementById('feedbackTitle').textContent='✗ Not quite — one more try!';
+    document.getElementById('feedbackExp').textContent='Think again… the right answer is still available.';
+    fb.className='feedback-box show try-again';
+    // Re-enable remaining options
+    document.querySelectorAll('.option-btn:not(:disabled)').forEach(b=>b.disabled=false);
+    wrongBtn.disabled=true;
   } else {
+    // Second wrong — reveal answer, lock all
+    document.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
+    document.getElementById('opt'+q.answer).classList.add('correct');
+    document.getElementById('opt'+chosen).classList.add('wrong');
+    const fb=document.getElementById('feedbackBox');
+    document.getElementById('feedbackTitle').textContent='✗ Incorrect';
+    document.getElementById('feedbackExp').textContent=q.explanation;
+    fb.className='feedback-box show wrong';
+    state.streak=0;
+    state.answers.push({q:q.category,correct:false});
+    if(!state.topicStats[q.category])state.topicStats[q.category]={c:0,t:0};
+    state.topicStats[q.category].t++;
+    updateScoreDisplay();
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';nb.classList.add('pulse-once');
     nb.onclick=()=>{state.qIndex++;renderMCQ();};
   }
 }
@@ -809,6 +1011,12 @@ function renderFillIn(){
       <div class="q-text">${q.q.replace(/\n/g,'<br>')}</div>
       <div class="fill-in-area">
         <input class="fill-input" id="fillInput" type="text" placeholder="Type your answer…" autocomplete="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')submitFill()">
+        <div class="attempt-dots">
+          <span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-right:var(--space-1);">Attempts:</span>
+          <div class="attempt-dot left" id="fdot0" title="1st try: 10 pts"></div>
+          <div class="attempt-dot left" id="fdot1" title="2nd try: 5 pts"></div>
+          <span style="font-size:var(--text-xs);color:var(--color-text-faint);margin-left:var(--space-2);">1st = 10 pts · 2nd = 5 pts</span>
+        </div>
         <div class="hint-text">💡 ${q.hint}</div>
       </div>
     </div>
@@ -820,6 +1028,7 @@ function renderFillIn(){
         <button class="btn btn-primary" id="nextBtn" style="display:none" onclick="state.qIndex++;renderFillIn()">Next →</button>
       </div>
     </div>`;
+  state.attempts=0;
   setTimeout(()=>{const f=document.getElementById('fillInput');if(f)f.focus();},50);
 }
 
@@ -828,25 +1037,52 @@ function submitFill(){
   const input=document.getElementById('fillInput');
   const val=input.value.trim().toLowerCase().replace(/\s/g,'');
   if(!val) return;
-  const correct=q.answer.toLowerCase().replace(/\s/g,'');
+  const correctAns=q.answer.toLowerCase().replace(/\s/g,'');
   const alts=(q.altAnswers||[]).map(a=>a.toLowerCase().replace(/\s/g,''));
-  const isRight=(val===correct||alts.includes(val));
-  input.classList.add(isRight?'correct':'wrong');
-  if(!isRight){input.classList.add('shake');setTimeout(()=>input.classList.remove('shake'),400);}
-  const fb=document.getElementById('feedbackBox');
-  document.getElementById('feedbackTitle').textContent=isRight?'✓ Correct!':'✗ Not quite';
-  document.getElementById('feedbackExp').textContent=isRight?`Great! Answer: ${q.answer}`:`Correct: ${q.answer}. ${q.hint}`;
-  fb.className='feedback-box show '+(isRight?'correct':'wrong');
-  if(isRight){state.correct++;state.streak++;state.score+=10+(state.streak>2?state.streak*2:0);if(state.streak>2)showCombo(state.streak);}
-  else state.streak=0;
-  state.answers.push({q:q.category,correct:isRight});
-  if(!state.topicStats[q.category])state.topicStats[q.category]={c:0,t:0};
-  state.topicStats[q.category].t++;if(isRight)state.topicStats[q.category].c++;
-  updateScoreDisplay();
-  document.getElementById('submitBtn').disabled=true;input.disabled=true;
-  const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
-  if(teamMode&&isRight){nb.textContent='Award & Next';nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderFillIn();}};}
-  else nb.onclick=()=>{state.qIndex++;renderFillIn();};
+  const isRight=(val===correctAns||alts.includes(val));
+  state.attempts++;
+  const dot=document.getElementById('fdot'+(state.attempts-1));
+  if(dot){dot.classList.remove('left');dot.classList.add('used');}
+  if(isRight){
+    input.classList.add('correct');
+    const fb=document.getElementById('feedbackBox');
+    const pts=state.attempts===1?(10+(state.streak>2?state.streak*2:0)):5;
+    document.getElementById('feedbackTitle').textContent=state.attempts===1?`✓ Correct! (+${pts} pts)`:`✓ Correct on 2nd try! (+${pts} pts)`;
+    document.getElementById('feedbackExp').textContent=`Answer: ${q.answer}`;
+    fb.className='feedback-box show correct';
+    state.correct++;state.streak++;state.score+=pts;if(state.streak>2)showCombo(state.streak);
+    state.answers.push({q:q.category,correct:true,firstTry:state.attempts===1});
+    if(!state.topicStats[q.category])state.topicStats[q.category]={c:0,t:0,firstTry:0};
+    state.topicStats[q.category].t++;state.topicStats[q.category].c++;
+    if(state.attempts===1)state.topicStats[q.category].firstTry++;
+    updateScoreDisplay();
+    document.getElementById('submitBtn').disabled=true;input.disabled=true;
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
+    if(teamMode){nb.textContent='Award & Next';nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderFillIn();};};}
+    else nb.onclick=()=>{state.qIndex++;renderFillIn();};
+  } else if(state.attempts===1){
+    input.classList.add('try-again');input.classList.add('shake');
+    setTimeout(()=>input.classList.remove('shake'),400);
+    input.value='';
+    const fb=document.getElementById('feedbackBox');
+    document.getElementById('feedbackTitle').textContent='✗ Not quite — one more try!';
+    document.getElementById('feedbackExp').textContent=`Hint: ${q.hint}`;
+    fb.className='feedback-box show try-again';
+  } else {
+    input.classList.remove('try-again');input.classList.add('wrong');
+    const fb=document.getElementById('feedbackBox');
+    document.getElementById('feedbackTitle').textContent='✗ Incorrect';
+    document.getElementById('feedbackExp').textContent=`The answer is: ${q.answer}. ${q.hint}`;
+    fb.className='feedback-box show wrong';
+    state.streak=0;
+    state.answers.push({q:q.category,correct:false,firstTry:false});
+    if(!state.topicStats[q.category])state.topicStats[q.category]={c:0,t:0,firstTry:0};
+    state.topicStats[q.category].t++;
+    updateScoreDisplay();
+    document.getElementById('submitBtn').disabled=true;input.disabled=true;
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
+    nb.onclick=()=>{state.qIndex++;renderFillIn();};
+  }
 }
 
 // ======================================================
@@ -867,7 +1103,13 @@ function renderGraph(){
   document.getElementById('quizContent').innerHTML=`
     <div style="width:100%;" class="fade-in">
       <div class="q-category">Graph Challenge ${state.qIndex+1} of ${total}</div>
-      <div class="q-text" style="margin-bottom:var(--space-4);">Analyze the parabola and answer all questions.</div>
+      <div class="q-text" style="margin-bottom:var(--space-2);">Analyze the parabola and answer all questions.</div>
+      <div class="attempt-dots">
+        <span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-right:var(--space-1);">Attempts:</span>
+        <div class="attempt-dot left" id="gdot0"></div>
+        <div class="attempt-dot left" id="gdot1"></div>
+        <span style="font-size:var(--text-xs);color:var(--color-text-faint);margin-left:var(--space-2);">1st = 15 pts · 2nd = 7 pts</span>
+      </div>
     </div>
     <div class="graph-area">
       <div class="graph-canvas-wrap"><canvas id="graphCanvas" width="320" height="280"></canvas></div>
@@ -876,11 +1118,12 @@ function renderGraph(){
         <div class="graph-inputs">${inputs}</div>
         <div class="feedback-box" id="feedbackBox"><div class="feedback-title" id="feedbackTitle"></div><div class="feedback-exp" id="feedbackExp"></div></div>
         <div style="display:flex;gap:var(--space-3);margin-top:auto;">
-          <button class="btn btn-outline" onclick="submitGraph()">Check ✓</button>
+          <button class="btn btn-outline" id="graphSubmitBtn" onclick="submitGraph()">Check ✓</button>
           <button class="btn btn-primary" id="nextBtn" style="display:none" onclick="state.qIndex++;renderGraph()">Next →</button>
         </div>
       </div>
     </div>`;
+  state.attempts=0;
   drawParabola(ch.equation);
   setTimeout(()=>{const f=document.getElementById('gInput0');if(f)f.focus();},50);
 }
@@ -922,26 +1165,66 @@ function drawParabola(eq){
 }
 
 function submitGraph(){
-  const ch=currentGraph;let allOk=true;let fb=[];
+  const ch=currentGraph;
+  state.attempts++;
+  const dot=document.getElementById('gdot'+(state.attempts-1));
+  if(dot){dot.classList.remove('left');dot.classList.add('used');}
+  let allOk=true;let fb=[];
   ch.questions.forEach((q,i)=>{
-    const inp=document.getElementById('gInput'+i);if(!inp)return;
+    const inp=document.getElementById('gInput'+i);if(!inp||inp.disabled)return;
     const val=inp.value.trim().toLowerCase().replace(/\s/g,'');
     const ans=ch.answers[i].toLowerCase().replace(/\s/g,'');
     const ok=val===ans;
-    inp.classList.remove('correct','wrong');inp.classList.add(ok?'correct':'wrong');inp.disabled=true;
-    if(!ok)allOk=false;
-    fb.push(`Q${i+1}: ${ok?'✓':'✗ → '+ch.answers[i]+' ('+ch.hints[i]+')'}`);
+    if(!ok) allOk=false;
+    if(state.attempts===2||ok){
+      inp.classList.remove('correct','wrong','try-again');
+      inp.classList.add(ok?'correct':'wrong');
+      inp.disabled=true;
+    } else if(!ok){
+      inp.classList.add('try-again');
+    }
+    fb.push(`Q${i+1}: ${ok?'✓':(state.attempts===1?'✗ try again':'✗ → '+ch.answers[i])}`);
   });
   const f=document.getElementById('feedbackBox');
-  document.getElementById('feedbackTitle').textContent=allOk?'✓ All Correct!':'Some mistakes';
-  document.getElementById('feedbackExp').innerHTML=fb.join('<br>');
-  f.className='feedback-box show '+(allOk?'correct':'wrong');
-  if(allOk){state.correct++;state.streak++;state.score+=15;if(state.streak>2)showCombo(state.streak);}else state.streak=0;
-  state.answers.push({q:'Graph Challenge',correct:allOk});
-  updateScoreDisplay();
-  const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
-  if(teamMode&&allOk){nb.textContent='Award & Next';nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderGraph();}};}
-  else nb.onclick=()=>{state.qIndex++;renderGraph();};
+  if(allOk){
+    document.getElementById('feedbackTitle').textContent=state.attempts===1?'✓ All Correct! (+15 pts)':'✓ Correct on 2nd try! (+7 pts)';
+    document.getElementById('feedbackExp').innerHTML=fb.join('<br>');
+    f.className='feedback-box show correct';
+    const pts=state.attempts===1?15:7;
+    state.correct++;state.streak++;state.score+=pts;if(state.streak>2)showCombo(state.streak);
+    state.answers.push({q:'Graph Challenge',correct:true});
+    if(!state.topicStats['Graph Challenge'])state.topicStats['Graph Challenge']={c:0,t:0};
+    state.topicStats['Graph Challenge'].t++;state.topicStats['Graph Challenge'].c++;
+    updateScoreDisplay();
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
+    if(teamMode){nb.textContent='Award & Next';nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderGraph();};};}
+    else nb.onclick=()=>{state.qIndex++;renderGraph();};
+  } else if(state.attempts===1){
+    document.getElementById('feedbackTitle').textContent='✗ Some wrong — fix them and try again!';
+    document.getElementById('feedbackExp').innerHTML=fb.join('<br>');
+    f.className='feedback-box show try-again';
+    // clear wrong try-again inputs for re-entry
+    ch.questions.forEach((q,i)=>{
+      const inp=document.getElementById('gInput'+i);
+      if(inp&&!inp.disabled){inp.value='';inp.classList.remove('try-again');}
+    });
+  } else {
+    // Lock all remaining
+    ch.questions.forEach((q,i)=>{
+      const inp=document.getElementById('gInput'+i);
+      if(inp&&!inp.disabled){inp.classList.add('wrong');inp.disabled=true;}
+    });
+    document.getElementById('feedbackTitle').textContent='✗ Incorrect';
+    document.getElementById('feedbackExp').innerHTML=ch.questions.map((q,i)=>`Q${i+1}: answer = ${ch.answers[i]}`).join('<br>');
+    f.className='feedback-box show wrong';
+    state.streak=0;
+    state.answers.push({q:'Graph Challenge',correct:false});
+    if(!state.topicStats['Graph Challenge'])state.topicStats['Graph Challenge']={c:0,t:0};
+    state.topicStats['Graph Challenge'].t++;
+    updateScoreDisplay();
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
+    nb.onclick=()=>{state.qIndex++;renderGraph();};
+  }
 }
 
 // ======================================================
@@ -961,9 +1244,16 @@ function renderWord(){
         <span class="hint-text">💡 ${p.hint}</span>
       </div>
     </div>`).join('');
+  state.attempts=0;
   document.getElementById('quizContent').innerHTML=`
     <div class="word-prob-card fade-in">
       <div class="q-category">Word Problem ${state.qIndex+1} of ${total}</div>
+      <div class="attempt-dots" style="margin-bottom:var(--space-2);">
+        <span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-right:var(--space-1);">Attempts:</span>
+        <div class="attempt-dot left" id="wdot0"></div>
+        <div class="attempt-dot left" id="wdot1"></div>
+        <span style="font-size:var(--text-xs);color:var(--color-text-faint);margin-left:var(--space-2);">1st = 20 pts · 2nd = 10 pts</span>
+      </div>
       <div class="scenario-box">${wp.scenario}</div>
       <div class="sub-questions">${parts}</div>
       <div class="feedback-box" id="feedbackBox"><div class="feedback-title" id="feedbackTitle"></div><div class="feedback-exp" id="feedbackExp"></div></div>
@@ -975,29 +1265,68 @@ function renderWord(){
 }
 
 function submitWord(){
-  const wp=WORD_PROBLEMS[state.qIndex];let correct=0;let fb=[];
+  const wp=WORD_PROBLEMS[state.qIndex];
+  state.attempts++;
+  const dot=document.getElementById('wdot'+(state.attempts-1));
+  if(dot){dot.classList.remove('left');dot.classList.add('used');}
+  let correct=0;let fb=[];
   wp.parts.forEach((p,i)=>{
-    const inp=document.getElementById('wInput'+i);if(!inp)return;
+    const inp=document.getElementById('wInput'+i);if(!inp||inp.disabled)return;
     const val=inp.value.trim().replace(/\s/g,'');
     const ans=p.answer.replace(/\s/g,'');
     const nv=parseFloat(val),na=parseFloat(ans);
     const ok=!isNaN(nv)&&!isNaN(na)?Math.abs(nv-na)<0.15:val.toLowerCase()===ans.toLowerCase();
-    inp.classList.remove('correct','wrong');inp.classList.add(ok?'correct':'wrong');inp.disabled=true;
-    if(ok)correct++;
-    fb.push(`${p.label}: ${ok?'✓':'✗ → '+p.answer}`);
+    if(state.attempts===2||ok){
+      inp.classList.remove('correct','wrong','try-again');
+      inp.classList.add(ok?'correct':'wrong');
+      inp.disabled=true;
+    } else if(!ok){
+      inp.classList.add('try-again');
+    }
+    if(ok) correct++;
+    fb.push(`${p.label}: ${ok?'✓':(state.attempts===1?'✗ try again':'✗ → '+p.answer)}`);
   });
   const allRight=correct===wp.parts.length;
   const f=document.getElementById('feedbackBox');
-  document.getElementById('feedbackTitle').textContent=allRight?`✓ Perfect! All ${correct}/${wp.parts.length} correct`:`${correct}/${wp.parts.length} correct`;
-  document.getElementById('feedbackExp').innerHTML=fb.join('<br>');
-  f.className='feedback-box show '+(allRight?'correct':'wrong');
-  state.score+=Math.round((correct/wp.parts.length)*20);
-  if(allRight){state.correct++;state.streak++;if(state.streak>2)showCombo(state.streak);}else state.streak=0;
-  state.answers.push({q:'Word Problem',correct:allRight});
-  updateScoreDisplay();
-  const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
-  if(teamMode&&allRight){nb.textContent='Award & Next';nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderWord();}};}
-  else nb.onclick=()=>{state.qIndex++;renderWord();};
+  if(allRight){
+    const pts=state.attempts===1?20:10;
+    document.getElementById('feedbackTitle').textContent=state.attempts===1?`✓ Perfect! (+${pts} pts)`:`✓ Correct on 2nd try! (+${pts} pts)`;
+    document.getElementById('feedbackExp').innerHTML=fb.join('<br>');
+    f.className='feedback-box show correct';
+    state.score+=pts;
+    state.correct++;state.streak++;if(state.streak>2)showCombo(state.streak);
+    state.answers.push({q:'Word Problem',correct:true});
+    if(!state.topicStats['Word Problem'])state.topicStats['Word Problem']={c:0,t:0};
+    state.topicStats['Word Problem'].t++;state.topicStats['Word Problem'].c++;
+    updateScoreDisplay();
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
+    if(teamMode){nb.textContent='Award & Next';nb.onclick=()=>{openAwardModal();nb.onclick=()=>{closeAwardModal();state.qIndex++;renderWord();};};}
+    else nb.onclick=()=>{state.qIndex++;renderWord();};
+  } else if(state.attempts===1){
+    document.getElementById('feedbackTitle').textContent=`${correct}/${wp.parts.length} correct — fix mistakes and try again!`;
+    document.getElementById('feedbackExp').innerHTML=fb.join('<br>');
+    f.className='feedback-box show try-again';
+    wp.parts.forEach((p,i)=>{
+      const inp=document.getElementById('wInput'+i);
+      if(inp&&!inp.disabled){inp.value='';inp.classList.remove('try-again');}
+    });
+  } else {
+    wp.parts.forEach((p,i)=>{
+      const inp=document.getElementById('wInput'+i);
+      if(inp&&!inp.disabled){inp.classList.add('wrong');inp.disabled=true;}
+    });
+    document.getElementById('feedbackTitle').textContent=`${correct}/${wp.parts.length} correct`;
+    document.getElementById('feedbackExp').innerHTML=wp.parts.map(p=>`${p.label}: answer = ${p.answer}`).join('<br>');
+    f.className='feedback-box show wrong';
+    state.score+=Math.round((correct/wp.parts.length)*10);
+    state.streak=0;
+    state.answers.push({q:'Word Problem',correct:false});
+    if(!state.topicStats['Word Problem'])state.topicStats['Word Problem']={c:0,t:0};
+    state.topicStats['Word Problem'].t++;
+    updateScoreDisplay();
+    const nb=document.getElementById('nextBtn');nb.style.display='inline-flex';
+    nb.onclick=()=>{state.qIndex++;renderWord();};
+  }
 }
 
 // ======================================================
@@ -1018,8 +1347,21 @@ function showResults(mode){
   document.getElementById('resultMsg').textContent=msg;
   const breakdown=document.getElementById('breakdownList');
   const topics=Object.keys(state.topicStats);
-  breakdown.innerHTML=topics.length?'<div style="font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-2);">Topic Breakdown:</div>'+
-    topics.map(t=>{const s=state.topicStats[t];return `<div class="breakdown-item"><span class="topic">${t}</span><span class="result ${s.c===s.t?'pass':'fail'}">${s.c}/${s.t}</span></div>`;}).join(''):'';
+  if(topics.length){
+    const rows=topics.map(t=>{
+      const s=state.topicStats[t];
+      const pct=s.t>0?Math.round((s.c/s.t)*100):0;
+      const cls=pct===100?'perfect':pct>=50?'partial':'none';
+      return `<div class="cat-sb-row ${cls}">
+        <div class="cat-sb-name" title="${t}">${t}</div>
+        <div class="cat-sb-bar-wrap"><div class="cat-sb-bar" style="width:${pct}%"></div></div>
+        <div class="cat-sb-score">${s.c}/${s.t}</div>
+      </div>`;
+    }).join('');
+    breakdown.innerHTML=`<div class="cat-scoreboard"><div class="cat-sb-title">📊 Category Breakdown</div><div class="cat-sb-grid">${rows}</div></div>`;
+  } else {
+    breakdown.innerHTML='';
+  }
   document.getElementById('retryBtn').onclick=()=>startMode(mode);
   // Team leaderboard
   const lbSec=document.getElementById('leaderboardSection');
