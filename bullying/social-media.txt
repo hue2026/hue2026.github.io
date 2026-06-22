@@ -1,0 +1,91 @@
+30-Minute Adaptive Script: Parent's Guide to Social Media & Internet Safety
+
+This script runs about 30 minutes, opens by reading the room with the deck's built-in reflection questions, weaves in the supporting statistics and expert findings from the PDF guide, prioritizes the three highest-leverage themes (privacy, screen time/age, and the risk-and-response trio), and lands on a concrete family action plan. Branch cues let you flex based on who shows up and how chatty they are.
+Minute 0–4: Open by Gauging the Crowd
+
+Start warm and disarming. The deck literally opens with a reflection question, so use it as your icebreaker instead of a lecture.
+
+    Open: "Before any slides—quick show of hands. How many devices does your child use? And do you actually know what apps are on each one?" This is the deck's exact first prompt, and it instantly surfaces how aware the room is.
+
+    Normalize the gap with a stat from the guide: 51% of students carry a smartphone to school by high school, and 62% of parents already believe mobile devices are a distraction—so nobody here is behind.
+
+    Reassuring frame, straight from the deck's closing line: "You don't have to be a tech expert—you just have to stay engaged".
+
+Adaptive branch:
+
+    If the room is quiet, ask everyone to text their co-parent or partner that one question right now—it gets people moving.
+
+    If the room is very engaged, cap this at 4 minutes to protect core content.
+
+Minute 4–7: Why Parenting Changed
+
+Connect their answers to the central tension the deck names.
+
+    The traditional role never changed—parents have always monitored, taught behavior, and ensured safety. What changed is visibility: today it's far harder to know who kids talk to, what they watch, and how often they're online.
+
+    Anchor it in the AAP's framing: the internet is mostly a rewarding place, but the risks are real, and "being aware of the risks and engaging with your children about safety are the most important things you can do".
+
+    Add the guide's reality check: there really is no such thing as online privacy—everything posted can be seen by an invisible audience of millions and lives on permanently.
+
+Minute 7–11: Know the Platforms (Scan, Don't Lecture)
+
+Don't read every platform—define the category and highlight what parents must know about defaults.
+Platform	What it is	The thing parents miss
+Instagram	Photo/video sharing, very popular with teens 	Photos are public by default; private mode must be turned on
+TikTok/short video	Algorithm-driven clips 	The algorithm can surface unvetted content fast
+X/Twitter	Short public posts 	Anyone can see and reply unless set to private
+Facebook	Largest network 	Kids often accept strangers to chase "virtual popularity"
+
+The single best move, from both the deck and the guide: create your own accounts first—"you can't guide your child through a place you've never been," and your teen can even be your tour guide. Reinforce with the guide's data point that nearly 9 in 10 teens are on social media and 60% check accounts daily.
+Minute 11–16: Privacy & Safety (Priority Block)
+
+This is the most actionable section—give it weight. Walk the deck's four privacy moves and the everyday safety tips.
+
+    Set profiles to private, audit friend lists regularly, turn off location/geotagging, and use unique strong passwords—ideally a family password manager.
+
+    Keep devices in common areas with no phones in bedrooms at night, know your child's usernames and passwords (to help in an emergency, not to spy), and use built-in parental controls.
+
+    Weave in the guide's why: seemingly harmless posts ("parents left me alone tonight—woo-hoo!") can hand a predator clues to a child's location, and teens are impulsive and not yet wired to think through consequences.
+
+Approachable line: "The goal isn't surveillance—it's that your kid knows you're nearby if something goes sideways."
+Minute 16–20: Screen Time & the Right Age (Priority Block)
+
+Use the deck's reflection question first—"Where do kids use devices, and what's off-limits?"—then deliver the framework.
+
+    Name the warning signs from the deck: irritability when devices are removed, neglecting sleep or homework, withdrawing from in-person friends, and sneaking devices after bedtime.
+
+    Bring in the guide's expert metaphor: treat screen time like a nutritional diet—what they consume matters as much as how much—and note the AAP's caution that heavy exposure to high-sexual-content media correlates with earlier sexual activity.
+
+    On the cell phone question, both sources agree there's no single right age; it depends on maturity, safety need, and whether rules are set before the phone, not after problems arise.
+
+    The fix the deck recommends: a Family Media Agreement built with your kids so they feel ownership of the rules.
+
+Minute 20–25: Risks & Responses (Priority Block)
+
+Cover the three risks the deck groups together, leaning on the guide for the sobering specifics.
+
+    Sexting: sending explicit images carries real legal weight—in many states minors can be charged with distribution of child pornography, even for images of themselves, and "private" images are almost never truly private. The deck's coaching: make it a conversation, not a lecture—"What would you do if someone sent you a photo like that?".
+
+    Digital cheating: copy-paste plagiarism, sharing test answers, and using AI dishonestly; the move is to talk about integrity, asking "What kind of person do you want to be known as?" rather than just consequences.
+
+    Cyberbullying: repeated digital harm via texts, posts, or fake profiles—watch for withdrawal, device secrecy, and reluctance to go to school. The response sequence: don't retaliate, save screenshots, and report to the platform, school, and if needed law enforcement. Add the guide's insight that victims often go online more to "win over" the crowd, which only feeds the bully.
+
+Minute 25–28: Parents as the First Line of Defense
+
+Land the emotional core before the to-do list.
+
+    The deck's thesis: the most effective protection isn't a filter or a rule—it's a trusting relationship where your child feels safe coming to you when something goes wrong.
+
+    Reinforce with the guide's conversation starters you can use tonight: "What would you do if someone online asked to meet you face-to-face?" and "Besides me, who can you talk to if something feels scary?".
+
+Minute 28–30: Close with a Family Action Plan
+
+End on one concrete commitment, using the deck's final reflection question.
+
+    This week: review privacy settings together, list every app your child uses, and create a device-free zone.
+
+    This month: draft the Family Media Agreement, have one open talk about cyberbullying and sexting, and follow your child on at least one platform.
+
+    Final ask, in the deck's words: "What is ONE thing you'll do differently starting tonight? Share it with your family right now".
+
+Quick adaptive levers: if you're running long, compress the platform table to 2 minutes and cut digital cheating; if short, expand the screen-time discussion or add more of the guide's conversation starters.

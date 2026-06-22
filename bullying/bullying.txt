@@ -1,1 +1,90 @@
+30-Minute Adaptive Script: Bullying & Cyberbullying
 
+This script is timed to roughly 30 minutes, opens by reading the room through discussion, prioritizes the deck's highest-impact ideas (the "4 P's," the silent witness/bystander effect, and what adults can actually do), and treats the dense Level 1–3 tables as scan-and-highlight material rather than read-aloud content. Timing cues and "if the room is X, do Y" branches are built in so you can flex on the fly.
+Minute 0–5: Open by Gauging the Crowd
+
+Start warm and low-pressure. Don't define anything yet—find out what the group already believes.
+
+    Open: "Before any slides, I want to hear from you. When I say the word bullying, what's the first image or memory that comes to mind?" Let 3–4 people answer. This tells you instantly whether your crowd is parents, professionals, or a mix.
+
+    Then pivot to the deck's built-in discussion prompt: "What could be mistaken for bullying?" The slide literally cues you to survey the audience here, so lean into it.
+
+    Capture answers out loud ("conflict," "one mean comment," "teasing") on a board or screen—you'll call back to these in the next section.
+
+Adaptive branch:
+
+    If the room is quiet, switch to a show-of-hands: "Raise your hand if you, or a child you know, has dealt with this." Hands going up does the warm-up for you.
+
+    If the room is very talkative, cap it at 4 minutes so you protect your core content time.
+
+Minute 5–9: What Bullying Is (and Isn't)
+
+Now reward their participation by connecting their answers to the definition.
+
+    Give the deck's definition simply: bullying is a repeated physical, verbal, sexual, or psychological attack or intimidation by someone perceived as stronger than the target.
+
+    Teach the 4 P's as your anchor concept—this is the most memorable framework in the deck: Pain (intentional hurt), Power (a perceived imbalance), Persistence (it repeats), and Permission (someone knows and lets it continue).
+
+    Tie back to their opening answers: a single argument, one shove, bossiness, or a one-time joke is not bullying, because the key element is that it's repetitive. This validates whoever raised those examples.
+
+Approachable line you can use: "So if it only happened once, it might be unkind—but it's not yet bullying. The repetition is what changes the game."
+Minute 9–14: The Types — Scan, Don't Read
+
+The deck has five types across many Level 1–3 tables. The presenter notes explicitly say you do not need to read every bullet—define each type, then highlight only what's notable. Use this table to move fast:
+Type	One-line definition	Highlight only
+Physical	Harm to body or property 	Note it escalates from shoving (Level 1) to assault with a weapon (Level 3, illegal)
+Emotional	Harm to self-esteem or safety 	Bias-based insults (race, religion, disability, orientation) can cross into illegal harassment
+Social	Harm to group acceptance 	Exclusion and rumors are bullying—"a bully's goal is isolation"
+Sexual	Repeated sexual words/actions toward someone 	Touch the topic briefly and respectfully; flag it as serious
+Cyber	Bullying via online/text channels 	Save the depth for the next section
+
+Use Coloroso's quote to frame all five: bullying isn't really about anger—it's "a sense of entitlement... the right to hurt or control others" and "a freedom to exclude".
+Minute 14–18: Cyberbullying
+
+This is the section most audiences feel least equipped for, so give it dedicated time.
+
+    Frame the modern twist: cyberbullying follows kids home, so there's no safe exit the way there once was.
+
+    Share the deck's counterintuitive insight: kids bullied online often respond by chatting, texting, and posting more, trying to "win over" the bullying crowd—which only hands faceless bullies more fuel.
+
+    If your YouTube clip is queued (the deck links one here), this is the natural spot, but only if you're on time.
+
+Minute 18–23: The Silent Witness (Your Centerpiece)
+
+This is the most powerful, action-oriented idea in the whole deck—give it the most energy.
+
+    Define it: a silent witness sees bullying but chooses not to intervene, ranging from "henchmen" who join in to people who feel uncomfortable but won't take a stand.
+
+    Hit the numbers that make people sit up: as many as 80% of bullying incidents happen in front of witnesses, yet only about 20% of students consistently step in.
+
+    Then the hopeful turn: when a bystander does intervene, it stops the bullying in progress more than half the time.
+
+    Name the hidden cost: doing nothing deepens the victim's harm, and bystanders themselves show elevated anxiety and depression.
+
+Land it with the deck's own line: "If you see something, say something".
+Minute 23–28: What Adults Can Actually Do
+
+Before showing the answers, use the deck's second discussion cue: "What are some things parents can do?"—survey the audience first, then reveal. This keeps the close interactive rather than lecture-style.
+
+Prioritize these from the parent list:
+
+    Talk openly and listen—model empathy and assertiveness, not aggression.
+
+    Teach and practice non-violent conflict resolution and how to respond when they witness bullying.
+
+    Stay involved in school life and know bullying can happen outside school too.
+
+For professionals in the room, give the single strongest point from the deck: teachers are "one of the most effective obstacles to bullying" through clear consequences, real-life examples, and empowering kids to report and stand up for each other.
+
+Quick legal anchor: bullying isn't one federal crime, but all 50 states require schools to address it, and it becomes illegal when it involves harassment, threats, violence, or civil-rights violations—in New York that's the Dignity for All Students Act (DASA).
+Minute 28–30: Close
+
+End on agency, not fear.
+
+    Recap in one breath: "Remember the 4 P's, remember that exclusion counts, and remember that the single most powerful person in any bullying moment is often the witness".
+
+    Final ask: "You don't have to fix everything. You just have to not be silent."
+
+    If you're using it, point them to the evaluation/feedback link from the final slide.
+
+A few quick adaptive levers to keep in your back pocket: if you're running long, cut the cyberbullying video and compress the five types to 3 minutes; if you're running short, expand the silent-witness discussion or add the optional "No Longer Silent" video the deck flags.
