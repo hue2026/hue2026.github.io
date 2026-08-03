@@ -1,1100 +1,683 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="slides-format" content="viewport">
-<title>Lesson 9: Final Project Presentation — Anime Appreciation &amp; Analysis</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<style type="text/tailwindcss">
-@theme {
-  --color-bg: #f4fbff;
-  --color-bg-deep: #e6f4ff;
-  --color-surface: #ffffff;
-  --color-text: #1a2a3a;
-  --color-text-secondary: #2d4a6b;
-  --color-text-muted: #5a7a9a;
-  --color-accent-1: #0b63ce;
-  --color-accent-2: #10b981;
-  --color-accent-3: #f59e0b;
-  --color-glass-bg: rgba(255,255,255,0.88);
-  --color-glass-border: rgba(11,99,206,0.12);
-  --color-vignette: rgba(0,0,0,0.04);
-  --font-display: "Fredoka", sans-serif;
-  --font-body: "Nunito", sans-serif;
-}
-</style>
-<style>
-:root { --color-bg:#f4fbff; --color-text:#1a2a3a; --glow-color-rgb:11,99,206; }
-*,*::before,*::after{box-sizing:border-box;}
-html,body{background:var(--color-bg);margin:0;}
-body{font-family:"Nunito",sans-serif;color:var(--color-text);overflow:hidden;height:100vh;width:100vw;}
-.deck{width:100vw;height:calc(100vh - 72px);position:relative;}
-.slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(0.96);transition:opacity 0.6s ease,transform 0.6s ease;pointer-events:none;overflow:hidden;}
-.slide.active{opacity:1;transform:scale(1);pointer-events:all;}
-.slide>.content{position:relative;z-index:2;width:100%;max-width:1100px;padding:clamp(1rem,3vw,3rem);}
-.nav-controls{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:14px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);padding:10px 24px;border-radius:0;border-top:1.5px solid rgba(11,99,206,0.15);box-shadow:0 -4px 24px rgba(11,99,206,0.09);height:72px;}
-.nav-btn{width:40px;height:40px;border:none;background:rgba(11,99,206,0.08);color:#0b63ce;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
-.nav-btn:hover{background:rgba(11,99,206,0.18);}
-.slide-dots{display:flex;gap:6px;flex-wrap:wrap;max-width:600px;justify-content:center;}
-.slide-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(11,99,206,0.2);cursor:pointer;transition:background 0.3s,transform 0.3s;}
-.slide-dots .dot.active{background:#0b63ce;transform:scale(1.4);}
-.slide-counter{font-size:0.75rem;color:#5a7a9a;min-width:36px;text-align:center;font-family:"Nunito",sans-serif;}
-.reveal{opacity:0;transform:translateY(18px);}
-@keyframes float-slow{0%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-35px) scale(1.1);}66%{transform:translate(-30px,30px) scale(0.92);}100%{transform:translate(0,0) scale(1);}}
-@keyframes float-drift{0%{transform:translate(0,0) scale(1) rotate(0deg);}50%{transform:translate(-40px,-50px) scale(1.12) rotate(2deg);}100%{transform:translate(0,0) scale(1) rotate(0deg);}}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-.gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
-.blob{position:absolute;border-radius:50%;filter:blur(70px);animation:float-slow 12s ease-in-out infinite;}
-.blob:nth-child(2){animation:float-drift 16s ease-in-out infinite;}
-.blob:nth-child(3){animation:float-slow 20s ease-in-out infinite reverse;}
-.slide::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,var(--color-vignette) 100%);}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important;}}
-/* cards & inputs matching index.html */
-.card{background:rgba(255,255,255,0.92);border:1px solid rgba(11,99,206,0.12);border-radius:16px;box-shadow:0 4px 18px rgba(11,99,206,0.08);transition:transform 0.2s,box-shadow 0.2s;}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(11,99,206,0.14);}
-.accent-bar{width:52px;height:5px;border-radius:3px;background:linear-gradient(90deg,#0b63ce,#10b981);margin-bottom:12px;}
-.section-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:4px 14px;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;}
-.section-badge.green{background:rgba(16,185,129,0.12);color:#059669;}
-.section-badge.amber{background:rgba(245,158,11,0.12);color:#b45309;}
-/* Video thumbnail system */
-.vid-wrap{position:relative;width:100%;}
-.vid-thumb-wrap{position:relative;cursor:pointer;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);background:#0b1929;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;}
-.vid-thumb-wrap img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;display:block;}
-.vid-thumb-bg{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);z-index:1;}
-.vid-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:rgba(255,30,30,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;z-index:3;box-shadow:0 4px 16px rgba(0,0,0,0.3);}
-.vid-thumb-wrap:hover .vid-play-btn{transform:translate(-50%,-50%) scale(1.12);background:rgb(220,0,0);}
-.vid-play-btn svg{width:22px;height:22px;fill:white;margin-left:4px;}
-.vid-title-overlay{position:absolute;bottom:8px;left:10px;right:10px;z-index:2;font-family:"Nunito",sans-serif;font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.9);text-shadow:0 1px 4px rgba(0,0,0,0.8);pointer-events:none;}
-.vid-iframe-wrap{display:none;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(11,99,206,0.18);aspect-ratio:16/9;}
-.vid-iframe-wrap iframe{width:100%;height:100%;border:none;display:block;}
-.vid-source-link{font-size:0.72rem;color:#0b63ce;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:6px;opacity:0.8;font-family:"Nunito",sans-serif;font-weight:700;}
-.vid-source-link:hover{opacity:1;text-decoration:underline;}
-/* Discussion / prompt boxes */
-.discussion-q{background:rgba(11,99,206,0.06);border-left:4px solid #0b63ce;border-radius:0 12px 12px 0;padding:10px 16px;font-size:0.88rem;color:#1a2a3a;font-style:italic;font-family:"Nunito",sans-serif;margin-bottom:8px;}
-.tip-box{background:rgba(16,185,129,0.07);border-left:4px solid #10b981;border-radius:0 10px 10px 0;padding:8px 14px;font-size:0.82rem;font-weight:700;color:#065f46;}
-.fill-input{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:7px 12px;font-family:"Nunito",sans-serif;font-size:0.9rem;color:#1a2a3a;outline:none;transition:border-color 0.2s,background 0.2s;}
-.fill-input:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
-.fill-textarea{width:100%;background:rgba(11,99,206,0.04);border:1.5px solid rgba(11,99,206,0.2);border-radius:10px;padding:8px 12px;font-family:"Nunito",sans-serif;font-size:0.88rem;color:#1a2a3a;outline:none;resize:none;transition:border-color 0.2s;}
-.fill-textarea:focus{border-color:#0b63ce;background:rgba(11,99,206,0.07);}
-.q-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#0b63ce;color:white;font-size:0.7rem;font-weight:800;flex-shrink:0;font-family:"Nunito",sans-serif;}
-.q-num.green{background:#10b981;}.q-num.amber{background:#f59e0b;}
-.stat-big{font-family:"Fredoka",sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#0b63ce;line-height:1;}
-.stat-label{font-size:0.75rem;color:#5a7a9a;text-transform:uppercase;letter-spacing:0.06em;font-weight:700;font-family:"Nunito",sans-serif;}
-.cb-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:700;cursor:pointer;background:rgba(11,99,206,0.05);border:1.5px solid rgba(11,99,206,0.15);border-radius:8px;padding:5px 10px;transition:background 0.15s;font-family:"Nunito",sans-serif;}
-.cb-item:hover{background:rgba(11,99,206,0.1);}
-.cb-item input{width:15px;height:15px;accent-color:#0b63ce;cursor:pointer;flex-shrink:0;}
-/* Rubric table */
-.rubric-table{width:100%;border-collapse:collapse;font-size:0.75rem;font-family:"Nunito",sans-serif;}
-.rubric-table thead tr{background:#0b63ce;}
-.rubric-table thead th{padding:7px 10px;font-family:"Fredoka",sans-serif;font-weight:600;text-align:left;font-size:0.8rem;color:#fff;}
-.rubric-table tbody tr:nth-child(even){background:rgba(11,99,206,0.04);}
-.rubric-table tbody td{padding:6px 9px;border-bottom:1px solid rgba(11,99,206,0.1);vertical-align:top;color:#1a2a3a;}
-.rubric-table tbody td:first-child{font-family:"Fredoka",sans-serif;font-size:0.82rem;color:#0b63ce;font-weight:700;white-space:nowrap;}
-/* Anime image card */
-.anime-img-card{border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(11,99,206,0.14);position:relative;}
-.anime-img-card img{width:100%;height:100%;object-fit:cover;display:block;}
-.anime-img-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(11,25,41,0.88),transparent);padding:8px 12px;font-family:"Fredoka",sans-serif;font-size:0.88rem;font-weight:600;color:#fff;}
-/* Deco shape for parallax */
-.deco-shape{position:absolute;border-radius:50%;pointer-events:none;will-change:transform;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="slides-format" content="viewport">
+    <title>Lesson 3 – Storytelling Techniques in Anime</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-bg: #f4fbff;
+            --color-bg-deep: #e0f2ff;
+            --color-surface: rgba(255,255,255,0.9);
+            --color-text: #1f2a37;
+            --color-text-secondary: #4b5563;
+            --color-text-muted: #5b6b7e;
+            --color-accent-1: #0b63ce;
+            --color-accent-2: #10b981;
+            --color-accent-3: #f59e0b;
+            --color-glass-bg: rgba(255,255,255,0.85);
+            --color-glass-border: rgba(11,99,206,0.16);
+            --color-vignette: rgba(15,23,42,0.08);
+            --font-display: 'Fredoka', 'Trebuchet MS', sans-serif;
+            --font-body: 'Nunito', Arial, sans-serif;
+        }
+    </style>
+
+    <style>
+        :root { --color-bg: #f4fbff; --color-text: #1f2a37; --glow-color-rgb: 11,99,206; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { background: var(--color-bg); margin: 0; }
+        body { font-family: var(--font-body, 'Nunito', system-ui, sans-serif); color: var(--color-text); overflow: hidden; height: 100vh; width: 100vw; }
+        .deck { width: 100vw; height: 100vh; position: relative; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(16,185,129,0.12), transparent 40%),
+                        var(--color-bg);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; transform: scale(0.96); transition: opacity 0.6s ease, transform 0.6s ease;
+            pointer-events: none; overflow: hidden; }
+        .slide.active { opacity: 1; transform: scale(1); pointer-events: all; }
+        .slide > .content { position: relative; z-index: 2; width: 100%; max-width: 1040px; padding: clamp(1.5rem, 4vw, 3.5rem); }
+        .nav-controls { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.45); box-shadow: 0 10px 30px rgba(15,23,42,0.15); }
+        .nav-btn { width: 38px; height: 38px; border: none; background: rgba(15,23,42,0.06); color: #0b63ce; border-radius: 999px; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.15s; }
+        .nav-btn:hover { background: rgba(15,23,42,0.12); transform: translateY(-1px); }
+        .slide-dots { display: flex; gap: 8px; }
+        .slide-dots .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(148,163,184,0.6); cursor: pointer; transition: background 0.25s, transform 0.25s; }
+        .slide-dots .dot.active { background: #0b63ce; transform: scale(1.3); }
+        .slide-counter { font-size: 0.8rem; color: #64748b; min-width: 50px; text-align: center; font-weight: 600; }
+        .reveal { opacity: 0; transform: translateY(18px); }
+        .mouse-spotlight { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+        .card { background: var(--color-surface); border-radius: 20px; padding: 18px 20px; box-shadow: 0 10px 28px rgba(15,23,42,0.08); border: 1px solid rgba(255,255,255,0.65); }
+        .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(148,163,184,0.55); background: rgba(255,255,255,0.9); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #0b63ce; }
+        .media-embed { position: relative; padding-top: 56.25%; border-radius: 14px; overflow: hidden; background: #020617; cursor: pointer; }
+        .media-embed img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .media-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .play-circle { width: 60px; height: 60px; background: rgba(220,38,38,0.88); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4); transition: transform 0.2s; }
+        .media-embed:hover .play-circle { transform: scale(1.12); }
+        .grid-cards { display: grid; gap: 18px; }
+        @media (min-width: 840px) {
+            .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+            .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+        }
+        .question-chip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(245,158,11,0.08); color: #92400e; font-size: 0.82rem; font-weight: 700; }
+        .question-chip .icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 999px; background: rgba(245,158,11,0.95); color: #fff; font-size: 0.8rem; }
+        .timeline { position: relative; padding-left: 26px; }
+        .timeline::before { content: ""; position: absolute; left: 10px; top: 4px; bottom: 4px; width: 3px; border-radius: 999px; background: linear-gradient(to bottom, #0b63ce, #10b981); }
+        .timeline-step { position: relative; margin-bottom: 14px; }
+        .timeline-dot { position: absolute; left: -2px; top: 4px; width: 14px; height: 14px; border-radius: 999px; border: 2px solid #f4fbff; background: #0b63ce; box-shadow: 0 0 0 4px rgba(59,130,246,0.25); }
+        .exit-line { margin-top: 10px; padding-bottom: 10px; border-bottom: 2px dashed rgba(148,163,184,0.8); }
+        .technique-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        .emoji-float { animation: float 3.5s ease-in-out infinite; display: inline-block; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+    </style>
 </head>
 <body>
-<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none;"></div>
-
+<div class="mouse-spotlight"></div>
 <div class="deck">
 
-<!-- ═══════════════════════════════════════
-     SLIDE 1 — TITLE
-═══════════════════════════════════════ -->
-<div class="slide active" data-slide="1">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:480px;height:480px;top:-120px;right:-80px;background:#0b63ce;opacity:0.09;"></div>
-    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:220px;height:220px;top:40%;left:15%;background:#f59e0b;opacity:0.06;"></div>
-  </div>
-  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
-  <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-    <div class="reveal" style="font-size:clamp(3.5rem,9vw,7rem);margin-bottom:0.3rem;animation:float 3s ease-in-out infinite;">🎌</div>
-    <div class="accent-bar reveal" style="margin:0 auto 14px;"></div>
-    <div class="section-badge reveal" style="margin-bottom:12px;">Lesson 9 · Anime Studies</div>
-    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5.5vw,4rem);font-weight:700;color:#0b63ce;line-height:1.1;margin:0 0 10px;">Final Project Presentation</h1>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:500;color:#10b981;margin:0 0 14px;">Anime Appreciation &amp; Analysis</h2>
-    <p class="reveal" style="font-family:'Nunito',sans-serif;font-size:clamp(0.85rem,1.4vw,1rem);color:#5a7a9a;max-width:520px;line-height:1.6;">Today we celebrate everything you've learned — share your voice, analyze your favorite stories, and hear from each other.</p>
-    <div class="reveal" style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;justify-content:center;">
-      <span style="background:rgba(11,99,206,0.1);color:#0b63ce;border-radius:20px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;">⏱ 60 minutes</span>
-      <span style="background:rgba(16,185,129,0.1);color:#059669;border-radius:20px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;">🎤 Student Presentations</span>
-      <span style="background:rgba(245,158,11,0.1);color:#b45309;border-radius:20px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;">🤝 Peer Feedback</span>
+<!-- ═══════════════════════════════════════════════
+     SLIDE 1: TITLE
+═══════════════════════════════════════════════ -->
+<div class="slide slide-1 active" data-slide="1">
+    <div class="content text-center">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+            <span class="pill">🎌 Anime Club</span>
+            <span class="pill">📖 Lesson 3 of 10</span>
+            <span class="pill">Grade 6</span>
+        </div>
+        <div class="emoji-float text-[84px] mb-4 reveal">📽️</div>
+        <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.2rem)] font-bold text-accent-1 leading-tight mb-4 reveal"
+            style="background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+            Storytelling Techniques<br>in Anime
+        </h1>
+        <p class="text-[clamp(1rem,2vw,1.3rem)] text-text-muted font-semibold tracking-wide mb-8 reveal">
+            How anime writers hook you — and keep you coming back
+        </p>
+        <div class="card inline-block reveal" style="max-width:600px;">
+            <p class="text-base font-bold text-text-secondary">
+                <span style="color:#f59e0b">🔍 Big Question:</span>
+                <em>"When you watch anime, what is it that makes you <u>feel</u> something — or need to see the next episode right now?"</em>
+            </p>
+        </div>
     </div>
-  </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SLIDE 2 — DO NOW
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="2">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:360px;height:360px;top:-80px;left:-80px;background:#10b981;opacity:0.08;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="deco-shape" data-speed="0.03" style="width:180px;height:180px;top:10%;right:8%;background:radial-gradient(circle,rgba(11,99,206,0.06),transparent 70%);"></div>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge reveal">Do Now · 5 Minutes</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;color:#1a2a3a;margin:0 0 18px;">✏️ Warm-Up Reflection</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-      <div class="card reveal" style="padding:16px 18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span class="q-num">1</span>
-          <span style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#0b63ce;">Your Favorite Moment</span>
+<!-- ═══════════════════════════════════════════════
+     SLIDE 2: DO NOW — Demon Slayer clip
+═══════════════════════════════════════════════ -->
+<div class="slide slide-2" data-slide="2">
+    <div class="content">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Do Now — 4 min</span>
+            <span class="pill">👀 Watch First, Then Write</span>
         </div>
-        <p style="font-size:0.82rem;color:#2d4a6b;margin:0 0 8px;line-height:1.5;">Think back across all 9 lessons. What anime moment stood out most to you?</p>
-        <textarea class="fill-textarea" rows="3" placeholder="Write your answer here…"></textarea>
-      </div>
-      <div class="card reveal" style="padding:16px 18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span class="q-num green">2</span>
-          <span style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#059669;">Why It Stood Out</span>
-        </div>
-        <p style="font-size:0.82rem;color:#2d4a6b;margin:0 0 8px;line-height:1.5;">What made it memorable? Was it the story, a character, animation, theme, or emotion?</p>
-        <textarea class="fill-textarea" rows="3" placeholder="What made this moment special…"></textarea>
-      </div>
-      <div class="card reveal" style="padding:16px 18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span class="q-num amber">3</span>
-          <span style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#b45309;">Connect to Your Project</span>
-        </div>
-        <p style="font-size:0.82rem;color:#2d4a6b;margin:0 0 8px;line-height:1.5;">How does that moment connect to the anime you'll present today?</p>
-        <textarea class="fill-textarea" rows="3" placeholder="The connection is…"></textarea>
-      </div>
-      <div class="card reveal" style="padding:16px 18px;background:rgba(11,99,206,0.04);">
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:600;color:#0b63ce;margin:0 0 8px;">📌 Today's Driving Question</p>
-        <p class="discussion-q" style="font-size:0.88rem;margin:0;">"What makes an anime truly great — story, character, culture, or something deeper?"</p>
-        <p style="font-size:0.76rem;color:#5a7a9a;margin:8px 0 0;font-style:italic;">Keep this in mind all day — return to it at the end!</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 3 — AGENDA
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="3">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:400px;height:400px;top:-100px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-50px;background:#f59e0b;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge reveal">Today's Plan · 60 Minutes</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:#1a2a3a;margin:0 0 16px;">🗓️ Agenda: Our Journey Today</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.1);border-radius:12px;padding:10px 14px;">
-        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#0b63ce;min-width:42px;">5 min</span>
-        <div>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Do Now + Warm-Up</p>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Reflect on your favorite moment</p>
-        </div>
-      </div>
-      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.1);border-radius:12px;padding:10px 14px;">
-        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#10b981;min-width:42px;">10 min</span>
-        <div>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Review Anime as Art</p>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">4 pillars of analysis + vocab</p>
-        </div>
-      </div>
-      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(11,99,206,0.1);border-radius:12px;padding:10px 14px;">
-        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#f59e0b;min-width:42px;">5 min</span>
-        <div>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Presentation Setup</p>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Get stations ready, grab rubric</p>
-        </div>
-      </div>
-      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(11,99,206,0.08);border:1.5px solid rgba(11,99,206,0.2);border-radius:12px;padding:10px 14px;">
-        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#0b63ce;min-width:42px;">25 min</span>
-        <div>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#0b63ce;margin:0;">🌟 Student Presentations</p>
-          <p style="font-size:0.75rem;color:#2d4a6b;margin:0;">Share your anime analysis!</p>
-        </div>
-      </div>
-      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:10px 14px;">
-        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#10b981;min-width:42px;">10 min</span>
-        <div>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Peer Feedback Session</p>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Constructive conversations</p>
-        </div>
-      </div>
-      <div class="reveal" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:10px 14px;">
-        <span style="font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;color:#f59e0b;min-width:42px;">5 min</span>
-        <div>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:600;color:#1a2a3a;margin:0;">Exit Ticket + Wrap-Up</p>
-          <p style="font-size:0.75rem;color:#5a7a9a;margin:0;">Write one new insight gained</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 4 — VOCABULARY
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="4">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:350px;height:350px;top:-90px;left:-70px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-50px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge reveal">Key Terms</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 16px;">📖 Today's Vocabulary — In Your Own Words</h2>
-    <p class="reveal" style="font-size:0.82rem;color:#5a7a9a;font-style:italic;margin:0 0 14px;">Don't copy! Write each definition as if explaining to a friend who has never watched anime.</p>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
-      <div class="card reveal" style="padding:14px;">
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#0b63ce;margin:0 0 4px;">🎤 Presentation</p>
-        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Sharing your work and ideas with an audience in a structured, clear way</p>
-        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
-      </div>
-      <div class="card reveal" style="padding:14px;">
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#10b981;margin:0 0 4px;">🔍 Analysis</p>
-        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Breaking down a work to understand how its parts create meaning and feeling</p>
-        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
-      </div>
-      <div class="card reveal" style="padding:14px;">
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#f59e0b;margin:0 0 4px;">💬 Critique</p>
-        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Thoughtful judgment of both strengths and areas to improve in a work</p>
-        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
-      </div>
-      <div class="card reveal" style="padding:14px;">
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:#8b5cf6;margin:0 0 4px;">⚖️ Evaluation</p>
-        <p style="font-size:0.75rem;color:#2d4a6b;margin:0 0 8px;line-height:1.4;">Judging quality using clear, fair criteria and evidence</p>
-        <input class="fill-input" style="font-size:0.75rem;padding:5px 9px;" placeholder="My definition…">
-      </div>
-    </div>
-    <div class="reveal" style="margin-top:12px;" class="discussion-q">
-      <div class="discussion-q">What does it mean to truly <em>appreciate</em> an anime — not just enjoy it, but understand it? How is appreciation different from just liking something?</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 5 — WHAT MAKES A GREAT PRESENTATION? + VIDEO
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="5">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:400px;height:400px;top:-80px;right:-80px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
-      <div>
-        <div class="accent-bar reveal"></div>
-        <div class="section-badge reveal">Discussion · 5 min</div>
-        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🎯 What Makes a Presentation Engaging?</h2>
-        <div style="display:flex;flex-direction:column;gap:7px;">
-          <label class="cb-item reveal"><input type="checkbox"> Clear, focused main idea</label>
-          <label class="cb-item reveal"><input type="checkbox"> Specific examples &amp; evidence</label>
-          <label class="cb-item reveal"><input type="checkbox"> Passion for the topic</label>
-          <label class="cb-item reveal"><input type="checkbox"> Connection to audience's experience</label>
-          <label class="cb-item reveal"><input type="checkbox"> Visuals or clips that support the point</label>
-          <label class="cb-item reveal"><input type="checkbox"> Storytelling structure (beginning, middle, end)</label>
-        </div>
-        <div class="discussion-q reveal" style="margin-top:10px;">How can you effectively convey your appreciation for an anime series or film to someone who's never seen it?</div>
-      </div>
-      <div class="reveal">
-        <div class="section-badge green" style="margin-bottom:8px;">📹 Watch &amp; Notice</div>
-        <div class="vid-wrap">
-          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/RRWOSpTta6s?autoplay=1')">
-            <img src="https://img.youtube.com/vi/RRWOSpTta6s/hqdefault.jpg" alt="How To Present Work and Receive Feedback" onerror="this.src='https://img.youtube.com/vi/RRWOSpTta6s/mqdefault.jpg'">
-            <div class="vid-thumb-bg"></div>
-            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="vid-title-overlay">Give Feedback on an Oral Presentation (~4 min)</div>
-          </div>
-          <div class="vid-iframe-wrap"></div>
-          <a class="vid-source-link" href="https://www.youtube.com/watch?v=RRWOSpTta6s" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-        <div class="tip-box" style="margin-top:10px;">
-          <strong>After watching:</strong> Which tip do you already do well? Which will you work on today?
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 6 — ANIME AS AN ART FORM
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="6">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:420px;height:420px;top:-100px;right:-80px;background:#f59e0b;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-60px;background:#0b63ce;opacity:0.07;"></div>
-  </div>
-  <div class="deco-shape" data-speed="0.025" style="width:160px;height:160px;bottom:15%;right:6%;background:radial-gradient(circle,rgba(16,185,129,0.07),transparent 70%);"></div>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge reveal">Core Framework</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🎨 Anime as Art Form &amp; Cultural Phenomenon</h2>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
-      <div class="card reveal" style="padding:14px;text-align:center;">
-        <div style="font-size:1.8rem;margin-bottom:6px;">📖</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#0b63ce;margin:0 0 4px;">Storytelling</p>
-        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Plot structure, conflict, resolution, pacing</p>
-      </div>
-      <div class="card reveal" style="padding:14px;text-align:center;">
-        <div style="font-size:1.8rem;margin-bottom:6px;">🧑‍🎨</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#10b981;margin:0 0 4px;">Character Dev.</p>
-        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Growth arcs, motivation, relationships</p>
-      </div>
-      <div class="card reveal" style="padding:14px;text-align:center;">
-        <div style="font-size:1.8rem;margin-bottom:6px;">✏️</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#f59e0b;margin:0 0 4px;">Animation Style</p>
-        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Color, linework, movement, visual metaphor</p>
-      </div>
-      <div class="card reveal" style="padding:14px;text-align:center;">
-        <div style="font-size:1.8rem;margin-bottom:6px;">🌍</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#8b5cf6;margin:0 0 4px;">Thematic Depth</p>
-        <p style="font-size:0.72rem;color:#2d4a6b;margin:0;line-height:1.4;">Cultural roots, social ideas, universal themes</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div class="reveal">
-        <div class="discussion-q">Your presentation should touch all 4 pillars. Which one do you feel most confident analyzing? Which one challenges you most?</div>
-      </div>
-      <div class="card reveal" style="padding:12px 16px;">
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 6px;">📌 Remember to include:</p>
-        <ul style="font-size:0.78rem;color:#2d4a6b;margin:0;padding-left:16px;line-height:1.7;">
-          <li>History of your anime and its origins</li>
-          <li>Impact on global pop culture</li>
-          <li>Connections to Japanese culture &amp; traditions</li>
-          <li>What makes <em>you</em> appreciate it</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 7 — STORYTELLING DEEP DIVE — SPIRITED AWAY
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="7">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
-      <div>
-        <div class="accent-bar reveal"></div>
-        <div class="section-badge reveal">Storytelling Analysis</div>
-        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🌊 Storytelling: Studio Ghibli</h2>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #0b63ce;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">What drives the story?</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Chihiro's desire to rescue her parents — Man vs Supernatural. What internal conflict does she face?</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #10b981;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">Universal Themes</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Identity, courage, environmentalism, transition to adulthood — themes felt worldwide, not only in Japan</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #f59e0b;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#b45309;margin:0 0 3px;">Cultural Roots</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Shinto spirits (kami), Japanese bathhouse traditions, forest gods — deeply Japanese yet globally resonant</p>
-          </div>
-        </div>
-        <div class="discussion-q reveal" style="margin-top:10px;">In your own anime, what is the <em>driving conflict</em> and what theme does it explore? How does the story show — not just tell — this theme?</div>
-      </div>
-      <div class="reveal">
-        <div class="section-badge green" style="margin-bottom:8px;">📹 Spirited Away Trailer</div>
-        <div class="vid-wrap">
-          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/ByXuk9QqQkk?autoplay=1')">
-            <img src="https://img.youtube.com/vi/ByXuk9QqQkk/hqdefault.jpg" alt="Spirited Away Official English Trailer" onerror="this.src='https://img.youtube.com/vi/ByXuk9QqQkk/mqdefault.jpg'">
-            <div class="vid-thumb-bg"></div>
-            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="vid-title-overlay">Spirited Away — Official Trailer (~2 min)</div>
-          </div>
-          <div class="vid-iframe-wrap"></div>
-          <a class="vid-source-link" href="https://www.youtube.com/watch?v=ByXuk9QqQkk" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-        <div style="margin-top:10px;background:rgba(11,99,206,0.05);border-radius:10px;padding:10px 13px;">
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;color:#0b63ce;margin:0 0 5px;">🎬 Notice &amp; Wonder</p>
-          <p style="font-size:0.77rem;color:#2d4a6b;margin:0 0 4px;">• What visual storytelling techniques do you see?</p>
-          <p style="font-size:0.77rem;color:#2d4a6b;margin:0;">• Roger Ebert called it "cinema" — not just anime. What does that mean?</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 8 — CHARACTER DEVELOPMENT — MY HERO ACADEMIA
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="8">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-90px;left:-70px;background:#8b5cf6;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-40px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
-      <div class="reveal">
-        <div class="section-badge" style="background:rgba(139,92,246,0.1);color:#7c3aed;margin-bottom:8px;">📹 My Hero Academia</div>
-        <div class="vid-wrap">
-          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/htJv0uFThPk?autoplay=1')">
-            <img src="https://img.youtube.com/vi/htJv0uFThPk/hqdefault.jpg" alt="My Hero Academia - Class 1-A vs All For One" onerror="this.src='https://img.youtube.com/vi/htJv0uFThPk/mqdefault.jpg'">
-            <div class="vid-thumb-bg"></div>
-            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="vid-title-overlay">"I Am Here" | My Hero Academia — Crunchyroll (~3 min)</div>
-          </div>
-          <div class="vid-iframe-wrap"></div>
-          <a class="vid-source-link" href="https://www.youtube.com/watch?v=htJv0uFThPk" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div style="text-align:center;background:rgba(139,92,246,0.07);border-radius:10px;padding:8px;">
-            <div class="stat-big" style="color:#7c3aed;font-size:1.6rem;">80%</div>
-            <div class="stat-label">population has Quirks</div>
-          </div>
-          <div style="text-align:center;background:rgba(11,99,206,0.06);border-radius:10px;padding:8px;">
-            <div class="stat-big" style="font-size:1.6rem;">100M+</div>
-            <div class="stat-label">copies in circulation</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="accent-bar reveal"></div>
-        <div class="section-badge reveal">Character Development</div>
-        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">⚡ Character Growth &amp; Morality</h2>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="card reveal" style="padding:10px 14px;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#7c3aed;margin:0 0 3px;">🔑 What makes Deku compelling?</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Born without powers in a world where 80% have them — a mirror for real-world systemic inequality and privilege</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">📈 Character Arc Elements</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Desire → Obstacle → Growth → New Identity. Which stage is your character in? How do we see their growth?</p>
-          </div>
-        </div>
-        <div class="discussion-q reveal" style="margin-top:10px;">In your chosen anime, what does the main character <em>want</em>? What do they truly <em>need</em>? How does the gap between want and need drive their growth?</div>
-        <div class="tip-box reveal" style="margin-top:8px;">The best characters change — but their core values remain the same. Can you show this in your analysis?</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 9 — CULTURAL CONNECTION — NARUTO
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="9">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:400px;height:400px;top:-90px;right:-70px;background:#f59e0b;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
-      <div>
-        <div class="accent-bar reveal"></div>
-        <div class="section-badge amber reveal">Cultural Connection</div>
-        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🍃 Naruto: The Outsider Story Goes Global</h2>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #f59e0b;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#b45309;margin:0 0 3px;">🌍 Universal Resonance</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Naruto = the kid nobody believed in. Resonated across Latin America, Africa, Southeast Asia. Every culture has this story.</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #0b63ce;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">🎌 Japanese Cultural Roots</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Ninjutsu history, village loyalty (nakama), perseverance (ganbaru), and the idea that effort &gt; talent</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #10b981;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">📈 Impact: 500M+ manga copies worldwide</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">3rd best-selling manga of all time; the "Naruto run" entered global pop culture; cited by Lil Uzi Vert, 21 Savage</p>
-          </div>
-        </div>
-        <div class="discussion-q reveal" style="margin-top:10px;">What specifically Japanese element exists in your anime? Would removing it weaken the story? Why does it still connect to people worldwide?</div>
-      </div>
-      <div class="reveal">
-        <div class="section-badge amber" style="margin-bottom:8px;">📹 Naruto 20th Anniversary</div>
-        <div class="vid-wrap">
-          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/QczGoCmX-pI?autoplay=1')">
-            <img src="https://img.youtube.com/vi/QczGoCmX-pI/hqdefault.jpg" alt="Naruto Official 20th Anniversary Trailer" onerror="this.src='https://img.youtube.com/vi/QczGoCmX-pI/mqdefault.jpg'">
-            <div class="vid-thumb-bg"></div>
-            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="vid-title-overlay">Road of Naruto | 20th Anniversary — VIZ (~3 min)</div>
-          </div>
-          <div class="vid-iframe-wrap"></div>
-          <a class="vid-source-link" href="https://www.youtube.com/watch?v=QczGoCmX-pI" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-        <div style="margin-top:10px;background:rgba(245,158,11,0.07);border-radius:10px;padding:10px 13px;">
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;color:#b45309;margin:0 0 5px;">🤔 Connect to Your Anime</p>
-          <p style="font-size:0.77rem;color:#2d4a6b;margin:0;">Does your anime have an outsider or underdog theme? How does the Japanese cultural origin shape its message?</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 10 — TEAMWORK & RESILIENCE — HAIKYUU
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="10">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-80px;left:-60px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-50px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
-      <div class="reveal">
-        <div class="section-badge green" style="margin-bottom:8px;">📹 Haikyuu!!</div>
-        <div class="vid-wrap">
-          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/kTzDYjOJWVs?autoplay=1')">
-            <img src="https://img.youtube.com/vi/kTzDYjOJWVs/hqdefault.jpg" alt="Haikyuu Breaking Point clip" onerror="this.src='https://img.youtube.com/vi/kTzDYjOJWVs/mqdefault.jpg'">
-            <div class="vid-thumb-bg"></div>
-            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="vid-title-overlay">Commoner Set | Haikyuu!! — Crunchyroll (~3 min)</div>
-          </div>
-          <div class="vid-iframe-wrap"></div>
-          <a class="vid-source-link" href="https://www.youtube.com/watch?v=kTzDYjOJWVs" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div style="text-align:center;background:rgba(16,185,129,0.07);border-radius:10px;padding:8px;">
-            <div class="stat-big" style="color:#059669;font-size:1.6rem;">35M+</div>
-            <div class="stat-label">manga copies sold</div>
-          </div>
-          <div style="text-align:center;background:rgba(11,99,206,0.06);border-radius:10px;padding:8px;">
-            <div class="stat-big" style="font-size:1.6rem;">400%</div>
-            <div class="stat-label">rise in volleyball sign-ups (Japan, 2014)</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="accent-bar reveal"></div>
-        <div class="section-badge green reveal">Teamwork &amp; Resilience</div>
-        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🏐 Haikyuu!! — Effort, Teamwork, Resilience</h2>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="card reveal" style="padding:10px 14px;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">Why sports anime works</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Every rally = compressed story arc. Win or lose, growth is always visible. The sport is the metaphor.</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">Real-world lessons</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Leadership under pressure, vulnerability, trusting teammates, bouncing back from failure — all universal</p>
-          </div>
-        </div>
-        <div class="discussion-q reveal" style="margin-top:10px;">Think of a time you had to rely on a team. Does your anime explore teamwork or resilience? What does it say about how we grow <em>together</em>?</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 11 — FRIENDSHIP & CREATIVITY — K-ON!
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="11">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#f59e0b;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#10b981;opacity:0.07;"></div>
-  </div>
-  <div class="content">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
-      <div>
-        <div class="accent-bar reveal"></div>
-        <div class="section-badge amber reveal">Friendship &amp; Creativity</div>
-        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:700;color:#1a2a3a;margin:0 0 10px;">🎸 K-On! — The Power of Friendship</h2>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #f59e0b;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#b45309;margin:0 0 3px;">🎵 The Soft Power Formula</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">K-On! turned music → language learning → tourism → cultural ambassadors. Japanese tourism to filming locations grew 400% after the film.</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #10b981;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;margin:0 0 3px;">🌍 Global Fan Clubs</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Active tribute bands in Brazil, Indonesia, Germany, USA. Members learned Japanese to understand lyrics — language learning as cultural bridge</p>
-          </div>
-          <div class="card reveal" style="padding:10px 14px;border-left:4px solid #0b63ce;">
-            <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 3px;">🤔 Your Connection</p>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0;line-height:1.4;">Has an anime ever made you want to learn something new — an instrument, language, recipe, skill?</p>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="section-badge amber" style="margin-bottom:8px;">📹 K-On! Opening Theme</div>
-        <div class="vid-wrap">
-          <div class="vid-thumb-wrap" onclick="playVid(this,'https://www.youtube.com/embed/jXv1a7I5t44?autoplay=1')">
-            <img src="https://img.youtube.com/vi/jXv1a7I5t44/hqdefault.jpg" alt="K-ON! Opening Full Cagayake Girls" onerror="this.src='https://img.youtube.com/vi/jXv1a7I5t44/mqdefault.jpg'">
-            <div class="vid-thumb-bg"></div>
-            <div class="vid-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="vid-title-overlay">K-ON! Full Opening "Cagayake! GIRLS" — Ho-kago Tea Time</div>
-          </div>
-          <div class="vid-iframe-wrap"></div>
-          <a class="vid-source-link" href="https://www.youtube.com/watch?v=jXv1a7I5t44" target="_blank" rel="noopener">▶ Watch on YouTube</a>
-        </div>
-        <div style="margin-top:10px;background:rgba(245,158,11,0.07);border-radius:10px;padding:10px 13px;">
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:600;color:#b45309;margin:0 0 5px;">🎤 After Watching</p>
-          <p style="font-size:0.77rem;color:#2d4a6b;margin:0;">What emotion does the opening create? How does animation style reinforce the theme of friendship and joy? Does your anime use a similar technique?</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 12 — PRESENTATION SETUP
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="12">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:420px;height:420px;top:-100px;right:-70px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:280px;height:280px;bottom:-70px;left:-50px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge reveal">Get Ready · 5 Minutes</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:#1a2a3a;margin:0 0 16px;">🚀 Presentation Setup — Let's Go!</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-      <div class="card reveal" style="padding:16px;text-align:center;">
-        <div style="font-size:2rem;margin-bottom:6px;">📋</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#0b63ce;margin:0 0 5px;">1. Grab Your Materials</p>
-        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;line-height:1.5;">Collect poster boards, digital slides, art supplies, or any visuals you prepared</p>
-      </div>
-      <div class="card reveal" style="padding:16px;text-align:center;">
-        <div style="font-size:2rem;margin-bottom:6px;">⏱</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#10b981;margin:0 0 5px;">2. Know Your 4 Pillars</p>
-        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;line-height:1.5;">Storytelling · Character Dev · Animation Style · Thematic Depth — cover all four!</p>
-      </div>
-      <div class="card reveal" style="padding:16px;text-align:center;">
-        <div style="font-size:2rem;margin-bottom:6px;">🎤</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.92rem;font-weight:700;color:#f59e0b;margin:0 0 5px;">3. Practice Your Hook</p>
-        <p style="font-size:0.76rem;color:#2d4a6b;margin:0;line-height:1.5;">You have 60 seconds to open. Start with: what anime, why you chose it, one key claim</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
-      <div class="tip-box reveal">
-        <strong>Your opening line should make everyone lean in.</strong> Try: "Before I explain why [anime] changed the way I think about [theme], I need you to see this…"
-      </div>
-      <div class="card reveal" style="padding:13px 16px;">
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0 0 6px;">✍️ Draft Your Opening Hook</p>
-        <input class="fill-input" placeholder="My opening line: …" style="margin-bottom:6px;">
-        <input class="fill-input" placeholder="My key claim about this anime: …">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 13 — PEER EVALUATION GUIDE
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="13">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:360px;height:360px;top:-80px;left:-70px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-40px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge green reveal">Peer Evaluation</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;color:#1a2a3a;margin:0 0 12px;">🤝 Peer Feedback Guide &amp; Rubric</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;">
-      <div>
-        <p class="reveal" style="font-size:0.8rem;color:#5a7a9a;margin:0 0 8px;font-weight:700;">FEEDBACK CRITERIA</p>
-        <table class="rubric-table reveal">
-          <thead>
-            <tr>
-              <th>Criterion</th>
-              <th>⭐⭐⭐ Strong</th>
-              <th>⭐⭐ Growing</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Storytelling</td>
-              <td style="font-size:0.72rem;">Clearly explains plot structure &amp; conflict</td>
-              <td style="font-size:0.72rem;">Describes plot but needs more depth</td>
-            </tr>
-            <tr>
-              <td>Character</td>
-              <td style="font-size:0.72rem;">Shows character arc with specific evidence</td>
-              <td style="font-size:0.72rem;">Names characters but doesn't show growth</td>
-            </tr>
-            <tr>
-              <td>Culture</td>
-              <td style="font-size:0.72rem;">Connects to Japanese culture &amp; global impact</td>
-              <td style="font-size:0.72rem;">Mentions culture but stays surface-level</td>
-            </tr>
-            <tr>
-              <td>Creativity</td>
-              <td style="font-size:0.72rem;">Uses visuals/clips effectively; engaging delivery</td>
-              <td style="font-size:0.72rem;">Presentation is clear but less dynamic</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <p class="reveal" style="font-size:0.8rem;color:#5a7a9a;margin:0 0 8px;font-weight:700;">NOTES WHILE WATCHING</p>
-        <div class="card reveal" style="padding:12px;">
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#059669;margin:0 0 5px;">Presenter's name: <input class="fill-input" style="display:inline;width:120px;font-size:0.8rem;padding:3px 8px;" placeholder="Name…"></p>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#0b63ce;margin:4px 0 5px;">🌟 One strength I noticed:</p>
-          <textarea class="fill-textarea" rows="2" placeholder="I noticed that…" style="font-size:0.8rem;"></textarea>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#f59e0b;margin:6px 0 5px;">💡 One question this raised:</p>
-          <textarea class="fill-textarea" rows="2" placeholder="I'm wondering why / how…" style="font-size:0.8rem;"></textarea>
-        </div>
-        <div class="discussion-q reveal" style="margin-top:8px;">Feedback is a gift. How can you phrase a suggestion so the presenter feels supported, not criticized?</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 14 — PRESENTATION TIME
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="14">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:#0b63ce;opacity:0.09;"></div>
-    <div class="blob" style="width:320px;height:320px;bottom:-80px;left:-60px;background:#f59e0b;opacity:0.07;"></div>
-    <div class="blob" style="width:200px;height:200px;top:30%;left:5%;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
-  <div class="content" style="text-align:center;">
-    <div class="reveal" style="font-size:clamp(3rem,8vw,6rem);margin-bottom:10px;animation:float 3s ease-in-out infinite;">🎤</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;background:linear-gradient(135deg,#0b63ce,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 10px;">Presentation Time!</h2>
-    <p class="reveal" style="font-family:'Nunito',sans-serif;font-size:clamp(0.9rem,1.5vw,1.1rem);color:#2d4a6b;max-width:600px;margin:0 auto 18px;line-height:1.6;">Each presenter gets time to share their anime analysis — storytelling, character, culture, and personal appreciation. Everyone else: take notes on your feedback form.</p>
-    <div class="reveal" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
-      <div class="card" style="padding:12px 20px;min-width:140px;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">📖</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;margin:0;">Storytelling</p>
-      </div>
-      <div class="card" style="padding:12px 20px;min-width:140px;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">🧑‍🎨</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#10b981;margin:0;">Characters</p>
-      </div>
-      <div class="card" style="padding:12px 20px;min-width:140px;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">🎌</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#f59e0b;margin:0;">Culture</p>
-      </div>
-      <div class="card" style="padding:12px 20px;min-width:140px;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">💛</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#8b5cf6;margin:0;">Personal Voice</p>
-      </div>
-    </div>
-    <div class="tip-box reveal" style="display:inline-block;max-width:580px;text-align:left;">
-      <strong>Audience rule:</strong> One presenter at a time. Write your strongest observation AND one genuine question. No interrupting — save questions for feedback time.
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 15 — FEEDBACK SESSION
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="15">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:#10b981;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-50px;background:#0b63ce;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge green reveal">Feedback Session · 10 min</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">💬 Constructive Conversations</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-      <div>
-        <p class="reveal" style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#059669;margin:0 0 8px;">✅ Giving Feedback That Helps</p>
-        <div style="display:flex;flex-direction:column;gap:7px;">
-          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #10b981;">
-            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Start with a strength:</strong> "I really appreciated how you explained…"</p>
-          </div>
-          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #0b63ce;">
-            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Ask a question:</strong> "I'm curious — what made you choose this anime over others?"</p>
-          </div>
-          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #f59e0b;">
-            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Offer a suggestion gently:</strong> "One thing that might strengthen it — could you add…?"</p>
-          </div>
-          <div class="card reveal" style="padding:9px 12px;border-left:3px solid #8b5cf6;">
-            <p style="font-size:0.78rem;color:#1a2a3a;margin:0;line-height:1.4;"><strong>Be specific:</strong> Not "it was good" — but "the clip you chose for [scene] was powerful because…"</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <p class="reveal" style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#0b63ce;margin:0 0 8px;">📝 Write Your Feedback</p>
-        <div class="card reveal" style="padding:13px;">
-          <p style="font-size:0.78rem;color:#2d4a6b;font-weight:700;margin:0 0 5px;">To: <input class="fill-input" style="display:inline;width:140px;font-size:0.78rem;padding:3px 8px;" placeholder="Presenter name…"></p>
-          <textarea class="fill-textarea" rows="3" placeholder="One thing that stood out in your presentation was…" style="margin-bottom:6px;"></textarea>
-          <textarea class="fill-textarea" rows="3" placeholder="Something that could make it even stronger…" style="margin-bottom:6px;"></textarea>
-          <textarea class="fill-textarea" rows="2" placeholder="A question I still have after your presentation…"></textarea>
-        </div>
-        <div class="discussion-q reveal" style="margin-top:8px;">How does hearing others' perspectives on anime change or expand your own understanding of what you watched?</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 16 — REFLECTIVE DISCUSSION
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="16">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:400px;height:400px;top:-90px;right:-70px;background:#8b5cf6;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;left:-50px;background:#10b981;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div class="accent-bar reveal"></div>
-    <div class="section-badge reveal" style="background:rgba(139,92,246,0.1);color:#7c3aed;">Reflection · Class Discussion</div>
-    <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🌟 Insights Gained Throughout the Course</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;">
-      <div class="card reveal" style="padding:13px;">
-        <p style="font-size:1.4rem;text-align:center;margin:0 0 4px;">🎌</p>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;text-align:center;margin:0 0 5px;">Question 1</p>
-        <p class="discussion-q" style="font-size:0.78rem;margin:0;">If anime stopped being made in Japan — but kept being made globally — would it still be anime?</p>
-        <textarea class="fill-textarea" rows="2" placeholder="My answer…" style="font-size:0.75rem;margin-top:6px;"></textarea>
-      </div>
-      <div class="card reveal" style="padding:13px;">
-        <p style="font-size:1.4rem;text-align:center;margin:0 0 4px;">🌍</p>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#10b981;text-align:center;margin:0 0 5px;">Question 2</p>
-        <p class="discussion-q" style="font-size:0.78rem;margin:0;">As global pop culture adopts anime aesthetics, does Japan gain or lose cultural power?</p>
-        <textarea class="fill-textarea" rows="2" placeholder="My answer…" style="font-size:0.75rem;margin-top:6px;"></textarea>
-      </div>
-      <div class="card reveal" style="padding:13px;">
-        <p style="font-size:1.4rem;text-align:center;margin:0 0 4px;">✨</p>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#7c3aed;text-align:center;margin:0 0 5px;">Question 3</p>
-        <p class="discussion-q" style="font-size:0.78rem;margin:0;">What global topic would YOU put at the center of your own anime story? Why that theme?</p>
-        <textarea class="fill-textarea" rows="2" placeholder="My anime would be about…" style="font-size:0.75rem;margin-top:6px;"></textarea>
-      </div>
-    </div>
-    <div class="tip-box reveal">
-      <strong>Return to today's driving question:</strong> "What makes an anime truly great — story, character, culture, or something deeper?" Has your answer changed after hearing everyone's presentations?
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     SLIDE 17 — EXIT TICKET
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="17">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:380px;height:380px;top:-80px;left:-60px;background:#0b63ce;opacity:0.07;"></div>
-    <div class="blob" style="width:260px;height:260px;bottom:-60px;right:-50px;background:#f59e0b;opacity:0.06;"></div>
-  </div>
-  <div class="content">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;">
-      <div>
-        <div class="accent-bar reveal"></div>
-        <div class="section-badge reveal">Exit Ticket</div>
-        <h2 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1a2a3a;margin:0 0 14px;">🎟️ Exit Ticket — Before You Go</h2>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div class="card reveal" style="padding:13px;">
-            <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
-              <span class="q-num">1</span>
-              <span style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#0b63ce;">One New Insight</span>
+        <div class="grid-cards grid-2 gap-6">
+            <div>
+                <div class="media-embed reveal" id="player-EzGT4BS8WqE" onclick="playVideo('EzGT4BS8WqE')">
+                    <img src="https://img.youtube.com/vi/EzGT4BS8WqE/hqdefault.jpg" alt="Demon Slayer – Tanjiro's Family Scene">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+                </div>
+                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Demon Slayer — Tanjiro's Family Scene</p>
             </div>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0 0 6px;">Write down one new insight you gained from a peer's presentation today</p>
-            <textarea class="fill-textarea" rows="2" placeholder="I learned that… / I never thought about…"></textarea>
-          </div>
-          <div class="card reveal" style="padding:13px;">
-            <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
-              <span class="q-num green">2</span>
-              <span style="font-family:'Fredoka',sans-serif;font-size:0.88rem;font-weight:700;color:#059669;">How It Changed You</span>
+            <div class="flex flex-col justify-center gap-4 reveal">
+                <h2 class="font-display text-[1.7rem] font-bold text-accent-1">Watch &amp; Notice</h2>
+                <p class="text-text-secondary text-sm font-semibold">Jot down your first impressions in your notebook:</p>
+                <div class="timeline">
+                    <div class="timeline-step reveal">
+                        <div class="timeline-dot"></div>
+                        <p class="text-sm font-bold text-text" style="padding-left:8px;">What storytelling elements do you notice? (music, camera angle, pacing…)</p>
+                    </div>
+                    <div class="timeline-step reveal">
+                        <div class="timeline-dot" style="background:#10b981;"></div>
+                        <p class="text-sm font-bold text-text" style="padding-left:8px;">How did this clip make you feel? What caused that feeling?</p>
+                    </div>
+                    <div class="timeline-step reveal">
+                        <div class="timeline-dot" style="background:#f59e0b;"></div>
+                        <p class="text-sm font-bold text-text" style="padding-left:8px;">If you had to name one <em>technique</em> the director used, what would it be?</p>
+                    </div>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>Share with a partner — did you notice the same thing?</span>
+                </div>
             </div>
-            <p style="font-size:0.78rem;color:#2d4a6b;margin:0 0 6px;">How did this insight change or expand your understanding of anime?</p>
-            <textarea class="fill-textarea" rows="2" placeholder="It changed the way I think about…"></textarea>
-          </div>
         </div>
-      </div>
-      <div>
-        <div class="section-badge amber reveal" style="margin-bottom:10px;">🏠 Extension Challenge</div>
-        <div class="card reveal" style="padding:16px;margin-bottom:10px;">
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.9rem;font-weight:700;color:#b45309;margin:0 0 8px;">Out-of-Classroom Learning</p>
-          <p style="font-size:0.8rem;color:#2d4a6b;margin:0 0 10px;line-height:1.5;">Explore a <strong>new</strong> anime series or film outside of class and apply the 4-pillar analysis framework you've used all term.</p>
-          <p style="font-family:'Fredoka',sans-serif;font-size:0.82rem;font-weight:700;color:#0b63ce;margin:0 0 5px;">Your challenge:</p>
-          <ul style="font-size:0.78rem;color:#2d4a6b;margin:0;padding-left:16px;line-height:1.8;">
-            <li>Watch at least 2 episodes of a new anime</li>
-            <li>Analyze using storytelling, character, animation, theme</li>
-            <li>Share your findings with a friend or family member</li>
-            <li>Bring your most surprising discovery to next class</li>
-          </ul>
-        </div>
-        <div class="tip-box reveal">
-          <strong>Already have a favorite?</strong> Try analyzing it more deeply — what have you missed? Challenge yourself to find a theme you never noticed before.
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SLIDE 18 — CLOSING / THANK YOU
-═══════════════════════════════════════ -->
-<div class="slide" data-slide="18">
-  <div class="gradient-mesh">
-    <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:#0b63ce;opacity:0.09;"></div>
-    <div class="blob" style="width:350px;height:350px;bottom:-90px;left:-70px;background:#10b981;opacity:0.08;"></div>
-    <div class="blob" style="width:220px;height:220px;top:40%;left:20%;background:#f59e0b;opacity:0.07;"></div>
-  </div>
-  <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
-  <div class="content" style="text-align:center;">
-    <div class="reveal" style="font-size:clamp(3rem,8vw,6rem);margin-bottom:8px;animation:float 3s ease-in-out infinite;">🌸</div>
-    <div class="accent-bar reveal" style="margin:0 auto 14px;"></div>
-    <h1 class="reveal" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,5.5vw,4rem);font-weight:700;background:linear-gradient(135deg,#0b63ce,#10b981,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 8px;">Congratulations, Anime Scholars!</h1>
-    <p class="reveal" style="font-family:'Nunito',sans-serif;font-size:clamp(0.9rem,1.5vw,1.1rem);color:#2d4a6b;max-width:580px;margin:0 auto 18px;line-height:1.7;">You've explored conflict, character, culture, storytelling, globalization, and the literary devices that make anime one of the world's most powerful art forms. Now go share that knowledge!</p>
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:680px;margin:0 auto 16px;">
-      <div style="background:rgba(11,99,206,0.08);border-radius:12px;padding:10px;text-align:center;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">✍️</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#0b63ce;margin:0;">Create Your Own Anime Character &amp; Story</p>
-      </div>
-      <div style="background:rgba(16,185,129,0.08);border-radius:12px;padding:10px;text-align:center;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">🔍</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#059669;margin:0;">Identify Literary Devices in New Series</p>
-      </div>
-      <div style="background:rgba(245,158,11,0.08);border-radius:12px;padding:10px;text-align:center;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">🌍</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#b45309;margin:0;">Analyze Cross-Cultural Media Connections</p>
-      </div>
-      <div style="background:rgba(139,92,246,0.08);border-radius:12px;padding:10px;text-align:center;">
-        <div style="font-size:1.5rem;margin-bottom:4px;">🤝</div>
-        <p style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#7c3aed;margin:0;">Give &amp; Receive Constructive Feedback</p>
-      </div>
+<!-- ═══════════════════════════════════════════════
+     SLIDE 3: LEARNING TARGETS
+═══════════════════════════════════════════════ -->
+<div class="slide slide-3" data-slide="3">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-5">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🎯 Learning Targets</span>
+            <span class="pill">Today + Course Goals</span>
+        </div>
+        <div class="grid-cards grid-2 gap-6">
+            <div>
+                <h2 class="font-display text-[1.8rem] font-bold text-accent-1 mb-4 reveal">By End of Today</h2>
+                <div class="flex flex-col gap-3">
+                    <div class="card reveal" style="border-left:4px solid #0b63ce;">
+                        <p class="text-sm font-bold">📌 Identify storytelling techniques in anime — narrative arc, flashback, foreshadowing, cliffhanger, character development</p>
+                    </div>
+                    <div class="card reveal" style="border-left:4px solid #10b981;">
+                        <p class="text-sm font-bold">🎬 Analyze how techniques create emotion and keep audiences engaged</p>
+                    </div>
+                    <div class="card reveal" style="border-left:4px solid #f59e0b;">
+                        <p class="text-sm font-bold">✏️ Create a storyboard using at least 2 techniques</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="font-display text-[1.8rem] font-bold text-accent-2 mb-4 reveal">Course Arc Goals</h2>
+                <div class="flex flex-col gap-3">
+                    <div class="card reveal" style="border-left:4px solid #10b981;">
+                        <p class="text-sm font-bold">📖 Use literary devices (conflict, symbolism, theme) when analyzing AND creating stories</p>
+                    </div>
+                    <div class="card reveal" style="border-left:4px solid #8b5cf6;">
+                        <p class="text-sm font-bold">🎭 Design an original anime character with a compelling narrative arc</p>
+                    </div>
+                    <div class="card reveal" style="border-left:4px solid #f59e0b;">
+                        <p class="text-sm font-bold">🤝 Give and receive peer feedback that makes stories stronger</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="question-chip mt-5 reveal">
+            <span class="icon">?</span>
+            <span>Which of today's targets connects most directly to <em>your own</em> anime character idea?</span>
+        </div>
     </div>
-    <p class="reveal" style="font-family:'Fredoka',sans-serif;font-size:1rem;color:#5a7a9a;font-weight:500;">Anime is not just entertainment — it is a window into humanity. 🎌</p>
-  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 4: VOCABULARY
+═══════════════════════════════════════════════ -->
+<div class="slide slide-4" data-slide="4">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🗝️ Vocabulary — 5 Key Terms</span>
+        </div>
+        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">Know These Before We Watch</h2>
+        <div class="grid-cards grid-3 gap-4">
+            <div class="card reveal" style="border-top:3px solid #0b63ce;">
+                <p class="technique-badge mb-2" style="background:rgba(11,99,206,0.1);color:#0b63ce;">📈 Narrative Arc</p>
+                <p class="text-xs font-bold text-text-secondary">The overall shape of a story — beginning, rising action, climax, and resolution. In <em>Naruto</em>, each arc (Chunin Exams, Pain's Assault) has its own complete arc inside the bigger story.</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #8b5cf6;">
+                <p class="technique-badge mb-2" style="background:rgba(139,92,246,0.1);color:#7c3aed;">⏪ Flashback</p>
+                <p class="text-xs font-bold text-text-secondary">A scene that jumps backward in time to reveal past events. In <em>Demon Slayer</em>, Tanjiro's memories of his father explain his breathing technique and give the present moment emotional weight.</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #10b981;">
+                <p class="technique-badge mb-2" style="background:rgba(16,185,129,0.1);color:#059669;">👁️ Foreshadowing</p>
+                <p class="text-xs font-bold text-text-secondary">Hints planted early that something important is coming later. In <em>Attack on Titan</em>, tiny details in Season 1 foreshadow massive plot twists seasons later — viewers only see them on rewatch.</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #ef4444;">
+                <p class="technique-badge mb-2" style="background:rgba(239,68,68,0.1);color:#dc2626;">⚡ Cliffhanger</p>
+                <p class="text-xs font-bold text-text-secondary">Ending an episode at a peak moment of tension — forcing viewers to watch the next one. <em>Attack on Titan</em> is famous for ending episodes right when the most shocking thing happens.</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #f59e0b;" style="grid-column:span 2;">
+                <p class="technique-badge mb-2" style="background:rgba(245,158,11,0.1);color:#b45309;">🌱 Character Development</p>
+                <p class="text-xs font-bold text-text-secondary">How a character changes — in beliefs, skills, or personality — over time due to challenges. Deku in <em>My Hero Academia</em> transforms from a quirkless, bullied kid into a confident hero through years of failure, training, and growth.</p>
+            </div>
+        </div>
+        <div class="question-chip mt-4 reveal">
+            <span class="icon">?</span>
+            <span>Can you think of a technique from your favorite anime before we watch the clips? Turn and tell a partner.</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 5: TECHNIQUE SPOTLIGHT — FLASHBACK
+═══════════════════════════════════════════════ -->
+<div class="slide slide-5" data-slide="5">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:rgba(139,92,246,0.1);border-color:#8b5cf6;color:#7c3aed;">⏪ Technique: Flashback</span>
+            <span class="pill">Demon Slayer · Mugen Train Arc</span>
+        </div>
+        <div class="grid-cards grid-2 gap-6">
+            <div class="flex flex-col gap-3">
+                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#7c3aed;">Why Flashbacks Work</h2>
+                <div class="card reveal">
+                    <p class="text-xs font-bold text-text-secondary">A flashback is not just a "memory" — it's the writer telling us <strong>exactly what the audience needs to know</strong> at a precise emotional moment. In <em>Demon Slayer</em>, Tanjiro sees his father Tanjuro in a dream flashback while near death. This reveals that his father was also a demon slayer, explains why the king of demons feared the Kamado family, and transforms a fight scene into an emotionally devastating moment.</p>
+                </div>
+                <div class="card reveal" style="background:rgba(139,92,246,0.07);border-color:rgba(139,92,246,0.3);">
+                    <p class="text-xs font-bold" style="color:#4c1d95;">📌 Fact: Japanese anime uses flashbacks more than almost any other visual medium — averaging <strong>3–5 per story arc</strong> in long-running shonen series.</p>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>What would be lost if this scene happened at the <em>beginning</em> of the series instead?</span>
+                </div>
+                <div class="question-chip reveal" style="background:rgba(16,185,129,0.08);color:#065f46;">
+                    <span class="icon" style="background:#10b981;">?</span>
+                    <span>Why do you think the director chose a <em>dream</em> for this flashback rather than a memory?</span>
+                </div>
+            </div>
+            <div>
+                <div class="media-embed reveal" id="player-DU3YfzlenOA" onclick="playVideo('DU3YfzlenOA')">
+                    <img src="https://img.youtube.com/vi/DU3YfzlenOA/hqdefault.jpg" alt="Demon Slayer – Tanjiro's Father Flashback">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+                </div>
+                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Demon Slayer: Mugen Train Arc – Ep 3 (Crunchyroll official clip)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 6: TECHNIQUE SPOTLIGHT — FORESHADOWING
+═══════════════════════════════════════════════ -->
+<div class="slide slide-6" data-slide="6">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:rgba(16,185,129,0.1);border-color:#10b981;color:#059669;">👁️ Technique: Foreshadowing</span>
+            <span class="pill">Attack on Titan</span>
+        </div>
+        <div class="grid-cards grid-2 gap-6">
+            <div>
+                <div class="media-embed reveal" id="player-Qeni21RZgZg" onclick="playVideo('Qeni21RZgZg')">
+                    <img src="https://img.youtube.com/vi/Qeni21RZgZg/hqdefault.jpg" alt="Attack on Titan – The Art of Foreshadowing">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+                </div>
+                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Attack on Titan – The Art of Foreshadowing (ViniiTube)</p>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#059669;">Chekhov's Gun in Anime</h2>
+                <div class="card reveal">
+                    <p class="text-xs font-bold text-text-secondary">Foreshadowing plants clues the audience won't recognize until later. Author Hajime Isayama (AoT) said he wrote Season 1 already knowing the ending — meaning Eren's true ability as the <em>Attack Titan</em> is hinted in the very first episode, 87 episodes before it's revealed. Fans who rewatched the show found over <strong>200 foreshadowing moments</strong> hidden throughout the series.</p>
+                </div>
+                <div class="card reveal" style="background:rgba(16,185,129,0.07);border-color:rgba(16,185,129,0.3);">
+                    <p class="text-xs font-bold" style="color:#065f46;">📌 Writing Tip: Foreshadowing works because the brain creates satisfaction when a hint pays off — it makes the audience feel smart for noticing it.</p>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>Can foreshadowing be <em>too obvious</em>? What is the difference between a clue and a spoiler?</span>
+                </div>
+                <div class="question-chip reveal" style="background:rgba(11,99,206,0.08);color:#1e3a8a;">
+                    <span class="icon" style="background:#0b63ce;">?</span>
+                    <span>How would you plant a foreshadowing hint in your own character's story?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 7: TECHNIQUE SPOTLIGHT — CLIFFHANGER
+═══════════════════════════════════════════════ -->
+<div class="slide slide-7" data-slide="7">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:rgba(239,68,68,0.1);border-color:#ef4444;color:#b91c1c;">⚡ Technique: Cliffhanger</span>
+            <span class="pill">Multiple Anime · Episode Endings</span>
+        </div>
+        <div class="grid-cards grid-2 gap-6">
+            <div class="flex flex-col gap-3">
+                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#dc2626;">Why You Can't Stop Watching</h2>
+                <div class="card reveal">
+                    <p class="text-xs font-bold text-text-secondary">A cliffhanger deliberately ends a scene or episode at the highest possible moment of tension — before the resolution. This exploits what psychologists call the <strong>Zeigarnik Effect</strong>: our brains remember unfinished tasks more strongly than completed ones. Anime uses this at episode endings, mid-episode breaks, and even between seasons, making viewers feel physically unable to stop watching.</p>
+                </div>
+                <div class="card reveal" style="background:rgba(239,68,68,0.07);border-color:rgba(239,68,68,0.3);">
+                    <p class="text-xs font-bold" style="color:#7f1d1d;">📌 Fact: <em>The Promised Neverland</em> Episode 1 ends on one of the most shocking cliffhangers in anime history — viewers described it as "physically needing" to see what happened next.</p>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>Is a cliffhanger "cheating"? Or is it a valid storytelling tool? Defend your answer.</span>
+                </div>
+                <div class="question-chip reveal" style="background:rgba(16,185,129,0.08);color:#065f46;">
+                    <span class="icon" style="background:#10b981;">?</span>
+                    <span>Where would you place a cliffhanger in your own anime story?</span>
+                </div>
+            </div>
+            <div>
+                <div class="media-embed reveal" id="player-3cxv3XxadR0" onclick="playVideo('3cxv3XxadR0')">
+                    <img src="https://img.youtube.com/vi/3cxv3XxadR0/hqdefault.jpg" alt="Top 10 Most Insane Anime Cliffhangers">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+                </div>
+                <p class="text-xs text-text-muted mt-2 text-center font-semibold">Top 10 Most Insane Anime Cliffhangers (WatchMojo)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 8: TECHNIQUE SPOTLIGHT — CHARACTER DEVELOPMENT
+═══════════════════════════════════════════════ -->
+<div class="slide slide-8" data-slide="8">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:rgba(245,158,11,0.1);border-color:#f59e0b;color:#92400e;">🌱 Technique: Character Development</span>
+            <span class="pill">My Hero Academia</span>
+        </div>
+        <div class="grid-cards grid-2 gap-6">
+            <div>
+                <div class="media-embed reveal" id="player-RIDqpK_pK0E" onclick="playVideo('RIDqpK_pK0E')">
+                    <img src="https://img.youtube.com/vi/RIDqpK_pK0E/hqdefault.jpg" alt="How My Hero Academia Develops Its Characters">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+                </div>
+                <p class="text-xs text-text-muted mt-2 text-center font-semibold">How My Hero Academia Develops Its Characters (Storyteller's Notebook)</p>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="font-display text-[1.8rem] font-bold reveal" style="color:#b45309;">The Change We Root For</h2>
+                <div class="card reveal">
+                    <p class="text-xs font-bold text-text-secondary">Character development is the engine of every great story. Izuku Midoriya starts as a boy with zero powers who cries watching heroes on TV. By Season 6, he is nearly destroying himself to protect others. What changed? Hundreds of moments of failure, pain, and choice — each one a storytelling decision. <em>MHA</em> shows development across ALL characters: Bakugo from bully to reluctant ally; Todoroki from cold loner to open teammate.</p>
+                </div>
+                <div class="card reveal" style="background:rgba(245,158,11,0.07);border-color:rgba(245,158,11,0.3);">
+                    <p class="text-xs font-bold" style="color:#78350f;">📌 Rule: Change must come from <em>inside</em> the character — forced by events, not given for free. A character who doesn't struggle doesn't develop.</p>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>What was the moment Deku truly changed? Could it have happened earlier in the story?</span>
+                </div>
+                <div class="question-chip reveal" style="background:rgba(11,99,206,0.08);color:#1e3a8a;">
+                    <span class="icon" style="background:#0b63ce;">?</span>
+                    <span>What internal flaw does <em>your</em> anime character need to overcome?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 9: TECHNIQUE SPOTLIGHT — NARRATIVE ARC
+═══════════════════════════════════════════════ -->
+<div class="slide slide-9" data-slide="9">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:rgba(11,99,206,0.1);border-color:#0b63ce;color:#1e3a8a;">📈 Technique: Narrative Arc</span>
+            <span class="pill">Naruto · One Piece · MHA</span>
+        </div>
+        <div class="grid-cards grid-2 gap-6">
+            <div class="flex flex-col gap-4">
+                <h2 class="font-display text-[1.8rem] font-bold text-accent-1 reveal">The Shape of Every Story</h2>
+                <div class="card reveal">
+                    <p class="text-xs font-bold text-text-secondary mb-2">Every arc follows the same 5-stage structure. In <em>Naruto's</em> Chunin Exams Arc (Episodes 20–67):</p>
+                    <div class="timeline">
+                        <div class="timeline-step"><div class="timeline-dot"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Introduction:</strong> Teams enter the exams — stakes are clear</p></div>
+                        <div class="timeline-step"><div class="timeline-dot" style="background:#10b981;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Rising Action:</strong> Forest of Death, matches, Orochimaru appears</p></div>
+                        <div class="timeline-step"><div class="timeline-dot" style="background:#f59e0b;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Climax:</strong> Naruto vs. Neji — "I'll change your destiny!"</p></div>
+                        <div class="timeline-step"><div class="timeline-dot" style="background:#ef4444;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Falling Action:</strong> Village invasion begins</p></div>
+                        <div class="timeline-step"><div class="timeline-dot" style="background:#8b5cf6;"></div><p class="text-xs font-bold" style="padding-left:8px;"><strong>Resolution:</strong> Team bonds formed; new arcs seeded</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-3">
+                <div class="media-embed reveal" id="player-BFvtyliXOYo" onclick="playVideo('BFvtyliXOYo')">
+                    <img src="https://img.youtube.com/vi/BFvtyliXOYo/hqdefault.jpg" alt="What Is An Arc In Anime?">
+                    <div class="play-btn"><div class="play-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="6,4 20,12 6,20"/></svg></div></div>
+                </div>
+                <p class="text-xs text-text-muted text-center font-semibold">Every Major Anime Arc Explained In 9 Minutes (Animea)</p>
+                <div class="card reveal" style="background:rgba(11,99,206,0.07);border-color:rgba(11,99,206,0.3);">
+                    <p class="text-xs font-bold" style="color:#1e3a8a;">📌 Fact: <em>One Piece</em> has run continuously since <strong>1997</strong> and contains over 30 named arcs — yet each follows the same 5-stage structure.</p>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>Where is the climax of <em>your</em> character's arc? What does it cost them to get there?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 10: HOW TECHNIQUES WORK TOGETHER
+═══════════════════════════════════════════════ -->
+<div class="slide slide-10" data-slide="10">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🧩 Techniques in Action</span>
+            <span class="pill">Demon Slayer · Season 1 Ep 19</span>
+        </div>
+        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">All Five — In One Episode</h2>
+        <p class="text-sm font-bold text-text-secondary mb-4 reveal">Demon Slayer S1E19 — the episode that went viral — uses every technique in 24 minutes:</p>
+        <div class="grid-cards grid-3 gap-4">
+            <div class="card reveal" style="border-top:3px solid #7c3aed;">
+                <p class="technique-badge mb-1" style="background:rgba(139,92,246,0.1);color:#7c3aed;">⏪ Flashback</p>
+                <p class="text-xs font-bold text-text-secondary">Tanjiro remembers his father's breathing form — reveals hidden power at the exact moment the audience needs hope</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #10b981;">
+                <p class="technique-badge mb-1" style="background:rgba(16,185,129,0.1);color:#059669;">👁️ Foreshadowing</p>
+                <p class="text-xs font-bold text-text-secondary">The Hinokami Kagura dance was shown in Episode 1 — most viewers didn't realize it was a battle technique until now</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #ef4444;">
+                <p class="technique-badge mb-1" style="background:rgba(239,68,68,0.1);color:#dc2626;">⚡ Cliffhanger</p>
+                <p class="text-xs font-bold text-text-secondary">Episode ends with Tanjiro completely out of power — audiences worldwide were in shock and immediately rewatched</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #f59e0b;">
+                <p class="technique-badge mb-1" style="background:rgba(245,158,11,0.1);color:#b45309;">🌱 Char. Development</p>
+                <p class="text-xs font-bold text-text-secondary">Tanjiro, who started as a gentle boy unable to hurt anyone, makes the hardest decision of his life to protect his sister</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #0b63ce; grid-column: span 2;">
+                <p class="technique-badge mb-1" style="background:rgba(11,99,206,0.1);color:#0b63ce;">📈 Narrative Arc</p>
+                <p class="text-xs font-bold text-text-secondary">This episode is the <strong>climax</strong> of the entire Season 1 arc — every earlier episode was "rising action" leading here. The animators (ufotable) spent months on this single episode, making it one of the most-watched anime episodes in history with over 100 million views on YouTube within a month of release.</p>
+            </div>
+        </div>
+        <div class="question-chip mt-3 reveal">
+            <span class="icon">?</span>
+            <span>Which technique hit you the <em>hardest</em> as a viewer? Why do you think that technique was so effective for you personally?</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 11: STORYBOARD ACTIVITY
+═══════════════════════════════════════════════ -->
+<div class="slide slide-11" data-slide="11">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">✏️ Studio Time — 15 min</span>
+            <span class="pill">Create Your Storyboard</span>
+        </div>
+        <div class="grid-cards grid-2 gap-6">
+            <div class="flex flex-col gap-3">
+                <h2 class="font-display text-[1.8rem] font-bold text-accent-3 reveal">Your Anime Scene</h2>
+                <div class="card reveal">
+                    <p class="text-sm font-bold text-text mb-2">Storyboard an original anime scene (4–6 panels) that includes:</p>
+                    <ul class="text-xs font-bold text-text-secondary flex flex-col gap-1">
+                        <li>✅ At least <strong>2 storytelling techniques</strong> from today's vocabulary</li>
+                        <li>✅ A <strong>character from your course project</strong> (or create a new one)</li>
+                        <li>✅ <strong>Labels</strong> in the margin naming the technique used in each panel</li>
+                        <li>✅ A brief <strong>caption</strong> per panel explaining what's happening</li>
+                    </ul>
+                </div>
+                <div class="card reveal" style="background:rgba(16,185,129,0.07);border-color:rgba(16,185,129,0.3);">
+                    <p class="text-xs font-bold" style="color:#065f46;">💡 Tip: Real anime storyboards (絵コンテ, <em>e-konte</em>) are rough stick-figure sketches. Quality of art does NOT matter — clarity of storytelling does.</p>
+                </div>
+                <div class="question-chip reveal">
+                    <span class="icon">?</span>
+                    <span>Before you draw: what is the <em>single emotion</em> you want your viewer to feel at the end of your scene?</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h2 class="font-display text-[1.5rem] font-bold text-accent-1 reveal">Socratic Prompts While You Work</h2>
+                <div class="timeline reveal">
+                    <div class="timeline-step">
+                        <div class="timeline-dot"></div>
+                        <p class="text-xs font-bold" style="padding-left:8px;">"If I removed the flashback panel, what meaning would the scene lose?"</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" style="background:#10b981;"></div>
+                        <p class="text-xs font-bold" style="padding-left:8px;">"Where is the moment of highest tension? Is it in the right panel?"</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" style="background:#f59e0b;"></div>
+                        <p class="text-xs font-bold" style="padding-left:8px;">"How does the camera angle change between panels? What does that say?"</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" style="background:#8b5cf6;"></div>
+                        <p class="text-xs font-bold" style="padding-left:8px;">"Does your character look different at the end than at the start? Why?"</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot" style="background:#ef4444;"></div>
+                        <p class="text-xs font-bold" style="padding-left:8px;">"What is the ONE thing the audience must understand from this scene?"</p>
+                    </div>
+                </div>
+                <div class="card reveal" style="background:rgba(11,99,206,0.07);border-color:rgba(11,99,206,0.3);">
+                    <p class="text-xs font-bold" style="color:#1e3a8a;">🎯 Remember: A storyboard is a <em>plan</em> — it exists so you can change ideas cheaply, before animating. Be bold, then revise.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 12: SHARE + PEER DISCUSSION
+═══════════════════════════════════════════════ -->
+<div class="slide slide-12" data-slide="12">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:#e0f2ff;border-color:#0b63ce;">🤝 Share Your Storyboard</span>
+            <span class="pill">Socratic Gallery Walk</span>
+        </div>
+        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">How to Give Great Feedback</h2>
+        <div class="grid-cards grid-3 gap-4 mb-4">
+            <div class="card reveal" style="border-top:3px solid #0b63ce;">
+                <p class="text-sm font-bold text-accent-1 mb-1">👀 Step 1: Look</p>
+                <p class="text-xs font-bold text-text-secondary">Spend 60 seconds <em>silently</em> reading your partner's storyboard. Notice the techniques, the emotion, the character choices.</p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #10b981;">
+                <p class="text-sm font-bold text-accent-2 mb-1">💬 Step 2: Name</p>
+                <p class="text-xs font-bold text-text-secondary">Point to a specific panel and name the technique you see: <em>"In panel 3, I see a flashback because…"</em></p>
+            </div>
+            <div class="card reveal" style="border-top:3px solid #f59e0b;">
+                <p class="text-sm font-bold text-accent-3 mb-1">❓ Step 3: Question</p>
+                <p class="text-xs font-bold text-text-secondary">Ask one genuine question: <em>"What would happen if this panel came first instead?"</em> or <em>"Who is your audience for this scene?"</em></p>
+            </div>
+        </div>
+        <div class="card reveal mb-4">
+            <p class="text-sm font-bold text-text mb-2">Sentence Starters for Peer Discussion:</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="technique-badge" style="background:rgba(11,99,206,0.08);color:#1e3a8a;font-size:0.72rem;">"The technique I saw most clearly was…"</span>
+                <span class="technique-badge" style="background:rgba(16,185,129,0.08);color:#065f46;font-size:0.72rem;">"I wonder what would happen if…"</span>
+                <span class="technique-badge" style="background:rgba(245,158,11,0.08);color:#92400e;font-size:0.72rem;">"This made me feel _____ because…"</span>
+                <span class="technique-badge" style="background:rgba(139,92,246,0.08);color:#4c1d95;font-size:0.72rem;">"I disagree with this choice because…"</span>
+            </div>
+        </div>
+        <div class="question-chip reveal">
+            <span class="icon">?</span>
+            <span>After hearing feedback: what is ONE thing you would change — and why?</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 13: EXIT TICKET
+═══════════════════════════════════════════════ -->
+<div class="slide slide-13" data-slide="13">
+    <div class="content">
+        <div class="flex flex-wrap gap-3 mb-4">
+            <span class="pill" style="background:#fef3c7;border-color:#f59e0b;color:#92400e;">🎯 Exit Ticket — Before You Leave</span>
+            <span class="pill">3 min · Write in Notebook</span>
+        </div>
+        <h2 class="font-display text-[1.9rem] font-bold text-accent-1 mb-4 reveal">Show What You Know</h2>
+        <div class="grid-cards grid-2 gap-6">
+            <div class="flex flex-col gap-4">
+                <div class="card reveal" style="border-left:4px solid #0b63ce;">
+                    <p class="text-sm font-bold text-accent-1 mb-1">✍️ Question 1</p>
+                    <p class="text-sm font-bold text-text-secondary">Name <strong>one storytelling technique</strong> you found most effective today. Use its vocabulary name.</p>
+                    <div class="exit-line mt-3"></div>
+                    <div class="exit-line"></div>
+                </div>
+                <div class="card reveal" style="border-left:4px solid #10b981;">
+                    <p class="text-sm font-bold text-accent-2 mb-1">✍️ Question 2</p>
+                    <p class="text-sm font-bold text-text-secondary">Explain <em>why</em> that technique enhances an anime's narrative. Be specific — name the anime and scene.</p>
+                    <div class="exit-line mt-3"></div>
+                    <div class="exit-line"></div>
+                    <div class="exit-line"></div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <div class="card reveal" style="border-left:4px solid #f59e0b;">
+                    <p class="text-sm font-bold text-accent-3 mb-1">✍️ Question 3 (Course Connect)</p>
+                    <p class="text-sm font-bold text-text-secondary">Which technique will you use in your own anime character's story? How will you use it?</p>
+                    <div class="exit-line mt-3"></div>
+                    <div class="exit-line"></div>
+                    <div class="exit-line"></div>
+                </div>
+                <div class="card reveal" style="background:rgba(16,185,129,0.07);border-color:rgba(16,185,129,0.3);">
+                    <p class="text-sm font-bold" style="color:#065f46;">🏠 Out-of-Class Extension</p>
+                    <p class="text-xs font-bold text-text-secondary mt-1">Watch one episode of your favorite anime and log every storytelling technique you spot. Use MyAnimeList to research the series' narrative style. Bring your log next class!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </div><!-- end .deck -->
 
-<!-- NAV CONTROLS -->
+<!-- NAVIGATION -->
 <div class="nav-controls">
-  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
-  <div class="slide-dots" id="dots"></div>
-  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
-  <span class="slide-counter" id="counter">1 / 18</span>
+    <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+    <div class="slide-dots" id="dots"></div>
+    <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+    <span class="slide-counter" id="counter">1 / 13</span>
 </div>
 
 <script>
-/* ═══ DECK NAVIGATION ═══ */
-let current = 1;
-const total = document.querySelectorAll('.slide').length;
-const dotsContainer = document.getElementById('dots');
-const counter = document.getElementById('counter');
-for (let i = 1; i <= total; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i === 1 ? ' active' : '');
-  dot.onclick = () => goToSlide(i);
-  dotsContainer.appendChild(dot);
-}
-function goToSlide(n) {
-  const prev = document.querySelector('.slide.active');
-  const next = document.querySelector(`.slide[data-slide="${n}"]`);
-  if (prev) prev.classList.remove('active');
-  if (next) { next.classList.add('active'); animateSlide(next); }
-  current = n; updateNav();
-}
-function changeSlide(dir) { let n = current + dir; if (n < 1) n = total; if (n > total) n = 1; goToSlide(n); }
-function updateNav() {
-  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i+1 === current));
-  counter.textContent = current + ' / ' + total;
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
-  if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
-});
-let touchStartX = 0;
-document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-document.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
+    let current = 1;
+    const total = document.querySelectorAll('.slide').length;
+    const dotsContainer = document.getElementById('dots');
+    const counter = document.getElementById('counter');
+    for (let i = 1; i <= total; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 1 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+    function goToSlide(n) {
+        document.querySelector('.slide.active')?.classList.remove('active');
+        const next = document.querySelector(`.slide[data-slide="${n}"]`);
+        if (next) { next.classList.add('active'); animateSlide(next); }
+        current = n; updateNav();
+    }
+    function changeSlide(dir) { let n = current + dir; if (n < 1) n = total; if (n > total) n = 1; goToSlide(n); }
+    function updateNav() {
+        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === current));
+        counter.textContent = current + ' / ' + total;
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); } });
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', e => { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1); });
 
-/* ═══ REVEAL ANIMATION ═══ */
-function animateSlide(slide) {
-  slide.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transition = 'none';
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(18px)';
-    el.offsetHeight;
-    const delay = i * 0.07;
-    el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
-    el.style.opacity = '1';
-    el.style.transform = 'translateY(0px)';
-  });
-  /* init particles on newly-active slides */
-  slide.querySelectorAll('.particle-canvas:not(.pc-init)').forEach(c => {
-    c.classList.add('pc-init');
-    c.width = c.offsetWidth || window.innerWidth;
-    c.height = c.offsetHeight || (window.innerHeight - 72);
-    window.initParticles(c, { interactive: true, count: 45 });
-  });
-  slide.querySelectorAll('.particle-canvas-ambient:not(.pca-init)').forEach(c => {
-    c.classList.add('pca-init');
-    c.width = c.offsetWidth || window.innerWidth;
-    c.height = c.offsetHeight || (window.innerHeight - 72);
-    window.initParticles(c, { interactive: false, count: 16 });
-  });
-}
+    function animateSlide(slide) {
+        slide.querySelectorAll('.reveal').forEach((el, i) => {
+            el.style.transition = 'none';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(18px)';
+            el.offsetHeight;
+            const delay = i * 0.07;
+            el.style.transition = `opacity 0.35s ease ${delay}s, transform 0.35s ease ${delay}s`;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+    }
 
-/* ═══ VIDEO PLAYER ═══ */
-function playVid(thumbWrap, embedUrl) {
-  const iframeWrap = thumbWrap.nextElementSibling;
-  if (!iframeWrap || !iframeWrap.classList.contains('vid-iframe-wrap')) return;
-  thumbWrap.style.display = 'none';
-  iframeWrap.style.display = 'block';
-  iframeWrap.style.aspectRatio = '16/9';
-  const iframe = document.createElement('iframe');
-  iframe.src = embedUrl;
-  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-  iframe.allowFullscreen = true;
-  iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;border-radius:14px;';
-  iframeWrap.appendChild(iframe);
-}
+    function playVideo(id) {
+        const container = document.getElementById('player-' + id);
+        container.style.cursor = 'default';
+        container.onclick = null;
+        container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" title="Video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>';
+    }
 
-/* ═══ MOUSE SPOTLIGHT ═══ */
-document.addEventListener('mousemove', e => {
-  const s = document.querySelector('.mouse-spotlight');
-  if (s) s.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.05), transparent 40%)`;
-});
-
-/* ═══ PARALLAX DECO SHAPES ═══ */
-(function() {
-  let mx = window.innerWidth/2, my = window.innerHeight/2;
-  const cx = window.innerWidth/2, cy = window.innerHeight/2;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function tick() {
-    const ox = (mx - cx) / cx, oy = (my - cy) / cy;
-    document.querySelectorAll('.deco-shape').forEach(s => {
-      const sp = parseFloat(s.dataset.speed) || 0.03;
-      s.style.transform = `translate(${ox*sp*100}px, ${oy*sp*100}px)`;
+    document.addEventListener('mousemove', e => {
+        const spotlight = document.querySelector('.mouse-spotlight');
+        if (spotlight) spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(11,99,206,0.05), transparent 40%)`;
     });
-    requestAnimationFrame(tick);
-  })();
-})();
 
-/* ═══ PARTICLE CANVAS ═══ */
-window.initParticles = function(canvas, options) {
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  const interactive = options.interactive !== false;
-  const count = options.count || (interactive ? 45 : 16);
-  let mx = -1000, my = -1000;
-  const r = 11, g = 99, b = 206;
-  const particles = Array.from({length: count}, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: (Math.random() - 0.5) * 0.3,
-    size: Math.random() * 2.2 + 0.7,
-    alpha: Math.random() * 0.3 + 0.08
-  }));
-  if (interactive) {
-    canvas.addEventListener('mousemove', e => { const rc = canvas.getBoundingClientRect(); mx = e.clientX - rc.left; my = e.clientY - rc.top; });
-    canvas.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
-  }
-  (function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      if (interactive) {
-        const dx = p.x - mx, dy = p.y - my, dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 120) { const force = (120 - dist) / 120 * 1.5; p.vx += (dx/dist)*force*0.08; p.vy += (dy/dist)*force*0.08; }
-      }
-      p.vx *= 0.98; p.vy *= 0.98; p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${r},${g},${b},${p.alpha})`; ctx.fill();
-    });
-    requestAnimationFrame(animate);
-  })();
-};
-
-/* Init first slide */
-try { animateSlide(document.querySelector('.slide.active')); } catch(e) { console.warn(e); }
+    animateSlide(document.querySelector('.slide.active'));
 </script>
 </body>
 </html>
