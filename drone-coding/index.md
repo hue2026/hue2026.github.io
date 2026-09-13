@@ -3,9 +3,6 @@
 ![Level](https://img.shields.io/badge/level-beginner%20to%20advanced-brightgreen)
 ![Updated](https://img.shields.io/badge/updated-2026-lightyellow)
 
-
-[2026 Drone Coding Outline](https://hue2026.github.io/drone-coding/outline)  
-  
   
   
 
